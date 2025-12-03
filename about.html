@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 | AeroScope Insight</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- 1. 复用 Header/Footer 样式 (保持全站一致) --- */
+        .search-component { position: relative; margin-right: 15px; }
+        .search-box { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 20px; background: white; padding: 5px 12px; transition: 0.3s; }
+        .search-box:focus-within { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+        .search-icon { font-size: 1rem; color: #64748b; margin-right: 8px; }
+        .search-input { border: none; outline: none; font-size: 0.9rem; width: 160px; color: #1e293b; }
+        #search-dropdown { position: absolute; top: 45px; right: 0; width: 280px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 2000; display: none; max-height: 400px; overflow-y: auto; }
+        .search-result-item { display: block; padding: 12px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: #1e293b; transition: 0.2s; }
+        .search-result-item:hover { background: #f8fafc; }
+        .result-meta { font-size: 0.75rem; color: #64748b; display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+        .result-tag { padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; }
+
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
+        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 1rem; font-weight: 600; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+        .footer-col a:hover { color: #3b82f6; }
+        .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+        .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
+        .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
+
+        /* --- 2. 愿景页专属样式 --- */
+        .vision-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 装饰背景元素 */
+        .vision-bg-circle {
+            position: absolute;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, rgba(0,0,0,0) 70%);
+            top: -200px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .vision-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+        .vision-tag { color: #60a5fa; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 20px; display: block; }
+        .vision-title { font-size: 3rem; font-weight: 800; line-height: 1.2; margin-bottom: 30px; letter-spacing: -1px; }
+        .vision-text { font-size: 1.2rem; color: #94a3b8; line-height: 1.8; margin-bottom: 40px; }
+
+        /* 核心价值网格 */
+        .values-section { padding: 80px 0; background: white; }
+        .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 50px; }
+        .value-card { padding: 30px; background: #f8fafc; border-radius: 16px; border: 1px solid #e2e8f0; transition: 0.3s; }
+        .value-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-color: #3b82f6; }
+        .value-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
+        .value-title { font-size: 1.3rem; font-weight: 700; color: #0f172a; margin-bottom: 15px; }
+        .value-desc { color: #64748b; line-height: 1.6; }
+
+        /* 团队/号召区 */
+        .team-section { padding: 80px 0; background: #f8fafc; border-top: 1px solid #e2e8f0; text-align: center; }
+        .quote-box { max-width: 900px; margin: 0 auto; font-size: 1.5rem; font-weight: 600; color: #334155; font-style: italic; line-height: 1.6; }
+        .quote-author { margin-top: 20px; font-size: 1rem; color: #64748b; font-style: normal; }
+
+        @media (max-width: 768px) {
+            .values-grid { grid-template-columns: 1fr; }
+            .vision-title { font-size: 2rem; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .social-icons { justify-content: center; }
+            .search-component { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header (标准一致) -->
+    <header>
+        <div class="standard-container">
+            <div class="nav-inner">
+                <a href="index.html" class="logo">AeroScope<span>Insight</span></a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <nav class="nav-links" id="navMenu">
+                    <a href="index.html">首页</a>
+                    <a href="news.html">资讯快报</a>
+                    <a href="policies.html">政策法规</a>
+                    <a href="tech.html">技术前沿</a>
+                    <a href="companies.html">公司数据库</a>
+                    <a href="forum.html">论坛交流</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-component">
+                        <div class="search-box"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)"></div>
+                        <div id="search-dropdown"></div>
+                    </div>
+                    <button class="btn btn-primary" id="auth-btn" onclick="location.href='login.html'">登录/注册</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. 愿景 Hero -->
+    <div class="vision-hero">
+        <div class="vision-bg-circle"></div>
+        <div class="standard-container vision-content">
+            <span class="vision-tag">Our Mission & Vision</span>
+            <h1 class="vision-title">构建低空经济时代的<br><span style="color:#3b82f6;">数字大脑与决策引擎</span></h1>
+            <p class="vision-text">
+                我们相信，天空是人类经济活动的下一个前沿。<br>
+                AeroScope 致力于通过数据智能，消除信息不对称，<br>链接政策、资本与技术，加速全球低空产业的商业化进程。
+            </p>
+            <a href="contact.html" class="btn btn-primary" style="padding: 12px 36px; font-size: 1.1rem;">成为合作伙伴</a>
+        </div>
+    </div>
+
+    <!-- 2. 核心价值 -->
+    <div class="values-section">
+        <div class="standard-container">
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <h2 style="font-size: 2rem; margin-bottom: 15px; color: #0f172a;">我们做什么</h2>
+                <p style="color:#64748b;">从碎片化信息到结构化知识，再到可执行的商业决策。</p>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <span class="value-icon">🔍</span>
+                    <h3 class="value-title">全域数据聚合</h3>
+                    <p class="value-desc">利用 AI 实时监控全球 50+ 监管机构、arXiv 技术论文及资本市场动态，构建最完整的行业知识图谱。</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-icon">🧠</span>
+                    <h3 class="value-title">智能决策辅助</h3>
+                    <p class="value-desc">基于 RAG 技术的智能投研助手，为政府招商、机构投资提供基于数据的深度分析与趋势预测。</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-icon">🤝</span>
+                    <h3 class="value-title">产业生态链接</h3>
+                    <p class="value-desc">打破行业壁垒，通过高净值社区与线下闭门会，精准对接项目方与资金方，促成实质性商业合作。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. 团队宣言 -->
+    <div class="team-section">
+        <div class="standard-container">
+            <div class="quote-box">
+                "低空经济不仅是飞行器的革新，更是空域管理、数字基础设施与商业模式的重构。我们不生产飞机，我们为飞行铺设数字航路。"
+            </div>
+            <div class="quote-author">— AeroScope 创始团队</div>
+        </div>
+    </div>
+
+    <!-- Footer (标准一致) -->
+    <footer>
+        <div class="standard-container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <h4 style="font-size:1.2rem;">AeroScope Insight</h4>
+                    <p style="font-size:0.9rem; color:#94a3b8; line-height: 1.6; margin-bottom: 20px;">
+                        连接政策、资本与技术，打造低空经济领域的数字化基础设施与决策引擎。
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></a>
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                        <a href="mailto:contact@aeroscope.cn" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>核心板块</h4>
+                    <ul>
+                        <li><a href="news.html">资讯快报</a></li>
+                        <li><a href="policies.html">政策法规</a></li>
+                        <li><a href="companies.html">企业数据库</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>数据图谱</h4>
+                    <ul>
+                        <li><a href="chart-funding.html">全球融资趋势</a></li>
+                        <li><a href="chart-cities.html">试点城市分布</a></li>
+                        <li><a href="chart-companies.html">产业链全景图</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于</h4>
+                    <ul>
+                        <li><a href="about.html">团队愿景</a></li>
+                        <li><a href="submit-report.html">寻求报道</a></li>
+                        <li><a href="contact.html">商务合作</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright" style="border-top:1px solid #334155; padding-top:20px; margin-top:20px; text-align:center; color:#64748b; font-size:0.85rem;">
+                &copy; 2025 AeroScope Insight. All rights reserved. 京ICP备XXXXXXXX号
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co'; 
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            checkUserLogin(); // 顶部登录检测
+        });
+
+        // --- 通用逻辑 (复用自 Index) ---
+        async function checkUserLogin() {
+            const { data: { session } } = await _supabase.auth.getSession();
+            const btn = document.getElementById('auth-btn');
+            if (session) {
+                btn.innerText = session.user.email.split('@')[0];
+                btn.onclick = () => location.href = 'profile.html';
+            }
+        }
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        
+        let searchTimeout;
+        async function performGlobalSearch(keyword) {
+            const dropdown = document.getElementById('search-dropdown');
+            if (!keyword || keyword.length < 1) { dropdown.style.display = 'none'; return; }
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(async () => {
+                dropdown.style.display = 'block';
+                dropdown.innerHTML = '<div style="padding:12px; text-align:center; color:#94a3b8;">搜索中...</div>';
+                const { data, error } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
+                if (error || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
+                let html = '';
+                data.forEach(item => {
+                    let link=`news-detail.html?id=${item.id}`;
+                    if(item.type==='company') link='companies.html';
+                    else if(item.type==='policy') link=`policy-detail.html?id=${item.id}`;
+                    else if(item.type==='tech') link=`tech-detail.html?id=${item.id}`;
+                    else link=`news-detail.html?id=${item.id}`;
+                    html += `<a href="${link}" class="search-result-item">${item.title}</a>`;
+                });
+                dropdown.innerHTML = html;
+            }, 500);
+        }
+        document.addEventListener('click', (e) => { if(!document.querySelector('.search-component').contains(e.target)) document.getElementById('search-dropdown').style.display='none'; });
+    </script>
+</body>
+</html>

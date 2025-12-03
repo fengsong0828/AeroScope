@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心 | AeroScope Insight</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 复用 Header/Footer 样式 */
+        .search-component { position: relative; margin-right: 15px; }
+        .search-box { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 20px; background: white; padding: 5px 12px; transition: 0.3s; }
+        .search-box:focus-within { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+        .search-icon { font-size: 1rem; color: #64748b; margin-right: 8px; }
+        .search-input { border: none; outline: none; font-size: 0.9rem; width: 160px; color: #1e293b; }
+        #search-dropdown { position: absolute; top: 45px; right: 0; width: 280px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 2000; display: none; max-height: 400px; overflow-y: auto; }
+        .search-result-item { display: block; padding: 12px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: #1e293b; transition: 0.2s; }
+        .search-result-item:hover { background: #f8fafc; }
+        
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
+        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 1rem; font-weight: 600; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+        .footer-col a:hover { color: #3b82f6; }
+        .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+        .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
+        .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
+
+        /* --- 个人中心布局 --- */
+        body { background-color: #f8fafc; }
+        
+        .profile-layout { 
+            max-width: 1200px; margin: 40px auto; padding: 0 20px; 
+            display: grid; grid-template-columns: 300px 1fr; gap: 30px;
+        }
+
+        /* 左侧卡片 */
+        .profile-sidebar {
+            background: white; border-radius: 12px; border: 1px solid #e2e8f0; 
+            padding: 30px 20px; text-align: center; height: fit-content;
+        }
+        
+        .user-avatar-lg {
+            width: 100px; height: 100px; margin: 0 auto 20px; 
+            background: #0f172a; color: white; font-size: 2.5rem; font-weight: bold; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            border: 4px solid #f1f5f9;
+        }
+        
+        .user-name-lg { font-size: 1.2rem; font-weight: 700; color: #1e293b; margin-bottom: 5px; }
+        .user-role-badge { 
+            display: inline-block; background: #e0f2fe; color: #0284c7; 
+            padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; margin-bottom: 20px;
+        }
+        .user-expert-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706); color: white;
+        }
+
+        .side-menu { list-style: none; text-align: left; margin-top: 30px; border-top: 1px solid #f1f5f9; padding-top: 20px; }
+        .side-menu li { margin-bottom: 5px; }
+        .menu-btn { 
+            display: block; width: 100%; padding: 12px 15px; border-radius: 8px; 
+            color: #64748b; font-weight: 500; cursor: pointer; transition: 0.2s; border: none; background: none; text-align: left;
+        }
+        .menu-btn:hover, .menu-btn.active { background: #f1f5f9; color: #3b82f6; }
+        .menu-btn.logout { color: #ef4444; }
+        .menu-btn.logout:hover { background: #fee2e2; }
+
+        /* 右侧内容区 */
+        .profile-content { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 40px; min-height: 500px; }
+        
+        .section-title { font-size: 1.2rem; font-weight: 700; color: #1e293b; margin-bottom: 30px; border-left: 4px solid #3b82f6; padding-left: 10px; }
+
+        /* 表单 */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #475569; font-size: 0.9rem; }
+        .form-control { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem; transition: 0.2s; }
+        .form-control:focus { border-color: #3b82f6; outline: none; }
+        .form-control:disabled { background: #f8fafc; color: #94a3b8; cursor: not-allowed; }
+
+        /* 列表项 (话题/关注) */
+        .list-item { padding: 15px 0; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
+        .list-item:last-child { border-bottom: none; }
+        .item-main a { color: #1e293b; font-weight: 500; text-decoration: none; transition: 0.2s; }
+        .item-main a:hover { color: #3b82f6; }
+        .item-sub { font-size: 0.85rem; color: #94a3b8; margin-top: 4px; }
+        .btn-sm { padding: 4px 10px; border-radius: 4px; border: 1px solid #e2e8f0; background: white; color: #64748b; font-size: 0.8rem; cursor: pointer; transition: 0.2s; }
+        .btn-sm:hover { border-color: #ef4444; color: #ef4444; }
+
+        /* 管理员入口 */
+        .admin-banner { 
+            background: #0f172a; color: white; padding: 15px; border-radius: 8px; 
+            margin-top: 20px; text-align: center; cursor: pointer; transition: 0.2s; 
+            display: none; text-decoration: none;
+        }
+        .admin-banner:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(15, 23, 42, 0.3); }
+
+        @media (max-width: 768px) {
+            .profile-layout { grid-template-columns: 1fr; }
+            .form-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .search-component { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="standard-container">
+            <div class="nav-inner">
+                <a href="index.html" class="logo">AeroScope<span>Insight</span></a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <nav class="nav-links" id="navMenu">
+                    <a href="index.html">首页</a>
+                    <a href="news.html">资讯快报</a>
+                    <a href="policies.html">政策法规</a>
+                    <a href="tech.html">技术前沿</a>
+                    <a href="companies.html">公司数据库</a>
+                    <a href="forum.html">论坛交流</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-component">
+                        <div class="search-box"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)"></div>
+                        <div id="search-dropdown"></div>
+                    </div>
+                    <button class="btn btn-primary" onclick="logout()">退出登录</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="profile-layout">
+        
+        <!-- 左侧导航 -->
+        <aside class="profile-sidebar">
+            <div class="user-avatar-lg" id="avatar-text">U</div>
+            <div class="user-name-lg" id="display-name">Loading...</div>
+            <div id="role-badge-container"></div>
+            
+            <a href="admin.html" class="admin-banner" id="admin-entry">
+                🛠️ 进入后台管理系统
+            </a>
+
+            <ul class="side-menu">
+                <li><button class="menu-btn active" onclick="switchSection('info', this)">👤 个人资料</button></li>
+                <li><button class="menu-btn" onclick="switchSection('posts', this)">📝 我的发布</button></li>
+                <!-- <li><button class="menu-btn" onclick="switchSection('follows', this)">⭐ 我的关注</button></li> -->
+                <li><button class="menu-btn logout" onclick="logout()">🛑 退出登录</button></li>
+            </ul>
+        </aside>
+
+        <!-- 右侧内容 -->
+        <main class="profile-content">
+            
+            <!-- 1. 个人资料 -->
+            <div id="section-info">
+                <h2 class="section-title">编辑资料</h2>
+                <div class="form-grid">
+                    <div class="form-group" style="grid-column: 1/-1;">
+                        <label>登录邮箱 (不可修改)</label>
+                        <input type="text" id="email" class="form-control" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>昵称 / 姓名</label>
+                        <input type="text" id="username" class="form-control" placeholder="怎么称呼您？">
+                    </div>
+                    <div class="form-group">
+                        <label>手机号</label>
+                        <input type="text" id="phone" class="form-control" placeholder="联系方式">
+                    </div>
+                    <div class="form-group">
+                        <label>所在公司</label>
+                        <input type="text" id="company" class="form-control" placeholder="例如：亿航智能">
+                    </div>
+                    <div class="form-group">
+                        <label>职位 / 头衔</label>
+                        <input type="text" id="role" class="form-control" placeholder="例如：研发工程师">
+                    </div>
+                </div>
+                <div style="margin-top: 30px; text-align: right;">
+                    <span id="save-msg" style="margin-right: 15px; font-size: 0.9rem; display:none;"></span>
+                    <button class="btn btn-primary" onclick="updateProfile()" style="padding: 12px 30px;">保存修改</button>
+                </div>
+            </div>
+
+            <!-- 2. 我的发布 -->
+            <div id="section-posts" style="display: none;">
+                <h2 class="section-title">我发布的话题</h2>
+                <div id="my-posts-list">
+                    <p style="color:#94a3b8; text-align:center; padding:40px;">加载中...</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="standard-container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <h4 style="font-size:1.2rem;">AeroScope Insight</h4>
+                    <p style="font-size:0.9rem; color:#94a3b8; line-height: 1.6; margin-bottom: 20px;">
+                        连接政策、资本与技术，打造低空经济领域的数字化基础设施与决策引擎。
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></a>
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                        <a href="mailto:contact@aeroscope.cn" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col"><h4>核心板块</h4><ul><li><a href="news.html">资讯快报</a></li><li><a href="policies.html">政策法规</a></li><li><a href="companies.html">企业数据库</a></li></ul></div>
+                <div class="footer-col"><h4>数据图谱</h4><ul><li><a href="chart-funding.html">全球融资趋势</a></li><li><a href="chart-cities.html">试点城市分布</a></li><li><a href="chart-companies.html">产业链全景图</a></li></ul></div>
+                <div class="footer-col">
+                    <h4>关于</h4>
+                    <ul>
+                        <li><a href="about.html">团队愿景</a></li>
+                        <li><a href="submit-report.html">寻求报道</a></li>
+                        <li><a href="contact.html">商务合作</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright" style="border-top:1px solid #334155; padding-top:20px; margin-top:20px; text-align:center; color:#64748b; font-size:0.85rem;">&copy; 2025 AeroScope Insight. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co'; 
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        let currentUserId = null;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const { data: { session } } = await _supabase.auth.getSession();
+            if (!session) return location.href = 'login.html';
+            
+            currentUserId = session.user.id;
+            loadProfile();
+            loadMyPosts();
+        });
+
+        // 1. 加载资料
+        async function loadProfile() {
+            const { data: profile } = await _supabase.from('profiles').select('*').eq('id', currentUserId).single();
+            if(!profile) return;
+
+            // 填充表单
+            document.getElementById('email').value = profile.email;
+            document.getElementById('username').value = profile.username || '';
+            document.getElementById('phone').value = profile.phone || '';
+            document.getElementById('company').value = profile.company_name || '';
+            document.getElementById('role').value = profile.job_title || '';
+            
+            // 左侧卡片
+            const displayName = profile.username || profile.email.split('@')[0];
+            document.getElementById('display-name').innerText = displayName;
+            document.getElementById('avatar-text').innerText = displayName.charAt(0).toUpperCase();
+
+            // 徽章逻辑
+            const badgeContainer = document.getElementById('role-badge-container');
+            if (profile.is_expert) {
+                badgeContainer.innerHTML = `<span class="user-role-badge user-expert-badge">认证专家</span>`;
+            } else {
+                badgeContainer.innerHTML = `<span class="user-role-badge">${profile.tier === 'pro' ? 'Pro 会员' : '普通用户'}</span>`;
+            }
+
+            // 管理员入口
+            if (profile.is_admin) {
+                document.getElementById('admin-entry').style.display = 'block';
+            }
+        }
+
+        // 2. 加载我的发布
+        async function loadMyPosts() {
+            const container = document.getElementById('my-posts-list');
+            const { data } = await _supabase.from('forum_topics').select('*').eq('user_id', currentUserId).order('created_at', {ascending:false});
+            
+            if (!data || !data.length) {
+                container.innerHTML = '<div style="text-align:center; padding:40px; color:#94a3b8;">您还没有发布过话题</div>';
+                return;
+            }
+
+            container.innerHTML = '';
+            data.forEach(t => {
+                container.innerHTML += `
+                    <div class="list-item">
+                        <div class="item-main">
+                            <a href="forum-topic.html?id=${t.id}" target="_blank">${t.title}</a>
+                            <div class="item-sub">
+                                发布于 ${new Date(t.created_at).toLocaleDateString()} · 
+                                🔥 ${t.heat_score} · 
+                                💬 ${t.comments_count}
+                            </div>
+                        </div>
+                        <button class="btn-sm" onclick="deleteTopic('${t.id}')">删除</button>
+                    </div>
+                `;
+            });
+        }
+
+        // 3. 更新资料
+        async function updateProfile() {
+            const btn = document.querySelector('.btn-primary');
+            const msg = document.getElementById('save-msg');
+            btn.innerText = '保存中...';
+            btn.disabled = true;
+
+            const updates = {
+                username: document.getElementById('username').value,
+                phone: document.getElementById('phone').value,
+                company_name: document.getElementById('company').value,
+                job_title: document.getElementById('role').value,
+                updated_at: new Date()
+            };
+
+            const { error } = await _supabase.from('profiles').update(updates).eq('id', currentUserId);
+            
+            btn.innerText = '保存修改';
+            btn.disabled = false;
+            msg.style.display = 'inline';
+            
+            if (error) {
+                msg.style.color = '#ef4444';
+                msg.innerText = '保存失败: ' + error.message;
+            } else {
+                msg.style.color = '#10b981';
+                msg.innerText = '保存成功';
+                loadProfile(); // 刷新左侧卡片
+                setTimeout(() => msg.style.display = 'none', 3000);
+            }
+        }
+
+        // 4. 删除话题
+        async function deleteTopic(id) {
+            if(!confirm('确定删除这条话题吗？不可恢复。')) return;
+            const { error } = await _supabase.from('forum_topics').delete().eq('id', id);
+            if(error) alert('删除失败');
+            else loadMyPosts();
+        }
+
+        // 5. 切换板块
+        function switchSection(sec, btn) {
+            document.getElementById('section-info').style.display = 'none';
+            document.getElementById('section-posts').style.display = 'none';
+            document.getElementById('section-' + sec).style.display = 'block';
+            
+            document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        async function logout() {
+            await _supabase.auth.signOut();
+            window.location.href = 'index.html';
+        }
+
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        
+        let searchTimeout;
+        async function performGlobalSearch(keyword) {
+            // 复用其他页面的搜索逻辑
+            const dropdown = document.getElementById('search-dropdown');
+            if (!keyword || keyword.length < 1) { dropdown.style.display = 'none'; return; }
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(async () => {
+                dropdown.style.display = 'block';
+                dropdown.innerHTML = '<div style="padding:12px; text-align:center; color:#94a3b8;">搜索中...</div>';
+                const { data, error } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
+                if (error || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
+                let html = '';
+                data.forEach(item => {
+                    let link=`news-detail.html?id=${item.id}`;
+                    if(item.type==='company') link='companies.html';
+                    else if(item.type==='policy') link=`policy-detail.html?id=${item.id}`;
+                    else if(item.type==='tech') link=`tech-detail.html?id=${item.id}`;
+                    html += `<a href="${link}" class="search-result-item">${item.title}</a>`;
+                });
+                dropdown.innerHTML = html;
+            }, 500);
+        }
+        document.addEventListener('click', (e) => { if(!document.querySelector('.search-component').contains(e.target)) document.getElementById('search-dropdown').style.display='none'; });
+    </script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 智能采编 | AeroScope Console</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 后台风格基础 */
+        body { background-color: #f1f5f9; margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
+        
+        /* 页眉 (与 admin.html 一致) */
+        .console-header {
+            background: white; border-bottom: 1px solid #e2e8f0; height: 64px; 
+            display: flex; align-items: center; padding: 0 30px; justify-content: space-between;
+        }
+        .logo-area { font-weight: 800; font-size: 1.2rem; color: #0f172a; display: flex; align-items: center; gap: 10px; }
+        .logo-area a { text-decoration: none; color: inherit; }
+        .user-area { display: flex; gap: 15px; align-items: center; font-size: 0.9rem; }
+
+        /* 主布局 */
+        .ai-layout { 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 30px; 
+            max-width: 1600px; margin: 40px auto; padding: 0 30px; width: 100%; flex: 1;
+        }
+        
+        .panel-card { 
+            background: white; padding: 30px; border-radius: 12px; 
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;
+            display: flex; flex-direction: column;
+        }
+        
+        .panel-title { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
+
+        /* 表单元素 */
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; margin-bottom: 8px; font-weight: 600; color: #475569; font-size: 0.9rem; }
+        .form-control { 
+            width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; 
+            font-size: 0.95rem; font-family: inherit; transition: 0.2s; background: #fff;
+        }
+        .form-control:focus { border-color: #3b82f6; outline: none; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+        
+        textarea.form-control { resize: vertical; line-height: 1.6; }
+        
+        /* 按钮 */
+        .btn-ai { 
+            background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border: none; 
+            width: 100%; padding: 14px; font-size: 1rem; font-weight: 600; border-radius: 8px; 
+            cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 8px;
+        }
+        .btn-ai:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+        .btn-ai:disabled { background: #cbd5e1; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        .btn-save { background: #10b981; }
+        .btn-save:hover { background: #059669; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+
+        /* 标签预览 */
+        .tag-badge { display: inline-block; background: #eff6ff; color: #3b82f6; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; margin-right: 6px; margin-top: 8px; font-weight: 500; }
+        
+        /* 加载动画 */
+        .spinner { width: 18px; height: 18px; border: 2px solid #fff; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; display: none; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        @media (max-width: 1024px) { .ai-layout { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <!-- 后台统一页眉 -->
+    <header class="console-header">
+        <div class="logo-area">
+            <a href="admin.html">← AeroScope <span style="color:#3b82f6;">Console</span></a>
+        </div>
+        <div class="user-area">
+            <span id="admin-info">Checking...</span>
+            <a href="index.html" style="color:#64748b; text-decoration:none;">返回前台</a>
+        </div>
+    </header>
+
+    <div class="ai-layout">
+        
+        <!-- 左侧：输入配置 -->
+        <div class="panel-card">
+            <div class="panel-title">
+                <span>🛠️ 采编配置</span>
+                <span style="font-size:0.8rem; color:#3b82f6; background:#eff6ff; padding:4px 8px; border-radius:4px;">V3.0 引擎</span>
+            </div>
+
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <label class="form-label">🧠 AI 模型</label>
+                    <select id="ai-model" class="form-control">
+                        <option value="deepseek-chat">DeepSeek V3 (高性价比)</option>
+                        <option value="qwen-plus">通义千问 Plus (均衡)</option>
+                        <option value="qwen-max">通义千问 Max (最强中文)</option>
+                        <option value="gpt-4o">OpenAI GPT-4o (逻辑最强)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label">📂 目标栏目</label>
+                    <select id="targetCategory" class="form-control">
+                        <option value="news">资讯快报 (News)</option>
+                        <option value="policy">政策法规 (Policy)</option>
+                        <option value="tech">技术前沿 (Tech)</option>
+                        <option value="report">深度研报 (Report)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">素材来源</label>
+                <select id="inputType" class="form-control" onchange="toggleInput()">
+                    <option value="url">🔗 粘贴网页链接 (URL)</option>
+                    <option value="text">📝 粘贴纯文本内容</option>
+                </select>
+            </div>
+
+            <div id="urlInputGroup" class="form-group">
+                <input type="url" id="rawUrl" class="form-control" placeholder="https://mp.weixin.qq.com/s/..." />
+                <div style="font-size:0.85rem; color:#94a3b8; margin-top:8px;">* AI 将自动抓取网页正文并进行清洗重写</div>
+            </div>
+
+            <div id="textInputGroup" class="form-group" style="display:none;">
+                <textarea id="rawText" class="form-control" rows="8" placeholder="请在此粘贴会议纪要、政策原文或新闻通稿..."></textarea>
+            </div>
+
+            <button class="btn-ai" id="generateBtn" onclick="generateNews()">
+                <span class="spinner" id="spinner"></span>
+                <span id="btnText">✨ 开始智能生成</span>
+            </button>
+        </div>
+
+        <!-- 右侧：结果编辑 -->
+        <div class="panel-card">
+            <div class="panel-title">
+                <span>📝 生成结果 (可编辑)</span>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">标题</label>
+                <input type="text" id="outTitle" class="form-control" placeholder="等待生成...">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">摘要</label>
+                <textarea id="outSummary" class="form-control" rows="3" placeholder="等待生成..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">正文 (Markdown)</label>
+                <textarea id="outContent" class="form-control" rows="10" placeholder="等待生成..."></textarea>
+            </div>
+            
+            <div class="form-group" style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
+                <div>
+                    <label class="form-label">标签 (逗号分隔)</label>
+                    <input type="text" id="outTags" class="form-control" placeholder="eVTOL, 融资" oninput="updateTagPreview()">
+                    <div id="tagPreviewContainer"></div>
+                </div>
+                <div>
+                    <label class="form-label">发布日期</label>
+                    <input type="date" id="outDate" class="form-control">
+                </div>
+            </div>
+
+            <button class="btn-ai btn-save" onclick="saveToDatabase()">
+                💾 保存到数据库 (草稿)
+            </button>
+        </div>
+    </div>
+
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // ================= 配置区域 =================
+        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co'; 
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        
+        let currentAiData = null; 
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', async () => {
+            await checkAuth();
+            // 初始化日期
+            document.getElementById('outDate').value = new Date().toISOString().split('T')[0];
+        });
+
+        // 1. 权限检查
+        async function checkAuth() {
+            const { data: { session } } = await _supabase.auth.getSession();
+            if (!session) return window.location.href = 'login.html';
+            
+            const { data: profile } = await _supabase.from('profiles').select('is_admin, username').eq('id', session.user.id).single();
+            if (!profile?.is_admin) {
+                alert('无权访问');
+                return window.location.href = 'index.html';
+            }
+            document.getElementById('admin-info').innerText = `管理员: ${profile.username}`;
+        }
+
+        // 2. 切换输入
+        function toggleInput() {
+            const type = document.getElementById('inputType').value;
+            document.getElementById('textInputGroup').style.display = type === 'text' ? 'block' : 'none';
+            document.getElementById('urlInputGroup').style.display = type === 'url' ? 'block' : 'none';
+        }
+
+        // 3. 更新标签预览
+        function updateTagPreview() {
+            const container = document.getElementById('tagPreviewContainer');
+            container.innerHTML = '';
+            const val = document.getElementById('outTags').value || '';
+            const tags = val.split(/,|，/).map(t => t.trim()).filter(t => t);
+            tags.forEach(tag => {
+                container.innerHTML += `<span class="tag-badge">${tag}</span>`;
+            });
+        }
+
+        // 4. 调用 AI
+        async function generateNews() {
+            const inputType = document.getElementById('inputType').value;
+            const category = document.getElementById('targetCategory').value;
+            const model = document.getElementById('ai-model').value;
+            
+            let content = inputType === 'text' 
+                ? document.getElementById('rawText').value.trim()
+                : document.getElementById('rawUrl').value.trim();
+
+            if (!content) return alert('请输入内容');
+
+            const btn = document.getElementById('generateBtn');
+            const spinner = document.getElementById('spinner');
+            const btnText = document.getElementById('btnText');
+            
+            btn.disabled = true;
+            spinner.style.display = 'inline-block';
+            btnText.innerText = 'AI 正在思考中...';
+
+            try {
+                const { data, error } = await _supabase.functions.invoke('generate-news', {
+                    body: { content, model, category }
+                });
+
+                if (error) throw error;
+
+                currentAiData = data; 
+
+                // 填充表单
+                document.getElementById('outTitle').value = data.title || '';
+                document.getElementById('outSummary').value = data.summary || '';
+                document.getElementById('outContent').value = data.content || '';
+                
+                // 处理标签 (如果 AI 返回了 tags 数组)
+                if (data.tags && Array.isArray(data.tags)) {
+                    document.getElementById('outTags').value = data.tags.join(', ');
+                    updateTagPreview();
+                }
+
+                // 自动调整高度
+                const ta = document.getElementById('outContent');
+                ta.style.height = 'auto';
+                ta.style.height = (ta.scrollHeight + 20) + 'px';
+
+            } catch (err) {
+                console.error(err);
+                alert('生成失败: ' + err.message);
+            } finally {
+                btn.disabled = false;
+                spinner.style.display = 'none';
+                btnText.innerText = '✨ 重新生成';
+            }
+        }
+
+        // 5. 保存到数据库
+        async function saveToDatabase() {
+            const title = document.getElementById('outTitle').value.trim();
+            const content = document.getElementById('outContent').value.trim();
+            if (!title || !content) return alert('标题和正文不能为空');
+
+            // 确定表名
+            const catVal = document.getElementById('targetCategory').value;
+            const tableMap = { 'news': 'news', 'policy': 'policies', 'tech': 'tech_trends', 'report': 'deep_reports' };
+            const tableName = tableMap[catVal];
+
+            const tagsStr = document.getElementById('outTags').value;
+            const tags = tagsStr.split(/,|，/).map(t => t.trim()).filter(t => t);
+
+            let record = {
+                title,
+                summary: document.getElementById('outSummary').value.trim(),
+                content,
+                publish_date: document.getElementById('outDate').value,
+                draft: true // 默认为草稿
+            };
+
+            // 特殊字段处理
+            if (tableName === 'news') {
+                record.category = currentAiData?.news_category || '市场动态';
+                record.tags = tags; // 只有 news 表有 tags 数组字段 (V2 schema)
+                record.source = 'AI采编';
+            } else if (tableName === 'policies') {
+                record.department = '相关部门';
+                record.level = '国家部委';
+            } else if (tableName === 'tech_trends') {
+                record.type = 'Product';
+                record.org = '未知机构';
+            }
+
+            const { error } = await _supabase.from(tableName).insert(record);
+
+            if (error) {
+                alert('保存失败: ' + error.message);
+            } else {
+                if(confirm('保存成功！是否前往列表页发布？')) {
+                    location.href = 'admin.html';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

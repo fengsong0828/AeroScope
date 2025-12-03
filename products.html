@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球飞行器产品库 | AeroScope Insight</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- 复用 Search/Header/Footer 样式 --- */
+        .search-component { position: relative; margin-right: 15px; }
+        .search-box { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 20px; background: white; padding: 5px 12px; transition: 0.3s; }
+        .search-box:focus-within { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+        .search-icon { font-size: 1rem; color: #64748b; margin-right: 8px; }
+        .search-input { border: none; outline: none; font-size: 0.9rem; width: 160px; color: #1e293b; }
+        #search-dropdown { position: absolute; top: 45px; right: 0; width: 280px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 2000; display: none; max-height: 400px; overflow-y: auto; }
+        .search-result-item { display: block; padding: 12px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: #1e293b; transition: 0.2s; }
+        .search-result-item:hover { background: #f8fafc; }
+        
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
+        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 1rem; font-weight: 600; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+        .footer-col a:hover { color: #3b82f6; }
+        .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+        
+        /* 图标样式调整：去除 cursor:pointer，改为 default */
+        .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; cursor: default; }
+        .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
+
+        /* --- 高级筛选栏样式 --- */
+        .filter-section {
+            background: white; border-bottom: 1px solid #e2e8f0; padding: 20px 0;
+            position: sticky; top: 0; z-index: 90; 
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        }
+        
+        .filter-container {
+            display: flex; flex-direction: column; gap: 15px;
+        }
+
+        /* 第一行：主要筛选 */
+        .filter-row-main {
+            display: flex; gap: 15px; flex-wrap: wrap; align-items: center;
+        }
+
+        /* 第二行：高级参数筛选 */
+        .filter-row-advanced {
+            display: flex; gap: 15px; flex-wrap: wrap; align-items: center;
+            padding-top: 15px; border-top: 1px dashed #e2e8f0;
+        }
+
+        .filter-select {
+            padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px;
+            font-size: 0.9rem; color: #334155; background-color: #fff;
+            outline: none; cursor: pointer; min-width: 130px;
+        }
+        .filter-select:hover { border-color: #94a3b8; }
+        .filter-select:focus { border-color: #3b82f6; }
+
+        .local-search {
+            flex: 1; max-width: 300px; padding: 8px 12px; 
+            border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem;
+        }
+
+        /* 产品网格 */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; padding: 40px 0; }
+        .product-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; position: relative; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-color: #3b82f6; }
+        
+        .product-img-box { height: 180px; background-color: #f1f5f9; position: relative; overflow: hidden; }
+        .product-img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .status-badge { position: absolute; top: 10px; right: 10px; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; color: white; }
+        .status-certified { background-color: #10b981; }
+        .status-testing { background-color: #3b82f6; }
+        .status-concept { background-color: #f59e0b; }
+
+        .product-content { padding: 20px; }
+        .product-maker { font-size: 0.85rem; color: #64748b; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .product-name { font-size: 1.2rem; font-weight: 700; color: #1e293b; margin-bottom: 15px; }
+        
+        .specs-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; background: #f8fafc; padding: 10px; border-radius: 8px; text-align: center; }
+        .spec-val { font-weight: 700; color: #334155; font-size: 0.9rem; }
+        .spec-label { font-size: 0.7rem; color: #94a3b8; margin-top: 2px; }
+
+        @media (max-width: 768px) {
+            .filter-row-main, .filter-row-advanced { flex-direction: column; align-items: stretch; }
+            .local-search { max-width: 100%; }
+            .search-component { display: none; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .social-icons { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="standard-container">
+            <div class="nav-inner">
+                <a href="index.html" class="logo">AeroScope<span>Insight</span></a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <nav class="nav-links" id="navMenu">
+                    <a href="index.html">首页</a>
+                    <a href="news.html">资讯快报</a>
+                    <a href="policies.html">政策法规</a>
+                    <a href="tech.html">技术前沿</a>
+                    <a href="companies.html">公司数据库</a>
+                    <a href="forum.html">论坛交流</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-component">
+                        <div class="search-box"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)"></div>
+                        <div id="search-dropdown"></div>
+                    </div>
+                    <button class="btn btn-primary" id="auth-btn" onclick="location.href='login.html'">登录/注册</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <div style="background: #1e293b; padding: 40px 0; color: white;">
+        <div class="standard-container">
+            <h1 style="font-size: 2rem; margin-bottom: 10px;">全球低空飞行器产品库</h1>
+            <p style="color: #94a3b8;">收录全球 <span id="total-count" style="color:white; font-weight:bold;">--</span> 款主流 eVTOL、货运无人机及飞行汽车参数。</p>
+        </div>
+    </div>
+
+    <!-- 高级筛选栏 -->
+    <div class="filter-section">
+        <div class="standard-container filter-container">
+            <!-- 第一行：主要筛选 (Type, Country, Status, Power) -->
+            <div class="filter-row-main">
+                <select id="filter-type" class="filter-select" onchange="applyFilters()">
+                    <option value="all">✈️ 飞行器类型</option>
+                    <option value="Multicopter">多旋翼 (Multicopter)</option>
+                    <option value="Lift+Cruise">复合翼 (Lift+Cruise)</option>
+                    <option value="Vectored Thrust">矢量推力 (Vectored)</option>
+                    <option value="FlyingCar">飞行汽车</option>
+                </select>
+
+                <select id="filter-country" class="filter-select" onchange="applyFilters()">
+                    <option value="all">🌍 国家/地区</option>
+                    <option value="CN">中国 (CN)</option>
+                    <option value="US">美国 (US)</option>
+                    <option value="DE">德国 (DE)</option>
+                    <option value="FR">法国 (FR)</option>
+                    <option value="GB">英国 (UK)</option>
+                </select>
+
+                <select id="filter-status" class="filter-select" onchange="applyFilters()">
+                    <option value="all">🔖 适航状态</option>
+                    <option value="Certified">✅ 已取证 (Certified)</option>
+                    <option value="Testing">🧪 试飞中 (Testing)</option>
+                    <option value="Prototype">🛠️ 原型机 (Prototype)</option>
+                    <option value="Concept">💡 概念设计 (Concept)</option>
+                </select>
+                
+                <select id="filter-power" class="filter-select" onchange="applyFilters()">
+                    <option value="all">🔋 动力类型</option>
+                    <option value="Electric">纯电 (Electric)</option>
+                    <option value="Hybrid">混动 (Hybrid)</option>
+                    <option value="Hydrogen">氢能 (Hydrogen)</option>
+                </select>
+
+                <input type="text" id="filter-name" class="local-search" placeholder="搜索型号或厂商..." onkeyup="applyFilters()">
+            </div>
+
+            <!-- 第二行：性能参数筛选 -->
+            <div class="filter-row-advanced">
+                <select id="filter-range" class="filter-select" onchange="applyFilters()">
+                    <option value="all">📏 航程范围</option>
+                    <option value="short">&lt; 50 km (城市短途)</option>
+                    <option value="medium">50 - 150 km (城际)</option>
+                    <option value="long">&gt; 150 km (长航程)</option>
+                </select>
+
+                <select id="filter-payload" class="filter-select" onchange="applyFilters()">
+                    <option value="all">⚖️ 载重能力</option>
+                    <option value="light">&lt; 100 kg (轻型物流)</option>
+                    <option value="heavy">100 - 400 kg (重载/2人)</option>
+                    <option value="super">&gt; 400 kg (多人载客)</option>
+                </select>
+                
+                <select id="filter-pilot" class="filter-select" onchange="applyFilters()">
+                    <option value="all">🕹️ 驾驶模式</option>
+                    <option value="Autonomous">自动驾驶</option>
+                    <option value="Piloted">有人驾驶</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- 产品列表 -->
+    <div class="standard-container">
+        <div class="products-grid" id="product-container">
+            <p style="grid-column: 1 / -1; text-align: center; color: #94a3b8; padding: 40px;">
+                正在加载全球机型数据...
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer (修复了图标部分) -->
+    <footer>
+        <div class="standard-container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <h4>AeroScope Insight</h4>
+                    <p style="font-size:0.9rem; color:#94a3b8; line-height: 1.6; margin-bottom: 20px;">连接政策、资本与技术，打造低空经济领域的数字化基础设施与决策引擎。</p>
+                    <div class="social-icons">
+                        <!-- 1. 电话 (无跳转) -->
+                        <div class="social-btn" title="电话: 010-88886666">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <!-- 2. 微信 (无跳转) -->
+                        <div class="social-btn" title="微信号: AeroScope_Admin">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14c3.59 0 6.5-2.46 6.5-5.5S12.09 3 8.5 3 2 5.46 2 8.5c0 1.73.94 3.27 2.42 4.24L4 15l3.24-.71c.4.11.82.18 1.26.21z"></path><path d="M16.5 17c2.76 0 5-1.79 5-4s-2.24-4-5-4c-2.76 0-5 1.79-5 4s2.24 4 5 4z"></path><path d="M16.5 17l2.5 1.5-.5-2"></path></svg>
+                        </div>
+                        <!-- 3. 邮箱 (无跳转) -->
+                        <div class="social-btn" title="邮箱: business@aeroscope.cn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-col"><h4>核心板块</h4><ul><li><a href="news.html">资讯快报</a></li><li><a href="policies.html">政策法规</a></li><li><a href="companies.html">企业数据库</a></li></ul></div>
+                <div class="footer-col"><h4>数据图谱</h4><ul><li><a href="chart-funding.html">全球融资趋势</a></li><li><a href="chart-cities.html">试点城市分布</a></li><li><a href="chart-companies.html">产业链全景图</a></li></ul></div>
+                <div class="footer-col"><h4>关于</h4><ul><li><a href="about.html">团队愿景</a></li><li><a href="submit-report.html">寻求报道</a></li><li><a href="contact.html">商务合作</a></li></ul></div>
+            </div>
+            <div class="copyright" style="border-top:1px solid #334155; padding-top:20px; margin-top:20px; text-align:center; color:#64748b; font-size:0.85rem;">&copy; 2025 AeroScope Insight. All rights reserved. 京ICP备XXXXXXXX号</div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co'; 
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        let allProducts = [];
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            checkUserLogin();
+            await fetchProducts();
+        });
+
+        // 1. 获取数据
+        async function fetchProducts() {
+            const container = document.getElementById('product-container');
+            // 联表查询 companies 以获取 country_code
+            const { data, error } = await _supabase
+                .from('products')
+                .select(`*, companies ( name, country_code )`)
+                .eq('draft', false)
+                .order('created_at', { ascending: false });
+
+            if (error) {
+                console.error('Error:', error);
+                container.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:red;">数据加载失败</p>';
+                return;
+            }
+            
+            allProducts = data || [];
+            document.getElementById('total-count').innerText = allProducts.length;
+            renderProducts(allProducts);
+        }
+
+        // 2. 核心筛选逻辑
+        function applyFilters() {
+            const typeVal = document.getElementById('filter-type').value;
+            const countryVal = document.getElementById('filter-country').value;
+            const statusVal = document.getElementById('filter-status').value;
+            const powerVal = document.getElementById('filter-power').value;
+            const rangeVal = document.getElementById('filter-range').value;
+            const payloadVal = document.getElementById('filter-payload').value;
+            const pilotVal = document.getElementById('filter-pilot').value;
+            const searchVal = document.getElementById('filter-name').value.toLowerCase();
+
+            const filtered = allProducts.filter(item => {
+                const specs = item.specs || {};
+                const companyCountry = item.companies?.country_code || '';
+
+                // 1. 基础筛选
+                if (typeVal !== 'all' && item.type !== typeVal) return false;
+                if (countryVal !== 'all' && companyCountry !== countryVal) return false;
+                if (statusVal !== 'all' && item.certification_status !== statusVal) return false;
+                if (powerVal !== 'all' && specs.propulsion !== powerVal) return false;
+                if (pilotVal !== 'all' && specs.piloting !== pilotVal) return false;
+
+                // 2. 范围筛选
+                if (rangeVal !== 'all') {
+                    const rangeNum = parseInt(specs.range_km || 0);
+                    if (rangeVal === 'short' && rangeNum >= 50) return false;
+                    if (rangeVal === 'medium' && (rangeNum < 50 || rangeNum > 150)) return false;
+                    if (rangeVal === 'long' && rangeNum <= 150) return false;
+                }
+
+                if (payloadVal !== 'all') {
+                    const payNum = parseInt(specs.payload_kg || 0);
+                    if (payloadVal === 'light' && payNum >= 100) return false;
+                    if (payloadVal === 'heavy' && (payNum < 100 || payNum > 400)) return false;
+                    if (payloadVal === 'super' && payNum <= 400) return false;
+                }
+
+                // 3. 搜索
+                if (searchVal) {
+                    const matchName = item.name.toLowerCase().includes(searchVal);
+                    const matchMaker = (item.companies?.name || '').toLowerCase().includes(searchVal);
+                    if (!matchName && !matchMaker) return false;
+                }
+                
+                return true;
+            });
+
+            renderProducts(filtered);
+        }
+
+        function renderProducts(list) {
+            const container = document.getElementById('product-container');
+            container.innerHTML = '';
+
+            if (list.length === 0) {
+                container.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#94a3b8; padding:40px;">未找到匹配的产品</p>';
+                return;
+            }
+
+            list.forEach(item => {
+                const makerName = item.companies?.name || '未知厂商';
+                const regionCode = item.companies?.country_code;
+                let regionFlag = '🌐';
+                if(regionCode === 'CN') regionFlag = '🇨🇳';
+                else if(regionCode === 'US') regionFlag = '🇺🇸';
+                else if(regionCode === 'DE') regionFlag = '🇩🇪';
+                else if(regionCode === 'FR') regionFlag = '🇫🇷';
+                else if(regionCode === 'GB') regionFlag = '🇬🇧';
+                
+                const statusConfig = getStatusConfig(item.certification_status);
+                const specs = item.specs || {};
+                const imgUrl = item.image_url || 'https://via.placeholder.com/400x250?text=No+Image';
+
+                const html = `
+                    <div class="product-card">
+                        <div class="product-img-box">
+                            <img src="${imgUrl}" class="product-img">
+                            <span class="status-badge ${statusConfig.class}">${statusConfig.text}</span>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-maker">
+                                <span>${makerName}</span>
+                                <span style="font-size:1.2rem;">${regionFlag}</span>
+                            </div>
+                            <div class="product-name">${item.name}</div>
+                            
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <div class="spec-val">${specs.range_km || '-'} km</div>
+                                    <div class="spec-label">航程</div>
+                                </div>
+                                <div class="spec-item">
+                                    <div class="spec-val">${specs.speed_kmh || '-'} km/h</div>
+                                    <div class="spec-label">速度</div>
+                                </div>
+                                <div class="spec-item">
+                                    <div class="spec-val">${specs.payload_kg || '-'} kg</div>
+                                    <div class="spec-label">载重</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        function getStatusConfig(status) {
+            if(status === 'Certified') return { text: '已取证', class: 'status-certified' };
+            if(status === 'Testing') return { text: '试飞中', class: 'status-testing' };
+            if(status === 'Prototype') return { text: '原型机', class: 'status-testing' };
+            return { text: status || '研发中', class: 'status-concept' };
+        }
+
+        // --- 通用逻辑 ---
+        async function checkUserLogin() {
+            const { data: { session } } = await _supabase.auth.getSession();
+            const btn = document.getElementById('auth-btn');
+            if (session) {
+                btn.innerText = session.user.email.split('@')[0];
+                btn.onclick = () => location.href = 'profile.html';
+            }
+        }
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        
+        let searchTimeout;
+        async function performGlobalSearch(keyword) {
+            const dropdown = document.getElementById('search-dropdown');
+            if (!keyword || keyword.length < 1) { dropdown.style.display = 'none'; return; }
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(async () => {
+                dropdown.style.display = 'block';
+                dropdown.innerHTML = '<div style="padding:12px; text-align:center; color:#94a3b8;">搜索中...</div>';
+                const { data, error } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
+                if (error || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
+                let html = '';
+                data.forEach(item => {
+                    let link=`news-detail.html?id=${item.id}`;
+                    if(item.type==='tech') link=`tech-detail.html?id=${item.id}`;
+                    html += `<a href="${link}" class="search-result-item">${item.title}</a>`;
+                });
+                dropdown.innerHTML = html;
+            }, 500);
+        }
+        document.addEventListener('click', (e) => { if(!document.querySelector('.search-component').contains(e.target)) document.getElementById('search-dropdown').style.display='none'; });
+    </script>
+</body>
+</html>

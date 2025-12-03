@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>技术前沿 | AeroScope Insight</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 复用搜索框样式 */
+        .search-component { position: relative; margin-right: 15px; }
+        .search-box { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 20px; background: white; padding: 5px 12px; transition: 0.3s; }
+        .search-box:focus-within { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+        .search-icon { font-size: 1rem; color: #64748b; margin-right: 8px; }
+        .search-input { border: none; outline: none; font-size: 0.9rem; width: 160px; color: #1e293b; }
+        #search-dropdown { position: absolute; top: 45px; right: 0; width: 280px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 2000; display: none; max-height: 400px; overflow-y: auto; }
+        .search-result-item { display: block; padding: 12px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: #1e293b; transition: 0.2s; }
+        .search-result-item:hover { background: #f8fafc; }
+        .result-meta { font-size: 0.75rem; color: #64748b; display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+        .result-tag { padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; }
+
+        /* 复用页脚样式 */
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
+        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 1rem; font-weight: 600; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+        .footer-col a:hover { color: #3b82f6; }
+        .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+        .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
+        .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
+
+        /* 侧边栏标签样式 */
+        .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; }
+        .tag-item { 
+            display: block; padding: 6px 12px; border-radius: 4px; 
+            background: white; border: 1px solid #e2e8f0; 
+            color: #64748b; font-size: 0.85rem; cursor: pointer; 
+            transition: all 0.2s ease; text-align: center; 
+        }
+        .tag-item:hover, .tag-item.active { background: #f0fdf4; border-color: #16a34a; color: #16a34a; font-weight: 500; }
+        
+        /* 领域标签特定颜色 (区分类型) */
+        .tag-item.domain-tag:hover, .tag-item.domain-tag.active { background: #eff6ff; border-color: #3b82f6; color: #3b82f6; }
+
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .social-icons { justify-content: center; }
+            .search-component { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Header -->
+    <header>
+        <div class="standard-container">
+            <div class="nav-inner">
+                <a href="index.html" class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    AeroScope<span>Insight</span>
+                </a>
+                
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+
+                <nav class="nav-links" id="navMenu">
+                    <a href="index.html">首页</a>
+                    <a href="news.html">资讯快报</a>
+                    <a href="policies.html">政策法规</a>
+                    <a href="tech.html" class="active">技术前沿</a>
+                    <a href="companies.html">公司数据库</a>
+                    <a href="forum.html">论坛交流</a>
+                </nav>
+
+                <div class="header-actions">
+                    <div class="search-component">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)">
+                        </div>
+                        <div id="search-dropdown"></div>
+                    </div>
+                    <button class="btn btn-primary" id="auth-btn" onclick="location.href='login.html'">登录/注册</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面标题 -->
+    <section class="page-hero">
+        <div class="standard-container">
+            <h1>技术前沿</h1>
+            <p>追踪全球 eVTOL 与无人机领域的硬核技术突破</p>
+        </div>
+    </section>
+
+    <div class="standard-container">
+        <div class="main-layout-grid">
+            <!-- 左侧：列表 -->
+            <main>
+                <div class="news-feed" id="tech-container">
+                    <div style="text-align:center; padding:40px; color:#94a3b8;">加载中...</div>
+                </div>
+            </main>
+
+            <!-- 右侧：侧边栏 (双维度筛选) -->
+            <aside class="sidebar">
+                
+                <!-- 维度 1: 技术领域 (Domain) -->
+                <div class="sidebar-widget">
+                    <div class="widget-title">按技术领域筛选</div>
+                    <div class="tag-cloud" id="domain-container">
+                        <p style="color:#999; font-size:0.8rem;">正在统计...</p>
+                    </div>
+                </div>
+
+                <!-- 维度 2: 成果类型 (Type) -->
+                <div class="sidebar-widget">
+                    <div class="widget-title">按成果类型筛选</div>
+                    <div class="tag-cloud" id="type-container">
+                        <p style="color:#999; font-size:0.8rem;">正在统计...</p>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget newsletter-box">
+                    <div style="font-weight:700; color:#16a34a; text-align:center;">订阅技术周刊</div>
+                    <p style="font-size:0.85rem; color:#64748b; margin-bottom:10px; text-align:center;">精选专利与论文，直达工程师邮箱。</p>
+                    <input type="email" class="newsletter-input" placeholder="输入邮箱地址">
+                    <button class="btn btn-primary" style="width: 100%; background:#16a34a;">免费订阅</button>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="standard-container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <h4 style="font-size:1.2rem;">AeroScope Insight</h4>
+                    <p style="font-size:0.9rem; color:#94a3b8; line-height: 1.6; margin-bottom: 20px;">
+                        连接政策、资本与技术，打造低空经济领域的数字化基础设施与决策引擎。
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></a>
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                        <a href="mailto:contact@aeroscope.cn" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>核心板块</h4>
+                    <ul>
+                        <li><a href="news.html">资讯快报</a></li>
+                        <li><a href="policies.html">政策法规</a></li>
+                        <li><a href="companies.html">企业数据库</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>数据图谱</h4>
+                    <ul>
+                        <li><a href="chart-funding.html">全球融资趋势</a></li>
+                        <li><a href="chart-cities.html">试点城市分布</a></li>
+                        <li><a href="chart-companies.html">产业链全景图</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于</h4>
+                    <ul>
+                        <li><a href="about.html">团队愿景</a></li>
+                        <li><a href="submit-report.html">寻求报道</a></li>
+                        <li><a href="contact.html">商务合作</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright" style="border-top:1px solid #334155; padding-top:20px; margin-top:20px; text-align:center; color:#64748b; font-size:0.85rem;">
+                &copy; 2025 AeroScope Insight. All rights reserved. 京ICP备XXXXXXXX号
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        let allTech = [];
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            checkUserLogin();
+            await fetchTech();
+        });
+
+        async function fetchTech() {
+            const container = document.getElementById('tech-container');
+            container.innerHTML = '<p style="text-align:center; padding:20px;">加载中...</p>';
+            
+            // 拉取所有已发布技术数据
+            const { data, error } = await _supabase
+                .from('tech_trends')
+                .select('*')
+                .eq('draft', false)
+                .order('publish_date', {ascending:false});
+            
+            if(!data || !data.length) { 
+                container.innerHTML = '<p style="text-align:center; padding:40px; color:#999;">暂无技术前沿数据</p>'; 
+                return; 
+            }
+
+            allTech = data;
+            renderList(allTech);
+            renderFilters(allTech); // 渲染两个筛选器
+        }
+
+        function renderList(list) {
+            const container = document.getElementById('tech-container');
+            container.innerHTML = '';
+
+            if(list.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#999; padding:20px;">无匹配数据</p>';
+                return;
+            }
+
+            list.forEach(item => {
+                // 根据类型设置颜色 (Patent: Green, Paper: Purple, Product: Blue)
+                let typeColor = '#3b82f6';
+                if (item.type === 'Patent') typeColor = '#10b981';
+                else if (item.type === 'Paper') typeColor = '#8b5cf6';
+                else if (item.type === 'Product') typeColor = '#f59e0b';
+
+                const bg = item.image_url 
+                    ? `background: #cbd5e1 url('${item.image_url}') center/cover` 
+                    : `background: #f1f5f9`;
+                
+                // 领域标签
+                const domainTag = item.domain 
+                    ? `<span style="color:#475569; background:#f1f5f9; padding:2px 6px; border-radius:4px; font-size:0.7rem; margin-right:5px;">${item.domain}</span>` 
+                    : '';
+
+                container.innerHTML += `
+                    <article class="news-item">
+                        <a href="tech-detail.html?id=${item.id}" class="news-image" style="${bg}; display:block; background-size:cover;"></a>
+                        <div class="news-content">
+                            <h3><a href="tech-detail.html?id=${item.id}">${item.title}</a></h3>
+                            <div class="news-meta">
+                                <span class="tag" style="color:${typeColor}; background:white; border:1px solid ${typeColor};">${item.type || 'Tech'}</span>
+                                ${domainTag}
+                                <span style="font-weight:600;">${item.org || '研发机构'}</span>
+                                <span>${item.publish_date}</span>
+                            </div>
+                            <p style="font-size:0.9rem; color:#64748b; margin-top:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
+                                ${item.summary || ''}
+                            </p>
+                        </div>
+                    </article>
+                `;
+            });
+        }
+
+        // ★★★ 核心：渲染侧边栏的两个筛选区 ★★★
+        function renderFilters(list) {
+            const typeCounts = {};
+            const domainCounts = {};
+
+            list.forEach(item => {
+                // 统计类型
+                const t = item.type || '其他';
+                typeCounts[t] = (typeCounts[t] || 0) + 1;
+                // 统计领域
+                const d = item.domain || '通用';
+                domainCounts[d] = (domainCounts[d] || 0) + 1;
+            });
+
+            // 渲染类型 (Type) - 绿色系
+            renderTagCloud('type-container', typeCounts, 'type');
+
+            // 渲染领域 (Domain) - 蓝色系 (domain-tag class)
+            renderTagCloud('domain-container', domainCounts, 'domain');
+        }
+
+        function renderTagCloud(containerId, countsObj, filterKey) {
+            const container = document.getElementById(containerId);
+            const sorted = Object.entries(countsObj)
+                .map(([name, count]) => ({ name, count }))
+                .sort((a, b) => b.count - a.count);
+
+            if (sorted.length === 0) {
+                container.innerHTML = '<p style="color:#999;">暂无分类</p>';
+                return;
+            }
+
+            // 样式区别：domain 使用 blue 样式，type 使用 green 样式 (默认)
+            const extraClass = filterKey === 'domain' ? 'domain-tag' : '';
+
+            let html = `<div class="tag-item ${extraClass} active" onclick="applyFilter('${filterKey}', 'all', this)">全部</div>`;
+            sorted.forEach(t => {
+                html += `<div class="tag-item ${extraClass}" onclick="applyFilter('${filterKey}', '${t.name}', this)">${t.name}</div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        // 筛选状态
+        let currentFilters = { type: 'all', domain: 'all' };
+
+        function applyFilter(key, value, domEl) {
+            // 1. 更新 UI 选中状态 (只更新当前容器内的)
+            const containerId = key === 'type' ? 'type-container' : 'domain-container';
+            const container = document.getElementById(containerId);
+            container.querySelectorAll('.tag-item').forEach(el => el.classList.remove('active'));
+            domEl.classList.add('active');
+
+            // 2. 更新筛选条件
+            currentFilters[key] = value;
+
+            // 3. 执行筛选 (交集逻辑)
+            const filtered = allTech.filter(item => {
+                const matchType = (currentFilters.type === 'all') || ((item.type || '其他') === currentFilters.type);
+                const matchDomain = (currentFilters.domain === 'all') || ((item.domain || '通用') === currentFilters.domain);
+                return matchType && matchDomain;
+            });
+
+            renderList(filtered);
+        }
+
+        // 全局搜索
+        let searchTimeout;
+        async function performGlobalSearch(keyword) {
+            const dropdown = document.getElementById('search-dropdown');
+            if (!keyword || keyword.length < 1) { dropdown.style.display = 'none'; return; }
+
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(async () => {
+                dropdown.style.display = 'block';
+                dropdown.innerHTML = '<div style="padding:12px; text-align:center; color:#94a3b8;">搜索中...</div>';
+
+                const { data, error } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
+                if (error) { dropdown.innerHTML = '<div style="padding:12px;">搜索出错</div>'; return; }
+                if (!data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无相关结果</div>'; return; }
+
+                let html = '';
+                data.forEach(item => {
+                    let link = '#', color = '#3b82f6', typeName='资讯';
+                    if(item.type === 'company') { link = 'companies.html'; color='#f59e0b'; typeName='公司'; }
+                    else if(item.type === 'policy') { link = `policy-detail.html?id=${item.id}`; color='#ef4444'; typeName='政策'; }
+                    else if(item.type === 'tech') { link = `tech-detail.html?id=${item.id}`; color='#8b5cf6'; typeName='技术'; }
+                    else { link = `news-detail.html?id=${item.id}`; }
+                    html += `<a href="${link}" class="search-result-item"><div style="font-weight:600; font-size:0.9rem;">${item.title}</div><div class="result-meta"><span class="result-tag" style="color:${color}; background:${color}15;">${typeName}</span><span>${item.publish_date || ''}</span></div></a>`;
+                });
+                dropdown.innerHTML = html;
+            }, 500);
+        }
+        document.addEventListener('click', (e) => {
+            if (!document.querySelector('.search-component').contains(e.target)) {
+                document.getElementById('search-dropdown').style.display = 'none';
+            }
+        });
+
+        async function checkUserLogin() {
+            const { data: { session } } = await _supabase.auth.getSession();
+            const btn = document.getElementById('auth-btn');
+            if (session) {
+                btn.innerText = session.user.email.split('@')[0];
+                btn.onclick = () => location.href = 'profile.html';
+            }
+        }
+
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+    </script>
+</body>
+</html>

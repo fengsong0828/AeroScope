@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球融资趋势 | AeroScope Insight</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <style>
+        /* 复用搜索框和Header/Footer样式 (与 Index 一致) */
+        .search-component { position: relative; margin-right: 15px; }
+        .search-box { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 20px; background: white; padding: 5px 12px; transition: 0.3s; }
+        .search-box:focus-within { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+        .search-icon { font-size: 1rem; color: #64748b; margin-right: 8px; }
+        .search-input { border: none; outline: none; font-size: 0.9rem; width: 160px; color: #1e293b; }
+        #search-dropdown { position: absolute; top: 45px; right: 0; width: 280px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 2000; display: none; max-height: 400px; overflow-y: auto; }
+        .search-result-item { display: block; padding: 12px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: #1e293b; transition: 0.2s; }
+        .search-result-item:hover { background: #f8fafc; }
+        
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
+        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 1rem; font-weight: 600; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+        .footer-col a:hover { color: #3b82f6; }
+        .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+        .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
+        .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
+
+        /* 本页特有样式 */
+        .db-tabs { display: flex; border-bottom: 2px solid #e2e8f0; margin-bottom: 25px; overflow-x: auto; }
+        .db-tab { padding: 12px 24px; background: none; border: none; border-bottom: 3px solid transparent; font-weight: 600; color: #64748b; cursor: pointer; white-space: nowrap; transition: all 0.3s; }
+        .db-tab.active { color: #3b82f6; border-bottom-color: #3b82f6; background: rgba(59, 130, 246, 0.05); }
+        .db-content-section { display: none; animation: fadeIn 0.3s ease-out; }
+        .db-content-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .data-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; cursor: pointer; transition: all 0.3s; display: block; text-decoration: none; color: inherit; }
+        .data-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: #3b82f6; }
+        .data-label { font-size: 14px; color: #64748b; margin-bottom: 8px; }
+        .data-value { font-size: 28px; font-weight: 700; color: #1e293b; margin: 10px 0; }
+        .trend-indicator { font-size: 12px; color: #3b82f6; display: block; margin-top: 5px; }
+        
+        .chart-container-wrapper { background: white; border-radius: 12px; padding: 30px; margin: 30px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        .data-table-container { background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; overflow: hidden; margin-top: 20px; }
+        .data-table { width: 100%; border-collapse: collapse; }
+        .data-table th { background: #f8fafc; padding: 15px; text-align: left; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0; }
+        .data-table td { padding: 15px; border-bottom: 1px solid #f1f5f9; color: #1e293b; }
+        .data-table tr:hover { background: #f8fafc; }
+        
+        /* 标签与操作 */
+        .table-actions { display: flex; gap: 10px; justify-content: flex-end; margin-bottom: 20px; flex-wrap: wrap; }
+        .search-input-local { padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; flex: 1; }
+        .round-tag { padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; background: #dbeafe; color: #1d4ed8; display: inline-block; }
+        
+        /* 弹窗 */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        .modal-box { background: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; position: relative; }
+        .modal-close { position: absolute; top: 15px; right: 15px; cursor: pointer; font-size: 1.5rem; color: #94a3b8; }
+
+        @media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="standard-container">
+            <div class="nav-inner">
+                <a href="index.html" class="logo">AeroScope<span>Insight</span></a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <nav class="nav-links" id="navMenu">
+                    <a href="index.html">首页</a>
+                    <a href="news.html">资讯快报</a>
+                    <a href="policies.html">政策法规</a>
+                    <a href="tech.html">技术前沿</a>
+                    <a href="companies.html">公司数据库</a>
+                    <a href="forum.html">论坛交流</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-component">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)">
+                        </div>
+                        <div id="search-dropdown"></div>
+                    </div>
+                    <button class="btn btn-primary" id="auth-btn" onclick="location.href='login.html'">登录/注册</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="standard-container">
+            <h1>全球 eVTOL 融资趋势</h1>
+        </div>
+    </section>
+
+    <div class="standard-container">
+        <!-- 统计卡片 -->
+        <div class="stats-grid">
+            <div class="data-card">
+                <div class="data-label">融资总额 (Est.)</div>
+                <div class="data-value" id="val-total-funding">$--</div>
+                <span class="trend-indicator">实时统计所有事件</span>
+            </div>
+            <div class="data-card">
+                <div class="data-label">融资事件数</div>
+                <div class="data-value" id="val-funding-events">--</div>
+            </div>
+            <div class="data-card">
+                <div class="data-label">已收录投资方</div>
+                <div class="data-value" id="val-active-investors">--</div>
+            </div>
+            <div class="data-card">
+                <div class="data-label">平均单笔融资</div>
+                <div class="data-value" id="val-avg-funding">$--</div>
+            </div>
+        </div>
+        
+        <!-- 标签页 -->
+        <div class="db-tabs">
+            <button class="db-tab active" onclick="switchTab('chart')">趋势图表</button>
+            <button class="db-tab" onclick="switchTab('events')">融资事件</button>
+            <button class="db-tab" onclick="switchTab('investors')">投资方</button>
+        </div>
+
+        <!-- 1. 趋势图表 -->
+        <div id="tab-chart" class="db-content-section active">
+            <div class="chart-container-wrapper">
+                <div id="main-chart" style="width: 100%; height: 500px;"></div>
+                <div style="text-align:center; color:#94a3b8; font-size:0.85rem; margin-top:10px;">* 数据基于已收录的公开融资事件统计</div>
+            </div>
+        </div>
+
+        <!-- 2. 融资事件表格 -->
+        <div id="tab-events" class="db-content-section">
+            <div class="table-actions">
+                <input type="text" class="search-input-local" placeholder="搜索公司..." id="search-events" onkeyup="renderEventsTable()">
+            </div>
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>公司名称</th><th>融资轮次</th><th>金额 (原始/估算)</th><th>投资方</th><th>日期</th></tr>
+                    </thead>
+                    <tbody id="events-table-body">
+                        <tr><td colspan="5" style="text-align: center; padding: 50px;">加载中...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 3. 投资方表格 -->
+        <div id="tab-investors" class="db-content-section">
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>投资方名称</th><th>类型</th><th>国家/地区</th><th>累计投资额 (Est.)</th></tr>
+                    </thead>
+                    <tbody id="investors-table-body">
+                        <tr><td colspan="4" style="text-align: center; padding: 50px;">加载中...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 弹窗 -->
+    <div class="modal-overlay" id="info-modal">
+        <div class="modal-box">
+            <span class="modal-close" onclick="closeModal()">×</span>
+            <div class="modal-title" id="m-title" style="font-size:1.2rem; font-weight:bold; margin-bottom:10px;"></div>
+            <div class="modal-content" id="m-content"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="standard-container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <h4 style="font-size:1.2rem;">AeroScope Insight</h4>
+                    <p style="font-size:0.9rem; color:#94a3b8; line-height: 1.6; margin-bottom: 20px;">
+                        连接政策、资本与技术，打造低空经济领域的数字化基础设施与决策引擎。
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></a>
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                        <a href="mailto:contact@aeroscope.cn" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>核心板块</h4>
+                    <ul>
+                        <li><a href="news.html">资讯快报</a></li>
+                        <li><a href="policies.html">政策法规</a></li>
+                        <li><a href="companies.html">企业数据库</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>数据图谱</h4>
+                    <ul>
+                        <li><a href="chart-funding.html">全球融资趋势</a></li>
+                        <li><a href="chart-cities.html">试点城市分布</a></li>
+                        <li><a href="chart-companies.html">产业链全景图</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于</h4>
+                    <ul>
+                        <li><a href="about.html">团队愿景</a></li>
+                        <li><a href="submit-report.html">寻求报道</a></li>
+                        <li><a href="contact.html">商务合作</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright" style="border-top:1px solid #334155; padding-top:20px; margin-top:20px; text-align:center; color:#64748b; font-size:0.85rem;">
+                &copy; 2025 AeroScope Insight. All rights reserved. 京ICP备XXXXXXXX号
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        let allEvents = [];
+        let allInvestors = [];
+        var myChart = echarts.init(document.getElementById('main-chart'));
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            checkUserLogin();
+            await fetchAllData();
+        });
+
+        async function fetchAllData() {
+            // 1. 获取融资事件 (funding_events)
+            const { data: eventsData, error: eventError } = await _supabase
+                .from('funding_events')
+                .select('*')
+                .eq('draft', false)
+                .order('funding_date', { ascending: false });
+
+            // 2. 获取投资方 (investors)
+            const { data: investorsData, error: invError } = await _supabase
+                .from('investors')
+                .select('*')
+                .eq('draft', false)
+                .order('total_amount', { ascending: false });
+
+            if (eventError || invError) {
+                console.error('数据加载失败');
+                return;
+            }
+
+            allEvents = eventsData || [];
+            allInvestors = investorsData || [];
+
+            calculateStats();
+            renderChart();
+            renderEventsTable();
+            renderInvestorsTable();
+        }
+
+        // 统一的汇率换算函数
+        function convertToUSD(amount, currency) {
+            amount = Number(amount || 0);
+            if (!currency || currency === 'USD') return amount;
+            if (currency === 'CNY') return amount / 7.2;
+            if (currency === 'EUR') return amount * 1.05;
+            if (currency === 'GBP') return amount * 1.25;
+            return amount; // 默认原值
+        }
+
+        // 计算顶部卡片数据 (与 Index 逻辑保持一致)
+        function calculateStats() {
+            let totalAmountUSD = 0;
+            let eventCount = allEvents.length;
+            
+            allEvents.forEach(e => {
+                totalAmountUSD += convertToUSD(e.funding_amount, e.funding_currency);
+            });
+
+            const avgAmount = eventCount > 0 ? totalAmountUSD / eventCount : 0;
+
+            document.getElementById('val-total-funding').innerText = formatMoney(totalAmountUSD);
+            document.getElementById('val-funding-events').innerText = eventCount;
+            document.getElementById('val-active-investors').innerText = allInvestors.length;
+            document.getElementById('val-avg-funding').innerText = formatMoney(avgAmount);
+        }
+
+        // 渲染 ECharts 图表 (按年份聚合)
+        function renderChart() {
+            const yearMap = {};
+            
+            allEvents.forEach(e => {
+                if (!e.funding_date) return;
+                const year = e.funding_date.substring(0, 4);
+                if (!yearMap[year]) yearMap[year] = { amount: 0, count: 0 };
+                
+                yearMap[year].amount += convertToUSD(e.funding_amount, e.funding_currency);
+                yearMap[year].count += 1;
+            });
+
+            const years = Object.keys(yearMap).sort();
+            const amounts = years.map(y => (yearMap[y].amount / 1000000).toFixed(2)); // 转百万
+            const counts = years.map(y => yearMap[y].count);
+
+            const option = {
+                tooltip: { trigger: 'axis' },
+                legend: { data: ['融资总额 ($M)', '事件数量'] },
+                xAxis: { type: 'category', data: years },
+                yAxis: [
+                    { type: 'value', name: '金额 ($M)' },
+                    { type: 'value', name: '数量', splitLine: { show: false } }
+                ],
+                series: [
+                    { name: '融资总额 ($M)', type: 'bar', data: amounts, itemStyle:{color:'#3b82f6'} },
+                    { name: '事件数量', type: 'line', yAxisIndex: 1, data: counts, itemStyle:{color:'#10b981'} }
+                ]
+            };
+            myChart.setOption(option);
+        }
+
+        // 渲染融资事件表格
+        function renderEventsTable() {
+            const tbody = document.getElementById('events-table-body');
+            const searchVal = document.getElementById('search-events').value.toLowerCase();
+            
+            const filtered = allEvents.filter(e => 
+                (e.company_name || '').toLowerCase().includes(searchVal)
+            );
+
+            tbody.innerHTML = '';
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">无数据</td></tr>';
+                return;
+            }
+
+            filtered.slice(0, 50).forEach(e => { // 限制显示50条
+                const rawAmount = e.funding_amount ? Number(e.funding_amount).toLocaleString() : '0';
+                const cur = e.funding_currency || 'USD';
+                
+                // 显示原始金额 + 估算美元 (方便核对)
+                let amountDisplay = `${cur} ${rawAmount}`;
+                if (cur !== 'USD' && e.funding_amount) {
+                    const usdVal = convertToUSD(e.funding_amount, cur);
+                    // 显示约合多少美元
+                    amountDisplay += `<div style="font-size:0.75rem; color:#94a3b8;">≈ $${(usdVal/1000000).toFixed(1)}M</div>`;
+                }
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td style="font-weight:600;">${e.company_name}</td>
+                        <td><span class="round-tag">${e.funding_round}</span></td>
+                        <td style="color:#1d4ed8;">${amountDisplay}</td>
+                        <td style="font-size:0.9rem; color:#64748b;">${e.lead_investor || '-'}</td>
+                        <td>${e.funding_date}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function renderInvestorsTable() {
+            const tbody = document.getElementById('investors-table-body');
+            tbody.innerHTML = '';
+            
+            if (allInvestors.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">暂无数据</td></tr>';
+                return;
+            }
+
+            allInvestors.slice(0, 50).forEach(i => {
+                const total = i.total_amount ? `$${Number(i.total_amount).toLocaleString()}` : '-';
+                tbody.innerHTML += `
+                    <tr>
+                        <td style="font-weight:600;">${i.name}</td>
+                        <td>${i.type || 'VC'}</td>
+                        <td>${i.country || 'Global'}</td>
+                        <td style="color:#1d4ed8;">${total}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        // 辅助函数
+        function formatMoney(num) {
+            if (num >= 1000000000) return '$' + (num / 1000000000).toFixed(1) + 'B';
+            if (num >= 1000000) return '$' + (num / 1000000).toFixed(1) + 'M';
+            return '$' + num.toLocaleString();
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.db-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.db-content-section').forEach(s => s.classList.remove('active'));
+            
+            document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+        }
+
+        function closeModal() { document.getElementById('info-modal').style.display = 'none'; }
+        
+        async function checkUserLogin() {
+            const { data: { session } } = await _supabase.auth.getSession();
+            const btn = document.getElementById('auth-btn');
+            if (session) {
+                btn.innerText = session.user.email.split('@')[0];
+                btn.onclick = () => location.href = 'profile.html';
+            }
+        }
+
+        function toggleMenu() { 
+            document.getElementById('navMenu').classList.toggle('active'); 
+        }
+
+        // 全局搜索逻辑 (复制自 Index)
+        let searchTimeout;
+        async function performGlobalSearch(keyword) {
+            const dropdown = document.getElementById('search-dropdown');
+            if (!keyword || keyword.length < 1) { dropdown.style.display = 'none'; return; }
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(async () => {
+                dropdown.style.display = 'block';
+                dropdown.innerHTML = '<div style="padding:12px; text-align:center; color:#94a3b8;">搜索中...</div>';
+                const { data, error } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
+                if (error || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
+                let html = '';
+                data.forEach(item => {
+                    let link='#';
+                    if(item.type==='company') link='companies.html';
+                    else if(item.type==='policy') link=`policy-detail.html?id=${item.id}`;
+                    else if(item.type==='tech') link=`tech-detail.html?id=${item.id}`;
+                    else link=`news-detail.html?id=${item.id}`;
+                    html += `<a href="${link}" class="search-result-item">${item.title}</a>`;
+                });
+                dropdown.innerHTML = html;
+            }, 500);
+        }
+        document.addEventListener('click', (e) => {
+            if (!document.querySelector('.search-component').contains(e.target)) {
+                document.getElementById('search-dropdown').style.display = 'none';
+            }
+        });
+
+        window.addEventListener('resize', () => myChart.resize());
+    </script>
+</body>
+</html>

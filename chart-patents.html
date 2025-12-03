@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>专利技术库 | AeroScope Insight</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 专利列表样式 */
+        .patent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .patent-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .patent-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-color: #3b82f6;
+        }
+        
+        .patent-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .patent-title-container {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .patent-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 1.4;
+            margin-bottom: 5px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .patent-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: #64748b;
+            flex-wrap: wrap;
+        }
+        
+        .patent-id {
+            font-size: 0.85rem;
+            color: #3b82f6;
+            background: #eff6ff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            white-space: nowrap;
+        }
+        
+        .legal-status-badge {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .status-valid {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .status-invalid {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .patent-applicant {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .applicant-name {
+            font-weight: 600;
+            color: #0f172a;
+            cursor: pointer;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .applicant-name:hover {
+            color: #3b82f6;
+            text-decoration: underline;
+        }
+        
+        .patent-abstract {
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .patent-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .patent-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .patent-tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+        
+        .patent-tag.category {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+        
+        .patent-tag.chain-upstream {
+            background: #ecfdf5;
+            color: #059669;
+        }
+        
+        .patent-tag.chain-midstream {
+            background: #e0f2fe;
+            color: #0284c7;
+        }
+        
+        .patent-tag.chain-downstream {
+            background: #fffbeb;
+            color: #d97706;
+        }
+        
+        .patent-citation {
+            font-size: 0.85rem;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* 筛选栏样式 */
+        .filter-bar {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 15px 0;
+            position: sticky;
+            top: 64px;
+            z-index: 90;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        
+        .filter-inner {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            background-color: #f8fafc;
+            color: #334155;
+            font-size: 0.9rem;
+            outline: none;
+            cursor: pointer;
+            min-width: 150px;
+        }
+        
+        .filter-select:focus {
+            border-color: #3b82f6;
+            background: white;
+        }
+        
+        .local-search {
+            flex-grow: 1;
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            max-width: 300px;
+        }
+        
+        /* 统计数据样式 */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        
+        /* 分页样式 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 40px 0 20px;
+            padding: 20px 0;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .pagination-btn {
+            padding: 8px 16px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            color: #475569;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .pagination-btn:hover:not(:disabled) {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+        
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .pagination-btn.active {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+        
+        .pagination-info {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin: 0 15px;
+        }
+        
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #cbd5e1;
+        }
+        
+        .empty-state-title {
+            font-size: 1.2rem;
+            color: #475569;
+            margin-bottom: 10px;
+        }
+        
+        .empty-state-desc {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1024px) {
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .patent-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .patent-id {
+                align-self: flex-start;
+            }
+            
+            .filter-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .local-search {
+                max-width: 100%;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .pagination {
+                flex-wrap: wrap;
+            }
+            
+            .patent-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. Header -->
+    <header>
+        <div class="standard-container">
+            <div class="nav-inner">
+                <a href="index.html" class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    AeroScope<span>Insight</span>
+                </a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <nav class="nav-links" id="navMenu">
+                    <a href="index.html">首页</a>
+                    <a href="news.html">资讯快报</a>
+                    <a href="policies.html">政策法规</a>
+                    <a href="tech.html">技术前沿</a>
+                    <a href="companies.html">公司数据库</a>
+                    <a href="forum.html">论坛交流</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-component">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" class="search-input" placeholder="搜专利、申请人..." id="global-search" onkeyup="performGlobalSearch(this.value)">
+                        </div>
+                        <div id="search-dropdown"></div>
+                    </div>
+                    <button class="btn btn-primary" id="auth-btn" onclick="location.href='login.html'">登录/注册</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. Hero Section -->
+    <section class="page-hero">
+        <div class="standard-container">
+            <h1>专利技术库</h1>
+            <p>收录全球低空经济领域专利技术，洞察技术发展趋势与竞争格局</p>
+        </div>
+    </section>
+
+    <!-- 3. 统计数据 -->
+    <div class="standard-container">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number" id="total-patents">--</div>
+                <div class="stat-label">累计专利</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="total-applicants">--</div>
+                <div class="stat-label">申请机构</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="avg-citations">--</div>
+                <div class="stat-label">平均引用</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="recent-patents">--</div>
+                <div class="stat-label">今年新增</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. 筛选栏 -->
+    <div class="filter-bar">
+        <div class="standard-container filter-inner">
+            <select id="filter-chain" class="filter-select" onchange="applyFiltersAndPagination()">
+                <option value="all">🔗 全产业链</option>
+                <option value="upstream">⚡ 上游</option>
+                <option value="midstream">✈️ 中游</option>
+                <option value="downstream">🏷️ 下游</option>
+            </select>
+
+            <select id="filter-type" class="filter-select" onchange="applyFiltersAndPagination()">
+                <option value="all">📄 所有类型</option>
+                <option value="发明专利">发明专利</option>
+                <option value="实用新型">实用新型</option>
+                <option value="外观设计">外观设计</option>
+                <option value="国际专利">国际专利</option>
+            </select>
+
+            <select id="filter-category" class="filter-select" onchange="applyFiltersAndPagination()">
+                <option value="all">🏷️ 所有技术分类</option>
+                <option value="eVTOL">eVTOL技术</option>
+                <option value="电池">电池技术</option>
+                <option value="飞控">飞控系统</option>
+                <option value="通信">通信技术</option>
+                <option value="导航">导航技术</option>
+                <option value="材料">新型材料</option>
+                <option value="安全">安全系统</option>
+                <option value="能源">能源管理</option>
+                <option value="物流">物流配送</option>
+                <option value="AI">人工智能</option>
+            </select>
+
+            <select id="filter-year" class="filter-select" onchange="applyFiltersAndPagination()">
+                <option value="all">📅 所有年份</option>
+                <option value="2025">2025年</option>
+                <option value="2024">2024年</option>
+                <option value="2023">2023年</option>
+                <option value="2022">2022年</option>
+                <option value="2021">2021年及以前</option>
+            </select>
+
+            <input type="text" id="filter-search" class="local-search" placeholder="搜索专利标题、申请人..." 
+                   onkeyup="debounceSearch()">
+        </div>
+    </div>
+
+    <!-- 5. 专利列表容器 -->
+    <div class="standard-container">
+        <div class="patent-list" id="patent-container">
+            <p style="text-align: center; color: #94a3b8; padding: 40px;">
+                正在加载专利数据...
+            </p>
+        </div>
+        
+        <!-- 分页控件 -->
+        <div class="pagination" id="pagination" style="display: none;">
+            <button class="pagination-btn" id="first-page" onclick="goToPage(1)">首页</button>
+            <button class="pagination-btn" id="prev-page" onclick="goToPrevPage()">上一页</button>
+            
+            <div id="page-numbers" style="display: flex; gap: 5px;"></div>
+            
+            <button class="pagination-btn" id="next-page" onclick="goToNextPage()">下一页</button>
+            <button class="pagination-btn" id="last-page" onclick="goToLastPage()">末页</button>
+            
+            <div class="pagination-info" id="page-info"></div>
+        </div>
+    </div>
+
+    <!-- 6. Footer -->
+    <footer>
+        <div class="standard-container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <h4 style="font-size:1.2rem;">AeroScope Insight</h4>
+                    <p style="font-size:0.9rem; color:#94a3b8; line-height: 1.6; margin-bottom: 20px;">
+                        连接政策、资本与技术，打造低空经济领域的数字化基础设施与决策引擎。
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></a>
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                        <a href="mailto:contact@aeroscope.cn" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>核心板块</h4>
+                    <ul>
+                        <li><a href="news.html">资讯快报</a></li>
+                        <li><a href="policies.html">政策法规</a></li>
+                        <li><a href="patents.html">专利技术库</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>数据图谱</h4>
+                    <ul>
+                        <li><a href="chart-funding.html">全球融资趋势</a></li>
+                        <li><a href="chart-cities.html">试点城市分布</a></li>
+                        <li><a href="chart-patents.html">技术分布图谱</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于</h4>
+                    <ul>
+                        <li><a href="about.html">团队愿景</a></li>
+                        <li><a href="submit-report.html">寻求报道</a></li>
+                        <li><a href="contact.html">商务合作</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright" style="border-top:1px solid #334155; padding-top:20px; margin-top:20px; text-align:center; color:#64748b; font-size:0.85rem;">
+                &copy; 2025 AeroScope Insight. All rights reserved. 京ICP备XXXXXXXX号
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+    
+        // 全局变量
+        let allPatents = [];
+        let filteredPatents = [];
+        let companiesMap = new Map();
+        let currentPage = 1;
+        const patentsPerPage = 10; // 每页显示10条
+        
+        // 防抖变量
+        let searchDebounceTimeout;
+        let filterDebounceTimeout;
+    
+        document.addEventListener('DOMContentLoaded', async function() {
+            checkUserLogin();
+            await fetchCompanies();
+            await fetchPatents();
+            
+            // 初始化筛选器事件监听
+            document.getElementById('filter-chain').addEventListener('change', () => applyFiltersAndPagination());
+            document.getElementById('filter-type').addEventListener('change', () => applyFiltersAndPagination());
+            document.getElementById('filter-category').addEventListener('change', () => applyFiltersAndPagination());
+            document.getElementById('filter-year').addEventListener('change', () => applyFiltersAndPagination());
+        });
+    
+        // 防抖搜索函数
+        function debounceSearch() {
+            clearTimeout(searchDebounceTimeout);
+            searchDebounceTimeout = setTimeout(() => {
+                applyFiltersAndPagination();
+            }, 300);
+        }
+        
+        function applyFiltersAndPagination() {
+            clearTimeout(filterDebounceTimeout);
+            filterDebounceTimeout = setTimeout(() => {
+                applyLocalFilters();
+                updatePagination();
+                renderPatents();
+            }, 100);
+        }
+    
+        async function fetchCompanies() {
+            try {
+                const { data, error } = await _supabase
+                    .from('companies')
+                    .select('id, name, logo_url, primary_category')
+                    .eq('draft', false);
+                    
+                if (error) throw error;
+                
+                if (data) {
+                    data.forEach(company => {
+                        companiesMap.set(company.name, {
+                            id: company.id,
+                            logo_url: company.logo_url,
+                            category: company.primary_category
+                        });
+                    });
+                    console.log(`已加载 ${companiesMap.size} 家公司数据`);
+                }
+            } catch (error) {
+                console.error('获取公司数据失败:', error);
+            }
+        }
+    
+        async function fetchPatents() {
+            const container = document.getElementById('patent-container');
+            
+            try {
+                const { data, error } = await _supabase
+                    .from('patents')
+                    .select('*')
+                    .order('application_date', { ascending: false });
+    
+                if (error) {
+                    console.error('数据库查询错误:', error);
+                    
+                    if (error.message.includes('does not exist')) {
+                        container.innerHTML = `
+                            <div class="empty-state">
+                                <div class="empty-state-icon">⚠️</div>
+                                <div class="empty-state-title">专利表不存在</div>
+                                <div class="empty-state-desc">
+                                    请在 Supabase 中创建 patents 表。建议执行SQL文件中的专利表创建脚本。
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        container.innerHTML = `
+                            <div class="empty-state">
+                                <div class="empty-state-icon">❌</div>
+                                <div class="empty-state-title">数据加载失败</div>
+                                <div class="empty-state-desc">${error.message}</div>
+                            </div>
+                        `;
+                    }
+                    return;
+                }
+                
+                if (!data || data.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📋</div>
+                            <div class="empty-state-title">暂无专利数据</div>
+                            <div class="empty-state-desc">专利表已存在，但还没有数据。请通过 Supabase 控制台插入数据。</div>
+                        </div>
+                    `;
+                    return;
+                }
+    
+                console.log(`成功加载 ${data.length} 条专利数据`);
+                allPatents = data;
+                filteredPatents = [...allPatents];
+                
+                // 更新统计数据
+                updateStats(allPatents);
+                // 初始渲染
+                applyFiltersAndPagination();
+                
+            } catch (error) {
+                console.error('获取专利数据时发生错误:', error);
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🚨</div>
+                        <div class="empty-state-title">系统错误</div>
+                        <div class="empty-state-desc">${error.message}</div>
+                    </div>
+                `;
+            }
+        }
+    
+        function updateStats(patents) {
+            try {
+                // 总专利数
+                const totalEl = document.getElementById('total-patents');
+                if (totalEl) totalEl.textContent = patents.length;
+                
+                // 申请机构数
+                const applicants = new Set();
+                patents.forEach(p => {
+                    if (p.applicant && p.applicant.trim()) {
+                        applicants.add(p.applicant.trim());
+                    }
+                });
+                const applicantsEl = document.getElementById('total-applicants');
+                if (applicantsEl) applicantsEl.textContent = applicants.size;
+                
+                // 平均引用数
+                const validCitations = patents
+                    .filter(p => p.citation_count && !isNaN(p.citation_count))
+                    .map(p => parseInt(p.citation_count));
+                
+                let avgCitations = 0;
+                if (validCitations.length > 0) {
+                    const sum = validCitations.reduce((a, b) => a + b, 0);
+                    avgCitations = Math.round(sum / validCitations.length);
+                }
+                const avgEl = document.getElementById('avg-citations');
+                if (avgEl) avgEl.textContent = avgCitations;
+                
+                // 今年新增
+                const currentYear = new Date().getFullYear();
+                const recent = patents.filter(p => {
+                    if (!p.application_date) return false;
+                    try {
+                        const date = new Date(p.application_date);
+                        return date.getFullYear() === currentYear;
+                    } catch (e) {
+                        return false;
+                    }
+                }).length;
+                const recentEl = document.getElementById('recent-patents');
+                if (recentEl) recentEl.textContent = recent;
+                
+            } catch (error) {
+                console.error('更新统计数据失败:', error);
+            }
+        }
+    
+        function applyLocalFilters() {
+            try {
+                const chainVal = document.getElementById('filter-chain').value;
+                const typeVal = document.getElementById('filter-type').value;
+                const catVal = document.getElementById('filter-category').value;
+                const yearVal = document.getElementById('filter-year').value;
+                const searchVal = document.getElementById('filter-search').value.toLowerCase().trim();
+    
+                filteredPatents = allPatents.filter(patent => {
+                    // 产业链筛选
+                    if (chainVal !== 'all' && patent.industry_chain_position !== chainVal) return false;
+                    
+                    // 专利类型筛选
+                    if (typeVal !== 'all' && patent.patent_type !== typeVal) return false;
+                    
+                    // 技术分类筛选 - 修复：检查数组中的每个元素
+                    if (catVal !== 'all' && catVal) {
+                        const categories = patent.technical_categories || [];
+                        if (!Array.isArray(categories)) return false;
+                        
+                        // 检查是否包含指定的分类（完全匹配或部分匹配）
+                        const hasCategory = categories.some(cat => {
+                            if (!cat) return false;
+                            const catLower = cat.toLowerCase();
+                            const valLower = catVal.toLowerCase();
+                            return catLower.includes(valLower) || valLower.includes(catLower);
+                        });
+                        if (!hasCategory) return false;
+                    }
+                    
+                    // 年份筛选
+                    if (yearVal !== 'all' && patent.application_date) {
+                        try {
+                            const date = new Date(patent.application_date);
+                            const patentYear = date.getFullYear().toString();
+                            
+                            if (yearVal === '2021') {
+                                // 2021年及以前
+                                if (parseInt(patentYear) > 2021) return false;
+                            } else if (patentYear !== yearVal) {
+                                return false;
+                            }
+                        } catch (e) {
+                            return false;
+                        }
+                    }
+                    
+                    // 关键词搜索
+                    if (searchVal) {
+                        const searchFields = [
+                            patent.title || '',
+                            patent.applicant || '',
+                            patent.abstract || '',
+                            patent.patent_number || ''
+                        ];
+                        
+                        const hasMatch = searchFields.some(field => 
+                            field.toLowerCase().includes(searchVal)
+                        );
+                        
+                        // 也搜索分类标签
+                        if (!hasMatch && patent.technical_categories) {
+                            const categoryMatch = (patent.technical_categories || []).some(cat => 
+                                cat && cat.toLowerCase().includes(searchVal)
+                            );
+                            if (!categoryMatch) return false;
+                        } else if (!hasMatch) {
+                            return false;
+                        }
+                    }
+                    
+                    return true;
+                });
+                
+                // 重置到第一页
+                currentPage = 1;
+                
+            } catch (error) {
+                console.error('筛选专利时发生错误:', error);
+            }
+        }
+    
+        function renderPatents() {
+            const container = document.getElementById('patent-container');
+            if (!container) return;
+            
+            container.innerHTML = '';
+    
+            if (!filteredPatents || filteredPatents.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <div class="empty-state-title">未找到匹配的专利</div>
+                        <div class="empty-state-desc">尝试调整筛选条件或搜索关键词</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            // 计算分页
+            const totalPages = Math.ceil(filteredPatents.length / patentsPerPage);
+            const startIndex = (currentPage - 1) * patentsPerPage;
+            const endIndex = startIndex + patentsPerPage;
+            const currentPatents = filteredPatents.slice(startIndex, endIndex);
+    
+            currentPatents.forEach(patent => {
+                // 安全地处理数据
+                const title = patent.title || '未命名专利';
+                const patentNumber = patent.patent_number || '未公开';
+                const type = patent.patent_type || '发明专利';
+                const applicant = patent.applicant || '未知申请人';
+                const abstract = patent.abstract || '暂无摘要信息';
+                const categories = Array.isArray(patent.technical_categories) ? patent.technical_categories : [];
+                const country = patent.applicant_country || '中国';
+                const citationCount = parseInt(patent.citation_count) || 0;
+                const legalStatus = patent.legal_status || '审中';
+                const chainPosition = patent.industry_chain_position || '';
+                
+                // 格式化日期
+                let appDate = '未知日期';
+                if (patent.application_date) {
+                    try {
+                        const date = new Date(patent.application_date);
+                        if (!isNaN(date.getTime())) {
+                            appDate = date.toLocaleDateString('zh-CN', {
+                                year: 'numeric',
+                                month: '2-digit',
+                                day: '2-digit'
+                            });
+                        }
+                    } catch (e) {
+                        console.warn('日期格式错误:', patent.application_date);
+                    }
+                }
+                
+                // 获取法律状态样式
+                let statusClass = 'status-pending';
+                let statusText = legalStatus;
+                
+                if (legalStatus === '有效') {
+                    statusClass = 'status-valid';
+                } else if (legalStatus === '无效' || legalStatus === '终止' || legalStatus === '撤回' || legalStatus === '放弃') {
+                    statusClass = 'status-invalid';
+                    statusText = '无效';
+                }
+                
+                // 申请人处理 - 检查是否匹配公司
+                let applicantHtml = '';
+                const companyInfo = companiesMap.get(applicant);
+                
+                if (companyInfo && companyInfo.id) {
+                    // 有对应公司，添加跳转链接
+                    applicantHtml = `
+                        <a href="company-detail.html?id=${companyInfo.id}" class="applicant-name">
+                            ${applicant}
+                        </a>
+                    `;
+                } else {
+                    // 没有对应公司，只显示名称
+                    applicantHtml = `
+                        <span class="applicant-name" style="cursor:default; color:#475569;">${applicant}</span>
+                    `;
+                }
+                
+                // 生成标签
+                let tagsHtml = '';
+                if (categories.length > 0) {
+                    categories.slice(0, 3).forEach((cat, index) => {
+                        if (cat && cat.trim()) {
+                            tagsHtml += `<span class="patent-tag category">${cat.trim()}</span>`;
+                        }
+                    });
+                }
+                
+                // 添加产业链标签
+                if (chainPosition) {
+                    let chainClass = '';
+                    if (chainPosition === 'upstream') {
+                        chainClass = 'chain-upstream';
+                    } else if (chainPosition === 'midstream') {
+                        chainClass = 'chain-midstream';
+                    } else if (chainPosition === 'downstream') {
+                        chainClass = 'chain-downstream';
+                    }
+                    tagsHtml += `<span class="patent-tag ${chainClass}">${chainPosition === 'upstream' ? '⚡ 上游' : chainPosition === 'midstream' ? '✈️ 中游' : '🏷️ 下游'}</span>`;
+                }
+                
+                // 添加专利类型标签
+                if (type) {
+                    tagsHtml += `<span class="patent-tag">${type}</span>`;
+                }
+                
+                const html = `
+                    <a href="patent-detail.html?id=${patent.id}" class="patent-item">
+                        <div class="patent-header">
+                            <div class="patent-title-container">
+                                <div class="patent-title">
+                                    <span class="legal-status-badge ${statusClass}">${statusText}</span>
+                                    ${title}
+                                </div>
+                                <div class="patent-meta">
+                                    <span>📅 ${appDate}</span>
+                                    <span>📍 ${country}</span>
+                                    ${citationCount > 0 ? `<span>🔗 ${citationCount} 引用</span>` : ''}
+                                </div>
+                            </div>
+                            <div class="patent-id">${patentNumber}</div>
+                        </div>
+                        
+                        <div class="patent-applicant">
+                            ${applicantHtml}
+                        </div>
+                        
+                        <div class="patent-abstract">
+                            ${abstract}
+                        </div>
+                        
+                        <div class="patent-footer">
+                            <div class="patent-tags">
+                                ${tagsHtml}
+                            </div>
+                            ${citationCount > 0 ? `
+                                <div class="patent-citation">
+                                    <span>引用: ${citationCount}</span>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </a>
+                `;
+                
+                container.innerHTML += html;
+            });
+        }
+        
+        // 分页相关函数
+        function updatePagination() {
+            const pagination = document.getElementById('pagination');
+            const totalPages = Math.ceil(filteredPatents.length / patentsPerPage);
+            
+            if (filteredPatents.length <= patentsPerPage) {
+                pagination.style.display = 'none';
+                return;
+            }
+            
+            pagination.style.display = 'flex';
+            
+            // 更新页面信息
+            const pageInfo = document.getElementById('page-info');
+            const startIndex = (currentPage - 1) * patentsPerPage + 1;
+            const endIndex = Math.min(currentPage * patentsPerPage, filteredPatents.length);
+            pageInfo.textContent = `第 ${startIndex}-${endIndex} 条，共 ${filteredPatents.length} 条`;
+            
+            // 更新页码按钮
+            const pageNumbers = document.getElementById('page-numbers');
+            pageNumbers.innerHTML = '';
+            
+            // 显示页码范围
+            const maxPagesToShow = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+            let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+            
+            if (endPage - startPage + 1 < maxPagesToShow) {
+                startPage = Math.max(1, endPage - maxPagesToShow + 1);
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = 'pagination-btn';
+                if (i === currentPage) {
+                    pageBtn.classList.add('active');
+                }
+                pageBtn.textContent = i;
+                pageBtn.onclick = () => goToPage(i);
+                pageNumbers.appendChild(pageBtn);
+            }
+            
+            // 更新导航按钮状态
+            document.getElementById('first-page').disabled = currentPage === 1;
+            document.getElementById('prev-page').disabled = currentPage === 1;
+            document.getElementById('next-page').disabled = currentPage === totalPages;
+            document.getElementById('last-page').disabled = currentPage === totalPages;
+        }
+        
+        function goToPage(page) {
+            currentPage = page;
+            renderPatents();
+            updatePagination();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function goToPrevPage() {
+            if (currentPage > 1) {
+                goToPage(currentPage - 1);
+            }
+        }
+        
+        function goToNextPage() {
+            const totalPages = Math.ceil(filteredPatents.length / patentsPerPage);
+            if (currentPage < totalPages) {
+                goToPage(currentPage + 1);
+            }
+        }
+        
+        function goToLastPage() {
+            const totalPages = Math.ceil(filteredPatents.length / patentsPerPage);
+            goToPage(totalPages);
+        }
+    
+        // 全局搜索功能
+        let searchTimeout;
+        async function performGlobalSearch(keyword) {
+            const dropdown = document.getElementById('search-dropdown');
+            if (!dropdown) return;
+            
+            if (!keyword || keyword.length < 1) { 
+                dropdown.style.display = 'none'; 
+                return; 
+            }
+            
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(async () => {
+                dropdown.style.display = 'block';
+                dropdown.innerHTML = '<div style="padding:12px; text-align:center; color:#94a3b8;">搜索中...</div>';
+                
+                try {
+                    const { data, error } = await _supabase
+                        .from('global_search_view')
+                        .select('*')
+                        .ilike('title', `%${keyword}%`)
+                        .limit(8);
+                        
+                    if (error) {
+                        dropdown.innerHTML = '<div style="padding:12px; color:#ef4444;">搜索出错</div>';
+                        return;
+                    }
+                    
+                    if (!data || data.length === 0) {
+                        dropdown.innerHTML = '<div style="padding:12px; text-align:center; color:#64748b;">无相关结果</div>';
+                        return;
+                    }
+                    
+                    let html = '';
+                    data.forEach(item => {
+                        let link = '#';
+                        let color = '#3b82f6';
+                        let typeName = '资讯';
+                        
+                        if(item.type === 'company') { 
+                            link = 'companies.html'; 
+                            color='#f59e0b'; 
+                            typeName='公司'; 
+                        } else if(item.type === 'policy') { 
+                            link = `policy-detail.html?id=${item.id}`; 
+                            color='#ef4444'; 
+                            typeName='政策'; 
+                        } else if(item.type === 'tech') { 
+                            link = `tech-detail.html?id=${item.id}`; 
+                            color='#8b5cf6'; 
+                            typeName='技术'; 
+                        } else if(item.type === 'patent') { 
+                            link = 'patent-detail.html?id=' + (item.id || ''); 
+                            color='#10b981'; 
+                            typeName='专利'; 
+                        } else { 
+                            link = `news-detail.html?id=${item.id}`; 
+                        }
+                        
+                        html += `
+                            <a href="${link}" class="search-result-item">
+                                <div style="font-weight:600; font-size:0.9rem; margin-bottom:4px;">${item.title || '无标题'}</div>
+                                <div class="result-meta">
+                                    <span class="result-tag" style="color:${color}; background:${color}15;">${typeName}</span>
+                                    <span>${item.publish_date || ''}</span>
+                                </div>
+                            </a>
+                        `;
+                    });
+                    
+                    dropdown.innerHTML = html;
+                    
+                } catch (error) {
+                    dropdown.innerHTML = '<div style="padding:12px; color:#ef4444;">搜索异常</div>';
+                }
+            }, 400);
+        }
+        
+        // 点击外部关闭搜索下拉框
+        document.addEventListener('click', (e) => {
+            const searchComponent = document.querySelector('.search-component');
+            const dropdown = document.getElementById('search-dropdown');
+            
+            if (searchComponent && dropdown && !searchComponent.contains(e.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    
+        async function checkUserLogin() {
+            try {
+                const { data: { session }, error } = await _supabase.auth.getSession();
+                if (error) throw error;
+                
+                const btn = document.getElementById('auth-btn');
+                if (btn) {
+                    if (session) {
+                        const email = session.user.email || '';
+                        btn.innerText = email.split('@')[0] || '用户';
+                        btn.onclick = () => location.href = 'profile.html';
+                    }
+                }
+            } catch (error) {
+                console.error('检查登录状态失败:', error);
+            }
+        }
+    
+        function toggleMenu() { 
+            const navMenu = document.getElementById('navMenu');
+            if (navMenu) {
+                navMenu.classList.toggle('active');
+            }
+        }
+    </script>
+</body>
+</html>

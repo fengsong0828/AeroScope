@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>话题详情 | AeroScope Insight</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background-color: #f8fafc; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        /* --- 1. 优化后的沉浸式页眉 --- */
+        .topic-header-bar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: 64px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* 左侧：返回按钮 + Logo */
+        .header-left { display: flex; align-items: center; gap: 20px; }
+        .btn-back {
+            display: flex; align-items: center; gap: 6px;
+            text-decoration: none; color: #64748b; font-size: 0.9rem; font-weight: 500;
+            padding: 6px 12px; border-radius: 6px; transition: background 0.2s;
+        }
+        .btn-back:hover { background: #f1f5f9; color: #3b82f6; }
+        .header-divider { height: 16px; width: 1px; background: #cbd5e1; }
+        
+        /* 右侧：用户信息 */
+        .header-user { display: flex; align-items: center; gap: 10px; }
+        .user-mini-avatar {
+            width: 32px; height: 32px; background: #3b82f6; color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 0.8rem;
+        }
+        .user-name-display { font-size: 0.9rem; color: #334155; font-weight: 500; }
+        .btn-login-mini {
+            font-size: 0.9rem; color: #3b82f6; font-weight: 600; text-decoration: none;
+        }
+
+        /* --- 2. 内容区域 --- */
+        .detail-container { 
+            max-width: 800px; margin: 40px auto; padding: 0 20px; flex: 1; width: 100%;
+        }
+        
+        .topic-main-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 30px; margin-bottom: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        
+        /* 专家样式 */
+        .expert-border { border-top: 4px solid #f59e0b; }
+        
+        .topic-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px; }
+        .author-info { display: flex; align-items: center; gap: 10px; }
+        .avatar { width: 44px; height: 44px; background: #cbd5e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.1rem; }
+        .role-badge { background: #fef3c7; color: #d97706; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-left: 8px; }
+
+        .news-ref-card { 
+            background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; margin-bottom: 25px; 
+            display: flex; align-items: center; gap: 12px; cursor: pointer; transition: 0.2s;
+        }
+        .news-ref-card:hover { border-color: #3b82f6; background: #eff6ff; }
+        
+        .action-bar { display: flex; gap: 15px; margin-top: 30px; padding-top: 20px; border-top: 1px dashed #e2e8f0; }
+        .btn-action { 
+            display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 20px; border: 1px solid #e2e8f0; background: white; cursor: pointer; color: #64748b; font-weight: 500; transition: 0.2s;
+        }
+        .btn-action:hover, .btn-action.active { background: #eff6ff; color: #3b82f6; border-color: #3b82f6; }
+
+        /* 评论区 */
+        .comment-section { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 30px; }
+        .comment-item { border-bottom: 1px solid #f1f5f9; padding: 20px 0; }
+        .comment-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; }
+        
+        /* --- 3. 极简页脚 --- */
+        .topic-footer {
+            background: white; border-top: 1px solid #e2e8f0; padding: 30px 0; margin-top: auto;
+        }
+        .footer-inner {
+            display: flex; justify-content: space-between; align-items: center; color: #94a3b8; font-size: 0.85rem;
+        }
+        .footer-links a { color: #64748b; text-decoration: none; margin-left: 20px; transition: color 0.2s; }
+        .footer-links a:hover { color: #3b82f6; }
+
+        @media (max-width: 768px) {
+            .footer-inner { flex-direction: column; gap: 15px; }
+            .footer-links a { margin: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. 优化后的页眉 -->
+    <header class="topic-header-bar">
+        <div class="standard-container header-inner">
+            <div class="header-left">
+                <a href="forum.html" class="btn-back">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    返回列表
+                </a>
+                <div class="header-divider"></div>
+                <a href="index.html" class="logo" style="font-size:1.1rem;">AeroScope</a>
+            </div>
+            
+            <div class="header-right" id="header-user-area">
+                <!-- 未登录状态 -->
+                <a href="login.html" class="btn-login-mini">登录 / 注册</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="detail-container">
+        <!-- 主话题内容 -->
+        <div id="topic-container">
+            <div style="text-align:center; padding:60px; color:#94a3b8;">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="margin-bottom:10px;"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                <p>正在加载话题内容...</p>
+            </div>
+        </div>
+
+        <!-- 评论区 -->
+        <div class="comment-section">
+            <h3 style="margin-bottom: 20px; border-left: 4px solid #3b82f6; padding-left: 10px; font-size: 1.1rem; color: #1e293b;">评论交流</h3>
+            
+            <!-- 输入框 -->
+            <div style="margin-bottom: 30px;">
+                <textarea id="comment-input" class="form-control" rows="3" style="width:100%; padding:15px; border:1px solid #cbd5e1; border-radius:8px; margin-bottom:10px; font-family:inherit; resize:vertical;" placeholder="发表您的真知灼见..."></textarea>
+                <div style="text-align: right;">
+                    <button class="btn btn-primary" onclick="submitComment()" style="padding: 8px 24px;">提交评论</button>
+                </div>
+            </div>
+
+            <div id="comments-list">
+                <!-- 动态加载 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. 优化后的页脚 -->
+    <footer class="topic-footer">
+        <div class="standard-container footer-inner">
+            <div>&copy; 2025 AeroScope Insight. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="forum.html">社区首页</a>
+                <a href="#">社区公约</a>
+                <a href="#">联系我们</a>
+                <a href="index.html">回到主站</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co'; 
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        let topicId = null;
+        let currentUser = null;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            topicId = params.get('id');
+            if(!topicId) return location.href = 'forum.html';
+
+            await checkUser();
+            await loadTopic();
+            await loadComments();
+        });
+
+        // 1. 检查用户并渲染页眉
+        async function checkUser() {
+            const { data: { session } } = await _supabase.auth.getSession();
+            const userArea = document.getElementById('header-user-area');
+            
+            if (session) {
+                currentUser = session.user;
+                const emailName = session.user.email.split('@')[0];
+                const avatarLetter = emailName.charAt(0).toUpperCase();
+                
+                // 渲染已登录状态
+                userArea.innerHTML = `
+                    <div class="header-user">
+                        <span class="user-name-display">${emailName}</span>
+                        <div class="user-mini-avatar" onclick="location.href='profile.html'" style="cursor:pointer;">${avatarLetter}</div>
+                    </div>
+                `;
+            } else {
+                // 保持未登录状态
+                userArea.innerHTML = `<a href="login.html" class="btn-login-mini">登录 / 注册</a>`;
+            }
+        }
+
+        async function loadTopic() {
+            const { data, error } = await _supabase.from('forum_topics').select('*').eq('id', topicId).single();
+            if(error) return document.getElementById('topic-container').innerHTML = '<div style="text-align:center; padding:40px; color:#ef4444;">话题加载失败或已被删除</div>';
+
+            document.title = `${data.title} | AeroScope 论坛`;
+
+            // 样式判断
+            const isExpert = data.is_expert;
+            const borderClass = isExpert ? 'expert-border' : '';
+            const avatarColor = isExpert ? '#f59e0b' : '#3b82f6'; // 专家金，普通蓝
+            const roleBadge = data.author_role ? `<span class="role-badge">${data.author_role}</span>` : '';
+            
+            // 引用新闻
+            let newsHtml = '';
+            if(data.source_news_title) {
+                newsHtml = `
+                    <div class="news-ref-card" onclick="window.open('${data.source_news_link}', '_blank')">
+                        <div style="font-size:1.5rem;">📰</div>
+                        <div>
+                            <div style="font-size:0.75rem; color:#64748b;">关联新闻报道</div>
+                            <div style="font-weight:600; color:#1e293b;">${data.source_news_title}</div>
+                        </div>
+                        <div style="margin-left:auto; color:#3b82f6;">➔</div>
+                    </div>
+                `;
+            }
+
+            document.getElementById('topic-container').innerHTML = `
+                <div class="topic-main-card ${borderClass}">
+                    <div class="topic-meta">
+                        <div class="author-info">
+                            <div class="avatar" style="background:${avatarColor}">${data.author_avatar_text || 'U'}</div>
+                            <div>
+                                <div style="font-weight:600; color:#1e293b; font-size:1rem;">
+                                    ${data.user_email ? data.user_email.split('@')[0] : '匿名'}
+                                    ${isExpert ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" style="vertical-align:middle; margin-left:4px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>' : ''}
+                                </div>
+                                ${roleBadge}
+                            </div>
+                        </div>
+                        <div style="color:#94a3b8; font-size:0.85rem;">
+                            发布于 ${new Date(data.created_at).toLocaleString()}
+                        </div>
+                    </div>
+
+                    ${newsHtml}
+
+                    <h1 style="font-size:1.8rem; color:#0f172a; margin-bottom:20px; line-height:1.3;">${data.title}</h1>
+                    <div style="font-size:1.05rem; line-height:1.8; color:#334155; white-space: pre-wrap;">${data.content}</div>
+
+                    <div class="action-bar">
+                        <button class="btn-action" onclick="handleLike(${data.likes})">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                            点赞 <span id="like-count" style="font-weight:bold;">${data.likes || 0}</span>
+                        </button>
+                        <div style="margin-left:auto; color:#94a3b8; font-size:0.9rem; display:flex; align-items:center;">
+                            <span style="margin-right:15px;">分类：${data.category}</span>
+                            <span>🔥 热度: <span id="heat-score" style="font-weight:bold;">${data.heat_score || 0}</span></span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function loadComments() {
+            const { data } = await _supabase.from('forum_comments')
+                .select('*').eq('topic_id', topicId).order('created_at', {ascending: true});
+            
+            const container = document.getElementById('comments-list');
+            container.innerHTML = '';
+            if(!data || !data.length) {
+                container.innerHTML = '<p style="color:#94a3b8; text-align:center; padding:20px;">暂无评论，来做第一个发言人吧。</p>';
+                return;
+            }
+
+            data.forEach(c => {
+                const name = c.user_email ? c.user_email.split('@')[0] : '用户';
+                container.innerHTML += `
+                    <div class="comment-item">
+                        <div class="comment-header">
+                            <span style="font-weight:600; color:#334155;">${name}</span>
+                            <span style="color:#94a3b8; font-size:0.8rem;">${new Date(c.created_at).toLocaleString()}</span>
+                        </div>
+                        <div style="color:#475569; line-height:1.6;">${c.content}</div>
+                    </div>
+                `;
+            });
+        }
+
+        async function submitComment() {
+            if (!currentUser) {
+                if(confirm('请先登录后再评论，是否去登录？')) location.href = 'login.html';
+                return;
+            }
+            const content = document.getElementById('comment-input').value;
+            if(!content) return;
+
+            const { error } = await _supabase.from('forum_comments').insert({
+                topic_id: topicId,
+                user_id: currentUser.id,
+                user_email: currentUser.email,
+                content: content
+            });
+
+            if(!error) {
+                document.getElementById('comment-input').value = '';
+                loadComments();
+                alert('评论成功');
+            } else {
+                alert('评论失败: ' + error.message);
+            }
+        }
+
+        async function handleLike(currentLikes) {
+            if (!currentUser) return alert('请先登录');
+            const newLikes = (currentLikes || 0) + 1;
+            
+            // 乐观更新 UI
+            document.getElementById('like-count').innerText = newLikes;
+            const btn = document.querySelector('.btn-action');
+            btn.classList.add('active');
+            btn.disabled = true; // 防止连点
+
+            await _supabase.from('forum_topics').update({ 
+                likes: newLikes, 
+                heat_score: (parseInt(document.getElementById('heat-score').innerText) + 1) 
+            }).eq('id', topicId);
+        }
+    </script>
+</body>
+</html>

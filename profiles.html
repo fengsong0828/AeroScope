@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心 | AeroScope</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .profile-container { max-width: 600px; margin: 40px auto; padding: 0 20px; }
+        .profile-card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        .profile-header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #f1f5f9; padding-bottom: 20px; }
+        .avatar { width: 80px; height: 80px; background: #0f172a; color: white; font-size: 2rem; font-weight: bold; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group.full { grid-column: span 2; }
+        label { display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600; color: #334155; }
+        input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; }
+        input:disabled { background: #f1f5f9; color: #94a3b8; cursor: not-allowed; }
+        .btn-save { width: 100%; padding: 12px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+        .btn-logout { display: block; margin: 20px auto 0; background: none; border: none; color: #ef4444; cursor: pointer; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="standard-container">
+            <div class="nav-inner">
+                <a href="index.html" class="logo">AeroScope</a>
+                <a href="index.html" style="font-size:0.9rem; color:#64748b;">← 返回首页</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="avatar" id="avatar-text">U</div>
+                <h2 id="display-email">...</h2>
+                <p></p>
+            </div>
+            <div class="form-grid">
+                <div class="form-group full"><label>邮箱</label><input type="text" id="email" disabled></div>
+                <div class="form-group"><label>昵称</label><input type="text" id="username"></div>
+                <div class="form-group"><label>手机</label><input type="text" id="phone"></div>
+                <div class="form-group"><label>公司</label><input type="text" id="company"></div>
+                <div class="form-group"><label>职位</label><input type="text" id="role"></div>
+            </div>
+            <button class="btn-save" onclick="updateProfile()">保存修改</button>
+            <div id="admin-entry" style="display: none; text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px dashed #e2e8f0;">
+                <a href="admin.html" style="display: block; width: 100%; padding: 12px; background: #0f172a; color: white; border-radius: 6px; font-weight: 600; text-decoration: none;">进入后台管理</a>
+            </div>
+            <button class="btn-logout" onclick="logout()">退出登录</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        let currentUserId = null;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const { data: { session } } = await _supabase.auth.getSession();
+            if (!session) { location.href = 'login.html'; return; }
+            currentUserId = session.user.id;
+            loadProfile();
+        });
+
+        async function loadProfile() {
+            const { data: profile } = await _supabase.from('profiles').select('*').eq('id', currentUserId).single();
+            if(!profile) return;
+            document.getElementById('email').value = profile.email;
+            document.getElementById('username').value = profile.username || '';
+            document.getElementById('phone').value = profile.phone || '';
+            document.getElementById('company').value = profile.company || '';
+            document.getElementById('role').value = profile.job_title || '';
+            document.getElementById('display-email').innerText = profile.username || profile.email;
+            document.getElementById('avatar-text').innerText = (profile.username||profile.email).charAt(0).toUpperCase();
+            
+            let tierText = (profile.tier === 'pro' ? 'Pro 会员' : '普通用户');
+            if(profile.is_admin) tierText += ' (管理员)';
+            document.querySelector('.profile-header p').innerHTML = `<span style="background:#e0f2fe; color:#0284c7; padding:2px 8px; border-radius:10px; font-size:0.8rem;">${tierText}</span>`;
+            if(profile.is_admin) document.getElementById('admin-entry').style.display = 'block';
+        }
+
+        async function updateProfile() {
+            const updates = {
+                username: document.getElementById('username').value,
+                phone: document.getElementById('phone').value,
+                company: document.getElementById('company').value,
+                job_title: document.getElementById('role').value,
+                updated_at: new Date()
+            };
+            const { error } = await _supabase.from('profiles').update(updates).eq('id', currentUserId);
+            if (error) alert(error.message); else alert('保存成功');
+        }
+
+        async function logout() {
+            await _supabase.auth.signOut();
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
