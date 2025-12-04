@@ -6,7 +6,7 @@
     <title>政策法规 | AeroScope Insight</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* --- 搜索框样式 (复用) --- */
+        /* --- 1. 复用组件样式 (Header/Footer/Search) --- */
         .search-component { position: relative; margin-right: 15px; }
         .search-box { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 20px; background: white; padding: 5px 12px; transition: 0.3s; }
         .search-box:focus-within { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
@@ -19,7 +19,6 @@
         .result-meta { font-size: 0.75rem; color: #64748b; display: flex; align-items: center; gap: 6px; margin-top: 4px; }
         .result-tag { padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; }
 
-        /* --- 页脚样式 (复用) --- */
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
         .footer-col h4 { color: white; margin-bottom: 20px; font-size: 1rem; font-weight: 600; }
         .footer-col ul li { margin-bottom: 12px; }
@@ -29,26 +28,96 @@
         .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
         .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
 
-        /* --- 部门标签样式 --- */
-        .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; }
-        .tag-item { 
-            display: block; padding: 6px 14px; border-radius: 4px; 
-            background: white; border: 1px solid #e2e8f0; 
-            color: #64748b; font-size: 0.85rem; cursor: pointer; 
-            transition: all 0.2s ease; text-align: center; flex-grow: 0; 
+        /* --- 2. 政策列表核心样式 (紧凑版) --- */
+        .news-feed { display: flex; flex-direction: column; gap: 15px; } /* 减少间距 */
+        
+        .news-item { 
+            display: flex; 
+            background: white; 
+            /* 浅色边框，避免太深 */
+            border: 1px solid #e2e8f0; 
+            border-radius: 10px; 
+            overflow: hidden; 
+            transition: 0.2s; 
+            min-height: 110px; /* 压缩最小高度 */
         }
-        .tag-item:hover, .tag-item.active { background: #eff6ff; border-color: #3b82f6; color: #3b82f6; font-weight: 500; }
-
+        .news-item:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.05); border-color: #3b82f6; }
+        
+        /* 左侧色块容器：比新闻图片窄一些，适合放文字 */
+        .news-image { 
+            width: 140px; min-width: 140px; 
+            background-color: #f8fafc; 
+            display: block; 
+            border-right: 1px solid #f1f5f9;
+        }
+        
         /* 政策特有的色块样式 */
         .policy-level-box {
             width: 100%; height: 100%;
-            background: #f0f9ff; color: #0284c7; border: 1px solid #e0f2fe;
+            background: #f0f9ff; color: #0284c7; 
             display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 0.9rem; border-radius: 8px;
+            font-weight: 700; font-size: 0.9rem;
             text-align: center; padding: 10px;
         }
 
+        /* 右侧内容：紧凑排版 */
+        .news-content { 
+            padding: 12px 20px; /* 压缩内边距 */
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            min-width: 0; 
+        }
+        
+        .news-content h3 { margin: 0 0 5px 0; font-size: 1.05rem; line-height: 1.3; }
+        .news-content h3 a { color: #1e293b; text-decoration: none; transition: 0.2s; }
+        .news-content h3 a:hover { color: #3b82f6; }
+        
+        .news-meta { 
+            display: flex; align-items: center; gap: 10px; 
+            font-size: 0.75rem; color: #64748b; 
+            margin-bottom: 6px; 
+            flex-wrap: wrap; 
+        }
+        
+        .news-content p {
+            font-size: 0.85rem; color: #64748b; margin-top: 2px;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+            line-height: 1.5;
+        }
+
+        /* --- 3. 侧边栏 & 标签 --- */
+        .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; }
+        .tag-item { 
+            display: block; padding: 6px 12px; border-radius: 4px; 
+            background: white; border: 1px solid #e2e8f0; 
+            color: #64748b; font-size: 0.85rem; cursor: pointer; 
+            transition: all 0.2s ease; text-align: center; 
+        }
+        .tag-item:hover, .tag-item.active { background: #eff6ff; border-color: #3b82f6; color: #3b82f6; font-weight: 500; }
+
+        .sidebar-widget { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 25px; }
+        .widget-title { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 15px; border-left: 4px solid #3b82f6; padding-left: 10px; }
+        .newsletter-box { background: #f0fdf4; border: 1px solid #bbf7d0; text-align: center; }
+        .newsletter-input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; margin-bottom: 10px; font-size: 0.9rem; }
+
+        /* --- 4. 分页控件样式 --- */
+        .pagination-container { 
+            display: flex; justify-content: center; align-items: center; gap: 15px; 
+            margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0; 
+        }
+        .page-btn { 
+            padding: 6px 14px; background: white; border: 1px solid #cbd5e1; 
+            border-radius: 6px; color: #334155; cursor: pointer; transition: 0.2s; font-size: 0.85rem; 
+        }
+        .page-btn:hover:not(:disabled) { border-color: #3b82f6; color: #3b82f6; background: #f8fafc; }
+        .page-btn:disabled { opacity: 0.5; cursor: not-allowed; background: #f1f5f9; }
+        .page-info { color: #64748b; font-size: 0.85rem; }
+
         @media (max-width: 768px) {
+            .news-item { flex-direction: column; }
+            .news-image { width: 100%; height: 60px; border-right: none; border-bottom: 1px solid #f1f5f9; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .social-icons { justify-content: center; }
             .search-component { display: none; }
@@ -57,7 +126,7 @@
 </head>
 <body>
 
-    <!-- 1. Header -->
+    <!-- Header -->
     <header>
         <div class="standard-container">
             <div class="nav-inner">
@@ -65,9 +134,7 @@
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                     AeroScope<span>Insight</span>
                 </a>
-                
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-
                 <nav class="nav-links" id="navMenu">
                     <a href="index.html">首页</a>
                     <a href="news.html">资讯快报</a>
@@ -76,7 +143,6 @@
                     <a href="companies.html">行业图谱</a>
                     <a href="forum.html">论坛交流</a>
                 </nav>
-
                 <div class="header-actions">
                     <div class="search-component">
                         <div class="search-box">
@@ -99,12 +165,20 @@
         </div>
     </section>
 
+    <!-- 主布局 -->
     <div class="standard-container">
         <div class="main-layout-grid">
             <!-- 左侧：列表 -->
             <main>
                 <div class="news-feed" id="policy-container">
                     <div style="text-align:center; padding:40px; color:#94a3b8;">加载中...</div>
+                </div>
+
+                <!-- 分页控件 -->
+                <div id="pagination-controls" class="pagination-container" style="display: none;">
+                    <button class="page-btn" id="prev-page" onclick="changePage(-1)">上一页</button>
+                    <span class="page-info" id="page-info">第 1 页 / 共 1 页</span>
+                    <button class="page-btn" id="next-page" onclick="changePage(1)">下一页</button>
                 </div>
             </main>
 
@@ -181,6 +255,9 @@
         const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
         let allPolicies = [];
+        let filteredPolicies = []; // 筛选后的数据
+        let currentPage = 1;
+        const itemsPerPage = 6;    // 每页6条
 
         document.addEventListener('DOMContentLoaded', async () => {
             checkUserLogin();
@@ -191,7 +268,6 @@
             const container = document.getElementById('policy-container');
             container.innerHTML = '<p style="text-align:center; padding:20px;">加载中...</p>';
             
-            // 拉取 policies 表数据
             const { data, error } = await _supabase
                 .from('policies')
                 .select('*')
@@ -204,123 +280,133 @@
             }
 
             allPolicies = data;
-            renderList(allPolicies);
+            filteredPolicies = data; // 初始为全部数据
+            
             renderDepartments(allPolicies);
+            renderPage(); // 渲染第一页
         }
 
-        function renderList(list) {
+        // --- 核心：渲染分页页面 ---
+        function renderPage() {
             const container = document.getElementById('policy-container');
             container.innerHTML = '';
 
-            list.forEach(item => {
-                // 政策一般没有图片，用层级（Level）作为视觉锚点
+            if (filteredPolicies.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#999; padding:20px;">无匹配数据</p>';
+                document.getElementById('pagination-controls').style.display = 'none';
+                return;
+            }
+
+            // 计算分页切片
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = filteredPolicies.slice(start, end);
+
+            pageItems.forEach(item => {
                 const levelHtml = `<div class="policy-level-box">${item.level || '政策'}</div>`;
 
                 container.innerHTML += `
                     <article class="news-item">
-                        <a href="policy-detail.html?id=${item.id}" class="news-image" style="border:none;">
+                        <a href="policy-detail.html?id=${item.id}" class="news-image">
                             ${levelHtml}
                         </a>
                         <div class="news-content">
                             <h3><a href="policy-detail.html?id=${item.id}">${item.title}</a></h3>
                             <div class="news-meta">
-                                <span class="tag" style="background:#0f172a; color:white;">${item.department || '相关部门'}</span>
+                                <span class="tag" style="background:#0f172a; color:white; padding:1px 6px; border-radius:4px;">${item.department || '相关部门'}</span>
                                 <span>${item.publish_date}</span>
                             </div>
-                            <p style="font-size:0.9rem; color:#64748b; margin-top:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
-                                ${item.summary || ''}
-                            </p>
+                            <p>${item.summary || ''}</p>
                         </div>
                     </article>
                 `;
             });
+
+            updatePaginationControls();
         }
 
-        // ★★★ 核心：统计发文部门并排序 ★★★
+        function updatePaginationControls() {
+            const paginationEl = document.getElementById('pagination-controls');
+            const totalPages = Math.ceil(filteredPolicies.length / itemsPerPage);
+
+            if (totalPages <= 1) {
+                paginationEl.style.display = 'none';
+                return;
+            }
+
+            paginationEl.style.display = 'flex';
+            document.getElementById('page-info').innerText = `第 ${currentPage} 页 / 共 ${totalPages} 页`;
+            document.getElementById('prev-page').disabled = (currentPage === 1);
+            document.getElementById('next-page').disabled = (currentPage === totalPages);
+        }
+
+        function changePage(direction) {
+            const totalPages = Math.ceil(filteredPolicies.length / itemsPerPage);
+            const newPage = currentPage + direction;
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                renderPage();
+                const listTop = document.querySelector('.main-layout-grid').offsetTop - 80;
+                window.scrollTo({top: listTop, behavior: 'smooth'});
+            }
+        }
+
+        // 渲染部门标签
         function renderDepartments(list) {
             const container = document.getElementById('dept-container');
             const deptCounts = {};
-
-            // 统计 Department
             list.forEach(item => {
                 const dept = item.department || '其他';
                 deptCounts[dept] = (deptCounts[dept] || 0) + 1;
             });
-
-            // 排序
-            const sorted = Object.entries(deptCounts)
-                .map(([name, count]) => ({ name, count }))
-                .sort((a, b) => b.count - a.count);
-
-            if (sorted.length === 0) {
-                container.innerHTML = '<p style="color:#999;">暂无数据</p>';
-                return;
-            }
-
+            const sorted = Object.entries(deptCounts).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
+            if (sorted.length === 0) { container.innerHTML = '<p style="color:#999;">暂无数据</p>'; return; }
             let html = `<div class="tag-item active" onclick="filterByDept('all', this)">全部</div>`;
-            sorted.forEach(t => {
-                html += `<div class="tag-item" onclick="filterByDept('${t.name}', this)">${t.name}</div>`;
-            });
-
+            sorted.forEach(t => { html += `<div class="tag-item" onclick="filterByDept('${t.name}', this)">${t.name}</div>`; });
             container.innerHTML = html;
         }
 
-        // 筛选逻辑
         function filterByDept(deptName, domEl) {
             document.querySelectorAll('.tag-item').forEach(el => el.classList.remove('active'));
             domEl.classList.add('active');
 
             if (deptName === 'all') {
-                renderList(allPolicies);
+                filteredPolicies = allPolicies;
             } else {
-                const filtered = allPolicies.filter(item => (item.department || '其他') === deptName);
-                renderList(filtered);
+                filteredPolicies = allPolicies.filter(item => (item.department || '其他') === deptName);
             }
+            
+            currentPage = 1; // 重置页码
+            renderPage();
         }
-
-        // 全局搜索
-        let searchTimeout;
-        async function performGlobalSearch(keyword) {
-            const dropdown = document.getElementById('search-dropdown');
-            if (!keyword || keyword.length < 1) { dropdown.style.display = 'none'; return; }
-
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(async () => {
-                dropdown.style.display = 'block';
-                dropdown.innerHTML = '<div style="padding:12px; text-align:center; color:#94a3b8;">搜索中...</div>';
-
-                const { data, error } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
-                if (error) { dropdown.innerHTML = '<div style="padding:12px;">搜索出错</div>'; return; }
-                if (!data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无相关结果</div>'; return; }
-
-                let html = '';
-                data.forEach(item => {
-                    let link = '#', color = '#3b82f6', typeName='资讯';
-                    if(item.type === 'company') { link = 'companies.html'; color='#f59e0b'; typeName='公司'; }
-                    else if(item.type === 'policy') { link = `policy-detail.html?id=${item.id}`; color='#ef4444'; typeName='政策'; }
-                    else if(item.type === 'tech') { link = `tech-detail.html?id=${item.id}`; color='#8b5cf6'; typeName='技术'; }
-                    else { link = `news-detail.html?id=${item.id}`; }
-                    html += `<a href="${link}" class="search-result-item"><div style="font-weight:600; font-size:0.9rem;">${item.title}</div><div class="result-meta"><span class="result-tag" style="color:${color}; background:${color}15;">${typeName}</span><span>${item.publish_date || ''}</span></div></a>`;
-                });
-                dropdown.innerHTML = html;
-            }, 500);
-        }
-        document.addEventListener('click', (e) => {
-            if (!document.querySelector('.search-component').contains(e.target)) {
-                document.getElementById('search-dropdown').style.display = 'none';
-            }
-        });
 
         async function checkUserLogin() {
             const { data: { session } } = await _supabase.auth.getSession();
             const btn = document.getElementById('auth-btn');
-            if (session) {
-                btn.innerText = session.user.email.split('@')[0];
-                btn.onclick = () => location.href = 'profile.html';
-            }
+            if (session) { btn.innerText = session.user.email.split('@')[0]; btn.onclick = () => location.href = 'profile.html'; }
         }
-
         function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        
+        let searchTimeout;
+        async function performGlobalSearch(keyword) {
+            const dropdown = document.getElementById('search-dropdown');
+            if (!keyword || keyword.length < 1) { dropdown.style.display = 'none'; return; }
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(async () => {
+                dropdown.style.display = 'block';
+                const { data } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
+                if (!data || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
+                let html = '';
+                data.forEach(item => {
+                    let link='#';
+                    if(item.type==='policy') link=`policy-detail.html?id=${item.id}`;
+                    else link=`news-detail.html?id=${item.id}`;
+                    html += `<a href="${link}" class="search-result-item">${item.title}</a>`;
+                });
+                dropdown.innerHTML = html;
+            }, 500);
+        }
+        document.addEventListener('click', (e) => { if(!document.querySelector('.search-component').contains(e.target)) document.getElementById('search-dropdown').style.display='none'; });
     </script>
 </body>
 </html>
