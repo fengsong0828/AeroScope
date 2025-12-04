@@ -2,62 +2,193 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>登录系统 | AeroScope</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 / 注册 | AeroScope</title>
+    <style>
+        /* === 全局样式 (复用自 login2) === */
+        body { margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #f1f5f9; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        
+        /* === 卡片容器 === */
+        .auth-card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); width: 100%; max-width: 360px; }
+        
+        /* === 标题区 === */
+        .auth-header { text-align: center; margin-bottom: 30px; }
+        .auth-header h2 { margin: 0 0 10px; color: #0f172a; font-size: 1.5rem; }
+        .auth-header p { margin: 0; color: #64748b; font-size: 0.9rem; }
+        
+        /* === 表单元素 === */
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-size: 0.85rem; font-weight: 600; color: #334155; }
+        input { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; box-sizing: border-box; transition: border-color 0.2s; }
+        input:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+        
+        /* === 按钮 === */
+        .btn-submit { width: 100%; padding: 12px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .btn-submit:hover { background: #2563eb; }
+        .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; }
+
+        /* === 底部切换 === */
+        .switch-mode { text-align: center; margin-top: 20px; font-size: 0.9rem; color: #64748b; }
+        .switch-mode a { color: #3b82f6; text-decoration: none; font-weight: 600; cursor: pointer; }
+        .switch-mode a:hover { text-decoration: underline; }
+        
+        /* === 消息提示 === */
+        #error-msg { color: #ef4444; font-size: 0.85rem; text-align: center; margin-top: 15px; display: none; background: #fef2f2; padding: 8px; border-radius: 4px; border: 1px solid #fee2e2; }
+        #success-msg { color: #10b981; font-size: 0.85rem; text-align: center; margin-top: 15px; display: none; background: #ecfdf5; padding: 8px; border-radius: 4px; border: 1px solid #d1fae5; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-    <div class="auth-container">
-        <div class="auth-card">
-            <h2 style="text-align:center; margin-bottom:20px;">AeroScope 管理员</h2>
-            
-            <div class="input-group">
-                <label>邮箱</label>
-                <input type="email" id="email" class="input-control" placeholder="admin@example.com">
-            </div>
-            <div class="input-group">
-                <label>密码</label>
-                <input type="password" id="password" class="input-control" placeholder="******">
-            </div>
-
-            <button class="btn btn-primary" style="width:100%; padding:12px;" onclick="handleAuth()">登录 / 注册</button>
-            <div id="msg" style="margin-top:15px; text-align:center; font-size:0.9rem;"></div>
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2 id="page-title">欢迎回来</h2>
+            <p id="page-desc">请输入您的账号密码进行登录</p>
+        </div>
+        
+        <div class="form-group">
+            <label>电子邮箱</label>
+            <input type="email" id="email" placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+            <label>密码</label>
+            <input type="password" id="password" placeholder="至少 6 位字符">
+        </div>
+        
+        <button class="btn-submit" onclick="handleAuth()" id="submit-btn">登录</button>
+        
+        <div id="error-msg"></div>
+        <div id="success-msg"></div>
+        
+        <div class="switch-mode">
+            <span id="switch-text">还没有账号？</span>
+            <a onclick="toggleMode()" id="switch-btn">立即注册</a>
+        </div>
+        
+        <div style="text-align:center; margin-top:20px;">
+            <a href="index.html" style="font-size:0.85rem; color:#94a3b8; text-decoration:none;">← 返回首页</a>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // ★★★ 替换这里！ ★★★
-        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co'; // 替换这里
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU'; // 替换这里
-                
+        // ================= 配置区域 =================
+        // 请确保这里的 URL 和 Key 是您最新的 AeroScope_v2 项目配置
+        const supabaseUrl = 'https://cpvisbzlzatfdqakqsul.supabase.co'; 
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNwdmlzYnpsemF0ZmRxYWtxc3VsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQzOTgwMTYsImV4cCI6MjA3OTk3NDAxNn0.R__eoUjpzFP9_SUxIVnM9T1zpl1pcBTGMzxXLf-Orcg';
+        
         const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        
+        // 状态变量
+        let isLoginMode = true;
 
+        // 切换 登录/注册 模式
+        function toggleMode() {
+            isLoginMode = !isLoginMode;
+            
+            // 更新 UI 文本
+            document.getElementById('page-title').innerText = isLoginMode ? '欢迎回来' : '创建账号';
+            document.getElementById('page-desc').innerText = isLoginMode ? '请输入您的账号密码进行登录' : '注册成为 AeroScope 会员';
+            document.getElementById('submit-btn').innerText = isLoginMode ? '登录' : '注册';
+            document.getElementById('switch-text').innerText = isLoginMode ? '还没有账号？' : '已有账号？';
+            document.getElementById('switch-btn').innerText = isLoginMode ? '立即注册' : '去登录';
+            
+            // 清空输入框和消息
+            document.getElementById('error-msg').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'none';
+        }
+
+        // 处理认证逻辑
         async function handleAuth() {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const msg = document.getElementById('msg');
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorBox = document.getElementById('error-msg');
+            const successBox = document.getElementById('success-msg');
+            const btn = document.getElementById('submit-btn');
+
+            // 重置状态
+            errorBox.style.display = 'none';
+            successBox.style.display = 'none';
             
-            msg.innerText = '处理中...';
-            
-            // 1. 尝试登录
-            let { data, error } = await _supabase.auth.signInWithPassword({ email, password });
-            
-            if (error) {
-                // 2. 如果登录失败，尝试注册
-                msg.innerText = '账号不存在，正在为您注册...';
-                const res = await _supabase.auth.signUp({ email, password });
-                if (res.error) {
-                    msg.style.color = 'red';
-                    msg.innerText = res.error.message;
-                } else {
-                    msg.style.color = 'green';
-                    msg.innerText = '注册成功！请前往数据库开启管理员权限后刷新页面。';
-                }
-            } else {
-                msg.style.color = 'green';
-                msg.innerText = '登录成功！跳转中...';
-                setTimeout(() => window.location.href = 'admin.html', 1000);
+            // 基础校验
+            if (!email || !password) {
+                showError('请填写邮箱和密码');
+                return;
             }
+            if (password.length < 6) {
+                showError('密码长度至少为 6 位');
+                return;
+            }
+
+            // 锁定按钮防止重复点击
+            btn.disabled = true;
+            btn.innerText = '处理中...';
+
+            try {
+                if (isLoginMode) {
+                    // --- 登录 ---
+                    const { data, error } = await _supabase.auth.signInWithPassword({
+                        email: email,
+                        password: password
+                    });
+                    
+                    if (error) throw error;
+                    
+                    showSuccess('登录成功！正在跳转...');
+                    setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+
+                } else {
+                    // --- 注册 ---
+                    const { data, error } = await _supabase.auth.signUp({
+                        email: email,
+                        password: password
+                    });
+
+                    if (error) throw error;
+
+                    // 补充逻辑：虽然数据库可能有 Trigger 自动创建 Profile，
+                    // 但前端再尝试写入一次作为双重保险，或者处理 Trigger 失败的情况
+                    if (data.user) {
+                        // 尝试写入 profiles (如果已存在则会忽略或报错，这里捕获但不阻断)
+                        const { error: profileError } = await _supabase
+                            .from('profiles')
+                            .insert([{ 
+                                id: data.user.id,
+                                email: email,
+                                username: email.split('@')[0],
+                                created_at: new Date()
+                            }]);
+                            
+                        if (profileError) {
+                            console.log("Profile 可能已由 Trigger 创建或写入冲突:", profileError.message);
+                        }
+                    }
+
+                    showSuccess('注册成功！已自动登录，正在跳转...');
+                    setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+                }
+            } catch (err) {
+                console.error(err);
+                // 优化错误提示文案
+                let msg = err.message;
+                if (msg.includes('Invalid login credentials')) msg = '账号或密码错误';
+                if (msg.includes('User already registered')) msg = '该邮箱已被注册，请直接登录';
+                if (msg.includes('Password should be')) msg = '密码太弱，请使用更复杂的密码';
+                
+                showError(msg);
+                btn.disabled = false;
+                btn.innerText = isLoginMode ? '登录' : '注册';
+            }
+        }
+
+        function showError(msg) {
+            const el = document.getElementById('error-msg');
+            el.innerText = msg;
+            el.style.display = 'block';
+        }
+
+        function showSuccess(msg) {
+            const el = document.getElementById('success-msg');
+            el.innerText = msg;
+            el.style.display = 'block';
         }
     </script>
 </body>
