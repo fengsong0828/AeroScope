@@ -93,11 +93,95 @@
         .round-tag { background: #ecfdf5; color: #059669; padding: 2px 8px; border-radius: 4px; font-weight: 600; font-size: 0.8rem; }
         .investor-list { font-size: 0.85rem; color: #64748b; line-height: 1.5; }
 
-        /* 专利列表 */
-        .patent-item { display: flex; gap: 15px; padding: 15px 0; border-bottom: 1px dashed #f1f5f9; }
-        .patent-icon { width: 40px; height: 40px; background: #f5f3ff; color: #7c3aed; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: bold; }
-        .patent-info h5 { margin: 0 0 4px 0; font-size: 1rem; color: #1e293b; }
-        .patent-meta { font-size: 0.8rem; color: #94a3b8; }
+        /* =========================================
+           3. 专利列表样式 (优化版：单行 + 分页)
+           ========================================= */
+        .patent-item-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: background 0.2s;
+            border-bottom: 1px dashed #f1f5f9;
+        }
+        .patent-item-link:last-child {
+            border-bottom: none;
+        }
+        .patent-item-link:hover {
+            background-color: #f8fafc;
+        }
+
+        .patent-item { 
+            display: flex; 
+            align-items: center; /* 垂直居中 */
+            padding: 12px 10px; 
+            gap: 12px;
+            height: 48px; /* 固定高度确保整齐 */
+            box-sizing: border-box;
+        }
+
+        /* 专利图标 */
+        .patent-icon { 
+            width: 26px; height: 26px; 
+            background: #f5f3ff; color: #7c3aed; 
+            border-radius: 6px; 
+            display: flex; align-items: center; justify-content: center; 
+            flex-shrink: 0; font-weight: bold; font-size: 0.7rem;
+        }
+
+        /* 核心内容容器：Flex 布局实现左标题右信息 */
+        .patent-content-row {
+            flex: 1;
+            min-width: 0; /* 关键：允许子元素压缩 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* 标题：占据剩余空间，单行省略 */
+        .patent-title { 
+            margin: 0; 
+            font-size: 0.95rem; 
+            color: #334155; 
+            font-weight: 500; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            margin-right: 15px;
+        }
+
+        /* 元数据：靠右，不换行 */
+        .patent-meta-inline { 
+            font-size: 0.8rem; 
+            color: #94a3b8; 
+            display: flex; 
+            align-items: center; 
+            flex-shrink: 0; /* 防止被压缩 */
+            gap: 8px;
+        }
+
+        /* 状态标签圆点 */
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+        
+        /* 标签小徽章 */
+        .type-badge { background:#f1f5f9; padding:2px 6px; border-radius:4px; font-size:0.75rem; color:#64748b; }
+
+        /* 分页控件样式 */
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding-top: 15px;
+            margin-top: 10px;
+            border-top: 1px solid #f1f5f9;
+        }
+        .page-btn {
+            background: white; border: 1px solid #cbd5e1;
+            color: #64748b; padding: 4px 12px; border-radius: 4px;
+            font-size: 0.8rem; cursor: pointer; transition: 0.2s;
+        }
+        .page-btn:hover:not(:disabled) { border-color: #3b82f6; color: #3b82f6; }
+        .page-btn:disabled { opacity: 0.5; cursor: not-allowed; background: #f8fafc; }
 
         /* 产品卡片 */
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
@@ -125,6 +209,8 @@
             .detail-grid { grid-template-columns: 1fr; }
             .company-header-flex { flex-direction: column; align-items: center; text-align: center; }
             .meta-badges { justify-content: center; }
+            /* 移动端调整：隐藏部分元数据以防拥挤 */
+            .patent-meta-inline span:nth-child(2) { display: none; } /* 隐藏日期 */
         }
     </style>
 </head>
@@ -236,16 +322,29 @@
                 </div>
             </div>
 
-            <!-- C. 技术创新/专利 -->
+            <!-- C. 技术创新/专利 (已修改：单行+分页) -->
             <div class="info-card">
                 <div class="card-header">
                     <div class="card-title">技术专利 <span style="font-weight:400; color:#94a3b8; font-size:0.9rem; margin-left:10px;">Patents & IP</span></div>
                 </div>
-                <div id="patent-list">
-                    <p style="color:#94a3b8; text-align:center; padding:10px;">暂无专利数据</p>
+                
+                <!-- 专利列表容器 -->
+                <div id="patent-list-container" style="min-height: 200px;">
+                    <p style="color:#94a3b8; text-align:center; padding:10px;">正在加载专利数据...</p>
                 </div>
-                <div style="text-align:center; margin-top:15px;">
-                    <a href="#" style="font-size:0.9rem; color:#3b82f6;">查看全部专利 ></a>
+
+                <!-- 分页控件 (默认隐藏，JS控制显示) -->
+                <div id="patent-pagination" class="pagination-controls" style="display:none;">
+                    <button class="page-btn" id="btn-prev-patent" onclick="changePatentPage(-1)">上一页</button>
+                    <span id="patent-page-info" style="font-size:0.85rem; color:#64748b;">1 / 1</span>
+                    <button class="page-btn" id="btn-next-patent" onclick="changePatentPage(1)">下一页</button>
+                </div>
+
+                <!-- 底部链接：修改文案和跳转 -->
+                <div style="text-align:center; margin-top:15px; padding-top:10px; border-top:1px dashed #f1f5f9;">
+                    <a href="chart-patents.html" style="font-size:0.9rem; color:#3b82f6; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:5px;">
+                        🔍 进入专利库检索更多
+                    </a>
                 </div>
             </div>
 
@@ -317,7 +416,6 @@
                     </div>
                 </div>
                 
-                <!-- 核心板块 -->
                 <div class="footer-col">
                     <h4>核心板块</h4>
                     <ul>
@@ -356,6 +454,11 @@
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
         const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
+        // 专利分页相关变量
+        let allCompanyPatents = []; 
+        let currentPatentPage = 1;
+        const patentsPerPage = 10;
+
         document.addEventListener('DOMContentLoaded', async function() {
             checkUserLogin();
             const urlParams = new URLSearchParams(window.location.search);
@@ -363,24 +466,31 @@
 
             if (!companyId) { return; } 
 
-            // 1. 获取基础信息
+            // 1. 获取基础信息 (Company)
             const { data: company } = await _supabase.from('companies').select('*').eq('id', companyId).single();
             if (company) {
                 renderHeader(company);
                 renderSidebar(company);
                 loadCompetitors(company); 
+            } else {
+                return; // 如果查不到公司，停止加载其他数据
             }
 
             // 2. 并行获取深度数据
+            // 【修改】专利查询数量增加到 50，以支持前端分页
             const [fundingRes, patentRes, productRes, newsRes] = await Promise.all([
                 _supabase.from('funding_events').select('*').eq('company_id', companyId).order('funding_date', {ascending: false}),
-                _supabase.from('patents').select('*').eq('related_company_id', companyId).limit(5), 
+                _supabase.from('patents')
+                    .select('*')
+                    .eq('applicant', company.name)
+                    .order('publication_date', {ascending: false})
+                    .limit(50), 
                 _supabase.from('products').select('*').eq('company_id', companyId).eq('draft', false),
                 _supabase.from('news').select('*').contains('mentioned_company_ids', [companyId]).limit(5)
             ]);
 
             renderFunding(fundingRes.data);
-            renderPatents(patentRes.data);
+            initPatentPagination(patentRes.data); // 初始化专利分页
             renderProducts(productRes.data);
             renderNews(newsRes.data);
         });
@@ -463,28 +573,98 @@
             }
         }
 
-        // 渲染专利
-        function renderPatents(list) {
-            const container = document.getElementById('patent-list');
-            if(!list || list.length === 0) return;
+        // =========================================
+        // 4. 专利列表逻辑 (前端分页 + 单行渲染)
+        // =========================================
+        
+        // 初始化
+        function initPatentPagination(data) {
+            if (!data || data.length === 0) {
+                document.getElementById('patent-list-container').innerHTML = '<p style="color:#94a3b8; text-align:center; padding:20px;">暂无公开专利数据</p>';
+                return;
+            }
+            allCompanyPatents = data;
+            currentPatentPage = 1;
+            renderPatentPage();
+        }
+
+        // 渲染当前页
+        function renderPatentPage() {
+            const container = document.getElementById('patent-list-container');
             container.innerHTML = '';
-            list.forEach(p => {
-                const typeLabel = p.patent_type === 'Invention' ? '发明' : '实用新型';
+
+            // 计算切片
+            const start = (currentPatentPage - 1) * patentsPerPage;
+            const end = start + patentsPerPage;
+            const pageData = allCompanyPatents.slice(start, end);
+
+            pageData.forEach(p => {
+                const typeMap = { 'Invention': '发明', 'Utility Model': '实用', 'Design': '外观' };
+                const typeLabel = typeMap[p.patent_type] || '专利';
+                
+                // 状态颜色逻辑
+                let statusColor = '#94a3b8'; // 默认灰
+                let statusText = p.legal_status || '未知';
+                
+                if (['有效', 'Authorized'].some(s => statusText.includes(s))) statusColor = '#16a34a'; // 绿
+                else if (['审中', 'Pending', 'Substantive'].some(s => statusText.includes(s))) statusColor = '#f59e0b'; // 橙
+                else if (['无效', 'Invalid', 'Terminated'].some(s => statusText.includes(s))) statusColor = '#ef4444'; // 红
+                
+                // 日期处理：只取年份，如果没有则显示 -
+                const dateStr = p.publication_date ? p.publication_date.substring(0, 4) : '-';
+
                 container.innerHTML += `
-                    <div class="patent-item">
-                        <div class="patent-icon">IP</div>
-                        <div class="patent-info">
-                            <h5>${p.title}</h5>
-                            <div class="patent-meta">
-                                <span>${typeLabel}</span> • 
-                                <span>公开日: ${p.publication_date || '-'}</span> • 
-                                <span style="color:#16a34a;">${p.legal_status || '有效'}</span>
+                    <a href="patent-detail.html?id=${p.id}" class="patent-item-link">
+                        <div class="patent-item">
+                            <div class="patent-icon">IP</div>
+                            
+                            <div class="patent-content-row">
+                                <div class="patent-title" title="${p.title}">${p.title}</div>
+                                
+                                <div class="patent-meta-inline">
+                                    <span class="type-badge">${typeLabel}</span>
+                                    <span>${dateStr}</span>
+                                    <span style="display:flex; align-items:center; color:${statusColor}; margin-left:5px;">
+                                        <span class="status-dot" style="background:${statusColor}"></span>${statusText}
+                                    </span>
+                                </div>
                             </div>
+                            
+                            <!-- 极简箭头 -->
+                            <div style="color:#cbd5e1; font-size:1rem; margin-left:5px;">›</div>
                         </div>
-                    </div>
+                    </a>
                 `;
             });
+
+            updatePaginationControls();
         }
+
+        // 更新控件状态
+        function updatePaginationControls() {
+            const totalPages = Math.ceil(allCompanyPatents.length / patentsPerPage);
+            const paginationEl = document.getElementById('patent-pagination');
+            
+            if (totalPages <= 1) {
+                paginationEl.style.display = 'none';
+                return;
+            }
+
+            paginationEl.style.display = 'flex';
+            document.getElementById('patent-page-info').innerText = `${currentPatentPage} / ${totalPages}`;
+            document.getElementById('btn-prev-patent').disabled = currentPatentPage === 1;
+            document.getElementById('btn-next-patent').disabled = currentPatentPage === totalPages;
+        }
+
+        // 切换页面 (挂载到 window 以便 HTML 调用)
+        window.changePatentPage = function(step) {
+            const totalPages = Math.ceil(allCompanyPatents.length / patentsPerPage);
+            const newPage = currentPatentPage + step;
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPatentPage = newPage;
+                renderPatentPage();
+            }
+        };
 
         // 渲染产品
         function renderProducts(list) {
