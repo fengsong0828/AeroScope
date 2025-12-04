@@ -2,517 +2,194 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AeroScope Insight | 低空经济洞察</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 / 注册 | AeroScope</title>
     <style>
-        /* 复用搜索框样式 */
-        .search-component { position: relative; margin-right: 15px; }
-        .search-box { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 20px; background: white; padding: 5px 12px; transition: 0.3s; }
-        .search-box:focus-within { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
-        .search-icon { font-size: 1rem; color: #64748b; margin-right: 8px; }
-        .search-input { border: none; outline: none; font-size: 0.9rem; width: 160px; color: #1e293b; }
+        /* === 全局样式 (复用自 login2) === */
+        body { margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #f1f5f9; height: 100vh; display: flex; align-items: center; justify-content: center; }
         
-        /* 搜索下拉 */
-        #search-dropdown { position: absolute; top: 45px; right: 0; width: 280px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 2000; display: none; max-height: 400px; overflow-y: auto; }
-        .search-result-item { display: block; padding: 12px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: #1e293b; transition: 0.2s; }
-        .search-result-item:hover { background: #f8fafc; }
-        .result-meta { font-size: 0.75rem; color: #64748b; display: flex; align-items: center; gap: 6px; margin-top: 4px; }
-        .result-tag { padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; }
-
-        /* 分页按钮 */
-        .pagination-controls { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 30px; }
-        .pagination-controls button:disabled { opacity: 0.5; cursor: not-allowed; background: #f1f5f9; border-color: #cbd5e1; color: #94a3b8; }
-
-        /* 页脚 Grid */
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
-        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 1rem; font-weight: 600; }
-        .footer-col ul li { margin-bottom: 12px; }
-        .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
-        .footer-col a:hover { color: #3b82f6; }
-        .social-icons { display: flex; gap: 15px; margin-top: 20px; }
-        .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
-        .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
-
-        @media (max-width: 768px) {
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .social-icons { justify-content: center; }
-            .search-component { display: none; }
-        }
-
-        /* 首页专家卡片微调样式 */
-        .home-expert-card {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px dashed #e2e8f0;
-            transition: all 0.2s;
-            text-decoration: none;
-            display: block;
-        }
-        .home-expert-card:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .home-expert-card:hover .expert-title { color: #3b82f6; }
+        /* === 卡片容器 === */
+        .auth-card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); width: 100%; max-width: 360px; }
         
-        .expert-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-        .expert-av { width: 32px; height: 32px; border-radius: 50%; background: #f59e0b; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem; flex-shrink: 0; }
-        .expert-name { font-size: 0.9rem; font-weight: 700; color: #1e293b; }
-        .expert-role { font-size: 0.75rem; color: #d97706; background: #fffbeb; padding: 1px 6px; border-radius: 4px; margin-left: 5px; }
+        /* === 标题区 === */
+        .auth-header { text-align: center; margin-bottom: 30px; }
+        .auth-header h2 { margin: 0 0 10px; color: #0f172a; font-size: 1.5rem; }
+        .auth-header p { margin: 0; color: #64748b; font-size: 0.9rem; }
         
-        .expert-title { font-size: 0.95rem; font-weight: 600; color: #334155; margin-bottom: 6px; line-height: 1.4; transition: color 0.2s; }
-        .expert-quote { font-size: 0.85rem; color: #64748b; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-style: italic; }
+        /* === 表单元素 === */
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-size: 0.85rem; font-weight: 600; color: #334155; }
+        input { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; box-sizing: border-box; transition: border-color 0.2s; }
+        input:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
         
-        @keyframes spin { to { transform: rotate(360deg); } }
+        /* === 按钮 === */
+        .btn-submit { width: 100%; padding: 12px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .btn-submit:hover { background: #2563eb; }
+        .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; }
+
+        /* === 底部切换 === */
+        .switch-mode { text-align: center; margin-top: 20px; font-size: 0.9rem; color: #64748b; }
+        .switch-mode a { color: #3b82f6; text-decoration: none; font-weight: 600; cursor: pointer; }
+        .switch-mode a:hover { text-decoration: underline; }
+        
+        /* === 消息提示 === */
+        #error-msg { color: #ef4444; font-size: 0.85rem; text-align: center; margin-top: 15px; display: none; background: #fef2f2; padding: 8px; border-radius: 4px; border: 1px solid #fee2e2; }
+        #success-msg { color: #10b981; font-size: 0.85rem; text-align: center; margin-top: 15px; display: none; background: #ecfdf5; padding: 8px; border-radius: 4px; border: 1px solid #d1fae5; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-
-    <!-- Header -->
-    <header>
-        <div class="standard-container">
-            <div class="nav-inner">
-                <a href="index.html" class="logo">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                    AeroScope<span>Insight</span>
-                </a>
-                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-                <nav class="nav-links" id="navMenu">
-                    <a href="index.html" class="active">首页</a>
-                    <a href="news.html">资讯快报</a>
-                    <a href="policies.html">政策法规</a>
-                    <a href="tech.html">技术前沿</a>
-                    <a href="companies.html">公司数据库</a>
-                    <a href="forum.html">论坛交流</a>
-                </nav>
-                <div class="header-actions">
-                    <div class="search-component">
-                        <div class="search-box">
-                            <span class="search-icon">🔍</span>
-                            <input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)">
-                        </div>
-                        <div id="search-dropdown"></div>
-                    </div>
-                    <button class="btn btn-primary" id="auth-btn" onclick="location.href='login.html'">登录/注册</button>
-                </div>
-            </div>
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2 id="page-title">欢迎回来</h2>
+            <p id="page-desc">请输入您的账号密码进行登录</p>
         </div>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="standard-container">
-            <h1>构建低空经济的数字基础设施</h1>
-            <p>实时洞察全球 eVTOL、无人机物流及城市空中交通（UAM）的政策、技术与资本动态。</p>
-            <a href="products.html" class="btn btn-primary" style="padding: 12px 32px; display:inline-block; margin-top:20px;">浏览全球产品库</a>
+        
+        <div class="form-group">
+            <label>电子邮箱</label>
+            <input type="email" id="email" placeholder="name@example.com">
         </div>
-    </section>
-
-    <!-- 核心数据仪表盘 -->
-    <div class="standard-container">
-        <div class="dashboard-grid">
-            <!-- 1. 全球融资总额 -->
-            <a href="chart-funding.html" class="data-card" id="funding-card">
-                <div class="data-label">全球融资总额</div>
-                <div class="data-value" id="val-funding">--</div>
-                <span class="trend-indicator">▲ 实时统计中</span>
-            </a>
-            <!-- 2. 试点城市 -->
-            <a href="chart-cities.html" class="data-card" id="cities-card">
-                <div class="data-label">试点城市</div>
-                <div class="data-value" id="val-cities">--</div>
-                <span class="trend-indicator">查看分布地图 →</span>
-            </a>
-            <!-- 3. 技术专利 -->
-            <a href="chart-patents.html" class="data-card">
-                <div class="data-label">收录技术专利</div>
-                <div class="data-value" id="val-patents">--</div>
-                <span class="trend-indicator">查看专利分布 →</span>
-            </a>
-            <!-- 4. 产业链企业 -->
-            <a href="chart-companies.html" class="data-card">
-                <div class="data-label">产业链企业</div>
-                <div class="data-value" id="val-companies">--</div>
-                <span class="trend-indicator">查看全景图谱 →</span>
-            </a>
+        <div class="form-group">
+            <label>密码</label>
+            <input type="password" id="password" placeholder="至少 6 位字符">
+        </div>
+        
+        <button class="btn-submit" onclick="handleAuth()" id="submit-btn">登录</button>
+        
+        <div id="error-msg"></div>
+        <div id="success-msg"></div>
+        
+        <div class="switch-mode">
+            <span id="switch-text">还没有账号？</span>
+            <a onclick="toggleMode()" id="switch-btn">立即注册</a>
+        </div>
+        
+        <div style="text-align:center; margin-top:20px;">
+            <a href="index.html" style="font-size:0.85rem; color:#94a3b8; text-decoration:none;">← 返回首页</a>
         </div>
     </div>
 
-    <!-- 主内容区 -->
-    <div class="standard-container">
-        <div class="main-layout-grid">
-            <!-- 左侧：最新动态 -->
-            <main class="content-left">
-                <div class="section-header">
-                    <div class="section-title">最新动态 (News & Policies & Tech)</div>
-                </div>
-                <div class="news-feed" id="unified-feed-container">
-                    <div class="loading-spinner">正在聚合多源数据...</div>
-                </div>
-                <!-- 分页按钮 -->
-                <div class="pagination-controls" id="pagination-box" style="display:none;">
-                    <button class="btn btn-outline" onclick="changePage(-1)" id="btn-prev">上一页</button>
-                    <span id="page-indicator" style="line-height: 34px; color:#64748b; font-size:0.9rem;">1 / 1</span>
-                    <button class="btn btn-outline" onclick="changePage(1)" id="btn-next">下一页</button>
-                </div>
-            </main>
-
-            <!-- 右侧：侧边栏 -->
-            <aside class="sidebar">
-                <div class="sidebar-widget newsletter-box">
-                    <div style="font-weight:700; color:#3b82f6; text-align:center;">订阅行业日报</div>
-                    <p style="font-size:0.85rem; color:#64748b; margin-bottom:10px; text-align:center;">每早8点，获取核心情报。</p>
-                    <input type="email" class="newsletter-input" placeholder="输入邮箱地址">
-                    <button class="btn btn-primary" style="width: 100%;">免费订阅</button>
-                </div>
-
-                <div class="sidebar-widget">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom: 1px solid #e2e8f0; padding-bottom:10px;">
-                        <div class="widget-title" style="margin-bottom:0; border:none; padding:0;">深度报告</div>
-                        <a href="reports.html" style="font-size:0.85rem; color:#3b82f6; font-weight:600;">查看更多 &gt;</a>
-                    </div>
-                    <div id="home-report-list">
-                        <p style="color:#999; font-size:0.85rem; text-align:center;">加载中...</p>
-                    </div>
-                </div>
-
-                <!-- 3. 专家观点 (动态加载版) -->
-                <div class="sidebar-widget">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom: 1px solid #e2e8f0; padding-bottom:10px;">
-                        <div class="widget-title" style="margin-bottom:0; border:none; padding:0;">专家观点</div>
-                        <a href="forum.html" style="font-size:0.85rem; color:#3b82f6; font-weight:600;">更多 &gt;</a>
-                    </div>
-                    
-                    <!-- 动态容器：JS 会把最热的专家话题渲染到这里 -->
-                    <div id="home-expert-list" class="expert-list-container">
-                        <div style="text-align:center; padding:20px; color:#94a3b8; font-size:0.85rem;">
-                            <span style="display:inline-block; width:12px; height:12px; border:2px solid #cbd5e1; border-top-color:#3b82f6; border-radius:50%; animation:spin 1s linear infinite; margin-right:5px; vertical-align:middle;"></span>
-                            加载权威观点...
-                        </div>
-                    </div>
-                </div>
-            </aside>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="standard-container">
-            <div class="footer-grid">
-                <div class="footer-col brand-col">
-                    <h4 style="font-size:1.2rem;">AeroScope Insight</h4>
-                    <p style="font-size:0.9rem; color:#94a3b8; line-height: 1.6; margin-bottom: 20px;">
-                        连接政策、资本与技术，打造低空经济领域的数字化基础设施与决策引擎。
-                    </p>
-                    <div class="social-icons">
-                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></a>
-                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
-                        <a href="mailto:contact@aeroscope.cn" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
-                    </div>
-                </div>
-                
-                <!-- 核心板块 -->
-                <div class="footer-col">
-                    <h4>核心板块</h4>
-                    <ul>
-                        <li><a href="news.html">资讯快报</a></li>
-                        <li><a href="policies.html">政策法规</a></li>
-                        <li><a href="companies.html">企业数据库</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>数据图谱</h4>
-                    <ul>
-                        <li><a href="chart-funding.html">全球融资趋势</a></li>
-                        <li><a href="chart-cities.html">试点城市分布</a></li>
-                        <li><a href="chart-companies.html">产业链全景图</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>关于</h4>
-                    <ul>
-                        <li><a href="about.html">团队愿景</a></li>
-                        <li><a href="submit-report.html">寻求报道</a></li>
-                        <li><a href="contact.html">商务合作</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright" style="border-top:1px solid #334155; padding-top:20px; margin-top:20px; text-align:center; color:#64748b; font-size:0.85rem;">
-                &copy; 2025 AeroScope Insight. All rights reserved. 京ICP备XXXXXXXX号
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
+        // ================= 配置区域 =================
+        // 请确保这里的 URL 和 Key 是您最新的 AeroScope_v2 项目配置
+        const supabaseUrl = 'https://cpvisbzlzatfdqakqsul.supabase.co'; 
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNwdmlzYnpsemF0ZmRxYWtxc3VsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQzOTgwMTYsImV4cCI6MjA3OTk3NDAxNn0.R__eoUjpzFP9_SUxIVnM9T1zpl1pcBTGMzxXLf-Orcg';
+        
         const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        
+        // 状态变量
+        let isLoginMode = true;
 
-        // 分页全局变量
-        let allFeedData = [];
-        let currentPage = 1;
-        const itemsPerPage = 5;
+        // 切换 登录/注册 模式
+        function toggleMode() {
+            isLoginMode = !isLoginMode;
+            
+            // 更新 UI 文本
+            document.getElementById('page-title').innerText = isLoginMode ? '欢迎回来' : '创建账号';
+            document.getElementById('page-desc').innerText = isLoginMode ? '请输入您的账号密码进行登录' : '注册成为 AeroScope 会员';
+            document.getElementById('submit-btn').innerText = isLoginMode ? '登录' : '注册';
+            document.getElementById('switch-text').innerText = isLoginMode ? '还没有账号？' : '已有账号？';
+            document.getElementById('switch-btn').innerText = isLoginMode ? '立即注册' : '去登录';
+            
+            // 清空输入框和消息
+            document.getElementById('error-msg').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'none';
+        }
 
-        document.addEventListener('DOMContentLoaded', async function() {
-            checkUserLogin();
-            loadDashboardStats(); 
-            loadUnifiedFeed();
-            loadHomeReports();
-            loadHomeExperts();
-        });
+        // 处理认证逻辑
+        async function handleAuth() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorBox = document.getElementById('error-msg');
+            const successBox = document.getElementById('success-msg');
+            const btn = document.getElementById('submit-btn');
 
-        // ★★★ 1. 核心数据加载逻辑 (优化版：统一使用 funding_events) ★★★
-        async function loadDashboardStats() {
+            // 重置状态
+            errorBox.style.display = 'none';
+            successBox.style.display = 'none';
+            
+            // 基础校验
+            if (!email || !password) {
+                showError('请填写邮箱和密码');
+                return;
+            }
+            if (password.length < 6) {
+                showError('密码长度至少为 6 位');
+                return;
+            }
+
+            // 锁定按钮防止重复点击
+            btn.disabled = true;
+            btn.innerText = '处理中...';
+
             try {
-                // A. 统计企业数量
-                const { count: companyCount } = await _supabase.from('companies')
-                    .select('*', { count: 'exact', head: true })
-                    .eq('draft', false);
-
-                // B. 统计技术专利 (使用 patents 表)
-                const { count: patentCount } = await _supabase.from('patents')
-                    .select('*', { count: 'exact', head: true });
-                
-                // C. 统计试点城市 (基于 policies 表去重)
-                const { data: cityData } = await _supabase
-                    .from('policies')
-                    .select('related_city')
-                    .eq('draft', false)
-                    .not('related_city', 'is', null);
-                
-                const uniqueCities = new Set(cityData.map(item => item.related_city).filter(c => c && c.trim() !== ''));
-                const cityCount = uniqueCities.size || 26;
-
-                // D. 计算全球融资总额 (改用 funding_events 表汇总)
-                // 这样能保证与 chart-funding.html 的数据源完全一致
-                const { data: events } = await _supabase
-                    .from('funding_events')
-                    .select('funding_amount, funding_currency')
-                    .eq('draft', false)
-                    .not('funding_amount', 'is', null);
-                
-                let totalFundingUSD = 0;
-                if (events) {
-                    events.forEach(e => {
-                        let amount = Number(e.funding_amount || 0);
-                        // 统一汇率换算逻辑
-                        if (e.funding_currency === 'CNY') amount = amount / 7.2;
-                        else if (e.funding_currency === 'EUR') amount = amount * 1.05;
-                        else if (e.funding_currency === 'GBP') amount = amount * 1.25;
-                        totalFundingUSD += amount;
+                if (isLoginMode) {
+                    // --- 登录 ---
+                    const { data, error } = await _supabase.auth.signInWithPassword({
+                        email: email,
+                        password: password
                     });
-                }
+                    
+                    if (error) throw error;
+                    
+                    showSuccess('登录成功！正在跳转...');
+                    setTimeout(() => { window.location.href = 'index.html'; }, 1000);
 
-                // 格式化金额显示
-                let fundingText = '';
-                if (totalFundingUSD >= 1000000000) {
-                    fundingText = '$' + (totalFundingUSD / 1000000000).toFixed(1) + 'B';
-                } else if (totalFundingUSD >= 1000000) {
-                    fundingText = '$' + (totalFundingUSD / 1000000).toFixed(1) + 'M';
                 } else {
-                    fundingText = '$' + totalFundingUSD.toLocaleString();
+                    // --- 注册 ---
+                    const { data, error } = await _supabase.auth.signUp({
+                        email: email,
+                        password: password
+                    });
+
+                    if (error) throw error;
+
+                    // 补充逻辑：虽然数据库可能有 Trigger 自动创建 Profile，
+                    // 但前端再尝试写入一次作为双重保险，或者处理 Trigger 失败的情况
+                    if (data.user) {
+                        // 尝试写入 profiles (如果已存在则会忽略或报错，这里捕获但不阻断)
+                        const { error: profileError } = await _supabase
+                            .from('profiles')
+                            .insert([{ 
+                                id: data.user.id,
+                                email: email,
+                                username: email.split('@')[0],
+                                created_at: new Date()
+                            }]);
+                            
+                        if (profileError) {
+                            console.log("Profile 可能已由 Trigger 创建或写入冲突:", profileError.message);
+                        }
+                    }
+
+                    showSuccess('注册成功！已自动登录，正在跳转...');
+                    setTimeout(() => { window.location.href = 'index.html'; }, 1500);
                 }
-
-                // 更新 UI
-                document.getElementById('val-funding').innerText = fundingText;
-                document.getElementById('val-cities').innerText = cityCount;
-                document.getElementById('val-patents').innerText = patentCount || 0;
-                document.getElementById('val-companies').innerText = (companyCount || 0) + '+';
+            } catch (err) {
+                console.error(err);
+                // 优化错误提示文案
+                let msg = err.message;
+                if (msg.includes('Invalid login credentials')) msg = '账号或密码错误';
+                if (msg.includes('User already registered')) msg = '该邮箱已被注册，请直接登录';
+                if (msg.includes('Password should be')) msg = '密码太弱，请使用更复杂的密码';
                 
-            } catch (error) {
-                console.error('首页数据加载失败:', error);
+                showError(msg);
+                btn.disabled = false;
+                btn.innerText = isLoginMode ? '登录' : '注册';
             }
         }
 
-        // 2. 加载混合信息流
-        async function loadUnifiedFeed() {
-            const container = document.getElementById('unified-feed-container');
-            container.innerHTML = '<div class="loading-spinner">正在聚合多源数据...</div>';
-
-            const [newsRes, policyRes, techRes] = await Promise.all([
-                _supabase.from('news').select('id, title, summary, publish_date, category, image_url').eq('draft', false).order('publish_date', {ascending:false}).limit(10),
-                _supabase.from('policies').select('id, title, summary, publish_date, department').eq('draft', false).order('publish_date', {ascending:false}).limit(10),
-                _supabase.from('tech_trends').select('id, title, summary, publish_date, type').eq('draft', false).order('publish_date', {ascending:false}).limit(10)
-            ]);
-
-            let feed = [];
-            if(newsRes.data) feed = feed.concat(newsRes.data.map(i => ({...i, type: 'news', tag: i.category || '资讯', link: `news-detail.html?id=${i.id}`})));
-            if(policyRes.data) feed = feed.concat(policyRes.data.map(i => ({...i, type: 'policy', tag: '政策', link: `policy-detail.html?id=${i.id}`, image_url: null})));
-            if(techRes.data) feed = feed.concat(techRes.data.map(i => ({...i, type: 'tech', tag: i.type || '技术', link: `tech-detail.html?id=${i.id}`})));
-
-            feed.sort((a, b) => new Date(b.publish_date) - new Date(a.publish_date));
-            allFeedData = feed;
-            renderPage(1);
+        function showError(msg) {
+            const el = document.getElementById('error-msg');
+            el.innerText = msg;
+            el.style.display = 'block';
         }
 
-        function renderPage(page) {
-            const container = document.getElementById('unified-feed-container');
-            const totalPages = Math.ceil(allFeedData.length / itemsPerPage);
-            
-            if (page < 1) page = 1;
-            if (page > totalPages && totalPages > 0) page = totalPages;
-            currentPage = page;
-
-            const start = (page - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            const pageData = allFeedData.slice(start, end);
-
-            container.innerHTML = '';
-            if (pageData.length === 0) {
-                container.innerHTML = '<p style="text-align:center; color:#999;">暂无数据</p>';
-                document.getElementById('pagination-box').style.display = 'none';
-                return;
-            }
-
-            pageData.forEach(item => {
-                const imgHtml = item.image_url 
-                    ? `<div class="news-image" style="background-image:url('${item.image_url}')"></div>`
-                    : `<div class="news-image" style="background:#f1f5f9; display:flex; align-items:center; justify-content:center; color:#94a3b8; font-weight:bold; border:1px solid #e2e8f0;">${item.tag}</div>`;
-                
-                let tagStyle = '';
-                if(item.type === 'policy') tagStyle = 'background:#0f172a; color:white;';
-                if(item.type === 'tech') tagStyle = 'background:#8b5cf6; color:white;';
-
-                container.innerHTML += `
-                    <article class="news-item">
-                        <a href="${item.link}" style="display:block; flex-shrink:0;">${imgHtml}</a>
-                        <div class="news-content">
-                            <h3><a href="${item.link}">${item.title}</a></h3>
-                            <div class="news-meta"><span class="tag" style="${tagStyle}">${item.tag}</span><span>${item.publish_date}</span></div>
-                            <p style="font-size:0.9rem; color:#64748b; margin-top:8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${item.summary || item.title}</p>
-                        </div>
-                    </article>
-                `;
-            });
-
-            if (allFeedData.length > itemsPerPage) {
-                document.getElementById('pagination-box').style.display = 'flex';
-                document.getElementById('page-indicator').innerText = `${currentPage} / ${totalPages}`;
-                document.getElementById('btn-prev').disabled = (currentPage === 1);
-                document.getElementById('btn-next').disabled = (currentPage === totalPages);
-            } else {
-                document.getElementById('pagination-box').style.display = 'none';
-            }
-        }
-
-        function changePage(offset) { renderPage(currentPage + offset); }
-
-        async function loadHomeReports() {
-            const container = document.getElementById('home-report-list');
-            const { data } = await _supabase.from('deep_reports')
-                .select('id, title, author, publish_date')
-                .eq('draft', false)
-                .order('publish_date', {ascending:false})
-                .limit(5);
-                
-            if(data && data.length > 0) {
-                container.innerHTML = '';
-                data.forEach(item => {
-                    container.innerHTML += `
-                        <div style="margin-bottom:15px; border-bottom:1px dashed #e2e8f0; padding-bottom:10px;">
-                            <a href="report-detail.html?id=${item.id}" style="font-weight:600; font-size:0.9rem; color:#1e293b; display:block; margin-bottom:4px;">${item.title}</a>
-                            <div style="font-size:0.75rem; color:#64748b;">${item.publish_date}</div>
-                        </div>`;
-                });
-            } else {
-                container.innerHTML = '<p style="color:#999; font-size:0.8rem; text-align:center;">暂无报告</p>';
-            }
-        }
-
-        // Search & Menu Logic
-        let searchTimeout;
-        async function performGlobalSearch(keyword) {
-            const dropdown = document.getElementById('search-dropdown');
-            if (!keyword || keyword.length < 1) { dropdown.style.display = 'none'; return; }
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(async () => {
-                dropdown.style.display = 'block';
-                dropdown.innerHTML = '<div style="padding:12px; text-align:center; color:#94a3b8;">搜索中...</div>';
-                const { data, error } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
-                if (error || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
-                let html = '';
-                data.forEach(item => {
-                    let link='#';
-                    if(item.type==='company') link='companies.html';
-                    else if(item.type==='policy') link=`policy-detail.html?id=${item.id}`;
-                    else if(item.type==='tech') link=`tech-detail.html?id=${item.id}`;
-                    else link=`news-detail.html?id=${item.id}`;
-                    html += `<a href="${link}" class="search-result-item">${item.title}</a>`;
-                });
-                dropdown.innerHTML = html;
-            }, 500);
-        }
-        document.addEventListener('click', (e) => {
-            if (!document.querySelector('.search-component').contains(e.target)) {
-                document.getElementById('search-dropdown').style.display = 'none';
-            }
-        });
-        async function checkUserLogin() {
-            const { data: { session } } = await _supabase.auth.getSession();
-            const btn = document.getElementById('auth-btn');
-            if (session) {
-                btn.innerText = session.user.email.split('@')[0];
-                btn.onclick = () => location.href = 'profile.html';
-            }
-        }
-        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
-
-        // ★★★ 新增：首页专家观点加载逻辑 ★★★
-        // ============================================
-        async function loadHomeExperts() {
-            const container = document.getElementById('home-expert-list');
-            
-            // 1. 从 forum_topics 表查询
-            // 条件：是专家 (is_expert=true)
-            // 排序：热度 (heat_score) 降序
-            // 数量：前 3 条
-            const { data, error } = await _supabase
-                .from('forum_topics')
-                .select('id, title, content, author_role, author_avatar_text, user_email') 
-                .eq('is_expert', true)
-                .order('heat_score', { ascending: false })
-                .limit(2);
-
-            if (error) {
-                console.error("专家观点加载失败:", error);
-                container.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem; text-align:center;">暂无数据</p>';
-                return;
-            }
-
-            if (!data || data.length === 0) {
-                container.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem; text-align:center; padding:20px;">暂无专家观点，<a href="forum.html">去论坛看看</a></p>';
-                return;
-            }
-
-            container.innerHTML = '';
-            
-            data.forEach(item => {
-                // 数据处理
-                // 如果没有头像文字，取邮箱首字母
-                const avatarChar = item.author_avatar_text || (item.user_email ? item.user_email.charAt(0).toUpperCase() : 'E');
-                // 名字处理 (这里为了简化，如果没存username，就用邮箱前缀代替，实际生产建议存username)
-                const name = item.user_email ? item.user_email.split('@')[0] : '行业专家';
-                
-                // 摘要处理：去除 Markdown 符号，截取前 45 个字
-                let summary = item.content.replace(/[#*`>]/g, '').trim();
-                if (summary.length > 45) summary = summary.substring(0, 45) + '...';
-
-                // 渲染 HTML
-                container.innerHTML += `
-                    <a href="forum-topic.html?id=${item.id}" class="home-expert-card">
-                        <div class="expert-header">
-                            <div class="expert-av">${avatarChar}</div>
-                            <div>
-                                <span class="expert-name">${name}</span>
-                                <span class="expert-role">${item.author_role || '认证专家'}</span>
-                            </div>
-                        </div>
-                        <div class="expert-title">${item.title}</div>
-                        <div class="expert-quote">"${summary}"</div>
-                    </a>
-                `;
-            });
+        function showSuccess(msg) {
+            const el = document.getElementById('success-msg');
+            el.innerText = msg;
+            el.style.display = 'block';
         }
     </script>
-    <script src="js/ai-widget.js"></script>
 </body>
 </html>
