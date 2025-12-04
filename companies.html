@@ -19,11 +19,18 @@
         .result-tag { padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; }
 
         /* --- 筛选栏样式 --- */
-        .filter-bar { background: white; border-bottom: 1px solid #e2e8f0; padding: 15px 0; position: sticky; top: 64px; z-index: 90; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .filter-bar { background: white; border-bottom: 1px solid #e2e8f0; padding: 15px 0; position: sticky; top: 0; z-index: 90; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
         .filter-inner { display: flex; gap: 15px; flex-wrap: wrap; align-items: center; }
         .filter-select { padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; background-color: #f8fafc; color: #334155; font-size: 0.9rem; outline: none; cursor: pointer; min-width: 120px; }
         .filter-select:focus { border-color: #3b82f6; background: white; }
         .local-search { flex-grow: 1; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem; max-width: 300px; }
+
+        /* --- 分页控件样式 (新增) --- */
+        .pagination-container { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 20px; padding-top: 20px; border-top: 1px solid #e2e8f0; }
+        .page-btn { padding: 8px 16px; background: white; border: 1px solid #cbd5e1; border-radius: 6px; color: #334155; cursor: pointer; transition: 0.2s; font-size: 0.9rem; }
+        .page-btn:hover:not(:disabled) { border-color: #3b82f6; color: #3b82f6; background: #f8fafc; }
+        .page-btn:disabled { opacity: 0.5; cursor: not-allowed; background: #f1f5f9; }
+        .page-info { color: #64748b; font-size: 0.9rem; }
 
         /* --- 页脚样式 --- */
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
@@ -81,7 +88,7 @@
     <section class="page-hero">
         <div class="standard-container">
             <h1>行业图谱</h1>
-            <!-- ★★★ 这里的数字现在是动态的了 (id="total-count") ★★★ -->
+            <!-- 动态数字 -->
             <p>收录全球 <span id="total-count" style="font-weight:700; color:white; font-size:1.2rem; border-bottom:2px solid #3b82f6;">--</span> 家产业链上下游企业，洞察产业创新协同与竞争格局</p>
         </div>
     </section>
@@ -118,10 +125,18 @@
 
     <!-- 4. 公司列表容器 -->
     <div class="standard-container">
-        <div class="company-grid" id="company-container" style="margin-top: 30px; margin-bottom: 60px;">
+        <!-- 列表 Grid -->
+        <div class="company-grid" id="company-container" style="margin-top: 30px;">
             <p style="grid-column: 1 / -1; text-align: center; color: #94a3b8; padding: 40px;">
                 正在加载产业链数据...
             </p>
+        </div>
+
+        <!-- 分页控件 -->
+        <div id="pagination-controls" class="pagination-container" style="display: none; margin-bottom: 60px;">
+            <button class="page-btn" id="prev-page" onclick="changePage(-1)">上一页</button>
+            <span class="page-info" id="page-info">第 1 页 / 共 1 页</span>
+            <button class="page-btn" id="next-page" onclick="changePage(1)">下一页</button>
         </div>
     </div>
 
@@ -178,6 +193,9 @@
         const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
         let allCompanies = [];
+        let filteredCompanies = []; // 当前筛选后的数据
+        let currentPage = 1;
+        const itemsPerPage = 8; // 两行（一行4个 x 2）
 
         document.addEventListener('DOMContentLoaded', async function() {
             checkUserLogin();
@@ -204,13 +222,15 @@
                 return;
             }
 
-            allCompanies = data; // 存入缓存
+            allCompanies = data;
+            filteredCompanies = data; // 初始状态下筛选数据等于所有数据
             
-            // ★★★ 核心修改：更新页面顶部的数字 ★★★
+            // 更新页面顶部的数字
             const countEl = document.getElementById('total-count');
             if (countEl) countEl.innerText = allCompanies.length + '+';
 
-            renderCompanies(allCompanies); 
+            // 渲染第一页
+            renderPage(); 
         }
 
         function applyLocalFilters() {
@@ -219,7 +239,7 @@
             const listedVal = document.getElementById('filter-listed').value;   
             const searchVal = document.getElementById('filter-name').value.toLowerCase(); 
 
-            const filtered = allCompanies.filter(item => {
+            filteredCompanies = allCompanies.filter(item => {
                 if (chainVal !== 'all' && item.industry_chain !== chainVal) return false;
                 if (catVal !== 'all' && item.primary_category !== catVal) return false;
                 if (listedVal !== 'all') {
@@ -233,19 +253,28 @@
                 }
                 return true;
             });
-            renderCompanies(filtered);
+
+            currentPage = 1; // 筛选条件改变后，重置回第一页
+            renderPage();
         }
 
-        function renderCompanies(list) {
+        // 渲染页面（包含分页逻辑）
+        function renderPage() {
             const container = document.getElementById('company-container');
             container.innerHTML = '';
 
-            if (list.length === 0) {
+            if (filteredCompanies.length === 0) {
                 container.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#999; padding:40px;">未找到匹配的企业</p>';
+                document.getElementById('pagination-controls').style.display = 'none';
                 return;
             }
 
-            list.forEach(item => {
+            // 计算当前页的数据
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = filteredCompanies.slice(start, end);
+
+            pageItems.forEach(item => {
                 let logoInnerHtml = item.logo_url 
                     ? `<img src="${item.logo_url}" style="width:100%; height:100%; object-fit:cover;">` 
                     : (item.name.substring(0, 2).toUpperCase());
@@ -258,25 +287,34 @@
                     });
                 }
 
+                // --- 修复点：添加样式防止标签换行 ---
                 let chainBadge = '';
-                if (item.industry_chain === 'upstream') chainBadge = '<span style="font-size:0.7rem; color:#059669; background:#ecfdf5; padding:2px 6px; border-radius:4px; margin-left:auto;">⛓️ 上游</span>';
-                else if (item.industry_chain === 'midstream') chainBadge = '<span style="font-size:0.7rem; color:#0284c7; background:#e0f2fe; padding:2px 6px; border-radius:4px; margin-left:auto;">✈️ 整机</span>';
-                else if (item.industry_chain === 'downstream') chainBadge = '<span style="font-size:0.7rem; color:#d97706; background:#fffbeb; padding:2px 6px; border-radius:4px; margin-left:auto;">🏷️ 运营</span>';
+                // 使用 white-space: nowrap 禁止换行，flex-shrink: 0 禁止挤压，margin-left: auto 推到右侧
+                const badgeStyle = "font-size:0.7rem; padding:2px 6px; border-radius:4px; margin-left:auto; white-space:nowrap; flex-shrink:0;";
+                
+                if (item.industry_chain === 'upstream') {
+                    chainBadge = `<span style="${badgeStyle} color:#059669; background:#ecfdf5;">⛓️ 上游</span>`;
+                } else if (item.industry_chain === 'midstream') {
+                    chainBadge = `<span style="${badgeStyle} color:#0284c7; background:#e0f2fe;">✈️ 整机</span>`;
+                } else if (item.industry_chain === 'downstream') {
+                    chainBadge = `<span style="${badgeStyle} color:#d97706; background:#fffbeb;">🏷️ 运营</span>`;
+                }
 
                 const tickerHtml = item.is_listed && item.ticker_symbol 
-                    ? `<span style="background:#f8fafc; color:#475569; border:1px solid #e2e8f0; border-radius:4px; padding:0 4px; font-size:0.7rem; margin-left:5px;">${item.ticker_symbol}</span>` 
+                    ? `<span style="background:#f8fafc; color:#475569; border:1px solid #e2e8f0; border-radius:4px; padding:0 4px; font-size:0.7rem; margin-left:5px; white-space:nowrap;">${item.ticker_symbol}</span>` 
                     : '';
 
                 const html = `
                 <a href="company-detail.html?id=${item.id}" class="company-card-link" style="text-decoration: none; display: block;">
                     <div class="company-card">
                         <div class="company-header">
-                            <div class="company-logo-box" style="overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                            <div class="company-logo-box" style="overflow:hidden; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
                                 ${logoInnerHtml}
                             </div>
                             <div style="flex:1; min-width:0; margin-left:10px;"> 
-                                <div style="display:flex; align-items:center; margin-bottom:4px;">
-                                    <div style="font-weight:700; font-size:1.05rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-right:8px; color:#0f172a;">
+                                <div style="display:flex; align-items:center; margin-bottom:4px; width:100%;">
+                                    <!-- 标题区域：flex:1, min-width:0 确保省略号生效 -->
+                                    <div style="flex:1; min-width:0; font-weight:700; font-size:1.05rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-right:8px; color:#0f172a;">
                                         ${item.name}
                                     </div>
                                     ${chainBadge}
@@ -296,9 +334,44 @@
                         </div>
                     </div>
                 </a>
-            `;
+                `;
                 container.innerHTML += html;
             });
+
+            updatePaginationControls();
+        }
+
+        // 更新分页控件状态
+        function updatePaginationControls() {
+            const paginationEl = document.getElementById('pagination-controls');
+            const totalPages = Math.ceil(filteredCompanies.length / itemsPerPage);
+
+            if (totalPages <= 1) {
+                paginationEl.style.display = 'none';
+                return;
+            }
+
+            paginationEl.style.display = 'flex';
+            document.getElementById('page-info').innerText = `第 ${currentPage} 页 / 共 ${totalPages} 页`;
+            document.getElementById('prev-page').disabled = (currentPage === 1);
+            document.getElementById('next-page').disabled = (currentPage === totalPages);
+        }
+
+        // 翻页操作
+        function changePage(direction) {
+            const totalPages = Math.ceil(filteredCompanies.length / itemsPerPage);
+            const newPage = currentPage + direction;
+
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                renderPage();
+                // 翻页后滚动回列表顶部
+                const container = document.querySelector('.filter-bar');
+                if(container) {
+                   const top = container.getBoundingClientRect().top + window.scrollY - 80;
+                   window.scrollTo({top: top, behavior: 'smooth'});
+                }
+            }
         }
 
         // 全局搜索

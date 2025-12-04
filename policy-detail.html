@@ -37,7 +37,9 @@
         .article-body h2 { font-size: 1.4rem; border-left: 4px solid #0284c7; padding-left: 10px; margin-top: 1.2em; }
         .article-body p { margin-bottom: 1em; }
         
-        .btn-source { display: inline-flex; align-items: center; gap: 6px; background-color: #f1f5f9; color: #475569; padding: 10px 20px; border-radius: 30px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: 0.2s; border: 1px solid #cbd5e1; margin-top: 30px; display: block; width: fit-content; margin-left: auto; margin-right: auto; }
+        /* 底部操作按钮容器 */
+        .bottom-actions { display: flex; justify-content: center; gap: 15px; margin-top: 40px; padding-top: 20px; border-top: 1px solid #f1f5f9; }
+        .btn-source { display: inline-flex; align-items: center; gap: 6px; background-color: #f1f5f9; color: #475569; padding: 10px 20px; border-radius: 30px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: 0.2s; border: 1px solid #cbd5e1; }
         .btn-source:hover { background-color: #e2e8f0; color: #0284c7; border-color: #0284c7; }
 
         @media (max-width: 768px) { .search-component { display: none; } .footer-grid { grid-template-columns: 1fr; text-align: center; } .article-header, .article-body { padding: 20px; } .article-title { font-size: 1.4rem; } }
@@ -125,23 +127,37 @@
             rawContent = rawContent.replace(/\\n/g, '\n');
             const formattedContent = marked.parse(rawContent);
             
-            let sourceLinkHtml = '';
+            // 构造底部操作按钮
+            let sourceBtn = '';
+            // 【修改点】：部门名称不再包含链接，仅保留纯文本样式
+            let deptHtml = `<span style="font-weight:600; color:#334155;">${policy.department}</span>`;
+            
             if (policy.source_url && policy.source_url.startsWith('http')) {
-                sourceLinkHtml = `<div style="text-align:center;"><a href="${policy.source_url}" target="_blank" class="btn-source">🔗 查看官方原文 / 下载文件</a></div>`;
+                // 【修改点】：底部按钮文案改为 "访问原文"
+                sourceBtn = `<a href="${policy.source_url}" target="_blank" class="btn-source">🔗 访问原文</a>`;
+            }
+            
+            // 文件下载链接 (保持不变)
+            let fileBtn = '';
+            if (policy.file_url && policy.file_url.startsWith('http')) {
+                fileBtn = `<a href="${policy.file_url}" target="_blank" class="btn-source">📥 下载政策全文 (PDF/DOC)</a>`;
             }
 
             container.innerHTML = `
                 <div class="article-header">
-
                     <h1 class="article-title">${policy.title}</h1>
                     <div class="meta-row">
                         <div><span>发布日期:</span> ${policy.publish_date}</div>
-                        <div><span>发文部门:</span> <span style="font-weight:600; color:#0284c7;">${policy.department}</span></div>
+                        <div><span>发文部门:</span> ${deptHtml}</div>
                     </div>
                 </div>
                 <div class="article-body">
                     ${formattedContent}
-                    ${sourceLinkHtml}
+                    
+                    <div class="bottom-actions">
+                        ${sourceBtn}
+                        ${fileBtn}
+                    </div>
                 </div>
             `;
             document.title = `${policy.title} | AeroScope`;

@@ -8,7 +8,7 @@
     <style>
         body { background-color: #f8fafc; display: flex; flex-direction: column; min-height: 100vh; }
         
-        /* --- 1. 优化后的沉浸式页眉 --- */
+        /* --- 1. 沉浸式页眉 --- */
         .topic-header-bar {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -27,7 +27,6 @@
             height: 100%;
         }
 
-        /* 左侧：返回按钮 + Logo */
         .header-left { display: flex; align-items: center; gap: 20px; }
         .btn-back {
             display: flex; align-items: center; gap: 6px;
@@ -37,17 +36,18 @@
         .btn-back:hover { background: #f1f5f9; color: #3b82f6; }
         .header-divider { height: 16px; width: 1px; background: #cbd5e1; }
         
-        /* 右侧：用户信息 */
-        .header-user { display: flex; align-items: center; gap: 10px; }
-        .user-mini-avatar {
-            width: 32px; height: 32px; background: #3b82f6; color: white;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-weight: bold; font-size: 0.8rem;
+        /* 右侧用户区域 (修改为标准按钮容器) */
+        .header-right { display: flex; align-items: center; }
+
+        /* 确保 btn-primary 样式在独立页也能正常显示 (如果 style.css 加载延迟) */
+        .btn-primary {
+            background-color: #3b82f6; color: white; border: none;
+            padding: 8px 20px; border-radius: 6px; font-size: 0.9rem;
+            cursor: pointer; transition: 0.3s; font-weight: 500;
+            text-decoration: none; display: inline-block;
         }
-        .user-name-display { font-size: 0.9rem; color: #334155; font-weight: 500; }
-        .btn-login-mini {
-            font-size: 0.9rem; color: #3b82f6; font-weight: 600; text-decoration: none;
-        }
+        .btn-primary:hover { background-color: #2563eb; transform: translateY(-1px); }
+
 
         /* --- 2. 内容区域 --- */
         .detail-container { 
@@ -55,8 +55,6 @@
         }
         
         .topic-main-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 30px; margin-bottom: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        
-        /* 专家样式 */
         .expert-border { border-top: 4px solid #f59e0b; }
         
         .topic-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px; }
@@ -81,13 +79,44 @@
         .comment-item { border-bottom: 1px solid #f1f5f9; padding: 20px 0; }
         .comment-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; }
         
-        /* --- 3. 极简页脚 --- */
-        .topic-footer {
-            background: white; border-top: 1px solid #e2e8f0; padding: 30px 0; margin-top: auto;
+        /* --- 3. Toast 消息提示组件 --- */
+        .toast-container {
+            position: fixed; top: 80px; left: 50%; transform: translateX(-50%); z-index: 2000;
+            display: flex; flex-direction: column; gap: 10px; pointer-events: none;
         }
-        .footer-inner {
-            display: flex; justify-content: space-between; align-items: center; color: #94a3b8; font-size: 0.85rem;
+        .toast-message {
+            background: white; border: 1px solid #e2e8f0; padding: 10px 20px; border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 10px;
+            animation: slideDown 0.3s ease-out; pointer-events: auto; min-width: 280px;
+            font-size: 0.9rem; color: #1e293b;
         }
+        .toast-icon { font-size: 1.1rem; }
+        .toast-success .toast-icon { color: #16a34a; }
+        .toast-error .toast-icon { color: #ef4444; }
+        .toast-info .toast-icon { color: #3b82f6; }
+
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+        /* --- 4. 极简登录确认模态框 --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4);
+            z-index: 3000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(2px);
+        }
+        .confirm-box {
+            background: white; padding: 25px 30px; border-radius: 12px; width: 320px;
+            text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            animation: fadeIn 0.2s;
+        }
+        .confirm-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; color: #0f172a; }
+        .confirm-desc { font-size: 0.9rem; color: #64748b; margin-bottom: 20px; }
+        .confirm-actions { display: flex; gap: 10px; justify-content: center; }
+        .btn-cancel { padding: 8px 16px; border: 1px solid #cbd5e1; background: white; color: #64748b; border-radius: 6px; cursor: pointer; }
+        .btn-confirm { padding: 8px 20px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer; }
+
+        /* --- 页脚 --- */
+        .topic-footer { background: white; border-top: 1px solid #e2e8f0; padding: 30px 0; margin-top: auto; }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; color: #94a3b8; font-size: 0.85rem; }
         .footer-links a { color: #64748b; text-decoration: none; margin-left: 20px; transition: color 0.2s; }
         .footer-links a:hover { color: #3b82f6; }
 
@@ -99,7 +128,7 @@
 </head>
 <body>
 
-    <!-- 1. 优化后的页眉 -->
+    <!-- 1. 页眉 -->
     <header class="topic-header-bar">
         <div class="standard-container header-inner">
             <div class="header-left">
@@ -111,18 +140,33 @@
                 <a href="index.html" class="logo" style="font-size:1.1rem;">AeroScope</a>
             </div>
             
+            <!-- 右侧：统一的标准按钮样式 -->
             <div class="header-right" id="header-user-area">
-                <!-- 未登录状态 -->
-                <a href="login.html" class="btn-login-mini">登录 / 注册</a>
+                <button class="btn btn-primary" onclick="location.href='login.html'">登录 / 注册</button>
             </div>
         </div>
     </header>
 
+    <!-- Toast 容器 -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- 登录确认模态框 -->
+    <div id="login-modal" class="modal-overlay">
+        <div class="confirm-box">
+            <div class="confirm-title">需要登录</div>
+            <div class="confirm-desc">登录后即可发表评论和点赞，加入社区讨论。</div>
+            <div class="confirm-actions">
+                <button class="btn-cancel" onclick="closeLoginModal()">取消</button>
+                <button class="btn-confirm" onclick="location.href='login.html'">去登录</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 内容区域 -->
     <div class="detail-container">
         <!-- 主话题内容 -->
         <div id="topic-container">
             <div style="text-align:center; padding:60px; color:#94a3b8;">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="margin-bottom:10px;"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                 <p>正在加载话题内容...</p>
             </div>
         </div>
@@ -131,9 +175,8 @@
         <div class="comment-section">
             <h3 style="margin-bottom: 20px; border-left: 4px solid #3b82f6; padding-left: 10px; font-size: 1.1rem; color: #1e293b;">评论交流</h3>
             
-            <!-- 输入框 -->
             <div style="margin-bottom: 30px;">
-                <textarea id="comment-input" class="form-control" rows="3" style="width:100%; padding:15px; border:1px solid #cbd5e1; border-radius:8px; margin-bottom:10px; font-family:inherit; resize:vertical;" placeholder="发表您的真知灼见..."></textarea>
+                <textarea id="comment-input" class="form-control" rows="3" style="width:100%; padding:15px; border:1px solid #cbd5e1; border-radius:8px; margin-bottom:10px; font-family:inherit; resize:vertical; outline:none;" placeholder="发表您的真知灼见..."></textarea>
                 <div style="text-align: right;">
                     <button class="btn btn-primary" onclick="submitComment()" style="padding: 8px 24px;">提交评论</button>
                 </div>
@@ -145,7 +188,7 @@
         </div>
     </div>
 
-    <!-- 2. 优化后的页脚 -->
+    <!-- 2. 页脚 -->
     <footer class="topic-footer">
         <div class="standard-container footer-inner">
             <div>&copy; 2025 AeroScope Insight. All rights reserved.</div>
@@ -177,7 +220,31 @@
             await loadComments();
         });
 
-        // 1. 检查用户并渲染页眉
+        // Toast 提示函数
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            let icon = '✅';
+            if(type === 'error') icon = '❌';
+            if(type === 'info') icon = 'ℹ️';
+
+            toast.className = `toast-message toast-${type}`;
+            toast.innerHTML = `<span class="toast-icon">${icon}</span><span>${message}</span>`;
+            
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'fadeOut 0.3s forwards';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // 登录模态框控制
+        function showLoginModal() { document.getElementById('login-modal').style.display = 'flex'; }
+        function closeLoginModal() { document.getElementById('login-modal').style.display = 'none'; }
+
+        // 用户检查 (样式修改为标准按钮)
         async function checkUser() {
             const { data: { session } } = await _supabase.auth.getSession();
             const userArea = document.getElementById('header-user-area');
@@ -185,18 +252,11 @@
             if (session) {
                 currentUser = session.user;
                 const emailName = session.user.email.split('@')[0];
-                const avatarLetter = emailName.charAt(0).toUpperCase();
                 
-                // 渲染已登录状态
-                userArea.innerHTML = `
-                    <div class="header-user">
-                        <span class="user-name-display">${emailName}</span>
-                        <div class="user-mini-avatar" onclick="location.href='profile.html'" style="cursor:pointer;">${avatarLetter}</div>
-                    </div>
-                `;
+                // 渲染为标准按钮，点击去个人中心
+                userArea.innerHTML = `<button class="btn btn-primary" onclick="location.href='profile.html'">${emailName}</button>`;
             } else {
-                // 保持未登录状态
-                userArea.innerHTML = `<a href="login.html" class="btn-login-mini">登录 / 注册</a>`;
+                userArea.innerHTML = `<button class="btn btn-primary" onclick="location.href='login.html'">登录 / 注册</button>`;
             }
         }
 
@@ -206,13 +266,11 @@
 
             document.title = `${data.title} | AeroScope 论坛`;
 
-            // 样式判断
             const isExpert = data.is_expert;
             const borderClass = isExpert ? 'expert-border' : '';
-            const avatarColor = isExpert ? '#f59e0b' : '#3b82f6'; // 专家金，普通蓝
+            const avatarColor = isExpert ? '#f59e0b' : '#3b82f6';
             const roleBadge = data.author_role ? `<span class="role-badge">${data.author_role}</span>` : '';
             
-            // 引用新闻
             let newsHtml = '';
             if(data.source_news_title) {
                 newsHtml = `
@@ -290,12 +348,10 @@
         }
 
         async function submitComment() {
-            if (!currentUser) {
-                if(confirm('请先登录后再评论，是否去登录？')) location.href = 'login.html';
-                return;
-            }
+            if (!currentUser) return showLoginModal();
+            
             const content = document.getElementById('comment-input').value;
-            if(!content) return;
+            if(!content.trim()) return showToast('评论内容不能为空', 'error');
 
             const { error } = await _supabase.from('forum_comments').insert({
                 topic_id: topicId,
@@ -307,21 +363,24 @@
             if(!error) {
                 document.getElementById('comment-input').value = '';
                 loadComments();
-                alert('评论成功');
+                showToast('评论发布成功！'); 
             } else {
-                alert('评论失败: ' + error.message);
+                showToast('评论失败: ' + error.message, 'error');
             }
         }
 
         async function handleLike(currentLikes) {
-            if (!currentUser) return alert('请先登录');
+            if (!currentUser) return showLoginModal();
+
             const newLikes = (currentLikes || 0) + 1;
             
             // 乐观更新 UI
             document.getElementById('like-count').innerText = newLikes;
             const btn = document.querySelector('.btn-action');
             btn.classList.add('active');
-            btn.disabled = true; // 防止连点
+            btn.disabled = true; 
+
+            showToast('点赞成功 +1', 'info'); 
 
             await _supabase.from('forum_topics').update({ 
                 likes: newLikes, 
