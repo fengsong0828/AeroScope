@@ -5,94 +5,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>企业详情 | AeroScope Insight</title>
     <link rel="stylesheet" href="style.css">
+    <!-- 引入 ECharts 用于绘制融资图表 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <style>
-        /* 复用组件样式 */
+        /* =========================================
+           1. Header & Footer 样式 (严格对齐 Index)
+           ========================================= */
+        
+        /* 搜索框组件 */
         .search-component { position: relative; margin-right: 15px; }
-        .search-box { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 20px; background: white; padding: 5px 12px; }
+        .search-box { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 20px; background: white; padding: 5px 12px; transition: 0.3s; }
+        .search-box:focus-within { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+        .search-icon { font-size: 1rem; color: #64748b; margin-right: 8px; }
         .search-input { border: none; outline: none; font-size: 0.9rem; width: 160px; color: #1e293b; }
+        
+        /* 搜索下拉 */
         #search-dropdown { position: absolute; top: 45px; right: 0; width: 280px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 2000; display: none; max-height: 400px; overflow-y: auto; }
-        .search-result-item { display: block; padding: 12px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: #1e293b; }
+        .search-result-item { display: block; padding: 12px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: #1e293b; transition: 0.2s; }
         .search-result-item:hover { background: #f8fafc; }
+
+        /* 页脚 Grid */
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
-        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 1rem; }
+        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 1rem; font-weight: 600; }
         .footer-col ul li { margin-bottom: 12px; }
-        .footer-col a { color: #94a3b8; font-size: 0.9rem; }
+        .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
         .footer-col a:hover { color: #3b82f6; }
         .social-icons { display: flex; gap: 15px; margin-top: 20px; }
-        .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; }
+        .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
+        .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
 
-        /* --- 企业详情页专用样式 --- */
-        body { background-color: #f8fafc; }
-        
-        /* 顶部 Hero */
-        .company-hero { 
-            background: white; border-bottom: 1px solid #e2e8f0; padding: 40px 0; 
-            margin-bottom: 30px;
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .social-icons { justify-content: center; }
+            .search-component { display: none; }
         }
-        .company-header-flex { display: flex; align-items: flex-start; gap: 25px; }
+
+        /* =========================================
+           2. 企业详情页专用高级样式 (保持苹果风)
+           ========================================= */
+        body { background-color: #f8fafc; color: #1e293b; }
+        
+        /* 顶部 Hero 卡片 */
+        .company-hero { 
+            background: white; border-bottom: 1px solid #e2e8f0; padding: 40px 0; margin-bottom: 30px;
+        }
+        .company-header-flex { display: flex; align-items: flex-start; gap: 30px; }
         .company-logo-lg { 
-            width: 100px; height: 100px; border-radius: 12px; 
-            background: #f1f5f9; display: flex; align-items: center; justify-content: center; 
-            font-size: 2rem; font-weight: 800; color: #94a3b8; overflow: hidden;
-            border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            width: 110px; height: 110px; border-radius: 16px; 
+            background: #fff; display: flex; align-items: center; justify-content: center; 
+            font-size: 2.5rem; font-weight: 800; color: #cbd5e1; overflow: hidden;
+            border: 1px solid #e2e8f0; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
         }
         .company-info-main { flex: 1; }
-        .company-title-row { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
-        .company-name { font-size: 2rem; font-weight: 800; color: #0f172a; line-height: 1; }
-        .ticker-badge { background: #f1f5f9; color: #475569; padding: 4px 8px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid #cbd5e1; }
-        .company-meta-row { display: flex; gap: 20px; color: #64748b; font-size: 0.9rem; align-items: center; }
-        .meta-item { display: flex; align-items: center; gap: 5px; }
+        .company-name { font-size: 2.2rem; font-weight: 800; color: #0f172a; line-height: 1.1; margin: 0; }
+        .ticker-badge { 
+            display: inline-block; background: #f1f5f9; color: #475569; 
+            padding: 4px 10px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; 
+            border: 1px solid #cbd5e1; vertical-align: middle; margin-left: 10px;
+        }
+        .company-subtitle { margin-top: 8px; color: #64748b; font-size: 1.05rem; }
+        
+        .meta-badges { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .meta-badge { display: flex; align-items: center; gap: 6px; font-size: 0.9rem; color: #475569; background: #f8fafc; padding: 6px 12px; border-radius: 20px; border: 1px solid #e2e8f0; }
         
         /* 布局网格 */
-        .detail-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-bottom: 60px; }
+        .detail-grid { display: grid; grid-template-columns: 2.2fr 1fr; gap: 30px; margin-bottom: 60px; }
         
-        /* 卡片通用 */
-        .info-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 25px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .card-title { font-size: 1.1rem; font-weight: 700; color: #0f172a; margin-bottom: 20px; border-left: 4px solid #3b82f6; padding-left: 10px; display: flex; justify-content: space-between; align-items: center; }
+        /* 通用卡片 */
+        .info-card { 
+            background: white; border-radius: 16px; border: 1px solid #e2e8f0; 
+            padding: 28px; margin-bottom: 25px; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+        }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #f1f5f9; }
+        .card-title { font-size: 1.2rem; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 8px; }
+        .card-title::before { content: ''; width: 4px; height: 18px; background: #3b82f6; border-radius: 2px; display: block; }
         
-        /* 标签 */
+        /* 标签云 */
         .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
-        .tag-pill { background: #eff6ff; color: #3b82f6; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; }
+        .tag-pill { background: #eff6ff; color: #3b82f6; padding: 5px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
 
-        /* 侧边栏数据项 */
-        .data-kv { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #f1f5f9; font-size: 0.95rem; }
-        .data-kv:last-child { border-bottom: none; }
-        .kv-label { color: #64748b; }
-        .kv-value { font-weight: 600; color: #1e293b; }
-        .highlight-val { color: #16a34a; }
+        /* 融资表格 */
+        .funding-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        .funding-table th { text-align: left; color: #64748b; font-weight: 500; padding: 12px 8px; border-bottom: 1px solid #e2e8f0; font-size: 0.85rem; }
+        .funding-table td { padding: 16px 8px; border-bottom: 1px dashed #f1f5f9; color: #334155; vertical-align: top; }
+        .funding-table tr:last-child td { border-bottom: none; }
+        .round-tag { background: #ecfdf5; color: #059669; padding: 2px 8px; border-radius: 4px; font-weight: 600; font-size: 0.8rem; }
+        .investor-list { font-size: 0.85rem; color: #64748b; line-height: 1.5; }
 
-        /* 产品列表 (复用简化版) */
-        .product-mini-card { display: flex; gap: 15px; border: 1px solid #f1f5f9; padding: 15px; border-radius: 8px; margin-bottom: 15px; transition: 0.2s; text-decoration: none; color: inherit; }
-        .product-mini-card:hover { border-color: #3b82f6; background: #f8fafc; }
-        .pm-img { width: 100px; height: 70px; background: #cbd5e1; border-radius: 6px; object-fit: cover; }
-        .pm-info h4 { margin: 0 0 5px 0; font-size: 1rem; color: #0f172a; }
-        .pm-specs { font-size: 0.8rem; color: #64748b; display: flex; gap: 15px; }
-        .pm-spec-item { display: flex; align-items: center; gap: 4px; }
+        /* 专利列表 */
+        .patent-item { display: flex; gap: 15px; padding: 15px 0; border-bottom: 1px dashed #f1f5f9; }
+        .patent-icon { width: 40px; height: 40px; background: #f5f3ff; color: #7c3aed; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: bold; }
+        .patent-info h5 { margin: 0 0 4px 0; font-size: 1rem; color: #1e293b; }
+        .patent-meta { font-size: 0.8rem; color: #94a3b8; }
 
-        /* 情报流 */
-        .intel-item { padding: 15px 0; border-bottom: 1px solid #f1f5f9; }
-        .intel-item:last-child { border-bottom: none; }
-        .intel-meta { font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px; display: flex; gap: 10px; }
-        .intel-title { font-size: 0.95rem; font-weight: 600; color: #334155; display: block; margin-bottom: 4px; text-decoration: none; }
-        .intel-title:hover { color: #3b82f6; }
-        .intel-type-tag { font-size: 0.7rem; padding: 1px 6px; border-radius: 4px; border: 1px solid #cbd5e1; }
+        /* 产品卡片 */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .product-mini-card { border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; transition: 0.2s; text-decoration: none; color: inherit; display: block; }
+        .product-mini-card:hover { border-color: #3b82f6; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .pm-img { width: 100%; height: 120px; background: #cbd5e1; object-fit: cover; }
+        .pm-content { padding: 12px; }
+        .pm-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 5px; color: #0f172a; }
+        .pm-badge { font-size: 0.7rem; background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #64748b; }
+
+        /* 侧边栏数据 */
+        .kv-group { margin-bottom: 25px; }
+        .kv-label { color: #64748b; font-size: 0.85rem; margin-bottom: 4px; display: block; }
+        .kv-value { font-size: 1.1rem; font-weight: 600; color: #0f172a; }
+        .kv-value-lg { font-size: 1.5rem; color: #3b82f6; font-weight: 800; }
+
+        /* 竞品 */
+        .comp-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; }
+        .comp-item:hover .comp-name { color: #3b82f6; }
+        .comp-logo { width: 32px; height: 32px; border-radius: 6px; background: #f1f5f9; object-fit: cover; }
+        .comp-name { font-size: 0.95rem; font-weight: 600; color: #334155; }
+        .comp-meta { font-size: 0.75rem; color: #94a3b8; margin-left: auto; }
 
         @media (max-width: 768px) {
             .detail-grid { grid-template-columns: 1fr; }
-            .company-header-flex { flex-direction: column; text-align: center; align-items: center; }
-            .company-title-row { justify-content: center; flex-wrap: wrap; }
-            .company-meta-row { justify-content: center; flex-wrap: wrap; }
-            .search-component { display: none; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .company-header-flex { flex-direction: column; align-items: center; text-align: center; }
+            .meta-badges { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
+    <!-- 1. Header (严格复用 Index 样式) -->
     <header>
         <div class="standard-container">
             <div class="nav-inner">
-                <a href="index.html" class="logo">AeroScope<span>Insight</span></a>
+                <a href="index.html" class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    AeroScope<span>Insight</span>
+                </a>
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
                 <nav class="nav-links" id="navMenu">
                     <a href="index.html">首页</a>
@@ -104,7 +149,10 @@
                 </nav>
                 <div class="header-actions">
                     <div class="search-component">
-                        <div class="search-box"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)"></div>
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)">
+                        </div>
                         <div id="search-dropdown"></div>
                     </div>
                     <button class="btn btn-primary" id="auth-btn" onclick="location.href='login.html'">登录/注册</button>
@@ -113,113 +161,180 @@
         </div>
     </header>
 
-    <!-- 公司 Hero 区域 -->
+    <!-- 2. 企业 Hero 区域 -->
     <div class="company-hero">
         <div class="standard-container">
-            <div class="back-nav" style="margin-bottom: 20px;">
-                <a href="companies.html" style="color:#64748b; font-size:0.9rem;">← 返回企业库</a>
+            <div class="back-nav" style="margin-bottom: 25px;">
+                <a href="companies.html" style="color:#64748b; font-size:0.9rem; text-decoration:none; display:inline-flex; align-items:center; gap:5px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    返回企业库
+                </a>
             </div>
+            
             <div class="company-header-flex" id="company-header">
-                <div class="company-logo-lg" style="background: #f1f5f9;">...</div>
+                <div class="company-logo-lg">...</div>
                 <div class="company-info-main">
-                    <div class="company-title-row">
-                        <h1 class="company-name">正在加载...</h1>
+                    <div>
+                        <h1 class="company-name" style="display:inline;">正在加载...</h1>
+                        <span class="ticker-badge" id="header-ticker" style="display:none;"></span>
                     </div>
-                    <div class="company-meta-row">
-                        <div class="meta-item">📍 <span>...</span></div>
-                        <div class="meta-item">🔗 <a href="#" target="_blank" style="color:#3b82f6;">官方网站</a></div>
+                    <div class="company-subtitle" id="header-subtitle">...</div>
+                    
+                    <div class="meta-badges">
+                        <div class="meta-badge">📍 <span id="header-loc">--</span></div>
+                        <div class="meta-badge">📅 成立于 <span id="header-year">--</span></div>
+                        <div class="meta-badge">🔗 <a href="#" id="header-web" target="_blank" style="color:inherit; text-decoration:none;">官网</a></div>
                     </div>
                 </div>
-                <!-- B端功能按钮 -->
-                <div>
-                    <button class="btn btn-primary" onclick="alert('已关注！最新动态将推送至您的邮箱。')">+ 关注企业</button>
-                    <button class="btn btn-outline" style="margin-top: 10px; display:block; width:100%;" onclick="alert('Pro会员功能：导出PDF研报')">📥 导出报告</button>
+                
+                <div style="min-width: 140px;">
+                    <button class="btn btn-primary" style="width:100%; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);" onclick="alert('已加入监控列表')">+ 关注企业</button>
+                    <button class="btn btn-outline" style="width:100%; margin-top: 10px; border-color:#cbd5e1;" onclick="alert('需 Enterprise 权限')">📥 下载研报</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 主要内容区 -->
+    <!-- 3. 主要内容区 -->
     <div class="standard-container detail-grid">
         
-        <!-- 左侧：详细信息 -->
+        <!-- 左侧：主要信息流 -->
         <main>
-            <!-- 简介 -->
+            <!-- A. 企业简介与标签 -->
             <div class="info-card">
-                <div class="card-title">企业简介</div>
-                <p id="company-desc" style="color:#475569; line-height:1.7; font-size:0.95rem;">...</p>
-                <div class="tag-cloud" id="company-tags" style="margin-top: 20px;"></div>
+                <div class="card-header">
+                    <div class="card-title">企业概况</div>
+                </div>
+                <p id="company-desc" style="color:#475569; line-height:1.8; font-size:1rem; margin-bottom:20px;">...</p>
+                <div class="tag-cloud" id="company-tags"></div>
             </div>
 
-            <!-- 产品矩阵 -->
+            <!-- B. 融资历程 -->
             <div class="info-card">
-                <div class="card-title">产品矩阵 <span style="font-size:0.8rem; font-weight:400; color:#94a3b8; margin-left:auto;">Products</span></div>
-                <div id="product-list">
-                    <p style="color:#94a3b8; text-align:center;">暂无收录产品</p>
+                <div class="card-header">
+                    <div class="card-title">融资历程 <span style="font-weight:400; color:#94a3b8; font-size:0.9rem; margin-left:10px;">Capital History</span></div>
+                    <button class="btn btn-outline" style="padding:4px 10px; font-size:0.8rem;">查看图表</button>
+                </div>
+                
+                <!-- 融资图表容器 -->
+                <div id="funding-chart" style="width: 100%; height: 250px; margin-bottom: 20px; display:none;"></div>
+
+                <div class="table-responsive">
+                    <table class="funding-table">
+                        <thead>
+                            <tr>
+                                <th width="15%">日期</th>
+                                <th width="15%">轮次</th>
+                                <th width="20%">金额</th>
+                                <th>投资方</th>
+                            </tr>
+                        </thead>
+                        <tbody id="funding-list">
+                            <tr><td colspan="4" style="text-align:center; padding:20px; color:#94a3b8;">暂无公开融资数据</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <!-- 关联情报 (新闻 & 技术) -->
+            <!-- C. 技术创新/专利 -->
             <div class="info-card">
-                <div class="card-title">最新情报 <span style="font-size:0.8rem; font-weight:400; color:#94a3b8; margin-left:auto;">Intelligence Feed</span></div>
-                <div id="intel-feed">
-                    <p style="color:#94a3b8; text-align:center; padding:20px;">暂无关联动态</p>
+                <div class="card-header">
+                    <div class="card-title">技术专利 <span style="font-weight:400; color:#94a3b8; font-size:0.9rem; margin-left:10px;">Patents & IP</span></div>
+                </div>
+                <div id="patent-list">
+                    <p style="color:#94a3b8; text-align:center; padding:10px;">暂无专利数据</p>
+                </div>
+                <div style="text-align:center; margin-top:15px;">
+                    <a href="#" style="font-size:0.9rem; color:#3b82f6;">查看全部专利 ></a>
+                </div>
+            </div>
+
+            <!-- D. 产品矩阵 -->
+            <div class="info-card">
+                <div class="card-header">
+                    <div class="card-title">核心产品</div>
+                </div>
+                <div class="product-grid" id="product-list">
+                    <!-- 动态生成 -->
                 </div>
             </div>
         </main>
 
-        <!-- 右侧：商业数据 (Decision Data) -->
+        <!-- 右侧：数据仪表盘 -->
         <aside>
-            <div class="info-card" style="border-top: 4px solid #3b82f6;">
-                <div class="card-title">商业数据面板</div>
-                <div class="data-kv">
+            <!-- 核心数据看板 -->
+            <div class="info-card" style="background: linear-gradient(to bottom, #ffffff, #f8fafc);">
+                <div class="kv-group">
                     <span class="kv-label">产业链定位</span>
-                    <span class="kv-value" id="data-chain">--</span>
+                    <div class="kv-value" id="data-chain">--</div>
                 </div>
-                <div class="data-kv">
+                <div class="kv-group">
                     <span class="kv-label">主营赛道</span>
-                    <span class="kv-value" id="data-category">--</span>
+                    <div class="kv-value" id="data-category">--</div>
                 </div>
-                <div class="data-kv">
+                <div class="kv-group">
+                    <span class="kv-label">累计融资估算</span>
+                    <div class="kv-value-lg" id="data-funding">--</div>
+                </div>
+                <div class="kv-group" style="margin-bottom:0;">
                     <span class="kv-label">资本状态</span>
-                    <span class="kv-value" id="data-listed">--</span>
-                </div>
-                <div class="data-kv">
-                    <span class="kv-label">融资估算</span>
-                    <span class="kv-value highlight-val" id="data-funding">--</span>
+                    <div class="kv-value" id="data-listed">--</div>
                 </div>
             </div>
 
-            <!-- 竞品推荐 (模拟) -->
+            <!-- 竞品雷达 -->
             <div class="info-card">
-                <div class="card-title">相似企业</div>
-                <div style="font-size:0.9rem; color:#64748b;">
-                    <p>基于产业链位置和赛道自动推荐：</p>
-                    <div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:8px;">
-                        <a href="#" style="background:#f1f5f9; padding:4px 8px; border-radius:4px;">Volocopter</a>
-                        <a href="#" style="background:#f1f5f9; padding:4px 8px; border-radius:4px;">Archer</a>
-                        <a href="#" style="background:#f1f5f9; padding:4px 8px; border-radius:4px;">Lilium</a>
-                    </div>
+                <div class="card-title" style="margin-bottom:15px; font-size:1rem;">相似企业推荐</div>
+                <div id="competitor-list">
+                    <p style="color:#94a3b8; font-size:0.9rem;">计算中...</p>
+                </div>
+            </div>
+
+            <!-- 最新动态 -->
+            <div class="info-card">
+                <div class="card-title" style="margin-bottom:15px; font-size:1rem;">相关情报</div>
+                <div id="intel-feed">
+                    <!-- 动态生成 -->
                 </div>
             </div>
         </aside>
 
     </div>
 
+    <!-- 4. Footer (严格复用 Index 样式) -->
     <footer>
         <div class="standard-container">
             <div class="footer-grid">
                 <div class="footer-col brand-col">
-                    <h4>AeroScope Insight</h4>
-                    <p style="font-size:0.9rem; color:#94a3b8; line-height: 1.6; margin-bottom: 20px;">连接政策、资本与技术，打造低空经济领域的数字化基础设施与决策引擎。</p>
+                    <h4 style="font-size:1.2rem;">AeroScope Insight</h4>
+                    <p style="font-size:0.9rem; color:#94a3b8; line-height: 1.6; margin-bottom: 20px;">
+                        连接政策、资本与技术，打造低空经济领域的数字化基础设施与决策引擎。
+                    </p>
                     <div class="social-icons">
-                        <a href="#" class="social-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></a>
-                        <a href="#" class="social-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
-                        <a href="mailto:contact@aeroscope.cn" class="social-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></a>
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                        <a href="mailto:contact@aeroscope.cn" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
                     </div>
                 </div>
-                <div class="footer-col"><h4>核心板块</h4><ul><li><a href="news.html">资讯快报</a></li><li><a href="policies.html">政策法规</a></li><li><a href="companies.html">企业数据库</a></li></ul></div>
-                <div class="footer-col"><h4>数据图谱</h4><ul><li><a href="chart-funding.html">全球融资趋势</a></li><li><a href="chart-cities.html">试点城市分布</a></li><li><a href="chart-companies.html">产业链全景图</a></li></ul></div>
+                
+                <!-- 核心板块 -->
+                <div class="footer-col">
+                    <h4>核心板块</h4>
+                    <ul>
+                        <li><a href="news.html">资讯快报</a></li>
+                        <li><a href="policies.html">政策法规</a></li>
+                        <li><a href="companies.html">企业数据库</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>数据图谱</h4>
+                    <ul>
+                        <li><a href="chart-funding.html">全球融资趋势</a></li>
+                        <li><a href="chart-cities.html">试点城市分布</a></li>
+                        <li><a href="chart-companies.html">产业链全景图</a></li>
+                    </ul>
+                </div>
                 <div class="footer-col">
                     <h4>关于</h4>
                     <ul>
@@ -229,7 +344,9 @@
                     </ul>
                 </div>
             </div>
-            <div class="copyright" style="border-top:1px solid #334155; padding-top:20px; margin-top:20px; text-align:center; color:#64748b; font-size:0.85rem;">&copy; 2025 AeroScope Insight. All rights reserved.</div>
+            <div class="copyright" style="border-top:1px solid #334155; padding-top:20px; margin-top:20px; text-align:center; color:#64748b; font-size:0.85rem;">
+                &copy; 2025 AeroScope Insight. All rights reserved. 京ICP备XXXXXXXX号
+            </div>
         </div>
     </footer>
 
@@ -244,133 +361,208 @@
             const urlParams = new URLSearchParams(window.location.search);
             const companyId = urlParams.get('id');
 
-            if (!companyId) { 
-                document.querySelector('.company-hero').innerHTML = '<div class="standard-container"><p style="padding:40px;text-align:center;">错误：缺少企业ID</p></div>';
-                return; 
+            if (!companyId) { return; } 
+
+            // 1. 获取基础信息
+            const { data: company } = await _supabase.from('companies').select('*').eq('id', companyId).single();
+            if (company) {
+                renderHeader(company);
+                renderSidebar(company);
+                loadCompetitors(company); 
             }
 
-            // 1. 获取公司详情
-            const { data: company, error } = await _supabase.from('companies').select('*').eq('id', companyId).single();
-            if (error || !company) {
-                document.querySelector('.company-hero').innerHTML = '<div class="standard-container"><p style="padding:40px;text-align:center;">企业不存在或已删除</p></div>';
-                return;
-            }
-
-            renderCompanyHeader(company);
-            renderSidebarData(company);
-
-            // 2. 并行获取关联数据 (产品、新闻、技术)
-            // 注意：news 使用 contains 筛选数组 mentioned_company_ids
-            const [productsRes, newsRes, techRes] = await Promise.all([
+            // 2. 并行获取深度数据
+            const [fundingRes, patentRes, productRes, newsRes] = await Promise.all([
+                _supabase.from('funding_events').select('*').eq('company_id', companyId).order('funding_date', {ascending: false}),
+                _supabase.from('patents').select('*').eq('related_company_id', companyId).limit(5), 
                 _supabase.from('products').select('*').eq('company_id', companyId).eq('draft', false),
-                _supabase.from('news').select('*').contains('mentioned_company_ids', [companyId]).eq('draft', false).limit(5),
-                _supabase.from('tech_trends').select('*').eq('related_company_id', companyId).eq('draft', false).limit(5)
+                _supabase.from('news').select('*').contains('mentioned_company_ids', [companyId]).limit(5)
             ]);
 
-            renderProducts(productsRes.data);
-            renderIntelFeed(newsRes.data, techRes.data);
+            renderFunding(fundingRes.data);
+            renderPatents(patentRes.data);
+            renderProducts(productRes.data);
+            renderNews(newsRes.data);
         });
 
-        function renderCompanyHeader(c) {
-            document.title = `${c.name} - 企业情报 | AeroScope`;
+        // 渲染头部
+        function renderHeader(c) {
+            document.title = `${c.name} - 深度报告 | AeroScope`;
             
-            // Logo处理
-            const logoHtml = c.logo_url 
-                ? `<img src="${c.logo_url}" style="width:100%;height:100%;object-fit:cover;">` 
-                : (c.name_en || c.name).substring(0,2).toUpperCase();
-            document.querySelector('.company-logo-lg').innerHTML = logoHtml;
+            const logoEl = document.querySelector('.company-logo-lg');
+            if(c.logo_url) logoEl.innerHTML = `<img src="${c.logo_url}" style="width:100%;height:100%;object-fit:cover;">`;
+            else logoEl.innerText = (c.name_en || c.name).substring(0,2).toUpperCase();
 
-            // 标题行
-            let titleHtml = `<h1 class="company-name">${c.name}</h1>`;
-            if(c.ticker_symbol) titleHtml += `<span class="ticker-badge">${c.ticker_symbol}</span>`;
-            document.querySelector('.company-title-row').innerHTML = titleHtml;
+            document.querySelector('.company-name').innerText = c.name;
+            document.getElementById('header-subtitle').innerText = c.name_en || '';
+            
+            if(c.ticker_symbol) {
+                const ticker = document.getElementById('header-ticker');
+                ticker.innerText = c.ticker_symbol;
+                ticker.style.display = 'inline-block';
+            }
 
-            // Meta
-            document.querySelector('.company-meta-row').innerHTML = `
-                <div class="meta-item">📍 <span>${c.location || '全球'}</span></div>
-                <div class="meta-item">🔗 <a href="${c.website || '#'}" target="_blank" style="color:#3b82f6; text-decoration:none;">${c.website ? '访问官网' : '暂无官网'}</a></div>
-            `;
+            document.getElementById('header-loc').innerText = c.location || '全球';
+            document.getElementById('header-year').innerText = c.founded_year || '未披露';
+            
+            const webLink = document.getElementById('header-web');
+            if(c.website_url) webLink.href = c.website_url;
+            else webLink.parentElement.style.display = 'none';
 
-            // 简介
             document.getElementById('company-desc').innerText = c.description || '暂无详细介绍。';
 
-            // 标签
-            let tagsHtml = '';
-            if(c.tags && Array.isArray(c.tags)) {
+            if(c.tags) {
+                let tagsHtml = '';
                 c.tags.forEach(t => tagsHtml += `<span class="tag-pill">#${t}</span>`);
+                document.getElementById('company-tags').innerHTML = tagsHtml;
             }
-            document.getElementById('company-tags').innerHTML = tagsHtml;
         }
 
-        function renderSidebarData(c) {
-            // 产业链
-            let chainMap = { 'upstream': '⛓️ 上游供应链', 'midstream': '✈️ 整机制造', 'downstream': '🏷️ 运营服务' };
-            document.getElementById('data-chain').innerText = chainMap[c.industry_chain] || '未分类';
-            
-            // 赛道
-            document.getElementById('data-category').innerText = c.primary_category || '-';
-            
-            // 上市
-            document.getElementById('data-listed').innerText = c.is_listed ? '已上市 (Public)' : '未上市 (Private)';
-            
-            // 融资
-            document.getElementById('data-funding').innerText = c.total_funding_est_usd ? `$${c.total_funding_est_usd}M` : '未披露';
+        // 渲染融资历史
+        function renderFunding(events) {
+            const tbody = document.getElementById('funding-list');
+            if(!events || events.length === 0) return;
+
+            tbody.innerHTML = '';
+            let chartDates = [];
+            let chartAmounts = [];
+
+            events.forEach(e => {
+                let amountStr = '未披露';
+                if(e.funding_amount) {
+                    amountStr = `${e.funding_currency || '$'} ${e.funding_amount}M`;
+                    chartDates.unshift(e.funding_date);
+                    chartAmounts.unshift(e.funding_amount);
+                }
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td style="color:#64748b;">${e.funding_date || '--'}</td>
+                        <td><span class="round-tag">${e.funding_round}</span></td>
+                        <td style="font-weight:600;">${amountStr}</td>
+                        <td><div class="investor-list">${e.participating_investors || e.lead_investor || '-'}</div></td>
+                    </tr>
+                `;
+            });
+
+            if(chartAmounts.length > 0) {
+                document.getElementById('funding-chart').style.display = 'block';
+                const chart = echarts.init(document.getElementById('funding-chart'));
+                chart.setOption({
+                    tooltip: { trigger: 'axis' },
+                    grid: { top: 20, bottom: 20, left: 40, right: 10 },
+                    xAxis: { type: 'category', data: chartDates, show: false },
+                    yAxis: { type: 'value', splitLine: { lineStyle: { type: 'dashed' } } },
+                    series: [{
+                        data: chartAmounts,
+                        type: 'bar',
+                        itemStyle: { color: '#3b82f6', borderRadius: [4, 4, 0, 0] },
+                        barWidth: '40%'
+                    }]
+                });
+            }
         }
 
-        function renderProducts(products) {
-            const container = document.getElementById('product-list');
-            if(!products || products.length === 0) return;
-
+        // 渲染专利
+        function renderPatents(list) {
+            const container = document.getElementById('patent-list');
+            if(!list || list.length === 0) return;
             container.innerHTML = '';
-            products.forEach(p => {
-                const specs = p.specs || {};
-                const img = p.image_url || 'https://via.placeholder.com/100x70?text=Product';
-                
+            list.forEach(p => {
+                const typeLabel = p.patent_type === 'Invention' ? '发明' : '实用新型';
                 container.innerHTML += `
-                    <a href="#" class="product-mini-card" onclick="alert('产品详情页开发中')">
-                        <img src="${img}" class="pm-img">
-                        <div class="pm-info">
-                            <h4>${p.name} <span style="font-size:0.7rem; font-weight:normal; background:#f1f5f9; padding:2px 5px; border-radius:4px;">${p.type}</span></h4>
-                            <div class="pm-specs">
-                                <div class="pm-spec-item">⚡ ${specs.range || '-'}</div>
-                                <div class="pm-spec-item">🚀 ${specs.speed || '-'}</div>
+                    <div class="patent-item">
+                        <div class="patent-icon">IP</div>
+                        <div class="patent-info">
+                            <h5>${p.title}</h5>
+                            <div class="patent-meta">
+                                <span>${typeLabel}</span> • 
+                                <span>公开日: ${p.publication_date || '-'}</span> • 
+                                <span style="color:#16a34a;">${p.legal_status || '有效'}</span>
                             </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // 渲染产品
+        function renderProducts(list) {
+            const container = document.getElementById('product-list');
+            if(!list || list.length === 0) {
+                container.innerHTML = '<p style="color:#94a3b8; font-size:0.9rem;">暂无产品数据</p>';
+                return;
+            }
+            container.innerHTML = '';
+            list.forEach(p => {
+                const img = p.image_url || '';
+                container.innerHTML += `
+                    <a href="#" class="product-mini-card">
+                        <img src="${img}" class="pm-img" onerror="this.style.background='#f1f5f9'">
+                        <div class="pm-content">
+                            <div class="pm-title">${p.name}</div>
+                            <span class="pm-badge">${p.type}</span>
+                            <span class="pm-badge" style="color:${p.certification_status==='TC Granted'?'#16a34a':'#f59e0b'}">
+                                ${p.certification_status || '研发中'}
+                            </span>
                         </div>
                     </a>
                 `;
             });
         }
 
-        function renderIntelFeed(news, tech) {
+        // 渲染侧边栏 & 竞品
+        function renderSidebar(c) {
+            const chainMap = { 'upstream': '⛓️ 上游供应链', 'midstream': '✈️ 整机制造', 'downstream': '🏷️ 运营服务' };
+            document.getElementById('data-chain').innerText = chainMap[c.industry_chain] || c.industry_chain || '--';
+            document.getElementById('data-category').innerText = c.primary_category || '--';
+            document.getElementById('data-listed').innerText = c.is_listed ? '已上市 (Public)' : '未上市 (Private)';
+            if(c.total_funding_est_usd) document.getElementById('data-funding').innerText = `$${c.total_funding_est_usd}M`;
+        }
+
+        async function loadCompetitors(c) {
+            if(!c.primary_category) return;
+            const { data } = await _supabase.from('companies')
+                .select('id, name, logo_url, country_code')
+                .eq('primary_category', c.primary_category)
+                .neq('id', c.id)
+                .limit(5);
+            
+            const container = document.getElementById('competitor-list');
+            if(data && data.length > 0) {
+                container.innerHTML = '';
+                data.forEach(comp => {
+                    const logo = comp.logo_url ? `<img src="${comp.logo_url}" class="comp-logo">` : `<div class="comp-logo" style="display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:bold;">${comp.name.substr(0,1)}</div>`;
+                    container.innerHTML += `
+                        <a href="company-detail.html?id=${comp.id}" class="comp-item">
+                            ${logo}
+                            <span class="comp-name">${comp.name}</span>
+                            <span class="comp-meta">${comp.country_code}</span>
+                        </a>
+                    `;
+                });
+            } else {
+                container.innerHTML = '<p style="color:#94a3b8; font-size:0.9rem;">暂无同类竞品</p>';
+            }
+        }
+
+        function renderNews(news) {
             const container = document.getElementById('intel-feed');
-            const items = [];
-            
-            if(news) news.forEach(n => items.push({...n, _type: 'news', _tag: '新闻'}));
-            if(tech) tech.forEach(t => items.push({...t, _type: 'tech', _tag: '技术'}));
-            
-            // 按时间排序
-            items.sort((a, b) => new Date(b.publish_date) - new Date(a.publish_date));
-
-            if(items.length === 0) return;
-
+            if(!news || news.length === 0) { container.innerHTML='<p style="color:#94a3b8; font-size:0.9rem;">暂无动态</p>'; return; }
             container.innerHTML = '';
-            items.forEach(item => {
-                const link = item._type === 'news' ? `news-detail.html?id=${item.id}` : `tech-detail.html?id=${item.id}`;
-                const tagColor = item._type === 'news' ? '#3b82f6' : '#8b5cf6';
-                
+            news.forEach(n => {
                 container.innerHTML += `
-                    <div class="intel-item">
-                        <div class="intel-meta">
-                            <span class="intel-type-tag" style="color:${tagColor}; border-color:${tagColor};">${item._tag}</span>
-                            <span>${item.publish_date}</span>
-                        </div>
-                        <a href="${link}" class="intel-title">${item.title}</a>
+                    <div style="padding:10px 0; border-bottom:1px solid #f1f5f9;">
+                        <a href="news-detail.html?id=${n.id}" style="font-size:0.9rem; font-weight:500; color:#334155; text-decoration:none; display:block; margin-bottom:4px;">${n.title}</a>
+                        <div style="font-size:0.75rem; color:#94a3b8;">${n.publish_date}</div>
                     </div>
                 `;
             });
         }
 
-        // 公共逻辑 (搜索 & 登录)
+        // 公共逻辑
+        async function checkUserLogin() { const {data:{session}} = await _supabase.auth.getSession(); const btn=document.getElementById('auth-btn'); if(session){btn.innerText=session.user.email.split('@')[0]; btn.onclick=()=>location.href='profile.html';}}
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
         let searchTimeout;
         async function performGlobalSearch(keyword) {
             const dropdown = document.getElementById('search-dropdown');
@@ -378,24 +570,17 @@
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(async () => {
                 dropdown.style.display = 'block';
-                dropdown.innerHTML = '<div style="padding:12px; text-align:center; color:#94a3b8;">搜索中...</div>';
-                const { data, error } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
-                if (error || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
+                const { data } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
+                if (!data || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
                 let html = '';
                 data.forEach(item => {
-                    let link='#';
-                    if(item.type==='company') link=`company-detail.html?id=${item.id}`; // ★★★ 更新公司跳转
-                    else if(item.type==='policy') link=`policy-detail.html?id=${item.id}`;
-                    else if(item.type==='tech') link=`tech-detail.html?id=${item.id}`;
-                    else link=`news-detail.html?id=${item.id}`;
+                    let link = item.type==='company' ? `company-detail.html?id=${item.id}` : `news-detail.html?id=${item.id}`;
                     html += `<a href="${link}" class="search-result-item">${item.title}</a>`;
                 });
                 dropdown.innerHTML = html;
             }, 500);
         }
         document.addEventListener('click', (e) => { if(!document.querySelector('.search-component').contains(e.target)) document.getElementById('search-dropdown').style.display='none'; });
-        async function checkUserLogin() { const {data:{session}} = await _supabase.auth.getSession(); const btn=document.getElementById('auth-btn'); if(session){btn.innerText=session.user.email.split('@')[0]; btn.onclick=()=>location.href='profile.html';}}
-        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
     </script>
 </body>
 </html>
