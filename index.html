@@ -6,6 +6,47 @@
     <title>AeroScope Insight | 低空产业全景洞察</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* =========================================
+           1. 核心布局修复 (新增部分)
+           ========================================= */
+        
+        /* 桌面端默认：左右两列布局 */
+        .main-layout-grid {
+            display: grid;
+            grid-template-columns: 2.5fr 1fr; /* 左侧占2.5份，右侧占1份 */
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* 移动端适配：屏幕小于768px时，强制改为上下单列布局 */
+        @media (max-width: 768px) {
+            .main-layout-grid {
+                display: flex;
+                flex-direction: column; /* 上下排列 */
+                grid-template-columns: 1fr; /* 覆盖Grid属性 */
+            }
+
+            /* 左侧内容区占满 */
+            .content-left {
+                width: 100%;
+            }
+
+            /* 右侧侧边栏占满，并增加顶部间距 */
+            .sidebar {
+                width: 100%;
+                margin-top: 20px; 
+            }
+            
+            /* 仪表盘在手机上改为两列显示，防止过挤 */
+            .dashboard-grid {
+                grid-template-columns: 1fr 1fr !important; 
+            }
+        }
+
+        /* =========================================
+           2. 其他原有样式
+           ========================================= */
+
         /* 复用搜索框样式 */
         .search-component { position: relative; margin-right: 15px; }
         .search-box { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 20px; background: white; padding: 5px 12px; transition: 0.3s; }
@@ -135,7 +176,7 @@
         </div>
     </div>
 
-    <!-- 主内容区 -->
+    <!-- 主内容区 (注意这里使用了 main-layout-grid) -->
     <div class="standard-container">
         <div class="main-layout-grid">
             <!-- 左侧：最新动态 -->
@@ -173,14 +214,13 @@
                     </div>
                 </div>
 
-                <!-- 3. 专家观点 (动态加载版) -->
+                <!-- 3. 专家观点 -->
                 <div class="sidebar-widget">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom: 1px solid #e2e8f0; padding-bottom:10px;">
                         <div class="widget-title" style="margin-bottom:0; border:none; padding:0;">专家观点</div>
                         <a href="forum.html" style="font-size:0.85rem; color:#3b82f6; font-weight:600;">更多 &gt;</a>
                     </div>
                     
-                    <!-- 动态容器：JS 会把最热的专家话题渲染到这里 -->
                     <div id="home-expert-list" class="expert-list-container">
                         <div style="text-align:center; padding:20px; color:#94a3b8; font-size:0.85rem;">
                             <span style="display:inline-block; width:12px; height:12px; border:2px solid #cbd5e1; border-top-color:#3b82f6; border-radius:50%; animation:spin 1s linear infinite; margin-right:5px; vertical-align:middle;"></span>
@@ -260,7 +300,7 @@
             loadHomeExperts();
         });
 
-        // ★★★ 1. 核心数据加载逻辑 (优化版：统一使用 funding_events) ★★★
+        // 核心数据加载逻辑
         async function loadDashboardStats() {
             try {
                 // A. 统计企业数量
@@ -268,11 +308,11 @@
                     .select('*', { count: 'exact', head: true })
                     .eq('draft', false);
 
-                // B. 统计技术专利 (使用 patents 表)
+                // B. 统计技术专利
                 const { count: patentCount } = await _supabase.from('patents')
                     .select('*', { count: 'exact', head: true });
                 
-                // C. 统计试点城市 (基于 policies 表去重)
+                // C. 统计试点城市
                 const { data: cityData } = await _supabase
                     .from('policies')
                     .select('related_city')
@@ -282,8 +322,7 @@
                 const uniqueCities = new Set(cityData.map(item => item.related_city).filter(c => c && c.trim() !== ''));
                 const cityCount = uniqueCities.size || 26;
 
-                // D. 计算全球融资总额 (改用 funding_events 表汇总)
-                // 这样能保证与 chart-funding.html 的数据源完全一致
+                // D. 计算全球融资总额
                 const { data: events } = await _supabase
                     .from('funding_events')
                     .select('funding_amount, funding_currency')
@@ -294,7 +333,6 @@
                 if (events) {
                     events.forEach(e => {
                         let amount = Number(e.funding_amount || 0);
-                        // 统一汇率换算逻辑
                         if (e.funding_currency === 'CNY') amount = amount / 7.2;
                         else if (e.funding_currency === 'EUR') amount = amount * 1.05;
                         else if (e.funding_currency === 'GBP') amount = amount * 1.25;
@@ -312,7 +350,6 @@
                     fundingText = '$' + totalFundingUSD.toLocaleString();
                 }
 
-                // 更新 UI
                 document.getElementById('val-funding').innerText = fundingText;
                 document.getElementById('val-cities').innerText = cityCount;
                 document.getElementById('val-patents').innerText = patentCount || 0;
@@ -323,7 +360,7 @@
             }
         }
 
-        // 2. 加载混合信息流
+        // 加载混合信息流
         async function loadUnifiedFeed() {
             const container = document.getElementById('unified-feed-container');
             container.innerHTML = '<div class="loading-spinner">正在聚合多源数据...</div>';
@@ -402,7 +439,7 @@
                 .select('id, title, author, publish_date')
                 .eq('draft', false)
                 .order('publish_date', {ascending:false})
-                .limit(5);
+                .limit(3);
                 
             if(data && data.length > 0) {
                 container.innerHTML = '';
@@ -456,15 +493,8 @@
         }
         function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
 
-        // ★★★ 新增：首页专家观点加载逻辑 ★★★
-        // ============================================
         async function loadHomeExperts() {
             const container = document.getElementById('home-expert-list');
-            
-            // 1. 从 forum_topics 表查询
-            // 条件：是专家 (is_expert=true)
-            // 排序：热度 (heat_score) 降序
-            // 数量：前 3 条
             const { data, error } = await _supabase
                 .from('forum_topics')
                 .select('id, title, content, author_role, author_avatar_text, user_email') 
@@ -472,31 +502,18 @@
                 .order('heat_score', { ascending: false })
                 .limit(2);
 
-            if (error) {
-                console.error("专家观点加载失败:", error);
-                container.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem; text-align:center;">暂无数据</p>';
-                return;
-            }
-
-            if (!data || data.length === 0) {
-                container.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem; text-align:center; padding:20px;">暂无专家观点，<a href="forum.html">去论坛看看</a></p>';
+            if (error || !data || data.length === 0) {
+                container.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem; text-align:center; padding:20px;">暂无专家观点</p>';
                 return;
             }
 
             container.innerHTML = '';
-            
             data.forEach(item => {
-                // 数据处理
-                // 如果没有头像文字，取邮箱首字母
                 const avatarChar = item.author_avatar_text || (item.user_email ? item.user_email.charAt(0).toUpperCase() : 'E');
-                // 名字处理 (这里为了简化，如果没存username，就用邮箱前缀代替，实际生产建议存username)
                 const name = item.user_email ? item.user_email.split('@')[0] : '行业专家';
-                
-                // 摘要处理：去除 Markdown 符号，截取前 45 个字
                 let summary = item.content.replace(/[#*`>]/g, '').trim();
                 if (summary.length > 45) summary = summary.substring(0, 45) + '...';
 
-                // 渲染 HTML
                 container.innerHTML += `
                     <a href="forum-topic.html?id=${item.id}" class="home-expert-card">
                         <div class="expert-header">
@@ -513,8 +530,5 @@
             });
         }
     </script>
-    <script src="js/ai-widget.js"></script>
 </body>
-
 </html>
-
