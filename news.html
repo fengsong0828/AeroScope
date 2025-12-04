@@ -6,21 +6,18 @@
     <title>最新动态 | AeroScope Insight</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* --- 搜索框样式 (与Index一致) --- */
+        /* --- 1. 复用组件样式 (Header/Footer/Search) --- */
         .search-component { position: relative; margin-right: 15px; }
         .search-box { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 20px; background: white; padding: 5px 12px; transition: 0.3s; }
         .search-box:focus-within { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
         .search-icon { font-size: 1rem; color: #64748b; margin-right: 8px; }
         .search-input { border: none; outline: none; font-size: 0.9rem; width: 160px; color: #1e293b; }
-        
-        /* 搜索下拉 */
         #search-dropdown { position: absolute; top: 45px; right: 0; width: 280px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 2000; display: none; max-height: 400px; overflow-y: auto; }
         .search-result-item { display: block; padding: 12px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: #1e293b; transition: 0.2s; }
         .search-result-item:hover { background: #f8fafc; }
         .result-meta { font-size: 0.75rem; color: #64748b; display: flex; align-items: center; gap: 6px; margin-top: 4px; }
         .result-tag { padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; }
 
-        /* --- 页脚样式 (与Index一致) --- */
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
         .footer-col h4 { color: white; margin-bottom: 20px; font-size: 1rem; font-weight: 600; }
         .footer-col ul li { margin-bottom: 12px; }
@@ -30,34 +27,84 @@
         .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
         .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
 
-        /* --- 热门标签样式优化 (无数字，整齐排列) --- */
-        .tag-cloud { 
+        /* --- 2. 新闻列表样式 (紧凑版) --- */
+        .news-feed { display: flex; flex-direction: column; gap: 15px; } /* 减少间距 */
+        
+        .news-item { 
             display: flex; 
-            flex-wrap: wrap; 
-            gap: 8px; /* 间距 */
-            align-content: flex-start;
-        }
-        .tag-item { 
-            display: block;
-            padding: 6px 14px; 
-            border-radius: 4px; /* 方一点的圆角，更整齐 */
             background: white; 
             border: 1px solid #e2e8f0; 
-            color: #64748b; 
-            font-size: 0.85rem; 
-            cursor: pointer; 
-            transition: all 0.2s ease; 
-            text-align: center;
-            flex-grow: 0; /* 不自动拉伸 */
+            border-radius: 10px; 
+            overflow: hidden; 
+            transition: 0.2s; 
+            min-height: 140px; /* 压缩高度 */
         }
-        .tag-item:hover, .tag-item.active { 
-            background: #eff6ff; 
-            border-color: #3b82f6; 
-            color: #3b82f6; 
-            font-weight: 500;
+        .news-item:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.05); border-color: #3b82f6; }
+        
+        .news-image { 
+            width: 220px; min-width: 220px; 
+            background-color: #cbd5e1; 
+            display: block; 
+            background-size: cover; 
+            background-position: center; 
+        }
+        
+        .news-content { 
+            padding: 15px 20px; /* 压缩内边距 */
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            min-width: 0; 
+        }
+        
+        .news-content h3 { margin: 0 0 6px 0; font-size: 1.1rem; line-height: 1.3; }
+        .news-content h3 a { color: #1e293b; text-decoration: none; transition: 0.2s; }
+        .news-content h3 a:hover { color: #3b82f6; }
+        
+        .news-meta { 
+            display: flex; align-items: center; gap: 12px; 
+            font-size: 0.8rem; color: #64748b; 
+            margin-bottom: 8px; flex-wrap: wrap; 
+        }
+        
+        .news-content p {
+            font-size: 0.85rem; color: #64748b; margin-top: 4px;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+            line-height: 1.5;
         }
 
+        /* --- 3. 侧边栏 & 标签 --- */
+        .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; }
+        .tag-item { 
+            display: block; padding: 6px 12px; border-radius: 4px; 
+            background: white; border: 1px solid #e2e8f0; 
+            color: #64748b; font-size: 0.85rem; cursor: pointer; 
+            transition: all 0.2s ease; text-align: center; 
+        }
+        .tag-item:hover, .tag-item.active { background: #eff6ff; border-color: #3b82f6; color: #3b82f6; font-weight: 500; }
+
+        .sidebar-widget { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 25px; }
+        .widget-title { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 15px; border-left: 4px solid #3b82f6; padding-left: 10px; }
+        .newsletter-box { background: #f0fdf4; border: 1px solid #bbf7d0; text-align: center; }
+        .newsletter-input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; margin-bottom: 10px; font-size: 0.9rem; }
+
+        /* --- 4. 分页控件 (新增) --- */
+        .pagination-container { 
+            display: flex; justify-content: center; align-items: center; gap: 15px; 
+            margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0; 
+        }
+        .page-btn { 
+            padding: 6px 14px; background: white; border: 1px solid #cbd5e1; 
+            border-radius: 6px; color: #334155; cursor: pointer; transition: 0.2s; font-size: 0.85rem; 
+        }
+        .page-btn:hover:not(:disabled) { border-color: #3b82f6; color: #3b82f6; background: #f8fafc; }
+        .page-btn:disabled { opacity: 0.5; cursor: not-allowed; background: #f1f5f9; }
+        .page-info { color: #64748b; font-size: 0.85rem; }
+
         @media (max-width: 768px) {
+            .news-item { flex-direction: column; }
+            .news-image { width: 100%; height: 180px; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .social-icons { justify-content: center; }
             .search-component { display: none; }
@@ -66,7 +113,7 @@
 </head>
 <body>
 
-    <!-- 1. Header (严格保持 Index 结构) -->
+    <!-- 1. Header -->
     <header>
         <div class="standard-container">
             <div class="nav-inner">
@@ -74,9 +121,7 @@
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                     AeroScope<span>Insight</span>
                 </a>
-                
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-
                 <nav class="nav-links" id="navMenu">
                     <a href="index.html">首页</a>
                     <a href="news.html" class="active">资讯快报</a>
@@ -85,7 +130,6 @@
                     <a href="companies.html">行业图谱</a>
                     <a href="forum.html">论坛交流</a>
                 </nav>
-
                 <div class="header-actions">
                     <div class="search-component">
                         <div class="search-box">
@@ -108,12 +152,20 @@
         </div>
     </section>
 
+    <!-- 主布局 -->
     <div class="standard-container">
         <div class="main-layout-grid">
             <!-- 左侧：新闻列表 -->
             <main>
                 <div class="news-feed" id="news-container">
                     <div style="text-align:center; padding:40px; color:#94a3b8;">加载中...</div>
+                </div>
+
+                <!-- 分页控件 -->
+                <div id="pagination-controls" class="pagination-container" style="display: none;">
+                    <button class="page-btn" id="prev-page" onclick="changePage(-1)">上一页</button>
+                    <span class="page-info" id="page-info">第 1 页 / 共 1 页</span>
+                    <button class="page-btn" id="next-page" onclick="changePage(1)">下一页</button>
                 </div>
             </main>
 
@@ -137,7 +189,7 @@
         </div>
     </div>
 
-    <!-- Footer (严格保持 Index 结构) -->
+    <!-- Footer -->
     <footer>
         <div class="standard-container">
             <div class="footer-grid">
@@ -152,34 +204,11 @@
                         <a href="mailto:contact@aeroscope.cn" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
                     </div>
                 </div>
-                <div class="footer-col">
-                    <h4>核心板块</h4>
-                    <ul>
-                        <li><a href="news.html">资讯快报</a></li>
-                        <li><a href="policies.html">政策法规</a></li>
-                        <li><a href="companies.html">企业数据库</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>数据图谱</h4>
-                    <ul>
-                        <li><a href="chart-funding.html">全球融资趋势</a></li>
-                        <li><a href="chart-cities.html">试点城市分布</a></li>
-                        <li><a href="chart-companies.html">产业链全景图</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>关于</h4>
-                    <ul>
-                        <li><a href="about.html">团队愿景</a></li>
-                        <li><a href="submit-report.html">寻求报道</a></li>
-                        <li><a href="contact.html">商务合作</a></li>
-                    </ul>
-                </div>
+                <div class="footer-col"><h4>核心板块</h4><ul><li><a href="news.html">资讯快报</a></li><li><a href="policies.html">政策法规</a></li><li><a href="companies.html">企业数据库</a></li></ul></div>
+                <div class="footer-col"><h4>数据图谱</h4><ul><li><a href="chart-funding.html">全球融资趋势</a></li><li><a href="chart-cities.html">试点城市分布</a></li><li><a href="chart-companies.html">产业链全景图</a></li></ul></div>
+                <div class="footer-col"><h4>关于</h4><ul><li><a href="about.html">团队愿景</a></li><li><a href="submit-report.html">寻求报道</a></li><li><a href="contact.html">商务合作</a></li></ul></div>
             </div>
-            <div class="copyright" style="border-top:1px solid #334155; padding-top:20px; margin-top:20px; text-align:center; color:#64748b; font-size:0.85rem;">
-                &copy; 2025 AeroScope Insight. All rights reserved. 京ICP备XXXXXXXX号
-            </div>
+            <div class="copyright" style="border-top:1px solid #334155; padding-top:20px; margin-top:20px; text-align:center; color:#64748b; font-size:0.85rem;">&copy; 2025 AeroScope Insight. All rights reserved. 京ICP备XXXXXXXX号</div>
         </div>
     </footer>
 
@@ -189,7 +218,10 @@
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
         const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-        let allNews = [];
+        let allNews = []; // 所有新闻数据缓存
+        let filteredNews = []; // 当前筛选后的数据
+        let currentPage = 1;
+        const itemsPerPage = 6; 
 
         document.addEventListener('DOMContentLoaded', async () => {
             checkUserLogin();
@@ -198,6 +230,7 @@
 
         async function fetchNews() {
             const container = document.getElementById('news-container');
+            container.innerHTML = '<p style="text-align:center; padding:20px;">加载中...</p>';
             
             const { data, error } = await _supabase
                 .from('news')
@@ -211,18 +244,35 @@
             }
 
             allNews = data;
-            renderNewsList(allNews);
+            filteredNews = data; // 初始状态
+            
             renderHotTags(allNews);
+            renderPage(); // 渲染第一页
         }
 
-        function renderNewsList(list) {
+        // --- 核心：渲染分页页面 ---
+        function renderPage() {
             const container = document.getElementById('news-container');
             container.innerHTML = '';
 
-            list.forEach(item => {
-                const bg = item.image_url ? `background: #cbd5e1 url('${item.image_url}') center/cover` : `background: #e2e8f0`;
+            if(filteredNews.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#999; padding:20px;">无匹配数据</p>';
+                document.getElementById('pagination-controls').style.display = 'none';
+                return;
+            }
+
+            // 计算切片
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = filteredNews.slice(start, end);
+
+            pageItems.forEach(item => {
+                // 使用稳定写法
+                const bgStyle = item.image_url 
+                    ? `background: #cbd5e1 url('${item.image_url}') center/cover no-repeat` 
+                    : `background: #f1f5f9`;
                 
-                // 底部小标签
+                // 处理标签
                 let itemTagsHtml = '';
                 if(item.tags && Array.isArray(item.tags)) {
                     item.tags.slice(0,3).forEach(t => {
@@ -232,59 +282,49 @@
 
                 container.innerHTML += `
                     <article class="news-item">
-                        <a href="news-detail.html?id=${item.id}" class="news-image" style="${bg}; display:block;"></a>
+                        <a href="news-detail.html?id=${item.id}" class="news-image" style="${bgStyle}; display:block;"></a>
                         <div class="news-content">
                             <h3><a href="news-detail.html?id=${item.id}">${item.title}</a></h3>
                             <div class="news-meta">
-                                <span class="tag">${item.category||'资讯'}</span>
+                                <span class="tag" style="background:#f1f5f9; padding:2px 6px; border-radius:4px; color:#475569;">${item.category||'资讯'}</span>
                                 <span>${item.publish_date}</span>
                                 <span style="margin-left:10px; color:#ccc;">${item.source||''}</span>
                             </div>
-                            <div style="margin: 8px 0;">${itemTagsHtml}</div>
-                            <p style="font-size:0.9rem; color:#64748b; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
-                                ${item.summary||''}
-                            </p>
+                            <div style="margin: 6px 0;">${itemTagsHtml}</div>
+                            <p>${item.summary||''}</p>
                         </div>
                     </article>
                 `;
             });
+
+            updatePaginationControls();
         }
 
-        function renderHotTags(newsList) {
-            const tagCounts = {};
-            
-            // 统计标签
-            newsList.forEach(item => {
-                if (item.tags && Array.isArray(item.tags)) {
-                    item.tags.forEach(tag => {
-                        if(tag && tag.trim()) tagCounts[tag] = (tagCounts[tag] || 0) + 1;
-                    });
-                }
-            });
+        function updatePaginationControls() {
+            const paginationEl = document.getElementById('pagination-controls');
+            const totalPages = Math.ceil(filteredNews.length / itemsPerPage);
 
-            // 排序 (按热度)
-            const sortedTags = Object.entries(tagCounts)
-                .map(([name, count]) => ({ name, count }))
-                .sort((a, b) => b.count - a.count);
-
-            const container = document.getElementById('tag-container');
-            if (sortedTags.length === 0) {
-                container.innerHTML = '<p style="color:#999; font-size:0.8rem;">暂无标签</p>';
+            if (totalPages <= 1) {
+                paginationEl.style.display = 'none';
                 return;
             }
 
-            // 渲染 (不显示数字)
-            let html = `<div class="tag-item active" onclick="filterByTag('all', this)">全部</div>`;
-            
-            sortedTags.slice(0, 20).forEach(t => {
-                html += `
-                    <div class="tag-item" onclick="filterByTag('${t.name}', this)">
-                        ${t.name}
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html;
+            paginationEl.style.display = 'flex';
+            document.getElementById('page-info').innerText = `第 ${currentPage} 页 / 共 ${totalPages} 页`;
+            document.getElementById('prev-page').disabled = (currentPage === 1);
+            document.getElementById('next-page').disabled = (currentPage === totalPages);
+        }
+
+        function changePage(direction) {
+            const totalPages = Math.ceil(filteredNews.length / itemsPerPage);
+            const newPage = currentPage + direction;
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                renderPage();
+                // 滚动回顶部
+                const listTop = document.querySelector('.main-layout-grid').offsetTop - 80;
+                window.scrollTo({top: listTop, behavior: 'smooth'});
+            }
         }
 
         function filterByTag(tagName, domEl) {
@@ -292,58 +332,61 @@
             domEl.classList.add('active');
 
             if (tagName === 'all') {
-                renderNewsList(allNews);
+                filteredNews = allNews;
             } else {
-                const filtered = allNews.filter(item => 
+                filteredNews = allNews.filter(item => 
                     item.tags && Array.isArray(item.tags) && item.tags.includes(tagName)
                 );
-                renderNewsList(filtered);
             }
+            
+            currentPage = 1; // 重置页码
+            renderPage();
         }
 
-        // 全局搜索功能
+        function renderHotTags(newsList) {
+            const tagCounts = {};
+            newsList.forEach(item => {
+                if (item.tags && Array.isArray(item.tags)) {
+                    item.tags.forEach(tag => { if(tag && tag.trim()) tagCounts[tag] = (tagCounts[tag] || 0) + 1; });
+                }
+            });
+            const sortedTags = Object.entries(tagCounts).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
+            const container = document.getElementById('tag-container');
+            if (sortedTags.length === 0) { container.innerHTML = '<p style="color:#999; font-size:0.8rem;">暂无标签</p>'; return; }
+            let html = `<div class="tag-item active" onclick="filterByTag('all', this)">全部</div>`;
+            sortedTags.slice(0, 20).forEach(t => { html += `<div class="tag-item" onclick="filterByTag('${t.name}', this)">${t.name}</div>`; });
+            container.innerHTML = html;
+        }
+
+        async function checkUserLogin() {
+            const { data: { session } } = await _supabase.auth.getSession();
+            const btn = document.getElementById('auth-btn');
+            if (session) { btn.innerText = session.user.email.split('@')[0]; btn.onclick = () => location.href = 'profile.html'; }
+        }
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        
         let searchTimeout;
         async function performGlobalSearch(keyword) {
             const dropdown = document.getElementById('search-dropdown');
             if (!keyword || keyword.length < 1) { dropdown.style.display = 'none'; return; }
-
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(async () => {
                 dropdown.style.display = 'block';
-                dropdown.innerHTML = '<div style="padding:12px; text-align:center; color:#94a3b8;">搜索中...</div>';
-
-                const { data, error } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
-                if (error) { dropdown.innerHTML = '<div style="padding:12px;">搜索出错</div>'; return; }
-                if (!data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无相关结果</div>'; return; }
-
+                const { data } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
+                if (!data || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
                 let html = '';
                 data.forEach(item => {
-                    let link = '#', color = '#3b82f6', typeName='资讯';
-                    if(item.type === 'company') { link = 'companies.html'; color='#f59e0b'; typeName='公司'; }
-                    else if(item.type === 'policy') { link = `policy-detail.html?id=${item.id}`; color='#ef4444'; typeName='政策'; }
-                    else if(item.type === 'tech') { link = `tech-detail.html?id=${item.id}`; color='#8b5cf6'; typeName='技术'; }
-                    else { link = `news-detail.html?id=${item.id}`; }
+                    let link='#', color='#3b82f6', typeName='资讯';
+                    if(item.type==='company') { link='companies.html'; color='#f59e0b'; typeName='公司'; }
+                    else if(item.type==='policy') { link=`policy-detail.html?id=${item.id}`; color='#ef4444'; typeName='政策'; }
+                    else if(item.type==='tech') { link=`tech-detail.html?id=${item.id}`; color='#8b5cf6'; typeName='技术'; }
+                    else { link=`news-detail.html?id=${item.id}`; }
                     html += `<a href="${link}" class="search-result-item"><div style="font-weight:600; font-size:0.9rem;">${item.title}</div><div class="result-meta"><span class="result-tag" style="color:${color}; background:${color}15;">${typeName}</span><span>${item.publish_date || ''}</span></div></a>`;
                 });
                 dropdown.innerHTML = html;
             }, 500);
         }
-        document.addEventListener('click', (e) => {
-            if (!document.querySelector('.search-component').contains(e.target)) {
-                document.getElementById('search-dropdown').style.display = 'none';
-            }
-        });
-
-        async function checkUserLogin() {
-            const { data: { session } } = await _supabase.auth.getSession();
-            const btn = document.getElementById('auth-btn');
-            if (session) {
-                btn.innerText = session.user.email.split('@')[0];
-                btn.onclick = () => location.href = 'profile.html';
-            }
-        }
-
-        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        document.addEventListener('click', (e) => { if(!document.querySelector('.search-component').contains(e.target)) document.getElementById('search-dropdown').style.display='none'; });
     </script>
 </body>
 </html>
