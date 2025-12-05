@@ -51,9 +51,25 @@
         .card-title { font-size: 1.1rem; font-weight: 700; color: #1e293b; }
         
         .data-table { width: 100%; border-collapse: collapse; }
-        .data-table th { text-align: left; padding: 15px 20px; background: #f8fafc; color: #64748b; font-size: 0.85rem; font-weight: 600; border-bottom: 1px solid #e2e8f0; }
-        .data-table td { padding: 15px 20px; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; color: #334155; vertical-align: middle; }
+        /* 修改表头样式以适应两行显示（字段名+类型） */
+        .data-table th { 
+            text-align: left; padding: 10px 20px; background: #f8fafc; color: #1e293b; 
+            font-size: 0.85rem; font-weight: 700; border-bottom: 1px solid #e2e8f0; 
+            white-space: nowrap; vertical-align: top;
+        }
+        .data-table td { 
+            padding: 15px 20px; border-bottom: 1px solid #f1f5f9; font-size: 0.85rem; 
+            color: #334155; vertical-align: middle; max-width: 300px; 
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap; 
+        }
         .data-table tr:hover { background: #f8fafc; }
+
+        /* 类型标签样式 */
+        .type-tag {
+            display: block; font-size: 0.7rem; font-weight: normal; margin-top: 4px;
+            padding: 1px 6px; border-radius: 4px; width: fit-content;
+            font-family: monospace; letter-spacing: -0.5px;
+        }
 
         /* 状态徽章 */
         .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
@@ -92,6 +108,7 @@
             <div class="sidebar-group">
                 <div class="group-label">Dashboards</div>
                 <div class="nav-item active" onclick="switchTab('dashboard', this)">📊 概览 (Overview)</div>
+                <div class="nav-item" onclick="switchTab('raw_db_viewer', this)">🗄️ 全库透视 (Raw DB)</div>
                 <a href="admin-ai.html" class="nav-item" style="text-decoration:none;">🤖 AI 采编助手</a>
             </div>
             
@@ -147,10 +164,20 @@
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
         const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
+        // 数据库所有表名列表（用于下拉选择）
+        const ALL_DB_TABLES = [
+            'news', 'policies', 'tech_trends', 'deep_reports', // Content
+            'companies', 'products', 'investors', 'funding_events', 'patents', // DB
+            'cooperation_leads', 'media_requests', 'profiles' // Business
+        ];
+
         // 全局状态
         let currentTable = 'dashboard';
         let currentEditId = null;
-        let tableSchema = {}; // 当前表的字段配置
+        let tableSchema = {}; 
+        
+        // ★★★ 新增：本地数据缓存，用于搜索过滤 ★★★
+        let rawDataCache = []; 
 
         // 初始化
         document.addEventListener('DOMContentLoaded', async () => {
@@ -179,14 +206,13 @@
             if(el) el.classList.add('active');
 
             if (tab === 'dashboard') loadDashboard();
+            else if (tab === 'raw_db_viewer') loadRawDBViewer(); 
             else loadTableData(tab);
         }
 
-        // 3. 加载仪表盘 (简单统计)
+        // 3. 加载仪表盘
         async function loadDashboard() {
             const container = document.getElementById('main-container');
-            
-            // 并行查询几个关键数据
             const [leads, users, news, companies] = await Promise.all([
                 _supabase.from('cooperation_leads').select('id', { count: 'exact' }),
                 _supabase.from('profiles').select('id', { count: 'exact' }),
@@ -221,16 +247,179 @@
             `;
         }
 
-        // 4. 通用表格加载 (核心逻辑)
+        // 全库透视主界面
+        async function loadRawDBViewer() {
+            const container = document.getElementById('main-container');
+            const options = ALL_DB_TABLES.map(t => `<option value="${t}">${t}</option>`).join('');
+
+            // ★★★ 在下拉框旁边增加了搜索输入框 ★★★
+            container.innerHTML = `
+                <div class="content-card">
+                    <div class="card-header" style="background:#f8fafc;">
+                        <div style="display:flex; align-items:center; gap:15px;">
+                            <div class="card-title">🗄️ 数据库原始记录透视</div>
+                            <select id="raw-db-selector" class="form-control" style="width:200px;" onchange="fetchAndRenderRawTable(this.value)">
+                                <option value="" disabled selected>选择数据库表...</option>
+                                ${options}
+                            </select>
+                            <input type="text" id="raw-db-search" class="form-control" style="width:200px;" placeholder="🔍 搜索当前表内容..." onkeyup="filterRawTable()">
+                        </div>
+                        <div style="font-size:0.85rem; color:#64748b;">
+                            显示所有字段及类型 (Audit Mode)
+                        </div>
+                    </div>
+                    <div id="raw-table-container" style="overflow-x:auto; min-height:300px; padding:20px;">
+                        <p style="text-align:center; color:#94a3b8; margin-top:50px;">请从上方下拉框选择一个数据表以查看详情。</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ★★★ 第一步：从数据库拉取数据并存入缓存 ★★★
+        async function fetchAndRenderRawTable(tableName) {
+            const container = document.getElementById('raw-table-container');
+            
+            // 重置搜索框
+            const searchInput = document.getElementById('raw-db-search');
+            if(searchInput) searchInput.value = '';
+
+            container.innerHTML = '<div style="text-align:center; color:#64748b;">正在分析数据库结构...</div>';
+
+            const { data, error } = await _supabase.from(tableName).select('*').limit(30).order('created_at', {ascending: false});
+
+            if (error) {
+                container.innerHTML = `<div style="color:red; text-align:center;">读取失败: ${error.message}</div>`;
+                return;
+            }
+
+            if (!data || data.length === 0) {
+                container.innerHTML = `<div style="text-align:center; color:#94a3b8;">该表为空 (0 records)</div>`;
+                rawDataCache = [];
+                return;
+            }
+
+            // 存入全局缓存，以便搜索时使用
+            rawDataCache = data;
+            
+            // 调用过滤渲染函数（初始状态显示所有数据）
+            filterRawTable();
+        }
+
+        // ★★★ 第二步：本地搜索过滤并渲染表格 ★★★
+        function filterRawTable() {
+            const container = document.getElementById('raw-table-container');
+            const searchInput = document.getElementById('raw-db-search');
+            const keyword = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+            if (!rawDataCache || rawDataCache.length === 0) {
+                return;
+            }
+
+            // 1. 获取所有字段 Key (基于缓存中的第一条数据，假设结构一致)
+            const allKeys = Object.keys(rawDataCache[0]);
+
+            // 2. 智能类型推断 (基于完整缓存推断，保证表头颜色准确，即使过滤后只剩一行)
+            const getColumnType = (key) => {
+                for (let i = 0; i < rawDataCache.length; i++) {
+                    const val = rawDataCache[i][key];
+                    if (val !== null && val !== undefined) {
+                        if (Array.isArray(val)) return 'array';
+                        if (typeof val === 'object') return 'json'; 
+                        if (typeof val === 'boolean') return 'bool';
+                        if (typeof val === 'number') return 'num';
+                        if (typeof val === 'string' && val.length === 36 && val.split('-').length === 5) return 'uuid';
+                        if (typeof val === 'string' && /^\d{4}-\d{2}-\d{2}/.test(val)) return 'date';
+                        return 'text';
+                    }
+                }
+                return 'null'; 
+            };
+
+            // 3. 生成表头 (带类型标签)
+            let thHtml = `<th>#</th>`;
+            allKeys.forEach(key => {
+                const type = getColumnType(key);
+                let color = '#64748b'; // default gray
+                let bg = '#e2e8f0';
+
+                // 颜色区分逻辑
+                if(type === 'num') { color = '#0369a1'; bg = '#e0f2fe'; } // Blue
+                if(type === 'bool') { color = '#15803d'; bg = '#dcfce7'; } // Green
+                if(type === 'json' || type === 'array') { color = '#b45309'; bg = '#fef3c7'; } // Orange
+                if(type === 'date') { color = '#7e22ce'; bg = '#f3e8ff'; } // Purple
+                if(type === 'uuid') { color = '#475569'; bg = '#f1f5f9'; fontStyle='italic'; } // Grey
+
+                thHtml += `
+                    <th>
+                        <div style="font-size:0.9rem;">${key}</div>
+                        <span class="type-tag" style="background:${bg}; color:${color};">${type}</span>
+                    </th>`;
+            });
+
+            // 4. 执行搜索过滤
+            const filteredData = rawDataCache.filter(item => {
+                if (!keyword) return true;
+                // 只要该行有任何一个字段的值包含关键词，即保留
+                return Object.values(item).some(val => 
+                    String(val).toLowerCase().includes(keyword)
+                );
+            });
+
+            if (filteredData.length === 0) {
+                container.innerHTML = `
+                    <table class="data-table">
+                        <thead><tr>${thHtml}</tr></thead>
+                        <tbody>
+                            <tr><td colspan="${allKeys.length + 1}" style="text-align:center; padding:20px; color:#94a3b8;">
+                                没有找到匹配 "${keyword}" 的记录
+                            </td></tr>
+                        </tbody>
+                    </table>`;
+                return;
+            }
+
+            // 5. 生成内容行
+            let trHtml = '';
+            filteredData.forEach((item, index) => {
+                let tds = `<td>${index + 1}</td>`;
+                
+                allKeys.forEach(key => {
+                    let val = item[key];
+                    
+                    if (val === null || val === undefined) {
+                        val = '<span style="color:#cbd5e1;">null</span>';
+                    } else if (typeof val === 'object') {
+                        val = `<span title='${JSON.stringify(val)}' style="color:#b45309; font-family:monospace; cursor:help;">{...}</span>`;
+                    } else if (typeof val === 'boolean') {
+                        val = val ? '<span style="color:green">true</span>' : '<span style="color:red">false</span>';
+                    } else if (String(val).length > 40) {
+                        val = `<span title="${val}">${String(val).substring(0, 40)}...</span>`;
+                    }
+                    
+                    tds += `<td>${val}</td>`;
+                });
+                trHtml += `<tr>${tds}</tr>`;
+            });
+
+            container.innerHTML = `
+                <table class="data-table">
+                    <thead><tr>${thHtml}</tr></thead>
+                    <tbody>${trHtml}</tbody>
+                </table>
+                <p style="margin-top:10px; font-size:0.8rem; color:#94a3b8;">
+                    * 显示 ${filteredData.length} 条记录 (总载入 ${rawDataCache.length} 条)。
+                </p>
+            `;
+        }
+
+        // 4. 常规表格加载 (Admin View)
         async function loadTableData(tableName) {
             const container = document.getElementById('main-container');
             container.innerHTML = '<div style="text-align:center; padding:50px;">加载数据中...</div>';
 
-            // 获取 Schema 配置 (定义哪些字段显示，哪些可编辑)
             const schema = getTableSchema(tableName);
-            tableSchema = schema; // 存全局以便编辑时用
+            tableSchema = schema;
 
-            // 查询数据
             const { data, error } = await _supabase
                 .from(tableName)
                 .select('*')
@@ -239,29 +428,23 @@
 
             if (error) return container.innerHTML = `加载失败: ${error.message}`;
 
-            // 渲染表头
             let thHtml = '';
             schema.listFields.forEach(f => thHtml += `<th>${f.label}</th>`);
             thHtml += `<th style="width:150px;">操作</th>`;
 
-            // 渲染行
             let trHtml = '';
             data.forEach(item => {
                 let tds = '';
                 schema.listFields.forEach(f => {
                     let val = item[f.key];
-                    // 特殊格式化
                     if (f.type === 'boolean') val = val ? `<span class="badge badge-pub">Yes</span>` : `<span class="badge badge-draft">No</span>`;
                     if (f.key === 'status') val = `<span class="badge badge-blue">${val}</span>`;
                     if (f.type === 'date' && val) val = new Date(val).toLocaleDateString();
                     if (val === null || val === undefined) val = '-';
-                    // 截断长文本
                     if (typeof val === 'string' && val.length > 30 && !val.includes('<span')) val = val.substring(0, 30) + '...';
-                    
                     tds += `<td>${val}</td>`;
                 });
 
-                // 按钮
                 const btns = `
                     <button class="btn-xs" onclick='openEditModal(${JSON.stringify(item).replace(/'/g, "&#39;")})'>编辑</button>
                     <button class="btn-xs" style="color:#ef4444; border-color:#ef4444;" onclick="deleteItem('${tableName}', '${item.id}')">删除</button>
@@ -285,7 +468,7 @@
             `;
         }
 
-        // 5. 弹窗逻辑 (动态生成表单)
+        // 5. 弹窗逻辑
         function openEditModal(item) {
             currentEditId = item.id;
             document.getElementById('modal-title').innerText = `编辑 ${tableSchema.title}`;
@@ -317,14 +500,12 @@
                     let opts = f.options.map(o => `<option value="${o}" ${val===o?'selected':''}>${o}</option>`).join('');
                     html += `<select id="f-${f.key}" class="form-control">${opts}</select>`;
                 } else if (f.type === 'boolean') {
-                    // 布尔值选框
                     html += `
                         <select id="f-${f.key}" class="form-control">
                             <option value="true" ${val===true?'selected':''}>是 (True)</option>
                             <option value="false" ${val!==true?'selected':''}>否 (False)</option>
                         </select>`;
                 } else if (f.type === 'json') {
-                    // JSON 简单按字符串处理
                     let jsonStr = val ? JSON.stringify(val, null, 2) : '{}';
                     html += `<textarea id="f-${f.key}" class="form-control" rows="5" style="font-family:monospace;">${jsonStr}</textarea>`;
                 } else if (f.type === 'date') {
@@ -339,23 +520,19 @@
         // 6. 保存逻辑
         async function saveData() {
             const payload = {};
-            
             try {
                 tableSchema.editFields.forEach(f => {
                     const el = document.getElementById(`f-${f.key}`);
                     let val = el.value;
-
                     if (f.type === 'boolean') val = (val === 'true');
-                    if (f.type === 'json') val = JSON.parse(val); // 尝试解析JSON
-                    if (f.type === 'array') val = val.split(',').map(s=>s.trim()); // 逗号分隔转数组
-
+                    if (f.type === 'json') val = JSON.parse(val); 
+                    if (f.type === 'array') val = val.split(',').map(s=>s.trim());
                     payload[f.key] = val;
                 });
             } catch (e) {
-                alert('表单格式错误 (特别是JSON字段): ' + e.message);
+                alert('表单格式错误: ' + e.message);
                 return;
             }
-
             let error;
             if (currentEditId) {
                 const res = await _supabase.from(currentTable).update(payload).eq('id', currentEditId);
@@ -364,17 +541,15 @@
                 const res = await _supabase.from(currentTable).insert(payload);
                 error = res.error;
             }
-
             if (error) alert('保存失败: ' + error.message);
             else {
                 closeModal();
-                loadTableData(currentTable); // 刷新列表
+                loadTableData(currentTable);
             }
         }
 
-        // 7. 删除逻辑
         async function deleteItem(table, id) {
-            if(!confirm('确定删除吗？此操作不可恢复。')) return;
+            if(!confirm('确定删除吗？')) return;
             const { error } = await _supabase.from(table).delete().eq('id', id);
             if(error) alert('删除失败');
             else loadTableData(table);
@@ -383,108 +558,48 @@
         function closeModal() { document.getElementById('edit-modal').style.display = 'none'; }
         async function logout() { await _supabase.auth.signOut(); location.href='index.html'; }
 
-        // ============================================================
-        // ★★★ 核心配置：表结构定义 (Schema) ★★★
-        // ============================================================
+        // Schema 定义
         function getTableSchema(tableName) {
             const schemas = {
-                // 1. 内容类
                 'news': {
                     title: '资讯快报',
                     listFields: [{key:'title',label:'标题',type:'text'}, {key:'category',label:'分类',type:'text'}, {key:'publish_date',label:'日期',type:'date'}, {key:'draft',label:'草稿',type:'boolean'}],
-                    editFields: [
-                        {key:'title',label:'标题',type:'text'},
-                        {key:'category',label:'分类',type:'select',options:['Market','Policy','Capital','Global']},
-                        {key:'summary',label:'摘要',type:'textarea'},
-                        {key:'content',label:'正文 (Markdown)',type:'textarea'},
-                        {key:'image_url',label:'封面图 URL',type:'text'},
-                        {key:'source',label:'来源',type:'text'},
-                        {key:'publish_date',label:'发布日期',type:'date'},
-                        {key:'draft',label:'是否草稿',type:'boolean'}
-                    ]
+                    editFields: [{key:'title',label:'标题',type:'text'}, {key:'category',label:'分类',type:'select',options:['Market','Policy','Capital','Global']}, {key:'summary',label:'摘要',type:'textarea'}, {key:'content',label:'正文 (Markdown)',type:'textarea'}, {key:'image_url',label:'封面图 URL',type:'text'}, {key:'source',label:'来源',type:'text'}, {key:'publish_date',label:'发布日期',type:'date'}, {key:'draft',label:'是否草稿',type:'boolean'}]
                 },
                 'policies': {
                     title: '政策法规',
                     listFields: [{key:'title',label:'政策名称',type:'text'}, {key:'department',label:'部门',type:'text'}, {key:'level',label:'层级',type:'text'}, {key:'draft',label:'状态',type:'boolean'}],
-                    editFields: [
-                        {key:'title',label:'标题',type:'text'},
-                        {key:'department',label:'发文部门',type:'text'},
-                        {key:'level',label:'层级',type:'select',options:['国家部委','地方政府','国际组织']},
-                        {key:'summary',label:'解读摘要',type:'textarea'},
-                        {key:'content',label:'正文/全文',type:'textarea'},
-                        {key:'related_city',label:'关联城市',type:'text'},
-                        {key:'draft',label:'草稿',type:'boolean'}
-                    ]
+                    editFields: [{key:'title',label:'标题',type:'text'}, {key:'department',label:'发文部门',type:'text'}, {key:'level',label:'层级',type:'select',options:['国家部委','地方政府','国际组织']}, {key:'summary',label:'解读摘要',type:'textarea'}, {key:'content',label:'正文/全文',type:'textarea'}, {key:'related_city',label:'关联城市',type:'text'}, {key:'draft',label:'草稿',type:'boolean'}]
                 },
                 'tech_trends': {
                     title: '技术前沿',
                     listFields: [{key:'title',label:'标题',type:'text'}, {key:'type',label:'类型',type:'text'}, {key:'org',label:'机构',type:'text'}, {key:'draft',label:'状态',type:'boolean'}],
-                    editFields: [
-                        {key:'title',label:'标题',type:'text'},
-                        {key:'type',label:'类型',type:'select',options:['Patent','Paper','Product']},
-                        {key:'domain',label:'领域',type:'select',options:['动力电池','飞控','复材']},
-                        {key:'summary',label:'摘要',type:'textarea'},
-                        {key:'org',label:'研发机构',type:'text'},
-                        {key:'draft',label:'草稿',type:'boolean'}
-                    ]
+                    editFields: [{key:'title',label:'标题',type:'text'}, {key:'type',label:'类型',type:'select',options:['Patent','Paper','Product']}, {key:'domain',label:'领域',type:'select',options:['动力电池','飞控','复材']}, {key:'summary',label:'摘要',type:'textarea'}, {key:'org',label:'研发机构',type:'text'}, {key:'draft',label:'草稿',type:'boolean'}]
                 },
-                
-                // 2. 核心库
                 'companies': {
                     title: '公司库',
                     listFields: [{key:'name',label:'名称',type:'text'}, {key:'industry_chain',label:'产业链',type:'text'}, {key:'total_funding_est_usd',label:'融资(USD)',type:'text'}, {key:'is_listed',label:'上市',type:'boolean'}],
-                    editFields: [
-                        {key:'name',label:'公司名',type:'text'},
-                        {key:'country_code',label:'国家代码(CN/US)',type:'text'},
-                        {key:'industry_chain',label:'产业链',type:'select',options:['upstream','midstream','downstream']},
-                        {key:'primary_category',label:'赛道',type:'select',options:['eVTOL','Drone','Battery']},
-                        {key:'description',label:'简介',type:'textarea'},
-                        {key:'total_funding_est_usd',label:'累计融资(数字)',type:'text'},
-                        {key:'is_listed',label:'是否上市',type:'boolean'},
-                        {key:'draft',label:'草稿',type:'boolean'}
-                    ]
+                    editFields: [{key:'name',label:'公司名',type:'text'}, {key:'country_code',label:'国家代码(CN/US)',type:'text'}, {key:'industry_chain',label:'产业链',type:'select',options:['upstream','midstream','downstream']}, {key:'primary_category',label:'赛道',type:'select',options:['eVTOL','Drone','Battery']}, {key:'description',label:'简介',type:'textarea'}, {key:'total_funding_est_usd',label:'累计融资(数字)',type:'text'}, {key:'is_listed',label:'是否上市',type:'boolean'}, {key:'draft',label:'草稿',type:'boolean'}]
                 },
                 'products': {
                     title: '飞行器产品',
                     listFields: [{key:'name',label:'型号',type:'text'}, {key:'type',label:'类型',type:'text'}, {key:'certification_status',label:'状态',type:'text'}],
-                    editFields: [
-                        {key:'name',label:'型号名称',type:'text'},
-                        {key:'type',label:'类型',type:'select',options:['Multicopter','Lift+Cruise','Vectored']},
-                        {key:'company_id',label:'所属公司ID',type:'text'},
-                        {key:'specs',label:'性能参数 (JSON)',type:'json'},
-                        {key:'certification_status',label:'取证状态',type:'select',options:['Concept','Prototype','Testing','Certified']},
-                        {key:'draft',label:'草稿',type:'boolean'}
-                    ]
+                    editFields: [{key:'name',label:'型号名称',type:'text'}, {key:'type',label:'类型',type:'select',options:['Multicopter','Lift+Cruise','Vectored']}, {key:'company_id',label:'所属公司ID',type:'text'}, {key:'specs',label:'性能参数 (JSON)',type:'json'}, {key:'certification_status',label:'取证状态',type:'select',options:['Concept','Prototype','Testing','Certified']}, {key:'draft',label:'草稿',type:'boolean'}]
                 },
-                
-                // 3. 商业化
                 'cooperation_leads': {
                     title: '商务线索 (B2B)',
                     listFields: [{key:'contact_name',label:'联系人',type:'text'}, {key:'company_name',label:'公司',type:'text'}, {key:'service_type',label:'意向',type:'text'}, {key:'status',label:'状态',type:'text'}],
-                    editFields: [
-                        {key:'status',label:'处理状态',type:'select',options:['pending','contacted','closed']},
-                        {key:'contact_name',label:'姓名',type:'text'},
-                        {key:'message',label:'需求详情',type:'textarea'} // 管理员主要是改状态
-                    ]
+                    editFields: [{key:'status',label:'处理状态',type:'select',options:['pending','contacted','closed']}, {key:'contact_name',label:'姓名',type:'text'}, {key:'message',label:'需求详情',type:'textarea'}]
                 },
                 'media_requests': {
                     title: '媒体申请',
                     listFields: [{key:'organization',label:'机构',type:'text'}, {key:'request_type',label:'类型',type:'text'}, {key:'status',label:'状态',type:'text'}],
-                    editFields: [
-                        {key:'status',label:'审核状态',type:'select',options:['pending','approved','rejected']},
-                        {key:'material_link',label:'资料链接',type:'text'}
-                    ]
+                    editFields: [{key:'status',label:'审核状态',type:'select',options:['pending','approved','rejected']}, {key:'material_link',label:'资料链接',type:'text'}]
                 },
                 'profiles': {
                     title: '用户管理',
                     listFields: [{key:'username',label:'用户名',type:'text'}, {key:'email',label:'邮箱',type:'text'}, {key:'is_expert',label:'专家',type:'boolean'}, {key:'tier',label:'等级',type:'text'}],
-                    editFields: [
-                        {key:'username',label:'用户名',type:'text'},
-                        {key:'is_expert',label:'认证专家',type:'boolean'},
-                        {key:'industry_role',label:'专家头衔',type:'text'},
-                        {key:'tier',label:'会员等级',type:'select',options:['free','pro','enterprise']},
-                        {key:'is_admin',label:'管理员权限 (慎用)',type:'boolean'}
-                    ]
+                    editFields: [{key:'username',label:'用户名',type:'text'}, {key:'is_expert',label:'认证专家',type:'boolean'}, {key:'industry_role',label:'专家头衔',type:'text'}, {key:'tier',label:'会员等级',type:'select',options:['free','pro','enterprise']}, {key:'is_admin',label:'管理员权限 (慎用)',type:'boolean'}]
                 }
             };
             return schemas[tableName] || schemas['news'];
