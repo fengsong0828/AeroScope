@@ -2,36 +2,50 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
 // 定义模型提供商配置
 const PROVIDERS = {
-  // DeepSeek (高性价比)
   'deepseek': {
     url: 'https://api.deepseek.com/v1/chat/completions',
     key_env: 'DEEPSEEK_API_KEY'
   },
-  // OpenAI (逻辑最强)
   'openai': {
     url: 'https://api.openai.com/v1/chat/completions',
     key_env: 'OPENAI_API_KEY'
   },
-  // Qwen 通义千问 (兼容 OpenAI 协议)
   'qwen': {
     url: 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions',
     key_env: 'DASHSCOPE_API_KEY'
   }
 }
 
-// 系统提示词 (System Prompts)
-const PROMPTS = {
-  news: "你是一名低空经济产业分析师。请将用户输入的内容改写为一篇专业的行业新闻。要求：1. 标题简练有力。2. 摘要100字以内。3. 正文使用Markdown格式，逻辑清晰。返回JSON格式：{ title, summary, content }",
-  
-  policy: "你是一名政策解读专家。请分析用户提供的政策文件。要求：1. 标题格式为《XX政策》深度解读。2. 摘要指出对eVTOL行业的利好。3. 正文分点解读。返回JSON格式：{ title, summary, content }",
-  
-  tech: "你是一名航空技术工程师。请提取内容中的技术参数（续航、载重、电池密度等）。返回JSON格式：{ title, summary, content }",
-  
-  report: "你是一名FA财务顾问。请根据内容撰写简短的投研报告，包含市场分析与风险提示。返回JSON格式：{ title, summary, content }"
+// 默认兜底提示词 (如果前端没传 customPrompt，用这个)
+// 这里的结构必须与前端需要的字段对齐
+const DEFAULT_PROMPTS = {
+  news: "你是一名产业分析师。将输入内容改写为新闻。返回JSON: { title, summary, content, tags:[], category }",
+  policy: "你是一名政策专家。分析政策文件。提取部门、层级、日期。返回JSON: { title, summary, content, department, level, publish_date, related_city, tags:[] }",
+  tech: "你是技术专家。提取技术参数。返回JSON: { title, summary, content, type, org, tags:[] }",
+  report: "你是分析师。撰写研报摘要。返回JSON: { title, summary, content, tags:[] }"
+}
+
+// 辅助函数：简单的 HTML 文本提取 (去除标签和样式)
+function extractTextFromHtml(html: string): string {
+  // 1. 去除脚本和样式
+  let text = html.replace(/<script[^>]*>([\s\S]*?)<\/script>/gmi, "");
+  text = text.replace(/<style[^>]*>([\s\S]*?)<\/style>/gmi, "");
+  // 2. 去除 HTML 标签
+  text = text.replace(/<[^>]+>/g, "\n");
+  // 3. 处理多余空行和空白
+  text = text.replace(/\n\s*\n/g, "\n").trim();
+  // 4. 截取前 15000 个字符 (避免爆 Token)
+  return text.substring(0, 15000);
+}
+
+// 辅助函数：清洗 AI 返回的 JSON 字符串 (去除 Markdown 标记)
+function cleanJsonString(str: string): string {
+  // 去除 ```json 和 ``` 
+  return str.replace(/^```json\s*/, "").replace(/^```\s*/, "").replace(/\s*```$/, "");
 }
 
 serve(async (req) => {
-  // 1. 处理 CORS (允许前端跨域调用)
+  // 1. 处理 CORS
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: { 
       'Access-Control-Allow-Origin': '*',
@@ -40,26 +54,46 @@ serve(async (req) => {
   }
 
   try {
-    const { content, model, category } = await req.json()
+    // 获取前端传来的参数，增加了 systemPrompt
+    const { content, model, category, systemPrompt } = await req.json()
 
-    // 2. 选择 API 提供商
-    let providerConfig = PROVIDERS['openai']; // 默认
+    // 2. 判断 content 是否为 URL，如果是则进行抓取
+    let finalContent = content;
+    const urlRegex = /^(http|https):\/\/[^ "]+$/;
     
-    if (model.startsWith('deepseek')) {
-      providerConfig = PROVIDERS['deepseek'];
-    } else if (model.startsWith('qwen')) {
-      providerConfig = PROVIDERS['qwen'];
+    if (urlRegex.test(content)) {
+      try {
+        console.log(`正在抓取 URL: ${content}`);
+        const res = await fetch(content, {
+            headers: {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+            }
+        });
+        if (res.ok) {
+            const html = await res.text();
+            finalContent = extractTextFromHtml(html);
+            console.log(`抓取成功，提取文本长度: ${finalContent.length}`);
+        } else {
+            console.warn(`抓取失败: ${res.status}`);
+            // 如果抓取失败，依然把 URL 给 AI，让 AI 尝试（有些模型能联网，或者依靠 URL 猜测）
+        }
+      } catch (e) {
+        console.error("URL 抓取异常:", e);
+      }
     }
+
+    // 3. 选择 API 提供商
+    let providerConfig = PROVIDERS['openai']; 
+    if (model.startsWith('deepseek')) providerConfig = PROVIDERS['deepseek'];
+    else if (model.startsWith('qwen')) providerConfig = PROVIDERS['qwen'];
 
     const apiKey = Deno.env.get(providerConfig.key_env);
-    if (!apiKey) {
-      throw new Error(`未配置 ${providerConfig.key_env} 环境变量 (请在 Supabase Secrets 中设置)`)
-    }
+    if (!apiKey) throw new Error(`未配置 ${providerConfig.key_env} 环境变量`);
 
-    // 3. 准备 System Prompt
-    const systemPrompt = PROMPTS[category] || PROMPTS['news'];
+    // 4. 确定 System Prompt (优先使用前端传来的 customPrompt)
+    const finalSystemPrompt = systemPrompt || DEFAULT_PROMPTS[category] || DEFAULT_PROMPTS['news'];
 
-    // 4. 调用 AI API
+    // 5. 调用 AI API
     const aiResponse = await fetch(providerConfig.url, {
       method: 'POST',
       headers: {
@@ -69,28 +103,37 @@ serve(async (req) => {
       body: JSON.stringify({
         model: model, 
         messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: `请分析以下内容：\n${content}` }
+          { role: "system", content: finalSystemPrompt },
+          { role: "user", content: `请基于以下内容生成数据：\n\n${finalContent}` }
         ],
-        // 强制 JSON 返回 (大部分模型支持)
-        response_format: { type: "json_object" }, 
-        temperature: 0.7
+        // DeepSeek V3 和 Qwen Max 对 JSON 模式支持较好，但为了兼容性，不在 body 强加 response_format
+        // 而是依靠 Prompt 中的 "请输出 JSON" 指令
+        temperature: 0.3 // 降低温度，让 JSON 格式更稳定
       })
     })
 
     const aiData = await aiResponse.json()
     
     if (aiData.error) {
-      throw new Error(`AI API Error: ${aiData.error.message || JSON.stringify(aiData)}`)
+      throw new Error(`AI API Error: ${JSON.stringify(aiData.error)}`)
     }
 
-    const rawContent = aiData.choices[0].message.content
+    const rawResult = aiData.choices[0].message.content;
+    
+    // 6. 鲁棒的 JSON 解析
     let parsedResult;
     try {
-        parsedResult = JSON.parse(rawContent);
+        const cleanedJson = cleanJsonString(rawResult);
+        parsedResult = JSON.parse(cleanedJson);
     } catch (e) {
-        // 如果模型没返回标准JSON，尝试手动修复或直接返回文本
-        parsedResult = { title: "解析错误", summary: "AI未返回标准JSON", content: rawContent };
+        console.error("JSON 解析失败，原始返回:", rawResult);
+        // 降级处理：如果解析失败，将原始内容放入 content
+        parsedResult = { 
+            title: "AI 生成格式错误", 
+            summary: "请手动检查正文内容", 
+            content: rawResult,
+            tags: ["格式错误"]
+        };
     }
 
     return new Response(JSON.stringify(parsedResult), {
