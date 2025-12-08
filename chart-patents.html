@@ -459,22 +459,30 @@
                 }
 
                 container.innerHTML += `
-                    <a href="patent-detail.html?id=${p.id}" class="patent-item">
-                        <div class="patent-top-row">
-                            <span class="patent-title">${title}</span>
-                            <span class="legal-status-badge ${statusClass}">${status}</span>
-                        </div>
-                        <div class="patent-abstract">${p.abstract || '暂无摘要'}</div>
-                        <div class="patent-meta-row">
-                            ${applicantHtml}
-                            <span class="meta-divider">|</span>
-                            <span>📅 ${p.application_date || '未知日期'}</span>
-                            ${p.citation_count ? `<span class="meta-divider">|</span><span>🔗 ${p.citation_count} 引用</span>` : ''}
-                            <div class="patent-tags" style="margin-left:10px;">${tagsHtml}</div>
-                            <div class="patent-id">${p.patent_number || ''}</div>
-                        </div>
-                    </a>
-                `;
+                <!-- 1. 把最外层的 <a> 改为 <div>，并添加 onclick 跳转 -->
+                <div class="patent-item" onclick="location.href='patent-detail.html?id=${p.id}'" style="cursor: pointer;">
+                    
+                    <div class="patent-top-row">
+                        <span class="patent-title">${title}</span>
+                        <span class="legal-status-badge ${statusClass}">${status}</span>
+                    </div>
+                    
+                    <div class="patent-abstract">${p.abstract || '暂无摘要'}</div>
+                    
+                    <div class="patent-meta-row">
+                        <!-- 这里的 applicantHtml 包含内部 <a> 标签，现在在外层是 div 的情况下是合法的 -->
+                        <!-- 建议给内部链接添加 event.stopPropagation() 防止点击公司名时同时也触发卡片跳转 -->
+                        ${applicantHtml.replace('<a ', '<a onclick="event.stopPropagation()" ')} 
+                        
+                        <span class="meta-divider">|</span>
+                        <span>📅 ${p.application_date || '未知日期'}</span>
+                        ${p.citation_count ? `<span class="meta-divider">|</span><span>🔗 ${p.citation_count} 引用</span>` : ''}
+                        <div class="patent-tags" style="margin-left:10px;">${tagsHtml}</div>
+                        <div class="patent-id">${p.patent_number || ''}</div>
+                    </div>
+                    
+                </div> <!-- 2. 闭合标签改为 </div> -->
+            `;
             });
         }
         
