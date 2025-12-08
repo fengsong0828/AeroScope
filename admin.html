@@ -6,83 +6,97 @@
     <title>中央控制台 | AeroScope Admin</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* --- 后台专用样式 --- */
-        body { background-color: #f1f5f9; min-height: 100vh; display: flex; flex-direction: column; }
+        /* --- 样式 --- */
+        body { background-color: #f1f5f9; min-height: 100vh; display: flex; flex-direction: column; margin: 0; }
         
-        /* 布局框架 */
+        /* 头部样式优化 (与 AI 页面统一) */
+        header {
+            background: white; border-bottom: 1px solid #e2e8f0; height: 64px; width: 100%;
+            display: flex; justify-content: center;
+        }
+        .header-inner {
+            width: 100%; max-width: 1600px; display: flex; align-items: center;
+            justify-content: space-between; padding: 0 20px; box-sizing: border-box;
+        }
+        .header-logo { font-weight: 800; font-size: 1.2rem; color: #0f172a; }
+        .header-user-area { display: flex; gap: 12px; align-items: center; font-size: 0.9rem; }
+        .header-btn {
+            text-decoration: none; padding: 8px 16px; border-radius: 6px;
+            font-size: 0.85rem; font-weight: 600; transition: all 0.2s; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 6px; border: 1px solid transparent;
+        }
+        .btn-ghost { color: #64748b; background-color: #f1f5f9; }
+        .btn-ghost:hover { color: #3b82f6; background-color: #e2e8f0; }
+        .btn-danger-light { color: #ef4444; background-color: #fef2f2; border-color: #fee2e2; }
+        .btn-danger-light:hover { background-color: #fee2e2; border-color: #fca5a5; }
+
+        /* 布局 */
         .admin-layout { 
             display: grid; grid-template-columns: 260px 1fr; 
             max-width: 1600px; width: 100%; margin: 0 auto; 
-            min-height: calc(100vh - 64px); /* 减去 Header */
+            min-height: calc(100vh - 64px); 
         }
-
-        /* 左侧导航 */
-        .admin-sidebar { 
-            background: #0f172a; color: #e2e8f0; padding: 20px; 
-            display: flex; flex-direction: column; 
-        }
+        .admin-sidebar { background: #0f172a; color: #e2e8f0; padding: 20px; display: flex; flex-direction: column; }
         .sidebar-group { margin-bottom: 25px; }
-        .group-label { 
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; 
-            color: #64748b; margin-bottom: 10px; padding-left: 10px; font-weight: 700;
-        }
-        .nav-item { 
-            display: flex; align-items: center; gap: 10px; padding: 12px 15px; 
-            cursor: pointer; border-radius: 8px; transition: 0.2s; color: #94a3b8; font-weight: 500;
-        }
+        .group-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 10px; padding-left: 10px; font-weight: 700; }
+        .nav-item { display: flex; align-items: center; gap: 10px; padding: 12px 15px; cursor: pointer; border-radius: 8px; transition: 0.2s; color: #94a3b8; font-weight: 500; }
         .nav-item:hover, .nav-item.active { background: #1e293b; color: white; }
         .nav-item.active { border-left: 3px solid #3b82f6; }
-
-        /* 右侧内容 */
         .admin-main { padding: 30px; overflow-y: auto; }
-        
-        /* 仪表盘卡片 */
         .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
         .stat-card { background: white; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; }
         .stat-num { font-size: 2rem; font-weight: 700; color: #0f172a; }
         .stat-desc { color: #64748b; font-size: 0.9rem; }
-
-        /* 表格区域 */
         .content-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        .card-header { 
-            padding: 20px; border-bottom: 1px solid #f1f5f9; 
-            display: flex; justify-content: space-between; align-items: center; 
-        }
+        .card-header { padding: 20px; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
         .card-title { font-size: 1.1rem; font-weight: 700; color: #1e293b; }
-        
         .data-table { width: 100%; border-collapse: collapse; }
-        .data-table th { text-align: left; padding: 15px 20px; background: #f8fafc; color: #64748b; font-size: 0.85rem; font-weight: 600; border-bottom: 1px solid #e2e8f0; }
-        .data-table td { padding: 15px 20px; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; color: #334155; vertical-align: middle; }
+        .data-table th { text-align: left; padding: 10px 20px; background: #f8fafc; color: #1e293b; font-size: 0.85rem; font-weight: 700; border-bottom: 1px solid #e2e8f0; white-space: nowrap; vertical-align: top; }
+        .data-table td { padding: 15px 20px; border-bottom: 1px solid #f1f5f9; font-size: 0.85rem; color: #334155; vertical-align: middle; max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .data-table tr:hover { background: #f8fafc; }
-
-        /* 状态徽章 */
         .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
         .badge-draft { background: #fef9c3; color: #b45309; }
         .badge-pub { background: #dcfce7; color: #15803d; }
         .badge-blue { background: #dbeafe; color: #1e40af; }
-
-        /* 按钮 */
+        .type-tag { display: block; font-size: 0.7rem; font-weight: normal; margin-top: 4px; padding: 1px 6px; border-radius: 4px; width: fit-content; font-family: monospace; letter-spacing: -0.5px; }
         .btn-xs { padding: 4px 8px; font-size: 0.8rem; border-radius: 4px; border: 1px solid #e2e8f0; background: white; cursor: pointer; margin-right: 5px; }
         .btn-xs:hover { border-color: #3b82f6; color: #3b82f6; }
         .btn-primary-sm { background: #3b82f6; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; }
-
-        /* 弹窗表单 */
         .modal-form { max-height: 70vh; overflow-y: auto; padding-right: 10px; }
         .form-group { margin-bottom: 15px; }
         .form-label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; }
         .form-control { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; }
         .form-control:focus { border-color: #3b82f6; outline: none; }
+        
+        /* 复用编辑器样式 */
+        .editor-wrapper { border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: white; transition: 0.2s; }
+        .editor-toolbar { background: #f8fafc; border-bottom: 1px solid #e2e8f0; padding: 8px 12px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .tool-btn { background: white; border: 1px solid #cbd5e1; border-radius: 4px; padding: 4px 10px; font-size: 0.8rem; color: #475569; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 5px; }
+        .tool-btn:hover { border-color: #3b82f6; color: #3b82f6; background: #eff6ff; }
+        .tool-separator { width: 1px; height: 16px; background: #cbd5e1; margin: 0 5px; }
+        .rich-content-area { border: none; border-radius: 0; padding: 20px; outline: none; box-shadow: none; font-size: 16px; line-height: 1.8; width: 100%; resize: vertical; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; text-align: justify; white-space: pre-wrap; }
+        .custom-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 3000; display: none; justify-content: center; align-items: center; }
+        .custom-modal-box { background: white; width: 500px; padding: 25px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); animation: fadeIn 0.2s; }
+        .modal-h { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 20px; }
+        .modal-btns { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-    <!-- 顶部导航 -->
-    <header style="background:white; border-bottom:1px solid #e2e8f0; height:64px; display:flex; align-items:center; padding:0 20px; justify-content:space-between;">
-        <div style="font-weight:800; font-size:1.2rem; color:#0f172a;">AeroScope <span style="color:#3b82f6;">Console</span></div>
-        <div style="display:flex; gap:15px; align-items:center; font-size:0.9rem;">
-            <span id="admin-email">Checking...</span>
-            <a href="index.html" style="color:#64748b; text-decoration:none;">返回前台</a>
-            <button onclick="logout()" style="color:#ef4444; background:none; border:none; cursor:pointer;">退出</button>
+    <header>
+        <div class="header-inner">
+            <div class="header-logo">
+                AeroScope <span style="color:#3b82f6;">Console</span>
+            </div>
+            <div class="header-user-area">
+                <span id="admin-email" style="color:#64748b; font-weight:500;">Checking...</span>
+                <a href="index.html" class="header-btn btn-ghost">
+                    🏠 返回前台
+                </a>
+                <button onclick="logout()" class="header-btn btn-danger-light">
+                    🚪 退出
+                </button>
+            </div>
         </div>
     </header>
 
@@ -92,6 +106,7 @@
             <div class="sidebar-group">
                 <div class="group-label">Dashboards</div>
                 <div class="nav-item active" onclick="switchTab('dashboard', this)">📊 概览 (Overview)</div>
+                <div class="nav-item" onclick="switchTab('raw_db_viewer', this)">🗄️ 全库透视 (Raw DB)</div>
                 <a href="admin-ai.html" class="nav-item" style="text-decoration:none;">🤖 AI 采编助手</a>
             </div>
             
@@ -122,14 +137,13 @@
 
         <!-- 右侧主区域 -->
         <main class="admin-main" id="main-container">
-            <!-- 动态渲染区域 -->
             <div style="text-align:center; padding:50px;">加载中...</div>
         </main>
     </div>
 
     <!-- 通用编辑/新增弹窗 -->
     <div class="modal-overlay" id="edit-modal">
-        <div class="modal-box">
+        <div class="modal-box" style="max-width: 800px;">
             <div class="modal-close" onclick="closeModal()">×</div>
             <div class="modal-title" id="modal-title">编辑</div>
             <div id="modal-form-body" class="modal-form"></div>
@@ -140,152 +154,202 @@
         </div>
     </div>
 
+    <!-- 图片弹窗 -->
+    <div class="custom-modal-overlay" id="img-modal">
+        <div class="custom-modal-box">
+            <div class="modal-h">插入图片</div>
+            <div class="form-group">
+                <label class="form-label">图片链接 (URL)</label>
+                <input type="text" id="modal-img-url" class="form-control" placeholder="https://...">
+            </div>
+            <div class="form-group">
+                <label class="form-label">图片说明 (Caption)</label>
+                <input type="text" id="modal-img-alt" class="form-control" placeholder="图片描述...">
+            </div>
+            <div class="modal-btns">
+                <button class="btn-xs" style="padding:8px 15px;" onclick="closeImageModal()">取消</button>
+                <button class="btn-primary-sm" onclick="confirmInsertImage()">插入</button>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // ★★★ 配置区域 ★★★
         const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co'; 
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
         const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-        // 全局状态
+        const ALL_DB_TABLES = ['news', 'policies', 'tech_trends', 'deep_reports', 'companies', 'products', 'investors', 'funding_events', 'patents', 'cooperation_leads', 'media_requests', 'profiles'];
         let currentTable = 'dashboard';
         let currentEditId = null;
-        let tableSchema = {}; // 当前表的字段配置
+        let tableSchema = {}; 
+        let rawDataCache = []; 
 
-        // 初始化
         document.addEventListener('DOMContentLoaded', async () => {
             await checkAdmin();
             loadDashboard();
         });
 
-        // 1. 权限检查
         async function checkAdmin() {
             const { data: { session } } = await _supabase.auth.getSession();
             if (!session) return location.href = 'login.html';
-            
             const { data: profile } = await _supabase.from('profiles').select('is_admin, username, email').eq('id', session.user.id).single();
-            if (!profile || !profile.is_admin) {
-                alert('无权访问');
-                return location.href = 'index.html';
-            }
+            if (!profile || !profile.is_admin) { alert('无权访问'); return location.href = 'index.html'; }
             document.getElementById('admin-email').innerText = profile.username || profile.email;
         }
 
-        // 2. 路由切换
         function switchTab(tab, el) {
             currentTable = tab;
-            // UI update
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             if(el) el.classList.add('active');
-
             if (tab === 'dashboard') loadDashboard();
+            else if (tab === 'raw_db_viewer') loadRawDBViewer(); 
             else loadTableData(tab);
         }
 
-        // 3. 加载仪表盘 (简单统计)
         async function loadDashboard() {
             const container = document.getElementById('main-container');
-            
-            // 并行查询几个关键数据
             const [leads, users, news, companies] = await Promise.all([
                 _supabase.from('cooperation_leads').select('id', { count: 'exact' }),
                 _supabase.from('profiles').select('id', { count: 'exact' }),
                 _supabase.from('news').select('id', { count: 'exact' }),
                 _supabase.from('companies').select('id', { count: 'exact' })
             ]);
-
             container.innerHTML = `
                 <h2 style="margin-bottom:20px;">运营概览</h2>
                 <div class="stats-row">
-                    <div class="stat-card">
-                        <div class="stat-desc">总用户数</div>
-                        <div class="stat-num">${users.count || 0}</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-desc">待处理线索</div>
-                        <div class="stat-num" style="color:#d97706;">${leads.count || 0}</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-desc">收录企业</div>
-                        <div class="stat-num">${companies.count || 0}</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-desc">资讯文章</div>
-                        <div class="stat-num">${news.count || 0}</div>
-                    </div>
+                    <div class="stat-card"><div class="stat-desc">总用户数</div><div class="stat-num">${users.count || 0}</div></div>
+                    <div class="stat-card"><div class="stat-desc">待处理线索</div><div class="stat-num" style="color:#d97706;">${leads.count || 0}</div></div>
+                    <div class="stat-card"><div class="stat-desc">收录企业</div><div class="stat-num">${companies.count || 0}</div></div>
+                    <div class="stat-card"><div class="stat-desc">资讯文章</div><div class="stat-num">${news.count || 0}</div></div>
                 </div>
-                <div class="content-card" style="padding:40px; text-align:center; color:#64748b;">
-                    <h3>欢迎回到 AeroScope 中央控制台</h3>
-                    <p>请从左侧菜单选择要管理的模块。</p>
-                </div>
-            `;
+                <div class="content-card" style="padding:40px; text-align:center; color:#64748b;"><h3>欢迎回到 AeroScope 中央控制台</h3><p>请从左侧菜单选择要管理的模块。</p></div>`;
         }
 
-        // 4. 通用表格加载 (核心逻辑)
+        async function loadRawDBViewer() {
+            const container = document.getElementById('main-container');
+            const options = ALL_DB_TABLES.map(t => `<option value="${t}">${t}</option>`).join('');
+            container.innerHTML = `
+                <div class="content-card">
+                    <div class="card-header" style="background:#f8fafc;">
+                        <div style="display:flex; align-items:center; gap:15px;">
+                            <div class="card-title">🗄️ 数据库原始记录透视</div>
+                            <select id="raw-db-selector" class="form-control" style="width:200px;" onchange="fetchAndRenderRawTable(this.value)"><option value="" disabled selected>选择数据库表...</option>${options}</select>
+                            <input type="text" id="raw-db-search" class="form-control" style="width:200px;" placeholder="🔍 搜索当前表内容..." onkeyup="filterRawTable()">
+                        </div>
+                        <div style="font-size:0.85rem; color:#64748b;">显示所有字段及类型 (Audit Mode)</div>
+                    </div>
+                    <div id="raw-table-container" style="overflow-x:auto; min-height:300px; padding:20px;"><p style="text-align:center; color:#94a3b8; margin-top:50px;">请从上方下拉框选择一个数据表以查看详情。</p></div>
+                </div>`;
+        }
+
+        async function fetchAndRenderRawTable(tableName) {
+            const container = document.getElementById('raw-table-container');
+            container.innerHTML = '<div style="text-align:center; color:#64748b;">正在分析数据库结构...</div>';
+            const { data, error } = await _supabase.from(tableName).select('*').limit(30).order('created_at', {ascending: false});
+            if (error) { container.innerHTML = `<div style="color:red; text-align:center;">读取失败: ${error.message}</div>`; return; }
+            if (!data || data.length === 0) { container.innerHTML = `<div style="text-align:center; color:#94a3b8;">该表为空 (0 records)</div>`; rawDataCache = []; return; }
+            rawDataCache = data;
+            filterRawTable();
+        }
+
+        function filterRawTable() {
+            const container = document.getElementById('raw-table-container');
+            const keyword = document.getElementById('raw-db-search')?.value.toLowerCase().trim() || '';
+            if (!rawDataCache || rawDataCache.length === 0) return;
+            const allKeys = Object.keys(rawDataCache[0]);
+            const getColumnType = (key) => {
+                for (let i = 0; i < rawDataCache.length; i++) {
+                    const val = rawDataCache[i][key];
+                    if (val !== null && val !== undefined) {
+                        if (Array.isArray(val)) return 'array';
+                        if (typeof val === 'object') return 'json';
+                        if (typeof val === 'boolean') return 'bool';
+                        if (typeof val === 'number') return 'num';
+                        if (typeof val === 'string' && val.length === 36 && val.split('-').length === 5) return 'uuid';
+                        if (typeof val === 'string' && /^\d{4}-\d{2}-\d{2}/.test(val)) return 'date';
+                        return 'text';
+                    }
+                }
+                return 'null';
+            };
+            let thHtml = `<th>#</th>`;
+            allKeys.forEach(key => {
+                const type = getColumnType(key);
+                let color = '#64748b'; let bg = '#e2e8f0';
+                if(type === 'num') { color = '#0369a1'; bg = '#e0f2fe'; }
+                if(type === 'bool') { color = '#15803d'; bg = '#dcfce7'; }
+                if(type === 'json' || type === 'array') { color = '#b45309'; bg = '#fef3c7'; }
+                if(type === 'date') { color = '#7e22ce'; bg = '#f3e8ff'; }
+                thHtml += `<th><div style="font-size:0.9rem;">${key}</div><span class="type-tag" style="background:${bg}; color:${color};">${type}</span></th>`;
+            });
+            const filteredData = rawDataCache.filter(item => !keyword || Object.values(item).some(val => String(val).toLowerCase().includes(keyword)));
+            let trHtml = '';
+            filteredData.forEach((item, index) => {
+                let tds = `<td>${index + 1}</td>`;
+                allKeys.forEach(key => {
+                    let val = item[key];
+                    if (val === null || val === undefined) val = '<span style="color:#cbd5e1;">null</span>';
+                    else if (typeof val === 'object') val = `<span title='${JSON.stringify(val)}' style="color:#b45309; font-family:monospace; cursor:help;">{...}</span>`;
+                    else if (typeof val === 'boolean') val = val ? '<span style="color:green">true</span>' : '<span style="color:red">false</span>';
+                    else if (String(val).length > 40) val = `<span title="${val}">${String(val).substring(0, 40)}...</span>`;
+                    tds += `<td>${val}</td>`;
+                });
+                trHtml += `<tr>${tds}</tr>`;
+            });
+            container.innerHTML = `<table class="data-table"><thead><tr>${thHtml}</tr></thead><tbody>${trHtml}</tbody></table>`;
+        }
+
         async function loadTableData(tableName) {
             const container = document.getElementById('main-container');
             container.innerHTML = '<div style="text-align:center; padding:50px;">加载数据中...</div>';
-
-            // 获取 Schema 配置 (定义哪些字段显示，哪些可编辑)
             const schema = getTableSchema(tableName);
-            tableSchema = schema; // 存全局以便编辑时用
-
-            // 查询数据
-            const { data, error } = await _supabase
-                .from(tableName)
-                .select('*')
-                .order('created_at', { ascending: false })
-                .limit(50);
-
+            tableSchema = schema;
+            const { data, error } = await _supabase.from(tableName).select('*').order('created_at', { ascending: false }).limit(50);
             if (error) return container.innerHTML = `加载失败: ${error.message}`;
-
-            // 渲染表头
+            
             let thHtml = '';
             schema.listFields.forEach(f => thHtml += `<th>${f.label}</th>`);
-            thHtml += `<th style="width:150px;">操作</th>`;
+            thHtml += `<th style="width:220px;">操作</th>`;
 
-            // 渲染行
             let trHtml = '';
             data.forEach(item => {
                 let tds = '';
                 schema.listFields.forEach(f => {
                     let val = item[f.key];
-                    // 特殊格式化
-                    if (f.type === 'boolean') val = val ? `<span class="badge badge-pub">Yes</span>` : `<span class="badge badge-draft">No</span>`;
+                    if (f.type === 'boolean') val = val ? `<span class="badge badge-pub">未发布</span>` : `<span class="badge badge-draft">已发布</span>`;
                     if (f.key === 'status') val = `<span class="badge badge-blue">${val}</span>`;
                     if (f.type === 'date' && val) val = new Date(val).toLocaleDateString();
                     if (val === null || val === undefined) val = '-';
-                    // 截断长文本
                     if (typeof val === 'string' && val.length > 30 && !val.includes('<span')) val = val.substring(0, 30) + '...';
-                    
                     tds += `<td>${val}</td>`;
                 });
 
-                // 按钮
+                let publishBtn = '';
+                if (item.draft === true) {
+                    publishBtn = `<button class="btn-xs" style="color:#10b981; border-color:#10b981;" onclick="togglePublish('${tableName}', '${item.id}', true)">发布</button>`;
+                } else if (item.draft === false) {
+                    publishBtn = `<button class="btn-xs" style="color:#f59e0b; border-color:#f59e0b;" onclick="togglePublish('${tableName}', '${item.id}', false)">撤销</button>`;
+                }
+
+                const itemStr = JSON.stringify(item).replace(/'/g, "&#39;");
                 const btns = `
-                    <button class="btn-xs" onclick='openEditModal(${JSON.stringify(item).replace(/'/g, "&#39;")})'>编辑</button>
+                    <button class="btn-xs" onclick='openEditModal(${itemStr})'>编辑</button>
+                    ${publishBtn}
                     <button class="btn-xs" style="color:#ef4444; border-color:#ef4444;" onclick="deleteItem('${tableName}', '${item.id}')">删除</button>
                 `;
                 trHtml += `<tr>${tds}<td>${btns}</td></tr>`;
             });
-
-            container.innerHTML = `
-                <div class="content-card">
-                    <div class="card-header">
-                        <div class="card-title">${schema.title} 管理</div>
-                        <button class="btn-primary-sm" onclick="openCreateModal()">+ 新增记录</button>
-                    </div>
-                    <div style="overflow-x:auto;">
-                        <table class="data-table">
-                            <thead><tr>${thHtml}</tr></thead>
-                            <tbody>${trHtml}</tbody>
-                        </table>
-                    </div>
-                </div>
-            `;
+            container.innerHTML = `<div class="content-card"><div class="card-header"><div class="card-title">${schema.title} 管理</div><button class="btn-primary-sm" onclick="openCreateModal()">+ 新增记录</button></div><div style="overflow-x:auto;"><table class="data-table"><thead><tr>${thHtml}</tr></thead><tbody>${trHtml}</tbody></table></div></div>`;
         }
 
-        // 5. 弹窗逻辑 (动态生成表单)
+        async function togglePublish(table, id, isDraft) {
+            const newDraftStatus = !isDraft;
+            const { error } = await _supabase.from(table).update({ draft: newDraftStatus }).eq('id', id);
+            if (error) alert('操作失败: ' + error.message);
+            else loadTableData(table);
+        }
+
         function openEditModal(item) {
             currentEditId = item.id;
             document.getElementById('modal-title').innerText = `编辑 ${tableSchema.title}`;
@@ -300,16 +364,32 @@
             document.getElementById('edit-modal').style.display = 'flex';
         }
 
+        // 动态渲染表单，集成富文本
         function renderForm(data) {
             const formBox = document.getElementById('modal-form-body');
             let html = '';
-
             tableSchema.editFields.forEach(f => {
                 let val = data[f.key] !== undefined ? data[f.key] : '';
-                
                 html += `<div class="form-group"><label class="form-label">${f.label}</label>`;
                 
-                if (f.type === 'text') {
+                if (f.key === 'content' || (f.type === 'textarea' && f.label.includes('正文'))) {
+                    html += `
+                        <div class="editor-wrapper">
+                            <div class="editor-toolbar">
+                                <button class="tool-btn" onclick="autoFormatPolicy('f-${f.key}')" title="自动排版">🧹 排版</button>
+                                <div class="tool-separator"></div>
+                                <button class="tool-btn" onclick="modifyIndent(true, 'f-${f.key}')" title="缩进">⇥</button>
+                                <button class="tool-btn" onclick="modifyIndent(false, 'f-${f.key}')" title="取消缩进">⇤</button>
+                                <div class="tool-separator"></div>
+                                <button class="tool-btn" onclick="applyAlignment('left', 'f-${f.key}')">⬅</button>
+                                <button class="tool-btn" onclick="applyAlignment('center', 'f-${f.key}')">⬆</button>
+                                <button class="tool-btn" onclick="applyAlignment('right', 'f-${f.key}')">➡</button>
+                                <div class="tool-separator"></div>
+                                <button class="tool-btn" onclick="openImageModal('f-${f.key}')">🖼️</button>
+                            </div>
+                            <textarea id="f-${f.key}" class="rich-content-area" rows="15">${val}</textarea>
+                        </div>`;
+                } else if (f.type === 'text') {
                     html += `<input type="text" id="f-${f.key}" class="form-control" value="${val}">`;
                 } else if (f.type === 'textarea') {
                     html += `<textarea id="f-${f.key}" class="form-control" rows="4">${val}</textarea>`;
@@ -317,45 +397,107 @@
                     let opts = f.options.map(o => `<option value="${o}" ${val===o?'selected':''}>${o}</option>`).join('');
                     html += `<select id="f-${f.key}" class="form-control">${opts}</select>`;
                 } else if (f.type === 'boolean') {
-                    // 布尔值选框
-                    html += `
-                        <select id="f-${f.key}" class="form-control">
-                            <option value="true" ${val===true?'selected':''}>是 (True)</option>
-                            <option value="false" ${val!==true?'selected':''}>否 (False)</option>
-                        </select>`;
+                    html += `<select id="f-${f.key}" class="form-control"><option value="true" ${val===true?'selected':''}>是 (True)</option><option value="false" ${val!==true?'selected':''}>否 (False)</option></select>`;
                 } else if (f.type === 'json') {
-                    // JSON 简单按字符串处理
                     let jsonStr = val ? JSON.stringify(val, null, 2) : '{}';
                     html += `<textarea id="f-${f.key}" class="form-control" rows="5" style="font-family:monospace;">${jsonStr}</textarea>`;
                 } else if (f.type === 'date') {
                     html += `<input type="date" id="f-${f.key}" class="form-control" value="${val}">`;
                 }
-                
                 html += `</div>`;
             });
             formBox.innerHTML = html;
         }
 
-        // 6. 保存逻辑
+        // 编辑器辅助功能
+        let activeEditorId = ''; 
+
+        function openImageModal(targetId) {
+            if(targetId) activeEditorId = targetId;
+            document.getElementById('img-modal').style.display = 'flex';
+            document.getElementById('modal-img-url').focus();
+        }
+        function closeImageModal() {
+            document.getElementById('img-modal').style.display = 'none';
+        }
+        function confirmInsertImage() {
+            const url = document.getElementById('modal-img-url').value.trim();
+            const alt = document.getElementById('modal-img-alt').value.trim();
+            if(!url) return alert('请输入图片链接');
+            const md = `\n![${alt}](${url})\n`;
+            insertTextAtCursor(md, activeEditorId);
+            closeImageModal();
+            document.getElementById('modal-img-url').value = '';
+            document.getElementById('modal-img-alt').value = '';
+        }
+
+        function insertTextAtCursor(text, elementId, replaceSelection = false) {
+            const textarea = document.getElementById(elementId);
+            if(!textarea) return;
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const oldText = textarea.value;
+            if (replaceSelection) textarea.value = oldText.substring(0, start) + text + oldText.substring(end);
+            else textarea.value = oldText.substring(0, start) + text + oldText.substring(start);
+            textarea.focus();
+        }
+
+        function modifyIndent(isIndent, elementId) {
+            const textarea = document.getElementById(elementId);
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const text = textarea.value;
+            let startLine = text.lastIndexOf('\n', start - 1) + 1;
+            let endLine = text.indexOf('\n', end);
+            if (endLine === -1) endLine = text.length;
+            const selectedLines = text.substring(startLine, endLine);
+            const indentChar = '　　'; 
+            let modifiedLines = selectedLines.split('\n').map(line => {
+                if (isIndent) return line.startsWith(indentChar) ? line : indentChar + line;
+                else return line.replace(new RegExp('^' + indentChar), '');
+            }).join('\n');
+            textarea.setRangeText(modifiedLines, startLine, endLine, 'select');
+        }
+
+        function applyAlignment(align, elementId) {
+            const textarea = document.getElementById(elementId);
+            const selection = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+            if(!selection) return alert('请先选择要对齐的段落文字');
+            let wrapper = `<p style="text-align: ${align};">${selection}</p>`;
+            insertTextAtCursor(wrapper, elementId, true);
+        }
+
+        function autoFormatPolicy(elementId) {
+            const textarea = document.getElementById(elementId);
+            let text = textarea.value;
+            if (!text || text.trim().length === 0) return;
+            text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n').replace(/\n\s*\n/g, '\n\n'); 
+            text = text.replace(/^([一二三四五六七八九十]+、)/gm, '### $1');
+            text = text.replace(/^(\（[一二三四五六七八九十]+\）)/gm, '**$1**');
+            text = text.replace(/^(\d+\.)/gm, '**$1**');
+            text = text.replace(/(第[0-9一二三四五六七八九十]+条)/g, '**$1**');
+            text = text.split('\n').map(line => {
+                let cleanLine = line.trim();
+                if (cleanLine.length === 0) return '';
+                if (cleanLine.startsWith('#') || cleanLine.startsWith('![') || cleanLine.startsWith('<p')) return cleanLine;
+                return '　　' + cleanLine.replace(/^　+/, ''); 
+            }).join('\n');
+            textarea.value = text;
+            alert("已完成自动排版！");
+        }
+
         async function saveData() {
             const payload = {};
-            
             try {
                 tableSchema.editFields.forEach(f => {
                     const el = document.getElementById(`f-${f.key}`);
                     let val = el.value;
-
                     if (f.type === 'boolean') val = (val === 'true');
-                    if (f.type === 'json') val = JSON.parse(val); // 尝试解析JSON
-                    if (f.type === 'array') val = val.split(',').map(s=>s.trim()); // 逗号分隔转数组
-
+                    if (f.type === 'json') val = JSON.parse(val); 
+                    if (f.type === 'array') val = val.split(',').map(s=>s.trim());
                     payload[f.key] = val;
                 });
-            } catch (e) {
-                alert('表单格式错误 (特别是JSON字段): ' + e.message);
-                return;
-            }
-
+            } catch (e) { alert('表单格式错误: ' + e.message); return; }
             let error;
             if (currentEditId) {
                 const res = await _supabase.from(currentTable).update(payload).eq('id', currentEditId);
@@ -364,34 +506,24 @@
                 const res = await _supabase.from(currentTable).insert(payload);
                 error = res.error;
             }
-
             if (error) alert('保存失败: ' + error.message);
-            else {
-                closeModal();
-                loadTableData(currentTable); // 刷新列表
-            }
+            else { closeModal(); loadTableData(currentTable); }
         }
 
-        // 7. 删除逻辑
         async function deleteItem(table, id) {
             if(!confirm('确定删除吗？此操作不可恢复。')) return;
             const { error } = await _supabase.from(table).delete().eq('id', id);
-            if(error) alert('删除失败');
-            else loadTableData(table);
+            if(error) alert('删除失败'); else loadTableData(table);
         }
 
         function closeModal() { document.getElementById('edit-modal').style.display = 'none'; }
         async function logout() { await _supabase.auth.signOut(); location.href='index.html'; }
 
-        // ============================================================
-        // ★★★ 核心配置：表结构定义 (Schema) ★★★
-        // ============================================================
         function getTableSchema(tableName) {
             const schemas = {
-                // 1. 内容类
                 'news': {
                     title: '资讯快报',
-                    listFields: [{key:'title',label:'标题',type:'text'}, {key:'category',label:'分类',type:'text'}, {key:'publish_date',label:'日期',type:'date'}, {key:'draft',label:'草稿',type:'boolean'}],
+                    listFields: [{key:'title',label:'标题',type:'text'}, {key:'category',label:'分类',type:'text'}, {key:'publish_date',label:'日期',type:'date'}, {key:'draft',label:'状态',type:'boolean'}],
                     editFields: [
                         {key:'title',label:'标题',type:'text'},
                         {key:'category',label:'分类',type:'select',options:['Market','Policy','Capital','Global']},
@@ -399,6 +531,7 @@
                         {key:'content',label:'正文 (Markdown)',type:'textarea'},
                         {key:'image_url',label:'封面图 URL',type:'text'},
                         {key:'source',label:'来源',type:'text'},
+                        {key:'source_url',label:'原文链接',type:'text'}, 
                         {key:'publish_date',label:'发布日期',type:'date'},
                         {key:'draft',label:'是否草稿',type:'boolean'}
                     ]
@@ -409,9 +542,10 @@
                     editFields: [
                         {key:'title',label:'标题',type:'text'},
                         {key:'department',label:'发文部门',type:'text'},
-                        {key:'level',label:'层级',type:'select',options:['国家部委','地方政府','国际组织']},
+                        {key:'level',label:'层级',type:'select',options:['国家部委','地方政府','国际组织','国外/国际']},
                         {key:'summary',label:'解读摘要',type:'textarea'},
                         {key:'content',label:'正文/全文',type:'textarea'},
+                        {key:'file_url',label:'附件链接',type:'text'}, 
                         {key:'related_city',label:'关联城市',type:'text'},
                         {key:'draft',label:'草稿',type:'boolean'}
                     ]
@@ -419,72 +553,32 @@
                 'tech_trends': {
                     title: '技术前沿',
                     listFields: [{key:'title',label:'标题',type:'text'}, {key:'type',label:'类型',type:'text'}, {key:'org',label:'机构',type:'text'}, {key:'draft',label:'状态',type:'boolean'}],
-                    editFields: [
-                        {key:'title',label:'标题',type:'text'},
-                        {key:'type',label:'类型',type:'select',options:['Patent','Paper','Product']},
-                        {key:'domain',label:'领域',type:'select',options:['动力电池','飞控','复材']},
-                        {key:'summary',label:'摘要',type:'textarea'},
-                        {key:'org',label:'研发机构',type:'text'},
-                        {key:'draft',label:'草稿',type:'boolean'}
-                    ]
+                    editFields: [{key:'title',label:'标题',type:'text'}, {key:'type',label:'类型',type:'select',options:['Patent','Paper','Product']}, {key:'domain',label:'领域',type:'select',options:['动力电池','飞控','复材']}, {key:'summary',label:'摘要',type:'textarea'}, {key:'org',label:'研发机构',type:'text'}, {key:'draft',label:'草稿',type:'boolean'}]
                 },
-                
-                // 2. 核心库
                 'companies': {
                     title: '公司库',
                     listFields: [{key:'name',label:'名称',type:'text'}, {key:'industry_chain',label:'产业链',type:'text'}, {key:'total_funding_est_usd',label:'融资(USD)',type:'text'}, {key:'is_listed',label:'上市',type:'boolean'}],
-                    editFields: [
-                        {key:'name',label:'公司名',type:'text'},
-                        {key:'country_code',label:'国家代码(CN/US)',type:'text'},
-                        {key:'industry_chain',label:'产业链',type:'select',options:['upstream','midstream','downstream']},
-                        {key:'primary_category',label:'赛道',type:'select',options:['eVTOL','Drone','Battery']},
-                        {key:'description',label:'简介',type:'textarea'},
-                        {key:'total_funding_est_usd',label:'累计融资(数字)',type:'text'},
-                        {key:'is_listed',label:'是否上市',type:'boolean'},
-                        {key:'draft',label:'草稿',type:'boolean'}
-                    ]
+                    editFields: [{key:'name',label:'公司名',type:'text'}, {key:'country_code',label:'国家代码(CN/US)',type:'text'}, {key:'industry_chain',label:'产业链',type:'select',options:['upstream','midstream','downstream']}, {key:'primary_category',label:'赛道',type:'select',options:['eVTOL','Drone','Battery']}, {key:'description',label:'简介',type:'textarea'}, {key:'total_funding_est_usd',label:'累计融资(数字)',type:'text'}, {key:'is_listed',label:'是否上市',type:'boolean'}, {key:'draft',label:'草稿',type:'boolean'}]
                 },
                 'products': {
                     title: '飞行器产品',
                     listFields: [{key:'name',label:'型号',type:'text'}, {key:'type',label:'类型',type:'text'}, {key:'certification_status',label:'状态',type:'text'}],
-                    editFields: [
-                        {key:'name',label:'型号名称',type:'text'},
-                        {key:'type',label:'类型',type:'select',options:['Multicopter','Lift+Cruise','Vectored']},
-                        {key:'company_id',label:'所属公司ID',type:'text'},
-                        {key:'specs',label:'性能参数 (JSON)',type:'json'},
-                        {key:'certification_status',label:'取证状态',type:'select',options:['Concept','Prototype','Testing','Certified']},
-                        {key:'draft',label:'草稿',type:'boolean'}
-                    ]
+                    editFields: [{key:'name',label:'型号名称',type:'text'}, {key:'type',label:'类型',type:'select',options:['Multicopter','Lift+Cruise','Vectored']}, {key:'company_id',label:'所属公司ID',type:'text'}, {key:'specs',label:'性能参数 (JSON)',type:'json'}, {key:'certification_status',label:'取证状态',type:'select',options:['Concept','Prototype','Testing','Certified']}, {key:'draft',label:'草稿',type:'boolean'}]
                 },
-                
-                // 3. 商业化
                 'cooperation_leads': {
                     title: '商务线索 (B2B)',
                     listFields: [{key:'contact_name',label:'联系人',type:'text'}, {key:'company_name',label:'公司',type:'text'}, {key:'service_type',label:'意向',type:'text'}, {key:'status',label:'状态',type:'text'}],
-                    editFields: [
-                        {key:'status',label:'处理状态',type:'select',options:['pending','contacted','closed']},
-                        {key:'contact_name',label:'姓名',type:'text'},
-                        {key:'message',label:'需求详情',type:'textarea'} // 管理员主要是改状态
-                    ]
+                    editFields: [{key:'status',label:'处理状态',type:'select',options:['pending','contacted','closed']}, {key:'contact_name',label:'姓名',type:'text'}, {key:'message',label:'需求详情',type:'textarea'}]
                 },
                 'media_requests': {
                     title: '媒体申请',
                     listFields: [{key:'organization',label:'机构',type:'text'}, {key:'request_type',label:'类型',type:'text'}, {key:'status',label:'状态',type:'text'}],
-                    editFields: [
-                        {key:'status',label:'审核状态',type:'select',options:['pending','approved','rejected']},
-                        {key:'material_link',label:'资料链接',type:'text'}
-                    ]
+                    editFields: [{key:'status',label:'审核状态',type:'select',options:['pending','approved','rejected']}, {key:'material_link',label:'资料链接',type:'text'}]
                 },
                 'profiles': {
                     title: '用户管理',
                     listFields: [{key:'username',label:'用户名',type:'text'}, {key:'email',label:'邮箱',type:'text'}, {key:'is_expert',label:'专家',type:'boolean'}, {key:'tier',label:'等级',type:'text'}],
-                    editFields: [
-                        {key:'username',label:'用户名',type:'text'},
-                        {key:'is_expert',label:'认证专家',type:'boolean'},
-                        {key:'industry_role',label:'专家头衔',type:'text'},
-                        {key:'tier',label:'会员等级',type:'select',options:['free','pro','enterprise']},
-                        {key:'is_admin',label:'管理员权限 (慎用)',type:'boolean'}
-                    ]
+                    editFields: [{key:'username',label:'用户名',type:'text'}, {key:'is_expert',label:'认证专家',type:'boolean'}, {key:'industry_role',label:'专家头衔',type:'text'}, {key:'tier',label:'会员等级',type:'select',options:['free','pro','enterprise']}, {key:'is_admin',label:'管理员权限 (慎用)',type:'boolean'}]
                 }
             };
             return schemas[tableName] || schemas['news'];
