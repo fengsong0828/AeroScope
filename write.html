@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>撰写专栏文章 | AeroScope</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* === 全局重置与背景 === */
+        body { 
+            background-color: #f8fafc; /* 与 Index 保持一致的背景色 */
+            margin: 0; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1e293b;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* === 顶部导航栏 (固定) === */
+        header {
+            background: white;
+            height: 64px; /* 与 Index 高度一致 */
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            z-index: 100;
+        }
+        
+        .header-inner {
+            width: 100%; 
+            max-width: 1200px; /* 【关键修改】与 Index 的 standard-container 宽度一致 */
+            padding: 0 20px;
+            box-sizing: border-box; /* 防止padding撑大 */
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+        }
+        
+        /* Logo 样式复用 */
+        .logo { font-size: 1.2rem; font-weight: 800; color: #0f172a; text-decoration: none; display: flex; align-items: center; gap: 5px; }
+        .logo span { color: #3b82f6; }
+        
+        .header-actions { display: flex; gap: 12px; align-items: center; }
+        
+        /* 按钮样式复用 */
+        .btn { padding: 8px 16px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: 0.2s; border: 1px solid transparent; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+        .btn-text { background: transparent; color: #64748b; font-weight: 500; }
+        .btn-text:hover { color: #1e293b; }
+        .btn-secondary { background: white; border-color: #cbd5e1; color: #475569; }
+        .btn-secondary:hover { border-color: #94a3b8; background: #f8fafc; }
+        .btn-primary { background: #3b82f6; color: white; box-shadow: 0 2px 5px rgba(59, 130, 246, 0.3); border: none; }
+        .btn-primary:hover { background: #2563eb; transform: translateY(-1px); }
+
+        /* === 主滚动区域 === */
+        .scroll-container {
+            flex: 1; overflow-y: auto; scroll-behavior: smooth;
+        }
+
+        /* === 白纸卡片容器 === */
+        .editor-paper {
+            width: 100%;
+            max-width: 1200px; /* 【关键修改】与 Index 宽度一致 */
+            margin: 30px auto 60px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0; /* 边框颜色与 Index 一致 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* 阴影与 Index 卡片一致 */
+            overflow: hidden;
+            position: relative;
+            min-height: 800px;
+            box-sizing: border-box;
+        }
+
+        /* === 1. 页面标题区域 === */
+        .paper-header {
+            padding: 30px 50px 20px 50px;
+        }
+        
+        /* 【关键修改】优化“撰写专栏文章”样式 */
+        .page-heading {
+            font-size: 1.1rem; /* 放大 */
+            font-weight: 800; 
+            color: #0f172a; /* 改为黑色 */
+            margin-bottom: 10px; 
+            display: flex; align-items: center; gap: 8px;
+        }
+        /* 图标装饰 */
+        .page-heading::before {
+            content: '✍️'; 
+            font-size: 1.2rem;
+        }
+
+        /* 【关键修改】缩小文章标题输入框高度 */
+        .title-input {
+            width: 100%; border: none; 
+            font-size: 1.8rem; /* 稍微调小一点 */
+            font-weight: 800; color: #0f172a;
+            padding: 5px 0; /* 减小内边距 */
+            outline: none; background: transparent; 
+            line-height: 1.2;
+        }
+        .title-input::placeholder { color: #cbd5e1; }
+
+        /* === 2. 元数据配置面板 (灰色背景块) === */
+        .meta-panel {
+            margin: 10px 50px 20px 50px;
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .meta-row { display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group:last-child { margin-bottom: 0; }
+        .form-label { display: block; font-size: 0.85rem; font-weight: 700; color: #475569; margin-bottom: 6px; }
+        
+        .form-select, .form-textarea {
+            width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px;
+            font-size: 0.9rem; background: white; color: #1e293b; transition: 0.2s; box-sizing: border-box;
+        }
+        .form-select:focus, .form-textarea:focus { border-color: #3b82f6; outline: none; }
+
+        /* 封面图上传区 */
+        .cover-row { display: flex; gap: 10px; }
+        .cover-uploader {
+            width: 100px; height: 60px; border: 1px dashed #cbd5e1; border-radius: 6px;
+            background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: pointer; transition: 0.2s; position: relative; overflow: hidden; flex-shrink: 0;
+        }
+        .cover-uploader:hover { border-color: #3b82f6; background: #eff6ff; }
+        .cover-hint { color: #94a3b8; font-size: 0.7rem; pointer-events: none; text-align: center; line-height: 1.2; }
+        .cover-icon { font-size: 16px; margin-bottom: 2px; }
+        .cover-preview { width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0; display: none; }
+        
+        .cover-input-text {
+            flex: 1; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem;
+        }
+
+        /* === 3. 工具栏 (吸顶) === */
+        .toolbar-sticky {
+            position: sticky; top: 0; z-index: 50; 
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid #e2e8f0;
+            border-top: 1px dashed #e2e8f0; /* 改为虚线分隔，更轻量 */
+            padding: 8px 50px;
+            display: flex; gap: 5px; align-items: center; flex-wrap: wrap;
+        }
+        
+        .tool-btn {
+            width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+            border: 1px solid transparent; border-radius: 4px; background: transparent;
+            color: #64748b; cursor: pointer; transition: 0.2s; font-size: 0.85rem;
+        }
+        .tool-btn:hover { background: #f1f5f9; color: #1e293b; border-color: #cbd5e1; }
+        .tool-btn i { font-style: normal; font-weight: bold; }
+        
+        /* 文字按钮 */
+        .tool-btn-text { width: auto; padding: 0 8px; font-size: 0.8rem; font-weight: 500; }
+        
+        .separator { width: 1px; height: 16px; background: #e2e8f0; margin: 0 6px; }
+
+        /* === 4. 正文编辑区 === */
+        #rich-editor {
+            padding: 40px 50px 80px 50px;
+            min-height: 500px;
+            outline: none;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #334155;
+        }
+        /* 编辑器内样式重置 */
+        #rich-editor p { margin-bottom: 1.2em; min-height: 1.2em; }
+        #rich-editor h2 { font-size: 1.5rem; color: #1e293b; margin-top: 1.5em; margin-bottom: 0.8em; font-weight: 700; border-bottom: none; }
+        #rich-editor blockquote { border-left: 4px solid #cbd5e1; padding-left: 16px; color: #64748b; font-style: italic; margin: 1.5em 0; background: #f8fafc; padding-top:10px; padding-bottom:10px;}
+        #rich-editor img { max-width: 100%; border-radius: 8px; display: block; margin: 20px auto; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+
+        #file-input-cover, #file-input-editor { display: none; }
+
+        /* 移动端适配 */
+        @media (max-width: 1200px) {
+            .header-inner, .editor-paper { max-width: 95%; }
+        }
+        @media (max-width: 768px) {
+            .header-inner { padding: 0 15px; }
+            .editor-paper { margin: 0; border-radius: 0; box-shadow: none; border:none; min-height: calc(100vh - 64px); }
+            .paper-header, .toolbar-sticky, #rich-editor { padding-left: 20px; padding-right: 20px; }
+            .meta-panel { margin: 20px; padding: 15px; }
+            .meta-row { grid-template-columns: 1fr; gap: 20px; }
+            .title-input { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo">AeroScope <span>Insight</span></a>
+            <div class="header-actions">
+                <a href="index.html" class="btn btn-text">取消</a>
+                <button class="btn btn-secondary" onclick="saveArticle('draft')">💾 暂存草稿</button>
+                <button class="btn btn-primary" onclick="saveArticle('published')">🚀 立即发布</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="scroll-container">
+        <div class="editor-paper">
+            
+            <!-- 1. 标题区 -->
+            <div class="paper-header">
+                <!-- 优化：黑色大字体标题 -->
+                <div class="page-heading">撰写专栏文章</div>
+                <!-- 优化：缩小了padding和字体，更紧凑 -->
+                <input type="text" id="art-title" class="title-input" placeholder="请输入文章标题...">
+            </div>
+
+            <!-- 2. 配置面板 (收纳 领域、摘要、封面) -->
+            <div class="meta-panel">
+                <div class="meta-row">
+                    <!-- 左列：设置 -->
+                    <div class="meta-col">
+                        <div class="form-group">
+                            <label class="form-label">所属领域</label>
+                            <select id="art-cat" class="form-select">
+                                <option value="技术分析">⚙️ 技术分析</option>
+                                <option value="市场研判">📊 市场研判</option>
+                                <option value="政策解读">📜 政策解读</option>
+                                <option value="投资逻辑">💰 投资逻辑</option>
+                                <option value="产业观察">🔭 产业观察</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">封面图片</label>
+                            <div class="cover-row">
+                                <div class="cover-uploader" onclick="document.getElementById('file-input-cover').click()">
+                                    <div class="cover-hint" id="cover-placeholder">
+                                        <div class="cover-icon">📷</div>
+                                        点击上传
+                                    </div>
+                                    <img id="cover-img-preview" class="cover-preview">
+                                </div>
+                                <input type="hidden" id="art-cover">
+                                <input type="file" id="file-input-cover" accept="image/*" onchange="uploadCover(this)">
+                                <!-- 增加一个链接输入框作为备用，并自动对齐 -->
+                                <input type="text" class="form-select" placeholder="或输入图片链接..." oninput="updateCoverFromLink(this.value)" style="height: 60px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右列：摘要 -->
+                    <div class="meta-col">
+                        <div class="form-group" style="height: 100%; display: flex; flex-direction: column;">
+                            <label class="form-label">文章摘要 (选填)</label>
+                            <textarea id="art-summary" class="form-textarea" style="flex: 1; resize: none;" placeholder="如果不填，发布时系统将自动截取正文前80字作为摘要..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. 工具栏 (吸顶) -->
+            <div class="toolbar-sticky">
+                <button class="tool-btn" onmousedown="handleUndo(); return false;" title="撤销 (Ctrl+Z)">↩️</button>
+                <button class="tool-btn" onmousedown="handleRedo(); return false;" title="重做 (Ctrl+Y)">↪️</button>
+                <div class="separator"></div>
+
+                <button class="tool-btn" onmousedown="formatDoc('bold'); return false;" title="加粗"><b>B</b></button>
+                <button class="tool-btn tool-btn-text" onmousedown="formatDoc('formatBlock', '<h2>'); return false;" title="二级标题">H2</button>
+                <button class="tool-btn tool-btn-text" onmousedown="formatDoc('formatBlock', '<p>'); return false;" title="正文段落">P</button>
+                <div class="separator"></div>
+                
+                <button class="tool-btn tool-btn-text" onmousedown="customStyle('indent'); return false;">⇥ 缩进</button>
+                <button class="tool-btn tool-btn-text" onmousedown="customStyle('outdent'); return false;">⇤ 取消</button>
+                <div class="separator"></div>
+
+                <button class="tool-btn" onmousedown="customStyle('justifyLeft'); return false;" title="左对齐">⬅</button>
+                <button class="tool-btn" onmousedown="customStyle('justifyCenter'); return false;" title="居中">⬆</button>
+                <button class="tool-btn" onmousedown="customStyle('justifyRight'); return false;" title="右对齐">➡</button>
+                <div class="separator"></div>
+
+                <button class="tool-btn tool-btn-text" onmousedown="customStyle('lineHeight'); return false;" title="增加行间距">↕️ 间距+</button>
+                
+                <div class="separator"></div>
+                <button class="tool-btn tool-btn-text" onclick="document.getElementById('file-input-editor').click()" title="插入正文图片" style="color:#3b82f6;">
+                    🖼️ 插入图片
+                </button>
+                <input type="file" id="file-input-editor" accept="image/*" onchange="insertEditorImage(this)">
+            </div>
+
+            <!-- 4. 正文编辑主体 -->
+            <div id="rich-editor" contenteditable="true">
+                <p>在此输入正文内容...</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co'; 
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        let currentUser = null;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const { data: { session } } = await _supabase.auth.getSession();
+            if (!session) {
+                alert('请登录后发布文章');
+                window.location.href = 'login.html';
+                return;
+            }
+            currentUser = session.user;
+        });
+
+        // ================= 编辑器核心逻辑 =================
+
+        function formatDoc(cmd, value = null) {
+            document.execCommand(cmd, false, value);
+            document.getElementById('rich-editor').focus();
+        }
+
+        function handleUndo() { document.execCommand('undo', false, null); }
+        function handleRedo() { document.execCommand('redo', false, null); }
+
+        function customStyle(action) {
+            const selection = window.getSelection();
+            if (!selection.rangeCount) return;
+
+            let node = selection.anchorNode;
+            while (node && node.nodeName !== 'P' && node.nodeName !== 'H2' && node.nodeName !== 'DIV' && node.nodeName !== 'BLOCKQUOTE' && node.id !== 'rich-editor') {
+                node = node.parentNode;
+            }
+
+            if (!node || node.id === 'rich-editor') {
+                document.execCommand('formatBlock', false, 'p');
+                node = window.getSelection().anchorNode.parentNode;
+            }
+
+            if (node.id === 'rich-editor') return; 
+
+            switch (action) {
+                case 'indent': node.style.textIndent = '2em'; break;
+                case 'outdent': node.style.textIndent = '0'; break;
+                case 'justifyLeft': node.style.textAlign = 'left'; break;
+                case 'justifyCenter': node.style.textAlign = 'center'; break;
+                case 'justifyRight': node.style.textAlign = 'right'; break;
+                case 'lineHeight':
+                    node.style.lineHeight = node.style.lineHeight === '2' ? '1.6' : '2';
+                    node.style.marginBottom = '24px';
+                    break;
+            }
+        }
+
+        // ================= 图片上传逻辑 =================
+
+        async function insertEditorImage(input) {
+            const file = input.files[0];
+            if (!file) return;
+            try {
+                const id = 'img-' + Date.now();
+                const loadingHtml = `<div id="${id}" style="color:#94a3b8;text-align:center;padding:10px;background:#f8fafc;">[图片上传中...]</div><br>`;
+                document.execCommand('insertHTML', false, loadingHtml);
+                const url = await uploadToSupabase(file);
+                const imgTag = `<img src="${url}" style="max-width:100%; border-radius:8px; display:block; margin:10px auto; box-shadow:0 4px 10px rgba(0,0,0,0.1);"><br>`;
+                const placeholder = document.getElementById(id);
+                if(placeholder) placeholder.outerHTML = imgTag;
+            } catch (err) { alert('上传失败: ' + err.message); } finally { input.value = ''; }
+        }
+
+        // 封面图：链接输入同步预览
+        function updateCoverFromLink(url) {
+            document.getElementById('art-cover').value = url;
+            const img = document.getElementById('cover-img-preview');
+            const placeholder = document.getElementById('cover-placeholder');
+            if (url) {
+                img.src = url; img.style.display = 'block'; placeholder.style.display = 'none';
+            } else {
+                img.style.display = 'none'; placeholder.style.display = 'block';
+            }
+        }
+
+        // 封面图：文件上传
+        async function uploadCover(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const hint = document.getElementById('cover-placeholder');
+            hint.innerHTML = '上传中...';
+            try {
+                const url = await uploadToSupabase(file);
+                updateCoverFromLink(url); // 复用预览逻辑
+            } catch (err) { 
+                alert('封面上传失败'); hint.innerHTML = '<div class="cover-icon">📷</div>点击上传'; 
+            } finally { input.value = ''; }
+        }
+
+        async function uploadToSupabase(file) {
+            const fileName = `user_${currentUser.id}_${Date.now()}_${file.name.replace(/[^\w.]/g, '')}`;
+            const { data, error } = await _supabase.storage.from('article_images').upload(fileName, file);
+            if (error) throw error;
+            const { data: { publicUrl } } = _supabase.storage.from('article_images').getPublicUrl(fileName);
+            return publicUrl;
+        }
+
+        // ================= 发布逻辑 =================
+
+        async function saveArticle(status) {
+            const title = document.getElementById('art-title').value.trim();
+            const editor = document.getElementById('rich-editor');
+            const content = editor.innerHTML; 
+            const plainText = editor.innerText;
+
+            if (!title) return alert('请填写文章标题');
+            if (!plainText || plainText.length < 5) return alert('正文内容太少');
+
+            const btn = status === 'published' ? document.querySelector('.btn-primary') : document.querySelector('.btn-secondary');
+            const originalText = btn.innerText;
+            btn.innerText = '提交中...';
+            btn.disabled = true;
+
+            let summary = document.getElementById('art-summary').value.trim();
+            if (!summary) summary = plainText.substring(0, 100).replace(/\n/g, ' ') + '...';
+
+            const payload = {
+                user_id: currentUser.id,
+                title: title,
+                category: document.getElementById('art-cat').value,
+                cover_image: document.getElementById('art-cover').value || null,
+                content: content, 
+                summary: summary,
+                status: status,
+                updated_at: new Date()
+            };
+
+            try {
+                const { error } = await _supabase.from('user_articles').insert(payload);
+                if (error) throw error;
+                if (status === 'published') {
+                    alert('🎉 发布成功！'); location.href = 'index.html'; 
+                } else {
+                    alert('💾 草稿已保存。');
+                }
+            } catch (err) { console.error(err); alert('提交失败: ' + err.message); } 
+            finally { btn.disabled = false; btn.innerText = originalText; }
+        }
+    </script>
+</body>
+</html>
