@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章详情 | AeroScope Insight</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* === 页面专属样式 === */
+        body { background-color: #f8fafc; }
+        
+        .layout-grid {
+            display: grid; grid-template-columns: 2.5fr 1fr; gap: 30px;
+            max-width: 1200px; margin: 30px auto 60px; padding: 0 20px;
+            align-items: start;
+        }
+
+        /* 左侧：文章卡片 */
+        .main-card {
+            background: white; border-radius: 12px; border: 1px solid #e2e8f0;
+            padding: 40px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        }
+
+        /* 文章头部 */
+        .article-meta { display: flex; gap: 10px; margin-bottom: 15px; }
+        .category-tag { background: #eff6ff; color: #3b82f6; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; }
+        .meta-text { color: #94a3b8; font-size: 0.85rem; display: flex; align-items: center; }
+
+        .article-title { font-size: 2rem; font-weight: 800; color: #0f172a; line-height: 1.3; margin-bottom: 25px; }
+
+        /* 作者名片 (核心差异点) */
+        .author-card-large {
+            display: flex; align-items: center; gap: 15px;
+            padding: 20px; background: #f8fafc; border-radius: 12px; margin-bottom: 30px;
+            border: 1px solid #f1f5f9;
+        }
+        .ac-avatar { 
+            width: 56px; height: 56px; border-radius: 50%; background: #cbd5e1; 
+            color: white; font-size: 1.5rem; font-weight: bold; 
+            display: flex; align-items: center; justify-content: center;
+        }
+        .ac-info { flex: 1; }
+        .ac-name { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 2px; }
+        .ac-role { font-size: 0.85rem; color: #64748b; background: #fff; border: 1px solid #e2e8f0; padding: 1px 6px; border-radius: 4px; display: inline-block; }
+        .btn-follow { 
+            padding: 6px 16px; border-radius: 20px; border: 1px solid #3b82f6; 
+            color: #3b82f6; background: white; font-weight: 600; cursor: pointer; transition: 0.2s;
+        }
+        .btn-follow:hover { background: #eff6ff; }
+
+        /* 封面图 */
+        .article-cover { width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 30px; display: none; }
+
+        /* 正文区域 (适配 contenteditable 生成的 HTML) */
+        .article-body { font-size: 1.1rem; line-height: 1.8; color: #334155; overflow-wrap: break-word; }
+        .article-body p { margin-bottom: 1.5em; }
+        .article-body img { max-width: 100%; border-radius: 8px; margin: 10px 0; }
+        .article-body h2 { font-size: 1.6rem; color: #1e293b; margin-top: 40px; margin-bottom: 20px; font-weight: 700; }
+        .article-body blockquote { border-left: 4px solid #3b82f6; padding-left: 15px; color: #64748b; font-style: italic; background: #f8fafc; padding: 15px; margin: 20px 0; }
+
+        /* 底部互动 */
+        .interaction-bar { 
+            margin-top: 50px; padding-top: 30px; border-top: 1px solid #f1f5f9; 
+            display: flex; justify-content: center; gap: 30px; 
+        }
+        .action-btn { 
+            display: flex; flex-direction: column; align-items: center; gap: 5px; 
+            background: none; border: none; cursor: pointer; color: #64748b; font-size: 0.9rem; transition: 0.2s;
+        }
+        .action-icon { 
+            width: 48px; height: 48px; border-radius: 50%; background: #f1f5f9; 
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: 0.2s;
+        }
+        .action-btn:hover .action-icon { background: #eff6ff; color: #3b82f6; transform: translateY(-2px); }
+        .action-btn.active .action-icon { background: #eff6ff; color: #3b82f6; }
+
+        /* 右侧侧边栏 */
+        .sidebar-widget { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 20px; margin-bottom: 20px; }
+        .widget-title { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 15px; padding-left: 10px; border-left: 3px solid #3b82f6; }
+        
+        .more-article-item { display: block; padding: 10px 0; border-bottom: 1px dashed #f1f5f9; text-decoration: none; }
+        .more-article-item:last-child { border-bottom: none; }
+        .more-title { font-size: 0.95rem; color: #334155; font-weight: 500; margin-bottom: 5px; transition: 0.2s; }
+        .more-article-item:hover .more-title { color: #3b82f6; }
+        .more-meta { font-size: 0.8rem; color: #94a3b8; }
+
+        @media (max-width: 768px) {
+            .layout-grid { grid-template-columns: 1fr; }
+            .article-title { font-size: 1.6rem; }
+            .main-card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="standard-container">
+            <div class="nav-inner">
+                <a href="index.html" class="logo">AeroScope<span>Insight</span></a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <nav class="nav-links" id="navMenu">
+                    <a href="index.html">首页</a>
+                    <a href="news.html">资讯快报</a>
+                    <a href="policies.html">政策法规</a>
+                    <a href="tech.html">技术前沿</a>
+                    <a href="companies.html">行业图谱</a>
+                    <a href="forum.html">论坛交流</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-component">
+                        <div class="search-box"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)"></div>
+                        <div id="search-dropdown"></div>
+                    </div>
+                    <button class="btn btn-primary" id="auth-btn" onclick="location.href='login.html'">登录/注册</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="layout-grid">
+        <!-- 左侧：文章主体 -->
+        <main class="main-card">
+            <div id="loading-state" style="text-align:center; padding:40px; color:#94a3b8;">文章加载中...</div>
+            
+            <div id="article-content" style="display: none;">
+                <!-- 1. 标题与Meta -->
+                <div class="article-meta">
+                    <span class="category-tag" id="art-cat">--</span>
+                    <span class="meta-text"><span id="art-date">--</span> · 阅读 <span id="art-views">0</span></span>
+                </div>
+                <h1 class="article-title" id="art-title">--</h1>
+
+                <!-- 2. 作者名片 -->
+                <div class="author-card-large">
+                    <div class="ac-avatar" id="auth-av">U</div>
+                    <div class="ac-info">
+                        <div class="ac-name" id="auth-name">--</div>
+                        <span class="ac-role" id="auth-role">普通用户</span>
+                    </div>
+                    <button class="btn-follow" onclick="toggleFollow()">+ 关注</button>
+                </div>
+
+                <!-- 3. 封面与正文 -->
+                <img id="art-cover" class="article-cover">
+                <div class="article-body" id="art-body">
+                    <!-- HTML 内容将注入这里 -->
+                </div>
+
+                <!-- 4. 底部互动 -->
+                <div class="interaction-bar">
+                    <button class="action-btn" onclick="handleLike()">
+                        <div class="action-icon">👍</div>
+                        <span id="like-count">0</span>
+                    </button>
+                    <button class="action-btn" onclick="copyLink()">
+                        <div class="action-icon">🔗</div>
+                        <span>分享</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- 右侧：侧边栏 -->
+        <aside>
+            <div class="sidebar-widget">
+                <div class="widget-title">该作者的其他文章</div>
+                <div id="more-articles-list">
+                    <p style="color:#94a3b8; font-size:0.85rem;">暂无更多</p>
+                </div>
+            </div>
+
+            <div class="sidebar-widget">
+                <div class="widget-title">相关推荐</div>
+                <div style="font-size:0.85rem; color:#64748b;">
+                    AI 推荐算法正在学习中...
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="standard-container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <h4>AeroScope Insight</h4>
+                    <p style="font-size:0.9rem; color:#94a3b8; line-height: 1.6; margin-bottom: 20px;">连接政策、资本与技术，打造低空经济领域的数字化基础设施与决策引擎。</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col"><h4>核心板块</h4><ul><li><a href="news.html">资讯快报</a></li><li><a href="policies.html">政策法规</a></li><li><a href="companies.html">企业数据库</a></li></ul></div>
+                <div class="footer-col"><h4>数据图谱</h4><ul><li><a href="chart-funding.html">全球融资趋势</a></li><li><a href="chart-cities.html">试点城市分布</a></li><li><a href="chart-companies.html">产业链全景图</a></li></ul></div>
+            </div>
+            <div class="copyright" style="border-top:1px solid #334155; padding-top:20px; margin-top:20px; text-align:center; color:#64748b; font-size:0.85rem;">&copy; 2025 AeroScope Insight. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co'; 
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        let articleId = null;
+        let currentLikes = 0;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            checkUserLogin();
+            
+            const params = new URLSearchParams(window.location.search);
+            articleId = params.get('id');
+            
+            if(!articleId) {
+                document.getElementById('loading-state').innerText = '文章不存在';
+                return;
+            }
+
+            await loadArticle();
+            incrementView(); // 增加阅读数
+        });
+
+        async function loadArticle() {
+            // 联表查询：文章 + 作者信息
+            const { data, error } = await _supabase
+                .from('user_articles')
+                .select(`
+                    *,
+                    profiles:user_id ( username, is_expert, industry_role )
+                `)
+                .eq('id', articleId)
+                .single();
+
+            if (error || !data) {
+                document.getElementById('loading-state').innerText = '加载失败或文章已被删除';
+                return;
+            }
+
+            // 渲染元数据
+            document.title = `${data.title} | AeroScope`;
+            document.getElementById('art-cat').innerText = data.category || '洞察';
+            document.getElementById('art-date').innerText = new Date(data.created_at).toLocaleDateString();
+            document.getElementById('art-views').innerText = data.views || 0;
+            document.getElementById('art-title').innerText = data.title;
+            
+            // 渲染作者
+            const author = data.profiles;
+            const authorName = author?.username || '匿名用户';
+            document.getElementById('auth-name').innerText = authorName;
+            document.getElementById('auth-av').innerText = authorName.charAt(0).toUpperCase();
+            if (author?.is_expert) {
+                document.getElementById('auth-role').innerText = author.industry_role || '认证专家';
+                document.getElementById('auth-role').style.cssText = "color:#d97706; background:#fef3c7; border-color:#fcd34d;";
+            }
+
+            // 渲染封面
+            if (data.cover_image) {
+                const img = document.getElementById('art-cover');
+                img.src = data.cover_image;
+                img.style.display = 'block';
+            }
+
+            // 渲染正文 (直接注入 HTML)
+            document.getElementById('art-body').innerHTML = data.content;
+
+            // 互动数据
+            currentLikes = data.likes || 0;
+            document.getElementById('like-count').innerText = currentLikes;
+
+            // 显示内容
+            document.getElementById('loading-state').style.display = 'none';
+            document.getElementById('article-content').style.display = 'block';
+
+            // 加载作者的其他文章
+            loadMoreArticles(data.user_id);
+        }
+
+        async function loadMoreArticles(userId) {
+            const { data } = await _supabase
+                .from('user_articles')
+                .select('id, title, created_at')
+                .eq('user_id', userId)
+                .eq('status', 'published')
+                .neq('id', articleId) // 排除当前文章
+                .limit(5);
+
+            if (data && data.length > 0) {
+                const list = document.getElementById('more-articles-list');
+                list.innerHTML = '';
+                data.forEach(item => {
+                    list.innerHTML += `
+                        <a href="article-detail.html?id=${item.id}" class="more-article-item">
+                            <div class="more-title">${item.title}</div>
+                            <div class="more-meta">${new Date(item.created_at).toLocaleDateString()}</div>
+                        </a>
+                    `;
+                });
+            }
+        }
+
+        async function incrementView() {
+            // 使用 RPC 或直接 update (简单起见这里先不做严格防刷)
+            const { data } = await _supabase.rpc('increment_article_view', { article_id: articleId });
+            // 如果没有配置 RPC，也可以忽略，或者前端不做实时刷新
+        }
+
+        async function handleLike() {
+            // 简单点赞逻辑
+            currentLikes++;
+            document.getElementById('like-count').innerText = currentLikes;
+            
+            await _supabase
+                .from('user_articles')
+                .update({ likes: currentLikes })
+                .eq('id', articleId);
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href);
+            alert('链接已复制到剪贴板');
+        }
+
+        function toggleFollow() {
+            alert('关注功能开发中...');
+        }
+
+        // --- Header 逻辑 ---
+        async function checkUserLogin() {
+            const { data: { session } } = await _supabase.auth.getSession();
+            const btn = document.getElementById('auth-btn');
+            if (session) {
+                btn.innerText = session.user.email.split('@')[0];
+                btn.onclick = () => location.href = 'profile.html';
+            }
+        }
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        let searchTimeout;
+        async function performGlobalSearch(keyword) {
+            const dropdown = document.getElementById('search-dropdown');
+            if (!keyword || keyword.length < 1) { dropdown.style.display = 'none'; return; }
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(async () => {
+                dropdown.style.display = 'block';
+                const { data } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
+                if (!data || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
+                let html = '';
+                data.forEach(item => {
+                    let link=`news-detail.html?id=${item.id}`;
+                    if(item.type==='company') link='companies.html';
+                    else if(item.type==='policy') link=`policy-detail.html?id=${item.id}`;
+                    html += `<a href="${link}" class="search-result-item">${item.title}</a>`;
+                });
+                dropdown.innerHTML = html;
+            }, 500);
+        }
+        document.addEventListener('click', (e) => { if(!document.querySelector('.search-component').contains(e.target)) document.getElementById('search-dropdown').style.display='none'; });
+    </script>
+</body>
+</html>

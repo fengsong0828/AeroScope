@@ -78,7 +78,7 @@
         .form-control:focus { border-color: #3b82f6; outline: none; }
         .form-control:disabled { background: #f8fafc; color: #94a3b8; cursor: not-allowed; }
 
-        /* 列表项 (话题/关注) */
+        /* 列表项 */
         .list-item { padding: 15px 0; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
         .list-item:last-child { border-bottom: none; }
         .item-main a { color: #1e293b; font-weight: 500; text-decoration: none; transition: 0.2s; }
@@ -94,6 +94,52 @@
             display: none; text-decoration: none;
         }
         .admin-banner:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(15, 23, 42, 0.3); }
+
+        /* === 优化后的头部 Tab 样式 === */
+        .header-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f1f5f9; /* 移到父容器，作为贯穿线 */
+            padding-bottom: 10px;
+        }
+
+        .content-tabs { 
+            display: flex; 
+            gap: 30px; 
+            /* 移除之前的 margin-bottom，靠父容器的 padding-bottom 撑开 */
+        }
+
+        .content-tab-btn { 
+            background: none; 
+            border: none; 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            color: #94a3b8; 
+            cursor: pointer; 
+            transition: 0.2s; 
+            position: relative; 
+            padding: 0;
+        }
+        
+        .content-tab-btn.active { color: #1e293b; }
+        
+        .content-tab-btn.active::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: -12px; /* 这里的 -12px 正好覆盖 header-row 的 padding + border */
+            left: 0; 
+            width: 100%; 
+            height: 3px; 
+            background: #3b82f6; 
+            border-radius: 3px 3px 0 0; 
+        }
+
+        /* 微调按钮位置，使其在视觉上更协调 */
+        #btn-create-post {
+            margin-bottom: 2px;
+        }
 
         @media (max-width: 768px) {
             .profile-layout { grid-template-columns: 1fr; }
@@ -145,7 +191,6 @@
             <ul class="side-menu">
                 <li><button class="menu-btn active" onclick="switchSection('info', this)">👤 个人资料</button></li>
                 <li><button class="menu-btn" onclick="switchSection('posts', this)">📝 我的发布</button></li>
-                <!-- <li><button class="menu-btn" onclick="switchSection('follows', this)">⭐ 我的关注</button></li> -->
                 <li><button class="menu-btn logout" onclick="logout()">🛑 退出登录</button></li>
             </ul>
         </aside>
@@ -184,12 +229,20 @@
                 </div>
             </div>
 
-            <!-- 2. 我的发布 -->
+            <!-- 2. 我的发布 (话题/文章切换) -->
             <div id="section-posts" style="display: none;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-                    <h2 class="section-title" style="margin-bottom: 0;">我发布的话题</h2>
-                    <button class="btn btn-primary" onclick="location.href='forum.html'" style="padding: 8px 20px; font-size: 0.9rem;">+ 发布话题</button>
+                
+                <!-- 头部：Tab + 动态按钮 -->
+                <div class="header-row">
+                    <div class="content-tabs">
+                        <button class="content-tab-btn active" onclick="switchPostType('topic', this)">话题</button>
+                        <button class="content-tab-btn" onclick="switchPostType('article', this)">文章</button>
+                    </div>
+                    <!-- 按钮位置调整后 -->
+                    <button id="btn-create-post" class="btn btn-primary" onclick="location.href='forum.html'" style="padding: 8px 20px; font-size: 0.9rem;">+ 发布话题</button>
                 </div>
+
+                <!-- 列表容器 -->
                 <div id="my-posts-list">
                     <p style="color:#94a3b8; text-align:center; padding:40px;">加载中...</p>
                 </div>
@@ -235,6 +288,7 @@
         const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
         let currentUserId = null;
+        let currentPostType = 'topic'; // 'topic' or 'article'
 
         document.addEventListener('DOMContentLoaded', async () => {
             const { data: { session } } = await _supabase.auth.getSession();
@@ -242,7 +296,8 @@
             
             currentUserId = session.user.id;
             loadProfile();
-            loadMyPosts();
+            // 默认加载话题
+            loadMyPosts('topic');
         });
 
         // 1. 加载资料
@@ -276,35 +331,108 @@
             }
         }
 
-        // 2. 加载我的发布
-        async function loadMyPosts() {
+        // =========================================
+        // 核心修改：切换发布类型 (话题/文章)
+        // =========================================
+        function switchPostType(type, btn) {
+            if (currentPostType === type) return;
+            currentPostType = type;
+
+            // UI 更新
+            document.querySelectorAll('.content-tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // 按钮更新
+            const actionBtn = document.getElementById('btn-create-post');
+            if (type === 'topic') {
+                actionBtn.innerText = "+ 发布话题";
+                actionBtn.onclick = () => location.href = 'forum.html'; // 简单的跳转逻辑，或者触发 forum.html#post
+            } else {
+                actionBtn.innerText = "✍️ 写文章";
+                actionBtn.onclick = () => location.href = 'write.html';
+            }
+
+            // 数据重载
+            loadMyPosts(type);
+        }
+
+        // 2. 加载数据 (根据 type 分流)
+        async function loadMyPosts(type) {
             const container = document.getElementById('my-posts-list');
-            const { data } = await _supabase.from('forum_topics').select('*').eq('user_id', currentUserId).order('created_at', {ascending:false});
+            container.innerHTML = '<p style="color:#94a3b8; text-align:center; padding:40px;">加载中...</p>';
+
+            let data = [], error = null;
+
+            if (type === 'topic') {
+                // 加载话题
+                const res = await _supabase.from('forum_topics')
+                    .select('*')
+                    .eq('user_id', currentUserId)
+                    .order('created_at', {ascending:false});
+                data = res.data; error = res.error;
+            } else {
+                // 加载文章
+                const res = await _supabase.from('user_articles')
+                    .select('*')
+                    .eq('user_id', currentUserId)
+                    .order('created_at', {ascending:false});
+                data = res.data; error = res.error;
+            }
             
-            if (!data || !data.length) {
-                container.innerHTML = '<div style="text-align:center; padding:40px; color:#94a3b8;">您还没有发布过话题</div>';
+            if (error) {
+                container.innerHTML = '<div style="text-align:center; color:#ef4444;">数据加载失败</div>';
                 return;
             }
 
+            if (!data || !data.length) {
+                const emptyText = type === 'topic' ? '您还没有发布过话题' : '您还没有发布过文章';
+                container.innerHTML = `<div style="text-align:center; padding:40px; color:#94a3b8;">${emptyText}</div>`;
+                return;
+            }
+
+            // 渲染列表
             container.innerHTML = '';
-            data.forEach(t => {
+            data.forEach(item => {
+                const title = item.title;
+                const date = new Date(item.created_at).toLocaleDateString();
+                
+                // 差异化渲染
+                let metaHtml = '';
+                let link = '';
+                let statusBadge = '';
+
+                if (type === 'topic') {
+                    // 话题：显示热度与评论
+                    metaHtml = `🔥 ${item.heat_score || 0} · 💬 ${item.comments_count || 0}`;
+                    link = `forum-topic.html?id=${item.id}`;
+                } else {
+                    // 文章：显示状态、阅读、点赞
+                    const statusText = item.status === 'published' ? '已发布' : (item.status === 'pending' ? '审核中' : '草稿');
+                    const statusColor = item.status === 'published' ? '#10b981' : '#f59e0b';
+                    statusBadge = `<span style="font-size:0.75rem; color:${statusColor}; border:1px solid ${statusColor}; padding:1px 5px; border-radius:4px; margin-right:8px;">${statusText}</span>`;
+                    
+                    metaHtml = `👁️ ${item.views || 0} · 👍 ${item.likes || 0}`;
+                    link = `article-detail.html?id=${item.id}`;
+                }
+
                 container.innerHTML += `
                     <div class="list-item">
                         <div class="item-main">
-                            <a href="forum-topic.html?id=${t.id}" target="_blank">${t.title}</a>
+                            <div style="margin-bottom:4px;">
+                                ${statusBadge}
+                                <a href="${link}" target="_blank" style="font-size:1rem;">${title}</a>
+                            </div>
                             <div class="item-sub">
-                                发布于 ${new Date(t.created_at).toLocaleDateString()} · 
-                                🔥 ${t.heat_score} · 
-                                💬 ${t.comments_count}
+                                发布于 ${date} · ${metaHtml}
                             </div>
                         </div>
-                        <button class="btn-sm" onclick="deleteTopic('${t.id}')">删除</button>
+                        <button class="btn-sm" onclick="deleteItem('${type}', '${item.id}')">删除</button>
                     </div>
                 `;
             });
         }
 
-        // 3. 更新资料
+        // 3. 更新资料 (保持不变)
         async function updateProfile() {
             const btn = document.querySelector('.btn-primary');
             const msg = document.getElementById('save-msg');
@@ -331,20 +459,23 @@
             } else {
                 msg.style.color = '#10b981';
                 msg.innerText = '保存成功';
-                loadProfile(); // 刷新左侧卡片
+                loadProfile(); 
                 setTimeout(() => msg.style.display = 'none', 3000);
             }
         }
 
-        // 4. 删除话题
-        async function deleteTopic(id) {
-            if(!confirm('确定删除这条话题吗？不可恢复。')) return;
-            const { error } = await _supabase.from('forum_topics').delete().eq('id', id);
-            if(error) alert('删除失败');
-            else loadMyPosts();
+        // 4. 删除 (通用化)
+        async function deleteItem(type, id) {
+            if(!confirm('确定删除吗？不可恢复。')) return;
+            
+            const table = type === 'topic' ? 'forum_topics' : 'user_articles';
+            const { error } = await _supabase.from(table).delete().eq('id', id);
+            
+            if(error) alert('删除失败: ' + error.message);
+            else loadMyPosts(type); // 刷新当前列表
         }
 
-        // 5. 切换板块
+        // 5. 切换板块 (左侧菜单)
         function switchSection(sec, btn) {
             document.getElementById('section-info').style.display = 'none';
             document.getElementById('section-posts').style.display = 'none';

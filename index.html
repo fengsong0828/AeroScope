@@ -7,65 +7,163 @@
     <link rel="stylesheet" href="style.css">
     <style>
         /* =========================================
-           1. 核心布局修复 (新增部分)
+           1. 布局修复与适配
            ========================================= */
-        
-        /* 桌面端默认：左右两列布局 */
         .main-layout-grid {
             display: grid;
-            grid-template-columns: 2.5fr 1fr; /* 左侧占2.5份，右侧占1份 */
+            grid-template-columns: 2.5fr 1fr;
             gap: 30px;
             align-items: start;
         }
 
-        /* 移动端适配：屏幕小于768px时，强制改为上下单列布局 */
         @media (max-width: 768px) {
             .main-layout-grid {
                 display: flex;
-                flex-direction: column; /* 上下排列 */
-                grid-template-columns: 1fr; /* 覆盖Grid属性 */
+                flex-direction: column;
             }
-
-            /* 左侧内容区占满 */
-            .content-left {
-                width: 100%;
-            }
-
-            /* 右侧侧边栏占满，并增加顶部间距 */
-            .sidebar {
-                width: 100%;
-                margin-top: 20px; 
-            }
-            
-            /* 仪表盘在手机上改为两列显示，防止过挤 */
-            .dashboard-grid {
-                grid-template-columns: 1fr 1fr !important; 
-            }
+            .content-left, .sidebar { width: 100%; }
+            .sidebar { margin-top: 20px; }
+            .dashboard-grid { grid-template-columns: 1fr 1fr !important; }
         }
 
         /* =========================================
-           2. 其他原有样式
+           2. Tab 切换与专栏卡片样式
            ========================================= */
+        
+        /* Tab 容器 */
+        .feed-tabs-container {
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            margin-bottom: 25px;
+            position: relative;
+            min-height: 50px; /* 防止按钮显示/隐藏时高度跳动 */
+        }
 
-        /* 复用搜索框样式 */
+        .feed-tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .feed-tab-btn:hover { color: #3b82f6; }
+        
+        .feed-tab-btn.active { color: #3b82f6; }
+        
+        /* Tab 底部激活线条 */
+        .feed-tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #3b82f6;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .tab-badge-new {
+            background: #ef4444; color: white; font-size: 0.6rem; 
+            padding: 1px 5px; border-radius: 4px; vertical-align: top; margin-left: 4px;
+        }
+
+        /* 快捷操作区 (写文章按钮) */
+        .feed-actions { margin-left: auto; }
+
+        /* 补充按钮样式 */
+        .btn-outline {
+            background: white;
+            border: 1px solid #cbd5e1;
+            color: #64748b;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn-outline:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+            background: #f8fafc;
+            box-shadow: 0 2px 5px rgba(59, 130, 246, 0.1);
+        }
+
+        /* 用户专栏卡片样式 */
+        .article-card-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: 0.2s;
+            display: flex;
+            gap: 20px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .article-card-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-color: #3b82f6;
+        }
+
+        .article-cover-img {
+            width: 160px; height: 105px;
+            border-radius: 8px; object-fit: cover;
+            background: #f1f5f9; flex-shrink: 0;
+        }
+
+        .article-main-content { flex: 1; min-width: 0; }
+
+        .article-author-row {
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 8px; font-size: 0.8rem; color: #64748b;
+        }
+
+        .author-avatar-xs {
+            width: 20px; height: 20px; border-radius: 50%;
+            background: #cbd5e1; color: white; display: flex; 
+            align-items: center; justify-content: center; font-size: 0.6rem; font-weight: bold;
+        }
+
+        .article-h3 { margin: 0 0 8px 0; font-size: 1.1rem; line-height: 1.4; font-weight: 700; color: #1e293b; }
+        .article-desc { font-size: 0.9rem; color: #64748b; line-height: 1.6; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        
+        .article-footer {
+            display: flex; gap: 15px; font-size: 0.8rem; color: #94a3b8; margin-top: 10px; align-items: center;
+        }
+        .tag-pill { background: #eff6ff; color: #3b82f6; padding: 2px 8px; border-radius: 4px; }
+
+        @media (max-width: 768px) {
+            .article-card-item { flex-direction: column-reverse; }
+            .article-cover-img { width: 100%; height: 160px; margin-bottom: 10px; }
+            /* 移动端如果屏幕太窄，可以选择隐藏按钮，或者调整样式。此处暂时保留显示 */
+            /* .feed-actions { display: none; } */
+        }
+
+        /* =========================================
+           3. 原有通用样式
+           ========================================= */
         .search-component { position: relative; margin-right: 15px; }
         .search-box { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 20px; background: white; padding: 5px 12px; transition: 0.3s; }
         .search-box:focus-within { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
         .search-icon { font-size: 1rem; color: #64748b; margin-right: 8px; }
         .search-input { border: none; outline: none; font-size: 0.9rem; width: 160px; color: #1e293b; }
-        
-        /* 搜索下拉 */
         #search-dropdown { position: absolute; top: 45px; right: 0; width: 280px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 2000; display: none; max-height: 400px; overflow-y: auto; }
         .search-result-item { display: block; padding: 12px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: #1e293b; transition: 0.2s; }
         .search-result-item:hover { background: #f8fafc; }
-        .result-meta { font-size: 0.75rem; color: #64748b; display: flex; align-items: center; gap: 6px; margin-top: 4px; }
-        .result-tag { padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; }
-
-        /* 分页按钮 */
+        
         .pagination-controls { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 30px; }
         .pagination-controls button:disabled { opacity: 0.5; cursor: not-allowed; background: #f1f5f9; border-color: #cbd5e1; color: #94a3b8; }
 
-        /* 页脚 Grid */
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
         .footer-col h4 { color: white; margin-bottom: 20px; font-size: 1rem; font-weight: 600; }
         .footer-col ul li { margin-bottom: 12px; }
@@ -75,31 +173,24 @@
         .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
         .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
 
-        @media (max-width: 768px) {
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .social-icons { justify-content: center; }
-            .search-component { display: none; }
-        }
-
-        /* 首页专家卡片微调样式 */
-        .home-expert-card {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px dashed #e2e8f0;
-            transition: all 0.2s;
-            text-decoration: none;
-            display: block;
-        }
+        /* 首页原有组件样式 */
+        .home-expert-card { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed #e2e8f0; transition: all 0.2s; text-decoration: none; display: block; }
         .home-expert-card:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
         .home-expert-card:hover .expert-title { color: #3b82f6; }
-        
         .expert-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
         .expert-av { width: 32px; height: 32px; border-radius: 50%; background: #f59e0b; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem; flex-shrink: 0; }
         .expert-name { font-size: 0.9rem; font-weight: 700; color: #1e293b; }
         .expert-role { font-size: 0.75rem; color: #d97706; background: #fffbeb; padding: 1px 6px; border-radius: 4px; margin-left: 5px; }
-        
         .expert-title { font-size: 0.95rem; font-weight: 600; color: #334155; margin-bottom: 6px; line-height: 1.4; transition: color 0.2s; }
         .expert-quote { font-size: 0.85rem; color: #64748b; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-style: italic; }
+        
+        .news-item { display: flex; background: white; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; transition: 0.2s; min-height: 120px; margin-bottom: 15px; text-decoration: none; }
+        .news-item:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.05); border-color: #3b82f6; }
+        .news-image { width: 140px; min-width: 140px; background-color: #f8fafc; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #94a3b8; background-size: cover; background-position: center; border-right: 1px solid #f1f5f9; }
+        .news-content { padding: 15px 20px; flex: 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+        .news-content h3 { margin: 0 0 6px 0; font-size: 1.05rem; line-height: 1.3; color: #1e293b; }
+        .news-meta { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: #64748b; margin-bottom: 6px; }
+        .news-content p { font-size: 0.85rem; color: #64748b; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5; }
         
         @keyframes spin { to { transform: rotate(360deg); } }
     </style>
@@ -176,17 +267,35 @@
         </div>
     </div>
 
-    <!-- 主内容区 (注意这里使用了 main-layout-grid) -->
+    <!-- 主内容区 (布局：左 Tab 列表 / 右 侧边栏) -->
     <div class="standard-container">
         <div class="main-layout-grid">
-            <!-- 左侧：最新动态 -->
+            
+            <!-- 左侧：动态内容流 -->
             <main class="content-left">
-                <div class="section-header">
-                    <div class="section-title">最新动态 (News & Policies & Tech)</div>
+                
+                <!-- 新增：Tab 切换栏 -->
+                <div class="feed-tabs-container">
+                    <button class="feed-tab-btn active" onclick="switchMainTab('news', this)">
+                        🌐 全网动态
+                    </button>
+                    <button class="feed-tab-btn" onclick="switchMainTab('columns', this)">
+                        ✒️ 行业专栏 <span class="tab-badge-new">New</span>
+                    </button>
+                    
+                    <!-- 写文章按钮：默认隐藏，只有切换到行业专栏时显示 -->
+                    <div class="feed-actions" id="write-btn-container" style="display: none;">
+                        <button class="btn btn-outline" style="padding: 6px 14px; font-size:0.85rem;" onclick="location.href='write.html'">
+                            ✍️ 写文章
+                        </button>
+                    </div>
                 </div>
-                <div class="news-feed" id="unified-feed-container">
-                    <div class="loading-spinner">正在聚合多源数据...</div>
+
+                <!-- 列表内容容器 -->
+                <div id="main-list-container">
+                    <div class="loading-spinner">正在加载数据...</div>
                 </div>
+
                 <!-- 分页按钮 -->
                 <div class="pagination-controls" id="pagination-box" style="display:none;">
                     <button class="btn btn-outline" onclick="changePage(-1)" id="btn-prev">上一页</button>
@@ -248,7 +357,6 @@
                     </div>
                 </div>
                 
-                <!-- 核心板块 -->
                 <div class="footer-col">
                     <h4>核心板块</h4>
                     <ul>
@@ -287,86 +395,59 @@
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
         const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-        // 分页全局变量
-        let allFeedData = [];
+        // 全局状态管理
+        let currentMainTab = 'news'; // 'news' or 'columns'
+        let allFeedData = []; 
         let currentPage = 1;
         const itemsPerPage = 5;
+        let totalCount = 0; // 用于分页计数
 
         document.addEventListener('DOMContentLoaded', async function() {
             checkUserLogin();
             loadDashboardStats(); 
+            // 默认加载 News Tab
             loadUnifiedFeed();
             loadHomeReports();
             loadHomeExperts();
         });
 
-        // 核心数据加载逻辑
-        async function loadDashboardStats() {
-            try {
-                // A. 统计企业数量
-                const { count: companyCount } = await _supabase.from('companies')
-                    .select('*', { count: 'exact', head: true })
-                    .eq('draft', false);
+        // 1. Tab 切换逻辑
+        function switchMainTab(tab, btn) {
+            if (currentMainTab === tab) return;
+            currentMainTab = tab;
+            currentPage = 1;
 
-                // B. 统计技术专利
-                const { count: patentCount } = await _supabase.from('patents')
-                    .select('*', { count: 'exact', head: true });
-                
-                // C. 统计试点城市
-                const { data: cityData } = await _supabase
-                    .from('policies')
-                    .select('related_city')
-                    .eq('draft', false)
-                    .not('related_city', 'is', null);
-                
-                const uniqueCities = new Set(cityData.map(item => item.related_city).filter(c => c && c.trim() !== ''));
-                const cityCount = uniqueCities.size || 26;
+            // UI 更新：所有 Tab 按钮移除 active
+            document.querySelectorAll('.feed-tab-btn').forEach(b => b.classList.remove('active'));
+            // 当前按钮添加 active
+            btn.classList.add('active');
 
-                // D. 计算全球融资总额
-                const { data: events } = await _supabase
-                    .from('funding_events')
-                    .select('funding_amount, funding_currency')
-                    .eq('draft', false)
-                    .not('funding_amount', 'is', null);
-                
-                let totalFundingUSD = 0;
-                if (events) {
-                    events.forEach(e => {
-                        let amount = Number(e.funding_amount || 0);
-                        if (e.funding_currency === 'CNY') amount = amount / 7.2;
-                        else if (e.funding_currency === 'EUR') amount = amount * 1.05;
-                        else if (e.funding_currency === 'GBP') amount = amount * 1.25;
-                        totalFundingUSD += amount;
-                    });
-                }
+            // 按钮显示逻辑：只有在 columns 标签下显示写文章按钮
+            const writeBtn = document.getElementById('write-btn-container');
+            if (tab === 'columns') {
+                writeBtn.style.display = 'block';
+            } else {
+                writeBtn.style.display = 'none';
+            }
 
-                // 格式化金额显示
-                let fundingText = '';
-                if (totalFundingUSD >= 1000000000) {
-                    fundingText = '$' + (totalFundingUSD / 1000000000).toFixed(1) + 'B';
-                } else if (totalFundingUSD >= 1000000) {
-                    fundingText = '$' + (totalFundingUSD / 1000000).toFixed(1) + 'M';
-                } else {
-                    fundingText = '$' + totalFundingUSD.toLocaleString();
-                }
-
-                document.getElementById('val-funding').innerText = fundingText;
-                document.getElementById('val-cities').innerText = cityCount;
-                document.getElementById('val-patents').innerText = patentCount || 0;
-                document.getElementById('val-companies').innerText = (companyCount || 0) + '+';
-                
-            } catch (error) {
-                console.error('首页数据加载失败:', error);
+            // 数据加载
+            if (tab === 'news') {
+                loadUnifiedFeed();
+            } else {
+                loadUserColumns();
             }
         }
 
-        // 加载混合信息流
+        // 2. 加载混合新闻流 (News Tab)
         async function loadUnifiedFeed() {
-            const container = document.getElementById('unified-feed-container');
-            container.innerHTML = '<div class="loading-spinner">正在聚合多源数据...</div>';
+            const container = document.getElementById('main-list-container');
+            container.innerHTML = '<div style="text-align:center; padding:40px; color:#94a3b8;">正在聚合多源数据...</div>';
 
+            const start = (currentPage - 1) * itemsPerPage;
+            // 注意：这里为了简化展示，暂不处理复杂的混合分页，而是直接拉取一批数据前端分页
+            
             const [newsRes, policyRes, techRes] = await Promise.all([
-                _supabase.from('news').select('id, title, summary, publish_date, category, image_url').eq('draft', false).order('publish_date', {ascending:false}).limit(10),
+                _supabase.from('news').select('id, title, summary, publish_date, category, image_url').eq('draft', false).order('publish_date', {ascending:false}).limit(15),
                 _supabase.from('policies').select('id, title, summary, publish_date, department').eq('draft', false).order('publish_date', {ascending:false}).limit(10),
                 _supabase.from('tech_trends').select('id, title, summary, publish_date, type').eq('draft', false).order('publish_date', {ascending:false}).limit(10)
             ]);
@@ -378,84 +459,210 @@
 
             feed.sort((a, b) => new Date(b.publish_date) - new Date(a.publish_date));
             allFeedData = feed;
-            renderPage(1);
+            
+            // 模拟分页渲染
+            totalCount = feed.length;
+            renderNewsList(1);
         }
 
-        function renderPage(page) {
-            const container = document.getElementById('unified-feed-container');
-            const totalPages = Math.ceil(allFeedData.length / itemsPerPage);
-            
-            if (page < 1) page = 1;
-            if (page > totalPages && totalPages > 0) page = totalPages;
-            currentPage = page;
-
+        function renderNewsList(page) {
+            const container = document.getElementById('main-list-container');
             const start = (page - 1) * itemsPerPage;
             const end = start + itemsPerPage;
             const pageData = allFeedData.slice(start, end);
 
             container.innerHTML = '';
             if (pageData.length === 0) {
-                container.innerHTML = '<p style="text-align:center; color:#999;">暂无数据</p>';
-                document.getElementById('pagination-box').style.display = 'none';
+                container.innerHTML = '<p style="text-align:center; color:#999; padding:30px;">暂无数据</p>';
+                updatePaginationUI(0);
                 return;
             }
 
             pageData.forEach(item => {
                 const imgHtml = item.image_url 
                     ? `<div class="news-image" style="background-image:url('${item.image_url}')"></div>`
-                    : `<div class="news-image" style="background:#f1f5f9; display:flex; align-items:center; justify-content:center; color:#94a3b8; font-weight:bold; border:1px solid #e2e8f0;">${item.tag}</div>`;
+                    : `<div class="news-image" style="background:#f1f5f9; display:flex; align-items:center; justify-content:center; color:#94a3b8; font-weight:bold; border-right:1px solid #e2e8f0;">${item.tag}</div>`;
                 
                 let tagStyle = '';
                 if(item.type === 'policy') tagStyle = 'background:#0f172a; color:white;';
                 if(item.type === 'tech') tagStyle = 'background:#8b5cf6; color:white;';
 
                 container.innerHTML += `
-                    <article class="news-item">
-                        <a href="${item.link}" style="display:block; flex-shrink:0;">${imgHtml}</a>
+                    <a href="${item.link}" class="news-item">
+                        ${imgHtml}
                         <div class="news-content">
-                            <h3><a href="${item.link}">${item.title}</a></h3>
-                            <div class="news-meta"><span class="tag" style="${tagStyle}">${item.tag}</span><span>${item.publish_date}</span></div>
-                            <p style="font-size:0.9rem; color:#64748b; margin-top:8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${item.summary || item.title}</p>
+                            <h3>${item.title}</h3>
+                            <div class="news-meta"><span class="tag" style="background:#f1f5f9; padding:2px 6px; border-radius:4px; ${tagStyle}">${item.tag}</span><span>${item.publish_date}</span></div>
+                            <p>${item.summary || item.title}</p>
                         </div>
-                    </article>
+                    </a>
                 `;
             });
+            
+            updatePaginationUI(totalCount);
+        }
 
-            if (allFeedData.length > itemsPerPage) {
-                document.getElementById('pagination-box').style.display = 'flex';
-                document.getElementById('page-indicator').innerText = `${currentPage} / ${totalPages}`;
-                document.getElementById('btn-prev').disabled = (currentPage === 1);
-                document.getElementById('btn-next').disabled = (currentPage === totalPages);
-            } else {
-                document.getElementById('pagination-box').style.display = 'none';
+        // 3. 加载用户专栏 (Columns Tab)
+        async function loadUserColumns() {
+            const container = document.getElementById('main-list-container');
+            container.innerHTML = '<div style="text-align:center; padding:40px; color:#94a3b8;">加载专栏文章...</div>';
+            
+            const from = (currentPage - 1) * itemsPerPage;
+            const to = from + itemsPerPage - 1;
+
+            // 假设存在 user_articles 表，并关联 profiles
+            try {
+                const { data, error, count } = await _supabase
+                    .from('user_articles')
+                    .select(`
+                        id, title, summary, cover_image, created_at, category, views, likes,
+                        profiles:user_id ( username, is_expert )
+                    `, { count: 'exact' })
+                    .eq('status', 'published')
+                    .order('created_at', { ascending: false })
+                    .range(from, to);
+
+                if (error) throw error;
+
+                if (!data || data.length === 0) {
+                    container.innerHTML = `
+                        <div style="text-align:center; padding:50px; color:#94a3b8;">
+                            <div style="font-size:2rem; margin-bottom:10px;">📝</div>
+                            暂无专栏文章，<a href="write.html" style="color:#3b82f6;">快来发布第一篇</a>
+                        </div>`;
+                    updatePaginationUI(0);
+                    return;
+                }
+
+                totalCount = count;
+                container.innerHTML = '';
+                
+                data.forEach(item => {
+                    const authorName = item.profiles?.username || '匿名用户';
+                    const avatarChar = authorName.charAt(0).toUpperCase();
+                    const expertIcon = item.profiles?.is_expert ? '<span title="认证专家" style="color:#f59e0b; margin-left:4px;">✓</span>' : '';
+                    const dateStr = new Date(item.created_at).toLocaleDateString();
+                    
+                    const coverHtml = item.cover_image 
+                        ? `<img src="${item.cover_image}" class="article-cover-img" loading="lazy">` 
+                        : ''; 
+
+                    container.innerHTML += `
+                        <a href="article-detail.html?id=${item.id}" class="article-card-item">
+                            <div class="article-main-content">
+                                <div class="article-author-row">
+                                    <div class="author-avatar-xs">${avatarChar}</div>
+                                    <span style="font-weight:600; color:#334155;">${authorName}</span>
+                                    ${expertIcon}
+                                    <span style="margin:0 5px; color:#cbd5e1;">|</span>
+                                    <span>${dateStr}</span>
+                                </div>
+                                <div class="article-h3">${item.title}</div>
+                                <div class="article-desc">${item.summary || '暂无摘要'}</div>
+                                <div class="article-footer">
+                                    <span class="tag-pill">${item.category || '洞察'}</span>
+                                    <span>👁️ ${item.views || 0}</span>
+                                    <span>👍 ${item.likes || 0}</span>
+                                </div>
+                            </div>
+                            ${coverHtml}
+                        </a>
+                    `;
+                });
+                
+                updatePaginationUI(totalCount);
+
+            } catch (err) {
+                console.warn("User Articles load failed (table might not exist):", err);
+                container.innerHTML = '<div style="text-align:center; padding:40px; color:#94a3b8;">暂无专栏内容</div>';
+                updatePaginationUI(0);
             }
         }
 
-        function changePage(offset) { renderPage(currentPage + offset); }
+        // 4. 分页控制
+        function updatePaginationUI(total) {
+            const box = document.getElementById('pagination-box');
+            const indicator = document.getElementById('page-indicator');
+            const totalPages = Math.ceil(total / itemsPerPage);
+            
+            if (total > itemsPerPage) {
+                box.style.display = 'flex';
+                indicator.innerText = `${currentPage} / ${totalPages}`;
+                document.getElementById('btn-prev').disabled = currentPage === 1;
+                document.getElementById('btn-next').disabled = currentPage === totalPages;
+            } else {
+                box.style.display = 'none';
+            }
+        }
+
+        function changePage(offset) {
+            const newPage = currentPage + offset;
+            const totalPages = Math.ceil(totalCount / itemsPerPage);
+            
+            if (newPage < 1 || newPage > totalPages) return;
+            
+            currentPage = newPage;
+            
+            if (currentMainTab === 'news') {
+                renderNewsList(currentPage);
+            } else {
+                loadUserColumns();
+            }
+            
+            // 滚动回列表顶部
+            document.querySelector('.feed-tabs-container').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // 5. 其他加载逻辑 (Dashboard, Experts, etc.)
+        async function loadDashboardStats() {
+            try {
+                const { count: companyCount } = await _supabase.from('companies').select('*', { count: 'exact', head: true }).eq('draft', false);
+                const { count: patentCount } = await _supabase.from('patents').select('*', { count: 'exact', head: true });
+                const { data: cityData } = await _supabase.from('policies').select('related_city').eq('draft', false).not('related_city', 'is', null);
+                const uniqueCities = new Set(cityData?.map(i => i.related_city).filter(c => c));
+                const { data: events } = await _supabase.from('funding_events').select('funding_amount, funding_currency').eq('draft', false);
+                
+                let totalFundingUSD = 0;
+                if(events) events.forEach(e => {
+                    let v = Number(e.funding_amount||0);
+                    if(e.funding_currency==='CNY') v/=7.2;
+                    totalFundingUSD += v;
+                });
+
+                let fText = totalFundingUSD > 1000000000 ? `$${(totalFundingUSD/1000000000).toFixed(1)}B` : `$${(totalFundingUSD/1000000).toFixed(0)}M`;
+                
+                document.getElementById('val-funding').innerText = fText;
+                document.getElementById('val-cities').innerText = uniqueCities.size || 26;
+                document.getElementById('val-patents').innerText = patentCount || 0;
+                document.getElementById('val-companies').innerText = (companyCount || 0) + '+';
+            } catch(e) { console.error(e); }
+        }
 
         async function loadHomeReports() {
             const container = document.getElementById('home-report-list');
-            const { data } = await _supabase.from('deep_reports')
-                .select('id, title, author, publish_date')
-                .eq('draft', false)
-                .order('publish_date', {ascending:false})
-                .limit(3);
-                
-            if(data && data.length > 0) {
+            const { data } = await _supabase.from('deep_reports').select('id, title, publish_date').eq('draft', false).order('publish_date', {ascending:false}).limit(3);
+            if(data && data.length){
                 container.innerHTML = '';
-                data.forEach(item => {
-                    container.innerHTML += `
-                        <div style="margin-bottom:15px; border-bottom:1px dashed #e2e8f0; padding-bottom:10px;">
-                            <a href="report-detail.html?id=${item.id}" style="font-weight:600; font-size:0.9rem; color:#1e293b; display:block; margin-bottom:4px;">${item.title}</a>
-                            <div style="font-size:0.75rem; color:#64748b;">${item.publish_date}</div>
-                        </div>`;
+                data.forEach(i => {
+                    container.innerHTML += `<div style="margin-bottom:10px; border-bottom:1px dashed #eee; padding-bottom:8px;"><a href="report-detail.html?id=${i.id}" style="color:#333; font-size:0.9rem; font-weight:500; text-decoration:none;">${i.title}</a><div style="font-size:0.75rem; color:#999; margin-top:4px;">${i.publish_date}</div></div>`;
                 });
-            } else {
-                container.innerHTML = '<p style="color:#999; font-size:0.8rem; text-align:center;">暂无报告</p>';
-            }
+            } else { container.innerHTML = '<p style="color:#ccc; text-align:center;">暂无报告</p>'; }
         }
 
-        // Search & Menu Logic
+        async function loadHomeExperts() {
+            const container = document.getElementById('home-expert-list');
+            const { data } = await _supabase.from('forum_topics').select('id, title, content, author_role, author_avatar_text, user_email').eq('is_expert', true).limit(2);
+            if(data && data.length){
+                container.innerHTML = '';
+                data.forEach(i => {
+                    let name = i.user_email ? i.user_email.split('@')[0] : '专家';
+                    let av = i.author_avatar_text || name[0];
+                    container.innerHTML += `<a href="forum-topic.html?id=${i.id}" class="home-expert-card"><div class="expert-header"><div class="expert-av">${av}</div><div class="expert-name">${name}</div></div><div class="expert-title">${i.title}</div></a>`;
+                });
+            } else { container.innerHTML = '<p style="color:#ccc; text-align:center;">暂无观点</p>'; }
+        }
+
+        // Search & Menu
         let searchTimeout;
         async function performGlobalSearch(keyword) {
             const dropdown = document.getElementById('search-dropdown');
@@ -463,73 +670,22 @@
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(async () => {
                 dropdown.style.display = 'block';
-                dropdown.innerHTML = '<div style="padding:12px; text-align:center; color:#94a3b8;">搜索中...</div>';
-                const { data, error } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
-                if (error || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
+                const { data } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
+                if (!data || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
                 let html = '';
                 data.forEach(item => {
-                    let link='#';
+                    let link=`news-detail.html?id=${item.id}`;
                     if(item.type==='company') link='companies.html';
                     else if(item.type==='policy') link=`policy-detail.html?id=${item.id}`;
                     else if(item.type==='tech') link=`tech-detail.html?id=${item.id}`;
-                    else link=`news-detail.html?id=${item.id}`;
                     html += `<a href="${link}" class="search-result-item">${item.title}</a>`;
                 });
                 dropdown.innerHTML = html;
             }, 500);
         }
-        document.addEventListener('click', (e) => {
-            if (!document.querySelector('.search-component').contains(e.target)) {
-                document.getElementById('search-dropdown').style.display = 'none';
-            }
-        });
-        async function checkUserLogin() {
-            const { data: { session } } = await _supabase.auth.getSession();
-            const btn = document.getElementById('auth-btn');
-            if (session) {
-                btn.innerText = session.user.email.split('@')[0];
-                btn.onclick = () => location.href = 'profile.html';
-            }
-        }
+        document.addEventListener('click', (e) => { if(!document.querySelector('.search-component').contains(e.target)) document.getElementById('search-dropdown').style.display='none'; });
+        async function checkUserLogin() { const {data:{session}} = await _supabase.auth.getSession(); const btn=document.getElementById('auth-btn'); if(session){btn.innerText=session.user.email.split('@')[0]; btn.onclick=()=>location.href='profile.html';}}
         function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
-
-        async function loadHomeExperts() {
-            const container = document.getElementById('home-expert-list');
-            const { data, error } = await _supabase
-                .from('forum_topics')
-                .select('id, title, content, author_role, author_avatar_text, user_email') 
-                .eq('is_expert', true)
-                .order('heat_score', { ascending: false })
-                .limit(2);
-
-            if (error || !data || data.length === 0) {
-                container.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem; text-align:center; padding:20px;">暂无专家观点</p>';
-                return;
-            }
-
-            container.innerHTML = '';
-            data.forEach(item => {
-                const avatarChar = item.author_avatar_text || (item.user_email ? item.user_email.charAt(0).toUpperCase() : 'E');
-                const name = item.user_email ? item.user_email.split('@')[0] : '行业专家';
-                let summary = item.content.replace(/[#*`>]/g, '').trim();
-                if (summary.length > 45) summary = summary.substring(0, 45) + '...';
-
-                container.innerHTML += `
-                    <a href="forum-topic.html?id=${item.id}" class="home-expert-card">
-                        <div class="expert-header">
-                            <div class="expert-av">${avatarChar}</div>
-                            <div>
-                                <span class="expert-name">${name}</span>
-                                <span class="expert-role">${item.author_role || '认证专家'}</span>
-                            </div>
-                        </div>
-                        <div class="expert-title">${item.title}</div>
-                        <div class="expert-quote">"${summary}"</div>
-                    </a>
-                `;
-            });
-        }
     </script>
 </body>
 </html>
-
