@@ -473,26 +473,42 @@
                 renderSidebar(company);
                 loadCompetitors(company); 
             } else {
-                return; // 如果查不到公司，停止加载其他数据
+                return; 
             }
 
-            // 2. 并行获取深度数据
-            // 【修改】专利查询数量增加到 50，以支持前端分页
+            // 2. 并行获取深度数据 (核心修改部分：使用 bigint ID 关联)
             const [fundingRes, patentRes, productRes, newsRes] = await Promise.all([
-                _supabase.from('funding_events').select('*').eq('company_id', companyId).order('funding_date', {ascending: false}),
+                // 融资：查询 company_id
+                _supabase.from('funding_events')
+                    .select('*')
+                    .eq('company_id', companyId)
+                    .eq('draft', false)
+                    .order('funding_date', {ascending: false}),
+                
+                // 专利：【重点】使用 related_company_id 关联
                 _supabase.from('patents')
                     .select('*')
-                    .eq('applicant', company.name)
+                    .eq('related_company_id', companyId) 
                     .order('publication_date', {ascending: false})
-                    .limit(50), 
-                _supabase.from('products').select('*').eq('company_id', companyId).eq('draft', false),
-                _supabase.from('news').select('*').contains('mentioned_company_ids', [companyId]).limit(5)
+                    .limit(100), 
+                
+                // 产品：查询 company_id
+                _supabase.from('products')
+                    .select('*')
+                    .eq('company_id', companyId)
+                    .eq('draft', false),
+                
+                // 新闻：查询数组字段 (需要 news 表支持 array)
+                _supabase.from('news')
+                    .select('*')
+                    .contains('mentioned_company_ids', [companyId]) // 使用 array contains 查询
+                    .limit(5)
             ]);
 
             renderFunding(fundingRes.data);
-            initPatentPagination(patentRes.data); // 初始化专利分页
+            initPatentPagination(patentRes.data);
             renderProducts(productRes.data);
-            renderNews(newsRes.data);
+            renderNews(newsRes.data || []); 
         });
 
         // 渲染头部
@@ -521,7 +537,7 @@
 
             document.getElementById('company-desc').innerText = c.description || '暂无详细介绍。';
 
-            if(c.tags) {
+            if(c.tags && Array.isArray(c.tags)) {
                 let tagsHtml = '';
                 c.tags.forEach(t => tagsHtml += `<span class="tag-pill">#${t}</span>`);
                 document.getElementById('company-tags').innerHTML = tagsHtml;
@@ -573,11 +589,7 @@
             }
         }
 
-        // =========================================
-        // 4. 专利列表逻辑 (前端分页 + 单行渲染)
-        // =========================================
-        
-        // 初始化
+        // 专利列表逻辑
         function initPatentPagination(data) {
             if (!data || data.length === 0) {
                 document.getElementById('patent-list-container').innerHTML = '<p style="color:#94a3b8; text-align:center; padding:20px;">暂无公开专利数据</p>';
@@ -586,41 +598,36 @@
             allCompanyPatents = data;
             currentPatentPage = 1;
             renderPatentPage();
+            document.getElementById('patent-pagination').style.display = 'flex';
         }
 
-        // 渲染当前页
         function renderPatentPage() {
             const container = document.getElementById('patent-list-container');
             container.innerHTML = '';
 
-            // 计算切片
             const start = (currentPatentPage - 1) * patentsPerPage;
             const end = start + patentsPerPage;
             const pageData = allCompanyPatents.slice(start, end);
 
             pageData.forEach(p => {
                 const typeMap = { 'Invention': '发明', 'Utility Model': '实用', 'Design': '外观' };
-                const typeLabel = typeMap[p.patent_type] || '专利';
+                const typeLabel = typeMap[p.patent_type] || p.patent_type || '专利';
                 
-                // 状态颜色逻辑
-                let statusColor = '#94a3b8'; // 默认灰
+                let statusColor = '#94a3b8';
                 let statusText = p.legal_status || '未知';
                 
-                if (['有效', 'Authorized'].some(s => statusText.includes(s))) statusColor = '#16a34a'; // 绿
-                else if (['审中', 'Pending', 'Substantive'].some(s => statusText.includes(s))) statusColor = '#f59e0b'; // 橙
-                else if (['无效', 'Invalid', 'Terminated'].some(s => statusText.includes(s))) statusColor = '#ef4444'; // 红
+                if (statusText === '有效' || statusText === 'Authorized') statusColor = '#16a34a'; 
+                else if (statusText.includes('无效') || statusText.includes('Terminated')) statusColor = '#ef4444';
+                else statusColor = '#f59e0b';
                 
-                // 日期处理：只取年份，如果没有则显示 -
                 const dateStr = p.publication_date ? p.publication_date.substring(0, 4) : '-';
 
                 container.innerHTML += `
                     <a href="patent-detail.html?id=${p.id}" class="patent-item-link">
                         <div class="patent-item">
                             <div class="patent-icon">IP</div>
-                            
                             <div class="patent-content-row">
                                 <div class="patent-title" title="${p.title}">${p.title}</div>
-                                
                                 <div class="patent-meta-inline">
                                     <span class="type-badge">${typeLabel}</span>
                                     <span>${dateStr}</span>
@@ -629,34 +636,21 @@
                                     </span>
                                 </div>
                             </div>
-                            
-                            <!-- 极简箭头 -->
                             <div style="color:#cbd5e1; font-size:1rem; margin-left:5px;">›</div>
                         </div>
                     </a>
                 `;
             });
-
             updatePaginationControls();
         }
 
-        // 更新控件状态
         function updatePaginationControls() {
             const totalPages = Math.ceil(allCompanyPatents.length / patentsPerPage);
-            const paginationEl = document.getElementById('patent-pagination');
-            
-            if (totalPages <= 1) {
-                paginationEl.style.display = 'none';
-                return;
-            }
-
-            paginationEl.style.display = 'flex';
             document.getElementById('patent-page-info').innerText = `${currentPatentPage} / ${totalPages}`;
             document.getElementById('btn-prev-patent').disabled = currentPatentPage === 1;
             document.getElementById('btn-next-patent').disabled = currentPatentPage === totalPages;
         }
 
-        // 切换页面 (挂载到 window 以便 HTML 调用)
         window.changePatentPage = function(step) {
             const totalPages = Math.ceil(allCompanyPatents.length / patentsPerPage);
             const newPage = currentPatentPage + step;
@@ -691,7 +685,7 @@
             });
         }
 
-        // 渲染侧边栏 & 竞品
+        // 渲染侧边栏
         function renderSidebar(c) {
             const chainMap = { 'upstream': '⛓️ 上游供应链', 'midstream': '✈️ 整机制造', 'downstream': '🏷️ 运营服务' };
             document.getElementById('data-chain').innerText = chainMap[c.industry_chain] || c.industry_chain || '--';
@@ -700,6 +694,7 @@
             if(c.total_funding_est_usd) document.getElementById('data-funding').innerText = `$${c.total_funding_est_usd}M`;
         }
 
+        // 加载竞品
         async function loadCompetitors(c) {
             if(!c.primary_category) return;
             const { data } = await _supabase.from('companies')
@@ -726,6 +721,7 @@
             }
         }
 
+        // 渲染新闻 (占位，待新闻表结构统一)
         function renderNews(news) {
             const container = document.getElementById('intel-feed');
             if(!news || news.length === 0) { container.innerHTML='<p style="color:#94a3b8; font-size:0.9rem;">暂无动态</p>'; return; }
@@ -734,15 +730,16 @@
                 container.innerHTML += `
                     <div style="padding:10px 0; border-bottom:1px solid #f1f5f9;">
                         <a href="news-detail.html?id=${n.id}" style="font-size:0.9rem; font-weight:500; color:#334155; text-decoration:none; display:block; margin-bottom:4px;">${n.title}</a>
-                        <div style="font-size:0.75rem; color:#94a3b8;">${n.publish_date}</div>
+                        <div style="font-size:0.75rem; color:#94a3b8;">${n.publish_date || ''}</div>
                     </div>
                 `;
             });
         }
 
-        // 公共逻辑
         async function checkUserLogin() { const {data:{session}} = await _supabase.auth.getSession(); const btn=document.getElementById('auth-btn'); if(session){btn.innerText=session.user.email.split('@')[0]; btn.onclick=()=>location.href='profile.html';}}
         function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        
+        // 全局搜索
         let searchTimeout;
         async function performGlobalSearch(keyword) {
             const dropdown = document.getElementById('search-dropdown');

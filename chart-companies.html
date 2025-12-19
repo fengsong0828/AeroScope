@@ -257,7 +257,7 @@
         // 全局变量
         var worldChart, graphChart;
         var globalCompanyData = []; 
-        var currentModalCompanies = []; // ★★★ 暂存当前选中国家的公司数据 ★★★
+        var currentModalCompanies = []; 
 
         document.addEventListener('DOMContentLoaded', async function() {
             checkUserLogin();
@@ -265,7 +265,7 @@
             initWorldMap();
         });
 
-        // 1. 获取数据
+        // 1. 获取基础公司数据 (用于地图)
         async function fetchCompanyData() {
             const mapContainer = document.getElementById('world-map-container');
             const { data, error } = await _supabase
@@ -274,7 +274,7 @@
                 .eq('draft', false);
 
             if (error) {
-                console.error('❌ 数据库报错:', error.message);
+                console.error('Database Error:', error.message);
                 mapContainer.innerHTML = `<div style="padding:50px;text-align:center">数据加载失败</div>`;
                 return;
             }
@@ -285,10 +285,9 @@
             }
         }
 
-        // 2. 初始化全球地图
+        // 2. 初始化世界地图 (保持原样)
         function initWorldMap() {
             if (worldChart) { worldChart.resize(); return; }
-            
             const dom = document.getElementById('world-map-container');
             if(!dom) return;
             
@@ -303,20 +302,10 @@
                 'IT': 'Italy', 'ES': 'Spain', 'NL': 'Netherlands', 'CH': 'Switzerland'
             };
 
-            const keywordMap = {
-                '中国': 'China', 'China': 'China', '深圳': 'China', '广州': 'China', '上海': 'China',
-                'USA': 'United States', '美国': 'United States', 'Germany': 'Germany', '德国': 'Germany',
-                'France': 'France', '法国': 'France', 'UK': 'United Kingdom'
-            };
-
             function getMapName(comp) {
                 if (comp.country_code && isoToMapName[comp.country_code]) {
                     return isoToMapName[comp.country_code];
                 } 
-                const loc = (comp.location || '').trim();
-                for (const [key, val] of Object.entries(keywordMap)) {
-                    if (loc.indexOf(key) !== -1) return val;
-                }
                 return null;
             }
 
@@ -330,10 +319,7 @@
 
             const option = {
                 backgroundColor: '#f8fafc',
-                tooltip: {
-                    trigger: 'item',
-                    formatter: '{b}<br/>企业数量: <b>{c}</b><br/><span style="font-size:10px; color:#ccc;">点击查看分类列表</span>'
-                },
+                tooltip: { trigger: 'item', formatter: '{b}<br/>企业数量: <b>{c}</b>' },
                 visualMap: {
                     min: 0, max: 20, left: 'left', bottom: 'bottom',
                     text: ['High', 'Low'],
@@ -341,10 +327,7 @@
                     calculable: true
                 },
                 geo: {
-                    map: 'world',
-                    roam: false,
-                    label: { show: false },
-                    zoom: 1.2,
+                    map: 'world', roam: false, label: { show: false }, zoom: 1.2,
                     itemStyle: { areaColor: '#e2e8f0', borderColor: '#fff' },
                     emphasis: { itemStyle: { areaColor: '#f59e0b' } }
                 },
@@ -354,79 +337,31 @@
             worldChart.hideLoading();
             worldChart.setOption(option);
 
-            // ★★★ 点击事件：显示弹窗并初始化分类 ★★★
+            // 点击事件
             worldChart.on('click', function (params) {
                 if (!params.name) return;
                 const countryName = params.name;
-                
-                // 1. 筛选该国所有企业
-                currentModalCompanies = globalCompanyData.filter(comp => {
-                    return getMapName(comp) === countryName;
-                });
-
+                currentModalCompanies = globalCompanyData.filter(comp => getMapName(comp) === countryName);
                 if (currentModalCompanies.length === 0) return;
-
-                // 2. 显示弹窗骨架
-                showModal(countryName + " 企业名录", "加载中...", `共收录 ${currentModalCompanies.length} 家企业`);
-                
-                // 3. 显示 Tab 栏并重置为 'all'
+                showModal(countryName + " 企业名录", "加载中...", `共 ${currentModalCompanies.length} 家`);
                 document.getElementById('modal-tabs-container').style.display = 'flex';
-                // 重置所有按钮状态
-                document.querySelectorAll('.modal-tab-btn').forEach(btn => btn.classList.remove('active'));
-                document.querySelector('.modal-tab-btn[onclick*="all"]').classList.add('active');
-
-                // 4. 首次渲染全部列表
-                renderModalList(currentModalCompanies);
+                filterModalList('all', document.querySelector('.modal-tab-btn'));
             });
         }
 
-        // ★★★ 新增：弹窗列表筛选与渲染函数 ★★★
-        function filterModalList(type, btnEl) {
-            // 1. 更新按钮 UI
-            document.querySelectorAll('.modal-tab-btn').forEach(btn => btn.classList.remove('active'));
-            btnEl.classList.add('active');
+        // 3. 获取真实关系数据 (融资关系)
+        async function fetchGraphRelations() {
+            const { data: fundings } = await _supabase
+                .from('funding_events')
+                .select('company_id, company_name, lead_investor, funding_amount')
+                .not('lead_investor', 'is', null) // 只取有领投方的
+                .limit(100); 
 
-            // 2. 筛选数据
-            let filtered = [];
-            if (type === 'all') {
-                filtered = currentModalCompanies;
-            } else {
-                // midstream, upstream, downstream
-                filtered = currentModalCompanies.filter(c => c.industry_chain === type);
-            }
-
-            // 3. 渲染
-            renderModalList(filtered);
+            return fundings || [];
         }
 
-        function renderModalList(list) {
-            const container = document.getElementById('m-content');
-            if (list.length === 0) {
-                container.innerHTML = '<p style="text-align:center; padding:20px; color:#999;">该分类下暂无企业</p>';
-                return;
-            }
-
-            let html = '';
-            list.forEach(c => {
-                let tag = c.primary_category || '通用';
-                // 根据产业链位置给 Tag 不同的颜色 (可选)
-                let badgeClass = 'item-badge'; // 默认样式
-
-                html += `
-                    <a href="company-detail.html?id=${c.id}" class="modal-list-item" target="_blank">
-                        <div>
-                            <span class="item-name">${c.name}</span>
-                            <span class="${badgeClass}">${tag}</span>
-                        </div>
-                        <span class="item-arrow">➔</span>
-                    </a>
-                `;
-            });
-            container.innerHTML = html;
-        }
-
-        // 3. 初始化关系图谱
-        function initGraph() {
+        // 4. 初始化关系图谱 (Updated)
+        async function initGraph() {
             if (graphChart) { graphChart.resize(); return; }
             const dom = document.getElementById('graph-container');
             if(!dom) return;
@@ -434,43 +369,66 @@
             graphChart = echarts.init(dom);
             graphChart.showLoading();
 
-            const nodes = globalCompanyData.map(comp => {
-                let cat = 3; 
+            // 核心：拉取真实融资关系
+            const relations = await fetchGraphRelations();
+
+            // 构建节点 (Nodes)
+            let nodes = globalCompanyData.map(comp => {
+                let cat = 0; // 默认
                 if (comp.industry_chain === 'midstream') cat = 0; 
                 else if (comp.industry_chain === 'upstream') cat = 1; 
                 else if (comp.industry_chain === 'downstream') cat = 2;
                 
-                let size = 15;
-                if (comp.is_listed) size = 45; 
-                else {
-                    const funding = Number(comp.total_funding_est_usd || 0);
-                    if (funding > 100000000) size = 35; 
-                    else if (funding > 10000000) size = 25;
-                }
-
                 return {
-                    id: String(comp.id),
+                    id: 'c-' + comp.id, // 加前缀区分类型
                     name: comp.name,
-                    symbolSize: size,
+                    symbolSize: comp.is_listed ? 30 : 15,
                     category: cat,
-                    value: comp.primary_category || 'General',
+                    value: comp.primary_category,
                     desc: comp.description,
-                    funding: comp.total_funding_est_usd
+                    funding: comp.total_funding_est_usd,
+                    nodeType: 'company'
                 };
             });
 
-            const links = [];
-            const oems = nodes.filter(n => n.category === 0);
-            const suppliers = nodes.filter(n => n.category === 1);
+            // 提取投资方作为节点
+            let investorSet = new Set();
+            relations.forEach(r => {
+                if(r.lead_investor) investorSet.add(r.lead_investor);
+            });
             
-            if (oems.length > 0 && suppliers.length > 0) {
-                suppliers.forEach(sup => {
-                    const target = oems[Math.floor(Math.random() * oems.length)];
-                    links.push({ source: sup.id, target: target.id });
+            investorSet.forEach(inv => {
+                nodes.push({
+                    id: 'i-' + inv,
+                    name: inv,
+                    category: 3, // 投资方分类
+                    symbolSize: 25,
+                    nodeType: 'investor'
                 });
-            }
+            });
 
-            const categories = [{name: '✈️ 主机制造'}, {name: '⛓️ 供应链'}, {name: '🏷️ 运营服务'}, {name: '🏢 其他'}];
+            // 构建连线 (Links)
+            let links = [];
+            relations.forEach(r => {
+                const targetId = 'c-' + r.company_id;
+                const sourceId = 'i-' + r.lead_investor;
+                
+                // 确保目标公司存在于节点列表中
+                if (globalCompanyData.find(c => c.id == r.company_id)) {
+                    links.push({
+                        source: sourceId,
+                        target: targetId,
+                        value: r.funding_amount ? `$${r.funding_amount}M` : 'Invested'
+                    });
+                }
+            });
+
+            const categories = [
+                {name: '✈️ 主机制造'}, 
+                {name: '⛓️ 供应链'}, 
+                {name: '🏷️ 运营服务'}, 
+                {name: '💰 投资机构'}
+            ];
 
             const option = {
                 tooltip: {},
@@ -485,7 +443,7 @@
                     categories: categories,
                     roam: true, 
                     label: { show: true, position: 'right', formatter: '{b}' },
-                    force: { repulsion: 300, edgeLength: 150 },
+                    force: { repulsion: 200, edgeLength: 120 },
                     lineStyle: { color: 'source', curveness: 0.3 }
                 }]
             };
@@ -496,10 +454,11 @@
             graphChart.on('click', function (params) {
                 if (params.dataType === 'node') {
                     const d = params.data;
-                    const fundingStr = d.funding ? `$${(d.funding/1000000).toFixed(1)}M` : '未披露';
-                    // 图谱点击暂不使用 Tab，直接显示详情
-                    showModal(d.name, `<div style="padding:10px;">${d.desc || '暂无简介'}</div>`, `赛道: ${d.value} | 累计融资: ${fundingStr}`);
-                    document.getElementById('modal-tabs-container').style.display = 'none'; // 隐藏 Tab
+                    if(d.nodeType === 'company') {
+                        const fundingStr = d.funding ? `$${d.funding}M` : '未披露';
+                        showModal(d.name, `<div style="padding:10px;">${d.desc || '暂无简介'}</div>`, `赛道: ${d.value} | 累计融资: ${fundingStr}`);
+                        document.getElementById('modal-tabs-container').style.display = 'none';
+                    }
                 }
             });
         }
@@ -518,29 +477,36 @@
             else setTimeout(() => { if(worldChart) worldChart.resize(); }, 100);
         }
 
+        // Modal & List Logic
+        function filterModalList(type, btnEl) {
+            document.querySelectorAll('.modal-tab-btn').forEach(btn => btn.classList.remove('active'));
+            btnEl.classList.add('active');
+            let filtered = currentModalCompanies;
+            if (type !== 'all') filtered = currentModalCompanies.filter(c => c.industry_chain === type);
+            renderModalList(filtered);
+        }
+
+        function renderModalList(list) {
+            const container = document.getElementById('m-content');
+            if (list.length === 0) { container.innerHTML = '<p style="text-align:center; padding:20px; color:#999;">暂无企业</p>'; return; }
+            let html = '';
+            list.forEach(c => {
+                html += `<a href="company-detail.html?id=${c.id}" class="modal-list-item" target="_blank"><div><span class="item-name">${c.name}</span><span class="item-badge">${c.primary_category||'通用'}</span></div><span class="item-arrow">➔</span></a>`;
+            });
+            container.innerHTML = html;
+        }
+
         function showModal(t, c, m) { 
             document.getElementById('m-title').innerText = t; 
-            const contentEl = document.getElementById('m-content');
-            // 如果传入的 c 是字符串，直接设为 innerHTML (用于 renderModalList)
-            // 如果是在图谱点击逻辑中调用，c 可能是简介文本，这里统一用 innerHTML
-            contentEl.innerHTML = c;
-            
+            document.getElementById('m-content').innerHTML = c;
             document.getElementById('m-meta').innerText = m; 
             document.getElementById('info-modal').style.display = 'flex'; 
         }
         function closeModal() { document.getElementById('info-modal').style.display = 'none'; }
         
-        async function checkUserLogin() {
-            const { data: { session } } = await _supabase.auth.getSession();
-            const btn = document.getElementById('auth-btn');
-            if (session) {
-                btn.innerText = session.user.email.split('@')[0];
-                btn.onclick = () => location.href = 'profile.html';
-            }
-        }
-
+        async function checkUserLogin() { const { data: { session } } = await _supabase.auth.getSession(); const btn = document.getElementById('auth-btn'); if (session) { btn.innerText = session.user.email.split('@')[0]; btn.onclick = () => location.href = 'profile.html'; } }
         function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
-
+        
         let searchTimeout;
         async function performGlobalSearch(keyword) {
             const dropdown = document.getElementById('search-dropdown');
@@ -548,31 +514,18 @@
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(async () => {
                 dropdown.style.display = 'block';
-                dropdown.innerHTML = '<div style="padding:12px; text-align:center; color:#94a3b8;">搜索中...</div>';
-                const { data, error } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
-                if (error || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
+                const { data } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
+                if (!data || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
                 let html = '';
                 data.forEach(item => {
-                    let link='#';
-                    if(item.type==='company') link='companies.html';
-                    else if(item.type==='policy') link=`policy-detail.html?id=${item.id}`;
-                    else if(item.type==='tech') link=`tech-detail.html?id=${item.id}`;
-                    else link=`news-detail.html?id=${item.id}`;
+                    let link = item.type==='company' ? 'companies.html' : `news-detail.html?id=${item.id}`;
                     html += `<a href="${link}" class="search-result-item">${item.title}</a>`;
                 });
                 dropdown.innerHTML = html;
             }, 500);
         }
-        document.addEventListener('click', (e) => {
-            if (!document.querySelector('.search-component').contains(e.target)) {
-                document.getElementById('search-dropdown').style.display = 'none';
-            }
-        });
-
-        window.addEventListener('resize', function() { 
-            if(worldChart) worldChart.resize(); 
-            if(graphChart) graphChart.resize(); 
-        });
+        document.addEventListener('click', (e) => { if (!document.querySelector('.search-component').contains(e.target)) document.getElementById('search-dropdown').style.display = 'none'; });
+        window.addEventListener('resize', function() { if(worldChart) worldChart.resize(); if(graphChart) graphChart.resize(); });
     </script>
 </body>
 </html>
