@@ -25,12 +25,41 @@
         .filter-select:focus { border-color: #3b82f6; background: white; }
         .local-search { flex-grow: 1; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9rem; max-width: 300px; }
 
-        /* --- 分页控件样式 (新增) --- */
+        /* --- 分页控件样式 --- */
         .pagination-container { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 20px; padding-top: 20px; border-top: 1px solid #e2e8f0; }
         .page-btn { padding: 8px 16px; background: white; border: 1px solid #cbd5e1; border-radius: 6px; color: #334155; cursor: pointer; transition: 0.2s; font-size: 0.9rem; }
         .page-btn:hover:not(:disabled) { border-color: #3b82f6; color: #3b82f6; background: #f8fafc; }
         .page-btn:disabled { opacity: 0.5; cursor: not-allowed; background: #f1f5f9; }
         .page-info { color: #64748b; font-size: 0.9rem; }
+
+        /* --- 公司库列表样式 (优化版) --- */
+        .company-grid { 
+            display: grid; 
+            /* 强制3列等宽，自动填满容器宽度，实现右侧对齐 */
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 30px; 
+            width: 100%;
+        }
+        .company-card { 
+            background: white; 
+            border: 1px solid var(--border-color); 
+            border-radius: 10px; 
+            padding: 24px; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100%; 
+            transition: all 0.3s ease; 
+            box-sizing: border-box; /* 确保padding不撑大宽度 */
+        }
+        .company-card:hover { transform: translateY(-3px); box-shadow: var(--card-shadow); border-color: var(--primary-blue); }
+        
+        .company-header { display: flex; gap: 12px; margin-bottom: 16px; align-items: center; }
+        .company-logo-box { width: 48px; height: 48px; background: var(--primary-dark); border-radius: 8px; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+        
+        .company-desc { font-size: 0.85rem; color: #475569; margin-bottom: 20px; flex-grow: 1; }
+        .company-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+        .company-tag { font-size: 0.7rem; padding: 4px 10px; background: #f1f5f9; border-radius: 20px; color: #64748b; }
+        .company-tag.highlight { color: var(--primary-blue); background: #eff6ff; }
 
         /* --- 页脚样式 --- */
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
@@ -42,12 +71,18 @@
         .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
         .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
 
+        /* 响应式调整 */
+        @media (max-width: 1024px) {
+            .company-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (max-width: 768px) {
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .social-icons { justify-content: center; }
             .search-component { display: none; }
             .filter-inner { flex-direction: column; align-items: stretch; }
             .local-search { max-width: 100%; }
+            .company-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -195,7 +230,7 @@
         let allCompanies = [];
         let filteredCompanies = []; // 当前筛选后的数据
         let currentPage = 1;
-        const itemsPerPage = 8; // 两行（一行4个 x 2）
+        const itemsPerPage = 6; // 修改为每页6个（3列 x 2行）
 
         document.addEventListener('DOMContentLoaded', async function() {
             checkUserLogin();
@@ -304,6 +339,7 @@
                     ? `<span style="background:#f8fafc; color:#475569; border:1px solid #e2e8f0; border-radius:4px; padding:0 4px; font-size:0.7rem; margin-left:5px; white-space:nowrap;">${item.ticker_symbol}</span>` 
                     : '';
 
+                // 修改点：为名称添加 max-width 以强制截断，优化视觉宽度
                 const html = `
                 <a href="company-detail.html?id=${item.id}" class="company-card-link" style="text-decoration: none; display: block;">
                     <div class="company-card">
@@ -313,8 +349,8 @@
                             </div>
                             <div style="flex:1; min-width:0; margin-left:10px;"> 
                                 <div style="display:flex; align-items:center; margin-bottom:4px; width:100%;">
-                                    <!-- 标题区域：flex:1, min-width:0 确保省略号生效 -->
-                                    <div style="flex:1; min-width:0; font-weight:700; font-size:1.05rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-right:8px; color:#0f172a;">
+                                    <!-- 标题区域：增加 max-width: 11em 强制控制宽度 -->
+                                    <div style="flex:1; min-width:0; max-width: 11em; font-weight:700; font-size:1.05rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-right:8px; color:#0f172a;" title="${item.name}">
                                         ${item.name}
                                     </div>
                                     ${chainBadge}
