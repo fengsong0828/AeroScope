@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>中央控制台 | AeroScope Admin</title>
     <link rel="stylesheet" href="style.css">
+    <!-- 引入 SheetJS 用于解析 Excel/CSV -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
     <style>
         /* --- 样式 (保持原样) --- */
         body { background-color: #f1f5f9; min-height: 100vh; display: flex; flex-direction: column; margin: 0; }
@@ -66,11 +68,30 @@
         .badge-draft { background: #fef9c3; color: #b45309; }
         .badge-pub { background: #dcfce7; color: #15803d; }
         .badge-blue { background: #dbeafe; color: #1e40af; }
+        .type-tag { display: block; font-size: 0.7rem; font-weight: normal; margin-top: 4px; padding: 1px 6px; border-radius: 4px; width: fit-content; font-family: monospace; letter-spacing: -0.5px; }
         
         .btn-xs { padding: 4px 8px; font-size: 0.8rem; border-radius: 4px; border: 1px solid #e2e8f0; background: white; cursor: pointer; margin-right: 5px; color:#475569; }
         .btn-xs:hover { border-color: #3b82f6; color: #3b82f6; }
+        
+        /* 新增：状态切换按钮 */
+        .btn-pub { color: #15803d; border-color: #dcfce7; background: #f0fdf4; }
+        .btn-pub:hover { border-color: #15803d; background: #dcfce7; }
+        .btn-revoke { color: #b45309; border-color: #fef3c7; background: #fffbeb; }
+        .btn-revoke:hover { border-color: #b45309; background: #fef3c7; }
+
         .btn-primary-sm { background: #3b82f6; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; font-weight:600; }
         .btn-primary-sm:hover { background: #2563eb; }
+        
+        /* 导入按钮样式 */
+        .btn-import { background: #10b981; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; font-weight:600; display:inline-flex; align-items:center; gap:5px; margin-right: 10px; }
+        .btn-import:hover { background: #059669; }
+
+        /* 分页控件 */
+        .pagination-bar { padding: 15px 20px; display: flex; justify-content: flex-end; align-items: center; border-top: 1px solid #f1f5f9; background: #fff; }
+        .page-btn { padding: 6px 12px; border: 1px solid #e2e8f0; background: white; border-radius: 4px; cursor: pointer; font-size: 0.85rem; color: #64748b; margin-left: 5px; }
+        .page-btn:disabled { opacity: 0.5; cursor: not-allowed; background: #f8fafc; }
+        .page-btn:hover:not(:disabled) { border-color: #3b82f6; color: #3b82f6; }
+        .page-info { font-size: 0.85rem; color: #64748b; margin-right: 15px; }
 
         /* 弹窗表单 */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; display: none; justify-content: center; align-items: center; }
@@ -114,7 +135,7 @@
     </header>
 
     <div class="admin-layout">
-        <!-- 左侧菜单 (完全保持原样) -->
+        <!-- 左侧菜单 -->
         <aside class="admin-sidebar">
             <div class="sidebar-group">
                 <div class="group-label">Dashboards</div>
@@ -182,6 +203,11 @@
         let currentEditId = null;
         let tableSchema = {}; 
         let rawDataCache = [];
+        
+        // 分页状态
+        let page = 0;
+        const PAGE_SIZE = 10;
+        let totalCount = 0;
 
         document.addEventListener('DOMContentLoaded', async () => {
             await checkAdmin();
@@ -204,11 +230,12 @@
         // 2. 切换 Tab
         function switchTab(tab, el) {
             currentTable = tab;
+            page = 0; // 重置分页
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             if(el) el.classList.add('active');
             
             if (tab === 'dashboard') loadDashboard();
-            else if (tab === 'raw_db_viewer') loadRawDBViewer(); // 假设你有这个函数，没有的话可忽略
+            else if (tab === 'raw_db_viewer') loadRawDBViewer(); 
             else loadTableData(tab);
         }
 
@@ -237,7 +264,82 @@
                 </div>`;
         }
 
-        // 4. 加载表格数据
+        // 4.1 加载 Raw DB Viewer
+        async function loadRawDBViewer() {
+            const container = document.getElementById('main-container');
+            const options = ALL_DB_TABLES.map(t => `<option value="${t}">${t}</option>`).join('');
+            container.innerHTML = `
+                <div class="content-card">
+                    <div class="card-header" style="background:#f8fafc;">
+                        <div style="display:flex; align-items:center; gap:15px;">
+                            <div class="card-title">🗄️ 数据库原始记录透视</div>
+                            <select id="raw-db-selector" class="form-control" style="width:200px;" onchange="fetchAndRenderRawTable(this.value)"><option value="" disabled selected>选择数据库表...</option>${options}</select>
+                            <input type="text" id="raw-db-search" class="form-control" style="width:200px;" placeholder="🔍 搜索当前表内容..." onkeyup="filterRawTable()">
+                        </div>
+                        <div style="font-size:0.85rem; color:#64748b;">显示所有字段及类型 (Audit Mode)</div>
+                    </div>
+                    <div id="raw-table-container" style="overflow-x:auto; min-height:300px; padding:20px;"><p style="text-align:center; color:#94a3b8; margin-top:50px;">请从上方下拉框选择一个数据表以查看详情。</p></div>
+                </div>`;
+        }
+
+        async function fetchAndRenderRawTable(tableName) {
+            const container = document.getElementById('raw-table-container');
+            container.innerHTML = '<div style="text-align:center; color:#64748b;">正在分析数据库结构...</div>';
+            const { data, error } = await _supabase.from(tableName).select('*').limit(30).order('created_at', {ascending: false});
+            if (error) { container.innerHTML = `<div style="color:red; text-align:center;">读取失败: ${error.message}</div>`; return; }
+            if (!data || data.length === 0) { container.innerHTML = `<div style="text-align:center; color:#94a3b8;">该表为空 (0 records)</div>`; rawDataCache = []; return; }
+            rawDataCache = data;
+            filterRawTable();
+        }
+
+        function filterRawTable() {
+            const container = document.getElementById('raw-table-container');
+            const keyword = document.getElementById('raw-db-search')?.value.toLowerCase().trim() || '';
+            if (!rawDataCache || rawDataCache.length === 0) return;
+            const allKeys = Object.keys(rawDataCache[0]);
+            const getColumnType = (key) => {
+                for (let i = 0; i < rawDataCache.length; i++) {
+                    const val = rawDataCache[i][key];
+                    if (val !== null && val !== undefined) {
+                        if (Array.isArray(val)) return 'array';
+                        if (typeof val === 'object') return 'json';
+                        if (typeof val === 'boolean') return 'bool';
+                        if (typeof val === 'number') return 'num';
+                        if (typeof val === 'string' && val.length === 36 && val.split('-').length === 5) return 'uuid';
+                        if (typeof val === 'string' && /^\d{4}-\d{2}-\d{2}/.test(val)) return 'date';
+                        return 'text';
+                    }
+                }
+                return 'null';
+            };
+            let thHtml = `<th>#</th>`;
+            allKeys.forEach(key => {
+                const type = getColumnType(key);
+                let color = '#64748b'; let bg = '#e2e8f0';
+                if(type === 'num') { color = '#0369a1'; bg = '#e0f2fe'; }
+                if(type === 'bool') { color = '#15803d'; bg = '#dcfce7'; }
+                if(type === 'json' || type === 'array') { color = '#b45309'; bg = '#fef3c7'; }
+                if(type === 'date') { color = '#7e22ce'; bg = '#f3e8ff'; }
+                thHtml += `<th><div style="font-size:0.9rem;">${key}</div><span class="type-tag" style="background:${bg}; color:${color};">${type}</span></th>`;
+            });
+            const filteredData = rawDataCache.filter(item => !keyword || Object.values(item).some(val => String(val).toLowerCase().includes(keyword)));
+            let trHtml = '';
+            filteredData.forEach((item, index) => {
+                let tds = `<td>${index + 1}</td>`;
+                allKeys.forEach(key => {
+                    let val = item[key];
+                    if (val === null || val === undefined) val = '<span style="color:#cbd5e1;">null</span>';
+                    else if (typeof val === 'object') val = `<span title='${JSON.stringify(val)}' style="color:#b45309; font-family:monospace; cursor:help;">{...}</span>`;
+                    else if (typeof val === 'boolean') val = val ? '<span style="color:green">true</span>' : '<span style="color:red">false</span>';
+                    else if (String(val).length > 40) val = `<span title="${val}">${String(val).substring(0, 40)}...</span>`;
+                    tds += `<td>${val}</td>`;
+                });
+                trHtml += `<tr>${tds}</tr>`;
+            });
+            container.innerHTML = `<table class="data-table"><thead><tr>${thHtml}</tr></thead><tbody>${trHtml}</tbody></table>`;
+        }
+
+        // 4.2 加载常规表格数据 (新增分页功能)
         async function loadTableData(tableName) {
             const container = document.getElementById('main-container');
             container.innerHTML = '<div style="text-align:center; padding:50px;">加载数据中...</div>';
@@ -245,13 +347,23 @@
             const schema = getTableSchema(tableName);
             tableSchema = schema;
             
-            const { data, error } = await _supabase.from(tableName).select('*').order('created_at', { ascending: false }).limit(50);
+            // 获取总数
+            const { count } = await _supabase.from(tableName).select('id', { count: 'exact', head: true });
+            totalCount = count || 0;
+
+            // 获取当页数据
+            const from = page * PAGE_SIZE;
+            const to = from + PAGE_SIZE - 1;
+            const { data, error } = await _supabase.from(tableName)
+                .select('*')
+                .order('created_at', { ascending: false })
+                .range(from, to);
             
             if (error) return container.innerHTML = `<div style="color:red;">加载失败: ${error.message}</div>`;
             
             let thHtml = '';
             schema.listFields.forEach(f => thHtml += `<th>${f.label}</th>`);
-            thHtml += `<th style="width:180px;">操作</th>`;
+            thHtml += `<th style="width:240px;">操作</th>`; // 稍微加宽以容纳新按钮
 
             let trHtml = '';
             data.forEach(item => {
@@ -265,7 +377,7 @@
                     }
                     if (f.type === 'date' && val) val = new Date(val).toLocaleDateString();
                     if (f.type === 'array' && Array.isArray(val)) val = val.join(', ');
-                    if (f.type === 'number' && val) val = Number(val).toLocaleString(); // 数字格式化
+                    if (f.type === 'number' && val) val = Number(val).toLocaleString(); 
                     if (val === null || val === undefined) val = '-';
                     if (typeof val === 'string' && val.length > 30) val = val.substring(0, 30) + '...';
                     
@@ -273,18 +385,53 @@
                 });
 
                 const itemStr = JSON.stringify(item).replace(/'/g, "&#39;");
+                
+                // 动态生成发布/撤销按钮
+                let statusBtn = '';
+                if (item.draft === true) {
+                    // 当前是草稿 -> 显示“发布”
+                    statusBtn = `<button class="btn-xs btn-pub" onclick="togglePublish('${tableName}', '${item.id}', true)">🚀 发布</button>`;
+                } else if (item.draft === false) {
+                    // 当前已发布 -> 显示“撤销”
+                    statusBtn = `<button class="btn-xs btn-revoke" onclick="togglePublish('${tableName}', '${item.id}', false)">↩️ 撤销</button>`;
+                }
+
                 const btns = `
                     <button class="btn-xs" onclick='openEditModal(${itemStr})'>编辑</button>
+                    ${statusBtn}
                     <button class="btn-xs" style="color:#ef4444; border-color:#ef4444;" onclick="deleteItem('${tableName}', '${item.id}')">删除</button>
                 `;
                 trHtml += `<tr>${tds}<td>${btns}</td></tr>`;
             });
 
+            // 导入按钮仅在专利库显示
+            let importBtn = '';
+            if (tableName === 'patents') {
+                importBtn = `
+                    <input type="file" id="patent-file-upload" accept=".xlsx, .xls, .csv" style="display:none;" onchange="handlePatentImport(this)">
+                    <button class="btn-import" onclick="document.getElementById('patent-file-upload').click()">📂 批量导入 (Excel/CSV)</button>
+                `;
+            }
+            
+            // 分页控制栏
+            const totalPages = Math.ceil(totalCount / PAGE_SIZE);
+            const currentPageNum = page + 1;
+            const paginationHtml = `
+                <div class="pagination-bar">
+                    <span class="page-info">第 ${currentPageNum} 页 / 共 ${totalPages} 页 (总计 ${totalCount} 条)</span>
+                    <button class="page-btn" onclick="changePage(-1)" ${page === 0 ? 'disabled' : ''}>上一页</button>
+                    <button class="page-btn" onclick="changePage(1)" ${page >= totalPages - 1 ? 'disabled' : ''}>下一页</button>
+                </div>
+            `;
+
             container.innerHTML = `
                 <div class="content-card">
                     <div class="card-header">
                         <div class="card-title">${schema.title} 管理</div>
-                        <button class="btn-primary-sm" onclick="openCreateModal()">+ 新增记录</button>
+                        <div>
+                            ${importBtn}
+                            <button class="btn-primary-sm" onclick="openCreateModal()">+ 新增记录</button>
+                        </div>
                     </div>
                     <div style="overflow-x:auto;">
                         <table class="data-table">
@@ -292,7 +439,26 @@
                             <tbody>${trHtml || '<tr><td colspan="10" style="text-align:center; padding:20px;">暂无数据</td></tr>'}</tbody>
                         </table>
                     </div>
+                    ${paginationHtml}
                 </div>`;
+        }
+        
+        // 分页逻辑
+        function changePage(direction) {
+            page += direction;
+            loadTableData(currentTable);
+        }
+
+        // 切换发布状态
+        async function togglePublish(table, id, isDraft) {
+            const newDraftStatus = !isDraft; // 如果是草稿(true)，点发布变false；如果是发布(false)，点撤销变true
+            const { error } = await _supabase.from(table).update({ draft: newDraftStatus }).eq('id', id);
+            
+            if (error) {
+                alert('操作失败: ' + error.message);
+            } else {
+                loadTableData(table); // 刷新列表
+            }
         }
 
         // 5. 打开表单 (编辑/新增)
@@ -327,12 +493,10 @@
                 html += `<div class="form-group"><label class="form-label">${f.label}</label>`;
                 
                 if (f.type === 'array') {
-                    // 数组转字符串显示
                     const displayVal = Array.isArray(val) ? val.join(', ') : (val || '');
                     html += `<input type="text" id="f-${f.key}" class="form-control" value="${displayVal}" placeholder="多项请用逗号分隔">`;
                 }
                 else if (f.type === 'json' || f.key === 'specs') {
-                    // JSON 格式化
                     const jsonStr = val ? JSON.stringify(val, null, 2) : '{}';
                     html += `<textarea id="f-${f.key}" class="form-control" rows="6" style="font-family:monospace; font-size:0.85rem;">${jsonStr}</textarea>`;
                 }
@@ -374,15 +538,13 @@
             try {
                 tableSchema.editFields.forEach(f => {
                     const el = document.getElementById(`f-${f.key}`);
-                    if(!el) return; // 跳过不存在的字段
+                    if(!el) return;
                     
                     let val = el.value;
 
-                    // 类型转换
                     if (f.type === 'boolean') val = (val === 'true');
                     
                     if (f.type === 'array') {
-                        // 字符串 -> 数组
                         val = val ? val.split(/,|，/).map(s => s.trim()).filter(s => s) : [];
                     }
                     
@@ -434,6 +596,123 @@
             }
         }
 
+        // 9. 批量导入专利 (Excel/CSV) - V2.0 增强版
+        async function handlePatentImport(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+
+                    if (jsonData.length === 0) {
+                        alert('文件为空或格式不正确');
+                        return;
+                    }
+
+                    if (!confirm(`准备处理 ${jsonData.length} 条专利数据。\n\n机制说明：\n1. 若专利号已存在 -> 更新信息 (查重)\n2. 若不存在 -> 新增记录\n3. 自动识别多个申请人并关联/创建公司\n\n是否继续？`)) {
+                        input.value = '';
+                        return;
+                    }
+
+                    const records = jsonData.map(row => {
+                        // 健壮的字段读取
+                        const title = row['标题'] || row['Title'] || row['专利名称'] || '未命名专利';
+                        const appNum = row['申请号'] || row['Application Number'] || '';
+                        // 专利号是查重的关键，必须处理
+                        let pubNum = row['公开（公告）号'] || row['Publication Number'] || row['专利号'];
+                        if(!pubNum) pubNum = appNum; // 如果没专利号，用申请号代替
+                        
+                        // 清洗申请人字段：去除多余空格，统一分隔符
+                        let applicant = row['申请人'] || row['Applicant'] || '未知';
+                        applicant = applicant.replace(/\s+/g, ' ').trim(); // 去除换行和多余空格
+
+                        const typeRaw = row['专利类型'] || row['Patent Type'];
+                        const appDateRaw = row['申请日'] || row['Application Date'];
+                        const pubDateRaw = row['公开（公告）日'] || row['Publication Date'];
+                        const status = row['法律状态'] || row['Legal Status'];
+                        const abstract = row['摘要'] || row['Abstract'];
+                        const mainClass = row['主分类号'] || row['Main Classification'] || '';
+                        const inventors = row['发明人'] || row['Inventors'];
+
+                        // 类型映射
+                        let patentType = 'Invention';
+                        if (typeRaw) {
+                            if (typeRaw.includes('实用')) patentType = 'Utility Model';
+                            else if (typeRaw.includes('外观')) patentType = 'Design';
+                        }
+
+                        return {
+                            title: title,
+                            application_number: appNum,
+                            patent_number: pubNum, // 唯一索引键
+                            applicant: applicant,
+                            patent_type: patentType,
+                            application_date: parseExcelDate(appDateRaw),
+                            publication_date: parseExcelDate(pubDateRaw),
+                            legal_status: status || '未知',
+                            abstract: abstract,
+                            technical_categories: mainClass ? [mainClass.split(/;|；|\s/)[0]] : [],
+                            inventors: inventors ? inventors.split(/;|；/) : [],
+                            draft: false,
+                            updated_at: new Date() // 标记更新时间
+                        };
+                    });
+
+                    // 过滤掉没有唯一标识的数据
+                    const validRecords = records.filter(r => r.patent_number);
+                    if (validRecords.length < records.length) {
+                        console.warn(`跳过了 ${records.length - validRecords.length} 条没有专利号的数据`);
+                    }
+
+                    // 批量 Upsert (插入或更新)
+                    // onConflict: 'patent_number' 指定了查重依据
+                    const { error } = await _supabase.from('patents').upsert(validRecords, { 
+                        onConflict: 'patent_number',
+                        ignoreDuplicates: false // false 表示如果重复则更新 (Update)
+                    });
+
+                    if (error) {
+                        throw error;
+                    } else {
+                        alert(`✅ 成功处理 ${validRecords.length} 条数据！\n\n系统正在后台：\n1. 自动创建缺失的子公司\n2. 关联多主体关系\n\n请稍后刷新列表查看。`);
+                        loadTableData('patents');
+                    }
+
+                } catch (err) {
+                    console.error(err);
+                    alert('导入失败: ' + err.message + '\n(请检查Excel中是否有重复的专利号行)');
+                } finally {
+                    input.value = ''; 
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        // 辅助：处理 Excel 日期 (可能是数字 20210610 或 Excel 序列号)
+        function parseExcelDate(val) {
+            if (!val) return null;
+            // 格式: 20210610 (数字或字符串)
+            if (String(val).length === 8 && !isNaN(val)) {
+                const s = String(val);
+                return `${s.substring(0,4)}-${s.substring(4,6)}-${s.substring(6,8)}`;
+            }
+            // 格式: 2021/6/10
+            if (String(val).includes('/')) {
+                return new Date(val).toISOString().split('T')[0];
+            }
+            // 如果是 Excel 序列号 (例如 44357)
+            if (typeof val === 'number' && val > 20000 && val < 60000) {
+                 const date = new Date((val - 25569) * 86400 * 1000);
+                 return date.toISOString().split('T')[0];
+            }
+            return null; // 无法解析
+        }
+
         function closeModal() { document.getElementById('edit-modal').style.display = 'none'; }
         async function logout() { await _supabase.auth.signOut(); location.href='index.html'; }
 
@@ -442,7 +721,6 @@
         // =========================================
         function getTableSchema(tableName) {
             const schemas = {
-                // 1. 投资方 (独立配置)
                 'investors': {
                     title: '投资方 (Investors)',
                     listFields: [{key:'name',label:'机构名称',type:'text'}, {key:'type',label:'类型',type:'text'}, {key:'country',label:'地区',type:'text'}, {key:'total_amount',label:'总投金额(USD)',type:'number'}],
@@ -458,8 +736,6 @@
                         {key:'draft',label:'草稿状态',type:'boolean'}
                     ]
                 },
-                
-                // 2. 融资事件 (独立配置)
                 'funding_events': {
                     title: '融资事件 (Funding)',
                     listFields: [{key:'funding_date',label:'日期',type:'date'}, {key:'company_name',label:'公司',type:'text'}, {key:'funding_round',label:'轮次',type:'text'}, {key:'funding_amount',label:'金额(M)',type:'number'}],
@@ -477,8 +753,6 @@
                         {key:'draft',label:'草稿状态',type:'boolean'}
                     ]
                 },
-
-                // 3. 专利库 (独立配置)
                 'patents': {
                     title: '专利技术 (Patents)',
                     listFields: [{key:'title',label:'专利标题',type:'text'}, {key:'applicant',label:'申请人',type:'text'}, {key:'patent_type',label:'类型',type:'text'}, {key:'legal_status',label:'状态',type:'text'}],
@@ -497,8 +771,6 @@
                         {key:'draft',label:'草稿状态',type:'boolean'}
                     ]
                 },
-
-                // 4. 公司库 (保留优化)
                 'companies': {
                     title: '公司库 (Companies)',
                     listFields: [{key:'name',label:'名称',type:'text'}, {key:'industry_chain',label:'产业链',type:'text'}, {key:'primary_category',label:'赛道',type:'text'}, {key:'is_listed',label:'上市',type:'boolean'}],
@@ -518,8 +790,6 @@
                         {key:'draft',label:'草稿',type:'boolean'}
                     ]
                 },
-
-                // 5. 产品库
                 'products': {
                     title: '产品 (Products)',
                     listFields: [{key:'name',label:'型号',type:'text'}, {key:'type',label:'类型',type:'text'}, {key:'certification_status',label:'状态',type:'text'}],
@@ -534,8 +804,6 @@
                         {key:'draft',label:'草稿',type:'boolean'}
                     ]
                 },
-
-                // 6. 资讯 (News)
                 'news': {
                     title: '资讯快报',
                     listFields: [{key:'title',label:'标题',type:'text'}, {key:'category',label:'分类',type:'text'}, {key:'publish_date',label:'日期',type:'date'}],
@@ -551,8 +819,6 @@
                         {key:'draft',label:'是否草稿',type:'boolean'}
                     ]
                 },
-
-                // 7. 政策
                 'policies': {
                     title: '政策法规',
                     listFields: [{key:'title',label:'标题',type:'text'}, {key:'department',label:'部门',type:'text'}, {key:'level',label:'层级',type:'text'}],
@@ -568,29 +834,21 @@
                         {key:'draft',label:'草稿',type:'boolean'}
                     ]
                 },
-                
-                // 8. 研报
                 'deep_reports': {
                     title: '深度研报',
                     listFields: [{key:'title',label:'标题',type:'text'}, {key:'author',label:'作者',type:'text'}, {key:'publish_date',label:'日期',type:'date'}],
                     editFields: [{key:'title',label:'标题',type:'text'}, {key:'author',label:'作者',type:'text'}, {key:'summary',label:'摘要',type:'textarea'}, {key:'content',label:'正文',type:'textarea'}, {key:'is_pro_only',label:'Pro专享',type:'boolean'}, {key:'draft',label:'草稿',type:'boolean'}]
                 },
-
-                // 9. 技术前沿
                 'tech_trends': {
                     title: '技术前沿',
                     listFields: [{key:'title',label:'标题',type:'text'}, {key:'type',label:'类型',type:'text'}, {key:'org',label:'机构',type:'text'}],
                     editFields: [{key:'title',label:'标题',type:'text'}, {key:'type',label:'类型',type:'select',options:['Patent','Paper','Product']}, {key:'org',label:'机构',type:'text'}, {key:'summary',label:'摘要',type:'textarea'}, {key:'content',label:'内容',type:'textarea'}, {key:'draft',label:'草稿',type:'boolean'}]
                 },
-
-                // 10. 商务线索
                 'cooperation_leads': {
                     title: '商务线索',
                     listFields: [{key:'contact_name',label:'联系人',type:'text'}, {key:'company_name',label:'公司',type:'text'}, {key:'status',label:'状态',type:'text'}],
                     editFields: [{key:'status',label:'状态',type:'select',options:['pending','contacted','closed']}, {key:'contact_name',label:'姓名',type:'text'}, {key:'message',label:'留言',type:'textarea'}]
                 },
-
-                // 11. 用户
                 'profiles': {
                     title: '用户管理',
                     listFields: [{key:'username',label:'用户名',type:'text'}, {key:'email',label:'邮箱',type:'text'}, {key:'tier',label:'等级',type:'text'}],
@@ -598,7 +856,6 @@
                 }
             };
             
-            // 默认返回 news 结构防止报错
             return schemas[tableName] || schemas['news'];
         }
     </script>
