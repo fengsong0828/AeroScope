@@ -109,6 +109,16 @@
         /* 富文本编辑器简化版 */
         .editor-wrapper { border: 1px solid #cbd5e1; border-radius: 6px; overflow: hidden; }
         .rich-content-area { border: none; width: 100%; padding: 15px; outline: none; font-size: 1rem; line-height: 1.6; resize: vertical; min-height: 200px; font-family: inherit; }
+
+        /* --- 新增：谷歌专利下载器 专用样式 --- */
+        #google-modal .modal-box { width: 1100px; max-width: 95%; height: 85vh; }
+        .scraper-ui-container { padding: 20px; display: flex; flex-direction: column; height: 100%; box-sizing: border-box; }
+        .scraper-controls { display: flex; gap: 10px; margin-bottom: 15px; align-items: center; }
+        .scraper-list { flex: 1; border: 1px solid #e2e8f0; overflow-y: auto; background: #fff; border-radius: 6px; }
+        .scraper-log { height: 120px; background: #0f172a; color: #10b981; font-family: monospace; padding: 10px; overflow-y: auto; margin-top: 15px; border-radius: 6px; font-size: 0.85rem; }
+        .scraper-row { display: grid; grid-template-columns: 150px 100px 300px 1fr; gap: 10px; padding: 10px; border-bottom: 1px solid #f1f5f9; align-items: center; font-size: 0.9rem; }
+        .scraper-row:hover { background: #f8fafc; }
+        .scraper-head { font-weight: bold; background: #f8fafc; border-bottom: 1px solid #e2e8f0; }
         
         /* 响应式 */
         @media (max-width: 1024px) {
@@ -192,6 +202,43 @@
         </div>
     </div>
 
+    <!-- 新增：Google 专利下载器弹窗 -->
+    <div class="modal-overlay" id="google-modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="card-title">🌐 谷歌专利下载器 (Google Patents Collector)</div>
+                <button onclick="closeGoogleModal()" style="border:none; background:none; font-size:1.5rem; cursor:pointer;">×</button>
+            </div>
+            <div class="modal-body" style="padding:0; display:flex; flex-direction:column; height:100%;">
+                <div class="scraper-ui-container">
+                    <div class="scraper-controls">
+                        <input type="text" id="g-url" class="form-control" placeholder="输入专利 URL (如 https://patents.google.com/patent/CN123456A/zh)" style="flex:1;">
+                        <button class="btn-primary-sm" onclick="addGoogleTask()">+ 添加任务</button>
+                        <button class="btn-import" onclick="refreshGoogleList()">🔄 刷新列表</button>
+                        <button class="btn-primary-sm" style="background:#10b981;" onclick="controlTask('start')">▶ 开始下载</button>
+                        <button class="btn-xs" onclick="controlTask('pause')">⏯ 暂停/继续</button>
+                    </div>
+                    
+                    <div class="scraper-list">
+                        <div class="scraper-row scraper-head">
+                            <div>ID</div>
+                            <div>状态</div>
+                            <div>标题</div>
+                            <div>操作</div>
+                        </div>
+                        <div id="g-list-body">
+                            <div style="text-align:center; padding:20px; color:#94a3b8;">暂无任务，请先启动 Python 后端...</div>
+                        </div>
+                    </div>
+                    
+                    <div class="scraper-log" id="g-log">
+                        > Waiting for connection...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co'; 
@@ -209,10 +256,95 @@
         const PAGE_SIZE = 10;
         let totalCount = 0;
 
+        // Python API 地址
+        const PYTHON_API = "http://127.0.0.1:8001"; 
+
         document.addEventListener('DOMContentLoaded', async () => {
             await checkAdmin();
             loadDashboard();
         });
+
+        // 1. Google 专利相关逻辑
+        async function openGoogleModal() {
+            document.getElementById('google-modal').style.display = 'flex';
+            refreshGoogleList();
+            startLogPolling();
+        }
+
+        function closeGoogleModal() {
+            document.getElementById('google-modal').style.display = 'none';
+            if(logTimer) clearInterval(logTimer);
+            controlTask('pause'); 
+        }
+
+        async function refreshGoogleList() {
+            try {
+                const res = await fetch(`${PYTHON_API}/api/patents/list`);
+                const json = await res.json();
+                const container = document.getElementById('g-list-body');
+                
+                if(!json.data || json.data.length === 0) {
+                    container.innerHTML = '<div style="text-align:center; padding:20px; color:#94a3b8;">暂无本地数据</div>';
+                    return;
+                }
+
+                let html = '';
+                json.data.forEach(item => {
+                    let statusColor = item.status === 'Done' ? '#10b981' : (item.status === 'Skipped' ? '#94a3b8' : '#f59e0b');
+                    html += `
+                        <div class="scraper-row">
+                            <div style="font-family:monospace;">${item.id}</div>
+                            <div style="color:${statusColor}; font-weight:600;">${item.status}</div>
+                            <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.title || '-'}</div>
+                            <div>
+                                ${item.status === 'Pending' ? '<span class="badge badge-draft">等待中</span>' : '<span class="badge badge-pub">完成</span>'}
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+            } catch(e) {
+                console.error(e);
+                document.getElementById('g-list-body').innerHTML = '<div style="color:red; padding:20px;">连接 Python 服务失败，请确保 pyScript/patent_scraper.py 已运行。</div>';
+            }
+        }
+
+        async function addGoogleTask() {
+            const url = document.getElementById('g-url').value.trim();
+            if(!url) return alert('请输入 URL');
+            try {
+                await fetch(`${PYTHON_API}/api/patents/add`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({url: url})
+                });
+                document.getElementById('g-url').value = '';
+                refreshGoogleList();
+                // 自动开始任务
+                controlTask('start');
+            } catch(e) { alert('添加失败: ' + e.message); }
+        }
+
+        async function controlTask(action) {
+            try {
+                await fetch(`${PYTHON_API}/api/patents/control?action=${action}`);
+            } catch(e) { console.error(e); }
+        }
+
+        let logTimer;
+        function startLogPolling() {
+            if(logTimer) clearInterval(logTimer);
+            logTimer = setInterval(async () => {
+                if(document.getElementById('google-modal').style.display === 'none') return;
+                try {
+                    const res = await fetch(`${PYTHON_API}/api/patents/logs`);
+                    const json = await res.json();
+                    const logBox = document.getElementById('g-log');
+                    logBox.innerHTML = json.logs.join('<br>');
+                    logBox.scrollTop = logBox.scrollHeight;
+                } catch(e) {}
+            }, 2000);
+        }
 
         // 1. 权限检查
         async function checkAdmin() {
@@ -408,8 +540,14 @@
             let importBtn = '';
             if (tableName === 'patents') {
                 importBtn = `
+                    <button class="btn-import" style="background:#8b5cf6; margin-right:10px;" onclick="openGoogleModal()">🌐 专利下载 (谷歌)</button>
+
                     <input type="file" id="patent-file-upload" accept=".xlsx, .xls, .csv" style="display:none;" onchange="handlePatentImport(this)">
-                    <button class="btn-import" onclick="document.getElementById('patent-file-upload').click()">📂 批量导入 (Excel/CSV)</button>
+                    <button class="btn-import" onclick="document.getElementById('patent-file-upload').click()">📂 批量导入 (专利之星)</button>
+
+                    <!-- 新增：智慧芽导入 -->
+                    <input type="file" id="patsnap-file-upload" accept=".xlsx, .xls" style="display:none;" onchange="handlePatsnapImport(this)">
+                    <button class="btn-import" style="background:#7c3aed;" onclick="document.getElementById('patsnap-file-upload').click()">📂 智慧芽导入</button>
                 `;
             }
             
@@ -619,6 +757,40 @@
                         return;
                     }
 
+                    // --- 步骤 1：提取所有潜在公司名，去重，并插入 Companies 表 ---
+                    const uniqueCompanies = new Set();
+                    jsonData.forEach(row => {
+                        let applicantStr = row['申请人'] || row['Applicant'] || '';
+                        // 增强拆分逻辑：支持竖线 | 和 ||
+                        const apps = applicantStr.split(/;|；|\||\|\||\|\|\||,|，|\s+/).map(s => s.trim()).filter(s => s);
+                        
+                        apps.forEach(app => {
+                            if (isStrictlyOrganization(app)) {
+                                uniqueCompanies.add(app);
+                            }
+                        });
+                    });
+
+                    if (uniqueCompanies.size > 0) {
+                        console.log(`识别到 ${uniqueCompanies.size} 个机构，正在批量创建...`);
+                        const companyObjects = Array.from(uniqueCompanies).map(name => ({
+                            name: name,
+                            draft: false // 自动创建的公司默认为非草稿
+                        }));
+                        
+                        // 批量 upsert 公司 (根据 name 查重，如果存在则忽略)
+                        const { error: compError } = await _supabase.from('companies').upsert(companyObjects, { 
+                            onConflict: 'name', 
+                            ignoreDuplicates: true 
+                        });
+                        
+                        if (compError) {
+                            console.error('公司创建失败:', compError);
+                        } else {
+                            console.log('公司批量创建/更新完成');
+                        }
+                    }
+
                     const records = jsonData.map(row => {
                         // 健壮的字段读取
                         const title = row['标题'] || row['Title'] || row['专利名称'] || '未命名专利';
@@ -693,6 +865,136 @@
             reader.readAsArrayBuffer(file);
         }
 
+        // 10. 批量导入专利 (智慧芽 Patsnap 格式) - 新增
+        async function handlePatsnapImport(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+
+                    if (jsonData.length === 0) {
+                        alert('文件为空或格式不正确');
+                        return;
+                    }
+
+                    if (!confirm(`准备处理 ${jsonData.length} 条专利数据 (智慧芽格式)。\n\n机制说明：\n1. 若专利号已存在 -> 更新信息 (查重)\n2. 自动清洗法律状态\n3. 自动识别机构并创建公司 (严格过滤个人)\n\n是否继续？`)) {
+                        input.value = '';
+                        return;
+                    }
+
+                    // --- 步骤 1：提取所有潜在公司名，去重，并插入 Companies 表 ---
+                    const uniqueCompanies = new Set();
+                    jsonData.forEach(row => {
+                        let applicantStr = getValueFuzzy(row, ['[标]当前申请(专利权)人', '当前申请(专利权)人', '申请人', 'Applicant']) || '';
+                        // 增强拆分逻辑：支持竖线 | 和 ||
+                        const apps = applicantStr.split(/;|；|\||\|\||\|\|\||,|，|\s+/).map(s => s.trim()).filter(s => s);
+                        
+                        apps.forEach(app => {
+                            if (isStrictlyOrganization(app)) {
+                                uniqueCompanies.add(app);
+                            }
+                        });
+                    });
+
+                    if (uniqueCompanies.size > 0) {
+                        console.log(`识别到 ${uniqueCompanies.size} 个机构，正在批量创建...`);
+                        const companyObjects = Array.from(uniqueCompanies).map(name => ({
+                            name: name,
+                            draft: false // 自动创建的公司默认为非草稿
+                        }));
+                        
+                        // 批量 upsert 公司 (根据 name 查重，如果存在则忽略)
+                        const { error: compError } = await _supabase.from('companies').upsert(companyObjects, { 
+                            onConflict: 'name', 
+                            ignoreDuplicates: true 
+                        });
+                        
+                        if (compError) {
+                            console.error('公司创建失败:', compError);
+                        } else {
+                            console.log('公司批量创建/更新完成');
+                        }
+                    }
+
+                    // --- 步骤 2：处理专利数据并插入 Patents 表 ---
+                    const records = jsonData.map(row => {
+                        // 1. 智能匹配列名 (Fuzzy Matching)
+                        const title = getValueFuzzy(row, ['标题', 'Title', '专利名称']) || '未命名专利';
+                        const appNum = getValueFuzzy(row, ['申请号', 'ApplicationNumber']) || '';
+                        let pubNum = getValueFuzzy(row, ['公开(公告)号', '公开公告号', 'PublicationNumber', '专利号']);
+                        if (!pubNum) pubNum = appNum;
+
+                        let applicant = getValueFuzzy(row, ['[标]当前申请(专利权)人', '当前申请(专利权)人', '申请人', 'Applicant']) || '未知';
+                        applicant = applicant.replace(/\s+/g, ' ').trim();
+                        // 专利表里保留原始(或稍微清洗过)的完整申请人字符串，不强行拆分
+                        // 但为了美观，把各种分隔符统一为 "; "
+                        applicant = applicant.replace(/;|；|\||\|\||\|\|\|/g, '; ');
+
+                        const typeRaw = getValueFuzzy(row, ['专利类型', 'PatentType']);
+                        let patentType = 'Invention';
+                        if (typeRaw) {
+                            if (typeRaw.includes('实用')) patentType = 'Utility Model';
+                            else if (typeRaw.includes('外观')) patentType = 'Design';
+                        }
+
+                        // 2. 状态清洗 (Strict Mapping)
+                        const statusRaw = getValueFuzzy(row, ['法律状态/事件', '法律状态', 'LegalStatus']);
+                        // 强制将状态映射为数据库允许的值：'有效', '审中', '无效'
+                        const legalStatus = normalizeLegalStatus(statusRaw);
+
+                        const ipc = getValueFuzzy(row, ['IPC分类号', 'IPC']) || '';
+                        const inventors = getValueFuzzy(row, ['发明人', 'Inventor']) || '';
+                        
+                        const appDateRaw = getValueFuzzy(row, ['申请日', 'ApplicationDate']);
+                        const pubDateRaw = getValueFuzzy(row, ['公开(公告)日', '公开公告日', 'PublicationDate']);
+
+                        return {
+                            title: title,
+                            application_number: appNum,
+                            patent_number: pubNum, // 唯一索引键
+                            applicant: applicant,
+                            patent_type: patentType,
+                            application_date: parseExcelDate(appDateRaw),
+                            publication_date: parseExcelDate(pubDateRaw),
+                            legal_status: legalStatus, 
+                            abstract: getValueFuzzy(row, ['摘要', 'Abstract']),
+                            technical_categories: ipc ? ipc.split(/;|；/).map(s=>s.trim()).filter(s=>s) : [],
+                            inventors: inventors ? inventors.split(/;|；/).map(s=>s.trim()).filter(s=>s) : [],
+                            draft: false,
+                            updated_at: new Date()
+                        };
+                    });
+
+                    const validRecords = records.filter(r => r.patent_number);
+                    
+                    const { error } = await _supabase.from('patents').upsert(validRecords, { 
+                        onConflict: 'patent_number',
+                        ignoreDuplicates: false 
+                    });
+
+                    if (error) {
+                        throw error;
+                    } else {
+                        alert(`✅ 成功处理 ${validRecords.length} 条智慧芽数据！\n并已自动识别/创建了 ${uniqueCompanies.size} 个关联机构。`);
+                        loadTableData('patents');
+                    }
+
+                } catch (err) {
+                    console.error(err);
+                    alert('导入失败: ' + err.message);
+                } finally {
+                    input.value = ''; 
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
         // 辅助：处理 Excel 日期 (可能是数字 20210610 或 Excel 序列号)
         function parseExcelDate(val) {
             if (!val) return null;
@@ -711,6 +1013,65 @@
                  return date.toISOString().split('T')[0];
             }
             return null; // 无法解析
+        }
+        
+        // 辅助：严格判断是否为机构 (强制白名单模式)
+        function isStrictlyOrganization(name) {
+            if (!name) return false;
+            let s = name.trim();
+
+            // 规则1: 必须包含“机构特征词”
+            const orgKeywords = [
+                '公司', '大学', '学院', '研究所', '研究院', '中心', '集团', '社', '局', '厅', '委', '厂', '矿', 
+                'Limited', 'Ltd', 'Inc', 'Corp', 'Group', 'GmbH', 'AG', 'S.p.A', 'S.A.', '行', '部'
+            ];
+            
+            const hasKeyword = orgKeywords.some(k => s.includes(k));
+            
+            if (!hasKeyword) {
+                return false; 
+            }
+
+            // 规则2: 长度校验
+            if (s.length < 4) { 
+                return false; 
+            }
+
+            return true;
+        }
+        
+        // 兼容旧函数名
+        function isOrganization(name) { return isStrictlyOrganization(name); }
+
+        // 辅助：模糊查找 Excel 列值
+        function getValueFuzzy(row, possibleNames) {
+            const keys = Object.keys(row);
+            for (let name of possibleNames) {
+                if (row[name] !== undefined) return row[name];
+                const cleanName = name.replace(/\s|\(|\)|\[|\]/g, '').toLowerCase();
+                const matchedKey = keys.find(k => k.replace(/\s|\(|\)|\[|\]/g, '').toLowerCase() === cleanName);
+                if (matchedKey) return row[matchedKey];
+            }
+            return null;
+        }
+
+        // 辅助：严格清洗法律状态 (DB Check Constraint: 有效, 审中, 无效, 驳回, 过期)
+        function normalizeLegalStatus(raw) {
+            if (!raw) return '无效'; // 默认归为无效
+            const s = String(raw).trim();
+            
+            // 1. 有效：包含“授权”
+            if (s.includes('授权') || s.includes('专利权维持') || s.includes('有效')) {
+                return '有效';
+            }
+            
+            // 2. 审中：包含“公开” or “实质审查”
+            if (s.includes('公开') || s.includes('实质审查') || s.includes('实审')) {
+                return '审中';
+            }
+            
+            // 3. 无效：其余情况（驳回、未缴年费、撤回、放弃、终止、届满等）
+            return '无效'; 
         }
 
         function closeModal() { document.getElementById('edit-modal').style.display = 'none'; }
