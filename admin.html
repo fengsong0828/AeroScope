@@ -73,7 +73,6 @@
         .btn-xs { padding: 4px 8px; font-size: 0.8rem; border-radius: 4px; border: 1px solid #e2e8f0; background: white; cursor: pointer; margin-right: 5px; color:#475569; }
         .btn-xs:hover { border-color: #3b82f6; color: #3b82f6; }
         
-        /* 新增：状态切换按钮 */
         .btn-pub { color: #15803d; border-color: #dcfce7; background: #f0fdf4; }
         .btn-pub:hover { border-color: #15803d; background: #dcfce7; }
         .btn-revoke { color: #b45309; border-color: #fef3c7; background: #fffbeb; }
@@ -110,7 +109,7 @@
         .editor-wrapper { border: 1px solid #cbd5e1; border-radius: 6px; overflow: hidden; }
         .rich-content-area { border: none; width: 100%; padding: 15px; outline: none; font-size: 1rem; line-height: 1.6; resize: vertical; min-height: 200px; font-family: inherit; }
 
-        /* --- 新增：谷歌专利下载器 专用样式 --- */
+        /* --- 谷歌专利下载器 专用样式 --- */
         #google-modal .modal-box { width: 1100px; max-width: 95%; height: 85vh; }
         .scraper-ui-container { padding: 20px; display: flex; flex-direction: column; height: 100%; box-sizing: border-box; }
         .scraper-controls { display: flex; gap: 10px; margin-bottom: 15px; align-items: center; }
@@ -202,7 +201,7 @@
         </div>
     </div>
 
-    <!-- 新增：Google 专利下载器弹窗 -->
+    <!-- Google 专利下载器弹窗 -->
     <div class="modal-overlay" id="google-modal">
         <div class="modal-box">
             <div class="modal-header">
@@ -256,8 +255,8 @@
         const PAGE_SIZE = 10;
         let totalCount = 0;
 
-        // Python API 地址
-        const PYTHON_API = "http://127.0.0.1:8001"; 
+        // Python API 地址 (指向 Nginx 转发的路径)
+        const PYTHON_API = "/scraper_api"; 
 
         document.addEventListener('DOMContentLoaded', async () => {
             await checkAdmin();
@@ -305,7 +304,7 @@
                 container.innerHTML = html;
             } catch(e) {
                 console.error(e);
-                document.getElementById('g-list-body').innerHTML = '<div style="color:red; padding:20px;">连接 Python 服务失败，请确保 pyScript/patent_scraper.py 已运行。</div>';
+                document.getElementById('g-list-body').innerHTML = '<div style="color:red; padding:20px;">连接 Python 服务失败，请确保 Nginx 配置正确且脚本已运行。</div>';
             }
         }
 
@@ -345,8 +344,48 @@
                 } catch(e) {}
             }, 2000);
         }
+        
+        // --- 2. 文件上传函数 (对接 Python 后端 + 阿里云 OSS) ---
+        async function uploadFileToBackend(file, folder = 'general') {
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            // 判断是否为私有文件 (如研报)
+            let type = 'public';
+            if (folder === 'deep_reports') type = 'private';
+            
+            // 注意：这里用的是主上传接口 /api/upload (通过 Nginx 8000端口)
+            const response = await fetch(`/api/upload?type=${type}`, {
+                method: 'POST',
+                body: formData
+            });
 
-        // 1. 权限检查
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                return result.url || result.key; // 公开返URL，私有返Key
+            } else {
+                throw new Error('Upload failed: ' + (result.message || 'Unknown error'));
+            }
+        }
+
+        // --- 新增：本地图片预览函数 ---
+        function previewLocalImage(input, previewId) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById(previewId);
+                    if (img) {
+                        img.src = e.target.result;
+                        img.style.display = 'block';
+                    }
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // --- 核心鉴权与路由 ---
         async function checkAdmin() {
             const { data: { session } } = await _supabase.auth.getSession();
             if (!session) return location.href = 'login.html';
@@ -359,7 +398,6 @@
             document.getElementById('admin-email').innerText = profile.username || profile.email;
         }
 
-        // 2. 切换 Tab
         function switchTab(tab, el) {
             currentTable = tab;
             page = 0; // 重置分页
@@ -371,7 +409,7 @@
             else loadTableData(tab);
         }
 
-        // 3. 仪表盘
+        // --- 仪表盘 ---
         async function loadDashboard() {
             const container = document.getElementById('main-container');
             const [leads, users, companies, patents] = await Promise.all([
@@ -540,12 +578,14 @@
             let importBtn = '';
             if (tableName === 'patents') {
                 importBtn = `
+                    <!-- Google 按钮 -->
                     <button class="btn-import" style="background:#8b5cf6; margin-right:10px;" onclick="openGoogleModal()">🌐 专利下载 (谷歌)</button>
-
+                    
+                    <!-- 专利之星 -->
                     <input type="file" id="patent-file-upload" accept=".xlsx, .xls, .csv" style="display:none;" onchange="handlePatentImport(this)">
                     <button class="btn-import" onclick="document.getElementById('patent-file-upload').click()">📂 批量导入 (专利之星)</button>
 
-                    <!-- 新增：智慧芽导入 -->
+                    <!-- 智慧芽 -->
                     <input type="file" id="patsnap-file-upload" accept=".xlsx, .xls" style="display:none;" onchange="handlePatsnapImport(this)">
                     <button class="btn-import" style="background:#7c3aed;" onclick="document.getElementById('patsnap-file-upload').click()">📂 智慧芽导入</button>
                 `;
@@ -614,7 +654,7 @@
             document.getElementById('edit-modal').style.display = 'flex';
         }
 
-        // 6. 渲染表单字段 (优化版)
+        // 6. 渲染表单字段 (优化版：增加图片/文件上传)
         function renderForm(data) {
             const formBox = document.getElementById('modal-form-body');
             let html = '';
@@ -622,17 +662,42 @@
             tableSchema.editFields.forEach(f => {
                 let val = data[f.key] !== undefined ? data[f.key] : '';
                 
-                // --- 提示信息 (Auto-Link) ---
+                // 提示信息
                 let hint = '';
                 if (f.key === 'applicant' && currentTable === 'patents') hint = '<div class="form-hint">✨ 输入公司名，系统会自动关联或创建新公司</div>';
                 if (f.key === 'company_name' && currentTable === 'funding_events') hint = '<div class="form-hint">✨ 输入公司名，系统会自动关联或创建新公司</div>';
 
-                // --- 字段渲染 ---
                 html += `<div class="form-group"><label class="form-label">${f.label}</label>`;
                 
-                if (f.type === 'array') {
+                // ★ 新增：图片上传
+                if (f.type === 'image') {
+                    const previewStyle = val ? `display:block` : `display:none`;
+                    const src = val || ''; 
+                    html += `
+                        <div style="display:flex; gap:10px; align-items:center;">
+                            <input type="file" id="file-${f.key}" class="form-control" accept="image/*" style="width:70%;"
+                                   onchange="previewLocalImage(this, 'preview-${f.key}')">
+                            <input type="hidden" id="f-${f.key}" value="${val}">
+                        </div>
+                        <img id="preview-${f.key}" src="${src}" style="max-height:100px; margin-top:10px; border-radius:4px; border:1px solid #eee; ${previewStyle}">
+                        <div class="form-hint">支持 jpg, png, webp</div>
+                    `;
+                }
+                // ★ 新增：文件上传
+                else if (f.type === 'file') {
+                    html += `
+                        <div style="display:flex; gap:10px; align-items:center;">
+                            <input type="file" id="file-${f.key}" class="form-control" style="width:70%;">
+                            <input type="hidden" id="f-${f.key}" value="${val}">
+                        </div>
+                        ${val ? `<div style="margin-top:5px; font-size:0.85rem;"><a href="${val}" target="_blank" style="color:#3b82f6;">🔗 当前文件</a></div>` : ''}
+                        <div class="form-hint">支持 pdf, doc, xls 等</div>
+                    `;
+                }
+                // 原有逻辑
+                else if (f.type === 'array') {
                     const displayVal = Array.isArray(val) ? val.join(', ') : (val || '');
-                    html += `<input type="text" id="f-${f.key}" class="form-control" value="${displayVal}" placeholder="多项请用逗号分隔">`;
+                    html += `<input type="text" id="f-${f.key}" class="form-control" value="${displayVal}" placeholder="逗号分隔">`;
                 }
                 else if (f.type === 'json' || f.key === 'specs') {
                     const jsonStr = val ? JSON.stringify(val, null, 2) : '{}';
@@ -670,202 +735,99 @@
             formBox.innerHTML = html;
         }
 
-        // 7. 保存数据 (强化版)
+        // 7. 保存数据 (支持文件上传)
         async function saveData() {
             const payload = {};
+            const saveBtn = document.querySelector('.btn-primary-sm');
+            const originalText = saveBtn.innerText;
+            
+            saveBtn.disabled = true;
+            saveBtn.innerText = '处理中...';
+
             try {
-                tableSchema.editFields.forEach(f => {
-                    const el = document.getElementById(`f-${f.key}`);
-                    if(!el) return;
-                    
-                    let val = el.value;
-
-                    if (f.type === 'boolean') val = (val === 'true');
-                    
-                    if (f.type === 'array') {
-                        val = val ? val.split(/,|，/).map(s => s.trim()).filter(s => s) : [];
-                    }
-                    
-                    if (f.type === 'json') {
-                        try {
-                            val = JSON.parse(val);
-                        } catch (e) {
-                            throw new Error(`字段 [${f.label}] JSON 格式错误`);
+                // 遍历字段，处理上传
+                for (const f of tableSchema.editFields) {
+                    if (f.type === 'image' || f.type === 'file') {
+                        const fileInput = document.getElementById(`file-${f.key}`);
+                        const hiddenInput = document.getElementById(`f-${f.key}`);
+                        let finalUrl = hiddenInput.value;
+                        
+                        if (fileInput && fileInput.files.length > 0) {
+                            saveBtn.innerText = `上传 ${f.label}...`;
+                            const file = fileInput.files[0];
+                            // 调用后端上传接口
+                            finalUrl = await uploadFileToBackend(file, currentTable); 
                         }
+                        payload[f.key] = finalUrl;
+                    } else {
+                        // 普通字段
+                        const el = document.getElementById(`f-${f.key}`);
+                        if(!el) continue;
+                        let val = el.value;
+                        if (f.type === 'boolean') val = (val === 'true');
+                        if (f.type === 'array') val = val ? val.split(/,|，/).map(s => s.trim()).filter(s => s) : [];
+                        if (f.type === 'json') val = JSON.parse(val);
+                        if (f.type === 'number') val = val ? Number(val) : null;
+                        payload[f.key] = val;
                     }
-                    
-                    if (f.type === 'number') val = val ? Number(val) : null;
+                }
 
-                    payload[f.key] = val;
-                });
+                saveBtn.innerText = '正在保存...';
+                let error;
+                if (currentEditId) {
+                    const res = await _supabase.from(currentTable).update(payload).eq('id', currentEditId);
+                    error = res.error;
+                } else {
+                    const res = await _supabase.from(currentTable).insert(payload);
+                    error = res.error;
+                }
+
+                if (error) throw error;
+                closeModal(); loadTableData(currentTable);
+
             } catch (e) { 
-                alert(e.message); 
-                return; 
+                alert('保存失败: ' + e.message); 
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.innerText = originalText;
             }
-
-            let error;
-            if (currentEditId) {
-                const res = await _supabase.from(currentTable).update(payload).eq('id', currentEditId);
-                error = res.error;
-            } else {
-                const res = await _supabase.from(currentTable).insert(payload);
-                error = res.error;
-            }
-
-            if (error) alert('保存失败: ' + error.message);
-            else { closeModal(); loadTableData(currentTable); }
         }
 
-        // 8. 删除数据 (带外键检查)
+        // 8. 删除数据
         async function deleteItem(table, id) {
             if(!confirm('⚠️ 确定要彻底删除这条记录吗？此操作不可恢复。')) return;
 
             const { error } = await _supabase.from(table).delete().eq('id', id);
-
             if (error) {
-                if (error.code === '23503') { // Postgres 外键约束错误
-                    alert('❌ 删除失败：该记录被其他数据引用（如产品、融资、专利）。\n请先删除关联数据。');
-                } else {
-                    alert('删除失败: ' + error.message);
-                }
+                if (error.code === '23503') alert('❌ 删除失败：该记录被其他数据引用。');
+                else alert('删除失败: ' + error.message);
             } else {
                 loadTableData(table);
                 if(table === 'companies') loadDashboard();
             }
         }
 
-        // 9. 批量导入专利 (Excel/CSV) - V2.0 增强版
-        async function handlePatentImport(input) {
-            const file = input.files[0];
-            if (!file) return;
+        // --- 核心业务逻辑 (包含严格的机构名过滤) ---
 
-            const reader = new FileReader();
-            reader.onload = async function(e) {
-                try {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, { type: 'array' });
-                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-                    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+        // 1. 严格判断是否为机构 (强制白名单模式)
+        function isStrictlyOrganization(name) {
+            if (!name) return false;
+            let s = name.trim();
 
-                    if (jsonData.length === 0) {
-                        alert('文件为空或格式不正确');
-                        return;
-                    }
-
-                    if (!confirm(`准备处理 ${jsonData.length} 条专利数据。\n\n机制说明：\n1. 若专利号已存在 -> 更新信息 (查重)\n2. 若不存在 -> 新增记录\n3. 自动识别多个申请人并关联/创建公司\n\n是否继续？`)) {
-                        input.value = '';
-                        return;
-                    }
-
-                    // --- 步骤 1：提取所有潜在公司名，去重，并插入 Companies 表 ---
-                    const uniqueCompanies = new Set();
-                    jsonData.forEach(row => {
-                        let applicantStr = row['申请人'] || row['Applicant'] || '';
-                        // 增强拆分逻辑：支持竖线 | 和 ||
-                        const apps = applicantStr.split(/;|；|\||\|\||\|\|\||,|，|\s+/).map(s => s.trim()).filter(s => s);
-                        
-                        apps.forEach(app => {
-                            if (isStrictlyOrganization(app)) {
-                                uniqueCompanies.add(app);
-                            }
-                        });
-                    });
-
-                    if (uniqueCompanies.size > 0) {
-                        console.log(`识别到 ${uniqueCompanies.size} 个机构，正在批量创建...`);
-                        const companyObjects = Array.from(uniqueCompanies).map(name => ({
-                            name: name,
-                            draft: false // 自动创建的公司默认为非草稿
-                        }));
-                        
-                        // 批量 upsert 公司 (根据 name 查重，如果存在则忽略)
-                        const { error: compError } = await _supabase.from('companies').upsert(companyObjects, { 
-                            onConflict: 'name', 
-                            ignoreDuplicates: true 
-                        });
-                        
-                        if (compError) {
-                            console.error('公司创建失败:', compError);
-                        } else {
-                            console.log('公司批量创建/更新完成');
-                        }
-                    }
-
-                    const records = jsonData.map(row => {
-                        // 健壮的字段读取
-                        const title = row['标题'] || row['Title'] || row['专利名称'] || '未命名专利';
-                        const appNum = row['申请号'] || row['Application Number'] || '';
-                        // 专利号是查重的关键，必须处理
-                        let pubNum = row['公开（公告）号'] || row['Publication Number'] || row['专利号'];
-                        if(!pubNum) pubNum = appNum; // 如果没专利号，用申请号代替
-                        
-                        // 清洗申请人字段：去除多余空格，统一分隔符
-                        let applicant = row['申请人'] || row['Applicant'] || '未知';
-                        applicant = applicant.replace(/\s+/g, ' ').trim(); // 去除换行和多余空格
-
-                        const typeRaw = row['专利类型'] || row['Patent Type'];
-                        const appDateRaw = row['申请日'] || row['Application Date'];
-                        const pubDateRaw = row['公开（公告）日'] || row['Publication Date'];
-                        const status = row['法律状态'] || row['Legal Status'];
-                        const abstract = row['摘要'] || row['Abstract'];
-                        const mainClass = row['主分类号'] || row['Main Classification'] || '';
-                        const inventors = row['发明人'] || row['Inventors'];
-
-                        // 类型映射
-                        let patentType = 'Invention';
-                        if (typeRaw) {
-                            if (typeRaw.includes('实用')) patentType = 'Utility Model';
-                            else if (typeRaw.includes('外观')) patentType = 'Design';
-                        }
-
-                        return {
-                            title: title,
-                            application_number: appNum,
-                            patent_number: pubNum, // 唯一索引键
-                            applicant: applicant,
-                            patent_type: patentType,
-                            application_date: parseExcelDate(appDateRaw),
-                            publication_date: parseExcelDate(pubDateRaw),
-                            legal_status: status || '未知',
-                            abstract: abstract,
-                            technical_categories: mainClass ? [mainClass.split(/;|；|\s/)[0]] : [],
-                            inventors: inventors ? inventors.split(/;|；/) : [],
-                            draft: false,
-                            updated_at: new Date() // 标记更新时间
-                        };
-                    });
-
-                    // 过滤掉没有唯一标识的数据
-                    const validRecords = records.filter(r => r.patent_number);
-                    if (validRecords.length < records.length) {
-                        console.warn(`跳过了 ${records.length - validRecords.length} 条没有专利号的数据`);
-                    }
-
-                    // 批量 Upsert (插入或更新)
-                    // onConflict: 'patent_number' 指定了查重依据
-                    const { error } = await _supabase.from('patents').upsert(validRecords, { 
-                        onConflict: 'patent_number',
-                        ignoreDuplicates: false // false 表示如果重复则更新 (Update)
-                    });
-
-                    if (error) {
-                        throw error;
-                    } else {
-                        alert(`✅ 成功处理 ${validRecords.length} 条数据！\n\n系统正在后台：\n1. 自动创建缺失的子公司\n2. 关联多主体关系\n\n请稍后刷新列表查看。`);
-                        loadTableData('patents');
-                    }
-
-                } catch (err) {
-                    console.error(err);
-                    alert('导入失败: ' + err.message + '\n(请检查Excel中是否有重复的专利号行)');
-                } finally {
-                    input.value = ''; 
-                }
-            };
-            reader.readAsArrayBuffer(file);
+            const orgKeywords = [
+                '公司', '大学', '学院', '研究所', '研究院', '中心', '集团', '社', '局', '厅', '委', '厂', '矿', 
+                'Limited', 'Ltd', 'Inc', 'Corp', 'Group', 'GmbH', 'AG', 'S.p.A', 'S.A.', '行', '部'
+            ];
+            
+            const hasKeyword = orgKeywords.some(k => s.includes(k));
+            if (!hasKeyword) return false; 
+            if (s.length < 4) return false; 
+            return true;
         }
+        
+        function isOrganization(name) { return isStrictlyOrganization(name); }
 
-        // 10. 批量导入专利 (智慧芽 Patsnap 格式) - 新增
+        // 2. 智慧芽导入逻辑
         async function handlePatsnapImport(input) {
             const file = input.files[0];
             if (!file) return;
@@ -878,53 +840,23 @@
                     const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
                     const jsonData = XLSX.utils.sheet_to_json(firstSheet);
 
-                    if (jsonData.length === 0) {
-                        alert('文件为空或格式不正确');
-                        return;
-                    }
+                    if (jsonData.length === 0) { alert('文件为空'); return; }
+                    if (!confirm(`准备处理 ${jsonData.length} 条数据。系统将自动过滤人名。`)) { input.value = ''; return; }
 
-                    if (!confirm(`准备处理 ${jsonData.length} 条专利数据 (智慧芽格式)。\n\n机制说明：\n1. 若专利号已存在 -> 更新信息 (查重)\n2. 自动清洗法律状态\n3. 自动识别机构并创建公司 (严格过滤个人)\n\n是否继续？`)) {
-                        input.value = '';
-                        return;
-                    }
-
-                    // --- 步骤 1：提取所有潜在公司名，去重，并插入 Companies 表 ---
                     const uniqueCompanies = new Set();
                     jsonData.forEach(row => {
                         let applicantStr = getValueFuzzy(row, ['[标]当前申请(专利权)人', '当前申请(专利权)人', '申请人', 'Applicant']) || '';
-                        // 增强拆分逻辑：支持竖线 | 和 ||
                         const apps = applicantStr.split(/;|；|\||\|\||\|\|\||,|，|\s+/).map(s => s.trim()).filter(s => s);
-                        
-                        apps.forEach(app => {
-                            if (isStrictlyOrganization(app)) {
-                                uniqueCompanies.add(app);
-                            }
-                        });
+                        apps.forEach(app => { if (isStrictlyOrganization(app)) uniqueCompanies.add(app); });
                     });
 
                     if (uniqueCompanies.size > 0) {
-                        console.log(`识别到 ${uniqueCompanies.size} 个机构，正在批量创建...`);
-                        const companyObjects = Array.from(uniqueCompanies).map(name => ({
-                            name: name,
-                            draft: false // 自动创建的公司默认为非草稿
-                        }));
-                        
-                        // 批量 upsert 公司 (根据 name 查重，如果存在则忽略)
-                        const { error: compError } = await _supabase.from('companies').upsert(companyObjects, { 
-                            onConflict: 'name', 
-                            ignoreDuplicates: true 
-                        });
-                        
-                        if (compError) {
-                            console.error('公司创建失败:', compError);
-                        } else {
-                            console.log('公司批量创建/更新完成');
-                        }
+                        console.log(`识别到 ${uniqueCompanies.size} 个有效机构，正在创建...`);
+                        const companyObjects = Array.from(uniqueCompanies).map(name => ({ name: name, draft: false }));
+                        await _supabase.from('companies').upsert(companyObjects, { onConflict: 'name', ignoreDuplicates: true });
                     }
 
-                    // --- 步骤 2：处理专利数据并插入 Patents 表 ---
                     const records = jsonData.map(row => {
-                        // 1. 智能匹配列名 (Fuzzy Matching)
                         const title = getValueFuzzy(row, ['标题', 'Title', '专利名称']) || '未命名专利';
                         const appNum = getValueFuzzy(row, ['申请号', 'ApplicationNumber']) || '';
                         let pubNum = getValueFuzzy(row, ['公开(公告)号', '公开公告号', 'PublicationNumber', '专利号']);
@@ -932,9 +864,7 @@
 
                         let applicant = getValueFuzzy(row, ['[标]当前申请(专利权)人', '当前申请(专利权)人', '申请人', 'Applicant']) || '未知';
                         applicant = applicant.replace(/\s+/g, ' ').trim();
-                        // 专利表里保留原始(或稍微清洗过)的完整申请人字符串，不强行拆分
-                        // 但为了美观，把各种分隔符统一为 "; "
-                        applicant = applicant.replace(/;|；|\||\|\||\|\|\|/g, '; ');
+                        applicant = applicant.replace(/;|；|\||\|\||\|\|\|/g, '; '); 
 
                         const typeRaw = getValueFuzzy(row, ['专利类型', 'PatentType']);
                         let patentType = 'Invention';
@@ -943,21 +873,17 @@
                             else if (typeRaw.includes('外观')) patentType = 'Design';
                         }
 
-                        // 2. 状态清洗 (Strict Mapping)
                         const statusRaw = getValueFuzzy(row, ['法律状态/事件', '法律状态', 'LegalStatus']);
-                        // 强制将状态映射为数据库允许的值：'有效', '审中', '无效'
                         const legalStatus = normalizeLegalStatus(statusRaw);
-
                         const ipc = getValueFuzzy(row, ['IPC分类号', 'IPC']) || '';
                         const inventors = getValueFuzzy(row, ['发明人', 'Inventor']) || '';
-                        
                         const appDateRaw = getValueFuzzy(row, ['申请日', 'ApplicationDate']);
                         const pubDateRaw = getValueFuzzy(row, ['公开(公告)日', '公开公告日', 'PublicationDate']);
 
                         return {
                             title: title,
                             application_number: appNum,
-                            patent_number: pubNum, // 唯一索引键
+                            patent_number: pubNum, 
                             applicant: applicant,
                             patent_type: patentType,
                             application_date: parseExcelDate(appDateRaw),
@@ -972,251 +898,242 @@
                     });
 
                     const validRecords = records.filter(r => r.patent_number);
-                    
-                    const { error } = await _supabase.from('patents').upsert(validRecords, { 
-                        onConflict: 'patent_number',
-                        ignoreDuplicates: false 
-                    });
+                    const { error } = await _supabase.from('patents').upsert(validRecords, { onConflict: 'patent_number', ignoreDuplicates: false });
 
-                    if (error) {
-                        throw error;
-                    } else {
-                        alert(`✅ 成功处理 ${validRecords.length} 条智慧芽数据！\n并已自动识别/创建了 ${uniqueCompanies.size} 个关联机构。`);
-                        loadTableData('patents');
-                    }
+                    if (error) throw error;
+                    alert(`✅ 成功处理 ${validRecords.length} 条数据！`);
+                    loadTableData('patents');
 
-                } catch (err) {
-                    console.error(err);
-                    alert('导入失败: ' + err.message);
-                } finally {
-                    input.value = ''; 
-                }
+                } catch (err) { alert('导入失败: ' + err.message); } finally { input.value = ''; }
             };
             reader.readAsArrayBuffer(file);
         }
 
-        // 辅助：处理 Excel 日期 (可能是数字 20210610 或 Excel 序列号)
-        function parseExcelDate(val) {
-            if (!val) return null;
-            // 格式: 20210610 (数字或字符串)
-            if (String(val).length === 8 && !isNaN(val)) {
-                const s = String(val);
-                return `${s.substring(0,4)}-${s.substring(4,6)}-${s.substring(6,8)}`;
-            }
-            // 格式: 2021/6/10
-            if (String(val).includes('/')) {
-                return new Date(val).toISOString().split('T')[0];
-            }
-            // 如果是 Excel 序列号 (例如 44357)
-            if (typeof val === 'number' && val > 20000 && val < 60000) {
-                 const date = new Date((val - 25569) * 86400 * 1000);
-                 return date.toISOString().split('T')[0];
-            }
-            return null; // 无法解析
+        // 3. 专利之星导入
+        async function handlePatentImport(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+                    if (jsonData.length === 0) { alert('空文件'); return; }
+                    if (!confirm(`准备导入专利之星数据 (${jsonData.length}条)。`)) { input.value = ''; return; }
+
+                    const uniqueCompanies = new Set();
+                    jsonData.forEach(row => {
+                        let appStr = row['申请人'] || row['Applicant'] || '';
+                        const apps = appStr.split(/;|；|\s+/).map(s=>s.trim()).filter(s=>s);
+                        apps.forEach(app => { if(isStrictlyOrganization(app)) uniqueCompanies.add(app); });
+                    });
+                    if (uniqueCompanies.size > 0) {
+                        const comps = Array.from(uniqueCompanies).map(name => ({ name, draft: false }));
+                        await _supabase.from('companies').upsert(comps, { onConflict: 'name', ignoreDuplicates: true });
+                    }
+
+                    const records = jsonData.map(row => {
+                        const title = row['标题'] || row['Title'] || '未命名';
+                        let pubNum = row['公开（公告）号'] || row['Publication Number'] || row['专利号'] || row['申请号'];
+                        let applicant = row['申请人'] || row['Applicant'] || '未知';
+                        applicant = applicant.replace(/\s+/g, ' ').trim();
+                        
+                        let pType = 'Invention';
+                        const tRaw = row['专利类型'] || row['Patent Type'];
+                        if(tRaw && tRaw.includes('实用')) pType = 'Utility Model';
+                        else if(tRaw && tRaw.includes('外观')) pType = 'Design';
+
+                        return {
+                            title: title,
+                            application_number: row['申请号'] || '',
+                            patent_number: pubNum,
+                            applicant: applicant,
+                            patent_type: pType,
+                            application_date: parseExcelDate(row['申请日']),
+                            publication_date: parseExcelDate(row['公开（公告）日']),
+                            legal_status: normalizeLegalStatus(row['法律状态']),
+                            abstract: row['摘要'],
+                            technical_categories: [], 
+                            inventors: (row['发明人']||'').split(/;|；/),
+                            draft: false,
+                            updated_at: new Date()
+                        };
+                    });
+                    
+                    const { error } = await _supabase.from('patents').upsert(records.filter(r=>r.patent_number), { onConflict: 'patent_number', ignoreDuplicates: false });
+                    if(error) throw error;
+                    alert('导入成功');
+                    loadTableData('patents');
+
+                } catch(e) { alert('错误: ' + e.message); } finally { input.value = ''; }
+            };
+            reader.readAsArrayBuffer(file);
         }
-        
-        // 辅助：严格判断是否为机构 (强制白名单模式)
-        function isStrictlyOrganization(name) {
-            if (!name) return false;
-            let s = name.trim();
 
-            // 规则1: 必须包含“机构特征词”
-            const orgKeywords = [
-                '公司', '大学', '学院', '研究所', '研究院', '中心', '集团', '社', '局', '厅', '委', '厂', '矿', 
-                'Limited', 'Ltd', 'Inc', 'Corp', 'Group', 'GmbH', 'AG', 'S.p.A', 'S.A.', '行', '部'
-            ];
-            
-            const hasKeyword = orgKeywords.some(k => s.includes(k));
-            
-            if (!hasKeyword) {
-                return false; 
-            }
-
-            // 规则2: 长度校验
-            if (s.length < 4) { 
-                return false; 
-            }
-
-            return true;
-        }
-        
-        // 兼容旧函数名
-        function isOrganization(name) { return isStrictlyOrganization(name); }
-
-        // 辅助：模糊查找 Excel 列值
-        function getValueFuzzy(row, possibleNames) {
+        // 通用辅助函数
+        function getValueFuzzy(row, names) {
             const keys = Object.keys(row);
-            for (let name of possibleNames) {
+            for (let name of names) {
                 if (row[name] !== undefined) return row[name];
-                const cleanName = name.replace(/\s|\(|\)|\[|\]/g, '').toLowerCase();
-                const matchedKey = keys.find(k => k.replace(/\s|\(|\)|\[|\]/g, '').toLowerCase() === cleanName);
-                if (matchedKey) return row[matchedKey];
+                const clean = name.replace(/\s|\(|\)|\[|\]/g, '').toLowerCase();
+                const found = keys.find(k => k.replace(/\s|\(|\)|\[|\]/g, '').toLowerCase() === clean);
+                if (found) return row[found];
             }
             return null;
         }
 
-        // 辅助：严格清洗法律状态 (DB Check Constraint: 有效, 审中, 无效, 驳回, 过期)
         function normalizeLegalStatus(raw) {
-            if (!raw) return '无效'; // 默认归为无效
+            if (!raw) return '无效';
             const s = String(raw).trim();
-            
-            // 1. 有效：包含“授权”
-            if (s.includes('授权') || s.includes('专利权维持') || s.includes('有效')) {
-                return '有效';
-            }
-            
-            // 2. 审中：包含“公开” or “实质审查”
-            if (s.includes('公开') || s.includes('实质审查') || s.includes('实审')) {
-                return '审中';
-            }
-            
-            // 3. 无效：其余情况（驳回、未缴年费、撤回、放弃、终止、届满等）
-            return '无效'; 
+            if (s.includes('授权') || s.includes('有效') || s.includes('维持')) return '有效';
+            if (s.includes('公开') || s.includes('实审') || s.includes('审查')) return '审中';
+            return '无效';
+        }
+
+        function parseExcelDate(val) {
+            if (!val) return null;
+            if (typeof val === 'number') { return new Date((val - 25569)*86400000).toISOString().split('T')[0]; }
+            if (String(val).length === 8 && !isNaN(val)) return `${String(val).substring(0,4)}-${String(val).substring(4,6)}-${String(val).substring(6,8)}`;
+            if (String(val).includes('/')) return new Date(val).toISOString().split('T')[0];
+            return null;
         }
 
         function closeModal() { document.getElementById('edit-modal').style.display = 'none'; }
         async function logout() { await _supabase.auth.signOut(); location.href='index.html'; }
+        
+        // --- 新增：本地图片预览函数 ---
+        function previewLocalImage(input, previewId) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById(previewId);
+                    if (img) {
+                        img.src = e.target.result;
+                        img.style.display = 'block';
+                    }
+                }
+                reader.readAsDataURL(file);
+            }
+        }
 
         // =========================================
-        // ★★★ 核心配置：各表 Schema 定义 ★★★
+        // ★★★ 核心配置：各表 Schema 定义 (更新版：支持图片/文件) ★★★
         // =========================================
         function getTableSchema(tableName) {
             const schemas = {
-                'investors': {
-                    title: '投资方 (Investors)',
-                    listFields: [{key:'name',label:'机构名称',type:'text'}, {key:'type',label:'类型',type:'text'}, {key:'country',label:'地区',type:'text'}, {key:'total_amount',label:'总投金额(USD)',type:'number'}],
-                    editFields: [
-                        {key:'name',label:'机构名称',type:'text'},
-                        {key:'type',label:'类型',type:'select',options:['VC','PE','CVC','Angel','Gov','Other']},
-                        {key:'country',label:'国家/地区',type:'text'},
-                        {key:'website',label:'官网 URL',type:'text'},
-                        {key:'description',label:'简介',type:'textarea'},
-                        {key:'focus_areas',label:'关注领域 (数组, 逗号分隔)',type:'array'},
-                        {key:'investment_stages',label:'投资轮次偏好 (数组, 逗号分隔)',type:'array'},
-                        {key:'total_amount',label:'管理/投资总额 (Est. USD)',type:'number'},
-                        {key:'draft',label:'草稿状态',type:'boolean'}
-                    ]
-                },
-                'funding_events': {
-                    title: '融资事件 (Funding)',
-                    listFields: [{key:'funding_date',label:'日期',type:'date'}, {key:'company_name',label:'公司',type:'text'}, {key:'funding_round',label:'轮次',type:'text'}, {key:'funding_amount',label:'金额(M)',type:'number'}],
-                    editFields: [
-                        {key:'company_name',label:'获投公司名 (输入后自动关联/创建)',type:'text'},
-                        {key:'funding_date',label:'融资日期',type:'date'},
-                        {key:'announcement_date',label:'公告日期',type:'date'},
-                        {key:'funding_round',label:'轮次',type:'select',options:['Seed','Angel','Pre-A','A','A+','B','C','D','IPO','Strategic','M&A']},
-                        {key:'funding_amount',label:'金额 (百万)',type:'number'},
-                        {key:'funding_currency',label:'货币',type:'select',options:['USD','CNY','EUR','GBP']},
-                        {key:'valuation',label:'投后估值 (百万)',type:'number'},
-                        {key:'lead_investor',label:'领投方',type:'text'},
-                        {key:'participating_investors',label:'跟投方 (逗号分隔)',type:'text'},
-                        {key:'source_url',label:'新闻来源 URL',type:'text'},
-                        {key:'draft',label:'草稿状态',type:'boolean'}
-                    ]
-                },
-                'patents': {
-                    title: '专利技术 (Patents)',
-                    listFields: [{key:'title',label:'专利标题',type:'text'}, {key:'applicant',label:'申请人',type:'text'}, {key:'patent_type',label:'类型',type:'text'}, {key:'legal_status',label:'状态',type:'text'}],
-                    editFields: [
-                        {key:'title',label:'专利标题',type:'text'},
-                        {key:'patent_number',label:'专利号/申请号',type:'text'},
-                        {key:'applicant',label:'申请人 (输入公司名自动关联)',type:'text'},
-                        {key:'patent_type',label:'类型',type:'select',options:['Invention','Utility Model','Design']},
-                        {key:'application_date',label:'申请日',type:'date'},
-                        {key:'publication_date',label:'公开日',type:'date'},
-                        {key:'legal_status',label:'法律状态',type:'select',options:['有效','审中','无效','驳回','过期']},
-                        {key:'abstract',label:'摘要',type:'textarea'},
-                        {key:'technical_categories',label:'技术标签 (数组, 逗号分隔)',type:'array'},
-                        {key:'industry_chain_position',label:'产业链位置',type:'select',options:['upstream','midstream','downstream']},
-                        {key:'data_source',label:'数据来源',type:'text'},
-                        {key:'draft',label:'草稿状态',type:'boolean'}
-                    ]
-                },
-                'companies': {
-                    title: '公司库 (Companies)',
-                    listFields: [{key:'name',label:'名称',type:'text'}, {key:'industry_chain',label:'产业链',type:'text'}, {key:'primary_category',label:'赛道',type:'text'}, {key:'is_listed',label:'上市',type:'boolean'}],
-                    editFields: [
-                        {key:'name',label:'公司名',type:'text'}, 
-                        {key:'name_en',label:'英文名',type:'text'},
-                        {key:'country_code',label:'国家代码 (CN/US)',type:'text'}, 
-                        {key:'industry_chain',label:'产业链',type:'select',options:['upstream','midstream','downstream']}, 
-                        {key:'primary_category',label:'赛道',type:'select',options:['eVTOL','Drone','FlyingCar','Battery','Avionics','Service']}, 
-                        {key:'description',label:'简介',type:'textarea'}, 
-                        {key:'tags',label:'标签 (数组, 逗号分隔)',type:'array'},
-                        {key:'total_funding_est_usd',label:'累计融资 (M USD)',type:'number'}, 
-                        {key:'is_listed',label:'是否上市',type:'boolean'}, 
-                        {key:'ticker_symbol',label:'股票代码',type:'text'},
-                        {key:'logo_url',label:'Logo URL',type:'text'},
-                        {key:'website_url',label:'官网',type:'text'},
-                        {key:'draft',label:'草稿',type:'boolean'}
-                    ]
-                },
-                'products': {
-                    title: '产品 (Products)',
-                    listFields: [{key:'name',label:'型号',type:'text'}, {key:'type',label:'类型',type:'text'}, {key:'certification_status',label:'状态',type:'text'}],
-                    editFields: [
-                        {key:'name',label:'型号名称',type:'text'}, 
-                        {key:'type',label:'类型',type:'select',options:['Multicopter','Lift+Cruise','Vectored Thrust','FlyingCar']}, 
-                        {key:'company_id',label:'所属公司ID (手动关联)',type:'number'}, 
-                        {key:'manufacturer_name',label:'厂商名 (自动关联辅助)',type:'text'},
-                        {key:'specs',label:'性能参数 (JSON)',type:'json'}, 
-                        {key:'image_url',label:'图片 URL',type:'text'},
-                        {key:'certification_status',label:'取证状态',type:'select',options:['Concept','Prototype','Testing','Certified']}, 
-                        {key:'draft',label:'草稿',type:'boolean'}
-                    ]
-                },
                 'news': {
                     title: '资讯快报',
                     listFields: [{key:'title',label:'标题',type:'text'}, {key:'category',label:'分类',type:'text'}, {key:'publish_date',label:'日期',type:'date'}],
                     editFields: [
                         {key:'title',label:'标题',type:'text'},
                         {key:'category',label:'分类',type:'select',options:['Market','Policy','Capital','Global']},
+                        {key:'image_url',label:'封面图',type:'image'}, 
                         {key:'summary',label:'摘要',type:'textarea'},
                         {key:'content',label:'正文 (Markdown)',type:'textarea'},
-                        {key:'image_url',label:'封面图 URL',type:'text'},
                         {key:'source',label:'来源',type:'text'},
                         {key:'publish_date',label:'发布日期',type:'date'},
-                        {key:'tags',label:'标签 (数组, 逗号分隔)',type:'array'},
-                        {key:'draft',label:'是否草稿',type:'boolean'}
+                        {key:'tags',label:'标签',type:'array'},
+                        {key:'draft',label:'草稿',type:'boolean'}
                     ]
                 },
                 'policies': {
                     title: '政策法规',
-                    listFields: [{key:'title',label:'标题',type:'text'}, {key:'department',label:'部门',type:'text'}, {key:'level',label:'层级',type:'text'}],
+                    listFields: [{key:'title',label:'标题',type:'text'}, {key:'department',label:'部门',type:'text'}],
                     editFields: [
                         {key:'title',label:'标题',type:'text'},
                         {key:'department',label:'发文部门',type:'text'},
-                        {key:'level',label:'层级',type:'select',options:['国家部委','地方政府','国际组织','国外/国际']},
-                        {key:'summary',label:'解读摘要',type:'textarea'},
-                        {key:'content',label:'正文/全文',type:'textarea'},
-                        {key:'file_url',label:'附件链接',type:'text'}, 
+                        {key:'level',label:'层级',type:'select',options:['国家部委','地方政府','国际组织']},
+                        {key:'file_url',label:'政策附件(PDF)',type:'file'},
+                        {key:'summary',label:'摘要',type:'textarea'},
+                        {key:'content',label:'正文',type:'textarea'},
                         {key:'related_city',label:'关联城市',type:'text'},
-                        {key:'publish_date',label:'发布日期',type:'date'},
+                        {key:'publish_date',label:'日期',type:'date'},
+                        {key:'draft',label:'草稿',type:'boolean'}
+                    ]
+                },
+                'companies': {
+                    title: '公司库',
+                    listFields: [{key:'name',label:'名称',type:'text'}, {key:'industry_chain',label:'产业链',type:'text'}, {key:'is_listed',label:'上市',type:'boolean'}],
+                    editFields: [
+                        {key:'name',label:'公司名',type:'text'}, 
+                        {key:'logo_url',label:'公司 Logo',type:'image'},
+                        {key:'industry_chain',label:'产业链',type:'select',options:['upstream','midstream','downstream']},
+                        {key:'primary_category',label:'赛道',type:'select',options:['eVTOL','Drone','FlyingCar','Battery','Avionics','Service']},
+                        {key:'description',label:'简介',type:'textarea'},
+                        {key:'tags',label:'标签',type:'array'},
+                        {key:'total_funding_est_usd',label:'融资额(M)',type:'number'},
+                        {key:'is_listed',label:'上市',type:'boolean'},
+                        {key:'ticker_symbol',label:'代码',type:'text'},
+                        {key:'website_url',label:'官网',type:'text'},
+                        {key:'draft',label:'草稿',type:'boolean'}
+                    ]
+                },
+                'products': {
+                    title: '产品库',
+                    listFields: [{key:'name',label:'型号'}, {key:'type',label:'类型'}],
+                    editFields: [
+                        {key:'name',label:'型号',type:'text'},
+                        {key:'image_url',label:'图片',type:'image'},
+                        {key:'type',label:'类型',type:'select',options:['Multicopter','Lift+Cruise','Vectored Thrust','FlyingCar']},
+                        {key:'company_id',label:'公司ID',type:'number'},
+                        {key:'specs',label:'参数JSON',type:'json'},
+                        {key:'certification_status',label:'状态',type:'select',options:['Concept','Prototype','Testing','Certified']},
+                        {key:'draft',label:'草稿',type:'boolean'}
+                    ]
+                },
+                'tech_trends': {
+                    title: '技术前沿',
+                    listFields: [{key:'title',label:'标题'}, {key:'type',label:'类型'}],
+                    editFields: [
+                        {key:'title',label:'标题',type:'text'},
+                        {key:'type',label:'类型',type:'select',options:['Patent','Paper','Product']},
+                        {key:'image_url',label:'配图',type:'image'},
+                        {key:'org',label:'机构',type:'text'},
+                        {key:'summary',label:'摘要',type:'textarea'},
+                        {key:'content',label:'内容',type:'textarea'},
                         {key:'draft',label:'草稿',type:'boolean'}
                     ]
                 },
                 'deep_reports': {
                     title: '深度研报',
-                    listFields: [{key:'title',label:'标题',type:'text'}, {key:'author',label:'作者',type:'text'}, {key:'publish_date',label:'日期',type:'date'}],
-                    editFields: [{key:'title',label:'标题',type:'text'}, {key:'author',label:'作者',type:'text'}, {key:'summary',label:'摘要',type:'textarea'}, {key:'content',label:'正文',type:'textarea'}, {key:'is_pro_only',label:'Pro专享',type:'boolean'}, {key:'draft',label:'草稿',type:'boolean'}]
+                    listFields: [{key:'title',label:'标题'}, {key:'author',label:'作者'}],
+                    editFields: [
+                        {key:'title',label:'标题',type:'text'},
+                        {key:'author',label:'作者',type:'text'},
+                        {key:'image_url',label:'封面图',type:'image'},
+                        {key:'summary',label:'摘要',type:'textarea'},
+                        {key:'content',label:'正文',type:'textarea'},
+                        {key:'is_pro_only',label:'Pro专享',type:'boolean'},
+                        {key:'draft',label:'草稿',type:'boolean'}
+                    ]
                 },
-                'tech_trends': {
-                    title: '技术前沿',
-                    listFields: [{key:'title',label:'标题',type:'text'}, {key:'type',label:'类型',type:'text'}, {key:'org',label:'机构',type:'text'}],
-                    editFields: [{key:'title',label:'标题',type:'text'}, {key:'type',label:'类型',type:'select',options:['Patent','Paper','Product']}, {key:'org',label:'机构',type:'text'}, {key:'summary',label:'摘要',type:'textarea'}, {key:'content',label:'内容',type:'textarea'}, {key:'draft',label:'草稿',type:'boolean'}]
+                'patents': {
+                    title: '专利技术',
+                    listFields: [{key:'title',label:'标题'}, {key:'applicant',label:'申请人'}, {key:'legal_status',label:'状态'}],
+                    editFields: [{key:'title',label:'标题',type:'text'}, {key:'applicant',label:'申请人',type:'text'}, {key:'draft',label:'草稿',type:'boolean'}]
+                },
+                'investors': {
+                    title: '投资方',
+                    listFields: [{key:'name',label:'名称'}, {key:'type',label:'类型'}],
+                    editFields: [{key:'name',label:'名称',type:'text'}, {key:'type',label:'类型',type:'text'}, {key:'total_amount',label:'总额',type:'number'}]
+                },
+                'funding_events': {
+                    title: '融资事件',
+                    listFields: [{key:'company_name',label:'公司'}, {key:'funding_round',label:'轮次'}, {key:'funding_amount',label:'金额'}],
+                    editFields: [{key:'company_name',label:'公司',type:'text'}, {key:'funding_amount',label:'金额',type:'number'}]
                 },
                 'cooperation_leads': {
-                    title: '商务线索',
-                    listFields: [{key:'contact_name',label:'联系人',type:'text'}, {key:'company_name',label:'公司',type:'text'}, {key:'status',label:'状态',type:'text'}],
+                    title: '线索',
+                    listFields: [{key:'contact_name',label:'联系人'}, {key:'status',label:'状态'}],
                     editFields: [{key:'status',label:'状态',type:'select',options:['pending','contacted','closed']}, {key:'contact_name',label:'姓名',type:'text'}, {key:'message',label:'留言',type:'textarea'}]
                 },
-                'profiles': {
-                    title: '用户管理',
-                    listFields: [{key:'username',label:'用户名',type:'text'}, {key:'email',label:'邮箱',type:'text'}, {key:'tier',label:'等级',type:'text'}],
-                    editFields: [{key:'username',label:'用户名',type:'text'}, {key:'is_expert',label:'专家',type:'boolean'}, {key:'tier',label:'等级',type:'select',options:['free','pro','enterprise']}]
-                }
+                'media_requests': { title: '媒体申请', listFields: [{key:'contact_name',label:'联系人'}], editFields: [{key:'status',label:'状态'}] },
+                'profiles': { title: '用户', listFields: [{key:'username',label:'用户名'}], editFields: [{key:'tier',label:'等级'}] }
             };
-            
             return schemas[tableName] || schemas['news'];
         }
     </script>
