@@ -22,7 +22,7 @@
         .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; }
 
         body { background-color: #f8fafc; }
-        .detail-container { max-width: 900px; margin: 20px auto 60px; padding: 0 20px; }
+        .detail-container { max-width: 1200px; margin: 30px auto 60px; padding: 0 20px; }
         .back-nav { margin-bottom: 15px; }
         .back-btn { display: inline-flex; align-items: center; gap: 5px; color: #64748b; font-size: 0.9rem; font-weight: 500; }
         .back-btn:hover { color: #3b82f6; }
@@ -37,10 +37,18 @@
         .article-body h2 { font-size: 1.4rem; border-left: 4px solid #9333ea; padding-left: 10px; margin-top: 1.2em; color: #1e293b; }
         .article-body p { margin-bottom: 1em; }
         .summary-box { background: #fcfaff; border-left: 4px solid #9333ea; padding: 20px; margin-bottom: 30px; font-style: italic; color: #4b5563; }
-        .btn-source { display: inline-flex; align-items: center; gap: 6px; background-color: #f1f5f9; color: #475569; padding: 10px 20px; border-radius: 30px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: 0.2s; border: 1px solid #cbd5e1; margin-top: 30px; display: block; width: fit-content; margin-left: auto; margin-right: auto; }
-        .btn-source:hover { background-color: #f3e8ff; color: #9333ea; border-color: #9333ea; }
+        
+        .layout-grid { display: grid; grid-template-columns: 2.5fr 1fr; gap: 30px; align-items: start; }
+        .main-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); overflow: hidden; }
+        .sidebar-widget { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 20px; margin-bottom: 20px; }
+        .widget-title { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 15px; padding-left: 10px; border-left: 3px solid #9333ea; }
+        .more-article-item { display: block; padding: 10px 0; border-bottom: 1px dashed #f1f5f9; text-decoration: none; }
+        .more-article-item:last-child { border-bottom: none; }
+        .more-title { font-size: 0.95rem; color: #334155; font-weight: 500; margin-bottom: 5px; transition: 0.2s; }
+        .more-article-item:hover .more-title { color: #9333ea; }
+        .more-meta { font-size: 0.8rem; color: #94a3b8; }
 
-        @media (max-width: 768px) { .search-component { display: none; } .footer-grid { grid-template-columns: 1fr; text-align: center; } .article-header, .article-body { padding: 20px; } .article-title { font-size: 1.4rem; } }
+        @media (max-width: 768px) { .search-component { display: none; } .footer-grid { grid-template-columns: 1fr; text-align: center; } .layout-grid { grid-template-columns: 1fr; } .main-card { border-radius: 8px; } .article-header, .article-body { padding: 20px; } .article-title { font-size: 1.4rem; } }
     </style>
 </head>
 <body>
@@ -70,9 +78,25 @@
 
     <div class="detail-container">
         <div class="back-nav"><a href="tech.html" class="back-btn">← 返回技术列表</a></div>
-        <article class="article-card" id="article-main">
-            <div style="padding: 60px; text-align: center; color: #94a3b8;">正在加载技术...</div>
-        </article>
+        <div class="layout-grid">
+            <main class="main-card">
+                <article class="article-card">
+                    <div id="article-main">
+                        <div style="padding: 60px; text-align: center; color: #94a3b8;">正在加载技术...</div>
+                    </div>
+                </article>
+            </main>
+            <aside>
+                <div class="sidebar-widget">
+                    <div class="widget-title">同机构更多</div>
+                    <div id="reco-same-org"><p style="color:#94a3b8; font-size:0.85rem;">加载中...</p></div>
+                </div>
+                <div class="sidebar-widget">
+                    <div class="widget-title">最新技术趋势</div>
+                    <div id="reco-latest-tech"><p style="color:#94a3b8; font-size:0.85rem;">加载中...</p></div>
+                </div>
+            </aside>
+        </div>
     </div>
 
     <footer>
@@ -130,9 +154,9 @@
             let summaryHtml = '';
             if (article.summary) summaryHtml = `<div class="summary-box">💡 核心摘要：${article.summary}</div>`;
             
-            let sourceLinkHtml = '';
+            let orgHtml = `<span style="font-weight:600; color:#334155;">${article.org || 'AeroScope'}</span>`;
             if (article.source_url && article.source_url.startsWith('http')) {
-                sourceLinkHtml = `<div style="text-align:center;"><a href="${article.source_url}" target="_blank" class="btn-source">🔗 查看原始文献 / 专利文件</a></div>`;
+                orgHtml = `<a href="${article.source_url}" target="_blank" style="font-weight:600; color:#9333ea; text-decoration:none;">${article.org || 'AeroScope'} ↗</a>`;
             }
 
             container.innerHTML = `
@@ -141,17 +165,21 @@
                     <h1 class="article-title">${article.title}</h1>
                     <div class="meta-row">
                         <div><span>发布:</span> ${article.publish_date}</div>
-                        <div><span>机构:</span> <span style="font-weight:600; color:#334155;">${article.org || 'AeroScope'}</span></div>
+                        <div><span>机构:</span> ${orgHtml}</div>
                     </div>
                 </div>
                 ${imgHtml}
                 <div class="article-body">
                     ${summaryHtml}
                     ${formattedContent}
-                    ${sourceLinkHtml}
+                    
+                    <div id="interaction-root" style="margin-top: 40px;"></div>
                 </div>
             `;
             document.title = `${article.title} | AeroScope`;
+            initInteractionArea('interaction-root', 'tech_trends', article.id, article.title);
+            loadSameOrg(article.org || '', article.id);
+            loadLatestTech(article.id);
         });
         
         let searchTimeout;
@@ -175,6 +203,125 @@
         document.addEventListener('click', (e) => { if(!document.querySelector('.search-component').contains(e.target)) document.getElementById('search-dropdown').style.display='none'; });
         async function checkUserLogin() { const {data:{session}} = await _supabase.auth.getSession(); const btn=document.getElementById('auth-btn'); if(session){btn.innerText=session.user.email.split('@')[0]; btn.onclick=()=>location.href='profile.html';}}
         function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        
+        function initInteractionArea(containerId, tableName, targetId, articleTitle) {
+            const root = document.getElementById(containerId);
+            if (!root) return;
+            const shareUrl = `forum.html?action=share&title=${encodeURIComponent(articleTitle)}&source=${encodeURIComponent(window.location.href)}`;
+            root.innerHTML = `
+                <div class="interaction-area">
+                    <div class="share-hint">觉得这篇内容很有价值？</div>
+                    <a href="${shareUrl}" class="btn-forward-forum">↪️ 转发至论坛</a>
+                </div>
+                <div class="comment-box">
+                    <div class="comment-header"><span>💬</span> <span>快速评论</span></div>
+                    <div class="comment-input-wrapper">
+                        <textarea id="c-input" class="comment-textarea" placeholder="写下您的看法..."></textarea>
+                        <button class="btn-send-comment" onclick="submitComment('${tableName}', '${targetId}')">发送</button>
+                    </div>
+                    <div id="c-list" class="comment-list">
+                        <p style="color:#94a3b8; text-align:center; font-size:0.9rem; padding:20px;">加载评论中...</p>
+                    </div>
+                </div>
+            `;
+            loadComments(tableName, targetId);
+        }
+        async function loadComments(tableName, targetId) {
+            const listEl = document.getElementById('c-list');
+            const { data, error } = await _supabase
+                .from('article_comments')
+                .select('*')
+                .eq('target_table', tableName)
+                .eq('target_id', targetId)
+                .order('created_at', { ascending: false });
+            if (error || !data) { listEl.innerHTML = '<p style="text-align:center;color:#ccc;">加载失败</p>'; return; }
+            if (data.length === 0) { listEl.innerHTML = '<p style="text-align:center;color:#ccc;font-size:0.9rem;padding:10px;">暂无评论，快来抢沙发</p>'; return; }
+            let html = '';
+            data.forEach(c => {
+                const name = c.user_email ? c.user_email.split('@')[0] : '匿名用户';
+                const avatarLetter = name.charAt(0).toUpperCase();
+                const time = new Date(c.created_at).toLocaleString('zh-CN', {month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit'});
+                html += `
+                    <div class="comment-row">
+                        <div class="c-avatar">${avatarLetter}</div>
+                        <div class="c-body">
+                            <div class="c-meta">
+                                <span class="c-name">${escapeHtml(name)}</span>
+                                <span>${time}</span>
+                            </div>
+                            <div class="c-content">${escapeHtml(c.content)}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            listEl.innerHTML = html;
+        }
+        async function submitComment(tableName, targetId) {
+            const { data: { session } } = await _supabase.auth.getSession();
+            if (!session) { if(confirm('登录后才能发表评论，是否去登录？')) { window.location.href = 'login.html'; } return; }
+            const input = document.getElementById('c-input');
+            const content = input.value.trim();
+            if (!content) { alert('请输入评论内容'); return; }
+            const btn = document.querySelector('.btn-send-comment');
+            const originalText = btn.innerText;
+            btn.innerText = '发送中...';
+            btn.disabled = true;
+            const { error } = await _supabase.from('article_comments').insert({
+                user_id: session.user.id,
+                user_email: session.user.email,
+                target_table: tableName,
+                target_id: targetId,
+                content: content
+            });
+            btn.innerText = originalText;
+            btn.disabled = false;
+            if (error) { alert('发送失败: ' + error.message); } else { input.value = ''; loadComments(tableName, targetId); }
+        }
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+        async function loadSameOrg(org, excludeId) {
+            const el = document.getElementById('reco-same-org');
+            if (!el || !org) { if (el) el.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem;">暂无推荐</p>'; return; }
+            const { data } = await _supabase
+                .from('tech_trends')
+                .select('id, title, publish_date')
+                .eq('org', org)
+                .neq('id', excludeId)
+                .order('publish_date', { ascending: false })
+                .limit(5);
+            if (!data || data.length === 0) {
+                el.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem;">暂无推荐</p>';
+                return;
+            }
+            el.innerHTML = data.map(item => `
+                <a href="tech-detail.html?id=${item.id}" class="more-article-item">
+                    <div class="more-title">${item.title}</div>
+                    <div class="more-meta">${item.publish_date}</div>
+                </a>
+            `).join('');
+        }
+        async function loadLatestTech(excludeId) {
+            const el = document.getElementById('reco-latest-tech');
+            if (!el) return;
+            const { data } = await _supabase
+                .from('tech_trends')
+                .select('id, title, publish_date')
+                .neq('id', excludeId)
+                .order('publish_date', { ascending: false })
+                .limit(5);
+            if (!data || data.length === 0) {
+                el.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem;">暂无数据</p>';
+                return;
+            }
+            el.innerHTML = data.map(item => `
+                <a href="tech-detail.html?id=${item.id}" class="more-article-item">
+                    <div class="more-title">${item.title}</div>
+                    <div class="more-meta">${item.publish_date}</div>
+                </a>
+            `).join('');
+        }
     </script>
 </body>
 </html>

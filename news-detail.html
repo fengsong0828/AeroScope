@@ -22,7 +22,7 @@
         .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; }
 
         body { background-color: #f8fafc; }
-        .detail-container { max-width: 800px; margin: 40px auto 80px; padding: 0 20px; }
+        .detail-container { max-width: 1200px; margin: 40px auto 80px; padding: 0 20px; }
         .back-nav { margin-bottom: 15px; }
         .back-btn { display: inline-flex; align-items: center; gap: 5px; color: #64748b; font-size: 0.9rem; font-weight: 500; }
         .back-btn:hover { color: #3b82f6; }
@@ -39,7 +39,17 @@
         .article-body h2 { font-size: 1.4rem; border-left: 4px solid #3b82f6; padding-left: 10px; margin-top: 1.2em; }
         .article-body p { margin-bottom: 1em; }
         
-        @media (max-width: 768px) { .search-component { display: none; } .footer-grid { grid-template-columns: 1fr; text-align: center; } .article-header, .article-body { padding: 20px; } .article-title { font-size: 1.4rem; } }
+        .layout-grid { display: grid; grid-template-columns: 2.5fr 1fr; gap: 30px; align-items: start; }
+        .main-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 40px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+        .sidebar-widget { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 20px; margin-bottom: 20px; }
+        .widget-title { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 15px; padding-left: 10px; border-left: 3px solid #3b82f6; }
+        .more-article-item { display: block; padding: 10px 0; border-bottom: 1px dashed #f1f5f9; text-decoration: none; }
+        .more-article-item:last-child { border-bottom: none; }
+        .more-title { font-size: 0.95rem; color: #334155; font-weight: 500; margin-bottom: 5px; transition: 0.2s; }
+        .more-article-item:hover .more-title { color: #3b82f6; }
+        .more-meta { font-size: 0.8rem; color: #94a3b8; }
+        
+        @media (max-width: 768px) { .search-component { display: none; } .footer-grid { grid-template-columns: 1fr; text-align: center; } .layout-grid { grid-template-columns: 1fr; } .main-card { padding: 20px; } .article-header, .article-body { padding: 20px; } .article-title { font-size: 1.4rem; } }
     </style>
 </head>
 <body>
@@ -69,9 +79,23 @@
 
     <div class="detail-container">
         <div class="back-nav"><a href="news.html" class="back-btn">← 返回资讯列表</a></div>
-        <article class="article-card" id="article-main">
-            <div style="padding: 60px; text-align: center; color: #94a3b8;">正在加载内容...</div>
-        </article>
+        <div class="layout-grid">
+            <main class="main-card">
+                <div id="article-main">
+                    <div style="padding: 60px; text-align: center; color: #94a3b8;">正在加载内容...</div>
+                </div>
+            </main>
+            <aside>
+                <div class="sidebar-widget">
+                    <div class="widget-title">同来源更多</div>
+                    <div id="reco-same-source"><p style="color:#94a3b8; font-size:0.85rem;">加载中...</p></div>
+                </div>
+                <div class="sidebar-widget">
+                    <div class="widget-title">最新资讯</div>
+                    <div id="reco-latest"><p style="color:#94a3b8; font-size:0.85rem;">加载中...</p></div>
+                </div>
+            </aside>
+        </div>
     </div>
 
     <footer>
@@ -161,9 +185,12 @@
             `;
             
             document.title = `${article.title} | AeroScope`;
-    
+            
             // 3. 初始化互动区域 (传入挂载点ID、表名、文章ID、文章标题)
             initInteractionArea('interaction-root', 'news', article.id, article.title);
+            
+            loadSameSource(article.source || '', article.id);
+            loadLatest(article.id);
         });
     
         // ============================================================
@@ -340,6 +367,49 @@
                 document.getElementById('search-dropdown').style.display = 'none';
             }
         });
+        
+        async function loadSameSource(source, excludeId) {
+            const el = document.getElementById('reco-same-source');
+            if (!el || !source) { if (el) el.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem;">暂无推荐</p>'; return; }
+            const { data } = await _supabase
+                .from('news')
+                .select('id, title, publish_date')
+                .eq('source', source)
+                .neq('id', excludeId)
+                .order('publish_date', { ascending: false })
+                .limit(5);
+            if (!data || data.length === 0) {
+                el.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem;">暂无推荐</p>';
+                return;
+            }
+            el.innerHTML = data.map(item => `
+                <a href="news-detail.html?id=${item.id}" class="more-article-item">
+                    <div class="more-title">${item.title}</div>
+                    <div class="more-meta">${item.publish_date}</div>
+                </a>
+            `).join('');
+        }
+        
+        async function loadLatest(excludeId) {
+            const el = document.getElementById('reco-latest');
+            if (!el) return;
+            const { data } = await _supabase
+                .from('news')
+                .select('id, title, publish_date')
+                .neq('id', excludeId)
+                .order('publish_date', { ascending: false })
+                .limit(5);
+            if (!data || data.length === 0) {
+                el.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem;">暂无数据</p>';
+                return;
+            }
+            el.innerHTML = data.map(item => `
+                <a href="news-detail.html?id=${item.id}" class="more-article-item">
+                    <div class="more-title">${item.title}</div>
+                    <div class="more-meta">${item.publish_date}</div>
+                </a>
+            `).join('');
+        }
     </script>
 </body>
 </html>

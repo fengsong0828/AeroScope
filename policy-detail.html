@@ -22,11 +22,11 @@
         .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; }
         
         body { background-color: #f8fafc; }
-        .detail-container { max-width: 900px; margin: 20px auto 60px; padding: 0 20px; }
+        .detail-container { max-width: 1200px; margin: 30px auto 60px; padding: 0 20px; }
         .back-nav { margin-bottom: 15px; }
         .back-btn { display: inline-flex; align-items: center; gap: 5px; color: #64748b; font-size: 0.9rem; font-weight: 500; }
         .back-btn:hover { color: #3b82f6; }
-        .article-card { background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid #e2e8f0; max-width: 900px; margin: 0 auto; }
+        .article-card { background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid #e2e8f0; }
         
         .article-header { padding: 30px 40px 10px 40px; text-align: center; background: #f0f9ff; border-bottom: 1px solid #e0f2fe; }
         .article-title { font-size: 1.8rem; font-weight: 800; color: #0f172a; line-height: 1.3; margin-bottom: 15px; }
@@ -41,8 +41,18 @@
         .bottom-actions { display: flex; justify-content: center; gap: 15px; margin-top: 40px; padding-top: 20px; border-top: 1px solid #f1f5f9; }
         .btn-source { display: inline-flex; align-items: center; gap: 6px; background-color: #f1f5f9; color: #475569; padding: 10px 20px; border-radius: 30px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: 0.2s; border: 1px solid #cbd5e1; }
         .btn-source:hover { background-color: #e2e8f0; color: #0284c7; border-color: #0284c7; }
+        
+        .layout-grid { display: grid; grid-template-columns: 2.5fr 1fr; gap: 30px; align-items: start; }
+        .main-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); overflow: hidden; }
+        .sidebar-widget { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 20px; margin-bottom: 20px; }
+        .widget-title { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 15px; padding-left: 10px; border-left: 3px solid #0284c7; }
+        .more-article-item { display: block; padding: 10px 0; border-bottom: 1px dashed #f1f5f9; text-decoration: none; }
+        .more-article-item:last-child { border-bottom: none; }
+        .more-title { font-size: 0.95rem; color: #334155; font-weight: 500; margin-bottom: 5px; transition: 0.2s; }
+        .more-article-item:hover .more-title { color: #0284c7; }
+        .more-meta { font-size: 0.8rem; color: #94a3b8; }
 
-        @media (max-width: 768px) { .search-component { display: none; } .footer-grid { grid-template-columns: 1fr; text-align: center; } .article-header, .article-body { padding: 20px; } .article-title { font-size: 1.4rem; } }
+        @media (max-width: 768px) { .search-component { display: none; } .footer-grid { grid-template-columns: 1fr; text-align: center; } .layout-grid { grid-template-columns: 1fr; } .main-card { border-radius: 8px; } .article-header, .article-body { padding: 20px; } .article-title { font-size: 1.4rem; } }
     </style>
 </head>
 <body>
@@ -73,9 +83,23 @@
 
     <div class="detail-container">
         <div class="back-nav"><a href="policies.html" class="back-btn">← 返回政策列表</a></div>
-        <article class="article-card" id="article-main">
-            <div style="padding: 60px; text-align: center; color: #94a3b8;">正在加载政策...</div>
-        </article>
+        <div class="layout-grid">
+            <main class="main-card">
+                <article class="article-card" id="article-main">
+                    <div style="padding: 60px; text-align: center; color: #94a3b8;">正在加载政策...</div>
+                </article>
+            </main>
+            <aside>
+                <div class="sidebar-widget">
+                    <div class="widget-title">同部门更多</div>
+                    <div id="reco-same-dept"><p style="color:#94a3b8; font-size:0.85rem;">加载中...</p></div>
+                </div>
+                <div class="sidebar-widget">
+                    <div class="widget-title">最新政策</div>
+                    <div id="reco-latest-policy"><p style="color:#94a3b8; font-size:0.85rem;">加载中...</p></div>
+                </div>
+            </aside>
+        </div>
     </div>
 
     <footer>
@@ -127,17 +151,11 @@
             rawContent = rawContent.replace(/\\n/g, '\n');
             const formattedContent = marked.parse(rawContent);
             
-            // 构造底部操作按钮
             let sourceBtn = '';
-            // 【修改点】：部门名称不再包含链接，仅保留纯文本样式
             let deptHtml = `<span style="font-weight:600; color:#334155;">${policy.department}</span>`;
-            
             if (policy.source_url && policy.source_url.startsWith('http')) {
-                // 【修改点】：底部按钮文案改为 "访问原文"
-                sourceBtn = `<a href="${policy.source_url}" target="_blank" class="btn-source">🔗 访问原文</a>`;
+                deptHtml = `<a href="${policy.source_url}" target="_blank" style="font-weight:600; color:#0284c7; text-decoration:none;">${policy.department} ↗</a>`;
             }
-            
-            // 文件下载链接 (保持不变)
             let fileBtn = '';
             if (policy.file_url && policy.file_url.startsWith('http')) {
                 fileBtn = `<a href="${policy.file_url}" target="_blank" class="btn-source">📥 下载政策全文 (PDF/DOC)</a>`;
@@ -155,12 +173,16 @@
                     ${formattedContent}
                     
                     <div class="bottom-actions">
-                        ${sourceBtn}
                         ${fileBtn}
                     </div>
+                    
+                    <div id="interaction-root" style="margin-top: 40px;"></div>
                 </div>
             `;
             document.title = `${policy.title} | AeroScope`;
+            loadSameDept(policy.department || '', policy.id);
+            loadLatestPolicies(policy.id);
+            initInteractionArea('interaction-root', 'policies', policy.id, policy.title);
         });
 
         let searchTimeout;
@@ -186,6 +208,124 @@
         document.addEventListener('click', (e) => { if(!document.querySelector('.search-component').contains(e.target)) document.getElementById('search-dropdown').style.display='none'; });
         async function checkUserLogin() { const {data:{session}} = await _supabase.auth.getSession(); const btn=document.getElementById('auth-btn'); if(session){btn.innerText=session.user.email.split('@')[0]; btn.onclick=()=>location.href='profile.html';}}
         function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        function initInteractionArea(containerId, tableName, targetId, articleTitle) {
+            const root = document.getElementById(containerId);
+            if (!root) return;
+            const shareUrl = `forum.html?action=share&title=${encodeURIComponent(articleTitle)}&source=${encodeURIComponent(window.location.href)}`;
+            root.innerHTML = `
+                <div class="interaction-area">
+                    <div class="share-hint">觉得这篇内容很有价值？</div>
+                    <a href="${shareUrl}" class="btn-forward-forum">↪️ 转发至论坛</a>
+                </div>
+                <div class="comment-box">
+                    <div class="comment-header"><span>💬</span> <span>快速评论</span></div>
+                    <div class="comment-input-wrapper">
+                        <textarea id="c-input" class="comment-textarea" placeholder="写下您的看法..."></textarea>
+                        <button class="btn-send-comment" onclick="submitComment('${tableName}', '${targetId}')">发送</button>
+                    </div>
+                    <div id="c-list" class="comment-list">
+                        <p style="color:#94a3b8; text-align:center; font-size:0.9rem; padding:20px;">加载评论中...</p>
+                    </div>
+                </div>
+            `;
+            loadComments(tableName, targetId);
+        }
+        async function loadComments(tableName, targetId) {
+            const listEl = document.getElementById('c-list');
+            const { data, error } = await _supabase
+                .from('article_comments')
+                .select('*')
+                .eq('target_table', tableName)
+                .eq('target_id', targetId)
+                .order('created_at', { ascending: false });
+            if (error || !data) { listEl.innerHTML = '<p style="text-align:center;color:#ccc;">加载失败</p>'; return; }
+            if (data.length === 0) { listEl.innerHTML = '<p style="text-align:center;color:#ccc;font-size:0.9rem;padding:10px;">暂无评论，快来抢沙发</p>'; return; }
+            let html = '';
+            data.forEach(c => {
+                const name = c.user_email ? c.user_email.split('@')[0] : '匿名用户';
+                const avatarLetter = name.charAt(0).toUpperCase();
+                const time = new Date(c.created_at).toLocaleString('zh-CN', {month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit'});
+                html += `
+                    <div class="comment-row">
+                        <div class="c-avatar">${avatarLetter}</div>
+                        <div class="c-body">
+                            <div class="c-meta">
+                                <span class="c-name">${escapeHtml(name)}</span>
+                                <span>${time}</span>
+                            </div>
+                            <div class="c-content">${escapeHtml(c.content)}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            listEl.innerHTML = html;
+        }
+        async function submitComment(tableName, targetId) {
+            const { data: { session } } = await _supabase.auth.getSession();
+            if (!session) { if(confirm('登录后才能发表评论，是否去登录？')) { window.location.href = 'login.html'; } return; }
+            const input = document.getElementById('c-input');
+            const content = input.value.trim();
+            if (!content) { alert('请输入评论内容'); return; }
+            const btn = document.querySelector('.btn-send-comment');
+            const originalText = btn.innerText;
+            btn.innerText = '发送中...';
+            btn.disabled = true;
+            const { error } = await _supabase.from('article_comments').insert({
+                user_id: session.user.id,
+                user_email: session.user.email,
+                target_table: tableName,
+                target_id: targetId,
+                content: content
+            });
+            btn.innerText = originalText;
+            btn.disabled = false;
+            if (error) { alert('发送失败: ' + error.message); } else { input.value = ''; loadComments(tableName, targetId); }
+        }
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+        async function loadSameDept(dept, excludeId) {
+            const el = document.getElementById('reco-same-dept');
+            if (!el || !dept) { if (el) el.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem;">暂无推荐</p>'; return; }
+            const { data } = await _supabase
+                .from('policies')
+                .select('id, title, publish_date')
+                .eq('department', dept)
+                .neq('id', excludeId)
+                .order('publish_date', { ascending: false })
+                .limit(5);
+            if (!data || data.length === 0) {
+                el.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem;">暂无推荐</p>';
+                return;
+            }
+            el.innerHTML = data.map(item => `
+                <a href="policy-detail.html?id=${item.id}" class="more-article-item">
+                    <div class="more-title">${item.title}</div>
+                    <div class="more-meta">${item.publish_date}</div>
+                </a>
+            `).join('');
+        }
+        async function loadLatestPolicies(excludeId) {
+            const el = document.getElementById('reco-latest-policy');
+            if (!el) return;
+            const { data } = await _supabase
+                .from('policies')
+                .select('id, title, publish_date')
+                .neq('id', excludeId)
+                .order('publish_date', { ascending: false })
+                .limit(5);
+            if (!data || data.length === 0) {
+                el.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem;">暂无数据</p>';
+                return;
+            }
+            el.innerHTML = data.map(item => `
+                <a href="policy-detail.html?id=${item.id}" class="more-article-item">
+                    <div class="more-title">${item.title}</div>
+                    <div class="more-meta">${item.publish_date}</div>
+                </a>
+            `).join('');
+        }
     </script>
 </body>
 </html>

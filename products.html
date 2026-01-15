@@ -339,7 +339,7 @@
                 const imgUrl = item.image_url || 'https://via.placeholder.com/400x250?text=No+Image';
 
                 const html = `
-                    <div class="product-card">
+                    <div class="product-card" onclick="location.href='products-detail.html?id=${item.id}'">
                         <div class="product-img-box">
                             <img src="${imgUrl}" class="product-img">
                             <span class="status-badge ${statusConfig.class}">${statusConfig.text}</span>
