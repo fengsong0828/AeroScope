@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>全球融资趋势 | AeroScope Insight</title>
     <link rel="stylesheet" href="style.css">
+    <script src="js/translations.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <style>
         /* --- 复用 Index 样式 (Header/Footer/Search) --- */
@@ -402,7 +403,7 @@
                 tbody.innerHTML += `
                     <tr>
                         <td style="font-weight:600;">${e.company_name}</td>
-                        <td><span class="round-tag">${e.funding_round}</span></td>
+                        <td><span class="round-tag">${t(e.funding_round)}</span></td>
                         <td style="color:#1d4ed8;">${amountDisplay}</td>
                         <td><div class="summary-cell" title="${investorsDisplay}">${investorsDisplay}</div></td>
                         <td>${e.funding_date}</td>
@@ -425,8 +426,8 @@
                 tbody.innerHTML += `
                     <tr>
                         <td style="font-weight:600;">${i.name}</td>
-                        <td>${i.type || 'VC'}</td>
-                        <td>${i.country || 'Global'}</td>
+                        <td>${t(i.type || 'VC')}</td>
+                        <td>${t(i.country || 'Global')}</td>
                         <td style="color:#1d4ed8;">${total}</td>
                     </tr>
                 `;

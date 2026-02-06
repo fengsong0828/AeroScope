@@ -28,21 +28,21 @@
         .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
 
         /* --- 2. 新闻列表样式 (紧凑版) --- */
-        .news-feed { display: flex; flex-direction: column; gap: 15px; } /* 减少间距 */
+        .news-feed { display: flex; flex-direction: column; gap: 4px; } /* 减少间距 */
         
         .news-item { 
             display: flex; 
             background: white; 
             border: 1px solid #e2e8f0; 
-            border-radius: 10px; 
+            border-radius: 8px; 
             overflow: hidden; 
             transition: 0.2s; 
-            min-height: 140px; /* 压缩高度 */
+            min-height: 80px; /* 压缩高度 */
         }
         .news-item:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.05); border-color: #3b82f6; }
         
         .news-image { 
-            width: 220px; min-width: 220px; 
+            width: 140px; min-width: 140px; 
             background-color: #cbd5e1; 
             display: block; 
             background-size: cover; 
@@ -50,7 +50,7 @@
         }
         
         .news-content { 
-            padding: 15px 20px; /* 压缩内边距 */
+            padding: 8px 12px; /* 压缩内边距 */
             flex: 1; 
             display: flex; 
             flex-direction: column; 
@@ -58,14 +58,14 @@
             min-width: 0; 
         }
         
-        .news-content h3 { margin: 0 0 6px 0; font-size: 1.1rem; line-height: 1.3; }
+        .news-content h3 { margin: 0 0 2px 0; font-size: 1rem; line-height: 1.3; }
         .news-content h3 a { color: #1e293b; text-decoration: none; transition: 0.2s; }
         .news-content h3 a:hover { color: #3b82f6; }
         
         .news-meta { 
-            display: flex; align-items: center; gap: 12px; 
-            font-size: 0.8rem; color: #64748b; 
-            margin-bottom: 8px; flex-wrap: wrap; 
+            display: flex; align-items: center; gap: 10px; 
+            font-size: 0.75rem; color: #64748b; 
+            margin-bottom: 2px; flex-wrap: wrap; 
         }
         
         .news-content p {
@@ -213,6 +213,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/translations.js"></script>
     <script>
         const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
@@ -267,26 +268,49 @@
             const pageItems = filteredNews.slice(start, end);
 
             pageItems.forEach(item => {
-                // 使用稳定写法
-                const bgStyle = item.image_url 
-                    ? `background: #cbd5e1 url('${item.image_url}') center/cover no-repeat` 
-                    : `background: #f1f5f9`;
+                // 优先级：封面图 > 正文首图 > 文字Fallback
+                let imgUrl = item.image_url;
+                
+                // 如果没有封面图，尝试从正文提取第一张图片
+                if (!imgUrl && item.content) {
+                    const mdMatch = item.content.match(/!\[.*?\]\((.*?)\)/);
+                    if (mdMatch && mdMatch[1]) {
+                        imgUrl = mdMatch[1];
+                    } else {
+                        const htmlMatch = item.content.match(/<img[^>]+src=['"]([^'"]+)['"]/);
+                        if (htmlMatch && htmlMatch[1]) {
+                            imgUrl = htmlMatch[1];
+                        }
+                    }
+                }
+
+                let bgStyle;
+                let innerContent = '';
+                
+                if (imgUrl) {
+                    bgStyle = `background: #cbd5e1 url('${imgUrl}') center/cover no-repeat; display:block;`;
+                } else {
+                    // 无图时使用文字Fallback
+                    const tagText = t(item.category || 'News');
+                    bgStyle = `background: #f1f5f9; display:flex; align-items:center; justify-content:center; color:#94a3b8; font-weight:bold; font-size:1.2rem;`;
+                    innerContent = tagText;
+                }
                 
                 // 处理标签
                 let itemTagsHtml = '';
                 if(item.tags && Array.isArray(item.tags)) {
-                    item.tags.slice(0,3).forEach(t => {
-                        itemTagsHtml += `<span style="color:#3b82f6; background:#eff6ff; padding:2px 6px; border-radius:4px; font-size:0.7rem; margin-right:5px;">#${t}</span>`;
+                    item.tags.slice(0,3).forEach(tag => {
+                        itemTagsHtml += `<span style="color:#3b82f6; background:#eff6ff; padding:2px 6px; border-radius:4px; font-size:0.7rem; margin-right:5px;">#${t(tag)}</span>`;
                     });
                 }
 
                 container.innerHTML += `
                     <article class="news-item">
-                        <a href="news-detail.html?id=${item.id}" class="news-image" style="${bgStyle}; display:block;"></a>
+                        <a href="news-detail.html?id=${item.id}" class="news-image" style="${bgStyle}">${innerContent}</a>
                         <div class="news-content">
                             <h3><a href="news-detail.html?id=${item.id}">${item.title}</a></h3>
                             <div class="news-meta">
-                                <span class="tag" style="background:#f1f5f9; padding:2px 6px; border-radius:4px; color:#475569;">${item.category||'资讯'}</span>
+                                <span class="tag" style="background:#f1f5f9; padding:2px 6px; border-radius:4px; color:#475569;">${t(item.category)||'资讯'}</span>
                                 <span>${item.publish_date}</span>
                                 <span style="margin-left:10px; color:#ccc;">${item.source||''}</span>
                             </div>
@@ -354,7 +378,7 @@
             const container = document.getElementById('tag-container');
             if (sortedTags.length === 0) { container.innerHTML = '<p style="color:#999; font-size:0.8rem;">暂无标签</p>'; return; }
             let html = `<div class="tag-item active" onclick="filterByTag('all', this)">全部</div>`;
-            sortedTags.slice(0, 20).forEach(t => { html += `<div class="tag-item" onclick="filterByTag('${t.name}', this)">${t.name}</div>`; });
+            sortedTags.slice(0, 20).forEach(tagObj => { html += `<div class="tag-item" onclick="filterByTag('${tagObj.name}', this)">${t(tagObj.name)}</div>`; });
             container.innerHTML = html;
         }
 

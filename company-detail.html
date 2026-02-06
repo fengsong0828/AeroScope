@@ -298,7 +298,7 @@
             <!-- B. 融资历程 -->
             <div class="info-card">
                 <div class="card-header">
-                    <div class="card-title">融资历程 <span style="font-weight:400; color:#94a3b8; font-size:0.9rem; margin-left:10px;">Capital History</span></div>
+                    <div class="card-title">融资历程</div>
                     <button class="btn btn-outline" style="padding:4px 10px; font-size:0.8rem;">查看图表</button>
                 </div>
                 
@@ -325,7 +325,7 @@
             <!-- C. 技术创新/专利 (已修改：单行+分页) -->
             <div class="info-card">
                 <div class="card-header">
-                    <div class="card-title">技术专利 <span style="font-weight:400; color:#94a3b8; font-size:0.9rem; margin-left:10px;">Patents & IP</span></div>
+                    <div class="card-title">技术专利</div>
                 </div>
                 
                 <!-- 专利列表容器 -->
@@ -449,6 +449,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/translations.js"></script>
     <script>
         const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co'; 
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
@@ -528,7 +529,7 @@
                 ticker.style.display = 'inline-block';
             }
 
-            document.getElementById('header-loc').innerText = c.location || '全球';
+            document.getElementById('header-loc').innerText = t(c.location) || '全球';
             document.getElementById('header-year').innerText = c.founded_year || '未披露';
             
             const webLink = document.getElementById('header-web');
@@ -539,7 +540,7 @@
 
             if(c.tags && Array.isArray(c.tags)) {
                 let tagsHtml = '';
-                c.tags.forEach(t => tagsHtml += `<span class="tag-pill">#${t}</span>`);
+                c.tags.forEach(rawT => tagsHtml += `<span class="tag-pill">#${t(rawT)}</span>`);
                 document.getElementById('company-tags').innerHTML = tagsHtml;
             }
         }
@@ -564,7 +565,7 @@
                 tbody.innerHTML += `
                     <tr>
                         <td style="color:#64748b;">${e.funding_date || '--'}</td>
-                        <td><span class="round-tag">${e.funding_round}</span></td>
+                        <td><span class="round-tag">${t(e.funding_round)}</span></td>
                         <td style="font-weight:600;">${amountStr}</td>
                         <td><div class="investor-list">${e.participating_investors || e.lead_investor || '-'}</div></td>
                     </tr>
@@ -610,14 +611,14 @@
             const pageData = allCompanyPatents.slice(start, end);
 
             pageData.forEach(p => {
-                const typeMap = { 'Invention': '发明', 'Utility Model': '实用', 'Design': '外观' };
-                const typeLabel = typeMap[p.patent_type] || p.patent_type || '专利';
+                const typeLabel = t(p.patent_type) || '专利';
                 
                 let statusColor = '#94a3b8';
-                let statusText = p.legal_status || '未知';
+                let rawStatus = p.legal_status || '未知';
+                let statusText = t(rawStatus);
                 
-                if (statusText === '有效' || statusText === 'Authorized') statusColor = '#16a34a'; 
-                else if (statusText.includes('无效') || statusText.includes('Terminated')) statusColor = '#ef4444';
+                if (statusText === '有效' || statusText === '已授权' || rawStatus === 'Authorized') statusColor = '#16a34a'; 
+                else if (statusText.includes('无效') || statusText === '失效' || rawStatus.includes('Terminated')) statusColor = '#ef4444';
                 else statusColor = '#f59e0b';
                 
                 const dateStr = p.publication_date ? p.publication_date.substring(0, 4) : '-';
@@ -675,9 +676,9 @@
                         <img src="${img}" class="pm-img" onerror="this.style.background='#f1f5f9'">
                         <div class="pm-content">
                             <div class="pm-title">${p.name}</div>
-                            <span class="pm-badge">${p.type}</span>
+                            <span class="pm-badge">${t(p.type)}</span>
                             <span class="pm-badge" style="color:${p.certification_status==='TC Granted'?'#16a34a':'#f59e0b'}">
-                                ${p.certification_status || '研发中'}
+                                ${t(p.certification_status) || '研发中'}
                             </span>
                         </div>
                     </a>
@@ -687,10 +688,12 @@
 
         // 渲染侧边栏
         function renderSidebar(c) {
-            const chainMap = { 'upstream': '⛓️ 上游供应链', 'midstream': '✈️ 整机制造', 'downstream': '🏷️ 运营服务' };
-            document.getElementById('data-chain').innerText = chainMap[c.industry_chain] || c.industry_chain || '--';
-            document.getElementById('data-category').innerText = c.primary_category || '--';
-            document.getElementById('data-listed').innerText = c.is_listed ? '已上市 (Public)' : '未上市 (Private)';
+            const chainEmojis = { 'upstream': '⛓️ ', 'midstream': '✈️ ', 'downstream': '🏷️ ' };
+            const chainText = t(c.industry_chain);
+            document.getElementById('data-chain').innerText = (chainEmojis[c.industry_chain] || '') + chainText || '--';
+            
+            document.getElementById('data-category').innerText = t(c.primary_category) || '--';
+            document.getElementById('data-listed').innerText = c.is_listed ? '已上市' : '未上市';
             if(c.total_funding_est_usd) document.getElementById('data-funding').innerText = `$${c.total_funding_est_usd}M`;
         }
 

@@ -114,6 +114,7 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/translations.js"></script>
     <script>
         const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
@@ -127,6 +128,13 @@
         function getQueryParam(param) { const urlParams = new URLSearchParams(window.location.search); return urlParams.get(param); }
         function formatDate(dateStr) { if (!dateStr) return '--'; return new Date(dateStr).toLocaleDateString('zh-CN'); }
         function getStatusConfig(status) {
+            const label = t(status);
+            if(label) {
+                const s = String(status).toLowerCase();
+                if(s === 'certified') return { text: label, class: 'status-certified' };
+                if(s === 'testing' || s === 'prototype') return { text: label, class: 'status-testing' };
+                return { text: label, class: 'status-concept' };
+            }
             if(status === 'Certified') return { text: '已取证', class: 'status-certified' };
             if(status === 'Testing') return { text: '试飞中', class: 'status-testing' };
             if(status === 'Prototype') return { text: '原型机', class: 'status-testing' };
@@ -152,18 +160,19 @@
                 const makerLink = document.getElementById('p-maker-link');
                 makerLink.innerText = p.companies?.name || '未知厂商';
                 if (p.companies?.id) { makerLink.href = `company-detail.html?id=${p.companies.id}`; } else { makerLink.removeAttribute('href'); makerLink.style.color = '#64748b'; makerLink.style.cursor = 'default'; }
-                document.getElementById('p-type').innerText = p.type || '--';
+                document.getElementById('p-type').innerText = t(p.type) || '--';
                 const imgUrl = p.image_url || 'https://via.placeholder.com/800x450?text=No+Image';
                 document.getElementById('p-image').src = imgUrl;
-                document.getElementById('p-desc').innerText = p.description || '暂无简介';
                 const specs = p.specs || {};
+                document.getElementById('p-desc').innerText = p.description || specs.description || '暂无简介';
+                
                 document.getElementById('spec-range').innerText = ((specs.range_km || '-') + ' km');
                 document.getElementById('spec-speed').innerText = ((specs.speed_kmh || '-') + ' km/h');
                 document.getElementById('spec-payload').innerText = ((specs.payload_kg || '-') + ' kg');
-                document.getElementById('spec-power').innerText = specs.propulsion || '-';
-                document.getElementById('spec-pilot').innerText = specs.piloting || '-';
+                document.getElementById('spec-power').innerText = t(specs.propulsion) || '-';
+                document.getElementById('spec-pilot').innerText = t(specs.piloting) || '-';
                 document.getElementById('info-status').innerText = statusCfg.text;
-                document.getElementById('info-type').innerText = p.type || '--';
+                document.getElementById('info-type').innerText = t(p.type) || '--';
                 document.getElementById('info-updated').innerText = formatDate(p.updated_at || p.created_at);
             } catch (err) {
                 console.error(err);

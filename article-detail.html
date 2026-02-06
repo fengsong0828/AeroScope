@@ -239,7 +239,7 @@
 
             // 渲染元数据
             document.title = `${data.title} | AeroScope`;
-            document.getElementById('art-cat').innerText = data.category || '洞察';
+            document.getElementById('art-cat').innerText = t(data.category) || data.category || '洞察';
             document.getElementById('art-date').innerText = new Date(data.created_at).toLocaleDateString();
             document.getElementById('art-views').innerText = data.views || 0;
             document.getElementById('art-title').innerText = data.title;

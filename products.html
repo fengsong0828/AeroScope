@@ -134,34 +134,34 @@
             <div class="filter-row-main">
                 <select id="filter-type" class="filter-select" onchange="applyFilters()">
                     <option value="all">✈️ 飞行器类型</option>
-                    <option value="Multicopter">多旋翼 (Multicopter)</option>
-                    <option value="Lift+Cruise">复合翼 (Lift+Cruise)</option>
-                    <option value="Vectored Thrust">矢量推力 (Vectored)</option>
+                    <option value="Multicopter">多旋翼</option>
+                    <option value="Lift+Cruise">复合翼</option>
+                    <option value="Vectored Thrust">矢量推力</option>
                     <option value="FlyingCar">飞行汽车</option>
                 </select>
 
                 <select id="filter-country" class="filter-select" onchange="applyFilters()">
                     <option value="all">🌍 国家/地区</option>
-                    <option value="CN">中国 (CN)</option>
-                    <option value="US">美国 (US)</option>
-                    <option value="DE">德国 (DE)</option>
-                    <option value="FR">法国 (FR)</option>
-                    <option value="GB">英国 (UK)</option>
+                    <option value="CN">中国</option>
+                    <option value="US">美国</option>
+                    <option value="DE">德国</option>
+                    <option value="FR">法国</option>
+                    <option value="GB">英国</option>
                 </select>
 
                 <select id="filter-status" class="filter-select" onchange="applyFilters()">
                     <option value="all">🔖 适航状态</option>
-                    <option value="Certified">✅ 已取证 (Certified)</option>
-                    <option value="Testing">🧪 试飞中 (Testing)</option>
-                    <option value="Prototype">🛠️ 原型机 (Prototype)</option>
-                    <option value="Concept">💡 概念设计 (Concept)</option>
+                    <option value="Certified">✅ 已取证</option>
+                    <option value="Testing">🧪 试飞中</option>
+                    <option value="Prototype">🛠️ 原型机</option>
+                    <option value="Concept">💡 概念设计</option>
                 </select>
                 
                 <select id="filter-power" class="filter-select" onchange="applyFilters()">
                     <option value="all">🔋 动力类型</option>
-                    <option value="Electric">纯电 (Electric)</option>
-                    <option value="Hybrid">混动 (Hybrid)</option>
-                    <option value="Hydrogen">氢能 (Hydrogen)</option>
+                    <option value="Electric">纯电</option>
+                    <option value="Hybrid">混动</option>
+                    <option value="Hydrogen">氢能</option>
                 </select>
 
                 <input type="text" id="filter-name" class="local-search" placeholder="搜索型号或厂商..." onkeyup="applyFilters()">
@@ -232,6 +232,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/translations.js"></script>
     <script>
         const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co'; 
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
@@ -373,10 +374,11 @@
         }
 
         function getStatusConfig(status) {
-            if(status === 'Certified') return { text: '已取证', class: 'status-certified' };
-            if(status === 'Testing') return { text: '试飞中', class: 'status-testing' };
-            if(status === 'Prototype') return { text: '原型机', class: 'status-testing' };
-            return { text: status || '研发中', class: 'status-concept' };
+            const label = t(status) || '研发中';
+            const s = String(status).toLowerCase();
+            if(s === 'certified') return { text: label, class: 'status-certified' };
+            if(s === 'testing' || s === 'prototype') return { text: label, class: 'status-testing' };
+            return { text: label, class: 'status-concept' };
         }
 
         // --- 通用逻辑 ---

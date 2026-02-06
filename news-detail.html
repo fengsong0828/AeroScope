@@ -168,9 +168,9 @@
             container.innerHTML = `
                 <div class="article-header">
                     <h1 class="article-title">${article.title}</h1>
-                    <div class="meta-row">
-                        <div><span style="opacity:0.7;">发布于:</span> ${article.publish_date}</div>
-                        <div><span style="opacity:0.7;">来源:</span> <span style="font-weight:500; color:#334155;">${article.source || 'AeroScope'}</span></div>
+                    <div style="display:flex; gap:1rem; font-size:0.875rem; color:#64748b; margin-bottom:1.5rem;">
+                        <div><span style="opacity:0.7;">发布时间:</span> <span style="font-weight:500; color:#334155;">${new Date(article.publish_date).toLocaleDateString()}</span></div>
+                        <div><span style="opacity:0.7;">来源:</span> <span style="font-weight:500; color:#334155;">${t(article.source) || article.source || 'AeroScope'}</span></div>
                     </div>
                 </div>
                 

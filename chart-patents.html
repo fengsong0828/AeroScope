@@ -233,21 +233,21 @@
 
             <select id="filter-type" class="filter-select" onchange="applyFiltersAndPagination()">
                 <option value="all">📄 所有类型</option>
-                <option value="发明专利">发明专利</option>
-                <option value="实用新型">实用新型</option>
-                <option value="外观设计">外观设计</option>
+                <option value="invention">发明专利</option>
+                <option value="utility model">实用新型</option>
+                <option value="design">外观设计</option>
             </select>
 
             <select id="filter-category" class="filter-select" onchange="applyFiltersAndPagination()">
                 <option value="all">🏷️ 所有技术分类</option>
-                <option value="eVTOL">eVTOL技术</option>
-                <option value="电池">电池技术</option>
-                <option value="飞控">飞控系统</option>
-                <option value="通信">通信技术</option>
-                <option value="导航">导航技术</option>
-                <option value="材料">新型材料</option>
-                <option value="安全">安全系统</option>
-                <option value="能源">能源管理</option>
+                <option value="evtol">eVTOL技术</option>
+                <option value="battery">电池技术</option>
+                <option value="flight_control">飞控系统</option>
+                <option value="communication">通信技术</option>
+                <option value="navigation">导航技术</option>
+                <option value="materials">新型材料</option>
+                <option value="safety">安全系统</option>
+                <option value="energy">能源管理</option>
             </select>
 
             <select id="filter-year" class="filter-select" onchange="applyFiltersAndPagination()">
@@ -328,6 +328,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/translations.js"></script>
     <script>
         const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
@@ -444,7 +445,7 @@
     
             pageData.forEach(p => {
                 const title = p.title || '未命名专利';
-                const status = p.legal_status || '审中';
+                const status = t(p.legal_status) || p.legal_status || '审中';
                 const statusClass = status === '有效' ? 'status-valid' : (['无效','终止'].includes(status) ? 'status-invalid' : 'status-pending');
                 const compInfo = companiesMap.get(p.applicant);
                 const applicantHtml = compInfo 
@@ -452,10 +453,9 @@
                     : `<span class="applicant-name">🏢 ${p.applicant || '未知申请人'}</span>`;
                 
                 let tagsHtml = '';
-                (p.technical_categories || []).slice(0,3).forEach(c => tagsHtml += `<span class="patent-tag category">${c}</span>`);
+                (p.technical_categories || []).slice(0,3).forEach(c => tagsHtml += `<span class="patent-tag category">${t(c) || c}</span>`);
                 if(p.industry_chain_position) {
-                    const map = {upstream:'⚡ 上游', midstream:'✈️ 中游', downstream:'🏷️ 下游'};
-                    tagsHtml += `<span class="patent-tag chain-${p.industry_chain_position}">${map[p.industry_chain_position]||''}</span>`;
+                    tagsHtml += `<span class="patent-tag chain-${p.industry_chain_position}">${t(p.industry_chain_position)||''}</span>`;
                 }
 
                 container.innerHTML += `

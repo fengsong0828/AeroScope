@@ -248,6 +248,7 @@
 
     <!-- 引入 Supabase 和 工具类 -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/translations.js"></script>
     
     <script>
         const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co'; 
@@ -308,6 +309,15 @@
                 } 
                 return null;
             }
+            
+            // 扩展：国家名称中文映射
+            const countryNameMap = {
+                'China': '中国', 'United States': '美国', 'Germany': '德国',
+                'United Kingdom': '英国', 'France': '法国', 'Japan': '日本',
+                'South Korea': '韩国', 'Australia': '澳大利亚', 'Canada': '加拿大',
+                'Brazil': '巴西', 'India': '印度', 'Singapore': '新加坡', 'Israel': '以色列',
+                'Italy': '意大利', 'Spain': '西班牙', 'Netherlands': '荷兰', 'Switzerland': '瑞士'
+            };
 
             const countryCounts = {};
             globalCompanyData.forEach(comp => {
@@ -319,10 +329,16 @@
 
             const option = {
                 backgroundColor: '#f8fafc',
-                tooltip: { trigger: 'item', formatter: '{b}<br/>企业数量: <b>{c}</b>' },
+                tooltip: { 
+                    trigger: 'item', 
+                    formatter: function(params) {
+                        const nameCN = countryNameMap[params.name] || params.name;
+                        return `${nameCN}<br/>企业数量: <b>${params.value || 0}</b>`;
+                    }
+                },
                 visualMap: {
                     min: 0, max: 20, left: 'left', bottom: 'bottom',
-                    text: ['High', 'Low'],
+                    text: ['高', '低'],
                     inRange: { color: ['#dbeafe', '#3b82f6', '#1e3a8a'] },
                     calculable: true
                 },
@@ -341,9 +357,10 @@
             worldChart.on('click', function (params) {
                 if (!params.name) return;
                 const countryName = params.name;
+                const countryNameCN = countryNameMap[countryName] || countryName;
                 currentModalCompanies = globalCompanyData.filter(comp => getMapName(comp) === countryName);
                 if (currentModalCompanies.length === 0) return;
-                showModal(countryName + " 企业名录", "加载中...", `共 ${currentModalCompanies.length} 家`);
+                showModal(countryNameCN + " 企业名录", "加载中...", `共 ${currentModalCompanies.length} 家`);
                 document.getElementById('modal-tabs-container').style.display = 'flex';
                 filterModalList('all', document.querySelector('.modal-tab-btn'));
             });

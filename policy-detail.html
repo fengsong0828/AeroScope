@@ -130,6 +130,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/translations.js"></script>
     <script>
         const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co'; 
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
@@ -152,9 +153,9 @@
             const formattedContent = marked.parse(rawContent);
             
             let sourceBtn = '';
-            let deptHtml = `<span style="font-weight:600; color:#334155;">${policy.department}</span>`;
+            let deptHtml = `<span style="font-weight:600; color:#334155;">${t(policy.department) || policy.department}</span>`;
             if (policy.source_url && policy.source_url.startsWith('http')) {
-                deptHtml = `<a href="${policy.source_url}" target="_blank" style="font-weight:600; color:#0284c7; text-decoration:none;">${policy.department} ↗</a>`;
+                deptHtml = `<a href="${policy.source_url}" target="_blank" style="font-weight:600; color:#0284c7; text-decoration:none;">${t(policy.department) || policy.department} ↗</a>`;
             }
             let fileBtn = '';
             if (policy.file_url && policy.file_url.startsWith('http')) {

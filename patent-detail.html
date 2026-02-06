@@ -333,6 +333,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/translations.js"></script>
     <script>
         const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
@@ -485,16 +486,23 @@
                 document.getElementById('bread-title').innerText = p.title;
                 
                 document.getElementById('p-title').innerText = p.title;
-                document.getElementById('p-type').innerText = p.patent_type || '发明专利';
+                document.getElementById('p-type').innerText = t(p.patent_type) || p.patent_type || '发明专利';
                 document.getElementById('p-number').innerText = p.patent_number || p.application_number;
                 document.getElementById('p-app-date').innerText = formatDate(p.application_date);
-                document.getElementById('p-country').innerText = (p.applicant_country || '') + ' ' + (p.applicant_city || '');
+                document.getElementById('p-country').innerText = (t(p.applicant_country) || p.applicant_country || '') + ' ' + (p.applicant_city || '');
 
                 const statusEl = document.getElementById('p-status');
-                statusEl.innerText = p.legal_status || '未知';
-                if (p.legal_status === '有效') statusEl.className += ' status-valid';
-                else if (['无效', '撤回', '驳回', '终止'].some(s => (p.legal_status||'').includes(s))) statusEl.className += ' status-invalid';
-                else statusEl.className += ' status-pending';
+                const statusText = t(p.legal_status) || p.legal_status || '未知';
+                statusEl.innerText = statusText;
+                
+                const rawStatus = String(p.legal_status || '').toLowerCase();
+                if (rawStatus === 'active' || rawStatus === 'valid' || p.legal_status === '有效') {
+                    statusEl.className += ' status-valid';
+                } else if (['invalid', 'withdrawn', 'rejected', 'terminated', '无效', '撤回', '驳回', '终止'].some(s => rawStatus.includes(s) || (p.legal_status||'').includes(s))) {
+                    statusEl.className += ' status-invalid';
+                } else {
+                    statusEl.className += ' status-pending';
+                }
 
                 const appLink = document.getElementById('p-applicant-link');
                 appLink.innerText = p.applicant;
@@ -507,7 +515,7 @@
                 }
 
                 document.getElementById('p-maturity').innerText = p.technology_maturity_level ? `TRL ${p.technology_maturity_level}` : 'N/A';
-                document.getElementById('p-innovation').innerText = p.innovation_level || 'N/A';
+                document.getElementById('p-innovation').innerText = t(p.innovation_level) || p.innovation_level || 'N/A';
                 document.getElementById('p-citations').innerText = p.citation_count || 0;
                 document.getElementById('p-family').innerText = p.family_size || 0;
 
@@ -527,11 +535,11 @@
                 }
 
                 if (p.application_fields && Array.isArray(p.application_fields)) {
-                    document.getElementById('p-app-fields').innerHTML = p.application_fields.map(f => `<span class="tech-tag">${f}</span>`).join('');
+                    document.getElementById('p-app-fields').innerHTML = p.application_fields.map(f => `<span class="tech-tag">${t(f) || f}</span>`).join('');
                 }
 
                 const chainMap = { 'upstream': '上游 (关键原材料/元器件)', 'midstream': '中游 (核心子系统/整机)', 'downstream': '下游 (运营与服务)' };
-                document.getElementById('p-chain-pos').innerText = chainMap[p.industry_chain_position] || p.industry_chain_position || '未归类';
+                document.getElementById('p-chain-pos').innerText = chainMap[p.industry_chain_position] || t(p.industry_chain_position) || p.industry_chain_position || '未归类';
 
                 document.getElementById('p-value').innerText = formatMoney(p.estimated_value_usd);
                 document.getElementById('p-quality-score').innerText = p.data_quality_score || '--';
@@ -546,14 +554,14 @@
                 document.getElementById('p-ipc').innerText = p.ipc_class || '--';
                 document.getElementById('p-cpc').innerText = p.cpc_class || '--';
                 if (p.technical_categories && Array.isArray(p.technical_categories)) {
-                    document.getElementById('p-tags').innerHTML = p.technical_categories.map(t => `<span class="tech-tag">${t}</span>`).join('');
+                    document.getElementById('p-tags').innerHTML = p.technical_categories.map(t => `<span class="tech-tag">${window.t(t) || t}</span>`).join('');
                 }
                 
                 if (p.inventors && Array.isArray(p.inventors)) {
                     document.getElementById('p-inventors').innerText = p.inventors.join(', ');
                 }
 
-                document.getElementById('p-licensing').innerText = p.licensing_status || '未知';
+                document.getElementById('p-licensing').innerText = t(p.licensing_status) || p.licensing_status || '未知';
                 document.getElementById('p-comm').innerText = p.has_commercialization ? '是' : '否';
 
                 document.getElementById('p-source').innerText = p.data_source || 'AeroScope Database';

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>中央控制台 | AeroScope Admin</title>
     <link rel="stylesheet" href="style.css">
+    <script src="js/translations.js?v=1.1"></script>
     <!-- 引入 SheetJS 用于解析 Excel/CSV -->
     <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
     <style>
@@ -147,34 +148,34 @@
         <!-- 左侧菜单 -->
         <aside class="admin-sidebar">
             <div class="sidebar-group">
-                <div class="group-label">Dashboards</div>
-                <div class="nav-item active" onclick="switchTab('dashboard', this)"><span>📊 概览 (Overview)</span></div>
-                <div class="nav-item" onclick="switchTab('raw_db_viewer', this)"><span>🗄️ 全库透视 (Raw DB)</span></div>
+                <div class="group-label">仪表盘</div>
+                <div class="nav-item active" onclick="switchTab('dashboard', this)"><span>📊 概览</span></div>
+                <div class="nav-item" onclick="switchTab('raw_db_viewer', this)"><span>🗄️ 全库透视</span></div>
                 <a href="admin-ai.html" class="nav-item" style="text-decoration:none;"><span>🤖 AI 采编助手</span></a>
             </div>
             
             <div class="sidebar-group">
-                <div class="group-label">Content (内容管理)</div>
-                <div class="nav-item" onclick="switchTab('news', this)"><span>📰 资讯 (News)</span></div>
-                <div class="nav-item" onclick="switchTab('policies', this)"><span>📜 政策 (Policy)</span></div>
-                <div class="nav-item" onclick="switchTab('tech_trends', this)"><span>🚀 技术 (Tech)</span></div>
-                <div class="nav-item" onclick="switchTab('deep_reports', this)"><span>📑 研报 (Reports)</span></div>
+                <div class="group-label">内容管理</div>
+                <div class="nav-item" onclick="switchTab('news', this)"><span>📰 资讯</span></div>
+                <div class="nav-item" onclick="switchTab('policies', this)"><span>📜 政策</span></div>
+                <div class="nav-item" onclick="switchTab('tech_trends', this)"><span>🚀 技术</span></div>
+                <div class="nav-item" onclick="switchTab('deep_reports', this)"><span>📑 研报</span></div>
             </div>
 
             <div class="sidebar-group">
-                <div class="group-label">Database (核心库)</div>
-                <div class="nav-item" onclick="switchTab('companies', this)"><span>🏢 公司 (Companies)</span></div>
-                <div class="nav-item" onclick="switchTab('products', this)"><span>✈️ 产品 (Products)</span></div>
-                <div class="nav-item" onclick="switchTab('investors', this)"><span>🏦 投资方 (Investors)</span></div>
-                <div class="nav-item" onclick="switchTab('funding_events', this)"><span>💰 融资事件 (Funding)</span></div>
-                <div class="nav-item" onclick="switchTab('patents', this)"><span>💡 专利库 (Patents)</span></div>
+                <div class="group-label">核心数据库</div>
+                <div class="nav-item" onclick="switchTab('companies', this)"><span>🏢 公司</span></div>
+                <div class="nav-item" onclick="switchTab('products', this)"><span>✈️ 产品</span></div>
+                <div class="nav-item" onclick="switchTab('investors', this)"><span>🏦 投资方</span></div>
+                <div class="nav-item" onclick="switchTab('funding_events', this)"><span>💰 融资事件</span></div>
+                <div class="nav-item" onclick="switchTab('patents', this)"><span>💡 专利库</span></div>
             </div>
 
             <div class="sidebar-group">
-                <div class="group-label">Business (商业化)</div>
-                <div class="nav-item" onclick="switchTab('cooperation_leads', this)"><span>🤝 商务线索 (Leads)</span></div>
-                <div class="nav-item" onclick="switchTab('media_requests', this)"><span>🎤 媒体申请 (PR)</span></div>
-                <div class="nav-item" onclick="switchTab('profiles', this)"><span>👥 用户管理 (Users)</span></div>
+                <div class="group-label">商业化</div>
+                <div class="nav-item" onclick="switchTab('cooperation_leads', this)"><span>🤝 商务线索</span></div>
+                <div class="nav-item" onclick="switchTab('media_requests', this)"><span>🎤 媒体申请</span></div>
+                <div class="nav-item" onclick="switchTab('profiles', this)"><span>👥 用户管理</span></div>
             </div>
         </aside>
 
@@ -205,7 +206,7 @@
     <div class="modal-overlay" id="google-modal">
         <div class="modal-box">
             <div class="modal-header">
-                <div class="card-title">🌐 谷歌专利下载器 (Google Patents Collector)</div>
+                <div class="card-title">🌐 谷歌专利下载器</div>
                 <button onclick="closeGoogleModal()" style="border:none; background:none; font-size:1.5rem; cursor:pointer;">×</button>
             </div>
             <div class="modal-body" style="padding:0; display:flex; flex-direction:column; height:100%;">
@@ -249,6 +250,7 @@
         let currentEditId = null;
         let tableSchema = {}; 
         let rawDataCache = [];
+        let companiesCache = []; // 缓存公司列表用于下拉选择
         
         // 分页状态
         let page = 0;
@@ -354,18 +356,41 @@
             let type = 'public';
             if (folder === 'deep_reports') type = 'private';
             
-            // 注意：这里用的是主上传接口 /api/upload (通过 Nginx 8000端口)
-            const response = await fetch(`/api/upload?type=${type}`, {
-                method: 'POST',
-                body: formData
-            });
+            try {
+                // 注意：这里用的是主上传接口 /api/upload (通过 Nginx 8000端口)
+                const response = await fetch(`${PYTHON_API}/api/upload?type=${type}`, {
+                    method: 'POST',
+                    body: formData
+                });
 
-            const result = await response.json();
+                if (!response.ok) {
+                    if (response.status === 404 || response.status === 405) {
+                        throw new Error('Upload service not available. Please ensure the Python backend is running.');
+                    }
+                    throw new Error(`Upload server responded with status: ${response.status} ${response.statusText}`);
+                }
 
-            if (result.status === 'success') {
-                return result.url || result.key; // 公开返URL，私有返Key
-            } else {
-                throw new Error('Upload failed: ' + (result.message || 'Unknown error'));
+                const text = await response.text();
+                if (!text) {
+                     throw new Error('Upload server returned empty response');
+                }
+
+                let result;
+                try {
+                    result = JSON.parse(text);
+                } catch (e) {
+                    throw new Error(`Upload server returned non-JSON response: ${text.substring(0, 100)}`);
+                }
+
+                if (result.status === 'success') {
+                    return result.url || result.key; // 公开返URL，私有返Key
+                } else {
+                    throw new Error('Upload failed: ' + (result.message || 'Unknown error'));
+                }
+            } catch (e) {
+                console.error("Upload error:", e);
+                alert("文件上传失败: " + e.message);
+                throw e;
             }
         }
 
@@ -404,9 +429,18 @@
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             if(el) el.classList.add('active');
             
+            if (tab === 'products') fetchCompanies(); // 预加载公司列表
+
             if (tab === 'dashboard') loadDashboard();
             else if (tab === 'raw_db_viewer') loadRawDBViewer(); 
             else loadTableData(tab);
+        }
+
+        async function fetchCompanies() {
+            const { data, error } = await _supabase.from('companies').select('id, name').order('name');
+            if (!error && data) {
+                companiesCache = data;
+            }
         }
 
         // --- 仪表盘 ---
@@ -446,7 +480,7 @@
                             <select id="raw-db-selector" class="form-control" style="width:200px;" onchange="fetchAndRenderRawTable(this.value)"><option value="" disabled selected>选择数据库表...</option>${options}</select>
                             <input type="text" id="raw-db-search" class="form-control" style="width:200px;" placeholder="🔍 搜索当前表内容..." onkeyup="filterRawTable()">
                         </div>
-                        <div style="font-size:0.85rem; color:#64748b;">显示所有字段及类型 (Audit Mode)</div>
+                        <div style="font-size:0.85rem; color:#64748b;">显示所有字段及类型 (审计模式)</div>
                     </div>
                     <div id="raw-table-container" style="overflow-x:auto; min-height:300px; padding:20px;"><p style="text-align:center; color:#94a3b8; margin-top:50px;">请从上方下拉框选择一个数据表以查看详情。</p></div>
                 </div>`;
@@ -546,10 +580,19 @@
                         else val = val ? '是' : '否';
                     }
                     if (f.type === 'date' && val) val = new Date(val).toLocaleDateString();
-                    if (f.type === 'array' && Array.isArray(val)) val = val.join(', ');
+                    if (f.type === 'array' && Array.isArray(val)) val = val.map(v => t(v)).join(', ');
                     if (f.type === 'number' && val) val = Number(val).toLocaleString(); 
+                    
+                    // 自动翻译枚举值
+                    if (typeof val === 'string') {
+                        // 优先尝试翻译
+                        const translated = t(val);
+                        // 如果翻译后文本过长则截断 (仅展示用)
+                        if (translated.length > 30) val = translated.substring(0, 30) + '...';
+                        else val = translated;
+                    }
+                    
                     if (val === null || val === undefined) val = '-';
-                    if (typeof val === 'string' && val.length > 30) val = val.substring(0, 30) + '...';
                     
                     tds += `<td>${val}</td>`;
                 });
@@ -662,6 +705,12 @@
             tableSchema.editFields.forEach(f => {
                 let val = data[f.key] !== undefined ? data[f.key] : '';
                 
+                // 特殊处理：从 specs JSON 中提取单独的参数
+                if (f.key.startsWith('spec_') && data.specs) {
+                    const specKey = f.key.replace('spec_', '');
+                    val = data.specs[specKey] || '';
+                }
+
                 // 提示信息
                 let hint = '';
                 if (f.key === 'applicant' && currentTable === 'patents') hint = '<div class="form-hint">✨ 输入公司名，系统会自动关联或创建新公司</div>';
@@ -714,7 +763,14 @@
                         </select>`;
                 } 
                 else if (f.type === 'select') {
-                    let opts = f.options.map(o => `<option value="${o}" ${val===o?'selected':''}>${o}</option>`).join('');
+                    let opts = f.options.map(o => `<option value="${o}" ${val===o?'selected':''}>${t(o)}</option>`).join('');
+                    html += `<select id="f-${f.key}" class="form-control">${opts}</select>`;
+                }
+                else if (f.type === 'company_select') {
+                    let opts = '<option value="">请选择厂商...</option>';
+                    companiesCache.forEach(c => {
+                         opts += `<option value="${c.id}" ${val == c.id ? 'selected' : ''}>${c.name}</option>`;
+                    });
                     html += `<select id="f-${f.key}" class="form-control">${opts}</select>`;
                 }
                 else if (f.type === 'textarea') {
@@ -747,6 +803,15 @@
             try {
                 // 遍历字段，处理上传
                 for (const f of tableSchema.editFields) {
+                    // 特殊处理：合并 spec 参数到 specs JSON 对象
+                    if (f.key.startsWith('spec_')) {
+                        if (!payload.specs) payload.specs = {};
+                        const specKey = f.key.replace('spec_', '');
+                        const el = document.getElementById(`f-${f.key}`);
+                        if (el) payload.specs[specKey] = el.value;
+                        continue; // 跳过常规处理，不将 spec_xxx 添加到 payload 根节点
+                    }
+
                     if (f.type === 'image' || f.type === 'file') {
                         const fileInput = document.getElementById(`file-${f.key}`);
                         const hiddenInput = document.getElementById(`f-${f.key}`);
@@ -1030,7 +1095,7 @@
                     listFields: [{key:'title',label:'标题',type:'text'}, {key:'category',label:'分类',type:'text'}, {key:'publish_date',label:'日期',type:'date'}],
                     editFields: [
                         {key:'title',label:'标题',type:'text'},
-                        {key:'category',label:'分类',type:'select',options:['Market','Policy','Capital','Global']},
+                        {key:'category',label:'分类',type:'select',options:['Market','Policy','Capital','Global','Technology','View','Interview','Company']},
                         {key:'image_url',label:'封面图',type:'image'}, 
                         {key:'summary',label:'摘要',type:'textarea'},
                         {key:'content',label:'正文 (Markdown)',type:'textarea'},
@@ -1074,13 +1139,18 @@
                 },
                 'products': {
                     title: '产品库',
-                    listFields: [{key:'name',label:'型号'}, {key:'type',label:'类型'}],
+                    listFields: [{key:'name',label:'型号'}, {key:'type',label:'类型'}, {key:'updated_at',label:'更新时间',type:'date'}],
                     editFields: [
                         {key:'name',label:'型号',type:'text'},
                         {key:'image_url',label:'图片',type:'image'},
-                        {key:'type',label:'类型',type:'select',options:['Multicopter','Lift+Cruise','Vectored Thrust','FlyingCar']},
-                        {key:'company_id',label:'公司ID',type:'number'},
-                        {key:'specs',label:'参数JSON',type:'json'},
+                        {key:'type',label:'类型',type:'select',options:['eVTOL','Drone','FlyingCar','Helicopter','FixedWing']},
+                        {key:'company_id',label:'所属厂商',type:'company_select'},
+                        {key:'spec_description',label:'产品简介',type:'textarea'},
+                        {key:'spec_range_km',label:'航程 (km)',type:'text'},
+                        {key:'spec_speed_kmh',label:'速度 (km/h)',type:'text'},
+                        {key:'spec_payload_kg',label:'载重 (kg)',type:'text'},
+                        {key:'spec_propulsion',label:'动力类型',type:'text'},
+                        {key:'spec_piloting',label:'驾驶模式',type:'text'},
                         {key:'certification_status',label:'状态',type:'select',options:['Concept','Prototype','Testing','Certified']},
                         {key:'draft',label:'草稿',type:'boolean'}
                     ]

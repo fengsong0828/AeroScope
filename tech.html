@@ -28,24 +28,24 @@
         .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
 
         /* --- 2. 新闻列表核心样式 (优化高度匹配) --- */
-        .news-feed { display: flex; flex-direction: column; gap: 15px; } 
+        .news-feed { display: flex; flex-direction: column; gap: 4px; } 
         
         .news-item { 
             display: flex; 
             background: white; 
             border: 1px solid #e2e8f0; 
-            border-radius: 10px; 
+            border-radius: 8px; 
             overflow: hidden; 
             transition: 0.2s; 
             /* 修改：降低最小高度，防止外框比内容高太多 */
-            min-height: 110px; 
+            min-height: 80px; 
         }
         .news-item:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.05); border-color: #3b82f6; }
         
         /* 图片区域：宽度微调 */
         .news-image { 
-            width: 200px; /* 修改：稍微收窄，匹配高度 */
-            min-width: 200px; 
+            width: 120px; /* 修改：稍微收窄，匹配高度 */
+            min-width: 120px; 
             background-color: #cbd5e1; 
             display: block; 
             background-size: cover; 
@@ -54,7 +54,7 @@
         
         /* 右侧内容：紧凑排版 */
         .news-content { 
-            padding: 12px 18px; /* 修改：减少上下内边距 */
+            padding: 8px 12px; /* 修改：减少上下内边距 */
             flex: 1; 
             display: flex; 
             flex-direction: column; 
@@ -62,14 +62,14 @@
             min-width: 0; 
         }
         
-        .news-content h3 { margin: 0 0 5px 0; font-size: 1.05rem; line-height: 1.3; }
+        .news-content h3 { margin: 0 0 2px 0; font-size: 1rem; line-height: 1.3; }
         .news-content h3 a { color: #1e293b; text-decoration: none; transition: 0.2s; }
         .news-content h3 a:hover { color: #3b82f6; }
         
         .news-meta { 
             display: flex; align-items: center; gap: 10px; 
             font-size: 0.75rem; color: #64748b; 
-            margin-bottom: 6px; /* 修改：减少间距 */
+            margin-bottom: 2px; /* 修改：减少间距 */
             flex-wrap: wrap; 
         }
         
@@ -227,6 +227,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/translations.js"></script>
     <script>
         const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
@@ -287,22 +288,45 @@
                 else if (item.type === 'Paper') typeColor = '#8b5cf6';
                 else if (item.type === 'Product') typeColor = '#f59e0b';
 
-                // 使用稳定写法
-                const bgStyle = item.image_url 
-                    ? `background: #cbd5e1 url('${item.image_url}') center/cover no-repeat` 
-                    : `background: #f1f5f9`;
+                // 优先级：封面图 > 正文首图 > 文字Fallback
+                let imgUrl = item.image_url;
+                
+                // 如果没有封面图，尝试从正文提取第一张图片
+                if (!imgUrl && item.content) {
+                    const mdMatch = item.content.match(/!\[.*?\]\((.*?)\)/);
+                    if (mdMatch && mdMatch[1]) {
+                        imgUrl = mdMatch[1];
+                    } else {
+                        const htmlMatch = item.content.match(/<img[^>]+src=['"]([^'"]+)['"]/);
+                        if (htmlMatch && htmlMatch[1]) {
+                            imgUrl = htmlMatch[1];
+                        }
+                    }
+                }
+
+                let bgStyle;
+                let innerContent = '';
+                
+                if (imgUrl) {
+                    bgStyle = `background: #cbd5e1 url('${imgUrl}') center/cover no-repeat; display:block;`;
+                } else {
+                    // 无图时使用文字Fallback
+                    const tagText = t(item.type || 'Tech');
+                    bgStyle = `background: #f1f5f9; display:flex; align-items:center; justify-content:center; color:#94a3b8; font-weight:bold; font-size:1.2rem;`;
+                    innerContent = tagText;
+                }
                 
                 const domainTag = item.domain 
-                    ? `<span style="color:#475569; background:#f1f5f9; padding:2px 6px; border-radius:4px; font-size:0.7rem; margin-right:5px;">${item.domain}</span>` 
+                    ? `<span style="color:#475569; background:#f1f5f9; padding:2px 6px; border-radius:4px; font-size:0.7rem; margin-right:5px;">${t(item.domain)}</span>` 
                     : '';
 
                 container.innerHTML += `
                     <article class="news-item">
-                        <a href="tech-detail.html?id=${item.id}" class="news-image" style="${bgStyle};"></a>
+                        <a href="tech-detail.html?id=${item.id}" class="news-image" style="${bgStyle}">${innerContent}</a>
                         <div class="news-content">
                             <h3><a href="tech-detail.html?id=${item.id}">${item.title}</a></h3>
                             <div class="news-meta">
-                                <span class="tag" style="color:${typeColor}; background:white; border:1px solid ${typeColor}; padding:1px 6px; border-radius:4px;">${item.type || 'Tech'}</span>
+                                <span class="tag" style="color:${typeColor}; background:white; border:1px solid ${typeColor}; padding:1px 6px; border-radius:4px;">${t(item.type) || 'Tech'}</span>
                                 ${domainTag}
                                 <span style="font-weight:600;">${item.org || '研发机构'}</span>
                                 <span>${item.publish_date}</span>
@@ -359,7 +383,7 @@
             if (!sorted.length) { container.innerHTML = '<p style="color:#999;">暂无分类</p>'; return; }
             const extraClass = filterKey === 'domain' ? 'domain-tag' : '';
             let html = `<div class="tag-item ${extraClass} active" onclick="applyFilter('${filterKey}', 'all', this)">全部</div>`;
-            sorted.forEach(t => { html += `<div class="tag-item ${extraClass}" onclick="applyFilter('${filterKey}', '${t.name}', this)">${t.name}</div>`; });
+            sorted.forEach(tagObj => { html += `<div class="tag-item ${extraClass}" onclick="applyFilter('${filterKey}', '${tagObj.name}', this)">${t(tagObj.name)}</div>`; });
             container.innerHTML = html;
         }
 

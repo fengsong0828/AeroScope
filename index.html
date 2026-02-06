@@ -184,12 +184,12 @@
         .expert-title { font-size: 0.95rem; font-weight: 600; color: #334155; margin-bottom: 6px; line-height: 1.4; transition: color 0.2s; }
         .expert-quote { font-size: 0.85rem; color: #64748b; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-style: italic; }
         
-        .news-item { display: flex; background: white; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; transition: 0.2s; min-height: 120px; margin-bottom: 15px; text-decoration: none; }
+        .news-item { display: flex; background: white; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; transition: 0.2s; min-height: 80px; margin-bottom: 4px; text-decoration: none; }
         .news-item:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.05); border-color: #3b82f6; }
-        .news-image { width: 140px; min-width: 140px; background-color: #f8fafc; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #94a3b8; background-size: cover; background-position: center; border-right: 1px solid #f1f5f9; }
-        .news-content { padding: 15px 20px; flex: 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
-        .news-content h3 { margin: 0 0 6px 0; font-size: 1.05rem; line-height: 1.3; color: #1e293b; }
-        .news-meta { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: #64748b; margin-bottom: 6px; }
+        .news-image { width: 120px; min-width: 120px; background-color: #f8fafc; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #94a3b8; background-size: cover; background-position: center; border-right: 1px solid #f1f5f9; }
+        .news-content { padding: 8px 12px; flex: 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+        .news-content h3 { margin: 0 0 2px 0; font-size: 0.95rem; line-height: 1.3; color: #1e293b; }
+        .news-meta { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: #64748b; margin-bottom: 2px; }
         .news-content p { font-size: 0.85rem; color: #64748b; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5; }
         
         @keyframes spin { to { transform: rotate(360deg); } }
@@ -232,7 +232,7 @@
     <section class="hero">
         <div class="standard-container">
             <h1>构建低空经济时代数字基础设施</h1>
-            <p>实时洞察全球 eVTOL、无人机物流及城市空中交通（UAM）的政策、技术与资本动态。</p>
+            <p>实时洞察全球 eVTOL、无人机物流及城市空中交通（UAM）的政策、技术与资本动态</p>
             <a href="products.html" class="btn btn-primary" style="padding: 12px 32px; display:inline-block; margin-top:20px;">浏览全球低空飞行器产品库</a>
         </div>
     </section>
@@ -280,7 +280,7 @@
                         🌐 全网动态
                     </button>
                     <button class="feed-tab-btn" onclick="switchMainTab('columns', this)">
-                        ✒️ 行业专栏 <span class="tab-badge-new">New</span>
+                        ✒️ 行业专栏 
                     </button>
                     
                     <!-- 写文章按钮：默认隐藏，只有切换到行业专栏时显示 -->
@@ -390,6 +390,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/translations.js"></script>
     <script>
         const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
@@ -447,9 +448,9 @@
             // 注意：这里为了简化展示，暂不处理复杂的混合分页，而是直接拉取一批数据前端分页
             
             const [newsRes, policyRes, techRes] = await Promise.all([
-                _supabase.from('news').select('id, title, summary, publish_date, category, image_url').eq('draft', false).order('publish_date', {ascending:false}).limit(15),
-                _supabase.from('policies').select('id, title, summary, publish_date, department').eq('draft', false).order('publish_date', {ascending:false}).limit(10),
-                _supabase.from('tech_trends').select('id, title, summary, publish_date, type').eq('draft', false).order('publish_date', {ascending:false}).limit(10)
+                _supabase.from('news').select('id, title, summary, content, publish_date, category, image_url').eq('draft', false).order('publish_date', {ascending:false}).limit(15),
+                _supabase.from('policies').select('id, title, summary, content, publish_date, department').eq('draft', false).order('publish_date', {ascending:false}).limit(10),
+                _supabase.from('tech_trends').select('id, title, summary, content, publish_date, type, image_url').eq('draft', false).order('publish_date', {ascending:false}).limit(10)
             ]);
 
             let feed = [];
@@ -479,9 +480,32 @@
             }
 
             pageData.forEach(item => {
-                const imgHtml = item.image_url 
-                    ? `<div class="news-image" style="background-image:url('${item.image_url}')"></div>`
-                    : `<div class="news-image" style="background:#f1f5f9; display:flex; align-items:center; justify-content:center; color:#94a3b8; font-weight:bold; border-right:1px solid #e2e8f0;">${item.tag}</div>`;
+                // 优先级：封面图 > 正文首图 > 文字Fallback
+                let imgUrl = item.image_url;
+                
+                // 如果没有封面图，尝试从正文提取第一张图片
+                if (!imgUrl && item.content) {
+                    // 匹配 Markdown 图片 ![alt](url)
+                    const mdMatch = item.content.match(/!\[.*?\]\((.*?)\)/);
+                    if (mdMatch && mdMatch[1]) {
+                        imgUrl = mdMatch[1];
+                    } else {
+                        // 匹配 HTML 图片 <img src="url">
+                        const htmlMatch = item.content.match(/<img[^>]+src=['"]([^'"]+)['"]/);
+                        if (htmlMatch && htmlMatch[1]) {
+                            imgUrl = htmlMatch[1];
+                        }
+                    }
+                }
+
+                let imgHtml;
+                if (imgUrl) {
+                    imgHtml = `<div class="news-image" style="background-image:url('${imgUrl}')"></div>`;
+                } else {
+                    // 无图时使用文字Fallback
+                    const tagText = t(item.tag || item.category || 'News');
+                    imgHtml = `<div class="news-image" style="background:#f1f5f9; display:flex; align-items:center; justify-content:center; color:#94a3b8; font-weight:bold; border-right:1px solid #e2e8f0;">${tagText}</div>`;
+                }
                 
                 let tagStyle = '';
                 if(item.type === 'policy') tagStyle = 'background:#0f172a; color:white;';
@@ -492,7 +516,7 @@
                         ${imgHtml}
                         <div class="news-content">
                             <h3>${item.title}</h3>
-                            <div class="news-meta"><span class="tag" style="background:#f1f5f9; padding:2px 6px; border-radius:4px; ${tagStyle}">${item.tag}</span><span>${item.publish_date}</span></div>
+                            <div class="news-meta"><span class="tag" style="background:#f1f5f9; padding:2px 6px; border-radius:4px; ${tagStyle}">${t(item.tag)}</span><span>${item.publish_date}</span></div>
                             <p>${item.summary || item.title}</p>
                         </div>
                     </a>
