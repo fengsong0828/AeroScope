@@ -1,0 +1,134 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN114879716B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES466008592">
+<invention-title id="title1" lang="ZH">反制低空空域飞行器的执法无人机路径规划方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及反制飞行器低空飞行技术领域，尤其涉及一种反制低空空域飞行器的执法无人机路径规划方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">当前无人机等低空空域飞行器相关技术发展迅速，被广泛应用于国民生产的各行各业。然而，部分不法分子有意或无意的非法使用低空空域飞行器，“黑飞”飞行器的出现加大了低空空域飞行的安全威胁，也给民用航空、军事禁区、安防监控、个人隐私等带来了极大的威胁和挑战。为了及时反制“黑飞”飞行器，并尽可能减少反制过程引入二次威胁，利用携带电磁发射器、捕捉网发射器等的执法无人机实施抵近反制或打击成为高效、安全的反制手段。因此，如何在综合考虑油耗、威胁、到达时间及飞行区域等因素的前提下，为执法无人机规划出最优或最满意的飞行路径以保证圆满地完成反制任务成为亟待解决的问题。</div>
+<div class="description-paragraph" id="p0005" num="0003">因此，有必要开发一种反制低空空域飞行器的执法无人机路径规划方法，能够为携带电磁发射器、捕捉网发射器等的执法无人机快速规划最优路径，及时准确地飞抵低空空域“黑飞”飞行器实施精准反制或打击。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本发明旨在解决现有技术或相关技术中存在的技术问题之一。</div>
+<div class="description-paragraph" id="p0008" num="0005">有鉴于此，本发明提出了一种反制低空空域飞行器的执法无人机路径规划方法，所述执法无人机路径规划方法包括：</div>
+<div class="description-paragraph" id="p0009" num="0006">设置目标函数，基于执法无人机运动场景的环境信息，建立所述执法无人机路径规划空间的模拟环境地图，通过所述模拟环境地图设置目标函数；</div>
+<div class="description-paragraph" id="p0010" num="0007">全局规划路径，基于所述目标函数，利用改进的A*算法预规划所述执法无人机的路径；</div>
+<div class="description-paragraph" id="p0011" num="0008">局部规划路径，所述执法无人机基于预规划的所述路径飞行过程中，采用粒子群优化方法进行局部避障，从而获取最优路径；</div>
+<div class="description-paragraph" id="p0012" num="0009">重新规划路径，判定黑飞飞行器的位置变化是否超过设3定阈值，超过所述设定阈值则重新回到设置所述全局规划路径阶段。</div>
+<div class="description-paragraph" id="p0013" num="0010">进一步地，建立所述执法无人机路径规划空间的模拟环境地图包括：</div>
+<div class="description-paragraph" id="p0014" num="0011">通过所述执法无人机携带的传感器获取障碍物信息和所述黑飞飞行器位置，对所述执法无人机飞行空间中的障碍物信息进行规则化处理，生成模拟环境地图，用空间里点(x,y,z)的集合表示执法无人机飞行空间，(x,y)表示该点的水平位置，z表示该点的高度数据；</div>
+<div class="description-paragraph" id="p0015" num="0012">所述集合为((x，y，z)|x<sub>min</sub>≤x≤x<sub>max</sub>，y<sub>min</sub>≤y≤y<sub>max</sub>，z<sub>min</sub>≤z≤z<sub>max</sub>}；</div>
+<div class="description-paragraph" id="p0016" num="0013">其中，所述执法无人机飞行空间的边界由(x<sub>min</sub>,y<sub>min</sub>,z<sub>min</sub>)和(x<sub>max</sub>,y<sub>max</sub>,z<sub>max</sub>)进行限制。</div>
+<div class="description-paragraph" id="p0017" num="0014">进一步地，所述目标函数为：</div>
+<div class="description-paragraph" id="p0018" num="0015">先将所述执法无人机的飞行空间路径分成n段，对其中第1,2,…,n-1个节点计算代价，(x<sub>i</sub>，y<sub>i</sub>，z<sub>i</sub>)为所述飞行空间路径上第i个点的坐标；</div>
+<div class="description-paragraph" id="p0019" num="0016">基于所述无人机的飞行空间路径，建立路径规划的所述目标函数：</div>
+<div class="description-paragraph" id="p0020" num="0017">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0021" num="0018">式中，J为总的目标函数，即执法无人机的实际代价；ω<sub>i</sub>为权重因子(针对不同任务场景人为设置)ω<sub>1</sub>、ω<sub>2</sub>、ω<sub>3</sub>分别对应威胁代价J<sub>1</sub>、路径长度代价J<sub>2</sub>和高度代价J<sub>3</sub>；</div>
+<div class="description-paragraph" id="p0022" num="0019">J<sub>1</sub>为威胁源代价；L<sub>ij</sub>为起始位置到黑飞飞行器的距离；t<sub>k</sub>为威胁因子，即障碍物对执法无人机的影响程度；d<sub>1,k</sub>为第k个障碍物与飞行空间路径上第1个点之间的距离，d<sub>2,k</sub>为第k个障碍物与飞行空间路径上第2个点之间的距离；N<sub>t</sub>为障碍物的总数量；</div>
+<div class="description-paragraph" id="p0023" num="0020">J<sub>2</sub>为路径长度代价，由路径上相邻两节点的欧式距离||X<sub>i</sub>X<sub>i+1</sub>||累加得到；</div>
+<div class="description-paragraph" id="p0024" num="0021">J<sub>3</sub>为高度代价，定义为执法无人机路径平均高度。</div>
+<div class="description-paragraph" id="p0025" num="0022">进一步地，所述全局规划路径包括：</div>
+<div class="description-paragraph" id="p0026" num="0023">对A*算法重新构建评价函数：</div>
+<div class="description-paragraph" id="p0027" num="0024">F＝J+J＇</div>
+<div class="description-paragraph" id="p0028" num="0025">式中，F为执法无人机从起点经过当前节点到黑飞飞行器的代价估计；J为执法无人机从起点到当前节点的实际代价；J＇为执法无人机从当前节点到黑飞飞行器的最佳路径的估计代价，定义为当前节点到黑飞飞行器的欧氏距离；</div>
+<div class="description-paragraph" id="p0029" num="0026">利用改进的A*算法预规划所述执法无人机的路径，只对满足约束条件的节点进行代价评估，所述约束条件包括：</div>
+<div class="description-paragraph" id="p0030" num="0027">最大偏航角约束，所述最大偏航角为所述执法无人机可飞航迹的最大转弯角，设航迹点坐标为(x<sub>i</sub>，y<sub>i</sub>，z<sub>i</sub>)，则路径中某一航段向量表示为p<sub>i</sub>＝(x<sub>i</sub>-x<sub>i-1</sub>，y<sub>i</sub>-y<sub>i-1</sub>，z<sub>i</sub>-z<sub>i-1</sub>)，最大偏航角<span class="patent-image-not-available"></span>应满足：<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0031" num="0028">最大俯仰角约束，最大俯仰角为执法无人机进行爬升或俯冲的最大角度，最大偏航角θ<sub>max</sub>应满足：<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0032" num="0029">基于所述评价函数F和所述约束条件，以所述执法无人机当前位置为起点，黑飞飞行器位置为终点，通过改进的A*算法进行全局规划路径，得到代价最低(F最小)的路径作为主路径，引导所述执法无人机飞行。</div>
+<div class="description-paragraph" id="p0033" num="0030">进一步地采用粒子群优化方法进行局部避障包括如下步骤：</div>
+<div class="description-paragraph" id="p0034" num="0031">步骤301，在所述主路径上随机选取初始数据进行算法的初始化；</div>
+<div class="description-paragraph" id="p0035" num="0032">步骤302，评价每个粒子的初始适应度值，即代入目标函数J，将初始适应度值作为当前粒子的局部最优值，将所有粒子的最佳局部最优值作为当前全局最优值；</div>
+<div class="description-paragraph" id="p0036" num="0033">步骤303，根据以下公式更新粒子的位置和速度，并计算适应度值：</div>
+<div class="description-paragraph" id="p0037" num="0034">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0038" num="0035">式中，x<sub>i</sub>表示粒子的位置；v<sub>i</sub>表示粒子的速度；ω为惯性权重，c<sub>1</sub>、c<sub>2</sub>为学习因子，r<sub>1</sub>、r<sub>2</sub>为[0,1]范围内的随机数，pbest<sub>i</sub>为局部最优解，gbest<sub>i</sub>为全局最优解；</div>
+<div class="description-paragraph" id="p0039" num="0036">步骤304，根据适应度值的大小更新每个粒子的pbest、gbest，将每个粒子的适应度值与其历史局部最优值比较，选取最小值作为该粒子当前的局部最优值pbest，将每个粒子的适应度值与历史全局最优值比较，选取最小值作为该粒子当前的全局最优值gbest；</div>
+<div class="description-paragraph" id="p0040" num="0037">步骤305，若未达到所设置最大迭代次数则转至步骤303，否则算法结束；</div>
+<div class="description-paragraph" id="p0041" num="0038">其中，算法迭代结束后得到的gbest即为能够完成飞行任务目标且保证所述执法无人机安全飞行的局部最优路径；所述主路径是由若干散点连接而成的折线，在所述主路径上的散点附近随机选取若干数量的散点作为初始数据，对粒子群优化算法进行初始化。</div>
+<div class="description-paragraph" id="p0042" num="0039">进一步地，所述重新规划路径包括：</div>
+<div class="description-paragraph" id="p0043" num="0040">在所述执法无人机飞行过程中，若目标跟踪与定位系统检测到所述黑飞飞行器的位置变化超过所述设定阈值，则回到全局规划路径阶段，以所述执法无人机当前所在位置为起始位置，重新规划所述执法无人机的路径；</div>
+<div class="description-paragraph" id="p0044" num="0041">其中，所述设定阈值与所述执法无人机的打击方式(范围)有关。</div>
+<div class="description-paragraph" id="p0045" num="0042">本发明提供的技术方案可以包括以下有益效果：</div>
+<div class="description-paragraph" id="p0046" num="0043">通过对执法无人机的路径规划，使其能够快速、安全地飞抵黑飞飞行器处，进而对其近距离实施打击，解决了传统手持式反无人机系统的发射功率大、目标定位不精确、引入二次威胁等问题；将执法无人机路径规划问题划分为全局规划路径和局部规划路径(避障)两个阶段，并分别利用改进的A*算法和粒子群优化方法获取执法无人机路径规划问题，对传统的A*算法增加了约束条件，缩减了搜索空间，粒子群优化方法需要调整的参数少，收敛精度高，使规划路径具有收敛速度快、路径长度短、威胁代价小等优点，能够及时准确地飞抵低空空域黑飞飞行器实施精准反制或打击；通过对不同的环境信息建模，能够改变环境中的威胁源，就能得到适应不同环境的路径，扩大执法无人机的使用范围。</div>
+<div class="description-paragraph" id="p0047" num="0044">应当理解的是，以上的一般描述和后文的细节描述仅是示例性和解释性的，并不能限制本发明。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0048">附图说明</div>
+<div class="description-paragraph" id="p0049" num="0045">此处的附图被并入说明书中并构成本说明书的一部分，示出了符合本发明的实施例，并与说明书一起用于解释本发明的原理。</div>
+<div class="description-paragraph" id="p0050" num="0046">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍，显而易见地，对于本领域普通技术人员而言，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0051" num="0047">图1示出了根据本发明一个实施例的反制低空空域飞行器的执法无人机路径规划方法的步骤流程图；</div>
+<div class="description-paragraph" id="p0052" num="0048">图2示出了根据本发明一个实施例的威胁源代价(障碍物)计算的示意图；</div>
+<div class="description-paragraph" id="p0053" num="0049">图3示出了根据本发明一个实施例的粒子群优化方法迭代的步骤流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0054">具体实施方式</div>
+<div class="description-paragraph" id="p0055" num="0050">这里将详细地对示例性实施例进行说明，其示例表示在附图中。下面的描述涉及附图时，除非另有表示，不同附图中的相同数字表示相同或相似的要素。以下示例性实施例中所描述的实施方式并不代表与本发明相一致的所有实施方式。相反，它们仅是与如所附权利要求书中所详述的、本发明的一些方面相一致的装置和方法的例子。</div>
+<div class="description-paragraph" id="p0056" num="0051">
+<u>实施例</u>
+</div>
+<div class="description-paragraph" id="p0057" num="0052">图1示出了根据本发明一个实施例的反制低空空域飞行器的执法无人机路径规划方法的步骤流程图。</div>
+<div class="description-paragraph" id="p0058" num="0053">如图1所示，本实施例提供了一种反制低空空域飞行器的执法无人机路径规划方法，该执法无人机路径规划方法包括：</div>
+<div class="description-paragraph" id="p0059" num="0054">步骤1，基于执法无人机运动场景的环境信息，建立执法无人机路径规划空间的模拟环境地图，通过模拟环境地图设置目标函数；</div>
+<div class="description-paragraph" id="p0060" num="0055">步骤2，基于目标函数，利用改进的A*算法预规划执法无人机的路径；</div>
+<div class="description-paragraph" id="p0061" num="0056">步骤3，执法无人机基于预规划的路径飞行过程中，采用粒子群优化方法进行局部避障，从而获取最优路径；</div>
+<div class="description-paragraph" id="p0062" num="0057">步骤4，判定黑飞飞行器的位置变化是否超过设定阈值，超过设定阈值则重新回到设置全局规划路径阶段。</div>
+<div class="description-paragraph" id="p0063" num="0058">通过对执法无人机的路径规划，使其能够快速、安全地飞抵黑飞飞行器处，进而对其近距离实施打击，解决了传统手持式反无人机系统的发射功率大、目标定位不精确、引入二次威胁等问题；将执法无人机路径规划问题划分为全局规划路径和局部规划路径(避障)两个阶段，并分别利用改进的A*算法和粒子群优化方法获取执法无人机路径规划问题，对传统的A*算法增加了约束条件，缩减了搜索空间，粒子群优化方法需要调整的参数少，收敛精度高，使规划路径具有收敛速度快、路径长度短、威胁代价小等优点，能够及时准确地飞抵低空空域黑飞飞行器实施精准反制或打击；通过对不同的环境信息建模，能够改变环境中的威胁源，就能得到适应不同环境的路径，扩大执法无人机的使用范围。</div>
+<div class="description-paragraph" id="p0064" num="0059">进一步地，建立执法无人机路径规划空间的模拟环境地图包括：</div>
+<div class="description-paragraph" id="p0065" num="0060">通过执法无人机携带的传感器获取障碍物信息和黑飞飞行器位置，对执法无人机飞行空间中的障碍物信息进行规则化处理，生成模拟环境地图，用空间里点(x,y,z)的集合表示执法无人机飞行空间，(x,y)表示该点的水平位置，z表示该点的高度数据；</div>
+<div class="description-paragraph" id="p0066" num="0061">集合为((x，y，z)|x<sub>min</sub>≤x≤x<sub>max</sub>，y<sub>min</sub>≤y≤y<sub>max</sub>，z<sub>min</sub>≤z≤z<sub>max</sub>}；</div>
+<div class="description-paragraph" id="p0067" num="0062">其中，执法无人机飞行空间的边界由(x<sub>min</sub>,y<sub>min</sub>,z<sub>min</sub>)和(x<sub>max</sub>,y<sub>max</sub>,z<sub>max</sub>)进行限制。</div>
+<div class="description-paragraph" id="p0068" num="0063">其中，执法无人机携带的传感器为相机。</div>
+<div class="description-paragraph" id="p0069" num="0064">通过对不同的环境信息建模，能够改变环境中的威胁源(障碍物)，就能得到适应不同环境的路径，扩大执法无人机的使用范围。</div>
+<div class="description-paragraph" id="p0070" num="0065">图2示出了根据本发明一个实施例的威胁源代价(障碍物)计算的示意图；</div>
+<div class="description-paragraph" id="p0071" num="0066">如图2所示，目标函数为：</div>
+<div class="description-paragraph" id="p0072" num="0067">先将执法无人机的飞行空间路径分成n段，对其中第1,2,…,n-1个节点计算代价，(x<sub>i</sub>，y<sub>i</sub>，z<sub>i</sub>)为飞行空间路径上第i个点的坐标；</div>
+<div class="description-paragraph" id="p0073" num="0068">基于无人机的飞行空间路径，建立路径规划的目标函数：</div>
+<div class="description-paragraph" id="p0074" num="0069">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0075" num="0070">式中，J为总的目标函数，即执法无人机的实际代价；ω<sub>i</sub>为权重因子(针对不同任务场景人为设置)ω<sub>1</sub>、ω<sub>2</sub>、ω<sub>3</sub>分别对应威胁代价J<sub>1</sub>、路径长度代价J<sub>2</sub>和高度代价J<sub>3</sub>；</div>
+<div class="description-paragraph" id="p0076" num="0071">J<sub>1</sub>为威胁源代价；L<sub>ij</sub>为起始位置到黑飞飞行器的距离；t<sub>k</sub>为威胁因子，即障碍物对执法无人机的影响程度；d<sub>1,k</sub>为第k个障碍物与飞行空间路径上第1个点之间的距离，d<sub>2,k</sub>为第k个障碍物与飞行空间路径上第2个点之间的距离；N<sub>t</sub>为障碍物的总数量；</div>
+<div class="description-paragraph" id="p0077" num="0072">J<sub>2</sub>为路径长度代价，由路径上相邻两节点的欧式距离||X<sub>i</sub>X<sub>i+1</sub>||累加得到；</div>
+<div class="description-paragraph" id="p0078" num="0073">J<sub>3</sub>为高度代价，定义为执法无人机路径平均高度。</div>
+<div class="description-paragraph" id="p0079" num="0074">进一步地，步骤2包括：</div>
+<div class="description-paragraph" id="p0080" num="0075">对A*算法重新构建评价函数：</div>
+<div class="description-paragraph" id="p0081" num="0076">F＝J+J＇……(2)</div>
+<div class="description-paragraph" id="p0082" num="0077">式中，F为执法无人机从起点经过当前节点到黑飞飞行器的代价估计；J为执法无人机从起点到当前节点n的实际代价；J＇为执法无人机从当前节点到黑飞飞行器的最佳路径的估计代价，定义为当前节点到黑飞飞行器的欧氏距离；</div>
+<div class="description-paragraph" id="p0083" num="0078">利用改进的A*算法预规划执法无人机的路径，只对满足约束条件的节点进行代价评估，约束条件包括：</div>
+<div class="description-paragraph" id="p0084" num="0079">最大偏航角约束，最大偏航角为执法无人机可飞航迹的最大转弯角，设航迹点坐标为(x<sub>i</sub>，y<sub>i</sub>，z<sub>i</sub>)，则路径中某一航段向量表示为p<sub>i</sub>＝(x<sub>i</sub>-x<sub>i-1</sub>，y<sub>i</sub>-y<sub>i-1</sub>，z<sub>i</sub>-z<sub>i-1</sub>)，最大偏航角<span class="patent-image-not-available"></span>应满足：<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0085" num="0080">最大俯仰角约束，最大俯仰角为执法无人机进行爬升或俯冲的最大角度，最大偏航角θ<sub>max</sub>应满足：<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0086" num="0081">基于评价函数F和约束条件，以执法无人机当前位置为起点，黑飞飞行器位置为终点，通过改进的A*算法进行全局规划路径，得到代价最低(F最小)的路径作为主路径，引导执法无人机飞行。</div>
+<div class="description-paragraph" id="p0087" num="0082">在全局规划路径阶段，采用改进的A*算法获得预规划路径，引导执法无人机飞行。A*算法最初发表于1968年，由Stanford研究院的Peter Hart,Nils Nilsson以及BertramRaphael发表，是一种很常用的路径查找和图形遍历算法，A*算法是一种启发式算法，通过在状态空间搜索下一节点进行评价，取得下一最佳节点，然后继续进行搜寻，直到找到目标点为止，传统A*算法对当前节点周围8个方向的节点进行扩展搜索，评估其代价，本发明提出的改进A*算法在获取下一节点时，只对满足约束条件的节点进行代价评估，使搜索节点的方向与路径的大方向一致，这样可以减少节点搜索量，缩减了搜索空间，提高搜索效率。</div>
+<div class="description-paragraph" id="p0088" num="0083">其中，评价函数F分为两部分，意识起点到当前节点的实际代价J，由公式(1)得到，二是当前节点到黑飞飞行器位置的估计代价J＇，本实施例将它定义为两点间的欧氏距离，由于欧氏距离是一种很常见的度量(具体内容可见百度百科https://baike.baidu.com/item/％E6％AC％A7％E5％87％A0％E9％87％8C％E5％BE％97％E5％BA％A6％E9％87％8F/1274107？fromtitle＝％E6％AC％A7％E6％B0％8F％E8％B7％9D％E7％A6％BB&amp;fromid＝1798948&amp;fr＝aladdin)，因此J＇在此不再重复公式。需要说明的是，A*算法是一步一步地搜索节点，并向外扩展，当前节点指的就是搜索过程中的节点，最后是要连接成路径的。</div>
+<div class="description-paragraph" id="p0089" num="0084">图3示出了根据本发明一个实施例的粒子群优化方法迭代的步骤流程图。</div>
+<div class="description-paragraph" id="p0090" num="0085">如图3所示，采用粒子群优化方法进行局部避障包括如下步骤：</div>
+<div class="description-paragraph" id="p0091" num="0086">步骤301，在主路径上随机选取初始数据进行算法的初始化；</div>
+<div class="description-paragraph" id="p0092" num="0087">步骤302，评价每个粒子的初始适应度值，即代入目标函数J，将初始适应度值作为当前粒子的局部最优值，将所有粒子的最佳局部最优值作为当前全局最优值；</div>
+<div class="description-paragraph" id="p0093" num="0088">步骤303，根据以下公式更新粒子的位置和速度，并计算适应度值：</div>
+<div class="description-paragraph" id="p0094" num="0089">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0095" num="0090">式中，x<sub>i</sub>表示粒子的位置；v<sub>i</sub>表示粒子的速度；ω为惯性权重，c<sub>1</sub>、c<sub>2</sub>为学习因子，r<sub>1</sub>、r<sub>2</sub>为[0,1]范围内的随机数，pbest<sub>i</sub>为局部最优解，gbest<sub>i</sub>为全局最优解；</div>
+<div class="description-paragraph" id="p0096" num="0091">步骤304，根据适应度值的大小更新每个粒子的pbest、gbest，将每个粒子的适应度值与其历史局部最优值比较，选取最小值作为该粒子当前的局部最优值pbest，将每个粒子的适应度值与历史全局最优值比较，选取最小值作为该粒子当前的全局最优值gbest；</div>
+<div class="description-paragraph" id="p0097" num="0092">步骤305，若未达到所设最大迭代次数则转至步骤303，否则算法结束；</div>
+<div class="description-paragraph" id="p0098" num="0093">其中，算法迭代结束后得到的gbest即为能够完成飞行任务目标且保证执法无人机安全飞行的局部最优路径；主路径是由若干散点连接而成的折线，在主路径上的散点附近随机选取若干数量的散点作为初始数据，对粒子群优化算法进行初始化。</div>
+<div class="description-paragraph" id="p0099" num="0094">需要说明的是，迭代次数一般选择大于100以上。</div>
+<div class="description-paragraph" id="p0100" num="0095">其中，原本的粒子群方法用的名称就是适应度fitness，在本实施例中这个适应度函数指的就是目标函数J；A*算法是一种搜索式算法，可以理解成对每个节点向外扩展搜索，然后由若干节点连接成路径，而粒子群方法中的粒子是要随机初始化得到的，利用这些粒子不断迭代获得路径，由于本申请已经实现预规划了全局路径，因此无需在粒子群方法中随机初始化粒子，而是在预规划的全局粒径附近选取一些粒子(点)进行初始化粒子，提高效率。</div>
+<div class="description-paragraph" id="p0101" num="0096">需要说明的是，在全局规划路径中，由于模拟环境地图中的障碍物(威胁源)是已知且固定的，但在执法无人机实际飞行过程中，可能会出现障碍物动态变化的问题，这时就需要执法无人机通过自身传感器获取的实时环境信息规避动态障碍物，最终获得安全路径。其中，利用改进的A*算法得到的主路径是由若干散点连接而成的折线，所以在主路径上的散点附近随机选取若干数量的散点作为初始数据，对粒子群优化算法进行初始化，使其获得更多的初始信息，可以加快收敛速度，保证执法无人机飞行安全性，同时，为保证粒子群优化方法的局规划部路径是朝向黑飞飞行器飞行的，将改进的A*算法规划出的路径在局部环境中的边界点作为粒子群优化算法在局部规划中的目标点。</div>
+<div class="description-paragraph" id="p0102" num="0097">粒子群优化方法需要调整的参数少，收敛精度高，使规划路径具有收敛速度快、路径长度短、威胁代价小等优点，能够及时准确地飞抵低空空域黑飞飞行器实施精准反制或打击。</div>
+<div class="description-paragraph" id="p0103" num="0098">进一步地，步骤4包括：</div>
+<div class="description-paragraph" id="p0104" num="0099">在执法无人机飞行过程中，若目标跟踪与定位系统检测到黑飞飞行器的位置变化超过设定阈值，则回到全局规划路径阶段，以执法无人机当前所在位置为起始位置，重新规划执法无人机的路径；</div>
+<div class="description-paragraph" id="p0105" num="0100">其中，执法无人机在打击黑飞飞行器的时候，如果黑飞飞行器的位置跟规划路径时检测到的位置发生变化了，其实在一定范围内还是可以打击到的，这个设定阈值还要根据特定的打击方式，如发射电磁的作用范围进行设定。</div>
+<div class="description-paragraph" id="p0106" num="0101">本领域技术人员在考虑说明书及实践这里公开的发明后，将容易想到本发明的其它实施方案。本申请旨在涵盖本发明的任何变型、用途或者适应性变化，这些变型、用途或者适应性变化遵循本发明的一般性原理并包括本发明未公开的本技术领域中的公知常识或惯用技术手段。说明书和实施例仅被视为示例性的，本发明的真正范围和精神由下面的权利要求指出。</div>
+<div class="description-paragraph" id="p0107" num="0102">应当理解的是，本发明并不局限于上面已经描述并在附图中示出的精确结构，并且可以在不脱离其范围进行各种修改和改变。本发明的范围仅由所附的权利要求来限制。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

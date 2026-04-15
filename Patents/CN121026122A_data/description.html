@@ -1,0 +1,196 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN121026122A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES513037669">
+<invention-title id="title1" lang="ZH">面向城市低空物流的低空飞行器路径规划与动态调整方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及城市低空飞行控制技术领域，特别涉及面向城市低空物流的低空飞行器路径规划与动态调整方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着城市低空物流迅速发展，低空飞行器在配送末端展现出巨大应用潜力。然而，城市低空环境具有结构复杂、动态障碍物频出、可用空域资源有限等特点，飞行路径规划面临空域密度过高、路径冲突多等挑战。现有技术多依赖静态三维地图或固定禁飞边界进行路径搜索，缺乏对环境动态变化与多飞行器交互行为的实时响应，难以兼顾安全性、鲁棒性和飞行平滑性等关键指标。其次，常用路径调整方法普遍采用单层控制，难以处理复杂状态空间下的高维动作规划。此外，多飞行器调度规则局限于优先级排序与时间窗协调简单，缺乏对路径冲突、协同编队效益等因素的量化分析与全局优化。</div>
+<div class="description-paragraph" id="p0005" num="0003">以静态城市地图为基础，利用传统启发式搜索或群体智能优化算法求解飞行路径，是当前城市低空物流飞行器路径规划的常见方法。当前，为满足飞行器自主完成配送任务的需求，一般采用单目标优化算法基于静态障碍建图生成路径点序列，用于最短距离或最短时间路径搜索。但在面对城市空域中复杂动态障碍物、突发风险场景以及多飞行器冲突时，该类方法缺乏实时性与协同性，路径鲁棒性差，飞行效率与安全性难以保障。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本发明提出一种面向城市低空物流的飞行器路径规划与动态调整方法，基于多目标路径优化、环境状态感知与预测、强化学习驱动的路径调整及多飞行器编队协同决策，有助于飞行器在复杂低空域中自主进行任务路径生成、避障调整、编队协同与交通流调度等全流程控制。</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明采用如下技术方案：</div>
+<div class="description-paragraph" id="p0009" num="0006">本发明提供一种面向城市低空物流的飞行器路径规划与动态调整方法，包括以下步骤</div>
+<div class="description-paragraph" id="p0010" num="0007">S1、基于城市三维环境等参数构建飞行场景模型；</div>
+<div class="description-paragraph" id="p0011" num="0008">S2、采用多目标优化算法进行路径规划；</div>
+<div class="description-paragraph" id="p0012" num="0009">S3、利用环境预测模型与强化学习算法动态调整路径；</div>
+<div class="description-paragraph" id="p0013" num="0010">S4、基于多飞行器协同决策机制进行低空交通流协同。</div>
+<div class="description-paragraph" id="p0014" num="0011">进一步的，所述步骤S1包括以下步骤：</div>
+<div class="description-paragraph" id="p0015" num="0012">S1.1、通过GIS获取目标区域的三维地形高程数据与道路节点坐标信息，得到飞行器当前位置坐标(x,y,z)。其中，x、y为道路节点坐标，z为DEM对应位置地面高程与飞行器相对地面高度的和；</div>
+<div class="description-paragraph" id="p0016" num="0013">S1.2、通过建筑物GIS图层提取目标区域各建筑实体在二维平面中的边界及对应的高度，形成建筑物三维立体栅格图层，限定飞行器的低空飞行范围，构成静态空间障碍物边界条件。障碍物的三维空间位置坐标为(xi,yi,zi)。x<sub>i</sub>、y<sub>i</sub>为建筑物边界中心点的平面坐标，z<sub>i</sub>为建筑物高度。根据建筑物占地面积与高度计算障碍物空间体积，记为s<sub>i</sub>；</div>
+<div class="description-paragraph" id="p0017" num="0014">S1.3、通过UAS Service Platform提供的空域划分规则数据，获取静态障碍物所处空域的权限类型与飞行限制等级。由其空间位置(x<sub>i,</sub>y<sub>i,</sub>z<sub>i</sub>)，确定合法飞行空域与静态禁飞边界；</div>
+<div class="description-paragraph" id="p0018" num="0015">S1.4、按式(1)利用飞行器机载多源传感器实时采集的动态障碍物行为数据，构建飞行风险因子R的动态评估模型，评估飞行器当前位置所受周边障碍物影响所致的飞行风险等级。式中ω<sub>j</sub>为动态障碍物j的类别权重系数(一般小型无人机取0.7，鸟群取0.6)，s<sub>j</sub>障碍物j的体积，<span class="patent-image-not-available"></span>为障碍物j的三维速度向量，d<sub>j</sub>为飞行器当前位置(x,y,z)与障碍物j之间的欧氏空间距离。</div>
+<div class="description-paragraph" id="p0019" num="0016">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0020" num="0017">进一步的，所述步骤S2包括以下步骤</div>
+<div class="description-paragraph" id="p0021" num="0018">S2.1、设置路径规划任务参数与目标。设路径起点P<sub>s</sub>坐标为(x<sub>s</sub>,y<sub>s</sub>,z<sub>s</sub>)，终点P<sub>t</sub>坐标为(x<sub>t</sub>,y<sub>t</sub>,z<sub>t</sub>)。设定路径优化目标，使飞行时间、能耗、飞行风险等级最小，路径平滑度最大。按式(2)计算单个飞行器的能耗，式中d<sub>k</sub>为第k段路径的水平距离，Δh<sub>k</sub>表示的是路径相邻两点之间垂直高度变化量，θ<sub>k</sub>第k段路径的转弯角度，η<sub>1</sub>、η<sub>2</sub>、η<sub>3</sub>分别为水平、垂直、转弯飞行时惩罚能耗权重系数。</div>
+<div class="description-paragraph" id="p0022" num="0019">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0023" num="0020">S2.2、按式(3)构建多目标评价函数与动态权重机制，式中α,β,γ,δ为依据任务类型与历史反馈调整的动态权重，<span class="patent-image-not-available"></span>为路径平均飞行风险等级，<span class="patent-image-not-available"></span> <span class="patent-image-not-available"></span>为静态障碍物边界，p<sub>k</sub>＝(x<sub>k</sub>,y<sub>k</sub>,z<sub>k</sub>)为路径节点。</div>
+<div class="description-paragraph" id="p0024" num="0021">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0025" num="0022">S2.3、提出一种三阶段融合路径搜索算法(AGACO-TPS，A*-GA-ACO with Three-Phase Search)，基于S2.2定义的目标函数及约束，生成满足要求的最优路径点序列P<sup>*</sup>。利用A<sup>*</sup>算法在S1构建的三维环境模型中，从飞行器起点P<sub>s</sub>到终点P<sub>t</sub>，快速生成一条可行路径P<sub>0</sub>，作为初始解。基于初始路径P<sub>0</sub>，采用GA算法构建初始种群，通过路径个体的选择、交叉与变异，在多轮进化迭代中产生多个可选路径{P<sub>1</sub>,P<sub>2</sub>,...,P<sub>m</sub>}。针对可选路径集中存在高风险、抖动以及局部不平滑段，采用ACO算法进行局部路径修正，优化路径段质量，生成路径{P′<sub>1</sub>,P′<sub>2</sub>,...,P′<sub>m</sub>}。对局部优化后的路径集{Pi}，计算每条路径的函数值f<sub>obj</sub>(P′<sub>i</sub>)。最终，按式(4)确定出目标函数值最小的路径P<sup>*</sup>，作为最优路径解。</div>
+<div class="description-paragraph" id="p0026" num="0023">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0027" num="0024">S2.4、将S2.3中获得的最优路径P<sup>*</sup>＝{P<sub>1</sub>,P<sub>2</sub>,...,P<sub>n</sub>}中的每个路径点P<sub>k</sub>＝(x<sub>k</sub>,y<sub>k</sub>,z<sub>k</sub>)，映射至S1所构建的城市三维坐标系中，构建路径三维图层。给每个路径点P<sub>k</sub>添加飞行风险等级R<sub>k</sub>、路径段能耗值E<sub>k</sub>、转向角θ<sub>k</sub>等属性，构建路径属性索引表。最终将路径三维图层与属性索引数据集封装为结构化路径对象，为S3路径动态调整提供数据基础。</div>
+<div class="description-paragraph" id="p0028" num="0025">进一步的，所述步骤S3包括以下步骤</div>
+<div class="description-paragraph" id="p0029" num="0026">S3.1、通过机载传感系统，实时提取动态障碍物<span class="patent-image-not-available"></span>坐标<span class="patent-image-not-available"></span>和其体积s<sub>i</sub>，按式(5)对连续时刻位置变化进行差分计算得到速度向量。</div>
+<div class="description-paragraph" id="p0030" num="0027">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0031" num="0028">S3.2、按式(6)得到用于预测模型输入的障碍物时空状态特征向量<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0032" num="0029">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0033" num="0030">S3.3、基于S3.2构建的障碍物状态特征向量集<span class="patent-image-not-available"></span>以路径点P<sub>k</sub>为球心、r＝v<sub>max</sub>·Δt为半径的范围内，构建局部图结构G<sub>k</sub>＝(N<sub>k</sub>,L<sub>k</sub>)；其中v<sub>max</sub>为飞行器最大巡航速度，Δt为飞行器路径重新规划周期，N<sub>k</sub>为时刻t路径点P<sub>k</sub>邻域内的动态障碍物集合，L<sub>k</sub>表示障碍物之间关联。若障碍物<span class="patent-image-not-available"></span>与<span class="patent-image-not-available"></span>满足式(7)：</div>
+<div class="description-paragraph" id="p0034" num="0031">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0035" num="0032">则定义边<span class="patent-image-not-available"></span>并按式(8)计算其权重，式中σ<sub>v</sub>为速度敏感调节系数，由历史飞行数据确定。</div>
+<div class="description-paragraph" id="p0036" num="0033">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0037" num="0034">S3.4、按式(9)在S1静态城市三维环境模型基础上，融合实时感知数据，构建基于时空图卷积网络(ST-GCN)的动态环境预测模型，对路径前方若干时刻T<sub>f</sub>内的环境进行预测，输出未来h步的障碍物分布<span class="patent-image-not-available"></span>式中<span class="patent-image-not-available"></span>为当前图结构，<span class="patent-image-not-available"></span>为未来h步预测的结果。</div>
+<div class="description-paragraph" id="p0038" num="0035">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0039" num="0036">S3.5、基于S2.4最优路径与S3.4预测结果，构建路径动态调整层次强化学习模型。以路径点P<sub>k</sub>当前状态<span class="patent-image-not-available"></span>为输入，构建高层子目标决策网络π<sub>high</sub>(s<sub>k</sub>；θ<sub>h</sub>)，输出未来N步的子目标点g<sub>k</sub>＝(x<sub>k</sub>′,y<sub>k</sub>′,z<sub>k</sub>)，引导低层策略向安全方向迂回或规避；以s<sub>k</sub>和g<sub>k</sub>为输入，构建低层策略函数π<sub>low</sub>(s<sub>k</sub>,g<sub>k</sub>；θ<sub>l</sub>)，输出路径调整量a<sub>k</sub>＝Δp<sub>k</sub>＝(dx<sub>k</sub>,dy<sub>k</sub>,dz<sub>k</sub>)。上述θ<sub>h</sub>、θ<sub>l</sub>为策略网络参数，初值由历史数据微调得出。</div>
+<div class="description-paragraph" id="p0040" num="0037">S3.6按式(10)定义优化目标r<sub>k</sub>，式中α,β,γ为代价因子，用于调节路径调整对飞行安全性(风险R<sub>k</sub>)、能耗效率(能耗E<sub>k</sub>)与目标一致性(子目标偏移项)的敏感性，可根据配送任务类型进行动态调整。</div>
+<div class="description-paragraph" id="p0041" num="0038">r<sub>k</sub>＝-(αR<sub>k</sub>+βE<sub>k</sub>+γ||p<sub>k</sub>+Δp<sub>k</sub>-g<sub>k</sub>||)    (10)</div>
+<div class="description-paragraph" id="p0042" num="0039">S3.7按式(11)通过策略梯度法分别优化高层策略参数θ<sub>h</sub>与低层策略参数θ<sub>l</sub>，式中<span class="patent-image-not-available"></span>为路径执行过程中累积奖励的期望。</div>
+<div class="description-paragraph" id="p0043" num="0040">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0044" num="0041">S3.8利用低层策略输出的路径调整动作序列{Δp<sub>k</sub>}，修正路径点<span class="patent-image-not-available"></span>并将修正路径输入路径三维图层中，完成路径动态优化。</div>
+<div class="description-paragraph" id="p0045" num="0042">进一步的，所述步骤S4包括以下步骤</div>
+<div class="description-paragraph" id="p0046" num="0043">S4.1、基于S3最优路径，用带有时间窗的有向图<span class="patent-image-not-available"></span>表示每架飞行器i的路径，其中N<sub>i</sub>表示路径节点集合，E<sub>i</sub>表示路径边集合。按式(12)赋予每个路径节点<span class="patent-image-not-available"></span> <span class="patent-image-not-available"></span>时间窗参数<span class="patent-image-not-available"></span>式中<span class="patent-image-not-available"></span>为飞行器起飞时间，<span class="patent-image-not-available"></span>为路径中相邻节点的欧氏距离，<span class="patent-image-not-available"></span>为最大巡航速度，ΔT为统一设定的时间冗余容忍度。</div>
+<div class="description-paragraph" id="p0047" num="0044">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0048" num="0045">S4.2、构建路径间冲突图<span class="patent-image-not-available"></span>按式(13)若两飞行器i,j在某一节点k存在时空窗重叠，则在<span class="patent-image-not-available"></span>中建立冲突边e<sub>ij</sub>∈E<sub>c</sub>，式中∈<sub>d</sub>与∈<sub>t</sub>分别为空间距离阈值与时间同步阈值。</div>
+<div class="description-paragraph" id="p0049" num="0046">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0050" num="0047">S4.3、按式(14)定义冲突代价函数，式中σ为冲突惩罚因子。</div>
+<div class="description-paragraph" id="p0051" num="0048">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0052" num="0049">S4.4、引入临时编队决策机制，设置二值决策变量<span class="patent-image-not-available"></span>判断飞行器i与j是否在节点n临时编队。若<span class="patent-image-not-available"></span>满足式(13)，则有<span class="patent-image-not-available"></span>进入协同状态；</div>
+<div class="description-paragraph" id="p0053" num="0050">S4.5、考虑路径代价、能耗、飞行时间、路径冲突与编队协同收益，按式(15)构建路径协同优化模型，式中<span class="patent-image-not-available"></span>为偏离初始路径的程度，T<sub>i</sub>为飞行器任务完成总时间，<span class="patent-image-not-available"></span>在节点n成功编队产生的协同效益，α、β、γ、η为任务可调代价因子。</div>
+<div class="description-paragraph" id="p0054" num="0051">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0055" num="0052">S4.6、基于S4.5优化模型，提出一种融合多策略的多目标自适应邻域搜索优化算法MALNS-DRC(Multi-Agent Large Neighborhood Search with Dynamic RoleCoordination)，使飞行路径偏离度最小、协同收益最大。其核心优化目标函数如式(16)所示，式中λ<sub>1</sub>,λ<sub>2</sub>为动态任务调整因子，反映不同场景下安全性与协同效益的重要程度。MALNS-DRC融合路径重构、协同合并、动态角色调整三种算子与模拟退火接受机制，可实现动态环境下多飞行器之间路径和编队的协同优化。</div>
+<div class="description-paragraph" id="p0056" num="0053">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0057" num="0054">S4.7、输出优化后的路径集合{G<sub>i</sub>′}，将其映射至S1构建的三维飞行模型中，生成带有飞行器身份标识、协同状态、时间窗及路径属性的结构化路径数据集，作为多飞行器路径协调调度的正式部署方案。</div>
+<div class="description-paragraph" id="p0058" num="0055">有益效果：</div>
+<div class="description-paragraph" id="p0059" num="0056">本发明提供面向城市低空物流的飞行器路径规划与动态调整方法，相比于现有的静态优化与单体路径调度方法，显著提升了路径规划精度、动态响应能力、多飞行器协同效率与复杂空域适应性。</div>
+<div class="description-paragraph" id="p0060" num="0057">本发明提供面向城市低空物流的飞行器路径规划与动态调整方法，基于动态环境感知与风险趋势预测机制，融合飞行器机载传感器输入与图卷积网络建模结果，提出一种多目标优化与三阶段路径搜索相结合的路径规划方法，并结合双层强化学习模型对路径进行动态调整，进一步在多飞行器冲突图基础上，提出利用MALNS-DRC融合算法进行路径冲突规避与灵活编队重构。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0061">附图说明</div>
+<div class="description-paragraph" id="p0062" num="0058">图1为本发明的整体流程示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0063">具体实施方式</div>
+<div class="description-paragraph" id="p0064" num="0059">为使本发明实施例的目的和技术方案更加清楚，下面将结合本发明实施例的附图，对本发明实施例的技术方案进行清楚、完整地描述。显然，所描述的实施例是本发明的一部分实施例，而不是全部的实施例。基于所描述的本发明的实施例，本领域普通技术人员在无需创造性劳动的前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0065" num="0060">本发明提供面向城市低空物流的飞行器路径规划与动态调整方法，具体如下：</div>
+<div class="description-paragraph" id="p0066" num="0061">S1、基于城市三维环境等参数构建飞行场景模型，包括如下步骤：</div>
+<div class="description-paragraph" id="p0067" num="0062">S1.1、通过GIS获取目标区域的三维地形高程数据与道路节点坐标信息，得到飞行器当前位置坐标(x,y,z)。其中，x、y为道路节点坐标，z为DEM对应位置地面高程与飞行器相对地面高度的和；</div>
+<div class="description-paragraph" id="p0068" num="0063">S1.2、通过建筑物GIS图层提取目标区域各建筑实体在二维平面中的边界及对应的高度，形成建筑物三维立体栅格图层，限定飞行器的低空飞行范围，构成静态空间障碍物边界条件。障碍物的三维空间位置坐标为(xi,yi,zi)。x<sub>i</sub>、y<sub>i</sub>为建筑物边界中心点的平面坐标，z<sub>i</sub>为建筑物高度。根据建筑物占地面积与高度计算障碍物空间体积，记为s<sub>i</sub>；</div>
+<div class="description-paragraph" id="p0069" num="0064">S1.3、通过UAS Service Platform提供的空域划分规则数据，获取静态障碍物所处空域的权限类型与飞行限制等级。由其空间位置(x<sub>i,</sub>y<sub>i,</sub>z<sub>i</sub>)，确定合法飞行空域与静态禁飞边界；</div>
+<div class="description-paragraph" id="p0070" num="0065">S1.4、按式(1)利用飞行器机载多源传感器实时采集的动态障碍物行为数据，构建飞行风险因子R的动态评估模型，评估飞行器当前位置所受周边障碍物影响所致的飞行风险等级。式中ω<sub>j</sub>为动态障碍物j的类别权重系数(一般小型无人机取0.7，鸟群取0.6)，s<sub>j</sub>障碍物j的体积，<span class="patent-image-not-available"></span>为障碍物j的三维速度向量，d<sub>j</sub>为飞行器当前位置(x,y,z)与障碍物j之间的欧氏空间距离。</div>
+<div class="description-paragraph" id="p0071" num="0066">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0072" num="0067">S2、采用多目标优化算法进行路径规划，包括如下步骤：</div>
+<div class="description-paragraph" id="p0073" num="0068">S2.1、设置路径规划任务参数与目标。设路径起点P<sub>s</sub>坐标为(x<sub>s</sub>,y<sub>s</sub>,z<sub>s</sub>)，终点P<sub>t</sub>坐标为(x<sub>t</sub>,y<sub>t</sub>,z<sub>t</sub>)。设定路径优化目标，使飞行时间、能耗、飞行风险等级最小，路径平滑度最大。按式(2)计算单个飞行器的能耗，式中d<sub>k</sub>为第k段路径的水平距离，Δh<sub>k</sub>表示的是路径相邻两点之间垂直高度变化量，θ<sub>k</sub>第k段路径的转弯角度，η<sub>1</sub>、η<sub>2</sub>、η<sub>3</sub>分别为水平、垂直、转弯飞行时惩罚能耗权重系数。</div>
+<div class="description-paragraph" id="p0074" num="0069">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0075" num="0070">S2.2、按式(3)构建多目标评价函数与动态权重机制，式中α,β,γ,δ为依据任务类型与历史反馈调整的动态权重，<span class="patent-image-not-available"></span>为路径平均飞行风险等级，<span class="patent-image-not-available"></span> <span class="patent-image-not-available"></span>为静态障碍物边界，p<sub>k</sub>＝(x<sub>k</sub>,y<sub>k</sub>,z<sub>k</sub>)为路径节点。</div>
+<div class="description-paragraph" id="p0076" num="0071">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0077" num="0072">S2.3、提出一种三阶段融合路径搜索算法(AGACO-TPS，A*-GA-ACO with Three-Phase Search)，基于S2.2定义的目标函数及约束，生成满足要求的最优路径点序列P<sup>*</sup>。利用A<sup>*</sup>算法在S1构建的三维环境模型中，从飞行器起点P<sub>s</sub>到终点P<sub>t</sub>，快速生成一条可行路径P<sub>0</sub>，作为初始解。基于初始路径P<sub>0</sub>，采用GA算法构建初始种群，通过路径个体的选择、交叉与变异，在多轮进化迭代中产生多个可选路径{P<sub>1</sub>,P<sub>2</sub>,...,P<sub>m</sub>}。针对可选路径集中存在高风险、抖动以及局部不平滑段，采用ACO算法进行局部路径修正，优化路径段质量，生成路径{P′<sub>1</sub>,P′<sub>2</sub>,...,P′<sub>m</sub>}。对局部优化后的路径集{Pi}，计算每条路径的函数值f<sub>obj</sub>(P′<sub>i</sub>)。最终，按式(4)确定出目标函数值最小的路径P<sup>*</sup>，作为最优路径解。</div>
+<div class="description-paragraph" id="p0078" num="0073">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0079" num="0074">S2.4、将S2.3中获得的最优路径P<sup>*</sup>＝{P<sub>1</sub>,P<sub>2</sub>,...,P<sub>n</sub>}中的每个路径点P<sub>k</sub>＝(x<sub>k</sub>,y<sub>k</sub>,z<sub>k</sub>)，映射至S1所构建的城市三维坐标系中，构建路径三维图层。给每个路径点P<sub>k</sub>添加飞行风险等级R<sub>k</sub>、路径段能耗值E<sub>k</sub>、转向角θ<sub>k</sub>等属性，构建路径属性索引表。最终将路径三维图层与属性索引数据集封装为结构化路径对象，为S3路径动态调整提供数据基础。</div>
+<div class="description-paragraph" id="p0080" num="0075">S3、利用环境预测模型与强化学习算法动态调整路径，包括如下步骤：</div>
+<div class="description-paragraph" id="p0081" num="0076">S3.1、通过机载传感系统，实时提取动态障碍物<span class="patent-image-not-available"></span>坐标<span class="patent-image-not-available"></span>和其体积s<sub>i</sub>，按式(5)对连续时刻位置变化进行差分计算得到速度向量。</div>
+<div class="description-paragraph" id="p0082" num="0077">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0083" num="0078">S3.2、按式(6)得到用于预测模型输入的障碍物时空状态特征向量<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0084" num="0079">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0085" num="0080">S3.3、基于S3.2构建的障碍物状态特征向量集<span class="patent-image-not-available"></span>以路径点P<sub>k</sub>为球心、r＝v<sub>max</sub>·Δt为半径的范围内，构建局部图结构G<sub>k</sub>＝(N<sub>k</sub>,L<sub>k</sub>)；其中v<sub>max</sub>为飞行器最大巡航速度，Δt为飞行器路径重新规划周期，N<sub>k</sub>为时刻t路径点P<sub>k</sub>邻域内的动态障碍物集合，L<sub>k</sub>表示障碍物之间关联。若障碍物<span class="patent-image-not-available"></span>与<span class="patent-image-not-available"></span>满足式(7)：</div>
+<div class="description-paragraph" id="p0086" num="0081">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0087" num="0082">则定义边<span class="patent-image-not-available"></span>并按式(8)计算其权重，式中σ<sub>v</sub>为速度敏感调节系数，由历史飞行数据确定。</div>
+<div class="description-paragraph" id="p0088" num="0083">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0089" num="0084">S3.4、按式(9)在S1静态城市三维环境模型基础上，融合实时感知数据，构建基于时空图卷积网络(ST-GCN)的动态环境预测模型，对路径前方若干时刻T<sub>f</sub>内的环境进行预测，输出未来h步的障碍物分布<span class="patent-image-not-available"></span>式中<span class="patent-image-not-available"></span>为当前图结构，<span class="patent-image-not-available"></span>为未来h步预测的结果。</div>
+<div class="description-paragraph" id="p0090" num="0085">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0091" num="0086">S3.5、基于S2.4最优路径与S3.4预测结果，构建路径动态调整层次强化学习模型。以路径点P<sub>k</sub>当前状态<span class="patent-image-not-available"></span>为输入，构建高层子目标决策网络π<sub>high</sub>(s<sub>k</sub>；θh)，输出未来N步的子目标点g<sub>k</sub>＝(x<sub>k</sub>′,y<sub>k</sub>′,z<sub>k</sub>)，引导低层策略向安全方向迂回或规避；以s<sub>k</sub>和g<sub>k</sub>为输入，构建低层策略函数π<sub>low</sub>(s<sub>k</sub>,g<sub>k</sub>；θ<sub>l</sub>)，输出路径调整量a<sub>k</sub>＝Δp<sub>k</sub>＝(dx<sub>k</sub>,dy<sub>k</sub>,dz<sub>k</sub>)。上述θ<sub>h</sub>、θ<sub>l</sub>为策略网络参数，初值由历史数据微调得出。</div>
+<div class="description-paragraph" id="p0092" num="0087">S3.6按式(10)定义优化目标r<sub>k</sub>，式中α,β,γ为代价因子，用于调节路径调整对飞行安全性(风险R<sub>k</sub>)、能耗效率(能耗E<sub>k</sub>)与目标一致性(子目标偏移项)的敏感性，可根据配送任务类型进行动态调整。</div>
+<div class="description-paragraph" id="p0093" num="0088">r<sub>k</sub>＝-(αR<sub>k</sub>+βE<sub>k</sub>+γ||p<sub>k</sub>+Δp<sub>k</sub>-g<sub>k</sub>||)    (10)</div>
+<div class="description-paragraph" id="p0094" num="0089">S3.7按式(11)通过策略梯度法分别优化高层策略参数θ<sub>h</sub>与低层策略参数θ<sub>l</sub>，式中<span class="patent-image-not-available"></span>为路径执行过程中累积奖励的期望。</div>
+<div class="description-paragraph" id="p0095" num="0090">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0096" num="0091">S3.8利用低层策略输出的路径调整动作序列{Δp<sub>k</sub>}，修正路径点<span class="patent-image-not-available"></span>并将修正路径输入路径三维图层中，完成路径动态优化。</div>
+<div class="description-paragraph" id="p0097" num="0092">S4、基于多飞行器协同决策机制进行低空交通流协同，包括以下步骤：</div>
+<div class="description-paragraph" id="p0098" num="0093">S4.1、基于S3最优路径，用带有时间窗的有向图<span class="patent-image-not-available"></span>表示每架飞行器i的路径，其中N<sub>i</sub>表示路径节点集合，E<sub>i</sub>表示路径边集合。按式(12)赋予每个路径节点<span class="patent-image-not-available"></span> <span class="patent-image-not-available"></span>时间窗参数<span class="patent-image-not-available"></span>式中<span class="patent-image-not-available"></span>为飞行器起飞时间，<span class="patent-image-not-available"></span>为路径中相邻节点的欧氏距离，<span class="patent-image-not-available"></span>为最大巡航速度，ΔT为统一设定的时间冗余容忍度。</div>
+<div class="description-paragraph" id="p0099" num="0094">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0100" num="0095">S4.2、构建路径间冲突图<span class="patent-image-not-available"></span>按式(13)若两飞行器i,j在某一节点k存在时空窗重叠，则在<span class="patent-image-not-available"></span>中建立冲突边e<sub>ij</sub>∈E<sub>c</sub>，式中∈<sub>d</sub>与∈<sub>t</sub>分别为空间距离阈值与时间同步阈值。</div>
+<div class="description-paragraph" id="p0101" num="0096">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0102" num="0097">S4.3、按式(14)定义冲突代价函数，式中σ为冲突惩罚因子。</div>
+<div class="description-paragraph" id="p0103" num="0098">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0104" num="0099">S4.4、引入临时编队决策机制，设置二值决策变量<span class="patent-image-not-available"></span>判断飞行器i与j是否在节点n临时编队。若<span class="patent-image-not-available"></span>满足式(13)，则有<span class="patent-image-not-available"></span>进入协同状态；</div>
+<div class="description-paragraph" id="p0105" num="0100">S4.5、考虑路径代价、能耗、飞行时间、路径冲突与编队协同收益，按式(15)构建路径协同优化模型，式中<span class="patent-image-not-available"></span>为偏离初始路径的程度，T<sub>i</sub>为飞行器任务完成总时间，<span class="patent-image-not-available"></span>在节点n成功编队产生的协同效益，α、β、γ、η为任务可调代价因子。</div>
+<div class="description-paragraph" id="p0106" num="0101">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0107" num="0102">S4.6、基于S4.5优化模型，提出一种融合多策略的多目标自适应邻域搜索优化算法MALNS-DRC(Multi-Agent Large Neighborhood Search with Dynamic RoleCoordination)，使飞行路径偏离度最小、协同收益最大。其核心优化目标函数如式(16)所示，式中λ<sub>1</sub>,λ<sub>2</sub>为动态任务调整因子，反映不同场景下安全性与协同效益的重要程度。MALNS-DRC融合路径重构、协同合并、动态角色调整三种算子与模拟退火接受机制，可实现动态环境下多飞行器之间路径和编队的协同优化。</div>
+<div class="description-paragraph" id="p0108" num="0103">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0109" num="0104">S4.7、输出优化后的路径集合{G<sub>i</sub>′}，将其映射至S1构建的三维飞行模型中，生成带有飞行器身份标识、协同状态、时间窗及路径属性的结构化路径数据集，作为多飞行器路径协调调度的正式部署方案。</div>
+<div class="description-paragraph" id="p0110" num="0105">实施例一：</div>
+<div class="description-paragraph" id="p0111" num="0106">如图1所示：通过GIS平台提取飞行区域的道路节点与建筑物轮廓数据，计算当前位置坐标(x,y,z)。提取建筑物边界中心点及高度、静态障碍物信息(x<sub>i</sub>,y<sub>i</sub>,z<sub>i</sub>,s<sub>i</sub>)，得到风险因子R。</div>
+<div class="description-paragraph" id="p0112" num="0107">构建包括飞行时间T、能耗E、平均风险等级<span class="patent-image-not-available"></span>路径平滑度S的多目标函数，设置任务权重α＝0.3、β＝0.2、γ＝0.3、δ＝0.2。</div>
+<div class="description-paragraph" id="p0113" num="0108">采用AGACO-TPS算法得到最优路径P<sup>*</sup>＝{p<sub>1</sub>,...,p<sub>n</sub>}，路径长度为98.7m，路径平均风险等级<span class="patent-image-not-available"></span>最大爬升坡度为12.1°，并映射至三维模型形成路径图层。提取路径点邻域半径内动态障碍物，构建图结构G<sub>k</sub>＝(N<sub>k</sub>,L<sub>k</sub>)，输入至ST-GCN模型进行5步预测。构建路径点状态向量s<sub>k</sub>，调用高层网络输出子目标g<sub>k</sub>，低层输出动作Δp<sub>k</sub>，更新路径点p<sub>k</sub>←p<sub>k</sub>+Δp<sub>k</sub>，得到动态调整后路径点序列。提取两飞行器路径图层构建冲突图，识别冲突节点集合C。</div>
+<div class="description-paragraph" id="p0114" num="0109">构建路径偏差函数<span class="patent-image-not-available"></span>与协同效益函数<span class="patent-image-not-available"></span>调用MALNS-DRC算法进行路径协同与编队调整，设定协同阈值Δψ＝0.1，输出协同路径集合<span class="patent-image-not-available"></span>整体平均能耗下降7.3％，路径冲突次数降低至1次以内，任务平均延迟控制在10秒内。</div>
+<div class="description-paragraph" id="p0115" num="0110">实施例二：</div>
+<div class="description-paragraph" id="p0116" num="0111">如图1所示：通过GIS平台提取飞行区域的道路节点与建筑物轮廓数据，计算当前位置坐标(x,y,z)。提取建筑物边界中心点及高度、静态障碍信息(x<sub>i</sub>,y<sub>i</sub>,z<sub>i</sub>,s<sub>i</sub>)，得到风险因子R。构建包括飞行时间T、能耗E、平均风险等级<span class="patent-image-not-available"></span>路径平滑度S的多目标函数，设定任务权重α＝0.25,β＝0.25,γ＝0.25,δ＝0.25。采用AGACO-TPS算法得到最优路径P<sup>*</sup>＝{p<sub>1</sub>,...,p<sub>n</sub>}，路径长度为126.4m，路径平均风险等级<span class="patent-image-not-available"></span>最大爬升坡度为14.7°，并映射至三维模型形成路径图层。提取路径点邻域半径内动态障碍物，构建图结构G<sub>k</sub>＝(N<sub>k</sub>,L<sub>k</sub>)，输入至ST-GCN模型进行5步预测。</div>
+<div class="description-paragraph" id="p0117" num="0112">构建路径点状态向量s<sub>k</sub>，调用高层网络输出子目标g<sub>k</sub>，低层输出动作Δp<sub>k</sub>，更新路径点p<sub>k</sub>←p<sub>k</sub>+Δp<sub>k</sub>，得到动态调整后路径点序列。提取两飞行器路径图层构建冲突图，识别冲突节点集合C。</div>
+<div class="description-paragraph" id="p0118" num="0113">构建路径偏差函数<span class="patent-image-not-available"></span>与协同效益函数<span class="patent-image-not-available"></span>调用MALNS-DRC算法进行路径协调与编队调度，设定协同阈值Δψ＝0.15，输出协同路径集合<span class="patent-image-not-available"></span>整体平均能耗下降9.8％，路径冲突次数降低至2次以内，任务平均延迟控制在12秒。</div>
+<div class="description-paragraph" id="p0119" num="0114">以上所述，仅为本发明较佳的具体实施方式，但本发明的保护范围并不局限于此，任何熟悉本技术领域的技术人员在本发明揭露的技术范围内，可轻易想到的变化或替换，都应涵盖在本发明的保护范围之内。因此，本发明的保护范围应该以权利要求的保护范围为准。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

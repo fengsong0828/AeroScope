@@ -1,0 +1,203 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119418563A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES487268035">
+<invention-title id="title1" lang="ZH">一种低空飞行器智能鉴别与应急反制系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空飞行器安全管理技术领域，具体涉及一种低空飞行器智能鉴别与应急反制系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">目前常用的无人机等低空飞行器探测手段主要有雷达、无线电频谱、光电和声波等，这些探测手段各有各的特点，适用场景也各不相同。这些探测传感器均存在一定的检测概率和虚警概率，采用某种单一探测手段不可避免会出现目标漏报和误报虚警，其中目标漏报会带来防控区域的安全漏洞，而误报虚警又会引起执勤人员不必要的心理恐慌和可能带来的额外的警情处置成本。</div>
+<div class="description-paragraph" id="p0005" num="0003">另外，发现和鉴别出恶意飞行器后，需要以最快速度采取适当的反制手段来应对并消除威胁，避免或最小化可能造成的各方面损失，当前低空飞行器反制技术发展也日益成熟，主要包括导航压制干扰、导航诱骗干扰、飞行器指令干扰、射弹拦截、捕获网拦截、高功率微波毁伤、激光毁伤等处置手段。但是各种低空飞行器反制设备的装备成本和打击效费比差别很大，防控区域内不同点位的重要程度不尽相同，不同低空飞行器反制设备的部署位置和数量配置也会有所区别。</div>
+<div class="description-paragraph" id="p0006" num="0004">公开号为CN112598046B的中国专利，公开了一种多机协同空战中的目标战术意图识别方法，能够针对多机协同战术推理展开研究，建立多机协同空战中的目标战术意图识别模型。具体地，通过构建能够处理不同线性度及关联度特征的SVM分类器，提升传统战术意图识别方法的模型性能。并且，结合传统方法所使用参数，提出多种协同战术特征提取方法，在初步特征中提取出更高级别的特征。另外，通过空战仿真样本训练决策树模型，然后将上述全部特征输入训练好的模型中，有效的识别出协同战术意图，从而有效满足实战需求；</div>
+<div class="description-paragraph" id="p0007">但是该方法是针对战时的敌对无人机进行的识别，而对于伪装成正常无人机的恶意无人机来说，该方法无法奏效；</div>
+<div class="description-paragraph" id="p0008">因而，我们提出一种能够准确鉴别出恶意无人机，并能对其进行及时反制的系统。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0009">发明内容</div>
+<div class="description-paragraph" id="p0010" num="0005">本发明的目的在于提供一种低空飞行器智能鉴别与应急反制系统，其能够准确鉴别出恶意无人机，并能对其进行及时反制。</div>
+<div class="description-paragraph" id="p0011" num="0006">本发明通过以下技术方案实现：</div>
+<div class="description-paragraph" id="p0012">一种低空飞行器智能鉴别与应急反制系统，包括探测单元、鉴别单元、指挥决策平台、调度单元和反制单元；</div>
+<div class="description-paragraph" id="p0013">所述探测单元用于探测防控区域内的所有低空飞行器，获得所有低空飞行器的飞行数据；</div>
+<div class="description-paragraph" id="p0014">所述鉴别单元用于接收探测单元获得的飞行数据，并基于融合算法，分析判断出所有低空飞行器的威胁等级；</div>
+<div class="description-paragraph" id="p0015">所述指挥决策平台用于接收各低空飞行器的威胁等级，根据防控区域的重要程度以及低空飞行器的威胁等级，向反制单元发送处置指令；</div>
+<div class="description-paragraph" id="p0016">所述调度单元用于根据处置指令，结合城市全域反制设备的部署信息，通过智能优化调度算法，给出具体的反制设备调度指令；</div>
+<div class="description-paragraph" id="p0017">所述反制单元根据调度指令，控制不同反制设备对相应威胁等级的低空飞行器进行精准打击。</div>
+<div class="description-paragraph" id="p0018" num="0007">进一步的，所述探测单元包括雷达探测设备、无线电频谱侦测设备、光电探测设备和声波探测设备，探测单元中各设备之间的物联网组网，以及探测设备部署信息数据库。</div>
+<div class="description-paragraph" id="p0019" num="0008">进一步的，所述融合算法包括循环神经网络模型、信息提取模块、贝叶斯网络推理模型和置信度权重计算模型。</div>
+<div class="description-paragraph" id="p0020" num="0009">进一步的，所述基于融合算法，分析判断出所有低空飞行器的威胁等级的方法，具体为：</div>
+<div class="description-paragraph" id="p0021">对飞行数据进行异常值筛选和剔除，获得初始数据；</div>
+<div class="description-paragraph" id="p0022">初始数据经过循环神经网络模型计算后，得到各低空飞行器的第一威胁等级值；</div>
+<div class="description-paragraph" id="p0023">初始数据经过信息提取模块获得关于各低空飞行器的高阶信息；</div>
+<div class="description-paragraph" id="p0024">高阶信息经过贝叶斯网络推理模型计算后，得到各低空飞行器的第二威胁等级值；</div>
+<div class="description-paragraph" id="p0025">第一威胁等级值和第二威胁等级值经过置信度权重计算模型计算后，确定各低空飞行器的威胁等级。</div>
+<div class="description-paragraph" id="p0026" num="0010">进一步的，所述置信度权重计算模型的计算步骤，包括：</div>
+<div class="description-paragraph" id="p0027">所述置信度权重计算模型的计算步骤，包括：</div>
+<div class="description-paragraph" id="p0028">采用熵值法计算，分别获得第一威胁等级值的权重值WA1，和第二威胁等级值的权重值WA2；</div>
+<div class="description-paragraph" id="p0029">采用层次分析法计算，分别获得第一威胁等级值的权重值WB1，和第二威胁等级值的权重值WB2；</div>
+<div class="description-paragraph" id="p0030">采用下式计算第一威胁等级值的置信度权重值W1，和第二威胁等级值的置信度权重值W2；</div>
+<div class="description-paragraph" id="p0031"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0032">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0033" num="0011">根据TL1、TL2、W1和W2，计算威胁度等级值TL，且威胁度等级<span class="patent-image-not-available"></span>的计算公式为：</div>
+<div class="description-paragraph" id="p0034"> <span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0035" num="0012">进一步的，所述熵值法的具体计算步骤，包括：</div>
+<div class="description-paragraph" id="p0036">对第一威胁等级值和第二威胁等级值进行非负化处理；</div>
+<div class="description-paragraph" id="p0037">对非负化处理后的第一威胁等级值和第二威胁等级值数据进行归一化处理；</div>
+<div class="description-paragraph" id="p0038">基于归一化后的第一威胁等级值和第二威胁等级值，根据熵值公式：<span class="patent-image-not-available"></span>，计算第一威胁等级值和第二威胁等级值所对应的熵值，</div>
+<div class="description-paragraph" id="p0039">其中，<span class="patent-image-not-available"></span>为玻尔兹曼常数，<span class="patent-image-not-available"></span>归一化后的第一威胁等级值和第二威胁等级值；</div>
+<div class="description-paragraph" id="p0040">基于多个熵值，根据权重计算公式：</div>
+<div class="description-paragraph" id="p0041"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0042">计算第一威胁等级值和第二威胁等级值对应的权重值；其中<span class="patent-image-not-available"></span>是第一威胁等级值和第二威胁等级值中，第<span class="patent-image-not-available"></span>个数据的权重值。</div>
+<div class="description-paragraph" id="p0043" num="0013">进一步的，所述层次分析法的具体计算步骤，包括：</div>
+<div class="description-paragraph" id="p0044">构建包括目标层、准则层和方案层的层次结构；</div>
+<div class="description-paragraph" id="p0045">基于准则层构建判断矩阵；</div>
+<div class="description-paragraph" id="p0046">采用和法对判断矩阵进行计算，得到权重向量<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0047">计算层次结构中某一层次的所有因素对于目标层相对重要性的权值，且分别计算方案层中各方案在准则层中不同准则下的得分，对每个准则构建一个得分矩阵，最后根据各得分矩阵，分别计算各方案对各准则的权重<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0048">根据<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，计算第一威胁等级值的权重值WB1，和第二威胁等级值的权重值WB2。</div>
+<div class="description-paragraph" id="p0049" num="0014">进一步的，所述智能优化调度算法采用多要素均衡的蚁群算法。</div>
+<div class="description-paragraph" id="p0050" num="0015">进一步的，所述多要素均衡的蚁群算法在蚁群算法基础上，加入了决定算法全局收敛性的交叉算子和避免算法局部收敛、保证解集多样性的变异算子。</div>
+<div class="description-paragraph" id="p0051" num="0016">进一步的，所述反制单元包括压制干扰机、诱骗干扰机、指令干扰机、射弹拦截器、捕网拦截器、微波毁伤器和激光毁伤器，反制单元中各设备之间的物联网组网，以及反制设备部署信息数据库。</div>
+<div class="description-paragraph" id="p0052" num="0017">本发明的技术方案至少具有如下优点和有益效果：</div>
+<div class="description-paragraph" id="p0053">本发明公开了一种低空飞行器智能鉴别与应急反制系统，可对雷达、光电、声学和频谱传感器探测到的目标数据进行融合处理，可以解决使用单个或一种传感器容易产生目标漏报和虚警误报的问题，提升城市低空安全管制的覆盖全面性和准确度；</div>
+<div class="description-paragraph" id="p0054">利用循环神经网络，建立恶意低空飞行器行为模型，对雷达、光电、声学、频谱传感器探测到的目标数据进行分类，从探测到的低空飞行器中鉴别出有恶意行为趋势的威胁飞行器，使得城市低空安全防护和执法更加精准高效；</div>
+<div class="description-paragraph" id="p0055">利用贝叶斯网络推理，对恶意低空飞行器的威胁等级进行评判和排序，为最优威胁目标处置手段选择和处置顺序确定提供数据支撑，为实现城市低空安全分级防护机制建立基础；</div>
+<div class="description-paragraph" id="p0056">利用多要素均衡优化的蚁群算法，对防控网络内部署的各种低空飞行器反制设备和资源进行智能调度，以最高效率和最低成本实现目标摧毁或威胁消除，最大限度降低城市低空安全防护的人力和经济成本；</div>
+<div class="description-paragraph" id="p0057">对低空飞行器探测设备和低空飞行器反制设备的具体类型和数量没有特殊要求和限制，系统具备良好的开放性、兼容性和可扩展性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0058">附图说明</div>
+<div class="description-paragraph" id="p0059" num="0018">图1为本发明的一种结构示意图；</div>
+<div class="description-paragraph" id="p0060">图2本发明的鉴别单元流程图；</div>
+<div class="description-paragraph" id="p0061">图3本发明的循环神经网络目标威胁度分类流程；</div>
+<div class="description-paragraph" id="p0062">图4本发明的循环神经网络模型；</div>
+<div class="description-paragraph" id="p0063">图5本发明的贝叶斯网络推理模型；</div>
+<div class="description-paragraph" id="p0064">图6本发明的层次分析法计算权重向量示例；</div>
+<div class="description-paragraph" id="p0065">图7本发明的调度单元输入输出示意图；</div>
+<div class="description-paragraph" id="p0066">图8本发明的改进的蚁群算法流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0067">具体实施方式</div>
+<div class="description-paragraph" id="p0068" num="0019">为使本发明实施例的目的、技术方案和优点更加清楚，下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例是本发明一部分实施例，而不是全部的实施例。通常在此处附图中描述和示出的本发明实施例的组件可以以各种不同的配置来布置和设计。</div>
+<div class="description-paragraph" id="p0069" num="0020">因此，以下对在附图中提供的本发明的实施例的详细描述并非旨在限制要求保护的本发明的范围，而是仅仅表示本发明的选定实施例。基于本发明中的实施例，本领域普通技术人员在没有作出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0070" num="0021">应注意到：相似的标号和字母在下面的附图中表示类似项，因此，一旦某一项在一个附图中被定义，则在随后的附图中不需要对其进行进一步定义和解释。</div>
+<div class="description-paragraph" id="p0071" num="0022">在本发明的描述中，还需要说明的是，除非另有明确的规定和限定，若出现术语“设置”、“安装”、“相连”、“连接”应做广义理解，例如，可以是固定连接，也可以是可拆卸连接，或一体地连接；可以是机械连接，也可以是电连接；可以是直接相连，也可以通过中间媒介间接相连，可以是两个元件内部的连通。对于本领域的普通技术人员而言，可以具体情况理解上述术语在本发明中的具体含义。</div>
+<div class="description-paragraph" id="p0072" num="0023">实施例1</div>
+<div class="description-paragraph" id="p0073">如附图1所示的一种低空飞行器智能鉴别与应急反制系统，包括探测单元、鉴别单元、指挥决策平台、调度单元和反制单元；</div>
+<div class="description-paragraph" id="p0074">所述探测单元用于探测防控区域内的所有低空飞行器，获得所有低空飞行器的飞行数据；</div>
+<div class="description-paragraph" id="p0075">特别的，所述探测单元包括雷达探测设备、无线电频谱侦测设备、光电探测设备和声波探测设备，探测单元中各设备之间的物联网组网，以及探测设备部署信息数据库；</div>
+<div class="description-paragraph" id="p0076">探测单元主要实现对防控区域内飞行的各种低空飞行器的实时探测和跟踪，利用各类型传感器输出各飞行器的实时三维位置、速度、图像、声波参数（频率/幅度）等信息。</div>
+<div class="description-paragraph" id="p0077" num="0024">所述鉴别单元用于接收探测单元获得的飞行数据，并基于融合算法，分析判断出所有低空飞行器的威胁等级；</div>
+<div class="description-paragraph" id="p0078">其中鉴别单元的硬件为一套机架式高性能服务器，配置高性能CPU、多张GPU、大量内存和快速存储，网络带宽至少10Gbps，电源具备高可靠性，散热系统强效，同时考虑数据备份、集群管理、自动化部署和状态监控等软件和系统支持。鉴别单元对恶意飞行器鉴别的总流程如图2所示。飞行器威胁等级预定义为0-9共10级，威胁等级0级代表无恶意、正常执行任务的飞行器，数字越大表示威胁程度越高。所述恶意飞行器鉴别流程主要包括循环神经网络分类、贝叶斯网络推理和综合权重计算三大步骤，循环神经网络分类和贝叶斯网络推理均可得出一个目标威胁等级值，综合权重计算步骤分别为上述两步骤得出的结果计算不同的权重并得出最终的各目标威胁等级值。探测设备获取的距离、高度、速度等飞行器数据进入恶意飞行器鉴别单元首先进行异常值筛选、剔除，经过筛选后的初始数据分别进入循环神经网络分类模块和特征匹配与高阶信息提取模块，初始数据经过循环神经网络分类得出目标威胁等级值，初始数据进入高阶信息提取模块后得出目标类型、目标是否携带武器、目标数量、目标抗毁伤能力、目标机动性等高阶信息，这些高阶目标信息再输入给贝叶斯网络推理得出各目标威胁等级值；</div>
+<div class="description-paragraph" id="p0079">鉴别单元通过分析低空飞行器的实时状态信息从这些低空飞行器中鉴别出正在执行恶意行为或具有恶意行为趋势的目标，结合低空飞行器的类型、尺寸参数、结构材料、飞行状态、携带武器类型等信息评估其威胁等级。</div>
+<div class="description-paragraph" id="p0080" num="0025">所述指挥决策平台用于接收各低空飞行器的威胁等级，根据防控区域的重要程度以及低空飞行器的威胁等级，向反制单元发送处置指令；</div>
+<div class="description-paragraph" id="p0081">其中指挥决策平台，主要包括数据接收处理工作站、网络服务器、全局态势展示投影及显示设备和执勤人员操作台等。数据接收处理工作站负责收集报警信息、恶意飞行器参数信息、视频流等实时数据。网络服务器用于内部和外部通信，包括电话系统、对讲系统、有线/无线网络互联系统等。全局态势展示投影及显示设备是指挥中心的核心显示设备，用于展示地图、监控画面、防控区安全态势、数据报表等关键信息，为执勤操作人员提供直观的视觉展示，帮助指挥决策人员快速获取关键信息。执勤人员操作台是操作人员的执行值班任务的工位，配备触摸屏、麦克风和各种控制按钮，用于信号切换、信息调取和指挥调度。</div>
+<div class="description-paragraph" id="p0082" num="0026">所述调度单元用于根据处置指令，结合城市全域反制设备的部署信息，通过智能优化调度算法，给出具体的反制设备调度指令；</div>
+<div class="description-paragraph" id="p0083">调度单元根据待处置目标威胁等级和位置、速度等状态信息，以最高可靠性、最高执行效率和最小处置代价为优化目标，选择最合适的处置手段和处置设备。低空飞行器反制分系统根据接收的反制设备调度指令，自动选择合适时机、合适地点、配置合适毁伤参数，发挥反制设备最大效能，达到预期的恶意低空飞行器处置目标</div>
+<div class="description-paragraph" id="p0084">所述反制单元根据调度指令，控制不同反制设备对相应威胁等级的低空飞行器进行精准打击。</div>
+<div class="description-paragraph" id="p0085" num="0027">特别的，所述反制单元包括压制干扰机、诱骗干扰机、指令干扰机、射弹拦截器、捕网拦截器、微波毁伤器和激光毁伤器，反制单元中各设备之间的物联网组网，以及反制设备部署信息数据库。</div>
+<div class="description-paragraph" id="p0086" num="0028">实施例2</div>
+<div class="description-paragraph" id="p0087">所述融合算法包括循环神经网络模型、信息提取模块、贝叶斯网络推理模型和置信度权重计算模型。</div>
+<div class="description-paragraph" id="p0088" num="0029">另外，所述基于融合算法，分析判断出所有低空飞行器的威胁等级的方法，具体为：</div>
+<div class="description-paragraph" id="p0089">对飞行数据进行异常值筛选和剔除，获得初始数据；</div>
+<div class="description-paragraph" id="p0090">初始数据经过循环神经网络模型计算后，得到各低空飞行器的第一威胁等级值TL1；</div>
+<div class="description-paragraph" id="p0091">初始数据经过信息提取模块获得关于各低空飞行器的高阶信息；</div>
+<div class="description-paragraph" id="p0092">高阶信息经过贝叶斯网络推理模型计算后，得到各低空飞行器的第二威胁等级值TL2；</div>
+<div class="description-paragraph" id="p0093">第一威胁等级值TL1和第二威胁等级值TL2经过置信度权重计算模型计算后，确定各低空飞行器的威胁等级TL。</div>
+<div class="description-paragraph" id="p0094" num="0030">其中，循环神经网络的分类流程如图3所示。其工作过程分为模型训练调优和模型实际应用两个阶段。模型训练调优阶段完成神经网络模型建立和参数确定，模型实际应用阶段利用训练好的神经网络模型对输入的实时目标数据进行分类判别。本发明设计的神经网络模型如图4所示，分为输入层、隐藏层和输出层。输入层由9阶向量<span class="patent-image-not-available"></span>输入数据所驱动，分别代表飞行器的高度、速度、距离、航向、加速度、噪音分贝数、尺寸长度、尺寸宽度和尺寸高度。隐藏层由<span class="patent-image-not-available"></span>的矩形网络构成，本发明取<span class="patent-image-not-available"></span>，即隐藏层共6层、18阶。输出层由10阶向量<span class="patent-image-not-available"></span>表示，分别代表0-9共10级威胁度。本发明采用有隐状态的循环神经网络，该网络具有“记忆单元”，能够存储之前时间步的信息，并将其用于当前时间步的计算。在该循环神经网络中，在不同时间步上使用相同的参数，在处理序列的每个时间步时，其计算方式是一致的只是输入的数据不同。在每个时间步，隐状态<span class="patent-image-not-available"></span>会根据当前的输入<span class="patent-image-not-available"></span>和上一个时间步的隐状态<span class="patent-image-not-available"></span>来计算，更新公式为<span class="patent-image-not-available"></span>，其中<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>是权重矩阵，<span class="patent-image-not-available"></span>是偏置项，<span class="patent-image-not-available"></span>是激活函数。而循环神经网络的输出层输出的即为第一威胁等级值TL1。</div>
+<div class="description-paragraph" id="p0095" num="0031">信息提取模块旨在对连续的飞行器高度、速度、距离、航向、加速度、噪音分贝数、尺寸长度、尺寸宽度、尺寸高度和图像等初始数据进行处理、预测和特征库匹配，提取出目标类型、目标数量、目标机动性、是否携带武器、携带武器类型、可能攻击点位、抗毁伤能力等目标相关的高阶信息。</div>
+<div class="description-paragraph" id="p0096" num="0032">贝叶斯网络推理模型如图5所示，以目标类型、目标数量、目标机动性、是否携带武器、携带武器类型、抗毁伤能力、欲攻击点位和与攻击点距离8个威胁因子构建贝叶斯网络，该网络的各节点参数主要通过总结专家经验的方式获取。本发明使用团树传播算法进行推理，包含构建团树结构、初始化团树节点的概率势函数、进行消息传递和计算目标变量概率。其中，概率势函数是一个非负函数，它与团内变量的联合概率分布有关，对于一个包含变量<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>的最大团，其概率势函数<span class="patent-image-not-available"></span>可以根据贝叶斯网络中关于<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>的条件概率表来初始化，<span class="patent-image-not-available"></span>。该模型的推理结果即为第二威胁等级值TL2。</div>
+<div class="description-paragraph" id="p0097" num="0033">此外，所述置信度权重计算模型的计算步骤，包括：</div>
+<div class="description-paragraph" id="p0098">采用熵值法计算，分别为第一威胁等级值和第二威胁等级值权重值WA1、WA2；</div>
+<div class="description-paragraph" id="p0099">采用层次分析法计算，分别为第一威胁等级值和第二威胁等级值权重值WB1、WB2；</div>
+<div class="description-paragraph" id="p0100">其中所述的熵值法求权重具体步骤如下：</div>
+<div class="description-paragraph" id="p0101">1）数据预处理</div>
+<div class="description-paragraph" id="p0102">对数据，即第一威胁等级值和第二威胁等级值进行非负化处理，确保所有数据都是非负的。本发明中两种模型输出的威胁度均在0-9范围内，确保处理流程无误情况下可跳过本步骤。</div>
+<div class="description-paragraph" id="p0103" num="0034">2）归一化处理</div>
+<div class="description-paragraph" id="p0104">统计最大和最小指标值（威胁度），并对指标值X，即非负的第一威胁等级值和第二威胁等级值，进行归一化处理。本发明中希望指标值越小越好，使用公式<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0105" num="0035">3）计算熵值</div>
+<div class="description-paragraph" id="p0106">定义熵值公式取<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为玻尔兹曼常数，<span class="patent-image-not-available"></span>为归一化后的指标值（威胁度）。</div>
+<div class="description-paragraph" id="p0107" num="0036">4）计算权重</div>
+<div class="description-paragraph" id="p0108">根据熵值计算各指标的权重。权重计算公式为<span class="patent-image-not-available"></span>，其中<span class="patent-image-not-available"></span>是第<span class="patent-image-not-available"></span>个指标的权重值，j分别取1和2对应本发明中第一威胁等级值和第二威胁等级值权重值WA1和WA2。</div>
+<div class="description-paragraph" id="p0109" num="0037">本发明所述的层次分析法具体步骤如下：</div>
+<div class="description-paragraph" id="p0110">1）构建层次结构</div>
+<div class="description-paragraph" id="p0111">将本发明中的决策问题（目标威胁度）分解成目标层、准则层、方案层三个层次，目标层位于最高层，准则层位于中间层，方案层位于最底层。以T“两种威胁度选择权重，即第一威胁度值和第二威胁度值分别的权重值”为目标层；以R1“同时检测到目标的探测器数量”、R2“是否获取清晰的目标图像”、R3“雷达是否连续探测到目标点迹”、R4“是否存在多个距离很近的目标”和R5“目标速度是否超过阈值”为准则层；以P1（2/8）、P2（3/7）、…、P7（8/2）为方案层，括号中（a/b）表示两种威胁度分配的权重，如P1（2/8）表示两种威胁度分配的权重为0.2和0.8。</div>
+<div class="description-paragraph" id="p0112" num="0038">2）构造判断矩阵</div>
+<div class="description-paragraph" id="p0113">构造判断矩阵就是通过各要素两两之间相互比较，并确定各准则层对目标层的权重。</div>
+<div class="description-paragraph" id="p0114" num="0039">对于准则层，我们可以构建一个判断矩阵A：</div>
+<div class="description-paragraph" id="p0115">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0116" num="0040">其中，m为准则层阶数，n为方案层阶数，<span class="patent-image-not-available"></span>为准测层中的准测元素，A中的元素满足以下条件：</div>
+<div class="description-paragraph" id="p0117">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0118" num="0041">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0119" num="0042">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0120" num="0043">如表1所示，实施本发明构造的判断矩阵示例。</div>
+<div class="description-paragraph" id="p0121" num="0044">3）计算权重向量</div>
+<div class="description-paragraph" id="p0122">本发明采用和法计算权重，即先将判断矩阵的每列进行标准化，再将标准化后的各元素按行求和，最后将求和结果标准化，得到权重向量<span class="patent-image-not-available"></span>，m为准则层阶数。如图6所示，为对表1实施此过程的一个示例；</div>
+<div class="description-paragraph" id="p0123">表1AHP层次分析法判断矩阵示例</div>
+<div class="description-paragraph" id="p0124">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0125" num="0045">4）层次总排序</div>
+<div class="description-paragraph" id="p0126">层次总排序就是计算某一层次所有因素对于目标层相对重要性的权值，分别计算各方案在不同准则下的“得分”，对每个准则构建一个得分矩阵。</div>
+<div class="description-paragraph" id="p0127" num="0046">如表2所示，为实施此过程的一个示例；</div>
+<div class="description-paragraph" id="p0128">表2AHP层次分析求权重层次总排序得分矩阵示例</div>
+<div class="description-paragraph" id="p0129">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0130" num="0047">并根据各得分矩阵，分别计算各方案P1、P2、…、P7对各准则R1、R2、…、R5的权重<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0131" num="0048">5）合成权重</div>
+<div class="description-paragraph" id="p0132">得到各方案P1、P2、…、P7的方案权重值<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为上述步骤4)中各准则权重，<span class="patent-image-not-available"></span>为上述步骤3)中得到的权重向量。根据这些方案权重值，再计算第一威胁度值和第二威胁度值的权重值。</div>
+<div class="description-paragraph" id="p0133" num="0049">假设计算P1、P2、…、P7的方案权重值分别为0.1、0.2、0.1、0.1、0.1、0.2、0.2，则第一威胁度值和第二威胁度值的权重值WB1和WB2计算为：</div>
+<div class="description-paragraph" id="p0134">WB1=0.2×0.1+0.3×0.2+0.4×0.1+0.5×0.1+0.6×0.1+0.7×0.2+0.8×0.2=0.53</div>
+<div class="description-paragraph" id="p0135">WB2=0.8×0.1+0.7×0.2+0.6×0.1+0.5×0.1+0.4×0.1+0.3×0.2+0.2×0.2=0.47。</div>
+<div class="description-paragraph" id="p0136" num="0050">采用下式计算第一威胁等级值和第二威胁等级值的置信度权重值W1和W2；</div>
+<div class="description-paragraph" id="p0137"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0138"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0139">根据TL1、TL2、W1和W2，计算威胁度等级值TL，则威胁度等级<span class="patent-image-not-available"></span>的计算公式为：</div>
+<div class="description-paragraph" id="p0140"> <span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0141" num="0051">最终求得的TL即为0-9的威胁度等级。</div>
+<div class="description-paragraph" id="p0142" num="0052">实施例3</div>
+<div class="description-paragraph" id="p0143">所述智能优化调度算法采用多要素均衡的蚁群算法。</div>
+<div class="description-paragraph" id="p0144" num="0053">此外，所述多要素均衡的蚁群算法在蚁群算法基础上，加入了决定算法全局收敛性的交叉算子和避免算法局部收敛、保证解集多样性的变异算子。</div>
+<div class="description-paragraph" id="p0145" num="0054">其中调度单元的硬件为一套机架式高性能服务器，硬件配置要求与鉴别单元相同。反制设备智能调度单元输入输出如图7所示。调度单元以指挥决策平台下发的威胁目标处置指令（含待处置目标信息）和反制设备部署信息数据库中存储的系统部署反制设备信息为输入，运行多要素均衡的蚁群算法模块，得出最优化的威胁目标处置方案反制设备智能调度单元从该威胁目标处置方案中提取出对各执行威胁目标处置任务的反制设备的调度指令并立即下发，各反制设备接收到调度指令后执行处置任务，消除恶意飞行器对防控点位的威胁。</div>
+<div class="description-paragraph" id="p0146" num="0055">本发明所述的多要素均衡的蚁群算法模块流程如图8所示。在传统蚁群算法基础上，加入了决定算法全局收敛性的交叉算子和避免算法局部收敛、保证解集多样性的变异算子，保证算法强稳健性和执行效率。以处置成功率<span class="patent-image-not-available"></span>、处置成本<span class="patent-image-not-available"></span>和处置时间<span class="patent-image-not-available"></span>组合而成的目标函数<span class="patent-image-not-available"></span>为优化目标，本发明设计的目标函数表述为<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>为权重因子，本发明中取值分别为0.6、0.3和0.1，即设置处置成功率为首要优化目标、其次为处置成本、最次为处置时间。本发明运用改进的蚁群优化算法来求解目标函数值最小时各处置设备的调度情况，即以上述目标函数作为改进蚁群算法的适应性函数，以蚂蚁行走的路径表示低空飞行器反制分系统中各处置设备的调度策略，整个蚂蚁群体的所有路径就构成了低空飞行器反制分系统对威胁目标的处置方案。</div>
+<div class="description-paragraph" id="p0147" num="0056">本发明所述基于蚁群算法的反制设备智能调度方法，以有向图表示反制设备智能调度方案的解空间，最后输出的反制设备调度方案为该有向图中的一组路径集合。有向图中的节点由“任务-设备对”表示，即表示使用某个反制设备完成某威胁目标处置任务。有向图中的路径代表了蚂蚁（在算法中是一种搜索代理）在节点之间的移动顺序，也就是任务分配的顺序。例如，一只蚂蚁从“威胁目标1处置任务-反制设备1”节点出发，到达“威胁目标2处置任务-反制设备3”节点，这条路径就表示了一种任务分配方式，即反制设备1执行威胁目标1处置任务、反制设备3执行威胁目标2处置任务。路径集合体现了一系列连续的调度决策。在每一步，蚂蚁根据信息素浓度和启发式信息决定走向下一个任务-设备对。在所述的有多任务和多设备的威胁目标处置场景中，蚂蚁在搜索过程中走过的路径可能包括多个任务在不同设备上的分配决策，这条路径的质量会通过上述目标函数（最大化处置成功率、最小化处置成本和最小化处置时间）来评估。</div>
+<div class="description-paragraph" id="p0148" num="0057">本发明所述的交叉算子，用于增强算法的搜索能力，通过组合不同个体（蚂蚁的路径）中的优良基因（好的任务-设备分配片段），产生新的更有潜力的解。它有助于跳出局部最优解，加快算法的收敛速度，使算法能够在更广泛的解空间中寻找最优或近似最优的设备调度方案。本发明采用顺序编码方式来表示蚂蚁的路径。假设有n个任务和m个设备，用一个长度为n的向量来表示蚂蚁的路径，向量中的每个元素i表示第i个任务分配到的设备编号。假设n=5,m=3，编码为[2,1,3,2,1]表示任务1分配到设备2，任务2分配到设备1，任务3分配到设备3，任务4分配到设备2，任务5分配到设备1。本发明所述的蚁群算法，根据蚂蚁所找到的解的质量来决定从蚁群中选取哪些蚂蚁（个体）进行交叉操作。优先选择质量较好的个体进行交叉，这样更有可能产生优质的后代。本发明所述交叉算子选择多个交叉点，将父代个体分割成多个部分，然后按照一定的规则交换这些部分来生成子代。例如，选择两个交叉点k1=2和k2=4，对于父代个体和，先分割为和，然后交换中间部分得到子代和。这种方法可以更灵活地组合父代个体中的优良部分，在设备调度中能产生更多样化的任务-设备分配组合，增加找到更优调度方案的概率。</div>
+<div class="description-paragraph" id="p0149" num="0058">本发明所述的变异算子，为了引入新的基因（调度方案中的新元素），避免算法过早收敛到局部最优解，增加种群（蚁群）的多样性。通过对个体（蚂蚁所代表的调度方案）进行小概率的变异操作，能够在解空间中探索一些未被充分发现的区域，从而有可能找到更优的设备调度策略。变异概率是一个关键参数，它决定了变异操作发生的频率。如果变异概率过高，算法会变得类似于随机搜索，失去蚁群算法基于信息素和启发式信息搜索的优势；如果变异概率过低，则很难有效地引入新的解，无法充分发挥变异算子的作用。本发明的变异概率取值范围在0.01- 0.1之间。在本发明的变异操作中，随机选择一个任务，将其从当前分配的设备重新分配到另一台设备。在当前设备调度方案中，有威胁目标T1当前分配给反制设备M1进行处置，通过变异操作，将威胁目标T1重新分配到反制设备M2。假设威胁目标T1在反制设备M1的处置时间为t1，在反制设备M2的处置时间为t2，这种变异可能会改变整个调度方案的总处置时间。</div>
+<div class="description-paragraph" id="p0150" num="0059">本法所述的适应性函数，用于衡量每个蚂蚁（在搜索过程中的优劣程度的函数。适应度函数是基于目标函数构建的，目标函数的值直接或间接地决定了适应度函数的值。本发明以最小化目标函数为优化目标，直接使用目标函数作为适应度函数。这种方式简单直观，能够直接反映出调度方案与最优解的接近程度。</div>
+<div class="description-paragraph" id="p0151" num="0060">在本发明所述的改进的蚁群算法中，蚂蚁在搜索过的路径上释放信息素，但以前留下的信息素也会随着时间的推移逐渐挥发。定义<span class="patent-image-not-available"></span>为信息素的挥发因子，当蚂蚁遍历完所有节点后对图中的信息素进行更新，其更新公式为：</div>
+<div class="description-paragraph" id="p0152">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0153" num="0061">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0154" num="0062">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0155" num="0063">式中，<span class="patent-image-not-available"></span>表示某蚂蚁k在某路径（i,j）上释放信息素的浓度，<span class="patent-image-not-available"></span>表示整个蚁群在某路径上释放信息素的总浓度，Q为信息素总量，<span class="patent-image-not-available"></span>为某蚂蚁k在本轮循环中所走过的路径长度的总和。</div>
+<div class="description-paragraph" id="p0156" num="0064">在本发明所述的改进的蚁群算法中，某蚂蚁k在搜索过程中，在某时刻t由节点i走向节点j的概率计算公式为：</div>
+<div class="description-paragraph" id="p0157">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0158" num="0065">其中，<span class="patent-image-not-available"></span>表示某时刻t路径(i,j)上的信息素总量，<span class="patent-image-not-available"></span>表示蚂蚁从节点i走到节点j的期望程度，<span class="patent-image-not-available"></span>与节点i与节点j之间的距离<span class="patent-image-not-available"></span>成反比，<span class="patent-image-not-available"></span>为某时刻t蚂蚁k可以到达的全部节点的集合。</div>
+<div class="description-paragraph" id="p0159" num="0066">在本发明所述的改进的蚁群算法中，使用状态转移规则对路径进行搜索，使其更倾向于选择那些较短并且信息素浓度高的路径前进。假设某蚂蚁k此时位于节点i，状态转移规则定义了下一个访问节点j的选择策略，本发明中状态转移规则定义为：</div>
+<div class="description-paragraph" id="p0160">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0161" num="0067">式中，<span class="patent-image-not-available"></span>为程序产生的(0,1)区间内的随机数，<span class="patent-image-not-available"></span>为配置的算法参数，其它变量定义与前文相同。当<span class="patent-image-not-available"></span>时，蚂蚁将如上式所示按最短路径和最高信息素浓度为依据选择下一个将要访问的节点来开发新区域进行搜索；反之，当<span class="patent-image-not-available"></span>时，将按概率计算公式搜索最优解。算法通过调整参数<span class="patent-image-not-available"></span>来配置使用两种状态转移规则的概率，决定算法下一步是继续在目前最优路径附近搜索还是跳转到新区域搜索。</div>
+<div class="description-paragraph" id="p0162" num="0068">以上仅为本发明的优选实施例而已，并不用于限制本发明，对于本领域的技术人员来说，本发明可以有各种更改和变化。凡在本发明的精神和原则之内，所作的任何修改、等同替换、改进等，均应包含在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

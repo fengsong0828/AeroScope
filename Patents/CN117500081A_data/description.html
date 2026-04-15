@@ -1,0 +1,186 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN117500081A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES449734573">
+<invention-title id="title1" lang="ZH">面向异质飞行器混合运行的低空智联网无线资源调度方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于低空智联网技术领域，具体涉及一种面向异质飞行器混合运行的低空智联网无线资源调度方法，以保证网络整体内的资源利用率与各子网络的负载均衡。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">目前我国低空空域尚未形成统一的航空通信网络，通用航空和无人机产业的快速发展亟需构建高效的低空通信、监测和信息服务体系，即低空智联网。同时，低空智联网的建设依托通信卫星网络、移动公共网络及航空专用网络等多种异构网络，各类网络差异较大，很容易出现网络资源分配不公平和各类网络负载差异显著等问题，造成网络资源利用率降低，网络整体性能下降。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0005">发明内容</div>
+<div class="description-paragraph" id="p0006" num="0003">因此本发明提出低空智联网网络架构和网络中无线资源调度方法，实现复杂异构网络场景下的高效资源分配。</div>
+<div class="description-paragraph" id="p0007" num="0004">面向异质飞行器混合运行的低空智联网无线资源调度方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0008" num="0005">首先，构建基于SDN的低空智联网网络架构</div>
+<div class="description-paragraph" id="p0009" num="0006">SDN的低空智联网网络体系架构，包括业务层、控制层和资源层三层组成，控住层将卫星网络、航空专网和移动公网接入地面核心网，同时将业务管理功能下放到网络边缘，将异构网络的带宽资源抽象成统一的虚拟资源池，并细化网络节点的虚拟网络功能，从而实现低空智联网的高效管理；</div>
+<div class="description-paragraph" id="p0010" num="0007">其中，业务层为通用航空器及地面管控系统提供飞行控制、导航定位、感知与避撞和空中交通管理等应用服务。</div>
+<div class="description-paragraph" id="p0011" num="0008">资源层将低空智联网中通信卫星网络、航空专用网络、移动公共网络异构网络的资源抽象成虚拟资源池，方便统一管理与调度。</div>
+<div class="description-paragraph" id="p0012" num="0009">控制层由接入控制、资源管理和管理中心三部分组成。接入控制的功能是辅助用户业务决策选择合适的网络并控制接入，包括业务分类、选择决策和网络接入模块。资源管理负责对网络的无线资源进行管理与分配，主要包括资源监测、调度决策和资源调度模块。管理中心由应用管理、数据管理、故障管理和移动性管理组成。应用管理负责周期性收集、统计和分析应用数据；故障管理对网络故障进行统计分析，并生成故障处理策略，下发给故障管理节点；数据管理充当将各子网络的业务数据接入至地面核心网的网关，并负责所有业务数据的聚合、分析、处理、分发和存储；移动性管理的功能是负责用户和接入节点间的相对关系的鉴权、管理和维护，负责记录、更新和存储用户和接入节点位置信息。</div>
+<div class="description-paragraph" id="p0013" num="0010">本发明采用基于负载均衡的无线资源调度方法，具体包括：</div>
+<div class="description-paragraph" id="p0014" num="0011">(1)低空智联网无线资源系统模型</div>
+<div class="description-paragraph" id="p0015" num="0012">将低空智联网中异构的各类网络的无线资源进行分析和建模，将各网络基站或波束的信道抽象无线资源成可统一量化。本将异构网络的带宽资源抽象成最大资源、已用资源和请求资源三种资源块，并将其转化为资源坐标图，计算各个维度的资源容量。然后在此基础上采用资源调度策略来分配网络中的无线资源。</div>
+<div class="description-paragraph" id="p0016" num="0013">假低空智联网某一运行场景由m类无线网络组成，将该场景下的无线资源定义为资源模型R，表示为：</div>
+<div class="description-paragraph" id="p0017" num="0014">R＝{r<sup>1</sup>,r<sup>2</sup>,…r<sup>m</sup>},r<sup>i</sup>∈R</div>
+<div class="description-paragraph" id="p0018" num="0015">r表示异构网络资源模型中的一个子网络资源模型。r定义为一个网络包含了n种资源，每个子网络资源模型包含的资源表示为：</div>
+<div class="description-paragraph" id="p0019" num="0016">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0020" num="0017"> <span class="patent-image-not-available"></span>表示网络模型r<sup>i</sup>中n类资源块的个数,每个维度的资源可以通过映射函数转换为一个常数,b<sup>i</sup>表示网络模型r<sup>i</sup>一个资源块的带宽。针对业务资源请求和网络资源的时变特性，建立的多维网络资源模型，每个维度包括三个模块：</div>
+<div class="description-paragraph" id="p0021" num="0018">已用资源模块：</div>
+<div class="description-paragraph" id="p0022" num="0019">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0023" num="0020">表示网络资源模型中已经分配给业务的资源。</div>
+<div class="description-paragraph" id="p0024" num="0021">最大资源模块：</div>
+<div class="description-paragraph" id="p0025" num="0022">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0026" num="0023">表示各类网络最大可分配的资源容量，在网络模型中，最大资源模块数减去已用资源模块数可得剩余资源模块数。</div>
+<div class="description-paragraph" id="p0027" num="0024">资源请求模块：</div>
+<div class="description-paragraph" id="p0028" num="0025">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0029" num="0026">表示实时业务向各自维度网络的请求的资源块数量。</div>
+<div class="description-paragraph" id="p0030" num="0027">构架网络资源坐标图；</div>
+<div class="description-paragraph" id="p0031" num="0028">(2)无线资源调度策略</div>
+<div class="description-paragraph" id="p0032" num="0029">以建立的无线资源系统模型为基础，负载均衡资源调度策略的分配比例主要取决于网络资源的负载状况。基于负载均衡的无线资源调度问题建模为负载因子的优化问题，抽象为多约束非线性整数规划问题。定义<span class="patent-image-not-available"></span>为时刻t网络i已经分配的资源块数量，<span class="patent-image-not-available"></span>为网络i的可分配资源块的最大数量，不变的，两个量都是整数。/&gt;<span class="patent-image-not-available"></span>和/&gt;<span class="patent-image-not-available"></span>为网络i的基站或天线的最大功率及瞬时功率。α为资源负载在整体负载中所占比重，根据研究的侧重程度做出调整。负载因子目标优化问题写为：</div>
+<div class="description-paragraph" id="p0033" num="0030">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0034" num="0031">I＝{1,…,m}</div>
+<div class="description-paragraph" id="p0035" num="0032">根据网络的实际情况，优化的低空智联网系统的网络侧分流策略实现的问题，主要包含下面几个的约束条件：</div>
+<div class="description-paragraph" id="p0036" num="0033">约束条件1如下所示，其表示t时刻r<sup>i</sup>的值一定不大于网络i可提供资源块数量的最大值<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0037" num="0034">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0038" num="0035">约束条件2如下所示，表示异构网络中子网络集合I中的所有的网络资源联合之后为航空器提供的带宽资源需要不少于所有航空器业务所需求的带宽。其中，b<sup>i</sup>为网络i中一个资源块能够提供的带宽资源，B<sub>need</sub>为所有航空器业务请求的总带宽，用所有网络的资源块请求数量与带宽的乘积表示：</div>
+<div class="description-paragraph" id="p0039" num="0036">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0040" num="0037">同时在计算航空器实际获得的带宽时要将快衰落和阴影效应考虑在内，保证航空器业务QoS。其中，n<sub>i</sub>为网络i的带宽利用效率，ε<sub>i</sub>表示网络i的传输中各种损耗计算完成后带宽资源的损耗因子。</div>
+<div class="description-paragraph" id="p0041" num="0038">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0042" num="0039">约束条件3如下所示，为了保证低空智联网中网络带宽资源能够得到充分利用，设定当航空器获得的带宽资源达到需求的B<sub>need</sub>后，业务QoS就可以得到保障，不占用多余的带宽，把区域内剩余的网络资源分配给其他区域场景的航空器业务，以防其他区域航空器请求接入时出现带宽资源不足的现象，并提高网络的资源利用率。</div>
+<div class="description-paragraph" id="p0043" num="0040">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0044" num="0041">本发明提供的面向异质飞行器混合运行的低空智联网无线资源调度方法，针对低空领域通用航空器可用网络的异构性及通用航空业务的复杂性，构建了地面核心网融合通信卫星网络、移动公共网络及航空专用网络的网络场景，提出了由业务层、控制层和资源层三层组成的低空智联网网络架构；针对异构网络的资源调度问题，建立了低空智联网无线资源系统模型，将异构网络的无线资源抽象成资源块。建立负载均衡因子并将其作为资源调度的优化目标，将目标优化问题总结为多约束非线性整数规划问题，实现网络整体负载均衡的效果。</div>
+<div class="description-paragraph" id="p0045" num="0042">通过实验验证，基于负载均衡的无线资源调度方法能够保障异构网络各子网络的整体性能和负载均衡，仿真场景验证了基于负载均衡的资源调度策略的合理性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0046">附图说明</div>
+<div class="description-paragraph" id="p0047" num="0043">图1为本发明的低空智联网网络场景图；</div>
+<div class="description-paragraph" id="p0048" num="0044">图2为本发明的低空智联网体系架构；</div>
+<div class="description-paragraph" id="p0049" num="0045">图3为本发明的网络资源坐标图；</div>
+<div class="description-paragraph" id="p0050" num="0046">图4为本发明的网络资源调度流程；</div>
+<div class="description-paragraph" id="p0051" num="0047">图5为本发明的资源分配情况；</div>
+<div class="description-paragraph" id="p0052" num="0048">图6为本发明的负载因子曲线。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0053">具体实施方式</div>
+<div class="description-paragraph" id="p0054" num="0049">结合附图说明本发明的具体技术方案。</div>
+<div class="description-paragraph" id="p0055" num="0050">本发明提供的面向异质飞行器混合运行的低空智联网无线资源调度方法，包括：</div>
+<div class="description-paragraph" id="p0056" num="0051">首先构建基于SDN的低空智联网网络架构；</div>
+<div class="description-paragraph" id="p0057" num="0052">低空智联网是基于低空空域通用航空器的业务需求，融合通信卫星网络、移动公共网络及航空专用网络三大类网络而成的低空空域航空通信网络，是一种面向复杂多场景的异构网络，低空智联网网络场景如图1所示。</div>
+<div class="description-paragraph" id="p0058" num="0053">低空智联网的用户包括通航飞机、大型固定翼无人机和旋翼无人机等多种通用航空器，以及地面控制站、塔台等地面管控系统。在低空智联网中，各类网络通过异构网关接入地面核心网络，通过网络管理中心实现对网络的高效、灵活管控，从而构成广覆盖、高性能的一体化网络。</div>
+<div class="description-paragraph" id="p0059" num="0054">本发明提出一种基于SDN的低空智联网网络体系架构。该体系架构由业务层、控制层和资源层三层组成，控住层将卫星网络、航空专网和移动公网接入地面核心网，同时将业务管理功能下放到网络边缘，将异构网络的带宽资源抽象成统一的虚拟资源池，并细化网络节点的虚拟网络功能，从而实现低空智联网的高效管理。低空智联网体系架构如图2所示，其从上而下依次为业务层、控制层、资源层。</div>
+<div class="description-paragraph" id="p0060" num="0055">业务层为通用航空器及地面管控系统提供飞行控制、导航定位、感知与避撞和空中交通管理等应用服务。资源层将低空智联网中通信卫星网络、航空专用网络、移动公共网络等异构网络的资源抽象成虚拟资源池，方便统一管理与调度。控制层由接入控制、资源管理和管理中心三部分组成。接入控制的功能是辅助用户业务决策选择合适的网络并控制接入，主要包括业务分类、选择决策和网络接入模块。资源管理负责对网络的无线资源进行管理与分配，主要包括资源监测、调度决策和资源调度模块。管理中心由应用管理、数据管理、故障管理和移动性管理组成。应用管理负责周期性收集、统计和分析应用数据；故障管理对网络故障进行统计分析，并生成故障处理策略，下发给故障管理节点；数据管理充当将各子网络的业务数据接入至地面核心网的网关，并负责所有业务数据的聚合、分析、处理、分发和存储；移动性管理的功能是负责用户和接入节点间的相对关系的鉴权、管理和维护，负责记录、更新和存储用户和接入节点位置信息。</div>
+<div class="description-paragraph" id="p0061" num="0056">本发明采用的基于负载均衡的无线资源调度方法，包括：</div>
+<div class="description-paragraph" id="p0062" num="0057">(1)低空智联网无线资源系统模型</div>
+<div class="description-paragraph" id="p0063" num="0058">为消除低空智联网中各子类网络的异构性对资源调度造成的影响，本发明将低空智联网中异构的各类网络的无线资源进行分析和建模，将各网络基站或波束的信道抽象无线资源成可以统一量化。本发明将异构网络的带宽资源抽象成最大资源、已用资源和请求资源三种资源块，并将其转化为资源坐标图，计算各个维度的资源容量。然后在此基础上最后，采用资源调度策略来分配网络中的无线资源。</div>
+<div class="description-paragraph" id="p0064" num="0059">假设低空智联网某一运行场景由m类无线网络组成，将该场景下的无线资源定义为资源模型R，可表示为：</div>
+<div class="description-paragraph" id="p0065" num="0060">R＝{r<sup>1</sup>,r<sup>2</sup>,…r<sup>m</sup>},r<sup>i</sup>∈R</div>
+<div class="description-paragraph" id="p0066" num="0061">r表示异构网络资源模型中的一个子网络资源模型。r定义为一个网络包含了n种资源，每个子网络资源模型包含的资源表示为：</div>
+<div class="description-paragraph" id="p0067" num="0062">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0068" num="0063"> <span class="patent-image-not-available"></span>表示网络模型r<sup>i</sup>中k类资源块的个数,每个维度的资源可以通过映射函数转换为一个常数,b<sup>i</sup>表示网络模型r<sup>i</sup>一个资源块的带宽。针对业务资源请求和网络资源的时变特性，本发明建立的多维网络资源模型，每个维度包括三个模块：</div>
+<div class="description-paragraph" id="p0069" num="0064">已用资源模块：</div>
+<div class="description-paragraph" id="p0070" num="0065">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0071" num="0066">表示网络资源模型中已经分配给业务的资源。</div>
+<div class="description-paragraph" id="p0072" num="0067">最大资源模块：</div>
+<div class="description-paragraph" id="p0073" num="0068">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0074" num="0069">表示各类网络最大可分配的资源容量，在网络模型中，最大资源模块数减去已用资源模块数可得剩余资源模块数。</div>
+<div class="description-paragraph" id="p0075" num="0070">资源请求模块：</div>
+<div class="description-paragraph" id="p0076" num="0071">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0077" num="0072">表示实时业务向各自维度网络的请求的资源块数量。</div>
+<div class="description-paragraph" id="p0078" num="0073">为更直观的展现资源调度过程中的资源变化过程，构架了网络资源坐标图,如图3所示。</div>
+<div class="description-paragraph" id="p0079" num="0074">(2)无线资源调度策略</div>
+<div class="description-paragraph" id="p0080" num="0075">本发明以建立的无线资源系统模型为基础，负载均衡资源调度策略的分配比例主要取决于网络资源的负载状况。基于负载均衡的无线资源调度问题建模为负载因子的优化问题，抽象为多约束非线性整数规划问题。定义<span class="patent-image-not-available"></span>为时刻t网络i已经分配的资源块数量，/&gt;<span class="patent-image-not-available"></span>为网络i的可分配资源块的最大数量，可认为是时不变的，两个量都是整数。<span class="patent-image-not-available"></span>和/&gt;<span class="patent-image-not-available"></span>为网络i的基站或天线的最大功率及瞬时功率。α为资源负载在整体负载中所占比重，可根据研究的侧重程度做出相应调整。因此负载因子目标优化问题为可写为：</div>
+<div class="description-paragraph" id="p0081" num="0076">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0082" num="0077">I＝{1,…,m}</div>
+<div class="description-paragraph" id="p0083" num="0078">根据网络的实际情况，需要优化的低空智联网系统的网络侧分流策略实现的问题，主要包含下面几个的约束条件：</div>
+<div class="description-paragraph" id="p0084" num="0079">约束条件1如下所示，其表示t时刻r<sup>i</sup>的值一定不大于网络i可提供资源块数量的最大值<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0085" num="0080">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0086" num="0081">约束条件2如下所示，表示异构网络中子网络集合I中的所有的网络资源联合之后为航空器提供的带宽资源需要不少于所有航空器业务所需求的带宽。其中，b<sup>i</sup>为网络i中一个资源块能够提供的带宽资源，B<sub>need</sub>为所有航空器业务请求的总带宽，可用所有网络的资源块请求数量与带宽的乘积表示：</div>
+<div class="description-paragraph" id="p0087" num="0082">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0088" num="0083">同时在计算航空器实际获得的带宽时要将快衰落和阴影效应考虑在内，以尽可能地保证航空器业务QoS。其中，n<sub>i</sub>为网络i的带宽利用效率，ε<sub>i</sub>表示网络i的传输中各种损耗计算完成后带宽资源的损耗因子。</div>
+<div class="description-paragraph" id="p0089" num="0084">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0090" num="0085">约束条件3如下所示，为了保证低空智联网中网络带宽资源能够得到充分利用，本发明设定当航空器获得的带宽资源达到需求的B<sub>need</sub>后，业务QoS就可以得到保障，尽量不占用多余的带宽，把区域内剩余的网络资源分配给其他区域场景的航空器业务，以防其他区域航空器请求接入时出现带宽资源不足的现象，并提高网络的资源利用率。</div>
+<div class="description-paragraph" id="p0091" num="0086">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0092" num="0087">(3)网络资源调度流程</div>
+<div class="description-paragraph" id="p0093" num="0088">使用遗传算法来处理这个资源调度最优化问题。如上文所述，目标函数是凸函数，且约束条件皆是线性的。大量实践结果证明遗传算法解出的下界能够将误差控制在一个很小的范围内，并且计算的时间并不是很大。当计算量较大时，能够通过控制迭代次数来降低计算量，得到的结果仍可保证精度不会大幅下降。</div>
+<div class="description-paragraph" id="p0094" num="0089">下面将具体地介绍利用遗传算法求解本章优化问题的步骤。</div>
+<div class="description-paragraph" id="p0095" num="0090">a)初始化</div>
+<div class="description-paragraph" id="p0096" num="0091">种群是多条染色体的组合，为保证足够大的搜索区域，初始种群提供需要的可能解决方案需要具备多样性，以确保最终能够找到最优的解决方案。本文根据每个变量的约束范围随机生成个体组成初始种群，其大小为s。每个染色体包含i个部分，i为资源调度场景网络的数量，每个网络对应一个变量<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0097" num="0092">b)适应度函数设计</div>
+<div class="description-paragraph" id="p0098" num="0093">初始种群生成后，在每次迭代中利用适应度函数来评价个体的适应度。适应度函数也称为评估函数，用于辨别群体中个体优差的标准。本文以上述问题的目标函数为适应度函数，为了筛选出满足约束条件的个体，本文还采用了罚函数的思想，引入罚函数penalty(n,g)来衡量约束，对不可行解进行惩处，以提供一个指向可行域的搜索方向。本文的适应度函数如下所示：</div>
+<div class="description-paragraph" id="p0099" num="0094">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0100" num="0095">其中，F<sub>target</sub>为优化问题目标函数，ρ为惩罚因子。</div>
+<div class="description-paragraph" id="p0101" num="0096">c)选择</div>
+<div class="description-paragraph" id="p0102" num="0097">每次迭代时都会选择一部分染色体并淘汰另一部分染色体，为了保存优良的个体以产生更优的后代，本文定义选中第n个个体的概率为P<sub>n</sub>,其定义如下所示：</div>
+<div class="description-paragraph" id="p0103" num="0098">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0104" num="0099">式中F<sub>n</sub>为第n个个体的适应度值的倒数，从而保证适应度值小的个体有更高的概率被选中。</div>
+<div class="description-paragraph" id="p0105" num="0100">d)交叉</div>
+<div class="description-paragraph" id="p0106" num="0101">遗传算法中的交叉操作，是将两个配对的染色体按某种特定的方式互相交换部分基因，以构成新的染色体，这个过程遵循伯努利分布，可以表示为下：</div>
+<div class="description-paragraph" id="p0107" num="0102">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0108" num="0103">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0109" num="0104">e)变异</div>
+<div class="description-paragraph" id="p0110" num="0105">遗传算法的变异操作是指染色体编码串中的某些基因值用其余等位基因来替换。本文采用一种随机扰动非均匀变异，将扰动过后的基因值作为变异后的基因值。</div>
+<div class="description-paragraph" id="p0111" num="0106">f)迭代</div>
+<div class="description-paragraph" id="p0112" num="0107">如果群体中所有个体的适应度值都大于上一次迭代中的最小值，则将群体中适应度值最小的个体替换为上一次迭代适应度值最小的个体，以使得算法收敛。重复迭代，直到达到最大迭代次数，最后选择适合度值最小的个体作为上述优化问题的解。如图4所示。</div>
+<div class="description-paragraph" id="p0113" num="0108">(4)实验验证</div>
+<div class="description-paragraph" id="p0114" num="0109">仿真场景由i类网络构成，仿真过程中会随机出现新的航空器，根据业务需求向网络申请资源块，航空器在场景内随机移动，仿真过程中如果航空器离开场景范围视为离开，离开后归还占用的资源块。</div>
+<div class="description-paragraph" id="p0115" num="0110">仿真过程中航空器基于上文所述网络选择网络申请接入，网络侧基于优化求解的结果提出资源调度策略进行网络资源的分配。</div>
+<div class="description-paragraph" id="p0116" num="0111">假设异构网络由四类网络构成，在t时刻的无线资源系统模型参数如下表1所示：</div>
+<div class="description-paragraph" id="p0117" num="0112">表1场景参数设置表</div>
+<div class="description-paragraph" id="p0118" num="0113">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0119" num="0114">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0120" num="0115">利用算法对该场景时刻t进行资源调度，并验证随资源请求数请求总带宽B<sub>need</sub>增加的变化趋势：实验过程中资源分配情况如图5所示，四类网络所分配的资源块均随资源请求数请求总带宽B<sub>need</sub>递增，且斜率较为平稳。当B<sub>need</sub>到6082时实验终止，6082刚好是该场景下<span class="patent-image-not-available"></span>的值，即为所有网络的所能提供的总带宽，当B<sub>need</sub>继续增加时，网络无法满足需求，不存在满足约束条件的解，故算法终止。</div>
+<div class="description-paragraph" id="p0121" num="0116">负载因子曲线如图6所示，请求总带宽B<sub>need</sub>从0到异构网络总带宽B<sub>max</sub>递增的过程中，本章提出的基于负载均衡的资源调度策略，将负载因子始终控制在1X10<sup>-3</sup>以下，保障了异构网络各子网络的整体性能和负载均衡。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

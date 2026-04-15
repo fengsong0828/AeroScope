@@ -1,0 +1,53 @@
+{
+    "patent_id": "CN119705907A",
+    "title": "CN119705907A - 一种低空飞行器分布式电池组电量动态优化管理方法和系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "China South Power Grid International Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119705907A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN106100038A (zh) *",
+            "Priority Date": "2016-07-12",
+            "Publication Date": "2016-11-09",
+            "Assignee": "江苏工程职业技术学院",
+            "Title": "一种农用喷药无人机锂电池组均衡控制方法及装置",
+            "Link": "https://patents.google.com/patent/CN106100038A/zh"
+        },
+        {
+            "Publication Number": "CN108123518A (zh) *",
+            "Priority Date": "2017-12-26",
+            "Publication Date": "2018-06-05",
+            "Assignee": "广州亿航智能技术有限公司",
+            "Title": "一种无人机用智能电池及电源管理方法",
+            "Link": "https://patents.google.com/patent/CN108123518A/zh"
+        },
+        {
+            "Publication Number": "KR20220049058A (ko) *",
+            "Priority Date": "2020-10-13",
+            "Publication Date": "2022-04-21",
+            "Assignee": "현대오토에버 주식회사",
+            "Title": "비행체용 전력 분배 시스템 및 방법",
+            "Link": "https://patents.google.com/patent/KR20220049058A/ko"
+        },
+        {
+            "Publication Number": "CN114498817A (zh) *",
+            "Priority Date": "2021-12-28",
+            "Publication Date": "2022-05-13",
+            "Assignee": "北京理工大学",
+            "Title": "一种用于长续航无人机的电池组均衡控制方法",
+            "Link": "https://patents.google.com/patent/CN114498817A/zh"
+        },
+        {
+            "Publication Number": "CN116890670A (zh) *",
+            "Priority Date": "2022-06-29",
+            "Publication Date": "2023-10-17",
+            "Assignee": "山东智航智能装备有限公司",
+            "Title": "一种基于飞行模态的无人机多模式充电管理系统及方法",
+            "Link": "https://patents.google.com/patent/CN116890670A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:10:57"
+}

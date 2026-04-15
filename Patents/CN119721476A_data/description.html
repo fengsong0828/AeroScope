@@ -1,0 +1,70 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119721476A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES491188758">
+<invention-title id="title1" lang="ZH">一种适用于低空经济的飞行器工作管理平台及方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空经济管理领域，尤其涉及一种适用于低空经济的飞行器工作管理平台及方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">由于低空经济应用场景涵盖范围非常广泛，如载人空中交通、物流运输、应急救援、农林植保、旅游观光及个人航拍等，未来必然会出现大量低空飞行器同时工作的场景，如果不提前进行飞行器工作的管理规划，那必然导致整个空中网络的混乱，甚至出现安全隐患。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0005">发明内容</div>
+<div class="description-paragraph" id="p0006" num="0003">针对现有技术的不足，本发明提出一种适用于低空经济的飞行器工作管理平台及方法，对不同应用场景的低空飞行器进行飞行工作管理，保障大量低空飞行器有序安全高效的工作，有助于促进低空经济的发展。</div>
+<div class="description-paragraph" id="p0007" num="0004">具体技术方案如下：</div>
+<div class="description-paragraph" id="p0008" num="0005">一种适用于低空经济的飞行器工作管理平台，包括：云端数据库、总控中心、终端低空飞行器；所述云端数据库包括：低空飞行器信息管理数据库、三维地形图数据库、低空飞行器实时动态数据库；</div>
+<div class="description-paragraph" id="p0009" num="0006">所述总控中心用于根据终端低空飞行器发出的工作任务请求信息，结合空域实时信息进行路径规划，生成的飞行计划信息发送至终端低空飞行器；所述空域实时信息根据三维地形图数据库和低空飞行器实时动态数据库得到；所述飞行计划信息包括飞行高度区间和最优路径，所述最优路径为同时满足两个条件的最短距离路径，两个条件分别为：权限级别高的飞行器优先、飞行器安全边界不重叠。</div>
+<div class="description-paragraph" id="p0010" num="0007">进一步地，所述工作任务请求信息包括：工作任务类型、飞行器起降位置、负载重量、任务时间。</div>
+<div class="description-paragraph" id="p0011" num="0008">进一步地，所述低空飞行器信息管理数据库根据低空飞行器的标签信息进行分类存储，标签信息包括：工作任务类型、型号、载重、飞行高度、飞行速度、权限级别；</div>
+<div class="description-paragraph" id="p0012" num="0009">所述工作任务类型包括：载人空中交通、大型运输、小型物流、应急救援、农林植保、旅游观光、个人航拍。</div>
+<div class="description-paragraph" id="p0013" num="0010">进一步地，所述终端低空飞行器的飞行高度范围为0～3000米，按照每500米高度设置一个区间，共6个区间；不同工作任务类型的终端低空飞行器分配的飞行高度区间根据要求设定。</div>
+<div class="description-paragraph" id="p0014" num="0011">进一步地，所述终端低空飞行器的安全边界设置原则与终端低空飞行器的工作任务类型关联，小型物流、应急救援、农林植保、个人航拍不设安全边界，载人空中交通、大型运输、旅游观光的安全边界空间为其对应前、后、左、右、上、下边界所构成的长方体空间。</div>
+<div class="description-paragraph" id="p0015" num="0012">一种适用于低空经济的飞行器工作管理方法，根据所述的适用于低空经济的飞行器工作管理平台实现，包括如下步骤：</div>
+<div class="description-paragraph" id="p0016" num="0013">S1：终端低空飞行器向总控中心发出飞行器工作任务请求，总控中心向低空飞行器信息管理数据库查询该终端低空飞行器的信息是否入库，若已入库则接受该工作任务请求，否则退回该请求并要求终端低空飞行器进行注册并完成信息入库；</div>
+<div class="description-paragraph" id="p0017" num="0014">S2：总控中心确认接受终端低空飞行器工作任务请求后，与该终端低空飞行器保持连接，同步向低空飞行器信息管理数据库调取该终端低空飞行器的全部飞行器信息，并访问低空飞行器实时动态数据库与三维地形图数据库获取其协同生成的当前空域实时信息；</div>
+<div class="description-paragraph" id="p0018" num="0015">S3：总控中心根据飞行工作任务，结合当前空域的实时信息，通过内置路径规划智能算法，生成飞行计划信息并发送到终端低空飞行器；飞行计划信息包括：飞行高度区间及最优路径，最优路径为满足权限级别高的飞行器优先且各飞行器安全边界不重叠条件下的最短距离路径；</div>
+<div class="description-paragraph" id="p0019" num="0016">S4：终端低空飞行器按照总控中心发送的飞行计划信息进行飞行工作，飞行工作期间通过总控中心向低空飞行器实时动态数据库传输实时状态及位置信息，以及保持接受总控中心的实时飞行计划信息变更；</div>
+<div class="description-paragraph" id="p0020" num="0017">S5：终端低空飞行器完成全部飞行工作任务后，向总控中心发送任务结束信息，总控中心断开与该终端低空飞行器的连接。</div>
+<div class="description-paragraph" id="p0021" num="0018">本发明的有益效果是：</div>
+<div class="description-paragraph" id="p0022" num="0019">本发明提供一种适用于低空经济的飞行器工作管理平台及方法，该方法根据不同应用场景的低空飞行器的工作任务请求信息以及飞行器详细信息，为低空飞行器分配合适的飞行高度区间及最优路径，保障低空飞行器有序安全高效的工作，促进低空经济行业的发展。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0023">附图说明</div>
+<div class="description-paragraph" id="p0024" num="0020">图1是本发明实施例中适用于低空经济的飞行器工作管理平台的结构示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0025">具体实施方式</div>
+<div class="description-paragraph" id="p0026" num="0021">下面根据附图和优选实施例详细描述本发明，本发明的目的和效果将变得更加明白，以下结合附图和实施例，对本发明进行进一步详细说明。应当理解，此处所描述的具体实施例仅仅用以解释本发明，并不用于限定本发明。</div>
+<div class="description-paragraph" id="p0027" num="0022">如图1所示，一种适用于低空经济的飞行器工作管理平台，包括：云端数据库、总控中心、终端低空飞行器。云端数据库包括：低空飞行器信息管理数据库、三维地形图数据库、低空飞行器实时动态数据库。终端低空飞行器所适用的低空经济高度范围为0～3000m。</div>
+<div class="description-paragraph" id="p0028" num="0023">总控中心用于根据终端低空飞行器发出的工作任务请求信息，结合低空飞行器信息管理数据库中的飞行器信息、三维地形图数据库与低空飞行器实时动态数据库协同生成的空域实时信息，通过总控中心内置的路径规划智能算法，生成飞行计划信息并发送到终端低空飞行器。总控中心在低空飞行器工作期间始终保持与终端低空飞行器的实时连接，具备对终端低空飞行器飞行计划临时调整的功能。工作任务请求信息包括：工作任务类型、飞行器起降位置、负载重量、任务时间等。</div>
+<div class="description-paragraph" id="p0029" num="0024">低空飞行器信息管理数据库根据低空飞行器的标签信息进行分类存储，标签信息包括：工作任务类型、型号、载重、飞行高度、飞行速度、权限级别等，典型的低空飞行器标签信息实例如表1所示。工作任务类型包括：载人空中交通、大型运输、小型物流、应急救援、农林植保、旅游观光、个人航拍。优选的，权限级别由高到低包括S、A、B、C四个级别，与工作任务类型匹配，具体见表2。低空飞行器实时动态数据库存储有终端低空飞行器的实时状态及位置信息，在终端低空飞行器工作期间通过总控中心与低空飞行器实时连接。</div>
+<div class="description-paragraph" id="p0030" num="0025">表1典型的低空飞行器标签信息实例</div>
+<div class="description-paragraph" id="p0031" num="0026">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0032" num="0027">表2工作任务类型对应权限级别表</div>
+<div class="description-paragraph" id="p0033" num="0028">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0034" num="0029">总控中心内置的路径规划智能算法，依据低空飞行器的工作任务请求信息、飞行器信息、空域实时信息综合智能生成飞行计划信息，飞行计划信息包括飞行高度区间和最优路径。飞行高度区间是终端低空飞行器的主要工作区间，通常情况下，终端低空飞行器仅允许在所分配的飞行高度区间内执行飞行工作任务，飞行高度区间的分配主要依据终端低空飞行器的工作任务类型，优选地，高度范围为0～3000米，按照每500米高度设置一个区间，共6个区间，不同工作任务类型的终端低空飞行器分配的飞行高度区间如表3所示。最优路径为同时满足权限级别高的终端低空飞行器优先、各飞行器安全边界不重叠条件下的最短距离路径；飞行器安全边界是为保障终端低空飞行器安全所设置的空间，此空间内不容许有其他终端低空飞行器进入，安全边界设置原则与终端低空飞行器的工作任务类型关联，具体见表4，其中小型物流、应急救援、农林植保、个人航拍不设安全边界，载人空中交通、大型运输、旅游观光的安全边界空间为其对应前、后、左、右、上、下边界所构成的长方体空间；优选地，T<sub>1</sub>设为60s，T<sub>2</sub>设为30s，T<sub>3</sub>设为10s。</div>
+<div class="description-paragraph" id="p0035" num="0030">表3工作任务类型对应飞行高度区间表</div>
+<div class="description-paragraph" id="p0036" num="0031">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0037" num="0032">表4工作任务类型对应安全边界设置表</div>
+<div class="description-paragraph" id="p0038" num="0033">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0039" num="0034">在上述适用于低空经济的飞行器工作管理平台的基础上，本实施例还提出了一种适用于低空经济的飞行器工作管理方法，该方法具体包括以下步骤：</div>
+<div class="description-paragraph" id="p0040" num="0035">S1：终端低空飞行器向总控中心发出飞行器工作任务请求，总控中心向低空飞行器信息管理数据库查询该终端低空飞行器的信息是否入库，若已入库则接受该工作任务请求，否则退回该请求并要求终端低空飞行器进行注册并完成信息入库。</div>
+<div class="description-paragraph" id="p0041" num="0036">S2：总控中心确认接受终端低空飞行器工作任务请求后，与该终端低空飞行器保持连接，同步向低空飞行器信息管理数据库调取该终端低空飞行器的全部飞行器信息，并访问低空飞行器实时动态数据库与三维地形图数据库获取其协同生成的当前空域实时信息。</div>
+<div class="description-paragraph" id="p0042" num="0037">S3：总控中心根据飞行器工作任务请求信息，结合飞行器信息、当前空域的实时信息，通过内置路径规划智能算法，生成飞行计划信息并发送到终端低空飞行器。飞行计划信息包括：飞行高度区间及最优路径，最优路径为满足权限级别高的飞行器优先且各飞行器安全边界不重叠条件下的最短距离路径。</div>
+<div class="description-paragraph" id="p0043" num="0038">S4：终端低空飞行器按照总控中心发送的飞行计划信息进行飞行工作，飞行工作期间通过总控中心向低空飞行器实时动态数据库传输实时状态及位置信息，以及保持接受总控中心的实时飞行计划信息变更。</div>
+<div class="description-paragraph" id="p0044" num="0039">S5：终端低空飞行器完成全部飞行工作任务后，向总控中心发送任务结束信息，总控中心断开与该终端低空飞行器的连接。</div>
+<div class="description-paragraph" id="p0045" num="0040">本领域普通技术人员可以理解，以上所述仅为发明的优选实例而已，并不用于限制发明，尽管参照前述实例对发明进行了详细的说明，对于本领域的技术人员来说，其依然可以对前述各实例记载的技术方案进行修改，或者对其中部分技术特征进行等同替换。凡在发明的精神和原则之内，所做的修改、等同替换等均应包含在发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

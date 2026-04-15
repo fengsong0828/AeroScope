@@ -1,0 +1,205 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119296389B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES493859308">
+<invention-title id="title1" lang="ZH">一种机场低空飞行器监视方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及航空航天监控技术领域，特别是一种机场低空飞行器监视方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">在现代机场运营中，低空飞行器的监视和管理成了一个重要的安全问题。随着无人机和其他低空飞行器的广泛应用，传统的雷达和通信系统在监控低空飞行器方面的能力有限，无法满足对飞行器高精度、高实时性监控的需求。现有技术通常依赖于有限的监测手段，如地面雷达、固定传感器和手动监控，这些方法难以有效处理密集的低空飞行器流量，导致监测盲区和响应延迟，从而影响到机场及其周边空域的安全。</div>
+<div class="description-paragraph" id="p0005" num="0003">此外，传统的无线电信号处理技术在应对复杂信号环境和多信号重叠的情况下也显得力不从心。现有系统在处理低空飞行器发出的无线电信号时，存在信号干扰、噪声影响以及实时分析能力不足等问题。这些技术限制使得对飞行器的分类、定位和行为预测难以做到精确和及时，因此亟需一种更为先进的监视方法和系统，以提升低空飞行器监控的整体效果和可靠性。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">鉴于现有的低空飞行器监视系统在精确度、实时性和信号处理能力上存在不足，导致对低空飞行器的监测和管理不够有效，提出了本发明。</div>
+<div class="description-paragraph" id="p0008" num="0005">因此，本发明所要解决的问题在于如何高效、精确地监视和定位低空飞行器的问题，从而有效保障机场及其周边空域的安全。</div>
+<div class="description-paragraph" id="p0009" num="0006">为解决上述技术问题，本发明提供如下技术方案：</div>
+<div class="description-paragraph" id="p0010" num="0007">第一方面，本发明实施例提供了一种机场低空飞行器监视方法，其包括在机场周边预设区域内布置多个软件定义无线电接收器；利用软件定义无线电接收器扫描并捕获低空区域的无线电信号，生成待传输数据包；将待传输数据包通过边缘网络传输至中央处理服务器，在中央处理服务器中对待传输数据包进行解析和特征提取，生成信号特征信息；基于信号特征信息，采用多源融合定位算法，结合多个软件定义无线电接收器的信号时间差和频率差，定位低空飞行器并生成综合定位信息；结合综合定位信息和信号特征信息，使用图神经网络构建动态飞行行为模型，实时评估潜在威胁；当检测到威胁时，启动定向天线阵列，向目标区域发射与低空飞行器相同频率的仿真控制信号，对低空飞行器进行安全引导或接管控制。</div>
+<div class="description-paragraph" id="p0011" num="0008">作为本发明所述机场低空飞行器监视方法的一种优选方案，其中：生成待传输数据包包括以下步骤：设置软件定义无线电接收器的扫描参数，适应低空区域的信号特征；利用可编程射频前端和高速模数转换器，接收并数字化低空区域的无线电信号，得到数字化无线电信号；使用数字信号处理器，对数字化无线电信号执行多级小波变换降噪；利用信号分析软件模块，对降噪后的数字化无线电信号进行时频分析，生成时频图谱；启动信号分类模块，基于时频图谱对无线电信号进行分类；控制多元天线阵列执行波束形成，针对各类信号生成可调向波束信号；对可调向波束信号执行快速傅里叶变换，得到信号频谱特征；将信号频谱特征与对应的信号类型标签组合，生成待传输数据包。</div>
+<div class="description-paragraph" id="p0012" num="0009">作为本发明所述机场低空飞行器监视方法的一种优选方案，其中：执行多级小波变换降噪，得到降噪后的信号x'(n)，具体公式如下：</div>
+<div class="description-paragraph" id="p0013" num="0010">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0014" num="0011">其中，x'(n)为降噪后的数字化无线电信号，a<sub>J</sub>为第J层的近似系数，J为小波分解的层数，φ<sub>J,k</sub>(n)为尺度函数，ψ<sub>J,k</sub>(n)为小波函数，d'<sub>j,k</sub>为处理后的第j层的细节系数，具体公式如下：</div>
+<div class="description-paragraph" id="p0015" num="0012">d'<sub>j,k</sub>＝sign(d<sub>j,k</sub>)(|d<sub>j,k</sub>|-λ<sub>j</sub>)<sub>+</sub> </div>
+<div class="description-paragraph" id="p0016" num="0013">其中，d'<sub>j,k</sub>为处理后的第j层的细节系数，sign(·)为符号函数，(·)<sub>+</sub>为软阈值处理中的正值部分，λ<sub>j</sub>第j层的阈值，具体公式如下：</div>
+<div class="description-paragraph" id="p0017" num="0014">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0018" num="0015">其中，σ<sub>j</sub>为第j层噪声标准差的估计值，N为信号长度。</div>
+<div class="description-paragraph" id="p0019" num="0016">作为本发明所述机场低空飞行器监视方法的一种优选方案，其中：基于时频图谱对无线电信号进行分类包括以下步骤：对时频图谱进行图像预处理；从预处理后的时频图谱中提取特征向量，所述特征向量包括频率带宽、时间持续性和能量分布；利用预训练的卷积神经网络模型对特征向量进行初次分类；基于初次分类结果，应用集成学习方法进行细化分类；对细化分类结果应用时序一致性检查，消除瞬时误分类；利用频谱占用分析方法，识别时频图谱中的多信号重叠区域；对多信号重叠区域应用盲源分离算法，分离出独立的信号成分；将分离出的信号成分重新输入分类流程，进行二次分类；综合初次分类结果和二次分类结果，生成信号类型标签；将信号类型标签与原始时频图谱关联，形成标记后的时频图谱。</div>
+<div class="description-paragraph" id="p0020" num="0017">作为本发明所述机场低空飞行器监视方法的一种优选方案，其中：针对各类信号生成可调向波束信号包括以下步骤：获取多元天线阵列的几何布局参数和每个天线单元的相位中心位置；基于各类信号的频率特性，计算每种信号对应的波长；对每种识别的信号类型，确定期望的主波束方向和旁瓣抑制级别；利用自适应波束形成算法，计算主波束方向和旁瓣抑制级别所需的每个天线单元的幅度和相位权值；将计算得到的幅度和相位权值应用到多元天线阵列的每个天线单元；通过调整天线单元的数字移相器，进行相位控制；利用可变增益放大器调节每个天线单元的信号幅度，与相位控制相配合；执行实时信号合成，将各天线单元接收到的信号按照设定的幅度和相位进行叠加；对合成后的信号进行数字滤波，去除非目标频段的干扰；生成可调向波束信号，并将其与对应的信号类型标识关联存储。</div>
+<div class="description-paragraph" id="p0021" num="0018">作为本发明所述机场低空飞行器监视方法的一种优选方案，其中：定位低空飞行器并生成综合定位信息包括以下步骤：根据信号类型标签和关键参数，动态选择定位算法组合利用时间相关性和频率相关性，计算多个软件定义无线电接收器之间的信号时间差和频率差；将信号时间差和频率差输入选定的定位算法组合，计算低空飞行器的三维坐标和速度矢量；基于时间相关性和频率相关性的变化趋势，构建低空飞行器运动模型，计算预测轨迹；根据关键参数的时变特性，实时调整定位算法组合中各算法的权重系数；利用多个软件定义无线电接收器的空间分布信息，构建协同定位网络，提高定位精度并降低单点故障风险；基于定位结果和预测轨迹，动态调整软件定义无线电接收器的参数，包括波束方向和增益；计算定位结果的可信度指数，评估定位精度；生成综合定位信息，将综合定位信息与对应的信号特征信息关联，更新数据库中的记录。</div>
+<div class="description-paragraph" id="p0022" num="0019">作为本发明所述机场低空飞行器监视方法的一种优选方案，其中：动态选择定位算法组合包括以下步骤：构建定位算法库；基于信号类型标签，从定位算法库中初步筛选适用的定位算法子集；利用关键参数中的中心频率和带宽，计算信号的时频分辨率指标，根据时频分辨率指标对定位算法子集中的算法进行优先级排序；基于关键参数中的峰值功率，估算信号的信噪比，根据信噪比从排序后的定位算法子集中选择前N个算法；构建定位算法组合评分模型，评分模型考虑算法复杂度、计算资源需求和历史定位精度；利用定位算法组合评分模型，对选择的N个算法进行组合优化，得到最优定位算法组合。</div>
+<div class="description-paragraph" id="p0023" num="0020">第二方面，本发明实施例提供了机场低空飞行器监视系统，其包括接收器布置模块，用于在机场周边预设区域内布置多个软件定义无线电接收器；数据包生成模块，用于利用软件定义无线电接收器扫描并捕获低空区域的无线电信号，生成待传输数据包；特征提取模块，用于将待传输数据包通过边缘网络传输至中央处理服务器，在中央处理服务器中对待传输数据包进行解析和特征提取，生成信号特征信息；定位模块，用于基于信号特征信息，采用多源融合定位算法，结合多个软件定义无线电接收器的信号时间差和频率差，定位低空飞行器并生成综合定位信息；威胁评估模块，用于结合综合定位信息和信号特征信息，使用图神经网络构建动态飞行行为模型，实时评估潜在威胁；控制模块，用于当检测到威胁时，启动定向天线阵列，向目标区域发射与低空飞行器相同频率的仿真控制信号，对低空飞行器进行安全引导或接管控制。</div>
+<div class="description-paragraph" id="p0024" num="0021">第三方面，本发明实施例提供了一种计算机设备，包括存储器和处理器，所述存储器存储有计算机程序，其中：所述计算机程序指令被处理器执行时实现如本发明第一方面所述的机场低空飞行器监视方法的步骤。</div>
+<div class="description-paragraph" id="p0025" num="0022">第四方面，本发明实施例提供了一种计算机可读存储介质，其上存储有计算机程序，其中：所述计算机程序指令被处理器执行时实现如本发明第一方面所述的机场低空飞行器监视方法的步骤。</div>
+<div class="description-paragraph" id="p0026" num="0023">本发明有益效果为：本发明通过利用高精度的软件定义无线电接收器，结合多级小波变换降噪和先进的信号分类算法，实现了对低空区域无线电信号的精确捕获、处理和分类。采用多源融合定位算法，结合信号时间差和频率差，高效地实现了低空飞行器的实时定位，并动态调整定位算法和参数以提高定位精度。通过图神经网络实时评估飞行行为，早期预警潜在威胁，并在检测到威胁时，利用定向天线阵列发射仿真控制信号，实现对目标飞行器的安全引导或接管控制，有效保障机场周边空域的安全。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0027">附图说明</div>
+<div class="description-paragraph" id="p0028" num="0024">为了更清楚地说明本发明实施例的技术方案，下面将对实施例描述中所需要使用的附图作简单的介绍，显而易见的，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其它的附图。</div>
+<div class="description-paragraph" id="p0029" num="0025">图1为机场低空飞行器监视方法的框架流程图。</div>
+<div class="description-paragraph" id="p0030" num="0026">图2为机场低空飞行器监视方法的。</div>
+<div class="description-paragraph" id="p0031" num="0027">图3为机场低空飞行器监视方法的。</div>
+<div class="description-paragraph" id="p0032" num="0028">图4为机场低空飞行器监视方法的计算机设备图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0033">具体实施方式</div>
+<div class="description-paragraph" id="p0034" num="0029">为使本发明的上述目的、特征和优点能够更加明显易懂，下面结合说明书附图对本发明的具体实施方式做详细的说明。</div>
+<div class="description-paragraph" id="p0035" num="0030">在下面的描述中阐述了很多具体细节以便于充分理解本发明，但是本发明还可以采用其他不同于此描述的其他方式来实施，本领域技术人员可以在不违背本发明内涵的情况下做类似推广，因此本发明不受下面公开的具体实施例的限制。</div>
+<div class="description-paragraph" id="p0036" num="0031">其次，此处所称的“一个实施例”或“实施例”是指可包含于本发明至少一个实现方式中的特定特征、结构或特性。在本说明书中不同地方出现的“在一个实施例中”并非均指同一个实施例，也不是单独的或选择性的与其他实施例互相排斥的实施例。</div>
+<div class="description-paragraph" id="p0037" num="0032">实施例1，参照图1～图4，为本发明第一个实施例，该实施例提供了一种机场低空飞行器监视方法，包括，</div>
+<div class="description-paragraph" id="p0038" num="0033">S1：在机场周边预设区域内布置多个软件定义无线电接收器。</div>
+<div class="description-paragraph" id="p0039" num="0034">需要说明的是，软件定义无线电接收器包括可编程射频前端、高速模数转换器、数字信号处理器、多元天线阵列、信号分类模块、信号分析软件模块。</div>
+<div class="description-paragraph" id="p0040" num="0035">需要说明的是，机场周边预设区域包括但不限于机场跑道和滑行道周围的区域、机场进近和离港航线区域、机场周边的低空空域、机场附近的关键基础设施、机场周边的缓冲区。这个预设区域的具体范围会根据机场的规模、地理位置、周边环境和当地法规而有所不同。</div>
+<div class="description-paragraph" id="p0041" num="0036">S2：利用软件定义无线电接收器扫描并捕获低空区域的无线电信号，生成待传输数据包。</div>
+<div class="description-paragraph" id="p0042" num="0037">具体的，包括以下步骤：</div>
+<div class="description-paragraph" id="p0043" num="0038">S2.1：设置软件定义无线电接收器的扫描参数，适应低空区域的信号特征。</div>
+<div class="description-paragraph" id="p0044" num="0039">优选的，扫描参数包括频率范围(如400MHz-6GHz)、采样率(如20MHz)和可调增益(如0-60dB)。</div>
+<div class="description-paragraph" id="p0045" num="0040">S2.2：利用可编程射频前端和高速模数转换器，接收并数字化低空区域的无线电信号，得到数字化无线电信号。</div>
+<div class="description-paragraph" id="p0046" num="0041">S2.3：使用数字信号处理器，对数字化无线电信号执行多级小波变换降噪。</div>
+<div class="description-paragraph" id="p0047" num="0042">具体的，对数字化无线电信号x(n)进行J层小波分解，得到近似系数a<sub>J</sub>和细节系数d<sub>j</sub>(j＝1,2,3,...,J)，小波分解可表示为：</div>
+<div class="description-paragraph" id="p0048" num="0043">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0049" num="0044">其中，φ<sub>J,k</sub>(n)为尺度函数，ψ<sub>J,k</sub>(n)为小波函数，x(n)为原始数字化无线电信号，J为小波分解的层数，a<sub>J</sub>为第J层的近似系数，d<sub>j</sub>为第j层的细节系数，j＝1,2,3,...,J，k为近似系数和细节系数的索引。</div>
+<div class="description-paragraph" id="p0050" num="0045">需要说明的是，φ<sub>J,k</sub>(n)为尺度函数，用于计算第J层的近似系数a<sub>J</sub>，它是一种低通滤波器，保留信号的低频部分，ψ<sub>J,k</sub>(n)为小波函数，用于计算第j层的细节系数d<sub>j</sub>，它是一种带通滤波器，提取信号的高频成分。</div>
+<div class="description-paragraph" id="p0051" num="0046">进一步的，为降低噪声影响，对细节系数d<sub>j</sub>进行阈值处理，得到处理后的细节系数d'<sub>j</sub>，阈值处理的公式如下：</div>
+<div class="description-paragraph" id="p0052" num="0047">d'<sub>j,k</sub>＝sign(d<sub>j,k</sub>)(|d<sub>j,k</sub>|-λ<sub>j</sub>)<sub>+</sub> </div>
+<div class="description-paragraph" id="p0053" num="0048">其中，d'<sub>j,k</sub>为处理后的第j层的细节系数，sign(·)为符号函数，(·)<sub>+</sub>为软阈值处理中的正值部分((x)<sub>+</sub>＝max(x,0)，即负值被置零)，λ<sub>j</sub>第j层的阈值，具体公式如下：</div>
+<div class="description-paragraph" id="p0054" num="0049">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0055" num="0050">其中，σ<sub>j</sub>为第j层噪声标准差的估计值，N为信号长度。</div>
+<div class="description-paragraph" id="p0056" num="0051">进一步的，利用处理后的细节系数d'<sub>j</sub>和近似系数a<sub>J</sub>进行小波重构，得到降噪后的信号x'(n)，具体公式如下：</div>
+<div class="description-paragraph" id="p0057" num="0052">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0058" num="0053">其中，x'(n)为降噪后的数字化无线电信号，d'<sub>j,k</sub>为处理后的第j层的细节系数。</div>
+<div class="description-paragraph" id="p0059" num="0054">优选的，该方法通过小波分解将信号分离为不同频率尺度的近似系数和细节系数，有效地区分了信号的主要结构和噪声成分。通过对细节系数进行阈值处理，可以有选择性地抑制噪声，同时保留信号的重要特征。多级分解允许在不同尺度上进行噪声去除，适应不同频率范围的噪声特性。软阈值处理方法能够平滑处理结果，避免产生人为的不连续性。通过使用噪声标准差的估计和信号长度来自适应地计算阈值，使得降噪过程能够根据信号的具体特性进行调整。最后，利用处理后的系数进行小波重构，得到降噪后的信号，有效地提高了信噪比，增强了有用信号的清晰度和可识别性。</div>
+<div class="description-paragraph" id="p0060" num="0055">S2.4：利用信号分析软件模块，对降噪后的数字化无线电信号进行时频分析，生成时频图谱。</div>
+<div class="description-paragraph" id="p0061" num="0056">具体的，将降噪后的数字化无线电信号x'(n)分段为多个重叠的时间窗口，每个窗口长度为L，重叠率为R；对每个时间窗口的信号数据应用汉宁窗函数w(n)，具体公式如下：</div>
+<div class="description-paragraph" id="p0062" num="0057">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0063" num="0058">其中，L为窗口长度，w(n)为汉宁窗函数，n为窗口内的每一个时间点。</div>
+<div class="description-paragraph" id="p0064" num="0059">进一步的，对应用汉宁窗函数后的每个时间窗口信号执行快速傅里叶变换，具体公式如下：</div>
+<div class="description-paragraph" id="p0065" num="0060">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0066" num="0061">其中，X(k,m)为第m个时间窗口在频率索引k处的频谱成分，m为时间索引，k为频率索引(频率成分在傅里叶变换中的位置)，H为相邻时间窗口之间的步长，H＝L×(1-R)，L为窗口长度，R为重叠率，n为窗口内的每一个时间点。</div>
+<div class="description-paragraph" id="p0067" num="0062">进一步的，计算快速傅里叶变换结果的幅度平方，得到每个时间窗口的功率谱，具体公式如下：</div>
+<div class="description-paragraph" id="p0068" num="0063">P(k,m)＝|X(k,m)|<sup>2</sup> </div>
+<div class="description-paragraph" id="p0069" num="0064">其中，X(k,m)为第m个时间窗口在频率索引k处的频谱成分，P(k,m)为第m个时间窗口在频率索引k处的能量。</div>
+<div class="description-paragraph" id="p0070" num="0065">进一步的，功率谱按时间顺序排列，构建时频矩阵S(k,m)；对时频矩阵进行双线性插值，得到插值后的时频矩阵S<sub>i</sub>(k',m')；对插值后的时频矩阵进行归一化处理，具体公式如下：</div>
+<div class="description-paragraph" id="p0071" num="0066">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0072" num="0067">其中，S<sub>i</sub>(k',m')为插值后的时频矩阵，S<sub>n</sub>(k',m')为归一化处理后的时频矩阵，max(S<sub>i</sub>)和min(S<sub>i</sub>)分别表示插值后的时频矩阵S<sub>i</sub>(k',m')的最大值和最小值。</div>
+<div class="description-paragraph" id="p0073" num="0068">进一步的，基于归一化处理后的时频矩阵生成时频图谱。</div>
+<div class="description-paragraph" id="p0074" num="0069">S2.5：启动信号分类模块，基于时频图谱对无线电信号进行分类，包括遥控信号、数传信号、导航信号、图传信号以及飞控信号。</div>
+<div class="description-paragraph" id="p0075" num="0070">具体的，对时频图谱进行图像预处理，包括去噪和对比度增强；从预处理后的时频图谱中提取特征向量，包括频率带宽、时间持续性和能量分布；利用预训练的卷积神经网络模型对特征向量进行初次分类；基于初次分类结果，应用集成学习方法(如随机森林或梯度提升树)进行细化分类；对细化分类结果应用时序一致性检查，消除瞬时误分类；利用频谱占用分析方法，识别时频图谱中的多信号重叠区域；对多信号重叠区域应用盲源分离算法，分离出独立的信号成分；将分离出的信号成分重新输入分类流程，进行二次分类；综合初次分类结果和二次分类结果，生成最终的信号类型标签；将信号类型标签与原始时频图谱关联，形成标记后的时频图谱。</div>
+<div class="description-paragraph" id="p0076" num="0071">S2.6：控制多元天线阵列执行波束形成，针对各类信号生成可调向波束信号。</div>
+<div class="description-paragraph" id="p0077" num="0072">具体的，获取多元天线阵列的几何布局参数和每个天线单元的相位中心位置；基于各类信号的频率特性，计算每种信号对应的波长；对每种识别的信号类型，确定期望的主波束方向和旁瓣抑制级别；利用自适应波束形成算法，计算主波束方向和旁瓣抑制级别所需的每个天线单元的幅度和相位权值；将计算得到的幅度和相位权值应用到多元天线阵列的每个天线单元；通过调整天线单元的数字移相器，进行相位控制；利用可变增益放大器调节每个天线单元的信号幅度，与相位控制相配合；执行实时信号合成，将各天线单元接收到的信号按照设定的幅度和相位进行叠加；对合成后的信号进行数字滤波，去除非目标频段的干扰；生成可调向波束信号，并将其与对应的信号类型标识关联存储。</div>
+<div class="description-paragraph" id="p0078" num="0073">S2.7：对可调向波束信号执行快速傅里叶变换，得到信号频谱特征。</div>
+<div class="description-paragraph" id="p0079" num="0074">S2.8：将信号频谱特征与对应的信号类型标签组合，生成待传输数据包。</div>
+<div class="description-paragraph" id="p0080" num="0075">优选的，在数据包中添加时间戳、地理位置信息(如有)等元数据，以便后续处理和分析。</div>
+<div class="description-paragraph" id="p0081" num="0076">S3：将待传输数据包通过边缘网络传输至中央处理服务器，在中央处理服务器中对待传输数据包进行解析和特征提取，生成信号特征信息。</div>
+<div class="description-paragraph" id="p0082" num="0077">具体的，通过边缘网络将待传输数据包传输至中央处理服务器；在中央处理服务器中，解析待传输数据包，提取信号频谱特征和对应的信号类型标签；对信号频谱特征进行归一化处理，消除不同接收器间的增益差异；基于信号类型标签，选择相应的特征提取算法；从归一化后的信号频谱特征中提取关键参数，包括中心频率、带宽和峰值功率；计算信号频谱特征的时间相关性和频率相关性；结合关键参数、时间相关性和频率相关性，生成信号特征信息；将信号特征信息与原始信号类型标签关联，更新数据库记录。</div>
+<div class="description-paragraph" id="p0083" num="0078">S4：基于信号特征信息，采用多源融合定位算法，结合多个软件定义无线电接收器的信号时间差和频率差，定位低空飞行器并生成综合定位信息。</div>
+<div class="description-paragraph" id="p0084" num="0079">具体的，包括以下步骤：</div>
+<div class="description-paragraph" id="p0085" num="0080">S4.1：从信号特征信息中提取信号类型标签、关键参数、时间相关性和频率相关性。</div>
+<div class="description-paragraph" id="p0086" num="0081">S4.2：根据信号类型标签和关键参数，动态选择定位算法组合。</div>
+<div class="description-paragraph" id="p0087" num="0082">优选的，构建定位算法库，定位算法库包含时差到达、频率差到达、到达角、多普勒频移等相关定位算法；基于信号类型标签，从定位算法库中初步筛选适用的定位算法子集；利用关键参数中的中心频率和带宽，计算信号的时频分辨率指标；根据时频分辨率指标，对定位算法子集中的算法进行优先级排序；基于关键参数中的峰值功率，估算信号的信噪比；根据信噪比，从排序后的定位算法子集中选择前N个算法，其中N为预设阈值；构建定位算法组合评分模型，评分模型考虑算法复杂度、计算资源需求和历史定位精度；利用定位算法组合评分模型，对选择的N个算法进行组合优化，得到最优定位算法组合。</div>
+<div class="description-paragraph" id="p0088" num="0083">S4.3：利用时间相关性和频率相关性，计算多个软件定义无线电接收器之间的信号时间差和频率差。</div>
+<div class="description-paragraph" id="p0089" num="0084">S4.4：将信号时间差和频率差输入选定的定位算法组合，计算低空飞行器的三维坐标和速度矢量。</div>
+<div class="description-paragraph" id="p0090" num="0085">S4.5：基于时间相关性和频率相关性的变化趋势，构建低空飞行器运动模型，计算预测轨迹。</div>
+<div class="description-paragraph" id="p0091" num="0086">优选的，获取时间相关性和频率相关性的历史数据序列，对历史数据序列进行时间窗口分段处理，得到多个时间窗口的数据子序列；对多个时间窗口的数据子序列分别执行快速傅里叶变换，提取每个时间窗口内的主要频率分量及其幅值；基于主要频率分量及其幅值，构建时变自回归移动平均模型，时变自回归移动平均模型的参数随时间窗口动态调整；利用时变自回归移动平均模型，计算时间相关性和频率相关性的短期预测值；将短期预测值输入预先训练的长短期记忆神经网络，长短期记忆神经网络用于捕捉时间相关性和频率相关性的长期变化特征；基于长短期记忆神经网络的输出，构建低空飞行器的非线性状态空间模型，非线性状态空间模型包含位置、速度和加速度等状态变量；对非线性状态空间模型应用无迹卡尔曼滤波算法，获得低空飞行器状态的最优估计；基于最优估计的状态，利用龙格-库塔法对非线性状态空间模型进行数值积分，得到低空飞行器未来一段时间内的预测轨迹点集。</div>
+<div class="description-paragraph" id="p0092" num="0087">S4.6：根据关键参数的时变特性，实时调整定位算法组合中各算法的权重系数。</div>
+<div class="description-paragraph" id="p0093" num="0088">S4.7：利用多个软件定义无线电接收器的空间分布信息，构建协同定位网络，提高定位精度并降低单点故障风险。</div>
+<div class="description-paragraph" id="p0094" num="0089">S4.8：基于定位结果和预测轨迹，动态调整软件定义无线电接收器的参数，包括波束方向和增益。</div>
+<div class="description-paragraph" id="p0095" num="0090">S4.9：计算定位结果的可信度指数，考虑因素包括关键参数中的峰值功率、参与定位的接收器数量和几何分布，评估定位精度。</div>
+<div class="description-paragraph" id="p0096" num="0091">S4.10：生成综合定位信息，将综合定位信息与对应的信号特征信息关联，更新数据库中的记录。</div>
+<div class="description-paragraph" id="p0097" num="0092">需要说明的是，综合定位信息包括低空飞行器的三维坐标、低空飞行器的三维坐标、预测轨迹点集、定位精度估计值以及可信度指数。</div>
+<div class="description-paragraph" id="p0098" num="0093">优选的，该步骤通过采用多源融合定位算法，实现了对低空飞行器的高精度、实时定位和轨迹预测。通过动态选择定位算法组合，系统能够根据不同信号特征灵活调整定位策略，提高了适应性和准确性。利用时间相关性和频率相关性，结合多个接收器的信息，不仅提高了定位精度，还增强了系统的抗干扰能力。构建的低空飞行器运动模型和预测轨迹功能，为及时识别潜在威胁提供了关键支持。实时调整定位算法权重和接收器参数，进一步优化了系统性能。协同定位网络的构建提高了系统可靠性，而可信度指数的计算则为定位结果提供了质量保证。</div>
+<div class="description-paragraph" id="p0099" num="0094">S5：结合综合定位信息和信号特征信息，使用图神经网络构建动态飞行行为模型，实时评估潜在威胁。</div>
+<div class="description-paragraph" id="p0100" num="0095">具体的，从综合定位信息中提取低空飞行器的三维坐标、速度矢量和预测轨迹点集，从信号特征信息中提取信号类型标签、关键参数、时间相关性和频率相关性；构建时空图结构，其中图节点表示低空飞行器在不同时间点的状态，图边表示相邻时间点之间的状态转移；为图节点分配特征向量，特征向量包含三维坐标、速度矢量、信号类型标签和关键参数；为图边分配权重，权重基于时间相关性、频率相关性和相邻时间点之间的状态变化计算得出；利用时间卷积网络对特征向量进行局部特征提取，得到节点的局部时间特征；将局部时间特征输入图注意力网络，进行全局空间特征聚合，得到节点的全局时空特征；利用门控循环单元网络对全局时空特征进行序列建模，捕捉长期依赖关系，输出动态飞行行为特征；将动态飞行行为特征与预定义的威胁模式库进行相似度计算，得到威胁相似度得分；基于威胁相似度得分和预设阈值，判断低空飞行器是否构成潜在威胁。</div>
+<div class="description-paragraph" id="p0101" num="0096">S6：当检测到威胁时，启动定向天线阵列，向目标区域发射与低空飞行器相同频率的仿真控制信号，对低空飞行器进行安全引导或接管控制。</div>
+<div class="description-paragraph" id="p0102" num="0097">需要说明的是，目标区域是指低空飞行器所在区域。</div>
+<div class="description-paragraph" id="p0103" num="0098">进一步的，本实施例还提供一种机场低空飞行器监视系统，包括接收器布置模块，用于在机场周边预设区域内布置多个软件定义无线电接收器；数据包生成模块，用于利用软件定义无线电接收器扫描并捕获低空区域的无线电信号，生成待传输数据包；特征提取模块，用于将待传输数据包通过边缘网络传输至中央处理服务器，在中央处理服务器中对待传输数据包进行解析和特征提取，生成信号特征信息；定位模块，用于基于信号特征信息，采用多源融合定位算法，结合多个软件定义无线电接收器的信号时间差和频率差，定位低空飞行器并生成综合定位信息；威胁评估模块，用于结合综合定位信息和信号特征信息，使用图神经网络构建动态飞行行为模型，实时评估潜在威胁；控制模块，用于当检测到威胁时，启动定向天线阵列，向目标区域发射与低空飞行器相同频率的仿真控制信号，对低空飞行器进行安全引导或接管控制。</div>
+<div class="description-paragraph" id="p0104" num="0099">本实施例还提供一种计算机设备，适用于机场低空飞行器监视方法的情况，包括存储器和处理器；存储器用于存储计算机可执行指令，处理器用于执行计算机可执行指令，实现如上述实施例提出的机场低空飞行器监视方法。</div>
+<div class="description-paragraph" id="p0105" num="0100">该计算机设备可以是终端，该计算机设备包括通过系统总线连接的处理器、存储器、通信接口、显示屏和输入装置。其中，该计算机设备的处理器用于提供计算和控制能力。该计算机设备的存储器包括非易失性存储介质、内存储器。该非易失性存储介质存储有操作系统和计算机程序。该内存储器为非易失性存储介质中的操作系统和计算机程序的运行提供环境。该计算机设备的通信接口用于与外部的终端进行有线或无线方式的通信，无线方式可通过WIFI、运营商网络、NFC(近场通信)或其他技术实现。该计算机设备的显示屏可以是液晶显示屏或者电子墨水显示屏，该计算机设备的输入装置可以是显示屏上覆盖的触摸层，也可以是计算机设备外壳上设置的按键、轨迹球或触控板，还可以是外接的键盘、触控板或鼠标等。</div>
+<div class="description-paragraph" id="p0106" num="0101">本实施例还提供一种存储介质，其上存储有计算机程序，该程序被处理器执行时实现如上述实施例提出的实现机场低空飞行器监视方法。</div>
+<div class="description-paragraph" id="p0107" num="0102">综上，本发明通过利用高精度的软件定义无线电接收器，结合多级小波变换降噪和先进的信号分类算法，实现了对低空区域无线电信号的精确捕获、处理和分类。采用多源融合定位算法，结合信号时间差和频率差，高效地实现了低空飞行器的实时定位，并动态调整定位算法和参数以提高定位精度。通过图神经网络实时评估飞行行为，早期预警潜在威胁，并在检测到威胁时，利用定向天线阵列发射仿真控制信号，实现对目标飞行器的安全引导或接管控制，有效保障机场周边空域的安全。</div>
+<div class="description-paragraph" id="p0108" num="0103">实施例2，参照图1～图4，为本发明第二个实施例，该实施例提供了一种机场低空飞行器监视方法，为了验证本发明的有益效果，通过经济效益计算和仿真实验进行科学论证。</div>
+<div class="description-paragraph" id="p0109" num="0104">在机场周边5公里范围内布置了8个软件定义无线电接收器，形成一个均匀分布的监测网络。每个接收器配备了4元天线阵列，可编程射频前端的频率范围设置为400MHz-6GHz，采样率为20MHz，可调增益范围为0-60dB。</div>
+<div class="description-paragraph" id="p0110" num="0105">实验过程中模拟了3种不同类型的低空飞行器：一架民用四旋翼无人机、一架固定翼无人机和一架微型飞艇。这些飞行器在机场周边1-3公里的空域内以不同轨迹和速度飞行，高度在50-300米之间变化。飞行持续时间为30分钟。</div>
+<div class="description-paragraph" id="p0111" num="0106">首先，软件定义无线电接收器成功捕获了这些飞行器发射的各类无线电信号。通过多级小波变换降噪和时频分析，得到了清晰的时频图谱。信号分类模块正确识别出了遥控信号(2.4GHz)、数传信号(915MHz)和图传信号(5.8GHz)。</div>
+<div class="description-paragraph" id="p0112" num="0107">随后，多源融合定位算法基于不同接收器捕获的信号时间差和频率差，成功计算出了飞行器的三维坐标。定位精度在水平方向优于5米，垂直方向优于10米。预测轨迹与实际飞行轨迹的平均偏差不超过20米。</div>
+<div class="description-paragraph" id="p0113" num="0108">接下来，图神经网络构建的动态飞行行为模型对飞行器的行为进行了实时评估。在实验过程中，模拟了一次潜在威胁场景：固定翼无人机突然改变飞行方向，向跑道快速接近。系统在10秒内成功识别出这一异常行为，威胁相似度得分达到0.85(阈值为0.7)。</div>
+<div class="description-paragraph" id="p0114" num="0109">最后，系统启动定向天线阵列，向目标区域发射了与该无人机相同频率的仿真控制信号。信号功率逐步调整，最终在距离目标300米处成功接管了无人机的控制权，将其安全引导至指定区域降落。</div>
+<div class="description-paragraph" id="p0115" num="0110">整个实验过程中，系统的平均信号处理延迟为50毫秒，定位更新频率为10Hz，威胁评估周期为1秒。实验结果表明，该机场低空飞行器监视方法及系统能够有效识别、定位和应对潜在的低空飞行器威胁，为机场安全管理提供了有力支持。</div>
+<div class="description-paragraph" id="p0116" num="0111">优选的，本发明与传统方法的对比指标如表1所示。</div>
+<div class="description-paragraph" id="p0117" num="0112">表1本发明与传统方法的对比指标</div>
+<div class="description-paragraph" id="p0118" num="0113">
+<tables>
+<patent-tables>
+<table class="description-table" cols="3" width="100%">
+<tbody><tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">指标</td>
+<td class="description-td" morerows="1" rowspan="2">本发明</td>
+<td class="description-td" morerows="1" rowspan="2">传统方法</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">信号捕获频率范围</td>
+<td class="description-td" morerows="1" rowspan="2">400MHz-6GHz</td>
+<td class="description-td" morerows="1" rowspan="2">800MHz-2.4GHz</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">信号分类准确率</td>
+<td class="description-td" morerows="1" rowspan="2">98％</td>
+<td class="description-td" morerows="1" rowspan="2">85％</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">定位精度(水平)</td>
+<td class="description-td" morerows="1" rowspan="2">5米</td>
+<td class="description-td" morerows="1" rowspan="2">15米</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">定位精度(垂直)</td>
+<td class="description-td" morerows="1" rowspan="2">10米</td>
+<td class="description-td" morerows="1" rowspan="2">25米</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">威胁识别时间</td>
+<td class="description-td" morerows="1" rowspan="2">10秒</td>
+<td class="description-td" morerows="1" rowspan="2">30秒</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">信号处理延迟</td>
+<td class="description-td" morerows="1" rowspan="2">50毫秒</td>
+<td class="description-td" morerows="1" rowspan="2">200毫秒</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">定位更新频率</td>
+<td class="description-td" morerows="1" rowspan="2">10Hz</td>
+<td class="description-td" morerows="1" rowspan="2">2Hz</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">威胁评估周期</td>
+<td class="description-td" morerows="1" rowspan="2">1秒</td>
+<td class="description-td" morerows="1" rowspan="2">5秒</td>
+</tr>
+</tbody></table>
+</patent-tables>
+</tables>
+</div>
+<div class="description-paragraph" id="p0119" num="0114">由表1可得，本发明在各项关键指标上均显著优于传统方法。信号捕获频率范围扩大了近3倍，覆盖400MHz-6GHz；信号分类准确率提升13个百分点至98％；定位精度大幅提高，水平和垂直方向分别提升至5米和10米；威胁识别时间缩短至原来的三分之一，仅需10秒；系统响应性能全面提升，信号处理延迟降低75％至50毫秒，定位更新频率提高5倍至10Hz，威胁评估周期缩短80％至1秒。这些改进充分体现了本发明在低空飞行器监测、定位和威胁评估方面的技术优势，为机场安全管理提供了更精确、快速和全面的解决方案。</div>
+<div class="description-paragraph" id="p0120" num="0115">应说明的是，以上实施例仅用以说明本发明的技术方案而非限制，尽管参照较佳实施例对本发明进行了详细说明，本领域的普通技术人员应当理解，可以对本发明的技术方案进行修改或者等同替换，而不脱离本发明技术方案的精神和范围，其均应涵盖在本发明的权利要求范围当中。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

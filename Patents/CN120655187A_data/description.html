@@ -1,0 +1,154 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120655187A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES505613277">
+<invention-title id="title1" lang="ZH">基于低空飞行器的物资配送规划方法、装置及存储介质</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及物资配送技术领域，尤其涉及一种基于低空飞行器的物资配送规划方法、装置及存储介质。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">近年来，低空飞行器的技术快速发展，尤其是在定位、导航、躲避障碍物和续航能力等方面取得了显著进展。低空飞行器的灵活性、速度和高效性，使其在紧急情况下能够迅速抵达灾后区域，直接向需要救助的受灾群众投送物资，极大提高了救援效率。此外，通过无人机进行空中配送，不仅能够绕过地面交通障碍，还能有效减轻人力资源的压力。</div>
+<div class="description-paragraph" id="p0005" num="0003">中国专利公开号CN110428136A公开了一种灾后城镇物资协同配送方案生成方法，该方法包括以下步骤：S1：确定城镇受灾点信息；所述受灾点信息包括受灾点编号、受灾点空间位置和对物资A的需求量信息；S2：获取本地储备点信息；S3：计算城镇所有受灾点对物资A的总需求量、本地所有储备点对特定物资A的总储备量；S4：计算城镇受灾点受本地储备点救援配送的平均满足率；S5：制定本地救援配送方案；S6：制定外部协同救援配送方案；S7：综合得到灾后城镇物资协同配送总体方案。通过采用本发明方法，可对城镇应急管理部门快速调度应急资源实施灾后救援以及请求外部协同救援合作，提供有效的辅助决策依据；由此可见，该方案在对配送方案进行分析时，仅针对物资需求进行分析，存在物资配送效率低的问题。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本发明的目的在于提供一种基于低空飞行器的物资配送规划方法、装置及存储介质，以解决现有技术存在的问题中的至少一个。</div>
+<div class="description-paragraph" id="p0008" num="0005">为实现上述目的，本发明采用了如下技术方案：</div>
+<div class="description-paragraph" id="p0009" num="0006">一种基于低空飞行器的物资配送规划方法，包括:</div>
+<div class="description-paragraph" id="p0010" num="0007">根据配送区域人数、配送区域的物资需求与配送区域类型计算配送区域的优先系数；</div>
+<div class="description-paragraph" id="p0011" num="0008">对充电站与配送点的距离进行计算，并根据计算结果、配送区域的优先系数和低空飞行器续航对配送区域与低空飞行器进行匹配；</div>
+<div class="description-paragraph" id="p0012" num="0009">根据获取的环境温度和空气密度分析配送环境状态，并根据配送环境状态处理配送区域与低空飞行器的匹配过程，根据低空飞行器电池充放电循环次处理配送环境状态的分析过程；</div>
+<div class="description-paragraph" id="p0013" num="0010">根据监测周期内低空飞行器的等待时间与配送环境状态对下一监测周期低空飞行器的飞行速度进行管理。</div>
+<div class="description-paragraph" id="p0014" num="0011">可选地，获取配送区域信息、低空飞行器信息与环境信息；</div>
+<div class="description-paragraph" id="p0015" num="0012">构建配送区域坐标、配送点坐标与充电站坐标；</div>
+<div class="description-paragraph" id="p0016" num="0013">根据配送区域坐标与配送点坐标划分配送区域类型；</div>
+<div class="description-paragraph" id="p0017" num="0014">将配送点坐标设为(0,0)，将第i个配送区域坐标设为(xi,yi)，将充电站坐标设为(xc,yc)；根据第i个配送区域坐标(xi,yi)与配送点坐标(0,0)对第i个配送区域和配送点的距离Li进行计算；</div>
+<div class="description-paragraph" id="p0018" num="0015">根据第i个配送区域和配送点的距离Li与预设距离L0对配送区域类型进行划分，其中：</div>
+<div class="description-paragraph" id="p0019" num="0016">若Li≤L0，判定第i个配送区域类型为一类区域，反之，判定第i个配送区域类型为二类区域。</div>
+<div class="description-paragraph" id="p0020" num="0017">可选地，将第i个配送区域的优先系数设为Yi，设定<span class="patent-image-not-available"></span>w1为人数权重，w2为需求权重，w1+w2＝1，mi为第i个配送区域人数，qi为第i个配送区域的物资需求，Si为第i个配送区域的类型系数。</div>
+<div class="description-paragraph" id="p0021" num="0018">可选地，充电站与配送点的距离的表达式如下：J＝(xc<sup>2</sup>+yc<sup>2</sup>)<sup>0.5</sup>；式中，J为充电站与配送点的距离；</div>
+<div class="description-paragraph" id="p0022" num="0019">将配送区域的优先系数进行降序排序，并将排序第一的配送区域作为待选区域，将待选区域与配电点的距离Ly与第k个低空飞行器续航Hk对待选区域和第k个低空飞行器进行匹配，其中：</div>
+<div class="description-paragraph" id="p0023" num="0020">若Ly≤α×Hk/2，将待选区域与该低空飞行器的匹配指数设为Pk1，设定Pk1＝1-ln{|α×Hk/2-Ly|/(α×Hk/2)+1}；</div>
+<div class="description-paragraph" id="p0024" num="0021">若Ly＞α×Hk/2且α×Hk/2＞J，将待选区域与该低空飞行器的匹配指数设为Pk2，设定Pk2＝1-β；</div>
+<div class="description-paragraph" id="p0025" num="0022">若Ly＞α×Hk/2且α×Hk/2≤J，将待选区域与该低空飞行器的匹配指数设为Pk3，设定Pk3＝0；其中，α为预设调整系数。</div>
+<div class="description-paragraph" id="p0026" num="0023">可选地，将待选区域与各低空飞行器的匹配系数进行降序排序，并将待选区域与低空飞行器匹配系数最大的低空飞行器作为匹配飞行器，若待选区域与低空飞行器匹配系数的最大值为0，则将排序第二的配送区域作为待选区域，重复上述过程，直至待选区域与低空飞行器匹配系数的最大值不为0。</div>
+<div class="description-paragraph" id="p0027" num="0024">可选地，根据获取的环境温度t0与预设温度t1对温度状态进行分析，若t0＜t1，判定温度状态为异常，并将温度异常系数设为WY1，设定WY1＝(t1-t0)/t1；若t0≥t1，判定温度状态为正常，并将温度异常系数设为WY2，设定WY2＝0；</div>
+<div class="description-paragraph" id="p0028" num="0025">根据获取的空气密度d0与预设空气密度d1对空气密度状态进行分析，若d0＜d1，判定空气密度状态为异常，并将空气密度异常系数设为KY1，设定KY1＝exp[3×(d1-d0)/d1-3]；若d0≥d1，判定空气密度状态为正常，并将空气密度异常系数设为KY2，设定KY2＝0；</div>
+<div class="description-paragraph" id="p0029" num="0026">根据温度异常系数与空气密度异常系数构建环境状态指数HZ，设定HZ＝r1×温度异常系数+r2×空气密度异常系数，r1为温度权重，r2为空气密度权重，r1+r2＝1；</div>
+<div class="description-paragraph" id="p0030" num="0027">根据环境状态指数HZ与预设状态指数HZ0对配送环境状态进行分析，若HZ≤HZ0，判定配送环境状态为正常；若HZ＞HZ0，判定配送环境状态为异常。</div>
+<div class="description-paragraph" id="p0031" num="0028">在配送环境状态为异常时对待选区域与低空飞行器的匹配过程进行处理，将处理后的预设调整系数设为α1。</div>
+<div class="description-paragraph" id="p0032" num="0029">可选地，根据第k个低空飞行器电池充放电循环次数fk0与预设次数f1对第k个低空飞行器的老化状态进行分析，若fk0≤f1，判定第k个低空飞行器的老化状态为正常；若fk0＞f1，判定第k个低空飞行器的老化状态为异常；</div>
+<div class="description-paragraph" id="p0033" num="0030">在第k个低空飞行器的老化状态为异常时对第k个低空飞行器配送环境状态的分析过程进行处理，并将处理后的预设状态指数设为HZ1，设定HZ1＝HZ0×{1-lg[5×(fk0-f1)/(fk0+f1)+1]/lg6}。</div>
+<div class="description-paragraph" id="p0034" num="0031">可选地，对下一监测周期低空飞行器的飞行速度进行管理过程如下：</div>
+<div class="description-paragraph" id="p0035" num="0032">当tw/T≤γ1时，若td/T≤γ2，判定当前监测周期低空飞行器的等待时间正常，不对下一监测周期低空飞行器的飞行速度进行管理，若td/T＞γ2，判定当前监测周期低空飞行器的等待时间异常，并将下一监测周期低空飞行器的飞行速度设为V1，设定V1＝V0×{1-η×(td/T-γ2)}；</div>
+<div class="description-paragraph" id="p0036" num="0033">当tw/T＞γ1时，若td/T≤γ3，判定当前监测周期低空飞行器的等待时间正常，不对下一监测周期低空飞行器的飞行速度进行管理，若td/T＞γ3，判定当前监测周期低空飞行器的等待时间异常，并将下一监测周期低空飞行器的飞行速度设为V2，设定V2＝V0×{1-η×(td/T-γ3)}；</div>
+<div class="description-paragraph" id="p0037" num="0034">将下一监测周期低空飞行器的飞行速度的管理结果向用户进行输出；</div>
+<div class="description-paragraph" id="p0038" num="0035">其中，tw为监测周期内各低空飞行器配送环境状态为异常的时长的平均值，T为监测周期的时长，td为监测周期内低空飞行器的等待时长，V0为当前监测周期低空飞行器的飞行速度，γ1为第一预设异常占比，γ2为第二预设异常占比，γ3为第三预设异常占比，η为预设调整比例系数。</div>
+<div class="description-paragraph" id="p0039" num="0036">根据本申请的另一方面，提供了一种基于低空飞行器的物资配送规划装置，包括：</div>
+<div class="description-paragraph" id="p0040" num="0037">信息获取模块，用以获取配送区域信息、低空飞行器信息与环境信息；</div>
+<div class="description-paragraph" id="p0041" num="0038">坐标构建模块，用以构建配送区域坐标、配送点坐标与充电站坐标；</div>
+<div class="description-paragraph" id="p0042" num="0039">类型划分模块，用以根据配送区域坐标与配送点坐标划分配送区域类型；</div>
+<div class="description-paragraph" id="p0043" num="0040">优先分析模块，用以根据配送区域人数、配送区域的物资需求与配送区域类型计算配送区域的优先系数；</div>
+<div class="description-paragraph" id="p0044" num="0041">规划模块，用以对充电站与配送点的距离进行计算，并根据计算结果、配送区域的优先系数和低空飞行器续航对配送区域与低空飞行器进行匹配；</div>
+<div class="description-paragraph" id="p0045" num="0042">环境分析模块，用以根据获取的环境温度和空气密度分析配送环境状态，并根据配送环境状态处理配送区域与低空飞行器的匹配过程，根据低空飞行器电池充放电循环次处理配送环境状态的分析过程；</div>
+<div class="description-paragraph" id="p0046" num="0043">速度管理模块，用以根据监测周期内低空飞行器的等待时间与配送环境状态对下一监测周期低空飞行器的飞行速度进行管理。</div>
+<div class="description-paragraph" id="p0047" num="0044">根据本申请的再一方面，提供了一种计算机可读存储介质，所述计算机可读存储介质存储有计算机程序，其中，所述计算机程序用以在运行时控制所述计算机可读存储介质所在电子设备执行所述的基于低空飞行器的物资配送规划方法。</div>
+<div class="description-paragraph" id="p0048" num="0045">本发明的有益效果如下：过信息获取、坐标构建、类型划分、优先分析、规划等多个模块，有效提升了在灾后紧急情况下物资配送的效率，能够全面获取配送区域的物资需求、低空飞行器的技术参数及环境信息，确保数据基础的全面性与实时性，通过精确的坐标构建和类型划分，能够快速判断各配送区域的优先级，确保资源优化分配，优先满足高需求和近距离的区域，此外，通过智能匹配机制，将优先级区域与适合的低空飞行器进行高效匹配，大幅提高了物资的投送准确性，在环境分析与状态监测中，结合实时温度和空气密度的数据分析，能够灵活调整飞行策略，确保在不利环境条件下仍然保证配送效率，通过对飞行器速度的管理，实现了灾后物资配送的高效、智能与安全。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0049">附图说明</div>
+<div class="description-paragraph" id="p0050" num="0046">为了更清楚地说明本发明实施例中的技术方案，下面将对实施例描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0051" num="0047">图1为本实施例基于低空飞行器的物资配送规划方法的流程示意图。</div>
+<div class="description-paragraph" id="p0052" num="0048">图2为本实施例匹配方法的流程示意图。</div>
+<div class="description-paragraph" id="p0053" num="0049">图3为本实施例匹配更新方法的流程示意图。</div>
+<div class="description-paragraph" id="p0054" num="0050">图4为本实施例基于低空飞行器的物资配送规划装置的结构示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0055">具体实施方式</div>
+<div class="description-paragraph" id="p0056" num="0051">为了更清楚地说明本发明，下面结合优选实施例和附图对本发明做进一步的说明。附图中相似的部件以相同的附图标记进行表示。本领域技术人员应当理解，下面所具体描述的内容是说明性的而非限制性的，不应以此限制本发明的保护范围。</div>
+<div class="description-paragraph" id="p0057" num="0052">需要说明的是，尽管在本申请实施例中可能采用术语第一、第二、第三等来描述，但这些描述不应限于这些术语。这些术语仅用来将描述区分开。例如，在不脱离本申请实施例范围的情况下，第一也可以被称为第二，类似地，第二也可以被称为第一。</div>
+<div class="description-paragraph" id="p0058" num="0053">具体而言，本实施例应用于高海拔受灾地区物资的配送规划，实现了对灾后救援区域的快速响应和物资高效配送，确保在动态环境下，粒度明确、优先级分明地满足受灾区域的迫切需求。</div>
+<div class="description-paragraph" id="p0059" num="0054">请参阅图1所示，其为本实施例基于低空飞行器的物资配送规划方法的流程示意图，包括，</div>
+<div class="description-paragraph" id="p0060" num="0055">步骤S101，获取配送区域信息、低空飞行器信息与环境信息，所述配送区域信息包括配送区域的物资需求和配送区域人数，所述物资需求为配送区域所需物资质量，所述低空飞行器信息包括低空飞行器续航、低空飞行器飞行速度与低空飞行器电池充放电循环次数，所述环境数据包括空气密度与环境温度，本实施例中所述配送区域为灾后有救援物资需求的区域；可以理解的是，本实施例中不对配送区域信息、低空飞行器信息与环境信息的获取方式作具体限定，本领域技术人员可自由设置，只需满足配送区域信息、低空飞行器信息与环境信息的获取要求即可。其中，所述配送区域的物资需求可通过交互获取，所述低空飞行器信息可通过Dronelog或其他飞行管理工具获取，所述环境信息可通过气象网站获取；本实施中不对低空飞行器的类型作具体限定，本领域技术人员可自由设置，只需满足低空飞行器的设置要求即可，其中，低空飞行器可为无人机。</div>
+<div class="description-paragraph" id="p0061" num="0056">请继续参阅图1所示，所述基于低空飞行器的物资配送规划方法还包括：</div>
+<div class="description-paragraph" id="p0062" num="0057">步骤S102，构建配送区域坐标、配送点坐标与充电站坐标。</div>
+<div class="description-paragraph" id="p0063" num="0058">具体的，将配送点坐标设为(0,0)，将第i个配送区域坐标设为(xi,yi)，将充电站坐标设为(xc,yc)。</div>
+<div class="description-paragraph" id="p0064" num="0059">具体的，通过统一配送区域、配送点和充电站的坐标体系，使得后续的距离计算和路径规划更加直观和高效，减少因坐标误差导致的配送延误。</div>
+<div class="description-paragraph" id="p0065" num="0060">具体而言，本实施例所述配送区域坐标为配送区域中心点的坐标，所述配送点为物资库所在区域，配送点坐标为物资库的中心点的坐标，所述充电站设置于配送区域与配送点之间，本实施例中不对充电站位置的设置作具体限定，本领域技术人员可自由设置，只需满足充电站位置的设置要求即可。</div>
+<div class="description-paragraph" id="p0066" num="0061">具体而言，本实施例中以配送点中心区域为坐标原点，以自西向东作为横轴正方向，以自南向北作为纵轴正方向，单位长度为1m建立平面直角坐标系；可以理解的是，本实施例中不对坐标系的建立方式作具体限定，本领域技术人员可自由设置，只需满足坐标系的建立要求即可。</div>
+<div class="description-paragraph" id="p0067" num="0062">请继续参与图1所示，所述基于低空飞行器的物资配送规划方法还包括：</div>
+<div class="description-paragraph" id="p0068" num="0063">步骤S103，根据配送区域坐标与配送点坐标划分配送区域类型。</div>
+<div class="description-paragraph" id="p0069" num="0064">具体的，根据第i个配送区域坐标(xi,yi)与配送点坐标(0,0)对第i个配送区域和配送点的距离Li进行计算，设定Li＝(xi<sup>2</sup>+yi<sup>2</sup>)<sup>0.5</sup>；</div>
+<div class="description-paragraph" id="p0070" num="0065">根据第i个配送区域和配送点的距离Li与预设距离L0对配送区域类型进行划分，其中：</div>
+<div class="description-paragraph" id="p0071" num="0066">若Li≤L0，判定第i个配送区域类型为一类区域，反之，判定第i个配送区域类型为二类区域。</div>
+<div class="description-paragraph" id="p0072" num="0067">具体的，通过将区域划分为一类和二类，能够更有效地分配资源，优先满足距离较远的区域，提高救援响应速度，从而提高了物资的配送规划效率。</div>
+<div class="description-paragraph" id="p0073" num="0068">具体而言，本实施例中不对预设距离的设置作具体限定，本领域技术人员可自由设置，只需满足预设距离的设置要求即可，其中，可将低空飞行器最大续航里程的三分之一作为预设距离。</div>
+<div class="description-paragraph" id="p0074" num="0069">请继续参阅图1所示，所述基于低空飞行器的物资配送规划方法还包括：</div>
+<div class="description-paragraph" id="p0075" num="0070">步骤S104,根据配送区域人数、配送区域的物资需求与配送区域类型计算配送区域的优先系数。</div>
+<div class="description-paragraph" id="p0076" num="0071">具体的，将第i个配送区域的优先系数设为Yi，设定<span class="patent-image-not-available"></span>w1为人数权重，w2为需求权重，w1+w2＝1，mi为第i个配送区域人数，qi为第i个配送区域的物资需求，Si为第i个配送区域的类型系数。</div>
+<div class="description-paragraph" id="p0077" num="0072">具体的，利用人数权重和物资需求权重具体量化每个配送区域的优先系数，使得决策过程更加科学，确保资源分配最有效，并在完成实际配送后，优先系数会重新计算，使得后续配送任务能更好地适应实时变化的需求情况，保证持续高效的应急响应。</div>
+<div class="description-paragraph" id="p0078" num="0073">可以理解的是，本实施例中不对各权重与配送区域类型系数的设置作具体限定，本领域技术人员可自由设置，只需满足各权重与配送区域类型系数的设置要求即可，其中，w1的最佳取值为0.4，w2的最佳取值为0.6，当配送区域类型为一类时，Si的最佳取值为0，当配送区域类型为二类时，Si的最佳取值为0.08；值得注意的是，在每次匹配成功后，各配送区域的优先级重新计算。</div>
+<div class="description-paragraph" id="p0079" num="0074">请继续参阅图1所示，所述基于低空飞行器的物资配送规划方法还包括：</div>
+<div class="description-paragraph" id="p0080" num="0075">步骤S105，对充电站与配送点的距离进行计算，并根据计算结果、配送区域的优先系数和低空飞行器续航对配送区域与低空飞行器进行匹配。</div>
+<div class="description-paragraph" id="p0081" num="0076">请参阅图2所示，所述匹配方法包括：</div>
+<div class="description-paragraph" id="p0082" num="0077">步骤S201，根据充电站坐标与配送点坐标对充电站与配送点的距离进行计算。</div>
+<div class="description-paragraph" id="p0083" num="0078">具体的，充电站与配送点的距离的表达式如下：J＝(xc<sup>2</sup>+yc<sup>2</sup>)<sup>0.5</sup>；式中，J为充电站与配送点的距离，(xc,yc)为充电站坐标。</div>
+<div class="description-paragraph" id="p0084" num="0079">请继续参阅图2所示，所述匹配方法还包括：</div>
+<div class="description-paragraph" id="p0085" num="0080">步骤S202，将配送区域的优先系数进行降序排序，并将排序第一的配送区域作为待选区域，将待选区域与配电点的距离Ly与第k个低空飞行器续航Hk对待选区域和第k个低空飞行器进行匹配。</div>
+<div class="description-paragraph" id="p0086" num="0081">具体的，待选区域和第k个低空飞行器的匹配过程如下：</div>
+<div class="description-paragraph" id="p0087" num="0082">将配送区域的优先系数进行降序排序，并将排序第一的配送区域作为待选区域，将待选区域与配电点的距离Ly与第k个低空飞行器续航Hk对待选区域和第k个低空飞行器进行匹配，其中：</div>
+<div class="description-paragraph" id="p0088" num="0083">若Ly≤α×Hk/2，将待选区域与该低空飞行器的匹配指数设为Pk1，设定Pk1＝1-ln{|α×Hk/2-Ly|/(α×Hk/2)+1}；</div>
+<div class="description-paragraph" id="p0089" num="0084">若Ly＞α×Hk/2且α×Hk/2＞J，将待选区域与该低空飞行器的匹配指数设为Pk2，设定Pk2＝1-β；</div>
+<div class="description-paragraph" id="p0090" num="0085">若Ly＞α×Hk/2且α×Hk/2≤J，将待选区域与该低空飞行器的匹配指数设为Pk3，设定Pk3＝0；</div>
+<div class="description-paragraph" id="p0091" num="0086">将待选区域与各低空飞行器的匹配系数进行降序排序，并将待选区域与低空飞行器匹配系数最大的低空飞行器作为匹配飞行器，若待选区域与低空飞行器匹配系数的最大值为0，则将排序第二的配送区域作为待选区域，重复上述过程，直至待选区域与低空飞行器匹配系数的最大值不为0；</div>
+<div class="description-paragraph" id="p0092" num="0087">其中，α为预设调整系数，β为预设比例系数。</div>
+<div class="description-paragraph" id="p0093" num="0088">具体的，通过分析优先系数、飞行器续航和充电点坐标，将高优先级区域与续航能力合适的飞行器进行匹配，提高配送效率，确保物资能够按时送到；对待选区域进行降序排序，保证首选区域优先得到配送，同时降低资源浪费，为紧急救援提供优先支持。</div>
+<div class="description-paragraph" id="p0094" num="0089">具体而言，匹配成功后，则选择与待选区域匹配成功的低空飞行器向待选区域进行物资配送，本实施例中若出现待选区域与低空飞行器匹配系数的最大值不唯一且都不为0，则任选一低空飞行器向待选区域进行物质配送；本实施例中不对预设调整系数与预设比例系数的设置作具体限定，本领域技术人员可自由设置，只需满足预设调整系数与预设比例系数的设置要求即可，其中，α的最佳取值为0.9，β的最佳取值为0.4。</div>
+<div class="description-paragraph" id="p0095" num="0090">请继续参阅图1所示，所述基于低空飞行器的物资配送规划方法还包括：</div>
+<div class="description-paragraph" id="p0096" num="0091">步骤S106，根据获取的环境温度和空气密度分析配送环境状态，并根据配送环境状态处理配送区域与低空飞行器的匹配过程，根据低空飞行器电池充放电循环次处理配送环境状态的分析过程。</div>
+<div class="description-paragraph" id="p0097" num="0092">请参阅图3所示，所述匹配更新方法包括：</div>
+<div class="description-paragraph" id="p0098" num="0093">步骤S301，根据获取的环境温度构建温度异常系数，根据获取的空气密度构建空气密度异常系数。</div>
+<div class="description-paragraph" id="p0099" num="0094">具体的，根据获取的环境温度t0与预设温度t1对温度状态进行分析，若t0＜t1，判定温度状态为异常，并将温度异常系数设为WY1，设定WY1＝(t1-t0)/t1；若t0≥t1，判定温度状态为正常，并将温度异常系数设为WY2，设定WY2＝0；</div>
+<div class="description-paragraph" id="p0100" num="0095">根据获取的空气密度d0与预设空气密度d1对空气密度状态进行分析，若d0＜d1，判定空气密度状态为异常，并将空气密度异常系数设为KY1，设定KY1＝exp[3×(d1-d0)/d1-3]；若d0≥d1，判定空气密度状态为正常，并将空气密度异常系数设为KY2，设定KY2＝0。</div>
+<div class="description-paragraph" id="p0101" num="0096">可以理解的是，本实施例中不对预设温度和预设空气密度的设置作具体限定，本领域技术人员可自由设置，只需满足预设温度与预设空气密度的设置要求即可，其中，t1的最佳取值为0℃，d1的最佳取值为1.225kg/m<sup>3</sup>。</div>
+<div class="description-paragraph" id="p0102" num="0097">请继续参阅图3所示，所述匹配更新方法还包括：</div>
+<div class="description-paragraph" id="p0103" num="0098">步骤S302，根据温度异常系数与空气密度异常系数分析配送环境状态，并处理待选区域与低空飞行器的匹配过程。</div>
+<div class="description-paragraph" id="p0104" num="0099">具体的，根据温度异常系数与空气密度异常系数构建环境状态指数HZ，设定HZ＝r1×温度异常系数+r2×空气密度异常系数，r1为温度权重，r2为空气密度权重，r1+r2＝1；</div>
+<div class="description-paragraph" id="p0105" num="0100">根据环境状态指数HZ与预设状态指数HZ0对配送环境状态进行分析，若HZ≤HZ0，判定配送环境状态为正常；若HZ＞HZ0，判定配送环境状态为异常。</div>
+<div class="description-paragraph" id="p0106" num="0101">在配送环境状态为异常时对待选区域与低空飞行器的匹配过程进行处理，将处理后的预设调整系数设为α1，设定α1＝α×exp[-(HZ-HZ0)]。</div>
+<div class="description-paragraph" id="p0107" num="0102">具体的，结合温度与空气密度对配送环境状态进行综合分析，以提高配送环境状态分析的准确性，从而提高了匹配过程分析的准确性，同时提高了低空飞行器飞行速度管理的准确性；在配送环境状态异常时对匹配过程进行处理，能够智能调整匹配过程，确保在复杂环境条件下仍旧保持高效响应能力。</div>
+<div class="description-paragraph" id="p0108" num="0103">可以理解的是，本实施例中不对各权重与预设状态指数的设置作具体限定，本领域技术人员可自由设置，只需满足各权重与预设状态指数的设置要求即可，其中，r1的最佳取值为0.7，r2的最佳取值为0.3，HZ0的最佳取值为0.2。</div>
+<div class="description-paragraph" id="p0109" num="0104">请继续参阅图3所示，所述匹配更新方法还包括：</div>
+<div class="description-paragraph" id="p0110" num="0105">步骤S303，根据低空飞行器电池充放电循环次数分析低空飞行器的老化状态，并处理低空飞行器配送环境状态的分析过程。</div>
+<div class="description-paragraph" id="p0111" num="0106">具体的，根据第k个低空飞行器电池充放电循环次数fk0与预设次数f1对第k个低空飞行器的老化状态进行分析，若fk0≤f1，判定第k个低空飞行器的老化状态为正常；若fk0＞f1，判定第k个低空飞行器的老化状态为异常；</div>
+<div class="description-paragraph" id="p0112" num="0107">在第k个低空飞行器的老化状态为异常时对第k个低空飞行器配送环境状态的分析过程进行处理，并将处理后的预设状态指数设为HZ1，设定HZ1＝HZ0×{1-lg[5×(fk0-f1)/(fk0+f1)+1]/lg6}。</div>
+<div class="description-paragraph" id="p0113" num="0108">具体的，通过对电池充放电循环次数的分析，能够实时了解飞行器电池的老化状态，进而减少老化状态对于配送环境状态分析的准确性，同时确保选用适合的飞行器参与配送任务。</div>
+<div class="description-paragraph" id="p0114" num="0109">可以理解的是，本实施例中不对预设次数的设置作具体限定，本领域技术人员可自由设置，只需满足预设次数的设置要求即可，其中，f1的最佳取值为1000次。</div>
+<div class="description-paragraph" id="p0115" num="0110">请继续参阅图1所示，所述基于低空飞行器的物资配送规划方法还包括：</div>
+<div class="description-paragraph" id="p0116" num="0111">步骤S107，根据监测周期内低空飞行器的等待时间与配送环境状态对下一监测周期低空飞行器的飞行速度进行管理。</div>
+<div class="description-paragraph" id="p0117" num="0112">具体的，对下一监测周期低空飞行器的飞行速度进行管理过程如下：</div>
+<div class="description-paragraph" id="p0118" num="0113">当tw/T≤γ1时，若td/T≤γ2，判定当前监测周期低空飞行器的等待时间正常，不对下一监测周期低空飞行器的飞行速度进行管理，若td/T＞γ2，判定当前监测周期低空飞行器的等待时间异常，并将下一监测周期低空飞行器的飞行速度设为V1，设定V1＝V0×{1-η×(td/T-γ2)}；</div>
+<div class="description-paragraph" id="p0119" num="0114">当tw/T＞γ1时，若td/T≤γ3，判定当前监测周期低空飞行器的等待时间正常，不对下一监测周期低空飞行器的飞行速度进行管理，若td/T＞γ3，判定当前监测周期低空飞行器的等待时间异常，并将下一监测周期低空飞行器的飞行速度设为V2，设定V2＝V0×{1-η×(td/T-γ3)}；</div>
+<div class="description-paragraph" id="p0120" num="0115">将下一监测周期低空飞行器的飞行速度的管理结果向用户进行输出；</div>
+<div class="description-paragraph" id="p0121" num="0116">其中，tw为监测周期内各低空飞行器配送环境状态为异常的时长的平均值，T为监测周期的时长，td为监测周期内低空飞行器的等待时长，V0为当前监测周期低空飞行器的飞行速度，γ1为第一预设异常占比，γ2为第二预设异常占比，γ3为第三预设异常占比，η为预设调整比例系数。</div>
+<div class="description-paragraph" id="p0122" num="0117">具体的，根据监测时间内的等待时间和配送环境状态，动态调整飞行器飞行速度，减少不必要的延误，提高资源利用效率，确保物资能迅速送达，提高对突发情况的应对能力，进而提高了物资的配送效率。</div>
+<div class="description-paragraph" id="p0123" num="0118">具体而言，本实施例所述低空飞行器的等待时间为所有配送区域与低空飞行器匹配系数最大值均为0的时长。</div>
+<div class="description-paragraph" id="p0124" num="0119">可以理解的是，本实施例中不对各预设异常占比与预设调整比例系数的设置作具体限定，本领域技术人员可自由设置，只需满足各预设异常占比与预设调整比例系数的设置要求即可，其中，γ1的最佳取值为0.3，γ2的最佳取值为0.05，γ3的最佳取值为0.07。</div>
+<div class="description-paragraph" id="p0125" num="0120">可以理解的是，本实施例中不对监测周期的设置作具体限定，本领域技术人员可自由设置，只需满足监测周期的设置要求即可，其中，监测周期可设置为5h、6h等。</div>
+<div class="description-paragraph" id="p0126" num="0121">请参阅图4所示，其为本实施例基于低空飞行器的物资配送规划装置的结构示意图，包括：</div>
+<div class="description-paragraph" id="p0127" num="0122">信息获取模块，用以获取配送区域信息、低空飞行器信息与环境信息；</div>
+<div class="description-paragraph" id="p0128" num="0123">坐标构建模块，用以构建配送区域坐标、配送点坐标与充电站坐标；</div>
+<div class="description-paragraph" id="p0129" num="0124">类型划分模块，用以根据配送区域坐标与配送点坐标划分配送区域类型；</div>
+<div class="description-paragraph" id="p0130" num="0125">优先分析模块，用以根据配送区域人数、配送区域的物资需求与配送区域类型计算配送区域的优先系数；</div>
+<div class="description-paragraph" id="p0131" num="0126">规划模块，用以对充电站与配送点的距离进行计算，并根据计算结果、配送区域的优先系数和低空飞行器续航对配送区域与低空飞行器进行匹配；</div>
+<div class="description-paragraph" id="p0132" num="0127">环境分析模块，用以根据获取的环境温度和空气密度分析配送环境状态，并根据配送环境状态处理配送区域与低空飞行器的匹配过程，根据低空飞行器电池充放电循环次处理配送环境状态的分析过程；</div>
+<div class="description-paragraph" id="p0133" num="0128">速度管理模块，用以根据监测周期内低空飞行器的等待时间与配送环境状态对下一监测周期低空飞行器的飞行速度进行管理。</div>
+<div class="description-paragraph" id="p0134" num="0129">本申请实施例所提供的基于低空飞行器的物资配送规划装置可执行本申请任意实施例所提供的基于低空飞行器的物资配送规划方法具备执行方法相应的功能模块和有益效果。</div>
+<div class="description-paragraph" id="p0135" num="0130">本申请还提供一种计算机可读存储介质，所述计算机可读存储介质为有形的物理存储介质，其可以存储上述计算机程序和程序中所使用的各类型数据；该物理存储介质包括但不限于随机存储器、只读存储器、光盘、硬盘等现有物理存储介质或介质的组合。</div>
+<div class="description-paragraph" id="p0136" num="0131">本领域普通技术人员可以理解，上文中所公开方法中的全部或某些步骤、系统可以被实施为软件、固件、硬件及其适当的组合。某些物理组件或所有物理组件可以被实施为由处理器，如中央处理器、数字信号处理器或微处理器执行的软件，或者被实施为硬件，或者被实施为集成电路，如专用集成电路。这样的软件可以分布在计算机可读介质上，计算机可读介质可以包括计算机存储介质(或非暂时性介质)和通信介质(或暂时性介质)。如本领域普通技术人员公知的，术语计算机存储介质包括在用于存储信息(诸如计算机可读程序、数据结构、程序模块或其他数据)的任何方法或技术中实施的易失性和非易失性、可移除和不可移除介质。计算机存储介质包括但不限于RAM、ROM、EEPROM、闪存或其他存储器技术、CD-ROM、数字多功能盘(DVD)或其他光盘存储、磁盒、磁带、磁盘存储或其他磁存储装置、或者可以用于存储期望的信息并且可以被计算机访问的任何其他的介质。此外，本领域普通技术人员公知的是，通信介质通常包含计算机可读程序、数据结构、程序模块或者诸如载波或其他传输机制之类的调制数据信号中的其他数据，并且可包括任何信息递送介质。</div>
+<div class="description-paragraph" id="p0137" num="0132">显然，本发明的上述实施例仅仅是为清楚地说明本发明所作的举例，而并非是对本发明的实施方式的限定，对于本领域的普通技术人员来说，在上述说明的基础上还可以做出其它不同形式的变化或变动，这里无法对所有的实施方式予以穷举，凡是属于本发明的技术方案所引伸出的显而易见的变化或变动仍处于本发明的保护范围之列。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

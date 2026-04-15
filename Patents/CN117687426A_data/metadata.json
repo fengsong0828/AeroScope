@@ -1,0 +1,78 @@
+{
+    "patent_id": "CN117687426A",
+    "title": "CN117687426A - 一种低空环境下的无人飞行器飞行控制方法和系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Chengdu Aeronautic Polytechnic",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN117687426A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN109190508A (zh) *",
+            "Priority Date": "2018-08-13",
+            "Publication Date": "2019-01-11",
+            "Assignee": "南京财经大学",
+            "Title": "一种基于空间坐标系的多摄像头数据融合方法",
+            "Link": "https://patents.google.com/patent/CN109190508A/zh"
+        },
+        {
+            "Publication Number": "CN110033411A (zh) *",
+            "Priority Date": "2019-04-12",
+            "Publication Date": "2019-07-19",
+            "Assignee": "哈尔滨工业大学",
+            "Title": "基于无人机的公路施工现场全景图像高效拼接方法",
+            "Link": "https://patents.google.com/patent/CN110033411A/zh"
+        },
+        {
+            "Publication Number": "CN112257497A (zh) *",
+            "Priority Date": "2020-09-14",
+            "Publication Date": "2021-01-22",
+            "Assignee": "广东电网有限责任公司江门供电局",
+            "Title": "一种利用空地融合真三维场景对线路施工监督的方法",
+            "Link": "https://patents.google.com/patent/CN112257497A/zh"
+        },
+        {
+            "Publication Number": "CN114494633A (zh) *",
+            "Priority Date": "2022-04-01",
+            "Publication Date": "2022-05-13",
+            "Assignee": "煤炭科学研究总院有限公司",
+            "Title": "填挖数据处理方法、装置、计算机设备和存储介质",
+            "Link": "https://patents.google.com/patent/CN114494633A/zh"
+        },
+        {
+            "Publication Number": "CN115748841A (zh) *",
+            "Priority Date": "2022-11-23",
+            "Publication Date": "2023-03-07",
+            "Assignee": "广西路建工程集团有限公司",
+            "Title": "一种岩溶区冲击成孔灌注桩偏位监测方法",
+            "Link": "https://patents.google.com/patent/CN115748841A/zh"
+        },
+        {
+            "Publication Number": "CN115982824A (zh) *",
+            "Priority Date": "2023-01-10",
+            "Publication Date": "2023-04-18",
+            "Assignee": "清华大学",
+            "Title": "施工现场工人空间管理方法、装置、电子设备及存储介质",
+            "Link": "https://patents.google.com/patent/CN115982824A/zh"
+        },
+        {
+            "Publication Number": "CN117371949A (zh) *",
+            "Priority Date": "2023-10-24",
+            "Publication Date": "2024-01-09",
+            "Assignee": "国网山东省电力公司建设公司",
+            "Title": "基于三维可视化模型的输电线路施工安全监测方法及系统",
+            "Link": "https://patents.google.com/patent/CN117371949A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN117725556A (zh) *",
+            "Priority Date": "2024-02-18",
+            "Publication Date": "2024-03-19",
+            "Assignee": "天津市特种设备监督检验技术研究院(天津市特种设备事故应急调查处理中心)",
+            "Title": "一种起重机的机械故障检测识别方法及系统",
+            "Link": "https://patents.google.com/patent/CN117725556A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:33:08"
+}

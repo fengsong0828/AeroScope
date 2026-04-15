@@ -1,0 +1,118 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119964417A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES494417578">
+<invention-title id="title1" lang="ZH">城市低空飞行器的空中交通管理方法、计算设备及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及空中交通管理技术领域，具体涉及一种城市低空飞行器的空中交通管理方法、计算设备及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空经济的高速发展，城市低空物流和出行迎来了前所未有的机遇，同时也面临着新一轮的挑战。</div>
+<div class="description-paragraph" id="p0005" num="0003">与传统民航运输相比，低空空域飞行架次多，飞行距离短，有限空域内执飞的飞行器密度大。现有的基于管制员指挥的空中交通管理模式难以应对复杂的低空飞行器交通状况。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">为确保在城市低空空域中，高密度的飞行器能够安全高效地运行，本发明的目的在于针对现有技术的不足，提供一种城市低空飞行器空中交通管理方法、计算设备及系统。</div>
+<div class="description-paragraph" id="p0008" num="0005">为实现上述目的，第一方面，本发明实施例提供了一种城市低空飞行器的空中交通管理方法，包括：</div>
+<div class="description-paragraph" id="p0009" num="0006">获取城市低空飞行器的飞行计划数据；</div>
+<div class="description-paragraph" id="p0010" num="0007">基于所述飞行计划数据，在预先构建的城市低空圆径模型中规划最优航线；</div>
+<div class="description-paragraph" id="p0011" num="0008">当所述城市低空飞行器按照所述最优航线、在所述城市低空圆径模型中飞行时，实时调节多个所述城市低空飞行器之间的间距；</div>
+<div class="description-paragraph" id="p0012" num="0009">当出现紧急情况导致有冲突风险时，为相关飞行器制定冲突解脱方案，并使得相关飞行器按照所述冲突解脱方案飞行。</div>
+<div class="description-paragraph" id="p0013" num="0010">作为本申请的一种优选实现方式，获取城市低空飞行器的飞行计划数据之前，所述方法还包括构建城市低空圆径模型，具体为：</div>
+<div class="description-paragraph" id="p0014" num="0011">根据城市低空飞行器起降点的分布情况以及城市地面道路情况等因素，构建城市低空圆径模型，使得城市低空飞行器起降点均位于城市低空圆径模型的水平投影范围内；</div>
+<div class="description-paragraph" id="p0015" num="0012">其中，所述城市低空圆径模型包括两个圆环层和两个径向层；每个圆环层由多个半径各异的同心圆均匀分布组成，两个圆环层交错分布；每个径向层由多条均匀分布的径向路径组成，每条径向路径均穿过圆心，两个径向层交错分布。</div>
+<div class="description-paragraph" id="p0016" num="0013">作为本申请的一种具体实现方式，规划最优航线具体为：</div>
+<div class="description-paragraph" id="p0017" num="0014">解析所述飞行计划数据，获取城市低空飞行器的出发点S、目的地D；</div>
+<div class="description-paragraph" id="p0018" num="0015">根据出发点S、目的地D确定所述城市低空飞行器的圆周飞行模式、径向飞行模式；</div>
+<div class="description-paragraph" id="p0019" num="0016">基于所述圆周飞行模式、径向飞行模式以及空域流量情况规划城市低空飞行器的最优航线和速度。</div>
+<div class="description-paragraph" id="p0020" num="0017">作为本申请的一种具体实现方式，根据出发点S、目的地D确定所述城市低空飞行器的圆周飞行模式、径向飞行模式，具体为：</div>
+<div class="description-paragraph" id="p0021" num="0018">将出发点S、目的点D投影到二维水平面上，并以圆心投影点为原点构建极坐标系来判定飞行路径；在极坐标系下，出发点S投影坐标S'(ρ<sub>s</sub>，θ<sub>s</sub>)，目的点D投影坐标D'(ρ<sub>d</sub>，θ<sub>d</sub>)；</div>
+<div class="description-paragraph" id="p0022" num="0019">引入高度信息，出发点的坐标为S(ρ<sub>s</sub>，θ<sub>s</sub>，h<sub>1</sub>)，目的点的坐标为D(ρ<sub>d</sub>，θ<sub>d</sub>，h<sub>4</sub>)；</div>
+<div class="description-paragraph" id="p0023" num="0020">计算出发点和目的点之间的夹角θ＝θ<sub>d</sub>-θ<sub>s</sub>，并根据规则确定圆周飞行模式；</div>
+<div class="description-paragraph" id="p0024" num="0021">计算出发点和目的点极径的差值ρ＝ρ<sub>d</sub>-ρ<sub>s</sub>，并根据规则确定径向飞行模式。</div>
+<div class="description-paragraph" id="p0025" num="0022">第二方面，本发明实施例还提供了一种计算设备，适用于城市低空飞行器的空中交通管理，包括处理器、输入设备、输出设备和存储器，所述处理器、输入设备、输出设备和存储器相互连接，其中，所述存储器用于存储计算机程序，所述计算机程序包括程序指令，所述处理器被配置用于调用所述程序指令，执行上述第一方面的方法。</div>
+<div class="description-paragraph" id="p0026" num="0023">第三方面，本发明实施例还提供了一种城市低空飞行器的空中交通管理系统，包括：</div>
+<div class="description-paragraph" id="p0027" num="0024">飞行计划处理模块，用于获取城市低空飞行器的飞行计划数据；</div>
+<div class="description-paragraph" id="p0028" num="0025">航线规划模块，用于基于所述飞行计划数据，在预先构建的城市低空圆径模型中规划最优航线；</div>
+<div class="description-paragraph" id="p0029" num="0026">间距控制模块，用于当所述城市低空飞行器按照所述最优航线、在所述城市低空圆径模型中飞行时，实时调节多个所述城市低空飞行器之间的间距；</div>
+<div class="description-paragraph" id="p0030" num="0027">冲突解脱模块，用于当出现紧急情况导致有冲突风险时，为相关飞行器制定冲突解脱方案，并使得相关飞行器按照所述冲突解脱方案飞行。</div>
+<div class="description-paragraph" id="p0031" num="0028">作为本申请的一种优选实现方式，所述系统还包括模型构建模块，用于构建城市低空圆径模型，具体为：</div>
+<div class="description-paragraph" id="p0032" num="0029">根据城市低空飞行器起降点的分布情况，构建城市低空圆径模型，使得城市低空飞行器起降点均位于城市低空圆径模型的水平投影范围内；</div>
+<div class="description-paragraph" id="p0033" num="0030">其中，城市低空圆径模型包括两个圆环层和两个径向层；每个圆环层由多个半径各异的同心圆均匀分布组成，两个圆环层交错分布；每个径向层由多条均匀分布的径向路径组成，每条径向路径均穿过圆心，两个径向层交错分布。</div>
+<div class="description-paragraph" id="p0034" num="0031">本发明实施例所提供的城市低空飞行器空中交通管理方案，通过构建圆径模型、整合飞行计划、规划最优航线、实时间距控制以及制定冲突解脱方案，显著降低了低空飞行器的碰撞风险。对于保障飞行安全、提升低空交通运行效率具有重要现实意义。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0035">附图说明</div>
+<div class="description-paragraph" id="p0036" num="0032">为了更清楚地说明本发明具体实施方式或现有技术中的技术方案，下面将对具体实施方式或现有技术描述中所需要使用的附图作简单地介绍。</div>
+<div class="description-paragraph" id="p0037" num="0033">图1是本发明实施例提供的城市低空飞行器的空中交通管理方法流程图。</div>
+<div class="description-paragraph" id="p0038" num="0034">图2为本发明城市低空圆径模型的示意图。</div>
+<div class="description-paragraph" id="p0039" num="0035">图3为本发明城市低空圆径模型圆环层水平投影的示意图。</div>
+<div class="description-paragraph" id="p0040" num="0036">图4为本发明城市低空圆径模型径向层水平投影的示意图。</div>
+<div class="description-paragraph" id="p0041" num="0037">图5为本发明飞行模式判定示意图。</div>
+<div class="description-paragraph" id="p0042" num="0038">图6为本发明航线规划模块规划的最优航线的示意图。</div>
+<div class="description-paragraph" id="p0043" num="0039">图7是本发明实施例提供的计算设备的结构图。</div>
+<div class="description-paragraph" id="p0044" num="0040">图8是本发明实施例提供的城市低空飞行器的空中交通管理系统的结构图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0045">具体实施方式</div>
+<div class="description-paragraph" id="p0046" num="0041">下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0047" num="0042">应当理解，当在本说明书和所附权利要求书中使用时，术语“包括”和“包含”指示所描述特征、整体、步骤、操作、元素和/或组件的存在，但并不排除一个或多个其它特征、整体、步骤、操作、元素、组件和/或其集合的存在或添加。</div>
+<div class="description-paragraph" id="p0048" num="0043">请参考图1，本发明实施例提供的城市低空飞行器的空中交通管理方法可以包括如下步骤：</div>
+<div class="description-paragraph" id="p0049" num="0044">S1，构建城市低空圆径模型。</div>
+<div class="description-paragraph" id="p0050" num="0045">具体地，城市低空圆径模型如图2所示，其具体构建过程包括：</div>
+<div class="description-paragraph" id="p0051" num="0046">根据城市低空飞行器起降点的分布情况以及城市地面道路情况等因素，构建城市低空圆径模型，使得飞行器起降点均位于圆径模型的水平投影范围内。</div>
+<div class="description-paragraph" id="p0052" num="0047">其中，圆径模型共四层，包括两个圆环层和两个径向层，分别分布于G类空域(高度范围为120米至300米)中的H<sub>1</sub>、H<sub>2</sub>、H<sub>3</sub>、H<sub>4</sub>四个高度。在本实施例中，具体设置H<sub>1</sub>＝120米为顺时针圆环层、H<sub>2</sub>＝160米为向心径向层、H<sub>3</sub>＝200米为向心径向层、H<sub>4</sub>＝240米为逆时针圆环层，250-300米范围为应急救援预留高度层，飞行器在此范围内可直飞；</div>
+<div class="description-paragraph" id="p0053" num="0048">如图3所示，每个圆环层由多个半径各异的同心圆(也可以是椭圆)均匀分布组成，为减少飞行器在飞行过程中的冲突，将两个圆环层设计为交错分布的形式，即它们在水平面上的投影不重叠。此处对于圆环层和径向层的定义为概念示意，具体的构建和组合方式应根据城市实际情况进行定制设计，即圆环层和径向层的具体形式可包括不规则部分，但总体需符合概念示意要求。所有符合上述概念示意的组合方式均涵盖在本发明的保护范围之内。在图3中，实线圆表示逆时针圆环层的投影，虚线圆为顺时针圆环层的投影，d<sub>1</sub>为相邻的顺时针圆与逆时针圆之间的间距，d<sub>2</sub>为相邻的同向圆之间的间距，r<sub>min</sub>为圆环层最小半径，r<sub>max</sub>为圆环层最大半径。</div>
+<div class="description-paragraph" id="p0054" num="0049">如图4所示，每个径向层由多条均匀分布的径向路径组成，每条路径的延长线都穿过圆心。随着径向路径接近圆心，相邻路径的水平距离缩短，导致发生飞行冲突的概率增加，因此在圆心周围设置禁飞区以确保安全。且与圆环层类似，径向层的设计也采用了交错分布的方式。在图4中，β<sub>1</sub>为相邻向心路径之间的夹角，β<sub>2</sub>为相邻离心路径之间的夹角，l为径向路径的长度。</div>
+<div class="description-paragraph" id="p0055" num="0050">S2，获取城市低空飞行器的飞行计划数据。</div>
+<div class="description-paragraph" id="p0056" num="0051">该行计划数据包括但不限于出发点、目的地、飞行器参数等。</div>
+<div class="description-paragraph" id="p0057" num="0052">S3，基于所述飞行计划数据，在预先构建的城市低空圆径模型中规划最优航线。</div>
+<div class="description-paragraph" id="p0058" num="0053">具体实现时，步骤S3包括：</div>
+<div class="description-paragraph" id="p0059" num="0054">S31、解析步骤S21中的飞行计划数据，获取飞行器的出发点S、目的点D；</div>
+<div class="description-paragraph" id="p0060" num="0055">S32、判定飞行器在圆周上的飞行模式，如图5所示，将出发点S、目的点D投影到二维水平面上，并以圆心投影点为原点构建极坐标系来判定飞行路径。在此坐标系下，出发点投影坐标S'(ρ<sub>s</sub>，θ<sub>s</sub>)，目的点投影坐标D'(ρ<sub>d</sub>，θ<sub>d</sub>)。进一步的，引入高度信息后，出发点的坐标为S(ρ<sub>s</sub>，θ<sub>s</sub>，h<sub>1</sub>)，目的点的坐标为D(ρ<sub>d</sub>，θ<sub>d</sub>，h<sub>4</sub>)。计算出发点和目的点之间的夹角θ＝θ<sub>d</sub>-θ<sub>s</sub>，并根据以下规则确定圆周飞行模式：</div>
+<div class="description-paragraph" id="p0061" num="0056">(1)当θ≥0且θ≤π，目的点位于出发点沿圆周逆时针方向的一侧，飞行器应逆时针飞行；</div>
+<div class="description-paragraph" id="p0062" num="0057">(2)当θ&lt;0且|θ|≤π，目的点位于出发点沿圆周顺时针方向的一侧，飞行器应顺时针飞行；</div>
+<div class="description-paragraph" id="p0063" num="0058">(3)当θ&gt;π，目的点位于出发点沿圆周顺时针方向超过半圈的位置，飞行器应顺时针飞行2π-θ；</div>
+<div class="description-paragraph" id="p0064" num="0059">(4)当θ&lt;-π，目的点位于出发点沿圆周逆时针方向超过半圈的位置，飞行器应逆时针飞行-2π-θ；</div>
+<div class="description-paragraph" id="p0065" num="0060">S33、计算出发点和目的点极径的差值ρ＝ρ<sub>d</sub>-ρ<sub>s</sub>，根据以下规则确定径向飞行模式：</div>
+<div class="description-paragraph" id="p0066" num="0061">当ρ&gt;0，即ρ<sub>d</sub>&gt;ρ<sub>s</sub>，目的点相对出发点处于更外层的圆环，飞行器应在径向层离心飞行；</div>
+<div class="description-paragraph" id="p0067" num="0062">当ρ&lt;0，即ρ<sub>d</sub>&lt;ρ<sub>s</sub>，目的点相对出发点处于更内层的圆环，飞行器应在径向层向心飞行；</div>
+<div class="description-paragraph" id="p0068" num="0063">S34，航线规划模块基于步骤S32和S33所确定的圆周和径向飞行模式，以及空域流量情况，为飞行器规划最优航线和速度。</div>
+<div class="description-paragraph" id="p0069" num="0064">规划的结果是结合飞行的距离、空域的流量情况，做出如下判断：是先进进行圆周飞行还是径向飞行，以及圆周飞行中是顺时针飞行还是逆时针飞行。如图6所示，飞行器计划从低空飞行器起降点S飞行至起降点D。规划的最优航线为先从S垂直上升至H<sub>2</sub>高度的向心径向层的A点，向心飞行至B点，接着下降至H<sub>1</sub>高度的逆时针圆环层的C点，再逆时针飞行至E点，最后从E点垂直降落即可到达起降点D。</div>
+<div class="description-paragraph" id="p0070" num="0065">S4，当所述城市低空飞行器按照所述最优航线、在所述城市低空圆径模型中飞行时，实时调节多个所述城市低空飞行器之间的间距。</div>
+<div class="description-paragraph" id="p0071" num="0066">具体地，飞行器按照规划的最优航线和速度，在城市低空圆径模型内飞行。飞行过程中，间距控制模块实时调节飞行器之间的间距以保障飞行安全。</div>
+<div class="description-paragraph" id="p0072" num="0067">S5，当出现紧急情况导致有冲突风险时，为相关飞行器制定冲突解脱方案，并使得相关飞行器按照所述冲突解脱方案飞行。</div>
+<div class="description-paragraph" id="p0073" num="0068">从以上描述可以得知，本发明实施例所提供的城市低空飞行器空中交通管理方案，通过构建圆径模型、整合飞行计划、规划最优航线、实时间距控制以及制定冲突解脱方案，显著降低了低空飞行器的碰撞风险。对于保障飞行安全、提升低空交通运行效率具有重要现实意义。</div>
+<div class="description-paragraph" id="p0074" num="0069">基于相同的发明构思，本本发明实施例提供了一种计算设备，适用于城市低空飞行器的空中交通管理。如图7所示，该计算设备可以包括：一个或多个处理器101、一个或多个输入设备102、一个或多个输出设备103和存储器104，上述处理器101、输入设备102、输出设备103和存储器104通过总线105相互连接。存储器104用于存储计算机程序，所述计算机程序包括程序指令，所述处理器101被配置用于调用所述程序指令执行上述方法实施例部分的方法。</div>
+<div class="description-paragraph" id="p0075" num="0070">应当理解，在本发明实施例中，所称处理器101可以是中央处理单元(CentralProcessing Unit，CPU)，该处理器还可以是其他通用处理器、数字信号处理器(DigitalSignal Processor，DSP)、专用集成电路(Application Specific Integrated Circuit，ASIC)、现成可编程门阵列(Field-Programmable GateArray，FPGA)或者其他可编程逻辑器件、分立门或者晶体管逻辑器件、分立硬件组件等。通用处理器可以是微处理器或者该处理器也可以是任何常规的处理器等。</div>
+<div class="description-paragraph" id="p0076" num="0071">输入设备102可以包括键盘等，输出设备103可以包括显示器(LCD等)、扬声器等。</div>
+<div class="description-paragraph" id="p0077" num="0072">该存储器104可以包括只读存储器和随机存取存储器，并向处理器101提供指令和数据。存储器104的一部分还可以包括非易失性随机存取存储器。例如，存储器104还可以存储设备类型的信息。</div>
+<div class="description-paragraph" id="p0078" num="0073">具体实现中，本发明实施例中所描述的处理器101、输入设备102、输出设备103可执行本发明实施例提供的城市低空飞行器的空中交通管理方法的实施例中所描述的实现方式，在此不再赘述。</div>
+<div class="description-paragraph" id="p0079" num="0074">进一步地，本发明实施例还提供了一种城市低空飞行器的空中交通管理系统，如图8所示，包括：</div>
+<div class="description-paragraph" id="p0080" num="0075">模型构建模块，用于构建城市低空圆径模型；</div>
+<div class="description-paragraph" id="p0081" num="0076">飞行计划处理模块，用于获取城市低空飞行器的飞行计划数据；</div>
+<div class="description-paragraph" id="p0082" num="0077">航线规划模块，用于基于所述飞行计划数据，在预先构建的城市低空圆径模型中规划最优航线；</div>
+<div class="description-paragraph" id="p0083" num="0078">间距控制模块，用于当所述城市低空飞行器按照所述最优航线、在所述城市低空圆径模型中飞行时，实时调节多个所述城市低空飞行器之间的间距；</div>
+<div class="description-paragraph" id="p0084" num="0079">冲突解脱模块，用于当出现紧急情况导致有冲突风险时，为相关飞行器制定冲突解脱方案，并使得相关飞行器按照所述冲突解脱方案飞行。</div>
+<div class="description-paragraph" id="p0085" num="0080">其中，模型构建模块具体用于：</div>
+<div class="description-paragraph" id="p0086" num="0081">根据城市低空飞行器起降点的分布情况，构建城市低空圆径模型，使得城市低空飞行器起降点均位于城市低空圆径模型的水平投影范围内；</div>
+<div class="description-paragraph" id="p0087" num="0082">城市低空圆径模型包括两个圆环层和两个径向层；每个圆环层由多个半径各异的同心圆均匀分布组成，两个圆环层交错分布；每个径向层由多条均匀分布的径向路径组成，每条径向路径均穿过圆心，两个径向层交错分布。</div>
+<div class="description-paragraph" id="p0088" num="0083">其中，航线规划模块具体用于：</div>
+<div class="description-paragraph" id="p0089" num="0084">解析所述飞行计划数据，获取城市低空飞行器的出发点S、目的地D；</div>
+<div class="description-paragraph" id="p0090" num="0085">根据出发点S、目的地D确定所述城市低空飞行器的圆周飞行模式、径向飞行模式；</div>
+<div class="description-paragraph" id="p0091" num="0086">基于所述圆周飞行模式、径向飞行模式以及空域流量情况规划城市低空飞行器的最优航线和速度。</div>
+<div class="description-paragraph" id="p0092" num="0087">进一步地，根据出发点S、目的地D确定所述城市低空飞行器的圆周飞行模式、径向飞行模式，具体为：</div>
+<div class="description-paragraph" id="p0093" num="0088">将出发点S、目的点D投影到二维水平面上，并以圆心投影点为原点构建极坐标系来判定飞行路径；在极坐标系下，出发点S投影坐标S'(ρ<sub>s</sub>，θ<sub>s</sub>)，目的点D投影坐标D'(ρ<sub>d</sub>，θ<sub>d</sub>)；</div>
+<div class="description-paragraph" id="p0094" num="0089">引入高度信息，出发点的坐标为S(ρ<sub>s</sub>，θ<sub>s</sub>，h<sub>1</sub>)，目的点的坐标为D(ρ<sub>d</sub>，θ<sub>d</sub>，h<sub>4</sub>)；</div>
+<div class="description-paragraph" id="p0095" num="0090">计算出发点和目的点之间的夹角θ＝θ<sub>d</sub>-θ<sub>s</sub>，并根据规则确定圆周飞行模式；</div>
+<div class="description-paragraph" id="p0096" num="0091">计算出发点和目的点极径的差值ρ＝ρ<sub>d</sub>-ρ<sub>s</sub>，并根据规则确定径向飞行模式。</div>
+<div class="description-paragraph" id="p0097" num="0092">需要说明的是，关于计算设备及系统更为具体的工作流程，请参考前述方法实施例部分，在此不再赘述。</div>
+<div class="description-paragraph" id="p0098" num="0093">本领域普通技术人员可以意识到，结合本文中所公开的实施例描述的各示例的单元及算法步骤，能够以电子硬件、计算机软件或者二者的结合来实现，为了清楚地说明硬件和软件的可互换性，在上述说明中已经按照功能一般性地描述了各示例的组成及步骤。这些功能究竟以硬件还是软件方式来执行，取决于技术方案的特定应用和设计约束条件。专业技术人员可以对每个特定的应用来使用不同方法来实现所描述的功能，但是这种实现不应认为超出本发明的范围。</div>
+<div class="description-paragraph" id="p0099" num="0094">在本申请所提供的几个实施例中，应该理解到，所揭露的装置和方法，可以通过其它的方式实现。例如，以上所描述的装置实施例仅仅是示意性的，例如，所述单元的划分，仅仅为一种逻辑功能划分，实际实现时可以有另外的划分方式，例如多个单元或组件可以结合或者可以集成到另一个系统，或一些特征可以忽略，或不执行。另外，所显示或讨论的相互之间的耦合或直接耦合或通信连接可以是通过一些接口、装置或单元的间接耦合或通信连接，也可以是电的，机械的或其它的形式连接。</div>
+<div class="description-paragraph" id="p0100" num="0095">所述作为分离部件说明的单元可以是或者也可以不是物理上分开的，作为单元显示的部件可以是或者也可以不是物理单元，即可以位于一个地方，或者也可以分布到多个网络单元上。可以根据实际的需要选择其中的部分或者全部单元来实现本发明实施例方案的目的。</div>
+<div class="description-paragraph" id="p0101" num="0096">以上所述，仅为本发明的具体实施方式，但本发明的保护范围并不局限于此，任何熟悉本技术领域的技术人员在本发明揭露的技术范围内，可轻易想到各种等效的修改或替换，这些修改或替换都应涵盖在本发明的保护范围之内。因此，本发明的保护范围应以权利要求的保护范围为准。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

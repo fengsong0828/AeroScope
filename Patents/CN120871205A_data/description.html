@@ -1,0 +1,264 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120871205A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES510069688">
+<invention-title id="title1" lang="ZH">LEO/GNSS/INS紧组合低空飞行器定位测速方法及装置</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本文件涉及低空飞行器定位或多传感器组合定位领域，尤其涉及一种LEO/GNSS/INS紧组合低空飞行器定位测速方法、装置、电子设备及介质。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">全球导航卫星系统(Global Navigation Satellite System)与惯性导航系统INS(Inertial Navigation System)组合导航定位系统，通常采用松组合与紧组合模式实现组合，通过进行优势互补，实现载体连续可用定位。但是低空空域，尤其是城市高楼、郊区峡谷等场景下卫星信号容易受到遮挡，当可见卫星少于4颗时，GNSS无法解算载体位置与速度，GNSS/INS(Global Navigation Satellite System/Inertial Navigation System)松组合切换为单一的INS航位推算方式，定位误差随时间快速发散，定位精度受限。GNSS/INS紧组合，由于在距离域进行组合，仍然可以通过GNSS伪距、伪距率与INS解算的等效伪距、伪距率组合，短时间定位精度依然可以保持。但是当卫星信号遮挡严重，长时间可见卫星数量为1-2颗，由于观测信息不足，卫星空间几何分布较差，定位误差同样会发散，导致定位结果不可用。</div>
+<div class="description-paragraph" id="p0005" num="0003">与GNSS相比，低轨LEO(Low Earth Orbit)卫星轨道高度较低，轨道周期较短，单星覆盖范围小，需要数百颗甚至数万颗卫星组网，实现整体高密度覆盖。低轨卫星采用增强技术可以辅助GNSS与INS系统，提升GNSS/INS组合系统的性能。低轨卫星导航增强技术主要分为信号增强和信息增强两类，其中信息增强通过播发误差修正数据辅助用户提升定位精度。信号增强直接发射导航信号作为额外观测源，通过增加观测信号数量改善定位精度。</div>
+<div class="description-paragraph" id="p0006" num="0004">低轨卫星信号发射抵达地球表面的功率比中高轨卫星高，可穿透部分城市峡谷或森林环境，具有强遮挡力。此外，作为独立信号源，可在GNSS拒止环境下提供备份定位能力，提升系统韧性。LEO作为“伪卫星”，可以发射独立的测距信号，补充遮挡区域的卫星数量，改善卫星几何空间。另一方面，由于LEO卫星轨道动态变化快，多普勒效应显著，改善遮挡场景下低空飞行器的测速精度。因此，低轨LEO卫星可以用于对GNSS和INS进行补盲与增强，提升系统的综合定位性能。</div>
+<div class="description-paragraph" id="p0007" num="0005">现有技术中公开了一种低轨增强、GNSS与IMU融合的持续导航方法及导航装置，低轨LEO卫星采用信息增强，一方面转发GNSS卫星星历数据，另一方面通过低轨增强电文发送时刻的伪距信息、多普勒信息以及低轨卫星位置和速度信息进行单星定位，与INS导航结果进行融合，实现复杂电磁环境下GNSS定位的可靠性和持续性。该方法虽然采用低轨卫星信息增强方法，提高了开阔无遮挡环境下GNSS/INS组合定位系统的可靠性与持续性，但是信息增强需要依赖GNSS信号，在城市高楼、郊区峡谷等信号遮挡区域，无法发挥作用，因此不适用于卫星信号遮挡场景。</div>
+<div class="description-paragraph" id="p0008" num="0006">现有技术中还公开了一种低轨导航增强下进行GNSS/INS组合导航的方法和装置，采用低轨LEO卫星增强电文中的GNSS卫星精密轨道数据、GNSS卫星精密钟差数据、GNSS码偏差改正、地球自转参数、电离层改正和低轨卫星精密轨道、钟差，对GNSS和低轨LEO卫星的伪距载波相位观测值进行误差改正，得到高精度的GNSS导航定位结果，与INS在位置与速度域进行松组合，得到最终的高精度组合导航结果。该方法采用低轨LEO卫星信息增强方式，虽然缩短了高精度定位的收敛时间，但是同样适用于开阔无遮挡场景下的高精度实时定位，不适用于卫星信号遮挡场景下的高精度定位。</div>
+<div class="description-paragraph" id="p0009" num="0007">现有技术中还公开了一种实时自主组合导航定位方法及装置，利用低轨卫星播发的导航增强信息和中高轨卫星的星历，得到低轨卫星和中高轨卫星的精密轨道和钟差，修正低轨与中高轨卫星观测数据，联合解算得到载体的定位信息，与INS在位置与速度域进行松组合，采用线性卡尔曼滤波，得到最终的组合导航结果。该方法采用低轨LEO卫星信息增强方式，虽然提高了中高轨卫星的观测质量，实现连续精度的稳定导航定位服务，但是仍然不适用于卫星信号遮挡场景下的高精度定位。</div>
+<div class="description-paragraph" id="p0010" num="0008">现有技术还提出了一种低轨LEO卫星伪距观测信号增强的GNSS/IMU紧组合定位方法，基于INS误差参数模型和GNSS时钟误差模型构建组合系统状态模型，联合GNSS伪距观测模型与低轨LEO卫星伪距观测模型构建观测模型，观测方程为非线性伪距观测模型线性化后的线性模型，采用卡尔曼滤波进行滤波估计，获得组合后的定位结果。该方法采用低轨LEO卫星信号增强方式，理论上通过引入低轨LEO卫星的伪距增加观测量，提高系统的定位精度，但是伪距模型在线性化过程中由于线性截断也会引入较大的截断误差，影响定位精度，无法始终保证复杂场景下的定位精度。</div>
+<div class="description-paragraph" id="p0011" num="0009">当前低轨LEO卫星信息增强技术的主要缺点是需依赖GNSS卫星信号解析增强电文，在卫星信号被严重遮挡的场景，如城市高楼、峡谷，GNSS信号中断导致信息增强完全失效，无法解决遮挡场景下观测量不足(可见卫星&lt;4颗)的连续定位问题，导致INS误差快速发散。</div>
+<div class="description-paragraph" id="p0012" num="0010">低轨LEO卫星信号增强技术的主要缺点是观测模型单一，多普勒观测值利用不足，。一方面仅依赖伪距观测值，未融合多普勒频移等多维信息，在遮挡场景下观测方程鲁棒性不足。另一方面未充分利用低轨卫星特有的高动态多普勒频移，导致测速精度未最大化。此外，紧组合观测模型中非线性化引入的截断误差，尤其在低仰角卫星或动态剧烈时，显著降低定位精度。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0013">发明内容</div>
+<div class="description-paragraph" id="p0014" num="0011">本发明的目的在于提供一种LEO/GNSS/INS紧组合低空飞行器定位测速方法、装置、电子设备及介质，旨在解决现有技术中的上述问题。</div>
+<div class="description-paragraph" id="p0015" num="0012">本发明提供一种LEO/GNSS/INS紧组合低空飞行器定位测速方法，包括：</div>
+<div class="description-paragraph" id="p0016" num="0013">INS通过航位推算得到低空飞行器更新后的位置、速度与姿态状态信息；</div>
+<div class="description-paragraph" id="p0017" num="0014">根据接收到的GNSS和LEO信号，并结合低空飞行器更新后的位置、速度与姿态状态信息，构建LEO/GNSS/INS紧组合系统状态与量测模型；</div>
+<div class="description-paragraph" id="p0018" num="0015">采用超球体单形采样无迹卡尔曼滤波SS-UKF模型，对所述LEO/GNSS/INS紧组合系统状态与量测模型进行滤波估计，通过INS误差校正，得到最终组合后的低空飞行器位置、速度与姿态信息。</div>
+<div class="description-paragraph" id="p0019" num="0016">本发明提供一种LEO/GNSS/INS紧组合低空飞行器定位测速装置，包括：</div>
+<div class="description-paragraph" id="p0020" num="0017">推算模块，用于基于INS通过航位推算得到低空飞行器更新后的位置、速度与姿态状态信息；</div>
+<div class="description-paragraph" id="p0021" num="0018">构建模块，用于根据接收到的GNSS和LEO信号，并结合低空飞行器更新后的位置、速度与姿态状态信息，构建LEO/GNSS/INS紧组合系统状态与量测模型；</div>
+<div class="description-paragraph" id="p0022" num="0019">计算模块，用于采用超球体单形采样无迹卡尔曼滤波SS-UKF模型，对所述LEO/GNSS/INS紧组合系统状态与量测模型进行滤波估计，通过INS误差校正，得到最终组合后的低空飞行器位置、速度与姿态信息。</div>
+<div class="description-paragraph" id="p0023" num="0020">本发明实施例还提供一种电子设备，包括：存储器、处理器及存储在所述存储器上并可在所述处理器上运行的计算机程序，所述计算机程序被所述处理器执行时实现上述低轨卫星双观测信号增强的GNSS/INS紧组合低空飞行器定位测速方法的步骤。</div>
+<div class="description-paragraph" id="p0024" num="0021">本发明实施例还提供一种计算机可读存储介质，所述计算机可读存储介质上存储有信息传递的实现程序，所述程序被处理器执行时实现上述低轨卫星双观测信号增强的GNSS/INS紧组合低空飞行器定位测速方法的步骤。</div>
+<div class="description-paragraph" id="p0025" num="0022">采用本发明实施例，在传统GNSS/INS紧组合单一伪距观测信号的基础上，引入低轨LEO卫星的伪距与多普勒双观测信号，采用超球体单形采样无迹卡尔曼滤波SS-UKF模型进行滤波估，提升低空飞行器的定位测速精度，满足城市高楼、桥梁、郊区峡谷等卫星信号遮挡场景下的低空飞行器自主精确实时定位测速需求，适用于低空飞行器巡检、低空物流等应用场景。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0026">附图说明</div>
+<div class="description-paragraph" id="p0027" num="0023">为了更清楚地说明本说明书一个或多个实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本说明书中记载的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动性的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0028" num="0024">图1是本发明实施例的LEO/GNSS/INS紧组合低空飞行器定位测速方法的流程图；</div>
+<div class="description-paragraph" id="p0029" num="0025">图2是本发明实施例的LEO/GNSS/INS紧组合定位测速原理框图；</div>
+<div class="description-paragraph" id="p0030" num="0026">图3是本发明实施例的LEO/GNSS/INS紧组合低空飞行器定位测速装置的示意图；</div>
+<div class="description-paragraph" id="p0031" num="0027">图4是本发明实施例的电子设备的示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0032">具体实施方式</div>
+<div class="description-paragraph" id="p0033" num="0028">为了使本技术领域的人员更好地理解本说明书一个或多个实施例中的技术方案，下面将结合本说明书一个或多个实施例中的附图，对本说明书一个或多个实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本说明书的一部分实施例，而不是全部的实施例。基于本说明书一个或多个实施例，本领域普通技术人员在没有作出创造性劳动前提下所获得的所有其他实施例，都应当属于本文件的保护范围。</div>
+<div class="description-paragraph" id="p0034" num="0029">方法实施例</div>
+<div class="description-paragraph" id="p0035" num="0030">根据本发明实施例，提供了一种LEO/GNSS/INS紧组合低空飞行器定位测速方法，图1是本发明实施例的LEO/GNSS/INS紧组合低空飞行器定位测速方法的流程图，本发明实例提出的卫星信号遮挡场景下LEO/GNSS/INS紧组合低空飞行器定位测速方法，主要解决了遮挡场景卫星观测不足时的LEO/GNSS/INS紧组合定位测速技术问题和高维非线性模型实时精确滤波技术问题，满足卫星遮挡场景下低空飞行器的定位测速需求。如图1所示，根据本发明实施例的LEO/GNSS/INS紧组合低空飞行器定位测速方法具体包括：</div>
+<div class="description-paragraph" id="p0036" num="0031">步骤S101，INS通过航位推算得到低空飞行器更新后的位置、速度与姿态状态信息；具体包括：</div>
+<div class="description-paragraph" id="p0037" num="0032">INS根据低空飞行器初始状态、以及INS中陀螺仪和加速度计测量的角速率与加速度，通过航位推算得到低空飞行器更新后的位置、速度与姿态状态信息，其中，所述低空飞行器初始状态具体包括位置、速度和姿态。</div>
+<div class="description-paragraph" id="p0038" num="0033">步骤S102，根据接收到的GNSS和LEO信号，并结合低空飞行器更新后的位置、速度与姿态状态信息，构建LEO/GNSS/INS紧组合系统状态与量测模型；具体包括：</div>
+<div class="description-paragraph" id="p0039" num="0034">接收GNSS和LEO信号，得到GNSS和LEO的伪距与伪距率信号；</div>
+<div class="description-paragraph" id="p0040" num="0035">解析GNSS和LEO的伪距与伪距率信号中的广播星历，基于广播星历计算GNSS和LEO的位置；</div>
+<div class="description-paragraph" id="p0041" num="0036">根据所述低空飞行器更新后的位置、速度与姿态状态信息、以及所述GNSS和LEO的位置，计算INS等效的伪距/伪距率；</div>
+<div class="description-paragraph" id="p0042" num="0037">基于INS误差状态模型、加速度计及陀螺仪偏移误差模型、GNSS的时钟相关误差模型，构建系统状态模型；</div>
+<div class="description-paragraph" id="p0043" num="0038">基于公式1-公式4所示的GNSS和LEO的伪距/伪距率观测模型，根据公</div>
+<div class="description-paragraph" id="p0044" num="0039">式5确定LEO/GNSS/INS紧组合系统的量测向量，构建系统量测模型；</div>
+<div class="description-paragraph" id="p0045" num="0040">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0046" num="0041">其中，上角标GNSS和LEO分别表示GNSS卫星与LEO卫星，ρ<sub>i</sub>为第i颗卫星的伪距观测值，r<sub>i</sub>为第i颗卫星与机载接收机的真实距离，T<sub>i</sub>和I<sub>i</sub>为分别为对流层延迟误差和电离层延迟误差，c为光速，δt<sup>r</sup>和<span class="patent-image-not-available"></span>为接收机钟差和卫星钟差，<span class="patent-image-not-available"></span>为未知伪距量测噪声；</div>
+<div class="description-paragraph" id="p0047" num="0042">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0048" num="0043">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0049" num="0044">其中，公式中的“点”表示伪距率；</div>
+<div class="description-paragraph" id="p0050" num="0045">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0051" num="0046">其中，ρ<sup>INS</sup>和<span class="patent-image-not-available"></span>为INS等效的伪距向量与伪距率向量；</div>
+<div class="description-paragraph" id="p0052" num="0047">对所述系统状态模型和所述系统量测模型进行时间离散，得到时间离散后的LEO/GNSS/INS紧组合系统状态与量测模型：</div>
+<div class="description-paragraph" id="p0053" num="0048">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0054" num="0049">其中，x(k)表示k时刻系统状态向量，y(k)表示k时刻系统量测向量，k表示当前时刻，h表示非线性量测模型，v(k)表示量测噪声向量，F(k|k-1)表示k时刻的状态转移矩阵，ω(k-1)表示状态噪声向量。</div>
+<div class="description-paragraph" id="p0055" num="0050">步骤S103，采用超球体单形采样无迹卡尔曼滤波SS-UKF模型，对所述LEO/GNSS/INS紧组合系统状态与量测模型进行滤波估计，通过INS误差校正，得到最终组合后的低空飞行器位置、速度与姿态信息。具体包括：</div>
+<div class="description-paragraph" id="p0056" num="0051">根据公式7-公式8采用卡尔曼滤波进行状态更新，得到一步状态更新后的LEO/GNSS/INS紧组合系统的状态与对应的协方差矩阵。</div>
+<div class="description-paragraph" id="p0057" num="0052">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0058" num="0053">P(k|k-1)＝F(k|k-1)P(k-1)F<sup>T</sup>(k-1)+Q(k-1)    公式8；</div>
+<div class="description-paragraph" id="p0059" num="0054">其中，<span class="patent-image-not-available"></span>表示k时刻的一步预测状态，F(k|k-1)表示k时刻的状态转移矩阵，<span class="patent-image-not-available"></span>表示(k-1)时刻的系统状态，P(k|k-1)表示一步预测状态<span class="patent-image-not-available"></span>对应的协方差矩阵，P(k-1)表示(k-1)时刻的系统状态<span class="patent-image-not-available"></span>对应的协方差矩阵，F<sup>T</sup>(k-1)表示k时刻的状态转移矩阵的转置，Q(k-1)表示量测噪声协方差矩阵；</div>
+<div class="description-paragraph" id="p0060" num="0055">对得到的一步状态更新后系统状态<span class="patent-image-not-available"></span>采用超球体单形采样模型进行采样，获得n+2个采样点，并得到每个采样点对应的权重，其中，n为自然数；具体包括：根据公式15计算Sigma采样点权重：根据公式16计算初始状态迭代矢量；根据公式17计算状态维数扩展时对应的状态迭代向量；根据公</div>
+<div class="description-paragraph" id="p0061" num="0056">式18计算得到Sigma点采样点集；</div>
+<div class="description-paragraph" id="p0062" num="0057">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0063" num="0058">其中，w<sup>0</sup>为初值权重，0≤w<sup>0</sup>≤1；</div>
+<div class="description-paragraph" id="p0064" num="0059">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0065" num="0060">其中，i表示扩展的状态维度。</div>
+<div class="description-paragraph" id="p0066" num="0061">根据公式9基于得到的n+2个采样点集ξ(k|k-1)的每个点，计算对应的n+2个量测预测值：</div>
+<div class="description-paragraph" id="p0067" num="0062">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0068" num="0063">其中，<span class="patent-image-not-available"></span>表示量测预测向量，ξ<sup>j</sup>(k|k-1)表示第j个采样点，h表示系统非线性量测模型；</div>
+<div class="description-paragraph" id="p0069" num="0064">根据公式10，基于n+2个量测值和对应权重，计算系统的预测值。</div>
+<div class="description-paragraph" id="p0070" num="0065">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0071" num="0066">其中，<span class="patent-image-not-available"></span>表示系统量测预测向量，<span class="patent-image-not-available"></span>表示第j个采样点ξ<sup>j</sup>(k|k-1)参与均值计算的对应权重矩阵，m表示均值mean；</div>
+<div class="description-paragraph" id="p0072" num="0067">完成量测更新，根据公式11-公式14得到滤波估计后的系统状态误差<span class="patent-image-not-available"></span>和协方差矩阵P(k)：</div>
+<div class="description-paragraph" id="p0073" num="0068">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0074" num="0069">P(k)＝P(k|k-1)-K(k)P<sub>yy</sub>(k|k-1)K(k)<sup>T</sup>               公式14；</div>
+<div class="description-paragraph" id="p0075" num="0070">其中，P<sub>yy</sub>(l|k-1)表示系统量测预测向量<span class="patent-image-not-available"></span>对应的协方差矩阵，R(k)表示系统流量测噪声协方差矩阵，K(k)表示增益矩阵；</div>
+<div class="description-paragraph" id="p0076" num="0071">结合低空飞行器更新后的位置、速度与姿态状态信息，以及滤波得到的<span class="patent-image-not-available"></span>中的位置误差、速度误差与姿态误差，通过INS误差校正，获得最终组合后的低空飞行器绝对的位置、速度与姿态信息。</div>
+<div class="description-paragraph" id="p0077" num="0072">也就是说，本发明实施例将低轨LEO卫星的伪距与多普勒频移双信号均引入GNSS/INS紧组合系统，构建LEO/GNSS/INS紧组合定位测速系统，可以改善既有组合系统存在的系统观测量单一、测速精度有限的问题，实现卫星信号遮挡场景下低空飞行器的精确定位测速。将超球体单形采样策略融入UKF非线性滤波框架中，构建超球体单形采样UKF滤波SS-UKF算法。一方面，状态模型由于为线性方程，仍然采用卡尔曼滤波，只需要进行1次线性计算，减少线性模型采用非线性UKF模型的计算资源浪费。另一方面，量测模型采用UKF非线性模型，可以避免量测模型线性化导致的截断误差，保证定位测速精度；采用超球体单形采样策略，采样点由原来的2n+1减少为n+2个，每个量测需要进行n+2次非线性计算即可，提高滤波速率。其中，n为系统状态个数。因此，SS-UKF可以平衡高维非线性模型的滤波精度与滤波效率，满足卫星信号遮挡场景下LEO/GNSS/INS紧组合定位测速系统的定位测速精度与实时性。</div>
+<div class="description-paragraph" id="p0078" num="0073">本发明实施例的技术方案解决了卫星信号遮挡场景下(卫星观测信号少于4颗时)低轨卫星增强的低空飞行器组合导航定位测速问题。在既有GNSS/INS紧组合系统的基础上，不改变系统状态模型，采用低轨卫星信号增强技术，引入低轨卫星伪距与多普勒观测信号，联合低轨卫星伪距观测模型/多普勒频移观测模型与GNSS伪距观测模型/伪距率模型构建优化后的非线性观测模型。同时，采用超球体单形采样无迹卡尔曼滤波SS-UKF(Spherical Simplex Unscented Kalman Filter)模型进行滤波估计，状态更新采用线性卡尔曼滤波，量测更新采用无迹卡尔曼滤波框架，并采用超球体单形采样模型进行采样，减少采样点个数，提高滤波实时性，解决了高维非线性紧组合导航定位模型的精确实时定位测速问题。</div>
+<div class="description-paragraph" id="p0079" num="0074">以下对本发明实施例的上述技术方案进行详细说明。</div>
+<div class="description-paragraph" id="p0080" num="0075">本发明实施例的一种卫星信号遮挡场景下低轨卫星双观测信号增强的GNSS/INS紧组合低空飞行器定位测速方法，原理框图如图2所示，主要步骤如下：</div>
+<div class="description-paragraph" id="p0081" num="0076">步骤一，INS结合低空飞行器初始状态，包括位置、速度和姿态，以及INS中陀螺仪和加速度计测量的角速率与加速度，通过航位推算得到低空飞行器更新后的位置、速度与姿态状态信息。</div>
+<div class="description-paragraph" id="p0082" num="0077">步骤二，接收GNSS和LEO信号，结合步骤一INS更新后的状态信息，构建LEO/GNSS/INS紧组合系统状态与量测模型。步骤如下：</div>
+<div class="description-paragraph" id="p0083" num="0078">步骤201：接收的GNSS和LEO信号，得到GNSS和LEO的伪距与伪距率(多普勒频移)信号。</div>
+<div class="description-paragraph" id="p0084" num="0079">步骤202：解析GNSS和LEO信号中的广播星历，基于广播星历计算GNSS和LEO的位置。</div>
+<div class="description-paragraph" id="p0085" num="0080">步骤203:结合步骤一INS航位推算得到的位置、速度信息，以及步骤202得到的GNSS的位置，计算INS等效的伪距/伪距率。</div>
+<div class="description-paragraph" id="p0086" num="0081">步骤204:基于INS误差状态模型、加速度计及陀螺仪偏移误差模型、GNSS的时钟相关误差模型，构建系统状态模型。</div>
+<div class="description-paragraph" id="p0087" num="0082">步骤205:基于GNSS的伪距/伪距率观测模型、LEO的伪距/伪距率观测模型，构建系统量测模型。</div>
+<div class="description-paragraph" id="p0088" num="0083">GNSS与LEO的伪距观测模型为：</div>
+<div class="description-paragraph" id="p0089" num="0084">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0090" num="0085">其中，上角标GNSS和LEO分别表示GNSS卫星与LEO卫星，ρ<sub>i</sub>为第i颗卫星的伪距观测值，r<sub>i</sub>为第i颗卫星与机载接收机的真实距离，T<sub>i</sub>和I<sub>i</sub>为分别为对流层延迟误差和电离层延迟误差，c为光速，δt<sup>r</sup>和<span class="patent-image-not-available"></span>为接收机钟差和卫星钟差。<span class="patent-image-not-available"></span>为未知伪距量测噪声。</div>
+<div class="description-paragraph" id="p0091" num="0086">接收机接收到的多普勒频移，通过波长，可以转换得到伪距率。</div>
+<div class="description-paragraph" id="p0092" num="0087">GNSS与LEO的伪距率观测模型为：</div>
+<div class="description-paragraph" id="p0093" num="0088">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0094" num="0089">LEO/GNSS/INS紧组合系统的量测向量为：</div>
+<div class="description-paragraph" id="p0095" num="0090">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0096" num="0091">其中，ρ<sup>INS</sup>和<span class="patent-image-not-available"></span>为步骤203得到的INS等效的伪距向量与伪距率向量。</div>
+<div class="description-paragraph" id="p0097" num="0092">步骤206:对系统状态模型与量测模型进行时间离散，用于后续滤波估计。</div>
+<div class="description-paragraph" id="p0098" num="0093">时间离散后的系统模型为：</div>
+<div class="description-paragraph" id="p0099" num="0094">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0100" num="0095">步骤三，采用超球体单形采样无迹卡尔曼滤波SS-UKF(Spherical SimplexUnscented Kalman Filter)模型，对步骤二紧组合系统的状态与量测模型进行滤波估计，通过INS误差校正，得到最终组合后的低空飞行器位置、速度与姿态信息。具体步骤如下：</div>
+<div class="description-paragraph" id="p0101" num="0096">步骤301：采用卡尔曼滤波进行状态更新，得到一步状态更新后的组合系统状态与对应的协方差矩阵。</div>
+<div class="description-paragraph" id="p0102" num="0097">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0103" num="0098">P(k|k-1)＝F(k|k-1)P(k-1)F<sup>T</sup>(k-1)+Q(k-1)         (8)</div>
+<div class="description-paragraph" id="p0104" num="0099">步骤302：对步骤301得到的一步状态更新后系统状态<span class="patent-image-not-available"></span>采用超球体单形采样模型进行采样,获得n+2个采样点，并得到每个采样点对应的权重。具体步骤如下：</div>
+<div class="description-paragraph" id="p0105" num="0100">1：计算Sigma采样点权重。</div>
+<div class="description-paragraph" id="p0106" num="0101">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0107" num="0102">其中，w<sup>0</sup>为初值权重，0≤w<sup>0</sup>≤1。</div>
+<div class="description-paragraph" id="p0108" num="0103">2：初始状态迭代矢量获取。</div>
+<div class="description-paragraph" id="p0109" num="0104">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0110" num="0105">3：计算状态维数扩展时对应的状态迭代向量。</div>
+<div class="description-paragraph" id="p0111" num="0106">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0112" num="0107">4：得到Sigma点采样点集。</div>
+<div class="description-paragraph" id="p0113" num="0108">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0114" num="0109">步骤303：基于步骤302得到的n+2个采样点集ξ<sup>j</sup>(k|k-1)的每个点，计算对应的n+2量测预测值。</div>
+<div class="description-paragraph" id="p0115" num="0110">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0116" num="0111">步骤304：基于步骤303的n+2个量测值和对应权重，计算系统的预测值。</div>
+<div class="description-paragraph" id="p0117" num="0112">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0118" num="0113">步骤305：完成量测更新，得到滤波估计后的系统状态误差<span class="patent-image-not-available"></span>和协方差矩阵P(k)。</div>
+<div class="description-paragraph" id="p0119" num="0114">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0120" num="0115">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0121" num="0116">P(k)＝P(k|k-1)-K(k)P<sub>yy</sub>(k|k-1)K(k)<sup>T</sup>                 (18)</div>
+<div class="description-paragraph" id="p0122" num="0117">步骤306：结合步骤一得到的低空飞行器更新后的位置、速度与姿态状态信息，以及滤波得到的<span class="patent-image-not-available"></span>中的位置误差、速度误差与姿态误差，通过INS误差校正，获得最终组合后的低空飞行器绝对的位置、速度与姿态信息。</div>
+<div class="description-paragraph" id="p0123" num="0118">从上述处理可以看出，本发明实施例在低空飞行器机载导航定位终端无须增加新的传感器或者硬件单元，软件部分只需更改既有GNSS/INS紧组合的量测处理部分，该组合导航系统结构简单，易实现。本发明实施例超球体单形采样UKF滤波SS-UKF算法，将紧组合模型进行结构分解，线性状态模型采用卡尔曼滤波，非线性量测采用无迹卡尔曼滤波，解决了标准UKF应用于紧组合线性/非线性模型的滤波效率不优问题。本发明实施例在无迹卡尔曼滤波框架中，引入超球体单形采样策略，平衡了高维非线性模型的滤波精度与实时性。</div>
+<div class="description-paragraph" id="p0124" num="0119">综上所述，采用本发明实施例的技术方案，卫星信号遮挡场景下低轨卫星伪距/多普勒频移双信号增强。当GNSS完全失效，仅需要1颗低轨卫星的伪距/多普勒频移与INS组合即可继续定位测速。针对高维非线性系统的SS-UKF轻量化滤波架构，状态更新用线性卡尔曼滤波，量测更新用超球体采样UKF，仅需n+2个采样点，平衡滤波精度与实时性。系统改造成本低。该系统为纯软件升级，仅修改量测处理模块。此外，状态模型可以复用，直接兼容既有GNSS/INS紧组合架构。</div>
+<div class="description-paragraph" id="p0125" num="0120">装置实施例一</div>
+<div class="description-paragraph" id="p0126" num="0121">根据本发明实施例，提供了一种LEO/GNSS/INS紧组合低空飞行器定位测速装置，图3是本发明实施例的LEO/GNSS/INS紧组合低空飞行器定位测速装置的示意图，如图3所示，根据本发明实施例的LEO/GNSS/INS紧组合低空飞行器定位测速装置具体包括：</div>
+<div class="description-paragraph" id="p0127" num="0122">推算模块30，用于基于INS通过航位推算得到低空飞行器更新后的位置、速度与姿态状态信息；具体用于：INS根据低空飞行器初始状态、以及INS中陀螺仪和加速度计测量的角速率与加速度，通过航位推算得到低空飞行器更新后的位置、速度与姿态状态信息，其中，所述低空飞行器初始状态具体包括位置、速度和姿态；</div>
+<div class="description-paragraph" id="p0128" num="0123">构建模块32，用于根据接收到的GNSS和LEO信号，并结合低空飞行器更新后的位置、速度与姿态状态信息，构建LEO/GNSS/INS紧组合系统状态与量测模型；接收GNSS和LEO信号，得到GNSS和LEO的伪距与伪距率信号；</div>
+<div class="description-paragraph" id="p0129" num="0124">解析GNSS和LEO的伪距与伪距率信号中的广播星历，基于广播星历计算GNSS和LEO的位置；</div>
+<div class="description-paragraph" id="p0130" num="0125">根据所述低空飞行器更新后的位置、速度与姿态状态信息、以及所述GNSS和LEO的位置，计算INS等效的伪距/伪距率；</div>
+<div class="description-paragraph" id="p0131" num="0126">基于INS误差状态模型、加速度计及陀螺仪偏移误差模型、GNSS的时钟相关误差模型，构建系统状态模型；</div>
+<div class="description-paragraph" id="p0132" num="0127">基于公式1-公式4所示的GNSS和LEO的伪距/伪距率观测模型，根据公</div>
+<div class="description-paragraph" id="p0133" num="0128">式5确定LEO/GNSS/INS紧组合系统的量测向量，构建系统量测模型；</div>
+<div class="description-paragraph" id="p0134" num="0129">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0135" num="0130">其中，上角标GNSS和LEO分别表示GNSS卫星与LEO卫星，ρ<sub>i</sub>为第i颗卫星的伪距观测值，r<sub>i</sub>为第i颗卫星与机载接收机的真实距离，T<sub>i</sub>和I<sub>i</sub>为分别为对流层延迟误差和电离层延迟误差，c为光速，δt<sup>r</sup>和<span class="patent-image-not-available"></span>为接收机钟差和卫星钟差，<span class="patent-image-not-available"></span>为未知伪距量测噪声；</div>
+<div class="description-paragraph" id="p0136" num="0131">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0137" num="0132">其中，公式中的“点”表示伪距率；</div>
+<div class="description-paragraph" id="p0138" num="0133">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0139" num="0134">其中，ρ<sup>INS</sup>和<span class="patent-image-not-available"></span>为INS等效的伪距向量与伪距率向量；</div>
+<div class="description-paragraph" id="p0140" num="0135">对所述系统状态模型和所述系统量测模型进行时间离散，得到时间离散后的LEO/GNSS/INS紧组合系统状态与量测模型：</div>
+<div class="description-paragraph" id="p0141" num="0136">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0142" num="0137">其中，x(k)表示k时刻系统状态向量，y(k)表示k时刻系统量测向量，k表示当前时刻，h表示非线性量测模型，v(k)表示量测噪声向量，F(k|k-1)表示k时刻的状态转移矩阵，ω(k-1)表示状态噪声向量；</div>
+<div class="description-paragraph" id="p0143" num="0138">计算模块34，用于采用超球体单形采样无迹卡尔曼滤波SS-UKF模型，对所述LEO/GNSS/INS紧组合系统状态与量测模型进行滤波估计，通过INS误差校正，得到最终组合后的低空飞行器位置、速度与姿态信息。根据公式7-公式8采用卡尔曼滤波进行状态更新，得到一步状态更新后的LEO/GNSS/INS紧组合系统的状态与对应的协方差矩阵。</div>
+<div class="description-paragraph" id="p0144" num="0139">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0145" num="0140">P(k|k-1)＝F(k|k-1)P(k-1)F<sup>T</sup>(k-1)+Q(k-1)    公式8；</div>
+<div class="description-paragraph" id="p0146" num="0141">其中，<span class="patent-image-not-available"></span>表示k时刻的一步预测状态，F(k|k-1)表示k时刻的状态转移矩阵，<span class="patent-image-not-available"></span>表示(k-1)时刻的系统状态，P(k|k-1)表示一步预测状态<span class="patent-image-not-available"></span>对应的协方差矩阵，P(k-1)表示(k-1)时刻的系统状态<span class="patent-image-not-available"></span>对应的协方差矩阵，F<sup>T</sup>(k-1)表示k时刻的状态转移矩阵的转置，Q(k-1)表示量测噪声协方差矩阵；</div>
+<div class="description-paragraph" id="p0147" num="0142">对得到的一步状态更新后系统状态<span class="patent-image-not-available"></span>采用超球体单形采样模型进行采样，获得n+2个采样点，并得到每个采样点对应的权重，其中，n为自然数；具体用于：</div>
+<div class="description-paragraph" id="p0148" num="0143">根据公式15计算Sigma采样点权重：</div>
+<div class="description-paragraph" id="p0149" num="0144">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0150" num="0145">其中，w<sup>0</sup>为初值权重，0≤w<sup>0</sup>≤1；</div>
+<div class="description-paragraph" id="p0151" num="0146">根据公式16计算初始状态迭代矢量；</div>
+<div class="description-paragraph" id="p0152" num="0147">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0153" num="0148">根据公式17计算状态维数扩展时对应的状态迭代向量；</div>
+<div class="description-paragraph" id="p0154" num="0149">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0155" num="0150">根据公式18计算得到Sigma点采样点集；</div>
+<div class="description-paragraph" id="p0156" num="0151">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0157" num="0152">其中，i表示扩展的状态维度。</div>
+<div class="description-paragraph" id="p0158" num="0153">根据公式9基于得到的n+2个采样点集ξ(k|k-1)的每个点，计算对应的n+2个量测预测值：</div>
+<div class="description-paragraph" id="p0159" num="0154">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0160" num="0155">其中，<span class="patent-image-not-available"></span>表示量测预测向量，ξ<sup>j</sup>(k|k-1)表示第j个采样点，h表示系统非线性量测模型；</div>
+<div class="description-paragraph" id="p0161" num="0156">根据公式10，基于n+2个量测值和对应权重，计算系统的预测值。</div>
+<div class="description-paragraph" id="p0162" num="0157">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0163" num="0158">其中，<span class="patent-image-not-available"></span>表示系统量测预测向量，<span class="patent-image-not-available"></span>表示第j个采样点ξ<sup>j</sup>(k|k-1)参与均值计算的对应权重矩阵，m表示均值mean；</div>
+<div class="description-paragraph" id="p0164" num="0159">完成量测更新，根据公式11-公式14得到滤波估计后的系统状态误差<span class="patent-image-not-available"></span>和协方差矩阵P(k)：</div>
+<div class="description-paragraph" id="p0165" num="0160">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0166" num="0161">P(k)＝P(k|k-1)-K(k)P<sub>yy</sub>(k|k-1)K(k)<sup>T</sup>               公式14；</div>
+<div class="description-paragraph" id="p0167" num="0162">其中，P<sub>yy</sub>(l|k-1)表示系统量测预测向量<span class="patent-image-not-available"></span>对应的协方差矩阵，R(k)表示系统流量测噪声协方差矩阵，K(k)表示增益矩阵；</div>
+<div class="description-paragraph" id="p0168" num="0163">结合低空飞行器更新后的位置、速度与姿态状态信息，以及滤波得到的<span class="patent-image-not-available"></span>中的位置误差、速度误差与姿态误差，通过INS误差校正，获得最终组合后的低空飞行器绝对的位置、速度与姿态信息。</div>
+<div class="description-paragraph" id="p0169" num="0164">本发明实施例是与上述方法实施例对应的装置实施例，各个模块的具体操作可以参照方法实施例的描述进行理解，在此不再赘述。</div>
+<div class="description-paragraph" id="p0170" num="0165">装置实施例二</div>
+<div class="description-paragraph" id="p0171" num="0166">本发明实施例提供一种电子设备，如图4所示，包括：存储器40、处理器42及存储在所述存储器40上并可在所述处理42上运行的计算机程序，所述计算机程序被所述处理器42执行时实现如方法实施例中所述的步骤。</div>
+<div class="description-paragraph" id="p0172" num="0167">装置实施例三</div>
+<div class="description-paragraph" id="p0173" num="0168">本发明实施例提供一种计算机可读存储介质，所述计算机可读存储介质上存储有信息传输的实现程序，所述程序被处理器42执行时实现如方法实施例中所述的步骤。</div>
+<div class="description-paragraph" id="p0174" num="0169">本实施例所述计算机可读存储介质包括但不限于为：ROM、RAM、磁盘或光盘等。</div>
+<div class="description-paragraph" id="p0175" num="0170">最后应说明的是：以上各实施例仅用以说明本发明的技术方案，而非对其限制；尽管参照前述各实施例对本发明进行了详细的说明，本领域的普通技术人员应当理解：其依然可以对前述各实施例所记载的技术方案进行修改，或者对其中部分或者全部技术特征进行等同替换；而这些修改或者替换，并不使相应技术方案的本质脱离本发明各实施例技术方案的范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

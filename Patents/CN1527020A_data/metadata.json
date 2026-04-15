@@ -1,0 +1,141 @@
+{
+    "patent_id": "CN1527020A",
+    "title": "CN1527020A - 一种自动攻击低空飞行器的方法及其火炮系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Individual",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN1527020A/zh",
+    "citations": [],
+    "cited_by": [
+        {
+            "Publication Number": "WO2012041097A1 (zh) *",
+            "Priority Date": "2010-09-29",
+            "Publication Date": "2012-04-05",
+            "Assignee": "北京机械设备研究所",
+            "Title": "一种低空慢速小目标的拦截方法",
+            "Link": "https://patents.google.com/patent/WO2012041097A1/zh"
+        },
+        {
+            "Publication Number": "US8550346B2 (en)",
+            "Priority Date": "2010-09-29",
+            "Publication Date": "2013-10-08",
+            "Assignee": "Beijing Mechanical Equipment Institute",
+            "Title": "Low-altitude low-speed small target intercepting method",
+            "Link": "https://patents.google.com/patent/US8550346B2/en"
+        },
+        {
+            "Publication Number": "WO2012068877A1 (zh) *",
+            "Priority Date": "2010-11-22",
+            "Publication Date": "2012-05-31",
+            "Assignee": "北京机械设备研究所",
+            "Title": "一种基于射表拟合的低空慢速小目标拦截方法",
+            "Link": "https://patents.google.com/patent/WO2012068877A1/zh"
+        },
+        {
+            "Publication Number": "CN102087082B (zh) *",
+            "Priority Date": "2010-11-22",
+            "Publication Date": "2013-05-08",
+            "Assignee": "北京机械设备研究所",
+            "Title": "一种基于射表拟合的低空慢速小目标拦截方法",
+            "Link": "https://patents.google.com/patent/CN102087082B/zh"
+        },
+        {
+            "Publication Number": "US8602303B1 (en)",
+            "Priority Date": "2010-11-22",
+            "Publication Date": "2013-12-10",
+            "Assignee": "Beijing Mechanical Equipment Institute",
+            "Title": "Low-altitude low-speed small target intercepting method based on firing table fitting",
+            "Link": "https://patents.google.com/patent/US8602303B1/en"
+        },
+        {
+            "Publication Number": "CN102087082A (zh) *",
+            "Priority Date": "2010-11-22",
+            "Publication Date": "2011-06-08",
+            "Assignee": "北京机械设备研究所",
+            "Title": "一种基于射表拟合的低空慢速小目标拦截方法",
+            "Link": "https://patents.google.com/patent/CN102087082A/zh"
+        },
+        {
+            "Publication Number": "CN102261869A (zh) *",
+            "Priority Date": "2011-06-15",
+            "Publication Date": "2011-11-30",
+            "Assignee": "北京机械设备研究所",
+            "Title": "一种拦截低空慢速小目标单兵数字化火控装置",
+            "Link": "https://patents.google.com/patent/CN102261869A/zh"
+        },
+        {
+            "Publication Number": "CN102748996B (zh) *",
+            "Priority Date": "2012-07-22",
+            "Publication Date": "2016-09-14",
+            "Assignee": "衢州市锐达技术开发有限公司",
+            "Title": "一种陆基阵列式高能激光武器防御系统",
+            "Link": "https://patents.google.com/patent/CN102748996B/zh"
+        },
+        {
+            "Publication Number": "CN102748996A (zh) *",
+            "Priority Date": "2012-07-22",
+            "Publication Date": "2012-10-24",
+            "Assignee": "吴超",
+            "Title": "一种陆基阵列式高能激光武器防御系统",
+            "Link": "https://patents.google.com/patent/CN102748996A/zh"
+        },
+        {
+            "Publication Number": "CN106017227A (zh) *",
+            "Priority Date": "2012-07-22",
+            "Publication Date": "2016-10-12",
+            "Assignee": "吴超",
+            "Title": "一种陆基阵列式高能激光武器防御方法",
+            "Link": "https://patents.google.com/patent/CN106017227A/zh"
+        },
+        {
+            "Publication Number": "CN104236392A (zh) *",
+            "Priority Date": "2013-06-13",
+            "Publication Date": "2014-12-24",
+            "Assignee": "杨皓捷",
+            "Title": "一种热感应瞄准自动反应触发装置",
+            "Link": "https://patents.google.com/patent/CN104236392A/zh"
+        },
+        {
+            "Publication Number": "CN104880126A (zh) *",
+            "Priority Date": "2015-05-19",
+            "Publication Date": "2015-09-02",
+            "Assignee": "北京机械设备研究所",
+            "Title": "一种基于航迹外推的低慢小目标拦截方法",
+            "Link": "https://patents.google.com/patent/CN104880126A/zh"
+        },
+        {
+            "Publication Number": "CN104880126B (zh) *",
+            "Priority Date": "2015-05-19",
+            "Publication Date": "2017-01-18",
+            "Assignee": "北京机械设备研究所",
+            "Title": "一种基于航迹外推的低慢小目标拦截方法",
+            "Link": "https://patents.google.com/patent/CN104880126B/zh"
+        },
+        {
+            "Publication Number": "CN107830766A (zh) *",
+            "Priority Date": "2016-08-22",
+            "Publication Date": "2018-03-23",
+            "Assignee": "李查启学",
+            "Title": "无人飞行器陆空防御装置系统",
+            "Link": "https://patents.google.com/patent/CN107830766A/zh"
+        },
+        {
+            "Publication Number": "CN108662944A (zh) *",
+            "Priority Date": "2018-05-15",
+            "Publication Date": "2018-10-16",
+            "Assignee": "江苏数字鹰科技股份有限公司",
+            "Title": "一种多炮管任意组合方法以及自由组合式多管火箭炮",
+            "Link": "https://patents.google.com/patent/CN108662944A/zh"
+        },
+        {
+            "Publication Number": "CN108662944B (zh) *",
+            "Priority Date": "2018-05-15",
+            "Publication Date": "2023-10-03",
+            "Assignee": "江苏数字鹰科技股份有限公司",
+            "Title": "一种多炮管任意组合方法以及自由组合式多管火箭炮",
+            "Link": "https://patents.google.com/patent/CN108662944B/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:13:43"
+}

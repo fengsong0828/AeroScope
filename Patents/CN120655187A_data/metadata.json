@@ -1,0 +1,69 @@
+{
+    "patent_id": "CN120655187A",
+    "title": "CN120655187A - 基于低空飞行器的物资配送规划方法、装置及存储介质 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Beijing Sinomis Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120655187A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN117474292A (zh) *",
+            "Priority Date": "2023-12-26",
+            "Publication Date": "2024-01-30",
+            "Assignee": "中国电信股份有限公司无人科技技术创新中心",
+            "Title": "一种基于5g传输的网联无人机用调度系统及调度方法",
+            "Link": "https://patents.google.com/patent/CN117474292A/zh"
+        },
+        {
+            "Publication Number": "CN117892950A (zh) *",
+            "Priority Date": "2024-01-10",
+            "Publication Date": "2024-04-16",
+            "Assignee": "中国船舶集团有限公司第七〇九研究所",
+            "Title": "一种复杂应急物资分布环境下的航空器调度系统及方法",
+            "Link": "https://patents.google.com/patent/CN117892950A/zh"
+        },
+        {
+            "Publication Number": "CN118884970A (zh) *",
+            "Priority Date": "2024-07-02",
+            "Publication Date": "2024-11-01",
+            "Assignee": "广东电网有限责任公司",
+            "Title": "一种无人机的部署管理方法、装置、终端设备及存储介质",
+            "Link": "https://patents.google.com/patent/CN118884970A/zh"
+        },
+        {
+            "Publication Number": "CN119090384A (zh) *",
+            "Priority Date": "2024-11-07",
+            "Publication Date": "2024-12-06",
+            "Assignee": "泉州云卓科技有限公司",
+            "Title": "一种基于无人机的物流运输方法和系统",
+            "Link": "https://patents.google.com/patent/CN119090384A/zh"
+        },
+        {
+            "Publication Number": "CN119360680A (zh) *",
+            "Priority Date": "2024-12-26",
+            "Publication Date": "2025-01-24",
+            "Assignee": "民航中南机场设计研究院(广州)有限公司",
+            "Title": "基于高密度城市的低空经济发展形式分析方法及系统",
+            "Link": "https://patents.google.com/patent/CN119360680A/zh"
+        },
+        {
+            "Publication Number": "CN119941076A (zh) *",
+            "Priority Date": "2024-12-30",
+            "Publication Date": "2025-05-06",
+            "Assignee": "中船海神医疗科技有限公司",
+            "Title": "一种基于海上医疗救援无人机的医疗物资配送方法和系统",
+            "Link": "https://patents.google.com/patent/CN119941076A/zh"
+        },
+        {
+            "Publication Number": "CN119879943A (zh) *",
+            "Priority Date": "2025-03-27",
+            "Publication Date": "2025-04-25",
+            "Assignee": "深圳慧源创新科技有限公司",
+            "Title": "无人机飞行路线的动态调整方法及系统",
+            "Link": "https://patents.google.com/patent/CN119879943A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:57:49"
+}

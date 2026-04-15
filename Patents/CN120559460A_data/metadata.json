@@ -1,0 +1,93 @@
+{
+    "patent_id": "CN120559460A",
+    "title": "CN120559460A - 一种低空飞行器专用电机故障检测方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shandong Jingchuang Technology Research Institute Of Magnetoelectrics Industry Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120559460A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN110298455A (zh) *",
+            "Priority Date": "2019-06-28",
+            "Publication Date": "2019-10-01",
+            "Assignee": "西安因联信息科技有限公司",
+            "Title": "一种基于多变量估计预测的机械设备故障智能预警方法",
+            "Link": "https://patents.google.com/patent/CN110298455A/zh"
+        },
+        {
+            "Publication Number": "CN117741535A (zh) *",
+            "Priority Date": "2023-12-07",
+            "Publication Date": "2024-03-22",
+            "Assignee": "常州大学",
+            "Title": "基于神经网络的光纤电流互感器故障预警方法及系统",
+            "Link": "https://patents.google.com/patent/CN117741535A/zh"
+        },
+        {
+            "Publication Number": "CN117668579A (zh) *",
+            "Priority Date": "2023-12-08",
+            "Publication Date": "2024-03-08",
+            "Assignee": "中国人民解放军陆军炮兵防空兵学院",
+            "Title": "基于mest多旋翼无人机故障诊断方法、设备及存储介质",
+            "Link": "https://patents.google.com/patent/CN117668579A/zh"
+        },
+        {
+            "Publication Number": "CN118035819A (zh) *",
+            "Priority Date": "2024-01-17",
+            "Publication Date": "2024-05-14",
+            "Assignee": "唐山学院",
+            "Title": "一种用于风力发电机的故障预测系统及方法",
+            "Link": "https://patents.google.com/patent/CN118035819A/zh"
+        },
+        {
+            "Publication Number": "CN118051827A (zh) *",
+            "Priority Date": "2024-03-28",
+            "Publication Date": "2024-05-17",
+            "Assignee": "安徽思宇微电子技术有限责任公司",
+            "Title": "基于深度学习的电网故障预测方法",
+            "Link": "https://patents.google.com/patent/CN118051827A/zh"
+        },
+        {
+            "Publication Number": "CN118194241A (zh) *",
+            "Priority Date": "2024-05-20",
+            "Publication Date": "2024-06-14",
+            "Assignee": "广汽埃安新能源汽车股份有限公司",
+            "Title": "一种电动汽车电机故障诊断方法及装置",
+            "Link": "https://patents.google.com/patent/CN118194241A/zh"
+        },
+        {
+            "Publication Number": "CN119989059A (zh) *",
+            "Priority Date": "2025-02-12",
+            "Publication Date": "2025-05-13",
+            "Assignee": "大连理工大学",
+            "Title": "一种自适应图结构优势的航空发动机气路故障诊断时空网络模型",
+            "Link": "https://patents.google.com/patent/CN119989059A/zh"
+        },
+        {
+            "Publication Number": "CN120123874A (zh) *",
+            "Priority Date": "2025-02-26",
+            "Publication Date": "2025-06-10",
+            "Assignee": "东台市竹林高科技材料有限公司",
+            "Title": "一种基于深度学习的电线电缆保护塑料管故障预测方法",
+            "Link": "https://patents.google.com/patent/CN120123874A/zh"
+        },
+        {
+            "Publication Number": "CN120354301A (zh) *",
+            "Priority Date": "2025-03-27",
+            "Publication Date": "2025-07-22",
+            "Assignee": "北京科技大学",
+            "Title": "一种机理与数据融合的动态图故障检测方法及装置",
+            "Link": "https://patents.google.com/patent/CN120354301A/zh"
+        },
+        {
+            "Publication Number": "CN120352723A (zh) *",
+            "Priority Date": "2025-04-21",
+            "Publication Date": "2025-07-22",
+            "Assignee": "广西电网有限责任公司电力科学研究院",
+            "Title": "结合时序卷积和图注意力的配电网故障诊断与定位方法",
+            "Link": "https://patents.google.com/patent/CN120352723A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:04:54"
+}

@@ -1,0 +1,167 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120106396A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES496511941">
+<invention-title id="title1" lang="ZH">基于机器学习的低空飞行器风险管理方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空飞行技术领域，尤其涉及一种基于机器学习的低空飞行器风险管理方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空空域逐步开放以及无人机技术的快速发展，低空飞行器在城市物流、农业植保、电力巡检和应急救援领域的应用日益广泛，然而，低空飞行器在复杂环境中运行时面临诸多潜在风险因素，如突发气象变化、地形干扰、通信延迟及飞行器自身性能波动，容易引发飞行偏航、姿态失稳、轨迹异常飞行安全问题，因此，如何实现对低空飞行器飞行状态的有效监控与风险评估，成为当前低空飞行安全管理亟待解决的重要课题。</div>
+<div class="description-paragraph" id="p0005" num="0003">现有的低空飞行器风险管理技术主要依赖规则库判定和传统模型评估，系统多以静态风险指标为基础，通过预设规则判断飞行轨迹是否越界或存在异常点，但存在明显不足：一方面，静态规则难以适应飞行过程中不断变化的动态特征，无法有效识别轨迹复杂性与飞行参数之间的交互风险；另一方面，当前常用的风险评估模型通常依赖人工设定特征或单尺度分析，缺乏对飞行轨迹局部变化与空间复杂结构的精细建模能力，导致对异常行为或潜在风险识别精度不高，此外，部分系统虽然集成了基础的飞行轨迹监控模块，但缺乏对多维动态飞行参数与轨迹形态变化的联合分析能力，容易出现误判或漏判的情况，严重影响风险响应的时效性和准确性。</div>
+<div class="description-paragraph" id="p0006" num="0004">综上所述，亟需一种能够融合多尺度轨迹信息与飞行动态特征，并具备智能评估能力的全流程风险管理方法加以改进。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明的一个目的在于提出一种基于机器学习的低空飞行器风险管理方法及系统，本发明精准捕捉轨迹中具有高转弯率或速度剧变高风险特征段，极大提高了局部风险事件的识别准确性。</div>
+<div class="description-paragraph" id="p0009" num="0006">根据本发明实施例的一种基于机器学习的低空飞行器风险管理方法，包括如下步骤：</div>
+<div class="description-paragraph" id="p0010">S1.实时获取低空飞行器在指定低空区域内的三维飞行轨迹原始数据集并进行预处理，生成预处理后的飞行轨迹数据集；</div>
+<div class="description-paragraph" id="p0011">S2.对预处理后的飞行轨迹数据集实施多尺度切分处理，形成分尺度飞行轨迹数据集，对分尺度飞行轨迹数据集应用分形维数分析方法提取飞行轨迹的复杂性描述向量；</div>
+<div class="description-paragraph" id="p0012">S3.将飞行轨迹复杂性描述向量与低空飞行器运行过程中的动态飞行参数数据进行数据融合，构建多维风险特征数据集；</div>
+<div class="description-paragraph" id="p0013">S4.基于最小描述长度原则对多维风险特征数据集实施风险评价模型的候选模型筛选，通过评估各候选模型的模型编码长度及数据编码长度，自动选取描述长度最小且数据拟合精度最佳的最优风险评价模型；</div>
+<div class="description-paragraph" id="p0014">S5.利用所选最优风险评价模型对新采集的飞行轨迹数据集及其对应的多维风险特征数据集进行实时风险评估，生成飞行轨迹风险评价输出；</div>
+<div class="description-paragraph" id="p0015">S6.将飞行轨迹风险评价输出反馈至飞行控制系统及监控终端，实现动态风险监控与飞行路径调整，并为低空飞行器风险管理提供决策依据。</div>
+<div class="description-paragraph" id="p0016" num="0007">可选的，所述S1包括以下步骤：</div>
+<div class="description-paragraph" id="p0017">S11.设定低空飞行器在指定低空飞行区域内的飞行监测时间窗口<span class="patent-image-not-available"></span>，通过部署于低空飞行器上的惯性测量单元、全球定位系统模块及姿态传感器，实时采集飞行轨迹原始数据，构建三维飞行轨迹原始数据集<span class="patent-image-not-available"></span>，三维飞行轨迹原始数据集<span class="patent-image-not-available"></span>由若干采样点组成，每个采样点包括飞行器在特定时刻的三维空间坐标与对应时间戳：</div>
+<div class="description-paragraph" id="p0018"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0019">其中，<span class="patent-image-not-available"></span>表示第<span class="patent-image-not-available"></span>个飞行轨迹点，<span class="patent-image-not-available"></span>分别为低空飞行器在时刻<span class="patent-image-not-available"></span>下的三维空间坐标，<span class="patent-image-not-available"></span>为对应时间戳，<span class="patent-image-not-available"></span>为采样总数；</div>
+<div class="description-paragraph" id="p0020">S12.对三维飞行轨迹原始数据集<span class="patent-image-not-available"></span>进行时间序列对齐处理，通过对飞行轨迹点的时间轴重新采样，使得所有相邻采样点之间的时间间隔保持为固定的时间差值，得到时间标准化后的飞行轨迹数据集<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0021">S13.对时间标准化后的飞行轨迹数据集<span class="patent-image-not-available"></span>进行异常点剔除处理，利用滑动窗口内速度变化与位置偏差进行判断，当飞行轨迹点在局部窗口内的速度变化超过速度变化阈值或飞行轨迹点的空间位置偏离超过位置偏差阈值时，则将该飞行轨迹点判定为异常点并从飞行轨迹中剔除，处理后生成异常点剔除后的飞行轨迹数据集<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0022">S14.对异常点剔除后的飞行轨迹数据集<span class="patent-image-not-available"></span>进行噪声滤除处理，采用滑动窗口均值滤波方法对飞行轨迹点进行平滑操作，在每个飞行轨迹点位置处以固定数量的前后相邻飞行轨迹点进行均值计算，替代原始飞行轨迹点位置，生成预处理后的飞行轨迹数据集<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0023" num="0008">可选的，所述S2包括以下步骤：</div>
+<div class="description-paragraph" id="p0024">S21.根据低空飞行器航迹风险评价对轨迹局部复杂性敏感的要求，基于飞行轨迹的空间曲率变化率与平均飞行速度联合构造自适应局部尺度划分函数：</div>
+<div class="description-paragraph" id="p0025"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0026">其中，<span class="patent-image-not-available"></span>为飞行轨迹点<span class="patent-image-not-available"></span>处的自适应局部尺度，<span class="patent-image-not-available"></span>为预设的基础分段长度，<span class="patent-image-not-available"></span>为飞行轨迹点<span class="patent-image-not-available"></span>处的空间曲率变化率，反映飞行轨迹的空间拐弯剧烈程度，<span class="patent-image-not-available"></span>为飞行轨迹点<span class="patent-image-not-available"></span>处飞行器的瞬时飞行速度，<span class="patent-image-not-available"></span>为飞行轨迹的平均飞行速度，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>为控制自适应局部尺度调整敏感性的参数；</div>
+<div class="description-paragraph" id="p0027">S22.利用自适应局部尺度划分函数<span class="patent-image-not-available"></span>对预处理后的飞行轨迹数据集<span class="patent-image-not-available"></span>进行局部动态切分，生成分尺度飞行轨迹数据集<span class="patent-image-not-available"></span>，分尺度飞行轨迹数据集中的任意飞行轨迹分段<span class="patent-image-not-available"></span>定义为：</div>
+<div class="description-paragraph" id="p0028"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0029">其中，飞行轨迹分段<span class="patent-image-not-available"></span>的起始时刻为<span class="patent-image-not-available"></span>，飞行轨迹点<span class="patent-image-not-available"></span>为飞行轨迹分段<span class="patent-image-not-available"></span>内的第<span class="patent-image-not-available"></span>个点，<span class="patent-image-not-available"></span>为切分后的飞行轨迹分段总数，<span class="patent-image-not-available"></span>表示以飞行轨迹起始点<span class="patent-image-not-available"></span>为参考点，基于当前曲率变化率与瞬时速度动态确定的自适应局部尺度大小；</div>
+<div class="description-paragraph" id="p0030">S23.针对每个飞行轨迹分段<span class="patent-image-not-available"></span>，采用分形维数分析方法中的盒维数算法计算飞行轨迹分段<span class="patent-image-not-available"></span>的局部分形维数特征值<span class="patent-image-not-available"></span>，得到局部分形维数特征集合，局部分形维数特征值定量表征飞行轨迹分段内低空飞行器飞行轨迹的局部不规则性和结构复杂程度，体现飞行轨迹的局部风险特征，并基于局部分形维数特征集合<span class="patent-image-not-available"></span>构建飞行轨迹复杂性描述向量<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0031" num="0009">可选的，所述S3包括以下步骤：</div>
+<div class="description-paragraph" id="p0032">S31.对预处理后的飞行轨迹数据集<span class="patent-image-not-available"></span>中的每一个采样点，获取该采样点对应的瞬时飞行速度<span class="patent-image-not-available"></span>，所述瞬时飞行速度由相邻采样点之间的空间距离计算获得、飞行器瞬时加速度<span class="patent-image-not-available"></span>，所述飞行器瞬时加速度由相邻采样点之间速度差的绝对值计算获得，以及飞行姿态角<span class="patent-image-not-available"></span>，所述飞行姿态角由飞行器姿态传感器输出直接采集获得，并基于相邻采样点间参数的差值计算得到瞬时飞行速度变化值<span class="patent-image-not-available"></span>、飞行器瞬时加速度变化值<span class="patent-image-not-available"></span>与飞行姿态角变化值<span class="patent-image-not-available"></span>，构成动态飞行参数数据集<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0033">S32.针对每个飞行轨迹分段<span class="patent-image-not-available"></span>，采用滑动窗口统计方法从动态飞行参数数据集<span class="patent-image-not-available"></span>中提取与飞行轨迹分段<span class="patent-image-not-available"></span>对应的聚合动态飞行参数向量<span class="patent-image-not-available"></span>，在该聚合动态飞行参数向量<span class="patent-image-not-available"></span>中，瞬时飞行速度变化值<span class="patent-image-not-available"></span>为飞行轨迹分段<span class="patent-image-not-available"></span>内各采样点的最大瞬时速度与最小瞬时速度之间的差值，飞行器瞬时加速度变化值<span class="patent-image-not-available"></span>为飞行轨迹分段<span class="patent-image-not-available"></span>内各采样点的最大瞬时加速度与最小瞬时加速度之间的差值，飞行姿态角变化值<span class="patent-image-not-available"></span>为飞行轨迹分段<span class="patent-image-not-available"></span>内连续采样点的姿态角变化值的平均值；</div>
+<div class="description-paragraph" id="p0034">S33.将飞行轨迹复杂性描述向量<span class="patent-image-not-available"></span>与相应飞行轨迹分段<span class="patent-image-not-available"></span>的聚合动态飞行参数向量<span class="patent-image-not-available"></span>进行向量级联数据融合，形成多维风险特征向量<span class="patent-image-not-available"></span>，多维风险特征向量同时包含了飞行轨迹在各局部尺度下的复杂性描述与飞行轨迹分段<span class="patent-image-not-available"></span>内的瞬时飞行速度变化值、飞行器瞬时加速度变化值与飞行姿态角变化值；</div>
+<div class="description-paragraph" id="p0035">S34.将所有飞行轨迹分段<span class="patent-image-not-available"></span>对应的多维风险特征向量<span class="patent-image-not-available"></span>按照采样顺序依次组合，构成多维风险特征数据集<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0036" num="0010">可选的，所述S4包括以下步骤：</div>
+<div class="description-paragraph" id="p0037">S41.构建风险评价候选模型集合<span class="patent-image-not-available"></span>，风险评价候选模型集合中每一个候选模型<span class="patent-image-not-available"></span>定义为将多维风险特征数据集<span class="patent-image-not-available"></span>映射至对应风险等级标签集合<span class="patent-image-not-available"></span>的预测函数：</div>
+<div class="description-paragraph" id="p0038"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0039">其中，<span class="patent-image-not-available"></span>为第<span class="patent-image-not-available"></span>个飞行轨迹分段的多维风险特征向量，<span class="patent-image-not-available"></span>为候选模型<span class="patent-image-not-available"></span>对应预测的风险等级预测值，<span class="patent-image-not-available"></span>为候选模型参数向量，<span class="patent-image-not-available"></span>表示候选模型<span class="patent-image-not-available"></span>的决策映射结构，具体为一个将输入的多维风险特征向量<span class="patent-image-not-available"></span>映射至风险等级预测值<span class="patent-image-not-available"></span>的非线性模型函数；<span class="patent-image-not-available"></span>的结构可以为决策树、支持向量机、浅层神经网络或其他已设定的可训练风险评分函数，其结构复杂度通过<span class="patent-image-not-available"></span>衡量；</div>
+<div class="description-paragraph" id="p0040">S42.对候选模型<span class="patent-image-not-available"></span>进行模型编码长度与数据编码长度计算，模型编码长度<span class="patent-image-not-available"></span>结合模型结构的复杂度与参数向量度量信息复杂度定义为：</div>
+<div class="description-paragraph" id="p0041"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0042">其中，<span class="patent-image-not-available"></span>表示候选模型<span class="patent-image-not-available"></span>中包含的参数总数量，<span class="patent-image-not-available"></span>表示决策映射结构<span class="patent-image-not-available"></span>的结构深度或分段函数数量，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>为预设的结构惩罚因子；数据编码长度<span class="patent-image-not-available"></span>定义为候选模型<span class="patent-image-not-available"></span>对所有多维风险特征数据点的预测误差编码损失总量，结合真实风险等级标签<span class="patent-image-not-available"></span>与风险等级预测值<span class="patent-image-not-available"></span>，使用带权误差编码方式表示为：</div>
+<div class="description-paragraph" id="p0043"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0044">其中，<span class="patent-image-not-available"></span>为风险标签的先验重要性权重，<span class="patent-image-not-available"></span>为模型在多维风险特征向量<span class="patent-image-not-available"></span>和参数总数量<span class="patent-image-not-available"></span>下预测正确的概率值；</div>
+<div class="description-paragraph" id="p0045">S43.综合模型编码长度与数据编码长度，基于最小描述长度准则确定最优风险评价模型<span class="patent-image-not-available"></span>，最优风险评价模型满足以下最优化目标：</div>
+<div class="description-paragraph" id="p0046"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0047">最优风险评价模型实现在低空飞行器航迹风险评价场景下，模型结构复杂性、预测精度和风险权重的重要性三者之间的动态权衡。</div>
+<div class="description-paragraph" id="p0048" num="0011">可选的，所述S5包括以下步骤：</div>
+<div class="description-paragraph" id="p0049">S51.采集低空飞行器在运行过程中实时生成的三维飞行轨迹原始数据集构成新的多维风险特征数据集<span class="patent-image-not-available"></span>，将新的多维风险特征数据集<span class="patent-image-not-available"></span>输入至最优风险评价模型<span class="patent-image-not-available"></span>，对每一段飞行轨迹进行风险等级预测，生成飞行轨迹风险预测结果集合<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0050">S52.根据飞行轨迹风险预测结果集合<span class="patent-image-not-available"></span>，结合预设风险等级映射规则进行飞行轨迹风险评价输出，风险等级映射规则依据分段风险等级值与对应的多维风险特征参数阈值设定；</div>
+<div class="description-paragraph" id="p0051">S53.将飞行轨迹风险评价输出结果以风险等级标签和预警信号的形式同步反馈至飞行器控制系统与远程监控终端，预警信号包括轨迹分段位置、风险等级、触发参数及超限值，用于辅助飞行路径动态调整与飞行安全实时管理。</div>
+<div class="description-paragraph" id="p0052" num="0012">可选的，所述风险等级划分规则包括：</div>
+<div class="description-paragraph" id="p0053">当分形维数特征值大于设定的上限阈值，且瞬时飞行速度变化值或加速度变化值超过对应飞行器安全容限范围时，判定该轨迹分段为高风险分段，输出高风险等级；</div>
+<div class="description-paragraph" id="p0054">当分形维数特征值处于中间范围，且飞行姿态角变化值在正常波动范围内，但存在单一参数异常波动时，判定该轨迹分段为中风险分段，输出中风险等级；</div>
+<div class="description-paragraph" id="p0055">当各项动态飞行参数变化值均在安全阈值范围内，分形维数特征值处于设定下限范围以下时，判定该轨迹分段为低风险分段，输出低风险等级。</div>
+<div class="description-paragraph" id="p0056" num="0013">一种基于机器学习的低空飞行器风险管理系统，用于执行所述的一种基于机器学习的低空飞行器风险管理方法，包括如下模块：</div>
+<div class="description-paragraph" id="p0057">轨迹数据采集模块，用于采集飞行器在指定区域内的三维飞行轨迹数据集；</div>
+<div class="description-paragraph" id="p0058">数据预处理模块，用于对飞行轨迹数据集进行时空对齐、异常点剔除与滤波处理，生成预处理后的飞行轨迹数据集；</div>
+<div class="description-paragraph" id="p0059">多尺度特征提取模块，用于基于自适应尺度切分飞行轨迹并提取局部分形维数，形成飞行轨迹复杂性描述向量；</div>
+<div class="description-paragraph" id="p0060">动态参数融合模块，用于提取各分段飞行轨迹的速度变化值、加速度变化值与姿态角变化值，并与复杂性描述向量融合生成多维风险特征数据集；</div>
+<div class="description-paragraph" id="p0061">模型选择模块，用于基于最小描述长度原则从候选模型中选取描述长度最小的最优风险评价模型；</div>
+<div class="description-paragraph" id="p0062">风险评估模块，用于基于所选模型对飞行轨迹进行风险等级预测与预警信息输出；</div>
+<div class="description-paragraph" id="p0063">反馈模块，用于将风险评价结果反馈至飞行器控制系统与监控终端，实现飞行路径动态调整与风险预警联动。</div>
+<div class="description-paragraph" id="p0064" num="0014">本发明的有益效果是：</div>
+<div class="description-paragraph" id="p0065">（1）本发明将飞行轨迹的局部分形维数作为核心描述子引入风险管理体系，通过多尺度切分后的轨迹分段提取分形维数特征，有效表征飞行轨迹在不同尺度下的局部复杂度与不规则性，此外，与瞬时速度变化值、加速度变化值与姿态角变化值动态飞行参数进行向量级联融合，构成多维风险特征向量，显著增强了模型对微小轨迹扰动和潜在风险征兆的敏感性，提升了高风险轨迹段的准确识别率。</div>
+<div class="description-paragraph" id="p0066" num="0015">（2）本发明突破传统依赖人工设定模型结构或固定模板的方式，采用信息论中的最小描述长度原理对候选模型集进行编码复杂度与数据误差联合优化评价，综合考虑模型结构复杂性与预测误差带来的信息损失，在众多候选模型中自动筛选出既具有紧凑结构又具备高风险判别能力的最优模型，确保了所选模型在不同飞行环境与轨迹模式下具备稳定可靠的风险评估性能。</div>
+<div class="description-paragraph" id="p0067" num="0016">（3）本发明设计了基于飞行轨迹点空间曲率变化率与飞行速度偏离度联合驱动的自适应划分函数，实现对飞行轨迹的非等距动态切分，不仅有效避免了固定时间窗口划分带来的特征丢失或冗余问题，还能精准捕捉轨迹中具有高转弯率或速度剧变高风险特征段，极大提高了局部风险事件的识别准确性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0068">附图说明</div>
+<div class="description-paragraph" id="p0069" num="0017">附图用来提供对本发明的进一步理解，并且构成说明书的一部分，与本发明的实施例一起用于解释本发明，并不构成对本发明的限制。在附图中：</div>
+<div class="description-paragraph" id="p0070" num="0018">图1为本发明提出的一种基于机器学习的低空飞行器风险管理方法及系统的流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0071">具体实施方式</div>
+<div class="description-paragraph" id="p0072" num="0019">现在结合附图对本发明作进一步详细的说明。这些附图均为简化的示意图，仅以示意方式说明本发明的基本结构，因此其仅显示与本发明有关的构成。</div>
+<div class="description-paragraph" id="p0073" num="0020">参考图1，一种基于机器学习的低空飞行器风险管理方法，包括如下步骤：</div>
+<div class="description-paragraph" id="p0074">S1.实时获取低空飞行器在指定低空区域内的三维飞行轨迹原始数据集并进行预处理，生成预处理后的飞行轨迹数据集；</div>
+<div class="description-paragraph" id="p0075">S2.对预处理后的飞行轨迹数据集实施多尺度切分处理，形成分尺度飞行轨迹数据集，对分尺度飞行轨迹数据集应用分形维数分析方法提取飞行轨迹的复杂性描述向量；</div>
+<div class="description-paragraph" id="p0076">S3.将飞行轨迹复杂性描述向量与低空飞行器运行过程中的动态飞行参数数据进行数据融合，构建多维风险特征数据集；</div>
+<div class="description-paragraph" id="p0077">S4.基于最小描述长度原则对多维风险特征数据集实施风险评价模型的候选模型筛选，通过评估各候选模型的模型编码长度及数据编码长度，自动选取描述长度最小且数据拟合精度最佳的最优风险评价模型；</div>
+<div class="description-paragraph" id="p0078">S5.利用所选最优风险评价模型对新采集的飞行轨迹数据集及其对应的多维风险特征数据集进行实时风险评估，生成飞行轨迹风险评价输出；</div>
+<div class="description-paragraph" id="p0079">S6.将飞行轨迹风险评价输出反馈至飞行控制系统及监控终端，实现动态风险监控与飞行路径调整，并为低空飞行器风险管理提供决策依据。</div>
+<div class="description-paragraph" id="p0080" num="0021">本实施方式中，S1包括以下步骤：</div>
+<div class="description-paragraph" id="p0081">S11.设定低空飞行器在指定低空飞行区域内的飞行监测时间窗口<span class="patent-image-not-available"></span>，通过部署于低空飞行器上的惯性测量单元、全球定位系统模块及姿态传感器，实时采集飞行轨迹原始数据，构建三维飞行轨迹原始数据集<span class="patent-image-not-available"></span>，三维飞行轨迹原始数据集<span class="patent-image-not-available"></span>由若干采样点组成，每个采样点包括飞行器在特定时刻的三维空间坐标与对应时间戳：</div>
+<div class="description-paragraph" id="p0082"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0083">其中，<span class="patent-image-not-available"></span>表示第<span class="patent-image-not-available"></span>个飞行轨迹点，<span class="patent-image-not-available"></span>分别为低空飞行器在时刻<span class="patent-image-not-available"></span>下的三维空间坐标，<span class="patent-image-not-available"></span>为对应时间戳，<span class="patent-image-not-available"></span>为采样总数；</div>
+<div class="description-paragraph" id="p0084">S12.对三维飞行轨迹原始数据集<span class="patent-image-not-available"></span>进行时间序列对齐处理，通过对飞行轨迹点的时间轴重新采样，使得所有相邻采样点之间的时间间隔保持为固定的时间差值，得到时间标准化后的飞行轨迹数据集<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0085">S13.对时间标准化后的飞行轨迹数据集<span class="patent-image-not-available"></span>进行异常点剔除处理，利用滑动窗口内速度变化与位置偏差进行判断，当飞行轨迹点在局部窗口内的速度变化超过速度变化阈值或飞行轨迹点的空间位置偏离超过位置偏差阈值时，则将该飞行轨迹点判定为异常点并从飞行轨迹中剔除，处理后生成异常点剔除后的飞行轨迹数据集<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0086">S14.对异常点剔除后的飞行轨迹数据集<span class="patent-image-not-available"></span>进行噪声滤除处理，采用滑动窗口均值滤波方法对飞行轨迹点进行平滑操作，在每个飞行轨迹点位置处以固定数量的前后相邻飞行轨迹点进行均值计算，替代原始飞行轨迹点位置，生成预处理后的飞行轨迹数据集<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0087" num="0022">本实施方式中，S2包括以下步骤：</div>
+<div class="description-paragraph" id="p0088">S21.根据低空飞行器航迹风险评价对轨迹局部复杂性敏感的要求，基于飞行轨迹的空间曲率变化率与平均飞行速度联合构造自适应局部尺度划分函数：</div>
+<div class="description-paragraph" id="p0089"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0090">其中，<span class="patent-image-not-available"></span>为飞行轨迹点<span class="patent-image-not-available"></span>处的自适应局部尺度，<span class="patent-image-not-available"></span>为预设的基础分段长度，<span class="patent-image-not-available"></span>为飞行轨迹点<span class="patent-image-not-available"></span>处的空间曲率变化率，反映飞行轨迹的空间拐弯剧烈程度，<span class="patent-image-not-available"></span>为飞行轨迹点<span class="patent-image-not-available"></span>处飞行器的瞬时飞行速度，<span class="patent-image-not-available"></span>为飞行轨迹的平均飞行速度，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>为控制自适应局部尺度调整敏感性的参数；</div>
+<div class="description-paragraph" id="p0091">S22.利用自适应局部尺度划分函数<span class="patent-image-not-available"></span>对预处理后的飞行轨迹数据集<span class="patent-image-not-available"></span>进行局部动态切分，生成分尺度飞行轨迹数据集<span class="patent-image-not-available"></span>，分尺度飞行轨迹数据集中的任意飞行轨迹分段<span class="patent-image-not-available"></span>定义为：</div>
+<div class="description-paragraph" id="p0092"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0093">其中，飞行轨迹分段<span class="patent-image-not-available"></span>的起始时刻为<span class="patent-image-not-available"></span>，飞行轨迹点<span class="patent-image-not-available"></span>为飞行轨迹分段<span class="patent-image-not-available"></span>内的第<span class="patent-image-not-available"></span>个点，<span class="patent-image-not-available"></span>为切分后的飞行轨迹分段总数，<span class="patent-image-not-available"></span>表示以飞行轨迹起始点<span class="patent-image-not-available"></span>为参考点，基于当前曲率变化率与瞬时速度动态确定的自适应局部尺度大小；</div>
+<div class="description-paragraph" id="p0094">S23.针对每个飞行轨迹分段<span class="patent-image-not-available"></span>，采用分形维数分析方法中的盒维数算法计算飞行轨迹分段<span class="patent-image-not-available"></span>的局部分形维数特征值<span class="patent-image-not-available"></span>，得到局部分形维数特征集合，局部分形维数特征值定量表征飞行轨迹分段内低空飞行器飞行轨迹的局部不规则性和结构复杂程度，体现飞行轨迹的局部风险特征，并基于局部分形维数特征集合<span class="patent-image-not-available"></span>构建飞行轨迹复杂性描述向量<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0095" num="0023">本实施方式中，S3包括以下步骤：</div>
+<div class="description-paragraph" id="p0096">S31.对预处理后的飞行轨迹数据集<span class="patent-image-not-available"></span>中的每一个采样点，获取该采样点对应的瞬时飞行速度<span class="patent-image-not-available"></span>，瞬时飞行速度由相邻采样点之间的空间距离计算获得、飞行器瞬时加速度<span class="patent-image-not-available"></span>，飞行器瞬时加速度由相邻采样点之间速度差的绝对值计算获得，以及飞行姿态角<span class="patent-image-not-available"></span>，飞行姿态角由飞行器姿态传感器输出直接采集获得，并基于相邻采样点间参数的差值计算得到瞬时飞行速度变化值<span class="patent-image-not-available"></span>、飞行器瞬时加速度变化值<span class="patent-image-not-available"></span>与飞行姿态角变化值<span class="patent-image-not-available"></span>，构成动态飞行参数数据集<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0097">S32.针对每个飞行轨迹分段<span class="patent-image-not-available"></span>，采用滑动窗口统计方法从动态飞行参数数据集<span class="patent-image-not-available"></span>中提取与飞行轨迹分段<span class="patent-image-not-available"></span>对应的聚合动态飞行参数向量<span class="patent-image-not-available"></span>，在该聚合动态飞行参数向量<span class="patent-image-not-available"></span>中，瞬时飞行速度变化值<span class="patent-image-not-available"></span>为飞行轨迹分段<span class="patent-image-not-available"></span>内各采样点的最大瞬时速度与最小瞬时速度之间的差值，飞行器瞬时加速度变化值<span class="patent-image-not-available"></span>为飞行轨迹分段<span class="patent-image-not-available"></span>内各采样点的最大瞬时加速度与最小瞬时加速度之间的差值，飞行姿态角变化值<span class="patent-image-not-available"></span>为飞行轨迹分段<span class="patent-image-not-available"></span>内连续采样点的姿态角变化值的平均值；</div>
+<div class="description-paragraph" id="p0098">S33.将飞行轨迹复杂性描述向量<span class="patent-image-not-available"></span>与相应飞行轨迹分段<span class="patent-image-not-available"></span>的聚合动态飞行参数向量<span class="patent-image-not-available"></span>进行向量级联数据融合，形成多维风险特征向量<span class="patent-image-not-available"></span>，多维风险特征向量同时包含了飞行轨迹在各局部尺度下的复杂性描述与飞行轨迹分段<span class="patent-image-not-available"></span>内的瞬时飞行速度变化值、飞行器瞬时加速度变化值与飞行姿态角变化值；</div>
+<div class="description-paragraph" id="p0099">S34.将所有飞行轨迹分段<span class="patent-image-not-available"></span>对应的多维风险特征向量<span class="patent-image-not-available"></span>按照采样顺序依次组合，构成多维风险特征数据集<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0100" num="0024">本实施方式中，S4包括以下步骤：</div>
+<div class="description-paragraph" id="p0101">S41.构建风险评价候选模型集合<span class="patent-image-not-available"></span>，风险评价候选模型集合中每一个候选模型<span class="patent-image-not-available"></span>定义为将多维风险特征数据集<span class="patent-image-not-available"></span>映射至对应风险等级标签集合<span class="patent-image-not-available"></span>的预测函数：</div>
+<div class="description-paragraph" id="p0102"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0103">其中，<span class="patent-image-not-available"></span>为第<span class="patent-image-not-available"></span>个飞行轨迹分段的多维风险特征向量，<span class="patent-image-not-available"></span>为候选模型<span class="patent-image-not-available"></span>对应预测的风险等级预测值，<span class="patent-image-not-available"></span>为候选模型参数向量，<span class="patent-image-not-available"></span>表示候选模型<span class="patent-image-not-available"></span>的决策映射结构，具体为一个将输入的多维风险特征向量<span class="patent-image-not-available"></span>映射至风险等级预测值<span class="patent-image-not-available"></span>的非线性模型函数；<span class="patent-image-not-available"></span>的结构可以为决策树、支持向量机、浅层神经网络或其他已设定的可训练风险评分函数，其结构复杂度通过<span class="patent-image-not-available"></span>衡量；</div>
+<div class="description-paragraph" id="p0104">S42.对候选模型<span class="patent-image-not-available"></span>进行模型编码长度与数据编码长度计算，模型编码长度<span class="patent-image-not-available"></span>结合模型结构的复杂度与参数向量度量信息复杂度定义为：</div>
+<div class="description-paragraph" id="p0105"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0106">其中，<span class="patent-image-not-available"></span>表示候选模型<span class="patent-image-not-available"></span>中包含的参数总数量，<span class="patent-image-not-available"></span>表示决策映射结构<span class="patent-image-not-available"></span>的结构深度或分段函数数量，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>为预设的结构惩罚因子；数据编码长度<span class="patent-image-not-available"></span>定义为候选模型<span class="patent-image-not-available"></span>对所有多维风险特征数据点的预测误差编码损失总量，结合真实风险等级标签<span class="patent-image-not-available"></span>与风险等级预测值<span class="patent-image-not-available"></span>，使用带权误差编码方式表示为：</div>
+<div class="description-paragraph" id="p0107"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0108">其中，<span class="patent-image-not-available"></span>为风险标签的先验重要性权重，<span class="patent-image-not-available"></span>为模型在多维风险特征向量<span class="patent-image-not-available"></span>和参数总数量<span class="patent-image-not-available"></span>下预测正确的概率值；</div>
+<div class="description-paragraph" id="p0109">S43.综合模型编码长度与数据编码长度，基于最小描述长度准则确定最优风险评价模型<span class="patent-image-not-available"></span>，最优风险评价模型满足以下最优化目标：</div>
+<div class="description-paragraph" id="p0110"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0111">最优风险评价模型实现在低空飞行器航迹风险评价场景下，模型结构复杂性、预测精度和风险权重的重要性三者之间的动态权衡。</div>
+<div class="description-paragraph" id="p0112" num="0025">本实施方式中，S5包括以下步骤：</div>
+<div class="description-paragraph" id="p0113">S51.采集低空飞行器在运行过程中实时生成的三维飞行轨迹原始数据集构成新的多维风险特征数据集<span class="patent-image-not-available"></span>，将新的多维风险特征数据集<span class="patent-image-not-available"></span>输入至最优风险评价模型<span class="patent-image-not-available"></span>，对每一段飞行轨迹进行风险等级预测，生成飞行轨迹风险预测结果集合<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0114">S52.根据飞行轨迹风险预测结果集合<span class="patent-image-not-available"></span>，结合预设风险等级映射规则进行飞行轨迹风险评价输出，风险等级映射规则依据分段风险等级值与对应的多维风险特征参数阈值设定；</div>
+<div class="description-paragraph" id="p0115">S53.将飞行轨迹风险评价输出结果以风险等级标签和预警信号的形式同步反馈至飞行器控制系统与远程监控终端，预警信号包括轨迹分段位置、风险等级、触发参数及超限值，用于辅助飞行路径动态调整与飞行安全实时管理。</div>
+<div class="description-paragraph" id="p0116" num="0026">本实施方式中，风险等级划分规则包括：</div>
+<div class="description-paragraph" id="p0117">当分形维数特征值大于设定的上限阈值，且瞬时飞行速度变化值或加速度变化值超过对应飞行器安全容限范围时，判定该轨迹分段为高风险分段，输出高风险等级；</div>
+<div class="description-paragraph" id="p0118">当分形维数特征值处于中间范围，且飞行姿态角变化值在正常波动范围内，但存在单一参数异常波动时，判定该轨迹分段为中风险分段，输出中风险等级；</div>
+<div class="description-paragraph" id="p0119">当各项动态飞行参数变化值均在安全阈值范围内，分形维数特征值处于设定下限范围以下时，判定该轨迹分段为低风险分段，输出低风险等级。</div>
+<div class="description-paragraph" id="p0120" num="0027">一种基于机器学习的低空飞行器风险管理系统，用于执行的一种基于机器学习的低空飞行器风险管理方法，包括如下模块：</div>
+<div class="description-paragraph" id="p0121">轨迹数据采集模块，用于采集飞行器在指定区域内的三维飞行轨迹数据集；</div>
+<div class="description-paragraph" id="p0122">数据预处理模块，用于对飞行轨迹数据集进行时空对齐、异常点剔除与滤波处理，生成预处理后的飞行轨迹数据集；</div>
+<div class="description-paragraph" id="p0123">多尺度特征提取模块，用于基于自适应尺度切分飞行轨迹并提取局部分形维数，形成飞行轨迹复杂性描述向量；</div>
+<div class="description-paragraph" id="p0124">动态参数融合模块，用于提取各分段飞行轨迹的速度变化值、加速度变化值与姿态角变化值，并与复杂性描述向量融合生成多维风险特征数据集；</div>
+<div class="description-paragraph" id="p0125">模型选择模块，用于基于最小描述长度原则从候选模型中选取描述长度最小的最优风险评价模型；</div>
+<div class="description-paragraph" id="p0126">风险评估模块，用于基于所选模型对飞行轨迹进行风险等级预测与预警信息输出；</div>
+<div class="description-paragraph" id="p0127">反馈模块，用于将风险评价结果反馈至飞行器控制系统与监控终端，实现飞行路径动态调整与风险预警联动。</div>
+<div class="description-paragraph" id="p0128" num="0028">实施例1：2024年10月7日07时41分，A市智能物流试验区发生一起低空飞行异常事件，当天清晨6:55，一架型号为“航迹ZQ-4”的自主飞行四旋翼无人机（机体编码ZQ-FS20241007A），在执行常规低空航线巡查任务，飞行区域为顺德创新港区南至北沿线，全程约4.6公里，高度控制在60-75米之间，任务目的为对创新园区智能配送通道的信号覆盖状况进行高频干扰检测。</div>
+<div class="description-paragraph" id="p0129" num="0029">在07时41分12秒，巡航至任务段第8航段（位置GPS坐标：xxx.260138°E，xx.876322°N）时，地面管控系统接收到异常提示：飞行器在短时间内发生了三次连续的非指令性偏航操作，其中第二次偏航幅度达到29.6度，远高于该型号机体允许的紧急航向调整上限（22度），与此同时，飞控回传数据显示瞬时速度Δv为5.91m/s，加速度Δa为7.24m/s²，姿态角变化Δψ为16.7°，并伴随3秒内分形维数飙升至1.894。</div>
+<div class="description-paragraph" id="p0130" num="0030">值班管理员立即调用飞行轨迹风险智能管理系统。系统采用本发明提出的“基于机器学习的低空飞行器风险管理方法”，快速对当下的飞行段进行特征提取与风险判断。处理流程如下：</div>
+<div class="description-paragraph" id="p0131">系统从轨迹数据中提取出第49~53号轨迹点进行局部处理，每个点包含精确时间戳、三维坐标、速度、加速度和姿态角变化值。</div>
+<div class="description-paragraph" id="p0132" num="0031">预处理模块首先对这五段轨迹点数据进行时序对齐与滑动窗口异常识别，在52号点处发现速度变化Δv超过4.8m/s，空间曲率变化率剧烈，判断为高阶扰动轨迹。</div>
+<div class="description-paragraph" id="p0133" num="0032">多尺度分析模块对该段轨迹进行了基于自适应函数λ(κ,v)的切分，最终形成一个局部飞行片段，长度约为4.2秒，包含31个微轨迹点。</div>
+<div class="description-paragraph" id="p0134" num="0033">系统进一步采用分形维数计算算法计算该段的维数特征值DB=1.894，远超高风险阈值1.73，</div>
+<div class="description-paragraph" id="p0135">同时动态参数提取模块获得：Δv=5.91m/s，Δa=7.24m/s²，Δψ=16.7°，共同组成了多维风险特征向量R。</div>
+<div class="description-paragraph" id="p0136" num="0034">此风险特征向量被实时输入至本发明所构建的最优XGBoost风险判别模型中，模型输出风险等级为“高”，并定位风险触发逻辑为：(Δa&gt;6.0)∧(DB&gt;1.73)，系统立即生成如下自动化报告：</div>
+<div class="description-paragraph" id="p0137">事件时间：2024-10-0707:41:12；机体编号：ZQ-FS20241007A；位置坐标：xxx.260138°E，xx.876322°N；分形维数：1.894；速度变化值：5.91m/s；加速度变化值：7.24m/s²；姿态角变化：16.7°；风险等级：高；</div>
+<div class="description-paragraph" id="p0138">建议处理：启动紧急调整，降低飞行速度至2.5m/s，轨迹偏移至左偏航方向8.7°，解除干扰波段。</div>
+<div class="description-paragraph" id="p0139" num="0035">地面管理员根据系统建议手动介入飞行控制系统，实施路径矫正操作，在07时41分23秒完成控制干预，飞行器按指令重新调整飞行姿态，并在接下来的航段中未再出现风险提示，任务于07时58分37秒顺利完成。</div>
+<div class="description-paragraph" id="p0140" num="0036">为验证本发明的系统性能，我们将本案例数据用于对比实验，选取2024年6月~9月在A区域采集的标准飞行任务样本共计16870条轨迹段，构造训练集，其中包含有756条人工标注高风险轨迹段，我们将传统基于静态阈值的方法（规则库）、标准随机森林方法与本发明所采用的机器学习方法进行比较，具体实验结果如下：</div>
+<div class="description-paragraph" id="p0141">表1本发明方法与静态阈值的方法和标准随机森林方法指标数据对比</div>
+<div class="description-paragraph" id="p0142">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0143" num="0037">进一步分析发现，传统规则法主要依赖速度、加速度单维度超阈值判断，忽略了轨迹结构信息，导致识别率较低；随机森林虽具备多维特征判断能力，但在轨迹形态复杂度建模方面不足，而本发明方法创新地融合了轨迹复杂性与动态飞行特征，构建了稳定且鲁棒的风险特征模型，在高扰动环境中也能保持高识别率和及时响应能力。</div>
+<div class="description-paragraph" id="p0144" num="0038">因此，从此次真实事件的全过程来看，本发明所提出的方法能够精准捕捉低空飞行异常状态，快速分析潜在风险并提出干预建议，极大提升了飞行器在复杂低空环境下的安全性与任务成功率，具有极高的实用性和推广价值。</div>
+<div class="description-paragraph" id="p0145" num="0039">本发明将飞行轨迹的局部分形维数作为核心描述子引入风险管理体系，通过多尺度切分后的轨迹分段提取分形维数特征，有效表征飞行轨迹在不同尺度下的局部复杂度与不规则性，此外，与瞬时速度变化值、加速度变化值与姿态角变化值动态飞行参数进行向量级联融合，构成多维风险特征向量，显著增强了模型对微小轨迹扰动和潜在风险征兆的敏感性，提升了高风险轨迹段的准确识别率。</div>
+<div class="description-paragraph" id="p0146" num="0040">本发明突破传统依赖人工设定模型结构或固定模板的方式，采用信息论中的最小描述长度原理对候选模型集进行编码复杂度与数据误差联合优化评价，综合考虑模型结构复杂性与预测误差带来的信息损失，在众多候选模型中自动筛选出既具有紧凑结构又具备高风险判别能力的最优模型，确保了所选模型在不同飞行环境与轨迹模式下具备稳定可靠的风险评估性能。</div>
+<div class="description-paragraph" id="p0147" num="0041">本发明设计了基于飞行轨迹点空间曲率变化率与飞行速度偏离度联合驱动的自适应划分函数，实现对飞行轨迹的非等距动态切分，不仅有效避免了固定时间窗口划分带来的特征丢失或冗余问题，还能精准捕捉轨迹中具有高转弯率或速度剧变高风险特征段，极大提高了局部风险事件的识别准确性。</div>
+<div class="description-paragraph" id="p0148" num="0042">以上所述，仅为本发明较佳的具体实施方式，但本发明的保护范围并不局限于此，任何熟悉本技术领域的技术人员在本发明揭露的技术范围内，根据本发明的技术方案及其发明构思加以等同替换或改变，都应涵盖在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

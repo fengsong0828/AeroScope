@@ -1,0 +1,21 @@
+{
+    "patent_id": "CN115131406A",
+    "title": "CN115131406A - 用于监视低空复杂背景下小型飞行器的鲁棒视觉跟踪方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shenyang Aerospace University",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN115131406A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN113807250A (zh) *",
+            "Priority Date": "2021-09-17",
+            "Publication Date": "2021-12-17",
+            "Assignee": "沈阳航空航天大学",
+            "Title": "一种抗遮挡和尺度自适应的低空空域飞行目标跟踪方法",
+            "Link": "https://patents.google.com/patent/CN113807250A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:36:20"
+}

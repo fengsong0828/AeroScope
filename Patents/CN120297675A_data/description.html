@@ -1,0 +1,306 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120297675A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES499331838">
+<invention-title id="title1" lang="ZH">一种低空载人飞行器的站点选址方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及城市低空交通技术领域，尤其是涉及一种低空载人飞行器的站点选址方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">城市空中交通作为深化通用航空装备示范应用的重要领域，是支撑“全国123出行交通圈”(都市区1小时通勤、城市群2小时通达、全国主要城市3小时覆盖)的关键基础设施。其中，低空载人飞行器(以电动垂直起降机eVTOL为主)的规模化应用，亟需构建高效的城市空中交通网络，而站点选址的合理性直接决定了网络的服务质量与运营效率。</div>
+<div class="description-paragraph" id="p0005" num="0003">然而，现有技术中针对低空载人飞行器站点选址的研究仍面临多重挑战。首先，选择城市空中交通出行的需求未知。城市空中交通是前所未有的交通方式，所以低空载人飞行器选址必须具有前瞻性，以满足未来可能的用户需求。其次，低空空域管制政策不明确。现行法规如《无人驾驶航空器飞行管理暂行条例》等，没有明确关于低空载人飞行器飞行空域的限制。再者，成本与效益难以平衡。低空载人飞行器建造成本未知，需要根据站点所在地的地价来估计，以便在有限的预算里做出最具性价比的选择。最后，优化算法的应用滞后。优化算法更新迭代迅速，新型高效的算法尚未充分应用于低空载人飞行器站点选址问题中。</div>
+<div class="description-paragraph" id="p0006" num="0004">经过检索，中国发明专利申请公开号CN118365026A公开了一种载人电动垂直起降飞行汽车选址及选线方法、装置及介质，属于城市低空交通运输领域，方法包括：获取所有需求点的信息，并使用聚类算法确定电动垂直起降平台站点的候选集合；根据需求点的交通信息生成基于交通大数据驱动下的用户出行路线；根据候选集合和用户出行路线，构建数学模型，并以运营商和用户的总成本为优化目标优化模型，最终获得最优的飞行汽车垂直起降平台选址及系统线网路线运营的决策。该现有专利申请存在未考虑候选站点的需求量，从而选址不科学的问题。</div>
+<div class="description-paragraph" id="p0007" num="0005">如何实现更科学合理的低空载人飞行器的站点选址，成为需要解决的技术问题。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0008">发明内容</div>
+<div class="description-paragraph" id="p0009" num="0006">本发明的目的就是为了克服上述现有技术存在的缺陷而提供一种低空载人飞行器的站点选址方法。</div>
+<div class="description-paragraph" id="p0010" num="0007">本发明的目的可以通过以下技术方案来实现：</div>
+<div class="description-paragraph" id="p0011" num="0008">根据本发明的一个方面，提供了一种低空载人飞行器的站点选址方法，该方法包括以下步骤：</div>
+<div class="description-paragraph" id="p0012" num="0009">S1：基于潜在需求点和管制因素获得初选低空载人飞行器站点；</div>
+<div class="description-paragraph" id="p0013" num="0010">S2：通过聚类算法获取候选低空载人飞行器站点；</div>
+<div class="description-paragraph" id="p0014" num="0011">S3：引入分级服务范围模型，结合低空载人飞行器有效载荷，获取每个所述候选低空载人飞行器站点的用户需求量，并构建低空载人飞行器站点选址模型；</div>
+<div class="description-paragraph" id="p0015" num="0012">S4：采用牛顿-拉夫逊优化算法求解站点选址模型，其中站点选址模型的目标函数为：用户需求量最大且成本最小。</div>
+<div class="description-paragraph" id="p0016" num="0013">优选地，所述S1的过程包括：</div>
+<div class="description-paragraph" id="p0017" num="0014">基于城市POI数据构造所述的潜在需求点；</div>
+<div class="description-paragraph" id="p0018" num="0015">构建哈达玛积管制矩阵，确定初选低空载人飞行器站点。</div>
+<div class="description-paragraph" id="p0019" num="0016">更加优选地，所述确定初选低空载人飞行器站点的过程包括</div>
+<div class="description-paragraph" id="p0020" num="0017">构建哈达玛积管制矩阵，具体为：记A市最东经纬度坐标点为(x<sub>E</sub>,y<sub>E</sub>)，最西经纬度坐标点为(x<sub>W</sub>,y<sub>W</sub>)，最北经纬度坐标点为(x<sub>N</sub>,y<sub>N</sub>)，最南经纬度坐标点为(x<sub>S</sub>,y<sub>S</sub>)，公式如下：</div>
+<div class="description-paragraph" id="p0021" num="0018">m＝x<sub>E</sub>-x<sub>W</sub> </div>
+<div class="description-paragraph" id="p0022" num="0019">n＝y<sub>N</sub>-y<sub>S</sub> </div>
+<div class="description-paragraph" id="p0023" num="0020">x<sub>1</sub>＝x<sub>W</sub> </div>
+<div class="description-paragraph" id="p0024" num="0021">x<sub>m</sub>＝x<sub>E</sub> </div>
+<div class="description-paragraph" id="p0025" num="0022">y<sub>1</sub>＝y<sub>N</sub> </div>
+<div class="description-paragraph" id="p0026" num="0023">y<sub>n</sub>＝y<sub>S</sub> </div>
+<div class="description-paragraph" id="p0027" num="0024">AX＝(x<sub>1</sub>,…,x<sub>m</sub>)</div>
+<div class="description-paragraph" id="p0028" num="0025">AY＝(y<sub>1</sub>,…,y<sub>n</sub>)</div>
+<div class="description-paragraph" id="p0029" num="0026">i＝x-(x<sub>w</sub>-1)x∈AX</div>
+<div class="description-paragraph" id="p0030" num="0027">j＝y-(y<sub>n</sub>-1)y∈AY</div>
+<div class="description-paragraph" id="p0031" num="0028">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0032" num="0029">式中，m为A市最东的坐标点经度与最西坐标点经度之差，n为A市最北的坐标点维度与最南坐标点维度之差，AX＝(x<sub>W</sub>,…,x<sub>E</sub>)、AY＝(y<sub>N</sub>,…,y<sub>S</sub>)分别为A市纬度、经度向量，x、y分别为坐标经、纬度，i、j分别为x、y坐标转换后的矩阵角标，A<sub>mn</sub>为A市坐标示意矩阵，<span class="patent-image-not-available"></span>代表了A市k种不同的管制因素坐标示意矩阵；</div>
+<div class="description-paragraph" id="p0033" num="0030">假设某个点的坐标为x、y，通过换算得出其对应矩阵的角标i、j，当(x,y)为A市坐标点时，将A市坐标示意矩阵A<sub>mn</sub>的元素η<sub>ij</sub>赋值为1，反之，为0；</div>
+<div class="description-paragraph" id="p0034" num="0031">同样的方法判断坐标点(x,y)是否为第k种管制因素的坐标点；</div>
+<div class="description-paragraph" id="p0035" num="0032">将所有A市坐标经过转换得到A市坐标示意矩阵A<sub>mn</sub>及A市k种不同的管制因素坐标示意矩阵<span class="patent-image-not-available"></span>然后将所有管制因素坐标示意矩阵与A市坐标示意矩阵做哈达玛积，得到哈达玛积管制矩阵H<sub>mn</sub>：</div>
+<div class="description-paragraph" id="p0036" num="0033">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0037" num="0034">其中，数据为0的点为禁飞点，反之，则为初选低空载人飞行器站点，最终筛选出v个初选低空载人飞行器站点。</div>
+<div class="description-paragraph" id="p0038" num="0035">优选地所述获取每个所述候选低空载人飞行器站点的用户需求量的过程包括：以所有初选低空载人飞行器站点为圆心，以最大候选低空载人站点服务范围r<sub>3</sub>为半径，划分出v个需求圈，以每个需求圈的打车数据作为候选低空载人飞行器站点的用户需求量，计算所有初选低空载人飞行器站点的用户需求量，公式如下：</div>
+<div class="description-paragraph" id="p0039" num="0036">n<sup>k</sup>＝{o<sub>t</sub>}</div>
+<div class="description-paragraph" id="p0040" num="0037">o<sub>t</sub>＝SCar+ECar×MCar 1≤t≤v,k∈[1,K]</div>
+<div class="description-paragraph" id="p0041" num="0038">式中，n<sup>k</sup>为不同簇中初选低空载人飞行器站点的用户需求量集合，o<sub>t</sub>为一个簇中第t个初选低空载人飞行器站点的用户需求量，SCar为以需求圈内某地点为起始点的订单数量，ECar和MCar分别为以需求圈内某地点为终止点的订单数量及金额，v为初选低空载人飞行器站点的数量。</div>
+<div class="description-paragraph" id="p0042" num="0039">更加优选地，所述获取每个所述候选低空载人飞行器站点的用户需求量的过程还包括：结合低空载人飞行器有效载荷，重新计算候选低空载人飞行器站点的用户需求量，公式如下：</div>
+<div class="description-paragraph" id="p0043" num="0040">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0044" num="0041">式中，S<sup>k</sup>代表每个簇中的初选低空载人飞行器站点到候选低空载人飞行器站点间的距离的集合，CX<sup>k</sup>、CY<sup>k</sup>分别代表第k个候选低空载人飞行器站点纬度、经度，<span class="patent-image-not-available"></span>分别代表每个簇中初选低空载人飞行器站点的纬度、经度；s<sub>t</sub>为第t个初选低空载人飞行器站点与第k个候选低空载人飞行器站点的欧式距离；R＝(r<sub>1</sub>,r<sub>2</sub>,r<sub>3</sub>)为根据低空载人飞行器有效载荷的不同，设置的基于三种等级的候选低空载人站点服务范围，N<sup>k</sup>为候选低空载人飞行器站点的用户需求量集合，即基于分级服务范围的低空载人站点用户需求量集合；β<sub>1</sub>和β<sub>2</sub>均为需求减少系数。</div>
+<div class="description-paragraph" id="p0045" num="0042">更加优选地，所述的获取每个所述候选低空载人飞行器站点的用户需求量的过程还包括：根据候选低空载人飞行器站点的坐标地址获取对应的地价，并构建需求量大、成本小的站点选址模型，具体为：</div>
+<div class="description-paragraph" id="p0046" num="0043">D＝(d<sub>1</sub>,…,d<sub>K</sub>)</div>
+<div class="description-paragraph" id="p0047" num="0044">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0048" num="0045">式中，D为候选低空载人飞行器站点地价向量，d<sub>k</sub>为第k个候选低空载人飞行器站点地价，<span class="patent-image-not-available"></span>为初始化低空载人飞行器站点，其中<span class="patent-image-not-available"></span>为二元变量，即若<span class="patent-image-not-available"></span>则选择该点为低空载人飞行器站点，反之，则放弃该点为低空载人飞行器站点。</div>
+<div class="description-paragraph" id="p0049" num="0046">更加优选地，所述方法还包括计算出站点位置后，对站点位置进行需求满足率评估，具体为：</div>
+<div class="description-paragraph" id="p0050" num="0047">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0051" num="0048">τ<sup>k</sup>＝N<sup>k</sup>/B<sup>k</sup> </div>
+<div class="description-paragraph" id="p0052" num="0049">其中，B<sup>k</sup>为第k个候选低空载人飞行器站点的全部用户需求量，τ表示第k个候选低空载人飞行器站点的用户需求满足率，N<sup>k</sup>为候选低空载人飞行器站点的用户需求量集合。</div>
+<div class="description-paragraph" id="p0053" num="0050">优选地，所述的采用牛顿-拉夫逊优化算法求解站点选址模型的过程包括：</div>
+<div class="description-paragraph" id="p0054" num="0051">种群初始化：构建初始化低空载人飞行器站点矩阵<span class="patent-image-not-available"></span>其数学表达式如下：</div>
+<div class="description-paragraph" id="p0055" num="0052">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0056" num="0053">其中，ub和lb分别为种群搜索位置的上下限；N<sub>p</sub>为低空载人飞行器站点的不同组合的数量；K为维数，即候选低空载人站点个数；</div>
+<div class="description-paragraph" id="p0057" num="0054">对牛顿-拉夫逊搜索进行改进，在搜索监控中发现最优解，并最终收敛到全局解；其中改进具体为：</div>
+<div class="description-paragraph" id="p0058" num="0055">定义参数ρ，将将种群引导到正确的方向，具体为：</div>
+<div class="description-paragraph" id="p0059" num="0056">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0060" num="0057">其中，a和b是(0,1)之间的随机数，<span class="patent-image-not-available"></span>为目前获得的最佳解，<span class="patent-image-not-available"></span>为当前解，下标k<sub>1</sub>和k<sub>2</sub>为从总体中随机选择的不同整数；</div>
+<div class="description-paragraph" id="p0061" num="0058">设计自适应系数δ来增强算法，具体为：</div>
+<div class="description-paragraph" id="p0062" num="0059">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0063" num="0060">其中t表示当前迭代的次数，而Max_t表示迭代的最大次数；</div>
+<div class="description-paragraph" id="p0064" num="0061">为了在勘探和开发阶段之间保持平衡，参数δ在迭代过程中会自行调整，δ的值在1到-1之间变化；</div>
+<div class="description-paragraph" id="p0065" num="0062">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0066" num="0063">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0067" num="0064">其中，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>是通过更新<span class="patent-image-not-available"></span>而得到的新矢量位置，NRSR代表牛顿-拉夫逊搜索规则，y<sub>w</sub>和y<sub>b</sub>为使用Z<sub>k+1</sub>和<span class="patent-image-not-available"></span>生成的两个向量的位置，<span class="patent-image-not-available"></span>为目前的最差解，<span class="patent-image-not-available"></span>为目标函数，<span class="patent-image-not-available"></span>为最好解和当前解的差值，λ表示(0,1)之间的随机数；</div>
+<div class="description-paragraph" id="p0068" num="0065">最终，得到下一次迭代期间的新向量<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0069" num="0066">更加优选地，所述的采用牛顿-拉夫逊优化算法求解站点选址模型的过程还包括：引入陷阱避免算子，以目标函数为导向得到最优解。</div>
+<div class="description-paragraph" id="p0070" num="0067">优选地，所述通过聚类算法获取候选低空载人飞行器站点的过程包括：</div>
+<div class="description-paragraph" id="p0071" num="0068">S21，数据准备：随机选取K个候选低空载人飞行器站点；</div>
+<div class="description-paragraph" id="p0072" num="0069">S22，遍历所有初选低空载人飞行器站点的位置，根据欧式距离计算每个初选低空载人飞行器站点与候选低空载人飞行器站点的距离；</div>
+<div class="description-paragraph" id="p0073" num="0070">S23，形成新簇：将每个初选低空载人飞行器站点，分配给距离最近的候选低空载人飞行器站点，此时一个候选低空载人飞行器站点被分配了一些初选低空载人飞行器站点，即形成了一个新簇；</div>
+<div class="description-paragraph" id="p0074" num="0071">S24：更新形心：计算新簇中所有初选低空载人飞行器站点的新形心；</div>
+<div class="description-paragraph" id="p0075" num="0072">返回S21，直到形心不再变化或超过指定的迭代次数，将所有新形心重新作为候选低空载人飞行器站点。</div>
+<div class="description-paragraph" id="p0076" num="0073">与现有技术相比，本发明具有以下有益效果：</div>
+<div class="description-paragraph" id="p0077" num="0074">1)本发明提出三段式的低空载人飞行器站点选址方法，根据管制因素决定性地筛选出初选低空载人飞行器站点；考虑所有初选低空载人飞行器站点的需求量，根据初选低空载人飞行器站点聚类出候选低空载人飞行器站点；用牛顿-拉夫逊优化算法求解站点选址模型确定低空载人飞行器站点地址，其中模型考虑了低空载人飞行器的分级服务范围、有效载荷、空域管制、用户需求量以及成本，最终综合考虑多因素实现科学合理且快速收敛的站点规划。</div>
+<div class="description-paragraph" id="p0078" num="0075">2)本发明基于哈达玛积的管制矩阵，精准排除禁飞区域，提升选址合规性。</div>
+<div class="description-paragraph" id="p0079" num="0076">3)本发明考虑打车用户为潜在的低空载人飞行器用户，将每个初选低空载人飞行器站点附近的打车数据作为其用户需求量，基于三种等级的初选低空载人飞行器服务范围，确定出不同低空载人飞行器站点的用户需求量，有利于提升低空资源利用率，也为需求量预估和后续建模提供有力的数据支撑。</div>
+<div class="description-paragraph" id="p0080" num="0077">4)本发明对牛顿-拉夫逊优化算法进行了改进，相比粒子群和PSO算法在收敛速度和求解最优解上有更大提升，使得求解速度更快、站点选址更准确。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0081">附图说明</div>
+<div class="description-paragraph" id="p0082" num="0078">图1为本发明中站点选址方法的流程示意图；</div>
+<div class="description-paragraph" id="p0083" num="0079">图2为本发明中利用牛顿-拉夫逊优化算法求解站点选址模型的流程示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0084">具体实施方式</div>
+<div class="description-paragraph" id="p0085" num="0080">下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例是本发明的一部分实施例，而不是全部实施例。基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动的前提下所获得的所有其他实施例，都应属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0086" num="0081">实施例1</div>
+<div class="description-paragraph" id="p0087" num="0082">本实施例涉及一种低空载人飞行器的站点选址方法，如图1，该方法包括以下步骤：</div>
+<div class="description-paragraph" id="p0088" num="0083">S1：构造潜在需求点，获取初选低空载人飞行器站点。将公司企业、购物服务、交通设施服务等九大类城市POI数据的地址确定为潜在需求点，提炼出涉密区、电磁区、自然文化区、易燃区四类管制因素，基于哈达玛积管制矩阵，筛选出初选低空载人飞行器站点；</div>
+<div class="description-paragraph" id="p0089" num="0084">S2：聚类获取候选低空载人飞行器站点。通过聚类算法，将位置相近的初选低空载人飞行器站点聚为一类，将这一类初选低空载人飞行器站点的形心点作为候选低空载人飞行器站点；</div>
+<div class="description-paragraph" id="p0090" num="0085">S3：获取每个候选低空载人飞行器站点的用户需求量，构建低空载人飞行器站点选址模型。以候选低空载人飞行器站点为中心，基于低空载人飞行器的有效载荷构造分级服务范围模型，将范围内的打车数据经过模型计算转化为每个候选低空载人飞行器站点的用户需求量，即候选低空载人飞行器站点所在位置，采用低空载人飞行器出行的用户需求量。最后，根据每个候选低空载人飞行器站点的用户需求量及其建造成本构建空载人飞行器的站点选址模型。</div>
+<div class="description-paragraph" id="p0091" num="0086">S4：采用牛顿-拉夫逊优化算法求解站点选址模型，并对站点位置的需求满足率进行评估。采用牛顿-拉夫逊优化算法求解低空载人飞行器站点选址模型，计算出站点位置，并对站点位置进行需求满足率评估。</div>
+<div class="description-paragraph" id="p0092" num="0087">S1中构造潜在需求点，获取初选低空载人飞行器站点的过程包括：</div>
+<div class="description-paragraph" id="p0093" num="0088">S11：获取潜在需求点：搜集人口密度大且具有一定消费潜力的地点作为潜在需求点，即采用9大类城市POI特征，分别为公司企业、购物服务、交通设施服务、金融保险服务、科教文化服务、商务住宅、体育休闲服务、医疗保健服务、住宿服务，并将潜在需求点设为u个。</div>
+<div class="description-paragraph" id="p0094" num="0089">S12：构建哈达玛积管制矩阵，确定初选低空载人飞行器站点。</div>
+<div class="description-paragraph" id="p0095" num="0090">记A市最东经纬度坐标点为(x<sub>E</sub>,y<sub>E</sub>)，最西经纬度坐标点为(x<sub>W</sub>,y<sub>W</sub>)，最北经纬度坐标点为(x<sub>N</sub>,y<sub>N</sub>)，最南经纬度坐标点为(x<sub>S</sub>,y<sub>S</sub>)，公式如下：</div>
+<div class="description-paragraph" id="p0096" num="0091">m＝x<sub>E</sub>-x<sub>W</sub> </div>
+<div class="description-paragraph" id="p0097" num="0092">n＝y<sub>N</sub>-y<sub>S</sub> </div>
+<div class="description-paragraph" id="p0098" num="0093">x<sub>1</sub>＝x<sub>W</sub> </div>
+<div class="description-paragraph" id="p0099" num="0094">x<sub>m</sub>＝x<sub>E</sub> </div>
+<div class="description-paragraph" id="p0100" num="0095">y<sub>1</sub>＝y<sub>N</sub> </div>
+<div class="description-paragraph" id="p0101" num="0096">y<sub>n</sub>＝y<sub>S</sub> </div>
+<div class="description-paragraph" id="p0102" num="0097">AX＝(x<sub>1</sub>,…,x<sub>m</sub>)</div>
+<div class="description-paragraph" id="p0103" num="0098">AY＝(y<sub>1</sub>,…,y<sub>n</sub>)</div>
+<div class="description-paragraph" id="p0104" num="0099">i＝x-(x<sub>w</sub>-1)x∈AX</div>
+<div class="description-paragraph" id="p0105" num="0100">j＝y-(y<sub>n</sub>-1)y∈AY</div>
+<div class="description-paragraph" id="p0106" num="0101">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0107" num="0102">式中，m为A市最东的坐标点经度与最西坐标点经度之差，n为A市最北的坐标点维度与最南坐标点维度之差，AX＝(x<sub>W</sub>,…,x<sub>E</sub>)、AY＝(y<sub>N</sub>,…,y<sub>S</sub>)分别为A市纬度、经度向量，x、y分别为坐标经、纬度，i、j分别为x、y坐标转换后的矩阵角标，A<sub>mn</sub>为A市坐标示意矩阵，<span class="patent-image-not-available"></span>代表了A市k种不同的管制因素坐标示意矩阵，H<sub>mn</sub>表示哈达玛积管制矩阵。</div>
+<div class="description-paragraph" id="p0108" num="0103">假设经纬度坐标均为整数，通过找到A市中最边缘的四个坐标点，来构建A市经纬度向量，由于A市的地址不变，所以所有示意矩阵(坐标示意矩阵、管制因素坐标示意矩阵)的大小相同。</div>
+<div class="description-paragraph" id="p0109" num="0104">假设此时一点的坐标为x、y，通过换算得出该点对应矩阵的角标i、j，当(x,y)为A市坐标点时，将A市坐标示意矩阵A<sub>mn</sub>的元素η<sub>ij</sub>赋值为1，反之，为0。同样由此判断(x,y)是否为第k种管制因素的坐标点。将所有A市坐标经过转换得到A市坐标示意矩阵A<sub>mn</sub>及A市k种不同的管制因素坐标示意矩阵<span class="patent-image-not-available"></span>最终将所有管制因素坐标示意矩阵与A市坐标示意矩阵做哈达玛积，得到哈达玛积管制矩阵，其中，数据为0的点为禁飞点，反之，则为初选低空载人飞行器站点，最终筛选出v个初选低空载人飞行器站点。</div>
+<div class="description-paragraph" id="p0110" num="0105">S2中确定候选低空载人飞行器站点：通过聚类获取候选低空载人飞行器站点。</div>
+<div class="description-paragraph" id="p0111" num="0106">通过KMeans聚类算法，把地理位置相似的初选低空载人飞行器站点聚集为不同的簇类，并获取这些簇类的形心点，将之作为候选低空载人飞行器站点。具体步骤及数学公式如下：</div>
+<div class="description-paragraph" id="p0112" num="0107">S21，数据准备：随机选取K个候选低空载人飞行器站点。</div>
+<div class="description-paragraph" id="p0113" num="0108">S22，计算距离：遍历所有初选低空载人飞行器站点的位置，根据欧式距离计算每个初选低空载人飞行器站点与候选低空载人飞行器站点的距离，计算公式如下：</div>
+<div class="description-paragraph" id="p0114" num="0109">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0115" num="0110">式中，lk为坐标为(x<sub>i</sub>,y<sub>j</sub>)的初选低空载人飞行器站点与第k个候选低空载人飞行器站点的距离，CX<sup>k</sup>、CY<sup>k</sup>分别代表第k个候选低空载人飞行器站点纬度、经度，K为候选低空载人飞行器站点个数，即将每一个候选低空载人飞行器站点与每一个初选低空载人飞行器站点的欧式距离算出。</div>
+<div class="description-paragraph" id="p0116" num="0111">S23，形成新簇：将每个初选低空载人飞行器站点，分配给K个候选低空载人飞行器站点中距离最近的那个，此时一个候选低空载人飞行器站点被分配了一些初选低空载人飞行器站点，即形成了一个新簇，将K个新簇记为δ<sup>k</sup>，如下所示：</div>
+<div class="description-paragraph" id="p0117" num="0112">δ<sup>k</sup>＝{(x<sub>i</sub>,y<sub>j</sub>)<sub>t</sub>}1≤t≤v,k∈[1,K]</div>
+<div class="description-paragraph" id="p0118" num="0113">式中，t代表第k个簇中的初选低空载人飞行器站点个数，v为低空载人飞行器站点的个数。另外，记每个新簇中的初选低空载人飞行器站点的纬度记为<span class="patent-image-not-available"></span>经度记为<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0119" num="0114">S24：更新形心：计算某新簇中所有初选低空载人飞行器站点的新形心，计算公式如下：</div>
+<div class="description-paragraph" id="p0120" num="0115">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0121" num="0116">同样的方法计算所有K个新簇的新形心，将此K个新形心重新作为候选低空载人飞行器站点；</div>
+<div class="description-paragraph" id="p0122" num="0117">返回S21，直到形心不再变化或超过指定的迭代次数。</div>
+<div class="description-paragraph" id="p0123" num="0118">S3中，获取每个候选低空载人飞行器站点用户需求量的子步骤如下：</div>
+<div class="description-paragraph" id="p0124" num="0119">S31：引入分级服务范围模型，结合低空载人飞行器有效载荷，构造候选低空载人飞行器站点的用户需求量。</div>
+<div class="description-paragraph" id="p0125" num="0120">首先，以所有初选低空载人飞行器站点为圆心，r<sub>3</sub>为半径，划分出v个需求圈，以每个需求圈的打车数据作为候选低空载人飞行器站点的用户需求量，其中车的类型包括出租车、网约车等，计算所有初选低空载人飞行器站点的用户需求量，公式如下：</div>
+<div class="description-paragraph" id="p0126" num="0121">n<sup>k</sup>＝{o<sub>t</sub>}</div>
+<div class="description-paragraph" id="p0127" num="0122">o<sub>t</sub>＝SCar+ECar×MCar 1≤t≤v,k∈[1,K]</div>
+<div class="description-paragraph" id="p0128" num="0123">式中，n<sup>k</sup>为不同簇中初选低空载人飞行器站点的用户需求量集合，o<sub>t</sub>为一个簇中第t个初选低空载人飞行器站点的用户需求量，SCar为以需求圈内某地点为起始点的订单数量，ECar和MCar分别为以需求圈内某地点为终止点的订单数量及金额。</div>
+<div class="description-paragraph" id="p0129" num="0124">另外，由于候选低空载人飞行器站点的服务距离有限，不一定能满足该簇中所有站点的需求，所以结合低空载人飞行器有效载荷，重新计算候选低空载人飞行器站点的用户需求量，公式如下：</div>
+<div class="description-paragraph" id="p0130" num="0125">S<sup>k</sup>＝{s<sub>t</sub>}</div>
+<div class="description-paragraph" id="p0131" num="0126">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0132" num="0127">R＝(r<sub>1</sub>,r<sub>2</sub>,r<sub>3</sub>)</div>
+<div class="description-paragraph" id="p0133" num="0128">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0134" num="0129">式中，S<sup>k</sup>代表每个簇中的初选低空载人飞行器站点到候选低空载人飞行器站点间的距离集合，CX<sup>k</sup>、CY<sup>k</sup>分别代表第k个候选低空载人飞行器站点纬度、经度，<span class="patent-image-not-available"></span>分别代表每个新簇中初选低空载人飞行器站点的纬度、经度。R＝(r<sub>1</sub>,r<sub>2</sub>,r<sub>3</sub>)为根据低空载人飞行器有效载荷的不同，设置的基于三种等级(r<sub>1</sub>、r<sub>2</sub>、r<sub>3</sub>)的候选低空载人站点服务范围，N<sup>k</sup>为候选低空载人飞行器站点的用户需求量集合，即基于分级服务范围的低空载人站点用户需求量集合。</div>
+<div class="description-paragraph" id="p0135" num="0130">对于第k个候选低空载人飞行器站点，它的用户需求量为服务范围内所有初选低空载人飞行器站点的用户需求量之和。在r<sub>1</sub>范围内，所有机型适飞，能满足全部初选低空载人飞行器站点的需求量o<sub>t</sub>。r<sub>1</sub>与r<sub>2</sub>范围内，中重型低空载人飞行器适飞，即有部分初选低空载人飞行器站点的需求量不能被满足，设置需求减少系数β<sub>1</sub>，得到最终被满足的潜在需求点的需求量β<sub>1</sub>o<sub>t</sub>。r<sub>2</sub>与r<sub>3</sub>范围内，只有重型低空载人飞行器适飞，部分潜在需求点的需求量不能被满足，设置需求减少系数β<sub>2</sub>，得到最终被满足的潜在需求点的需求量β<sub>2</sub>o<sub>t</sub>。在r<sub>3</sub>范围外，该低空载人飞行器站点无法满足潜在需求点的需求量，所以其值为0。由此，求得K个候选低空载人飞行器站点的用户需求量。</div>
+<div class="description-paragraph" id="p0136" num="0131">S32：根据候选低空载人飞行器站点的坐标地址，获取该地地价，并构建需求量大、成本小的站点选址模型，其数学表达式如下：</div>
+<div class="description-paragraph" id="p0137" num="0132">D＝(d<sub>1</sub>,…,d<sub>K</sub>)</div>
+<div class="description-paragraph" id="p0138" num="0133">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0139" num="0134">式中，D为候选低空载人飞行器站点地价向量，d<sub>k</sub>为第k个候选低空载人飞行器站点地价。<span class="patent-image-not-available"></span>为初始化低空载人飞行器站点，其中<span class="patent-image-not-available"></span>为二元变量，即若<span class="patent-image-not-available"></span>则选择该点为低空载人飞行器站点，反之，则放弃该点为低空载人飞行器站点。</div>
+<div class="description-paragraph" id="p0140" num="0135">S4中，基于牛顿-拉夫逊优化算法的低空载人飞行器的站点选址模型，确定低空载人飞行器站点的过程如下：</div>
+<div class="description-paragraph" id="p0141" num="0136">采用牛顿-拉夫逊优化算法(Newton-Raphson based optimizer,NRBO)求解该模型。通过两个算子，牛顿-拉夫逊搜索规则(Newton-Raphson search rule,NRSR)、陷阱避免算子(Trap Avoidance Operator,TAO)来探索搜索域，应用NRM(Newton-Raphson Method，牛顿-拉夫逊方法)来发现搜索区域，从而定义搜索路径。其中牛顿-拉夫逊优化算法是一种新型的元启发式算法(智能优化算法)，其性能与收敛速度远超于传统的粒子群算法，求解精度更高，在光滑、低维优化问题上远超PSO算法。</div>
+<div class="description-paragraph" id="p0142" num="0137">如图2，具体步骤如下：</div>
+<div class="description-paragraph" id="p0143" num="0138">S41：种群初始化，构建初始化矩阵<span class="patent-image-not-available"></span>其数学表达式如下：</div>
+<div class="description-paragraph" id="p0144" num="0139">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0145" num="0140">其中，ub和lb分别为种群搜索位置的上下限，N<sub>p</sub>为初始化种群数量，k为维数，即候选低空载人站点。</div>
+<div class="description-paragraph" id="p0146" num="0141">S42：牛顿-拉夫逊搜索，NRSR基于NRM，提出NRM是为了促进勘探趋势和加速收敛，从一个假定的初始解开始，并沿着一个确定的方向前进到下一个位置。该方法解非线性方程，是把非线性方程<span class="patent-image-not-available"></span>线性化的一种近似方法，把函数<span class="patent-image-not-available"></span>在点<span class="patent-image-not-available"></span>邻域内展开成泰勒级数：</div>
+<div class="description-paragraph" id="p0147" num="0142">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0148" num="0143">取前两项，并令<span class="patent-image-not-available"></span>得：</div>
+<div class="description-paragraph" id="p0149" num="0144">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0150" num="0145">将求目标函数的最小值转化为求目标函数导数为零，即求<span class="patent-image-not-available"></span>的解，公式为：</div>
+<div class="description-paragraph" id="p0151" num="0146">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0152" num="0147">进一步，</div>
+<div class="description-paragraph" id="p0153" num="0148">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0154" num="0149">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0155" num="0150">其中，<span class="patent-image-not-available"></span>为目前获得的最佳解，<span class="patent-image-not-available"></span>为当前解。与<span class="patent-image-not-available"></span>相比，将<span class="patent-image-not-available"></span>与<span class="patent-image-not-available"></span>代入目标函数后，较好的那一个设置为<span class="patent-image-not-available"></span>差的那一个值设置为<span class="patent-image-not-available"></span>接着：</div>
+<div class="description-paragraph" id="p0156" num="0151">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0157" num="0152">其中，r<sub>1</sub>表示(0,1)之间的随机数，Mean方法为求函数均值，randn表示均值为0、方差为1的正态分布随机数，y<sub>w</sub>和y<sub>b</sub>是使用Z<sub>k+1</sub>和<span class="patent-image-not-available"></span>生成的两个向量的位置，以此计算出NRSR。接着，通过包括另一个称为ρ的参数来改进所提出的NRBO的利用，该参数将种群引导到正确的方向。ρ的表达式如下所示：</div>
+<div class="description-paragraph" id="p0158" num="0153">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0159" num="0154">其中，a和b是(0,1)之间的随机数，<span class="patent-image-not-available"></span>为目前获得的最佳解，<span class="patent-image-not-available"></span>为当前解，下标k<sub>1</sub>和k<sub>2</sub>为从总体中随机选择的不同整数。</div>
+<div class="description-paragraph" id="p0160" num="0155">根据经验，所提出的算法必须能够在多样性和聚集性之间达到平衡，以便在搜索空间中发现最优解，并最终收敛到全局解。可以通过应用一个称为δ的自适应系数来增强算法，δ的表达式如下所示：</div>
+<div class="description-paragraph" id="p0161" num="0156">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0162" num="0157">其中t表示当前迭代的次数，而Max_t表示迭代的最大次数。为了在勘探和开发阶段之间保持平衡，参数δ在迭代过程中会自行调整，δ的值在1到-1之间变化。</div>
+<div class="description-paragraph" id="p0163" num="0158">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0164" num="0159">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0165" num="0160">最终，得到下一次迭代期间的新向量<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0166" num="0161">S43：TAO是一种通过引入随机性和多样性来增强优化算法性能的技术。它通过组合当前解和最佳解，并利用随机参数生成新的解，从而帮助算法逃离局部最优解并提高全局搜索能力。TAO算子显著改变<span class="patent-image-not-available"></span>的位置，通过组合最佳向量<span class="patent-image-not-available"></span>当前向量<span class="patent-image-not-available"></span>来产生具有增强质量<span class="patent-image-not-available"></span>的解决方案。如果随机数的值小于DF，则按如下方式计算<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0167" num="0162">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0168" num="0163">μ<sub>1</sub>＝3β*rand+(1-β)</div>
+<div class="description-paragraph" id="p0169" num="0164">μ<sub>2</sub>＝β*rand+(1-β)</div>
+<div class="description-paragraph" id="p0170" num="0165">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0171" num="0166">其中，Δ为一个控制参数，用于调节随机参数μ<sub>1</sub>和μ<sub>2</sub>的生成方式，可以定义为当前解<span class="patent-image-not-available"></span>与当前最优解<span class="patent-image-not-available"></span>之间的距离度量。<span class="patent-image-not-available"></span>是当前解与最优解之间的欧几里得距离。<span class="patent-image-not-available"></span>是最优解的范数(用于归一化)。rand表示(0,1)之间的均匀随机数，θ<sub>1</sub>和θ<sub>2</sub>分别是(-1,1)和(-0.5,0.5)之间的一致随机数，DF表示控制NRBO性能的决定因素，μ<sub>1</sub>和μ<sub>2</sub>是随机参数，β表示二进制数，即1或0。由于参数μ<sub>1</sub>和μ<sub>2</sub>选择的随机性，种群变得更加多样化，并逃离局部最优解，这有助于提高其多样性。</div>
+<div class="description-paragraph" id="p0172" num="0167">通过设置最大迭代次数来控制优化的程度，按照牛顿-拉夫逊搜索规则执行优化，采用陷阱避免算子避免局部最优解，以目标函数为导向得到最优解。</div>
+<div class="description-paragraph" id="p0173" num="0168">对所选站点进行评估，计算用户满足率，其数学表达式如下:</div>
+<div class="description-paragraph" id="p0174" num="0169">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0175" num="0170">τ<sup>k</sup>＝N<sup>k</sup>/B<sup>k</sup> </div>
+<div class="description-paragraph" id="p0176" num="0171">其中，B<sup>k</sup>为第k个候选低空载人飞行器站点的全部用户需求量，τ表示第k个候选低空载人飞行器站点的用户需求满足率，N<sup>k</sup>为候选低空载人飞行器站点的用户需求量集合。</div>
+<div class="description-paragraph" id="p0177" num="0172">实施例2</div>
+<div class="description-paragraph" id="p0178" num="0173">本实施例还涉及一种低空载人飞行器的站点选址方法，以一个实例来说明该方法的具体方案。</div>
+<div class="description-paragraph" id="p0179" num="0174">S1，获取潜在需求点，包括以下步骤：</div>
+<div class="description-paragraph" id="p0180" num="0175">S11，搜集人口密度大且具有一定消费潜力的地点作为潜在需求点，即采用9大类城市POI特征，分别为公司企业、购物服务、交通设施服务、金融保险服务、科教文化服务、商务住宅、体育休闲服务、医疗保健服务、住宿服务，并将潜在需求点设为u个。其中，各个城市POI特征大类选取的种类如表1所示：</div>
+<div class="description-paragraph" id="p0181" num="0176">表1</div>
+<div class="description-paragraph" id="p0182" num="0177">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0183" num="0178">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0184" num="0179">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0185" num="0180">S12，构建哈达玛积管制矩阵，确定初选低空载人飞行器站点。</div>
+<div class="description-paragraph" id="p0186" num="0181">低空载人飞行器在某些空域会受到管制，本发明将禁止低空载人飞行器通行的空域类型称为管制因素，包括但不限于如表2所示。</div>
+<div class="description-paragraph" id="p0187" num="0182">表2</div>
+<div class="description-paragraph" id="p0188" num="0183">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0189" num="0184">S2，确定候选低空载人飞行器站点。</div>
+<div class="description-paragraph" id="p0190" num="0185">S3，获取每个候选低空载人飞行器站点用户需求量，包括：</div>
+<div class="description-paragraph" id="p0191" num="0186">S31：引入分级服务范围模型，结合低空载人飞行器有效载荷，构造候选低空载人飞行器站点的用户需求量。</div>
+<div class="description-paragraph" id="p0192" num="0187">由于候选低空载人飞行器站点的服务距离有限，不一定能满足该簇中所有站点的需求，所以结合低空载人飞行器有效载荷。已知按照设计载荷维度，eVTOL可分为轻型、中型、重型三类，具体如表3所示。</div>
+<div class="description-paragraph" id="p0193" num="0188">表3</div>
+<div class="description-paragraph" id="p0194" num="0189">
+<tables>
+<patent-tables>
+<table class="description-table" cols="2" width="100%">
+<tbody><tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">eVTOL设计载荷纬度的有效载荷</td>
+<td class="description-td" morerows="1" rowspan="2">航程</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">轻型：100-200kg</td>
+<td class="description-td" morerows="1" rowspan="2">35km</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">中型：300-500kg</td>
+<td class="description-td" morerows="1" rowspan="2">60km</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">重型≥1000kg</td>
+<td class="description-td" morerows="1" rowspan="2">250km</td>
+</tr>
+</tbody></table>
+</patent-tables>
+</tables>
+</div>
+<div class="description-paragraph" id="p0195" num="0190">不同载荷的eVTOL的航程不同，所以其站点的服务范围必定有所差异，航程越远的eVTOL的站点服务范围越大。将此分类方法应用于所有低空载人飞行器中，并设置基于三种等级的低空载人站点服务范围，重新计算候选低空载人飞行器站点的用户需求量。</div>
+<div class="description-paragraph" id="p0196" num="0191">S32：根据候选低空载人飞行器站点的坐标地址，获取该地地价，并构建需求量大、成本小的模型。</div>
+<div class="description-paragraph" id="p0197" num="0192">S4，基于牛顿-拉夫逊优化算法的低空载人飞行器站点选址模型，确定低空载人飞行器站点。</div>
+<div class="description-paragraph" id="p0198" num="0193">以上所述，仅为本发明的具体实施方式，但本发明的保护范围并不局限于此，任何熟悉本技术领域的技术人员在本发明揭露的技术范围内，可轻易想到各种等效的修改或替换，这些修改或替换都应涵盖在本发明的保护范围之内。因此，本发明的保护范围应以权利要求的保护范围为准。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

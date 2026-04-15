@@ -1,0 +1,1293 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN102088569B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES393009674">
+<invention-title id="tilte1" lang="ZH">低空无人飞行器序列图像拼接方法和系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001" num="0001">技术领域
+	</div>
+<div class="description-paragraph" id="p0002" num="0002">本发明属于计算机视觉图像处理技术领域，特别涉及一种基于无人飞行器的航空序列图像自动拼接方法和系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003" num="0003">背景技术
+	</div>
+<div class="description-paragraph" id="p0004" num="0004">基于无人飞行器的数码航拍已经在遥感、测绘、计算机视觉和模式识别等领域广泛应用。航拍图像序列自动拼接是将具有一定重合区域的航拍图像自动的拼接为视野范围较大的地面全景图象的过程，能够弥补单幅航空图片视野范围小的缺陷，有助于人们对航拍序列图像内容有更全面和直观的了解。</div>
+<div class="description-paragraph" id="p0005" num="0005">无人飞行器又称无人驾驶飞行器，主要包括无人驾驶飞艇、无人驾驶直升机和无人驾驶固定翼型飞机。由于无人飞行器很难携带大载荷，一般仅搭载低精度低价格的GPS/IMU、飞行控制系统和家用数码相机或摄像机，且在一些特殊的野外环境中很难布置地面控制点。基于无人飞行器获取的航片像幅小，数量多，特别是因风速影响造成航带漂移，旁向重叠度不规则，图像的倾角和旋角过大，传统需要已知相机位姿参数和地面控制点的拼接方法无法解决上述问题。因此，迫切需要一种快速拼接测区内几百几千张图像的技术。</div>
+<div class="description-paragraph" id="p0006" num="0006">在申请号为200810237427.8，发明名称为“无控制点图像拼接方法”的专利申请文件中，通过提取序列图像中每幅图像的特征点集，搜索相邻两幅图像之间的特征点的同名点对，利用RANSAC容错算法计算相邻两图像之间的单应变换关系，再利用连乘公式和融合技术得到拼接结果，主要针对视频图像。其中，利用连乘公式进行图像拼接是从第1幅图像到第N幅图像依次进行，按照原有序列图像的次序逐幅拼接。</div>
+<div class="description-paragraph" id="p0007" num="0007">上述拼接过程存在如下缺陷：</div>
+<div class="description-paragraph" id="p0008" num="0008">存在误差累积的问题，当图像序列中的某一对图像的单应矩阵计算中出现较大的误差，这个误差将影响其后的每一幅图像，导致这个误差不断的累积，后续的图像拼接的效果较差，当拼接的图像数量较大时，误差更为严重；</div>
+<div class="description-paragraph" id="p0009" num="0009">此外，上述方案针对一种普遍意义的图像拼接问题，不是一种无人飞行器序列图像专用拼接方法。故而，基于无人飞行器获取的序列图像中夹杂有完全偏航等坏图像，上述方案无法将坏图像去除。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0010" num="0010">发明内容
+	</div>
+<div class="description-paragraph" id="p0011" num="0011">本发明的目的在于，提供一种无人飞行器序列图像专用拼接方法和系统，无须已知相机位姿参数和地面控制点，便可无缝拼接来无人飞行器的大范围区域的图像，解决序列图像拼接中存在的误差累积和偏航等坏图像自动识别去除问题。</div>
+<div class="description-paragraph" id="p0012" num="0012">为达到上述目的，本发明提供一种低空无人飞行器序列图像拼接方法，包括步骤：</div>
+<div class="description-paragraph" id="p0013" num="0013">步骤a，相机畸变差校正；</div>
+<div class="description-paragraph" id="p0014" num="0014">步骤b，无人飞行器序列图像获取；</div>
+<div class="description-paragraph" id="p0015" num="0015">步骤c，特征点提取与图像匹配；</div>
+<div class="description-paragraph" id="p0016" num="0016">步骤d，确定图像的拼接次序；</div>
+<div class="description-paragraph" id="p0017" num="0017">步骤e，图像拼接，按照所述拼接次序拼接图像；</div>
+<div class="description-paragraph" id="p0018" num="0018">步骤f，全局优化，整体平差，重新调整单映矩阵。</div>
+<div class="description-paragraph" id="p0019" num="0019">本发明进一步提供一种低空无人飞行器序列图像拼接系统，包括：</div>
+<div class="description-paragraph" id="p0020" num="0020">特征点提取模块，对所述序列图像提取SURF特征点和HARRIS-AFFINE特征点；</div>
+<div class="description-paragraph" id="p0021" num="0021">图像匹配模块，根据所述特征点计算相邻图像之间的单应矩阵；根据概率模型，验证匹配结果；</div>
+<div class="description-paragraph" id="p0022" num="0022">拼接次序生成模块，根据相邻图像匹配度，确定序列图像的拼接次序；</div>
+<div class="description-paragraph" id="p0023" num="0023">图像拼接模块，按照所述拼接次序和所述相邻图像之间的单应矩阵进行拼接；</div>
+<div class="description-paragraph" id="p0024" num="0024">全局优化模块，消除拼接过程中产生的累积误差。</div>
+<div class="description-paragraph" id="p0025" num="0025">本发明的有益效果在于，采用SURF特征和HARRIS-AFFINE特征(Scale &amp;Affine Invariant Interest Point Detectors)结合，互相补充，提取序列图像中每一幅图像的特征点，使特征点分布均匀；采用RANSAC容错算法和对极几何约束对特征点对进行准确匹配，精确计算单应矩阵；采用概率模型验证匹配图像，保留好图像，去除完全偏航等坏图像；根据最小生成树(Minimum Spanning Tree，MST)的全局拼接策略获得序列图像的连通次序，避免产生大的累计误差；并采用全局优化方法，调整单应矩阵，使测区内几百张甚至上千张图像无缝拼合在一起。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0026" num="0026">附图说明
+	</div>
+<div class="description-paragraph" id="p0027" num="0027">图1为实施例一的图像拼接方法流程图；</div>
+<div class="description-paragraph" id="p0028" num="0028">图2为实施例二的图像拼接方法流程图；</div>
+<div class="description-paragraph" id="p0029" num="0029">图3为实施例三的图像拼接方法流程图；</div>
+<div class="description-paragraph" id="p0030" num="0030">图4为图像校正示意图；</div>
+<div class="description-paragraph" id="p0031" num="0031">图5为对极几何约束示意图；</div>
+<div class="description-paragraph" id="p0032" num="0032">图6为利用RANSAC和对极几何约束关系的双向匹配方法流程图；</div>
+<div class="description-paragraph" id="p0033" num="0033">图7为最小生成树全局拼接策略示意图；</div>
+<div class="description-paragraph" id="p0034" num="0034">图8为大面积图像拼接方法；</div>
+<div class="description-paragraph" id="p0035" num="0035">图9为相邻两图像提取的特征点的分布图；</div>
+<div class="description-paragraph" id="p0036" num="0036">图10为利用RANSAC和对极几何约束后的相邻图像的匹配特征点的分布图；</div>
+<div class="description-paragraph" id="p0037" num="0037">图11为野鸭湖6平方公里测区，无人飞艇获取的352张航片进行拼接的结果；</div>
+<div class="description-paragraph" id="p0038" num="0038">图12为实施例四的图像拼接系统示意图；</div>
+<div class="description-paragraph" id="p0039" num="0039">图13为实施例四中图像匹配模块示意图；</div>
+<div class="description-paragraph" id="p0040" num="0040">图14为实施例五的图像拼接系统示意图；</div>
+<div class="description-paragraph" id="p0041" num="0041">图15为实施例六的图像拼接系统示意图；</div>
+<div class="description-paragraph" id="p0042" num="0042">图16为重叠区域估算示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0043" num="0043">具体实施方式
+	</div>
+<div class="description-paragraph" id="p0044" num="0044">本发明提出的低空无人飞行器序列图像拼接方法，通过相机内参数标定校正相机畸变差；通过相机参数估计自动校正图像，采用SURF(Speeded Up RobustFeature)特征和HARRIS-AFFINE特征(Scale &amp; Affine Invariant Interest PointDetectors)结合，互相补充，提取序列图像中每一幅图像的特征点，使特征点分布均匀；采用RANSAC(Random Sample Consensus，随机抽样一致性算法)容错算法和对极几何约束对特征点对进行准确匹配，精确计算单应矩阵；采用概率模型验证匹配图像，保留好图像，去除完全偏航等坏图像；根据最小生成树(Minimum Spanning Tree，MST)的全局拼接策略获得序列图像的连通次序，避免产生大的累计误差；并采用全局优化方法，调整单应矩阵，使测区内几百张甚至上千张图像无缝拼合在一起。</div>
+<div class="description-paragraph" id="p0045" num="0045">本发明无需地面布设控制点，无需已知相机精确的位姿参数，适合并行，多线程等高性能计算，应用成本低，效率高，操作简单。</div>
+<div class="description-paragraph" id="p0046" num="0046">下面结合具体的实施例对本发明进行详细说明。</div>
+<div class="description-paragraph" id="p0047" num="0047">实施例一</div>
+<div class="description-paragraph" id="p0048" num="0048">本实施例中应用SURF特征点和HARRIS-AFFINE特征点，以及RANSAC容错算法和对极几何约束求解单应矩阵，提高拼接质量。</div>
+<div class="description-paragraph" id="p0049" num="0049">图1所示为本发明实施例一的低空无人飞行器序列图像拼接方法的流程图，包括：</div>
+<div class="description-paragraph" id="p0050" num="0050">步骤11，相机畸变差校正。</div>
+<div class="description-paragraph" id="p0051" num="0051">步骤12，无人飞行器序列图像获取。</div>
+<div class="description-paragraph" id="p0052" num="0052">步骤13，图像校正，确定相邻图像间的单应矩阵，包括以下子步骤：</div>
+<div class="description-paragraph" id="p0053" num="0053">步骤131，特征提取，对序列图像提取SURF特征点和HARRIS-AFFINE特征点；</div>
+<div class="description-paragraph" id="p0054" num="0054">步骤132，图像匹配，包括以下子步骤：</div>
+<div class="description-paragraph" id="p0055" num="0055">步骤1321，利用马氏距离计算相邻图像间特征点的相似度进行初匹配；</div>
+<div class="description-paragraph" id="p0056" num="0056">步骤1322，计算相邻图像的重叠区域；</div>
+<div class="description-paragraph" id="p0057" num="0057">步骤1323，利用RANSAC容错算法加对极几何约束，对相邻图像间特征点进行精确匹配；</div>
+<div class="description-paragraph" id="p0058" num="0058">步骤1324，根据精确匹配的特征点对计算相邻图像对之间的单应矩阵H<sub>ij</sub>。</div>
+<div class="description-paragraph" id="p0059" num="0059">步骤14，确定图像的拼接次序，依照最小生成树策略确定拼接的次序。</div>
+<div class="description-paragraph" id="p0060" num="0060">步骤15，图像拼接，按照最小生成树表明的次序拼接图像。</div>
+<div class="description-paragraph" id="p0061" num="0061">步骤16，全局优化，消除图像拼接过程中产生的累计误差。</div>
+<div class="description-paragraph" id="p0062" num="0062">以下对实施例一中的步骤作详细说明：</div>
+<div class="description-paragraph" id="p0063" num="0063">步骤11，相机畸变差校正。</div>
+<div class="description-paragraph" id="p0064" num="0064">在航飞前进行相机畸变差校正。无人飞行器采取低空拍摄，大地曲率误差可以忽略，但是由于相机物镜系统设计、制作、装配引起的点位误差和图像变形，包括径向畸变和切向畸变，不容忽视。畸变差改正模型如下公式(王之卓，摄影测量原理)：</div>
+<div class="description-paragraph" id="p0065" num="0065">Δx＝(x-x<sub>0</sub>)(k<sub>1</sub>r<sup>2</sup>+k<sub>2</sub>r<sup>4</sup>)+ρ<sub>1</sub>[r<sup>2</sup>+2(x-x<sub>0</sub>)<sup>2</sup>]+2ρ<sub>2</sub>(x-x<sub>0</sub>)(y-y<sub>0</sub>)+α(x-x<sub>0</sub>)+β(y-y<sub>0</sub>)</div>
+<div class="description-paragraph" id="p0066" num="0066">Δy＝(y-y<sub>0</sub>)(k<sub>1</sub>r<sup>2</sup>+k<sub>2</sub>r<sup>4</sup>)+2ρ<sub>1</sub>(x-x<sub>0</sub>)(y-y<sub>0</sub>)+ρ<sub>2</sub>[r<sup>2</sup>+2(y-y<sub>0</sub>)<sup>2</sup>]+α(y-y<sub>0</sub>)+β(x-x<sub>0</sub>)</div>
+<div class="description-paragraph" id="p0067" num="0067">(1)</div>
+<div class="description-paragraph" id="p0068" num="0068">其中，Δx，Δy为像点点位误差，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/78/4e/35/9bf380780955ff/GDA0000035670100000051.png"><img alt="Figure GDA0000035670100000051" class="patent-full-image" file="GDA0000035670100000051.GIF" he="89" height="356" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_0.png" wi="551" width="2204"/></a></div>(x<sub>0</sub>，y<sub>0</sub>)像主点，k<sub>1</sub>.k<sub>2</sub>径向畸变系数，ρ<sub>1</sub>，ρ<sub>2</sub>切向畸变系数，α像素非正方形比例因子，βCCD排列非正交性的畸变系数。</div>
+<div class="description-paragraph" id="p0069" num="0069">(k<sub>1</sub>，k<sub>2</sub>，ρ<sub>1</sub>，ρ<sub>2</sub>，α，β)和(x<sub>0</sub>，y<sub>0</sub>，f)是相机的内参数，可通过相机标定方法得到。</div>
+<div class="description-paragraph" id="p0070" num="0070">根据公式(1)计算畸变差校正后的图像中像素点位：</div>
+<div class="description-paragraph" id="p0071" num="0071">x＝x′-x<sub>0</sub>+Δx</div>
+<div class="description-paragraph" id="p0072" num="0072">y＝y′-y<sub>0</sub>+Δy</div>
+<div class="description-paragraph" id="p0073" num="0073">这里，(x′，y′)为观测值。</div>
+<div class="description-paragraph" id="p0074" num="0074">步骤12，无人飞行器序列图像获取。</div>
+<div class="description-paragraph" id="p0075" num="0075">根据航高、相机焦距、测区面积、重叠率等信息确定航线，确定每条航线所拍图像数量及其基本位置。考虑到风速影响，本发明建议航向重叠60％-80％，旁向重叠40％-60％，平台为三轴稳定，减少旋片。</div>
+<div class="description-paragraph" id="p0076" num="0076">步骤13，图像校正，确定相邻图像间的单应矩阵。</div>
+<div class="description-paragraph" id="p0077" num="0077">当相机的光轴垂直于地面拍摄时，拍摄的图像称为标准图像。标准图像是没有因为相机的旋转而引起变形的图像，这也是图像校正步骤希望达到的效果。</div>
+<div class="description-paragraph" id="p0078" num="0078">当相机的光轴与地面之间存在倾角时，导致相机拍摄的图像具有形变，可以通过图像校正，旋转相机坐标系，使相机与地面零倾角，则可消除图像的变形。</div>
+<div class="description-paragraph" id="p0079" num="0079">因此，图像校正的目标是将相机倾斜拍摄的图像变换到相机光轴垂直于地面拍摄的图像。图4所示为图像校正的示意图。</div>
+<div class="description-paragraph" id="p0080" num="0080">假设拍摄中行高不变，相机焦距不变，相机沿着预定的航线拍摄，那么，影响图像拼接最主要的因素是相机绕着光轴的旋转运动。图像间的转换关系可以表示为特殊的单应关系。设每一个相机的转动向量为θ＝[θ<sub>1</sub>，θ<sub>2</sub>θ<sub>3</sub>]，相机焦距f，则两图像间的单应关系为x<sub>i</sub>＝H<sub>ij</sub>x<sub>j</sub>，这里，H<sub>ij</sub>称为单应矩阵，</div>
+<div class="description-paragraph" id="p0081" num="0081">
+<maths>
+<math>
+<mrow>
+<msub>
+<mi>H</mi>
+<mi>ij</mi>
+</msub>
+<mo>=</mo>
+<msub>
+<mi>K</mi>
+<mi>i</mi>
+</msub>
+<msub>
+<mi>R</mi>
+<mi>i</mi>
+</msub>
+<msubsup>
+<mi>R</mi>
+<mi>j</mi>
+<mi>T</mi>
+</msubsup>
+<msubsup>
+<mi>K</mi>
+<mi>j</mi>
+<mrow>
+<mo>-</mo>
+<mn>1</mn>
+</mrow>
+</msubsup>
+<mo>-</mo>
+<mo>-</mo>
+<mo>-</mo>
+<mrow>
+<mo>(</mo>
+<mn>2</mn>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0082" num="0082">
+<maths>
+<math>
+<mrow>
+<msub>
+<mi>K</mi>
+<mi>i</mi>
+</msub>
+<mo>=</mo>
+<mfenced close="]" open="[">
+<mtable>
+<mtr>
+<mtd>
+<msub>
+<mi>f</mi>
+<mi>i</mi>
+</msub>
+</mtd>
+<mtd>
+<mn>0</mn>
+</mtd>
+<mtd>
+<mn>0</mn>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<mn>0</mn>
+</mtd>
+<mtd>
+<msub>
+<mi>f</mi>
+<mi>i</mi>
+</msub>
+</mtd>
+<mtd>
+<mn>0</mn>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<mn>0</mn>
+</mtd>
+<mtd>
+<mn>0</mn>
+</mtd>
+<mtd>
+<mn>1</mn>
+</mtd>
+</mtr>
+</mtable>
+</mfenced>
+<mo>-</mo>
+<mo>-</mo>
+<mo>-</mo>
+<mrow>
+<mo>(</mo>
+<mn>3</mn>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0083" num="0083">
+<maths>
+<math>
+<mrow>
+<msub>
+<mi>R</mi>
+<mi>i</mi>
+</msub>
+<mo>=</mo>
+<msup>
+<mi>e</mi>
+<mrow>
+<mo>[</mo>
+<msub>
+<mi>&amp;theta;</mi>
+<mi>i</mi>
+</msub>
+<msub>
+<mo>]</mo>
+<mo>&amp;times;</mo>
+</msub>
+</mrow>
+</msup>
+<mo>,</mo>
+</mrow>
+</math>
+</maths>
+<maths>
+<math>
+<mrow>
+<msub>
+<mrow>
+<mo>[</mo>
+<msub>
+<mi>&amp;theta;</mi>
+<mi>i</mi>
+</msub>
+<mo>]</mo>
+</mrow>
+<mo>&amp;times;</mo>
+</msub>
+<mo>=</mo>
+<mfenced close="]" open="[">
+<mtable>
+<mtr>
+<mtd>
+<mn>0</mn>
+</mtd>
+<mtd>
+<mo>-</mo>
+<msub>
+<mi>&amp;theta;</mi>
+<mrow>
+<mi>i</mi>
+<mn>3</mn>
+</mrow>
+</msub>
+</mtd>
+<mtd>
+<msub>
+<mi>&amp;theta;</mi>
+<mrow>
+<mi>i</mi>
+<mn>2</mn>
+</mrow>
+</msub>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<msub>
+<mi>&amp;theta;</mi>
+<mrow>
+<mi>i</mi>
+<mn>3</mn>
+</mrow>
+</msub>
+</mtd>
+<mtd>
+<mn>0</mn>
+</mtd>
+<mtd>
+<mo>-</mo>
+<msub>
+<mi>&amp;theta;</mi>
+<mrow>
+<mi>i</mi>
+<mn>1</mn>
+</mrow>
+</msub>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<mo>-</mo>
+<msub>
+<mi>&amp;theta;</mi>
+<mrow>
+<mi>i</mi>
+<mn>2</mn>
+</mrow>
+</msub>
+</mtd>
+<mtd>
+<msub>
+<mi>&amp;theta;</mi>
+<mrow>
+<mi>i</mi>
+<mn>1</mn>
+</mrow>
+</msub>
+</mtd>
+<mtd>
+<mn>0</mn>
+</mtd>
+</mtr>
+</mtable>
+</mfenced>
+<mo>-</mo>
+<mo>-</mo>
+<mo>-</mo>
+<mrow>
+<mo>(</mo>
+<mn>4</mn>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0084" num="0084">因此，理论上，在图像校正阶段，第i幅图像相对于第j幅图像的变换满足x<sub>i</sub>＝H<sub>ij</sub>x<sub>j</sub>，即</div>
+<div class="description-paragraph" id="p0085" num="0085">
+<maths>
+<math>
+<mrow>
+<mfenced close="]" open="[">
+<mtable>
+<mtr>
+<mtd>
+<msub>
+<mi>x</mi>
+<mi>i</mi>
+</msub>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<msub>
+<mi>y</mi>
+<mi>i</mi>
+</msub>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<mn>1</mn>
+</mtd>
+</mtr>
+</mtable>
+</mfenced>
+<mo>=</mo>
+<mfenced close="]" open="[">
+<mtable>
+<mtr>
+<mtd>
+<msub>
+<mi>h</mi>
+<mn>11</mn>
+</msub>
+</mtd>
+<mtd>
+<msub>
+<mi>h</mi>
+<mn>12</mn>
+</msub>
+</mtd>
+<mtd>
+<msub>
+<mi>h</mi>
+<mn>13</mn>
+</msub>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<msub>
+<mi>h</mi>
+<mn>21</mn>
+</msub>
+</mtd>
+<mtd>
+<msub>
+<mi>h</mi>
+<mn>22</mn>
+</msub>
+</mtd>
+<mtd>
+<msub>
+<mi>h</mi>
+<mn>23</mn>
+</msub>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<mn>0</mn>
+</mtd>
+<mtd>
+<mn>0</mn>
+</mtd>
+<mtd>
+<mn>1</mn>
+</mtd>
+</mtr>
+</mtable>
+</mfenced>
+<mfenced close="]" open="[">
+<mtable>
+<mtr>
+<mtd>
+<msub>
+<mi>x</mi>
+<mi>j</mi>
+</msub>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<msub>
+<mi>y</mi>
+<mi>j</mi>
+</msub>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<mn>1</mn>
+</mtd>
+</mtr>
+</mtable>
+</mfenced>
+<mo>-</mo>
+<mo>-</mo>
+<mo>-</mo>
+<mrow>
+<mo>(</mo>
+<mn>5</mn>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0086" num="0086">这里，x<sub>i</sub>＝(x<sub>i</sub>，y<sub>i</sub>，1)和x<sub>j</sub>＝(x<sub>j</sub>，y<sub>j</sub>，1)是第i幅图像和第j幅图像的齐次坐标。</div>
+<div class="description-paragraph" id="p0087" num="0087">按照单应矩阵H<sub>ij</sub>对第j幅图像进行几何变换，对于第j张图像上的每一点(x<sub>j</sub>，y<sub>j</sub>)，可以得到第i幅图像上的对应点(x<sub>i</sub>，y<sub>i</sub>)。</div>
+<div class="description-paragraph" id="p0088" num="0088">上述变换属于仿射变换，只要在相邻图像间找到仿射不变的4对特征点对，便可解出上述的单应矩阵H<sub>ij</sub>。本实施例利用相邻图像上零星均匀分布的特征点对，通过解算单应矩阵，校正图像。</div>
+<div class="description-paragraph" id="p0089" num="0089">步骤13包括的步骤为：</div>
+<div class="description-paragraph" id="p0090" num="0090">步骤131，特征提取。</div>
+<div class="description-paragraph" id="p0091" num="0091">从图像中提取稳健的特征，是图像拼接的基础。特征点应当足够多，又不宜太多。特征点的点数太少则不能满足统计的需要，点数太多又会造成巨大的计算量，影响后续图像匹配算法的速度。并且，特征点不应该聚集在一个小的局部范围内，应当保持适当的距离。特征点之间距离太小会影响后续图像匹配算法的精度。</div>
+<div class="description-paragraph" id="p0092" num="0092">本发明将SURF特征点和HARRIS-AFFINE特征点结合，互相补充。SURF特征与SIFT(Scale Invariant Feature Transform，尺度不变特征变换)特征相似，同样具有对旋转、尺度缩放、亮度变化、对视角变化、仿射变换保持不变性，对噪声也保持一定程度的稳定性。但是经过RANSAC容错处理之后，可靠的SURF特征往往集中在一起，这对图像拼接十分不利，易引起拼接误差。HARRIS-AFFINE也是一种仿射不变特征，且对角点特征提取十分准确。因此，本发明将SURF特征和HARRIS-AFFINE特征结合，互相补充，提取均匀分布的特征点。</div>
+<div class="description-paragraph" id="p0093" num="0093">因为小波算子降噪效果相对高斯算法较好，故本发明采用小波金字塔对原图像抽样，对每一层执行SURF算法提取SURF特征，执行HARRIS-AFFINE算法提取HARRIS角点。然后，每层提取的特征点针对原图像复位。SURF特征附加HARRIS-AFFINE特征，从而使提取的图像特征点分布均匀。</div>
+<div class="description-paragraph" id="p0094" num="0094">步骤132，图像匹配。</div>
+<div class="description-paragraph" id="p0095" num="0095">图像匹配的目的是获取匹配的SURF特征和HARRIS-AFFINE特征点对，用于解算单应矩阵。</div>
+<div class="description-paragraph" id="p0096" num="0096">图像匹配步骤是对于第i幅图像中的像点，如何确定映射到该点的空间点在第j幅图像中的位置。</div>
+<div class="description-paragraph" id="p0097" num="0097">在本实施例中，步骤132包括的步骤为：</div>
+<div class="description-paragraph" id="p0098" num="0098">步骤1321，利用马氏距离计算相邻图像间特征点的相似度进行初匹配。</div>
+<div class="description-paragraph" id="p0099" num="0099">对SURF特征描述向量和HARRIS-AFFINE特征描述向量采用马氏距离作为相似性准则进行度量，马氏距离定义为：</div>
+<div class="description-paragraph" id="p0100" num="0100">
+<maths>
+<math>
+<mrow>
+<mi>M</mi>
+<mrow>
+<mo>(</mo>
+<mi>X</mi>
+<mo>,</mo>
+<mi>Y</mi>
+<mo>)</mo>
+</mrow>
+<mo>=</mo>
+<msubsup>
+<mrow>
+<mo>|</mo>
+<mo>|</mo>
+<mi>X</mi>
+<mo>-</mo>
+<mi>Y</mi>
+<mo>|</mo>
+<mo>|</mo>
+</mrow>
+<mi>&amp;Sigma;</mi>
+<mn>2</mn>
+</msubsup>
+<mo>=</mo>
+<msup>
+<mrow>
+<mo>(</mo>
+<mi>X</mi>
+<mo>-</mo>
+<mi>Y</mi>
+<mo>)</mo>
+</mrow>
+<mi>T</mi>
+</msup>
+<msup>
+<mi>&amp;Sigma;</mi>
+<mrow>
+<mo>-</mo>
+<mn>1</mn>
+</mrow>
+</msup>
+<mrow>
+<mo>(</mo>
+<mi>X</mi>
+<mo>-</mo>
+<mi>Y</mi>
+<mo>)</mo>
+</mrow>
+<mo>-</mo>
+<mo>-</mo>
+<mo>-</mo>
+<mrow>
+<mo>(</mo>
+<mn>6</mn>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0101" num="0101">X和Y分别是相邻两幅图像中的特征描述向量，∑是Y的协方差矩阵。M越小，表明特征点对距离越“近”，相似程度越高。对于待匹配图像i和j中的特征点集，采用最近邻法搜索图像j中的特征点集，找到与图像i的特征点(x<sub>i</sub>，y<sub>i</sub>)马氏距离最近的特征点(x<sub>j1</sub>，y<sub>j1</sub>)和次近的特征点(x<sub>j2</sub>，y<sub>j2</sub>)，如果最近距离和次近距离的比值小于设定的阈值，则(x<sub>i</sub>，y<sub>i</sub>)与(x<sub>j1</sub>，y<sub>j1</sub>)是匹配特征点对。</div>
+<div class="description-paragraph" id="p0102" num="0102">步骤1322，计算相邻图像的重叠区域。</div>
+<div class="description-paragraph" id="p0103" num="0103">在步骤1321所述匹配特征点对中，如果(x<sub>i</sub>，y<sub>i</sub>)和(x′<sub>j</sub>，y′<sub>j</sub>)的马氏距离最近，则认为其是最佳匹配点对，那么，重叠区域就是根据(x<sub>i</sub>，y<sub>i</sub>)和(x′<sub>j</sub>，y′<sub>j</sub>)计算出来的，记为(L1+L2)×(H1+H2)，如附图16。重叠区域是近似的，没有考虑图像倾斜和旋转情况。</div>
+<div class="description-paragraph" id="p0104" num="0104">步骤1323，利用RANSAC容错算法加对极几何约束进行精确匹配。</div>
+<div class="description-paragraph" id="p0105" num="0105">相邻图像间存在着对极几何约束关系，基础矩阵是对这一约束关系的数学描述，如图5所示为对极几何约束的示意图。对极几何约束是一种局部约束条件，可以除去错误的匹配特征点，还可以减少匹配的搜索范围。</div>
+<div class="description-paragraph" id="p0106" num="0106">M为三维空间中一点，在相邻两幅图像上的投影分别为m和m′；C和C′为两个位置相机的光心；CC′连线与两幅图像分别交于点e和e′，称为极点，其对应的齐次坐标分别为e＝[e<sub>x</sub>，e<sub>y</sub>，1]，e′＝[e′<sub>x</sub>，e′<sub>y</sub>，1]；直线l′＝&lt;m′，e′&gt;为点m在右图像上的极线，直线l＝&lt;m，e&gt;称为点m′在左图像上的极线。则相应的对极几何约束关系可以描述为：一幅图像上的点m，在另一幅图像上的匹配特征点m′位于该点的极线上；在代数上，这一几何关系可以表示为一个3×3的基础矩阵F，它将一幅图像上的点m映射到该点在另一幅图像上的极线l′上，因而有：</div>
+<div class="description-paragraph" id="p0107" num="0107">l′＝Fm＝&lt;m′，e′&gt;，l＝F<sup>T</sup>m′＝&lt;m，e&gt;    (7)</div>
+<div class="description-paragraph" id="p0108" num="0108">对于图像点m，其匹配特征点一定位于极线Fm上，对于图像点m′，其匹配特征点一定位于极线F<sup>T</sup>m′上，从而得出基础矩阵F的基本关系式：</div>
+<div class="description-paragraph" id="p0109" num="0109">m′<sup>T</sup>Fm＝0，Fe＝0，rank(F)＝2    (8)</div>
+<div class="description-paragraph" id="p0110" num="0110">这样，特征点的搜索范围由2维变为沿对极线1维搜索，大大缩小了搜索范围，增加了匹配特征点的正确率。</div>
+<div class="description-paragraph" id="p0111" num="0111">由于基础矩阵F中只有7个独立变量，因此只要给出7组匹配特征点对，就可以确定基础矩阵。给定n个匹配特征点，随机抽取k个样本，每个样本由7组匹配特征点对组成。如果一个样本由7组正确的匹配特征点对构成，那么它是一个好样本。假设整个匹配集中含错误匹配的分数是ε，那么k个样本中至少有一个好样本的概率为：p＝1-(1-(1-ε)<sup>s</sup>)<sup>k</sup>。</div>
+<div class="description-paragraph" id="p0112" num="0112">这里取s＝7。要求p必须接近于1，这里取95％。对于给定的ε，采样次数为：</div>
+<div class="description-paragraph" id="p0113" num="0113">
+<maths>
+<math>
+<mrow>
+<mi>k</mi>
+<mo>=</mo>
+<mfrac>
+<mrow>
+<mi>log</mi>
+<mrow>
+<mo>(</mo>
+<mn>1</mn>
+<mo>-</mo>
+<mi>p</mi>
+<mo>)</mo>
+</mrow>
+</mrow>
+<mrow>
+<mi>log</mi>
+<mo>[</mo>
+<mn>1</mn>
+<mo>-</mo>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>1</mn>
+<mo>-</mo>
+<mi>&amp;epsiv;</mi>
+<mo>)</mo>
+</mrow>
+<mn>7</mn>
+</msup>
+<mo>]</mo>
+</mrow>
+</mfrac>
+<mo>-</mo>
+<mo>-</mo>
+<mo>-</mo>
+<mrow>
+<mo>(</mo>
+<mn>9</mn>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0114" num="0114">这里仍然取匹配特征点对到它们对应极线的马氏距离作为匹配的准则函数，匹配特征点对到它们对应极线的马氏距离为：</div>
+<div class="description-paragraph" id="p0115" num="0115">ms＝∑(M(m′<sub>i</sub>，Fm<sub>i</sub>)+M(m<sub>i</sub>，F<sup>T</sup>m′<sub>i</sub>))</div>
+<div class="description-paragraph" id="p0116" num="0116">(10)</div>
+<div class="description-paragraph" id="p0117" num="0117">利用RANSAC和对极几何约束关系的双向匹配方法流程如图6所示：</div>
+<div class="description-paragraph" id="p0118" num="0118">步骤61，给出n对匹配特征点(n≥8)：<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/b0/e4/9c/43efe2e2c5c797/GDA0000035670100000091.png"><img alt="Figure GDA0000035670100000091" class="patent-full-image" file="GDA0000035670100000091.GIF" he="74" height="296" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_1.png" wi="563" width="2252"/></a></div>1≤i≤n</div>
+<div class="description-paragraph" id="p0119" num="0119">步骤62，计算采样次数k</div>
+<div class="description-paragraph" id="p0120" num="0120">
+<maths>
+<math>
+<mrow>
+<mi>k</mi>
+<mo>=</mo>
+<mfrac>
+<mrow>
+<mi>log</mi>
+<mrow>
+<mo>(</mo>
+<mn>1</mn>
+<mo>-</mo>
+<mi>p</mi>
+<mo>)</mo>
+</mrow>
+</mrow>
+<mrow>
+<mi>log</mi>
+<mo>[</mo>
+<mn>1</mn>
+<mo>-</mo>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>1</mn>
+<mo>-</mo>
+<mi>&amp;epsiv;</mi>
+<mo>)</mo>
+</mrow>
+<mn>7</mn>
+</msup>
+<mo>]</mo>
+</mrow>
+</mfrac>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0121" num="0121">步骤63，对于每次采样，确定基础矩阵F，执行以下子步骤：</div>
+<div class="description-paragraph" id="p0122" num="0122">步骤631，随机选取7组匹配特征点，计算基础矩阵F；</div>
+<div class="description-paragraph" id="p0123" num="0123">步骤632，计算每组匹配特征点对到它们对应极线的马氏距离ms；</div>
+<div class="description-paragraph" id="p0124" num="0124">步骤633，确定n对匹配特征点中马氏距离ms小于阈值的数目t，并将ms小于阈值的匹配特征点划为内点，保留具有最多内点数的基础矩阵F；</div>
+<div class="description-paragraph" id="p0125" num="0125">步骤64，由划为内点的所有匹配特征点对重新估计基础矩阵F；</div>
+<div class="description-paragraph" id="p0126" num="0126">步骤65，根据求得的基础矩阵F，在外点中沿对应极线搜索更多的正确匹配特征点。</div>
+<div class="description-paragraph" id="p0127" num="0127">步骤64和步骤65不断迭代进行，直到得到稳定的正确匹配特征点为止。</div>
+<div class="description-paragraph" id="p0128" num="0128">步骤1324，计算相邻图像对之间的单应矩阵H<sub>ij</sub>。根据精确确定的匹配特征点对，即内点点对解算单应矩阵H<sub>ij</sub>。</div>
+<div class="description-paragraph" id="p0129" num="0129">步骤14，确定图像拼接的次序，依照最小生成树的拼接策略确定图像拼接的次序。</div>
+<div class="description-paragraph" id="p0130" num="0130">本发明不采用常规的先航带拼接，再航带与航带之间拼接的策略，而提出最小生成树的拼接策略，较少和避免累计误差。</div>
+<div class="description-paragraph" id="p0131" num="0131">对于一个测区的图像，每张图像一般有四张相邻图像，按重叠区域内的特征点数与重叠区域内匹配特征点数的比值计算相邻图像匹配度，将匹配度最大的先拼接，匹配度小的后拼接，拼接策略示意图如附图7。具体算法如下：</div>
+<div class="description-paragraph" id="p0132" num="0132">(1)计算相邻图像间的匹配度g(i，j)，构造一个无向带全图G(V，E)，V是节点，即待拼接的图像；E是连接节点的权值，即相邻图像匹配度的倒数1/g(i，j)。</div>
+<div class="description-paragraph" id="p0133" num="0133">(2)设e＝(v<sub>i</sub>，v<sub>j</sub>)是非环权值最小的边(若不止一个，就任选其一作为e)，将v<sub>i</sub>和v<sub>j</sub>短接成超点e’，删除边e。</div>
+<div class="description-paragraph" id="p0134" num="0134">(3)不断重复(2)直到所有的节点短接，成为一个超点。记录短接次序和过程，会形成树G<sub>LR</sub>，称为最小生成树。</div>
+<div class="description-paragraph" id="p0135" num="0135">这样避免拼接误差沿某一方向传递，使误差分散在拼接的各个环节中，不会产生较大累计误差。</div>
+<div class="description-paragraph" id="p0136" num="0136">步骤15，按照最小生成树表明的次序拼接图像。</div>
+<div class="description-paragraph" id="p0137" num="0137">结合步骤1324计算获得的相邻图像单映矩阵和步骤14确定的拼接次序，将序列图像拼接起来。</div>
+<div class="description-paragraph" id="p0138" num="0138">步骤16，图像融合。</div>
+<div class="description-paragraph" id="p0139" num="0139">相邻图像的拼接完成之后，会发现拼合起来图像中含有清晰的边界，拼接的痕迹非常明显。其中，图像拼接的缝隙是从一幅图像过渡到另一幅图像时，由于亮度和色彩的不连续而产生的。图像融合是消除图像亮度和色彩的不连续性，使图像在拼接处的光强平滑过渡，以消除光强突变。</div>
+<div class="description-paragraph" id="p0140" num="0140">色彩融合可以采用平均值、加权平均、中值滤波、多分辨率等方法。</div>
+<div class="description-paragraph" id="p0141" num="0141">实施例二</div>
+<div class="description-paragraph" id="p0142" num="0142">与实施例一不同的是，实施例二增加了匹配验证的步骤，实施例一虽然计算了单应矩阵，匹配了图像，但匹配结果是否正确需要进一步验证。尤其对于飞行器获取的图像序列，里边夹杂完全偏航等坏图像，需要拼接中自动去除。</div>
+<div class="description-paragraph" id="p0143" num="0143">图2所示为本发明实施例二的低空无人飞行器序列图像拼接方法的流程图，包括：</div>
+<div class="description-paragraph" id="p0144" num="0144">步骤21，相机畸变差校正。</div>
+<div class="description-paragraph" id="p0145" num="0145">步骤22，无人飞行器序列图像获取。</div>
+<div class="description-paragraph" id="p0146" num="0146">步骤23，在序列图像中选择一幅图像。</div>
+<div class="description-paragraph" id="p0147" num="0147">步骤24，图像校正，确定相邻图像间的单应矩阵，包括以下子步骤：</div>
+<div class="description-paragraph" id="p0148" num="0148">步骤241，特征提取，对序列图像提取SURF特征和HARRIS-AFFINE特征；</div>
+<div class="description-paragraph" id="p0149" num="0149">步骤242，图像匹配，包括以下子步骤：</div>
+<div class="description-paragraph" id="p0150" num="0150">步骤2421，利用马氏距离计算相邻图像间特征点的相似度进行初匹配；</div>
+<div class="description-paragraph" id="p0151" num="0151">步骤2422，计算相邻图像的重叠区域；</div>
+<div class="description-paragraph" id="p0152" num="0152">步骤2423，利用RANSAC容错算法加对极几何约束，对相邻图像间特征点进行精确匹配；</div>
+<div class="description-paragraph" id="p0153" num="0153">步骤2424，根据精确匹配的特征点对计算相邻图像对之间的单应矩阵H<sub>ij</sub>；</div>
+<div class="description-paragraph" id="p0154" num="0154">步骤25，匹配验证，判断当前图像是否是可匹配图像，如果是，则执行步骤26；如果不是，则执行步骤23，选择下一幅图像；</div>
+<div class="description-paragraph" id="p0155" num="0155">步骤26，将当前图像保存在匹配序列中。</div>
+<div class="description-paragraph" id="p0156" num="0156">步骤27，判断序列图像匹配验证是否完成，如果是，则执行步骤28，如果不是，则执行步骤23。</div>
+<div class="description-paragraph" id="p0157" num="0157">步骤28，确定图像拼接的次序，依照最小生成树的拼接策略确定图像拼接的次序。</div>
+<div class="description-paragraph" id="p0158" num="0158">步骤29，图像拼接，按照最小生成树表明的次序拼接匹配序列中的图像。</div>
+<div class="description-paragraph" id="p0159" num="0159">步骤30，图像融合，消除图像亮度和色彩的不连续性，使图像在拼接处的光强平滑过渡，以消除光强突变。</div>
+<div class="description-paragraph" id="p0160" num="0160">以下对匹配验证的步骤详细说明：</div>
+<div class="description-paragraph" id="p0161" num="0161">步骤25，匹配验证，建立概率模型(参见Brown，Lowe.Automatic PanoramicImage Stitching using Invariant Features)。根据步骤242可得到，相邻图像的重叠区域的特征点可分为几何一致的匹配特征点(内点)和几何不一致的非匹配特征点(外点)。如果给定一幅图像，假设其重叠区域内的特征点的总数为n<sub>f</sub>，匹配特征点数(内点)为n<sub>i</sub>，则图像匹配记为事件m，m∈{0，1}，1表示正确匹配，0表示错误匹配。第i个特征点是匹配特征点/非匹配特征点服是贝努力事件f，f∈{0，1}，所以匹配情况可以描述为二项式：</div>
+<div class="description-paragraph" id="p0162" num="0162">
+<maths>
+<math>
+<mrow>
+<mi>p</mi>
+<mrow>
+<mo>(</mo>
+<msup>
+<mi>f</mi>
+<mrow>
+<mo>(</mo>
+<mn>1</mn>
+<mo>:</mo>
+<msub>
+<mi>n</mi>
+<mi>f</mi>
+</msub>
+<mo>)</mo>
+</mrow>
+</msup>
+<mo>|</mo>
+<mi>m</mi>
+<mo>=</mo>
+<mn>1</mn>
+<mo>)</mo>
+</mrow>
+<mo>=</mo>
+<mi>B</mi>
+<mrow>
+<mo>(</mo>
+<msub>
+<mi>n</mi>
+<mi>i</mi>
+</msub>
+<mo>;</mo>
+<msub>
+<mi>n</mi>
+<mi>f</mi>
+</msub>
+<mo>,</mo>
+<msub>
+<mi>p</mi>
+<mn>1</mn>
+</msub>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0163" num="0163">
+<maths>
+<math>
+<mrow>
+<mi>p</mi>
+<mrow>
+<mo>(</mo>
+<msup>
+<mi>f</mi>
+<mrow>
+<mo>(</mo>
+<mn>1</mn>
+<mo>:</mo>
+<msub>
+<mi>n</mi>
+<mi>f</mi>
+</msub>
+<mo>)</mo>
+</mrow>
+</msup>
+<mo>|</mo>
+<mi>m</mi>
+<mo>=</mo>
+<mn>0</mn>
+<mo>)</mo>
+</mrow>
+<mo>=</mo>
+<mi>B</mi>
+<mrow>
+<mo>(</mo>
+<msub>
+<mi>n</mi>
+<mi>i</mi>
+</msub>
+<mo>;</mo>
+<msub>
+<mi>n</mi>
+<mi>f</mi>
+</msub>
+<mo>,</mo>
+<msub>
+<mi>p</mi>
+<mn>0</mn>
+</msub>
+<mo>)</mo>
+</mrow>
+<mo>-</mo>
+<mo>-</mo>
+<mo>-</mo>
+<mrow>
+<mo>(</mo>
+<mn>11</mn>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0164" num="0164">其中，p<sub>1</sub>在正确匹配下第i点为匹配特征点的概率，p<sub>0</sub>在错误匹配下第i点为匹配特征点的概率。特征匹配变量{f<sup>(i)</sup>，i＝1，2，Λ，n<sub>f</sub>)记为<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/a5/76/2a/cbf55d810ed4eb/GDA0000035670100000113.png"><img alt="Figure GDA0000035670100000113" class="patent-full-image" file="GDA0000035670100000113.GIF" he="72" height="288" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_2.png" wi="149" width="596"/></a></div>B(.)服从二项分布</div>
+<div class="description-paragraph" id="p0165" num="0165">
+<maths>
+<math>
+<mrow>
+<mi>B</mi>
+<mrow>
+<mo>(</mo>
+<mi>x</mi>
+<mo>;</mo>
+<mi>n</mi>
+<mo>,</mo>
+<mi>p</mi>
+<mo>)</mo>
+</mrow>
+<mo>=</mo>
+<mfrac>
+<mrow>
+<mi>n</mi>
+<mo>!</mo>
+</mrow>
+<mrow>
+<mi>x</mi>
+<mo>!</mo>
+<mrow>
+<mo>(</mo>
+<mi>n</mi>
+<mo>-</mo>
+<mi>x</mi>
+<mo>)</mo>
+</mrow>
+<mo>!</mo>
+</mrow>
+</mfrac>
+<msup>
+<mi>p</mi>
+<mi>x</mi>
+</msup>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>1</mn>
+<mo>-</mo>
+<mi>p</mi>
+<mo>)</mo>
+</mrow>
+<mrow>
+<mi>n</mi>
+<mo>-</mo>
+<mi>x</mi>
+</mrow>
+</msup>
+<mo>-</mo>
+<mo>-</mo>
+<mo>-</mo>
+<mrow>
+<mo>(</mo>
+<mn>12</mn>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0166" num="0166">则根据贝叶斯法则，可以推算出图像正确匹配概率为：</div>
+<div class="description-paragraph" id="p0167" num="0167">
+<maths>
+<math>
+<mrow>
+<mi>p</mi>
+<mrow>
+<mo>(</mo>
+<mi>m</mi>
+<mo>=</mo>
+<mn>1</mn>
+<mo>|</mo>
+<msup>
+<mi>f</mi>
+<mrow>
+<mo>(</mo>
+<mn>1</mn>
+<mo>:</mo>
+<msub>
+<mi>n</mi>
+<mi>f</mi>
+</msub>
+<mo>)</mo>
+</mrow>
+</msup>
+<mo>)</mo>
+</mrow>
+<mo>=</mo>
+<mfrac>
+<mrow>
+<mi>p</mi>
+<mrow>
+<mo>(</mo>
+<msup>
+<mi>f</mi>
+<mrow>
+<mo>(</mo>
+<mn>1</mn>
+<mo>:</mo>
+<msub>
+<mi>n</mi>
+<mi>f</mi>
+</msub>
+<mo>)</mo>
+</mrow>
+</msup>
+<mo>|</mo>
+<mi>m</mi>
+<mo>=</mo>
+<mn>1</mn>
+<mo>)</mo>
+</mrow>
+<mi>p</mi>
+<mrow>
+<mo>(</mo>
+<mi>m</mi>
+<mo>=</mo>
+<mn>1</mn>
+<mo>)</mo>
+</mrow>
+</mrow>
+<mrow>
+<mi>p</mi>
+<mrow>
+<mo>(</mo>
+<msup>
+<mi>f</mi>
+<mrow>
+<mo>(</mo>
+<mn>1</mn>
+<mo>:</mo>
+<msub>
+<mi>n</mi>
+<mi>f</mi>
+</msub>
+<mo>)</mo>
+</mrow>
+</msup>
+<mo>)</mo>
+</mrow>
+</mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac>
+<mn>1</mn>
+<mrow>
+<mn>1</mn>
+<mo>+</mo>
+<mfrac>
+<mrow>
+<mi>p</mi>
+<mrow>
+<mo>(</mo>
+<msup>
+<mi>f</mi>
+<mrow>
+<mo>(</mo>
+<mn>1</mn>
+<mo>:</mo>
+<msub>
+<mi>n</mi>
+<mi>f</mi>
+</msub>
+<mo>)</mo>
+</mrow>
+</msup>
+<mo>|</mo>
+<mi>m</mi>
+<mo>=</mo>
+<mn>0</mn>
+<mo>)</mo>
+</mrow>
+<mi>p</mi>
+<mrow>
+<mo>(</mo>
+<mi>m</mi>
+<mo>=</mo>
+<mn>0</mn>
+<mo>)</mo>
+</mrow>
+</mrow>
+<mrow>
+<mi>p</mi>
+<mrow>
+<mo>(</mo>
+<msup>
+<mi>f</mi>
+<mrow>
+<mo>(</mo>
+<mn>1</mn>
+<mo>:</mo>
+<msub>
+<mi>n</mi>
+<mi>f</mi>
+</msub>
+<mo>)</mo>
+</mrow>
+</msup>
+<mo>|</mo>
+<mi>m</mi>
+<mo>=</mo>
+<mn>1</mn>
+<mo>)</mo>
+</mrow>
+<mi>p</mi>
+<mrow>
+<mo>(</mo>
+<mi>m</mi>
+<mo>=</mo>
+<mn>1</mn>
+<mo>)</mo>
+</mrow>
+</mrow>
+</mfrac>
+</mrow>
+</mfrac>
+<mo>-</mo>
+<mo>-</mo>
+<mo>-</mo>
+<mrow>
+<mo>(</mo>
+<mn>13</mn>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0168" num="0168">如果<span class="patent-image-not-available"></span>则该图像作为可匹配图像接收，否则拒绝，可简化记为</div>
+<div class="description-paragraph" id="p0169" num="0169">
+<maths>
+<math>
+<mrow>
+<mfrac>
+<mrow>
+<mi>B</mi>
+<mrow>
+<mo>(</mo>
+<msub>
+<mi>n</mi>
+<mi>i</mi>
+</msub>
+<mo>;</mo>
+<msub>
+<mi>n</mi>
+<mi>f</mi>
+</msub>
+<mo>,</mo>
+<msub>
+<mi>p</mi>
+<mn>1</mn>
+</msub>
+<mo>)</mo>
+</mrow>
+</mrow>
+<mrow>
+<mi>B</mi>
+<mrow>
+<mo>(</mo>
+<msub>
+<mi>n</mi>
+<mi>i</mi>
+</msub>
+<mo>;</mo>
+<msub>
+<mi>n</mi>
+<mi>f</mi>
+</msub>
+<mo>,</mo>
+<msub>
+<mi>p</mi>
+<mn>0</mn>
+</msub>
+<mo>)</mo>
+</mrow>
+</mrow>
+</mfrac>
+<mo>&gt;</mo>
+<mfrac>
+<mn>1</mn>
+<mrow>
+<mfrac>
+<mn>1</mn>
+<msub>
+<mi>p</mi>
+<mi>min</mi>
+</msub>
+</mfrac>
+<mo>-</mo>
+<mn>1</mn>
+</mrow>
+</mfrac>
+<mo>-</mo>
+<mo>-</mo>
+<mo>-</mo>
+<mrow>
+<mo>(</mo>
+<mn>14</mn>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0170" num="0170">如果p<sub>1</sub>＝0.7，p<sub>0</sub>＝0.01，p<sub>min</sub>＝0.97，可以得出，对于正确图像匹配，重叠区域内匹配特征点数n<sub>i</sub>与特征点数n<sub>f</sub>应满足以下关系n<sub>i</sub>＞5.9+0.22n<sub>f</sub>。这样可以去除完全偏离航线等坏图像，仅保留可匹配的图像进行后续的拼接步骤，减少额外的运算量，提高运算速度，同时保证拼接质量。</div>
+<div class="description-paragraph" id="p0171" num="0171">实施例三</div>
+<div class="description-paragraph" id="p0172" num="0172">与实施例二不同的是，实施例三中进一步增加了全局优化，调整单应矩阵的步骤。</div>
+<div class="description-paragraph" id="p0173" num="0173">图3所示为本发明实施例三的低空无人飞行器序列图像拼接方法的流程图，包括：</div>
+<div class="description-paragraph" id="p0174" num="0174">步骤31，相机畸变差校正。</div>
+<div class="description-paragraph" id="p0175" num="0175">步骤32，无人飞行器序列图像获取。</div>
+<div class="description-paragraph" id="p0176" num="0176">步骤33，在序列图像中选择一幅图像。</div>
+<div class="description-paragraph" id="p0177" num="0177">步骤34，图像校正，确定相邻图像间的单应矩阵，包括以下子步骤：</div>
+<div class="description-paragraph" id="p0178" num="0178">步骤341，特征提取，对序列图像提取SURF特征和HARRIS-AFFINE特征；</div>
+<div class="description-paragraph" id="p0179" num="0179">步骤342，图像匹配，包括以下子步骤：</div>
+<div class="description-paragraph" id="p0180" num="0180">步骤3421，利用马氏距离计算相邻图像间特征点的相似度进行初匹配；</div>
+<div class="description-paragraph" id="p0181" num="0181">步骤3422，计算相邻图像的重叠区域；</div>
+<div class="description-paragraph" id="p0182" num="0182">步骤3423，利用RANSAC容错算法加对极几何约束，对相邻图像间特征点进行精确匹配；</div>
+<div class="description-paragraph" id="p0183" num="0183">步骤3424，根据精确匹配的特征点对计算相邻图像对之间的单应矩阵H<sub>ij</sub>；</div>
+<div class="description-paragraph" id="p0184" num="0184">步骤35，匹配验证，判断当前图像是否是可匹配图像，如果是，则执行步骤36；如果不是，则执行步骤33，选择下一幅图像；</div>
+<div class="description-paragraph" id="p0185" num="0185">步骤36，将当前图像保存在匹配序列中。</div>
+<div class="description-paragraph" id="p0186" num="0186">步骤37，判断序列图像匹配验证是否完成，如果是，则执行步骤38，如果不是，则执行步骤33。</div>
+<div class="description-paragraph" id="p0187" num="0187">步骤38，依照最小生成树策略确定拼接的次序。</div>
+<div class="description-paragraph" id="p0188" num="0188">步骤39，图像拼接，全局优化，调整单应矩阵，再按照最小生成树表明的次序拼接匹配序列中的图像。</div>
+<div class="description-paragraph" id="p0189" num="0189">步骤40，图像融合，消除图像亮度和色彩的不连续性，使图像在拼接处的光强平滑过渡，以消除光强突变。</div>
+<div class="description-paragraph" id="p0190" num="0190">以下对全局优化的步骤详细说明：</div>
+<div class="description-paragraph" id="p0191" num="0191">步骤39，全局优化，调整单应矩阵。</div>
+<div class="description-paragraph" id="p0192" num="0192">采用双向投影残差平方和为目标函数，调整单应矩阵，使图像匹配误差在预定范围内。采用双投影残差平方和为目标函数的优化方法比Brown和Lowe全局优化方法更合理，优化效果更佳。假设点<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/39/53/07/ed88c6902c3b5f/GDA0000035670100000131.png"><img alt="Figure GDA0000035670100000131" class="patent-full-image" file="GDA0000035670100000131.GIF" he="57" height="228" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_3.png" wi="44" width="176"/></a></div>与<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/00/e3/42/775e24fa4048f7/GDA0000035670100000132.png"><img alt="Figure GDA0000035670100000132" class="patent-full-image" file="GDA0000035670100000132.GIF" he="62" height="248" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_4.png" wi="44" width="176"/></a></div>分别是第i与j张影像中第k个对应匹配特征点，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/68/2f/06/509a1bbc1e3f15/GDA0000035670100000133.png"><img alt="Figure GDA0000035670100000133" class="patent-full-image" file="GDA0000035670100000133.GIF" he="62" height="248" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_5.png" wi="48" width="192"/></a></div>是点<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/70/68/66/7b97b7ec9e6b2d/GDA0000035670100000134.png"><img alt="Figure GDA0000035670100000134" class="patent-full-image" file="GDA0000035670100000134.GIF" he="62" height="248" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_6.png" wi="44" width="176"/></a></div>投影在图像i上的坐标，则残差<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/49/a8/db/ecaa86afa2547c/GDA0000035670100000135.png"><img alt="Figure GDA0000035670100000135" class="patent-full-image" file="GDA0000035670100000135.GIF" he="76" height="304" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_7.png" wi="314" width="1256"/></a></div> <span class="patent-image-not-available"></span>同理，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/29/45/f8/cc5839bb1149e0/GDA0000035670100000137.png"><img alt="Figure GDA0000035670100000137" class="patent-full-image" file="GDA0000035670100000137.GIF" he="62" height="248" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_8.png" wi="44" width="176"/></a></div>和点<span class="patent-image-not-available"></span>在图像j上投影<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/b0/ea/11/607ba2192f03ff/GDA0000035670100000139.png"><img alt="Figure GDA0000035670100000139" class="patent-full-image" file="GDA0000035670100000139.GIF" he="62" height="248" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_9.png" wi="48" width="192"/></a></div>的残差<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/3f/54/a9/998859e8301d85/GDA00000356701000001310.png"><img alt="Figure GDA00000356701000001310" class="patent-full-image" file="GDA00000356701000001310.GIF" he="76" height="304" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_10.png" wi="317" width="1268"/></a></div> <div class="patent-image"><a href="https://patentimages.storage.googleapis.com/71/67/e6/b66f1b9f94b47c/GDA00000356701000001311.png"><img alt="Figure GDA00000356701000001311" class="patent-full-image" file="GDA00000356701000001311.GIF" he="75" height="300" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_11.png" wi="252" width="1008"/></a></div>依次类推，求出所有匹配图像所有匹配特征点之间的双向残差平方和作为目标函数，记</div>
+<div class="description-paragraph" id="p0193" num="0193">
+<maths>
+<math>
+<mrow>
+<mi>e</mi>
+<mo>=</mo>
+<munderover>
+<mi>&amp;Sigma;</mi>
+<mrow>
+<mi>i</mi>
+<mo>=</mo>
+<mn>1</mn>
+</mrow>
+<mi>n</mi>
+</munderover>
+<munder>
+<mi>&amp;Sigma;</mi>
+<mrow>
+<mi>j</mi>
+<mo>&amp;Element;</mo>
+<mi>I</mi>
+<mrow>
+<mo>(</mo>
+<mi>i</mi>
+<mo>)</mo>
+</mrow>
+</mrow>
+</munder>
+<munder>
+<mi>&amp;Sigma;</mi>
+<mrow>
+<mi>k</mi>
+<mo>&amp;Element;</mo>
+<mi>F</mi>
+<mrow>
+<mo>(</mo>
+<mi>i</mi>
+<mo>,</mo>
+<mi>j</mi>
+<mo>)</mo>
+</mrow>
+</mrow>
+</munder>
+<mi>f</mi>
+<mrow>
+<mo>(</mo>
+<msubsup>
+<mi>r</mi>
+<mi>ij</mi>
+<mn>2</mn>
+</msubsup>
+<mo>+</mo>
+<msubsup>
+<mi>h</mi>
+<mi>ij</mi>
+<mn>2</mn>
+</msubsup>
+<mo>)</mo>
+</mrow>
+<mo>-</mo>
+<mo>-</mo>
+<mo>-</mo>
+<mrow>
+<mo>(</mo>
+<mn>15</mn>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0194" num="0194">这里，n为参与拼接的图像总数，I(i)是与图像i匹配的图像数，F(i，j)是图像i和j之间匹配的特征点数。这是一个非线性求解问题，可通过Levenberg-Maquardt迭代求解H<sub>ij</sub>，使得双向投影残差平方和e在预先设定的范围内。</div>
+<div class="description-paragraph" id="p0195" num="0195">需要说明的是，当测区面积较小时，典型地，当测区面积小于3平方公里时，建议直接利用本发明实施例一、实施例二或实施例三的拼接策略和图像精匹配点计算每对图像的单应射矩阵H<sub>i</sub>进行拼接。当测区面积较大时，典型地，当测区面积大于3平方公里时，建议将测区分为N块，每一块利用本发明实施例一、实施例二或实施例三的拼接策略拼接；然后N块间再次利用本发明实施例一、实施例二或实施例三的拼接策略拼接。具体流程见附图8。</div>
+<div class="description-paragraph" id="p0196" num="0196">以下参照实施例三，以无人飞艇在野鸭湖获取的航飞数据为例，说明本发明的序列图像拼接方法的效果。</div>
+<div class="description-paragraph" id="p0197" num="0197">步骤31，相机畸变差校正。</div>
+<div class="description-paragraph" id="p0198" num="0198">相机内参数标定。先将相机打到手动调焦档，再将光圈调至无穷远；并对着距离大约400米远的场景拍照，微调相机使400米远的场景成像清晰；加固定相机，使相机焦距和光圈在飞行过程中不变；如果精度要求高，可采用墨尔本大学的Australis软件标定，如果精度要求一般可采用张正友的标定方法(Aflexible new technique for camera calibration)；求出相机内参数(k<sub>1</sub>，k<sub>2</sub>，ρ<sub>1</sub>，ρ<sub>2</sub>，α，β)和(x<sub>0</sub>，y<sub>0</sub>，f)。</div>
+<div class="description-paragraph" id="p0199" num="0199">校正相机畸变差：根据公式(1)计算畸变差校正后的图像中像素点位。</div>
+<div class="description-paragraph" id="p0200" num="0200">x＝x′-x<sub>0</sub>+Δx</div>
+<div class="description-paragraph" id="p0201" num="0201">y＝y′-y<sub>0</sub>+Δy</div>
+<div class="description-paragraph" id="p0202" num="0202">这里，(x′，y′)为观测值。相机畸变差校正需要在航飞前进行。</div>
+<div class="description-paragraph" id="p0203" num="0203">步骤32，无人飞行器序列图像获取。</div>
+<div class="description-paragraph" id="p0204" num="0204">确定航线，获取图像。根据不同成图比例尺要求，确定相应的地面分辨率和航高，设计飞行路线与确定曝光点。</div>
+<div class="description-paragraph" id="p0205" num="0205">航线的制定与航高H、相机焦距f、航向重叠度P<sub>along</sub>，旁向重叠度P<sub>across</sub>等因素有关。假设测区的长为L(m)，宽为W(m)，则：</div>
+<div class="description-paragraph" id="p0206" num="0206">
+<maths>
+<math>
+<mrow>
+<mfrac>
+<mi>f</mi>
+<mi>H</mi>
+</mfrac>
+<mo>=</mo>
+<mfrac>
+<mi>a</mi>
+<mi>width</mi>
+</mfrac>
+<mo>=</mo>
+<mfrac>
+<mi>b</mi>
+<mi>height</mi>
+</mfrac>
+<mo>=</mo>
+<mfrac>
+<mrow>
+<mi>n</mi>
+<mn>1</mn>
+<mo>&amp;times;</mo>
+<mi>pix</mi>
+</mrow>
+<mrow>
+<mi>n</mi>
+<mn>2</mn>
+<mo>&amp;times;</mo>
+<mi>pix</mi>
+</mrow>
+</mfrac>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0207" num="0207">其中，f(mm)为相机焦距，H(m)为飞艇航高，a和b(mm)为CMOS的长和宽，width为单张相片所覆盖地面的长度，height为单张相片所覆盖地面的宽度，n<sub>1</sub>为影像长方向上的像素个数，n<sub>2</sub>为影像宽方向上的像素个数。</div>
+<div class="description-paragraph" id="p0208" num="0208">航向方向上影像的基线长：<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/a1/03/69/117296752b6310/GDA0000035670100000151.png"><img alt="Figure GDA0000035670100000151" class="patent-full-image" file="GDA0000035670100000151.GIF" he="119" height="476" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_12.png" wi="512" width="2048"/></a></div> </div>
+<div class="description-paragraph" id="p0209" num="0209">旁向方向上影像的基线长：<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/f4/a9/dc/9b8108ed4272c2/GDA0000035670100000152.png"><img alt="Figure GDA0000035670100000152" class="patent-full-image" file="GDA0000035670100000152.GIF" he="118" height="472" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_13.png" wi="537" width="2148"/></a></div> </div>
+<div class="description-paragraph" id="p0210" num="0210">整个测区的所需航线数N<sub>1</sub>满足：width+N<sub>1</sub>×bl<sub>across</sub>≥L；</div>
+<div class="description-paragraph" id="p0211" num="0211">每条航线上的曝光数N<sub>2</sub>满足：height+N<sub>2</sub>×bl<sub>along</sub>≥W；</div>
+<div class="description-paragraph" id="p0212" num="0212">曝光点的横坐标：<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/96/64/15/abdaaf4efc02ca/GDA0000035670100000153.png"><img alt="Figure GDA0000035670100000153" class="patent-full-image" file="GDA0000035670100000153.GIF" he="74" height="296" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_14.png" wi="700" width="2800"/></a></div> </div>
+<div class="description-paragraph" id="p0213" num="0213">曝光点的纵坐标：<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0214" num="0214">航带的弯曲度会影响航向重叠度、旁向重叠度的一致性，甚至可能会产生漏洞。因此，无风建议航向重叠60％，旁向重叠40％，有风建议航向重叠80％，旁向重叠60％。</div>
+<div class="description-paragraph" id="p0215" num="0215">步骤33，在序列图像中选择一幅图像。</div>
+<div class="description-paragraph" id="p0216" num="0216">步骤34，图像校正，确定相邻图像间的单应矩阵，包括以下子步骤：</div>
+<div class="description-paragraph" id="p0217" num="0217">步骤341，特征提取，对序列图像提取SURF特征和HARRIS-AFFINE特征；</div>
+<div class="description-paragraph" id="p0218" num="0218">本实施例不是逐层处理小波金字塔图像，而是抽取了(1:2，1:4，1:8)分别执行SURF算法提取SURF特征，执行HARRIS-AFFINE算法提取HARRIS角点，并对源图像复位。图9所示为相邻两图像提取的特征点的分布图。从小波金字塔图像之抽取了(1:2，1:4，1:8)四层子图像处理，原因在于子图像没有原图像分辨率高，分辨率越低，越影响特征点的精度，因此采取折中的办法仅抽取四层子图像处理。在不影响精度的前提下，提取不同尺度的特征点，既保证了均匀性又缩短了运算时间。</div>
+<div class="description-paragraph" id="p0219" num="0219">步骤342，图像匹配，包括以下子步骤：</div>
+<div class="description-paragraph" id="p0220" num="0220">步骤3421，利用马氏距离计算相邻图像间特征点的相似度进行初匹配；</div>
+<div class="description-paragraph" id="p0221" num="0221">步骤3422，计算相邻图像的重叠区域；</div>
+<div class="description-paragraph" id="p0222" num="0222">步骤3423，利用RANSAC容错算法加对极几何约束，对相邻图像间特征点进行精确匹配；</div>
+<div class="description-paragraph" id="p0223" num="0223">用于图像拼接的特征点并不需要太多，只要特征点匹配准确，相对分散就好，因此，步骤3423中增加了对极几何约束，严格限制对应点的搜索范围，大大提高了对应点的搜索速度和正确率。图10是相邻两幅图像特征点对应匹配结果。</div>
+<div class="description-paragraph" id="p0224" num="0224">步骤3424，根据精确匹配的特征点对计算相邻图像对之间的单应矩阵H<sub>ij</sub>；</div>
+<div class="description-paragraph" id="p0225" num="0225">步骤35，匹配验证，判断当前图像是否是可匹配图像，如果是，则执行步骤36；如果不是，则执行步骤33，选择下一幅图像；</div>
+<div class="description-paragraph" id="p0226" num="0226">在步骤35中，确定p1＝0.7，p0＝0.01，pmin＝0.97，利用n<sub>i</sub>＞5.9+0.22n<sub>f</sub>关系去除完全偏离航线等坏图像，使其不参加拼接。</div>
+<div class="description-paragraph" id="p0227" num="0227">步骤36，将当前图像保存在匹配序列中。</div>
+<div class="description-paragraph" id="p0228" num="0228">步骤37，判断序列图像匹配验证是否完成，如果是，则执行步骤38，如果不是，则执行步骤33。</div>
+<div class="description-paragraph" id="p0229" num="0229">步骤38，图像拼接，依照最小生成树策略确定拼接的次序。</div>
+<div class="description-paragraph" id="p0230" num="0230">步骤39，全局优化，调整单应矩阵，再按照最小生成树表明的次序拼接匹配序列中的图像。</div>
+<div class="description-paragraph" id="p0231" num="0231">将所有匹配图像所有匹配点之间的投影残差平方和作为目标函数，通过Levenberg-Maquardt迭代求解，调整相机参数，更新单应矩阵H<sub>i</sub>，优化拼接结果，消除累计误差。</div>
+<div class="description-paragraph" id="p0232" num="0232">步骤40，图像融合，消除图像亮度和色彩的不连续性，使图像在拼接处的光强平滑过渡，以消除光强突变。</div>
+<div class="description-paragraph" id="p0233" num="0233">图11是利用本发明对野鸭湖6平方公里测区，无人飞艇获取的352张航片进行拼接的结果。</div>
+<div class="description-paragraph" id="p0234" num="0234">实施例四</div>
+<div class="description-paragraph" id="p0235" num="0235">实施例四提供一种低空无人飞行器序列图像拼接系统。</div>
+<div class="description-paragraph" id="p0236" num="0236">图12所示为实施例四的图像拼接系统示意图，包括：</div>
+<div class="description-paragraph" id="p0237" num="0237">序列图像采集装置，固定在无人飞行器下方，在测区上空拍摄，获取序列图像；</div>
+<div class="description-paragraph" id="p0238" num="0238">征点提取模块，对所述序列图像提取SURF特征点和HARRIS-AFFINE特征点，特征点的提取方法与实施例一中相同；</div>
+<div class="description-paragraph" id="p0239" num="0239">图像匹配模块，根据所述特征点计算相邻图像之间的单应矩阵；</div>
+<div class="description-paragraph" id="p0240" num="0240">拼接次序生成模块，根据所述特征点的确定序列图像的拼接次序；拼接次序生成模块是根据最小生成树策略确定序列图像的拼接次序，具体过程请参照实施例一中步骤14。</div>
+<div class="description-paragraph" id="p0241" num="0241">图像拼接模块，按照所述拼接次序和所述相邻图像之间的单应矩阵进行拼接；</div>
+<div class="description-paragraph" id="p0242" num="0242">全局优化模块，消除序列图像拼接过程中产生的累积误差。</div>
+<div class="description-paragraph" id="p0243" num="0243">图13为图像匹配模块示意图，所述图像匹配模块模块包括：</div>
+<div class="description-paragraph" id="p0244" num="0244">初匹配模块，利用马氏距离计算相邻图像间特征点的相似度进行初匹配，初匹配模块的匹配方法请参照实施一中步骤1321；</div>
+<div class="description-paragraph" id="p0245" num="0245">重叠区域生成模块，计算相邻图像的重叠区域，计算方法参照步骤1322；</div>
+<div class="description-paragraph" id="p0246" num="0246">精匹配模块，利用RANSAC容错算法加对极几何约束，对相邻图像间特征点进行精确匹配，将所述重叠区域内的特征点划分为内点和外点；精匹配模块的匹配方法请参照实施一中步骤1323；</div>
+<div class="description-paragraph" id="p0247" num="0247">单应矩阵生成模块，根据精确匹配的所述内点点对计算相邻图像之间的单应矩阵。</div>
+<div class="description-paragraph" id="p0248" num="0248">实施例五</div>
+<div class="description-paragraph" id="p0249" num="0249">与实施例四不同的是，实施例五中增加了匹配验证模块。对于飞行器获取的图像序列，里边夹杂完全偏航等坏图像，匹配验证模块将坏图像自动去除。</div>
+<div class="description-paragraph" id="p0250" num="0250">图14所示为实施例五的图像拼接系统示意图，在图像匹配模块和拼接次序生成模块之间加入匹配验证模块。</div>
+<div class="description-paragraph" id="p0251" num="0251">所述匹配验证模块获取所述图像匹配模块确定的重叠区域内的特征点总数和所述内点，根据所述重叠区域内的特征点总数和所述内点的数量之间的关系，判断当前图像是否是可匹配的图像。所述匹配验证模块的验证方法与实施例二中的步骤25相同。</div>
+<div class="description-paragraph" id="p0252" num="0252">所述拼接次序生成模块由所述匹配验证模块生成的可匹配图像，根据相邻图像匹配度，依照最小生成树策略确定拼接的次序。</div>
+<div class="description-paragraph" id="p0253" num="0253">实施例五中引入匹配验证模块，去除坏图像，仅仅保留可匹配的图像，为后续的图像拼接保证计算速度和拼接质量。</div>
+<div class="description-paragraph" id="p0254" num="0254">实施例六</div>
+<div class="description-paragraph" id="p0255" num="0255">实施例六进一步增加了全局优化模块，无论是单带拼接还是航带间拼接，都会出现累计误差。为了减少和避免累计误差必须进行全局优化整体平差，全局优化模块重新调整单应矩阵。</div>
+<div class="description-paragraph" id="p0256" num="0256">图15所示为实施例六的图像拼接系统示意图，在拼接次序生成模块和图像拼接模块之间增加全局优化模块。所述全局优化模块采用双向投影残差平方和为目标函数，调整相邻图像之间的单应矩阵，使图像匹配误差在预定范围内。所述全局优化模块的调整方法与实施例三的步骤39相同。</div>
+<div class="description-paragraph" id="p0257" num="0257">以上对本发明的描述是说明性的，而非限制性的，本专业技术人员理解，在权利要求限定的精神与范围之内可对其进行许多修改、变化或等效，但是它们都将落入本发明的保护范围内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

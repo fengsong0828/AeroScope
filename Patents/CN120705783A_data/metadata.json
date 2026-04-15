@@ -1,0 +1,45 @@
+{
+    "patent_id": "CN120705783A",
+    "title": "CN120705783A - 基于故障注入检测的低空飞行器导航芯片安全增强方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shanghai Yishi Intelligent Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120705783A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN111966073A (zh) *",
+            "Priority Date": "2020-07-20",
+            "Publication Date": "2020-11-20",
+            "Assignee": "北京控制工程研究所",
+            "Title": "一种基于模型的航天器控制系统健壮性验证方法",
+            "Link": "https://patents.google.com/patent/CN111966073A/zh"
+        },
+        {
+            "Publication Number": "US20230022510A1 (en) *",
+            "Priority Date": "2021-07-01",
+            "Publication Date": "2023-01-26",
+            "Assignee": "Mitsubishi Electric Research Laboratories, Inc.",
+            "Title": "Stochastic Nonlinear Predictive Controller and Method based on Uncertainty Propagation by Gaussian-assumed Density Filters",
+            "Link": "https://patents.google.com/patent/US20230022510A1/en"
+        },
+        {
+            "Publication Number": "US20230394140A1 (en) *",
+            "Priority Date": "2022-06-01",
+            "Publication Date": "2023-12-07",
+            "Assignee": "Micron Technology, Inc.",
+            "Title": "Classification and mitigation of compute express link security threats",
+            "Link": "https://patents.google.com/patent/US20230394140A1/en"
+        },
+        {
+            "Publication Number": "CN120491614A (zh) *",
+            "Priority Date": "2025-06-16",
+            "Publication Date": "2025-08-15",
+            "Assignee": "浙江中科正方电子技术有限公司",
+            "Title": "一种tbox下线检测系统及方法",
+            "Link": "https://patents.google.com/patent/CN120491614A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:57:23"
+}

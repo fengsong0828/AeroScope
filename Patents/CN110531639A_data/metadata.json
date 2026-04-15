@@ -1,0 +1,102 @@
+{
+    "patent_id": "CN110531639A",
+    "title": "CN110531639A - 一种用于低空飞行器的压力模拟装置 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Quadrant Space Tianjin Technology Co Ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN110531639A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN101008651A (zh) *",
+            "Priority Date": "2006-12-08",
+            "Publication Date": "2007-08-01",
+            "Assignee": "北京航空航天大学",
+            "Title": "一种大型综合环境模拟试验装置",
+            "Link": "https://patents.google.com/patent/CN101008651A/zh"
+        },
+        {
+            "Publication Number": "CN102385397A (zh) *",
+            "Priority Date": "2011-09-29",
+            "Publication Date": "2012-03-21",
+            "Assignee": "北京振兴计量测试研究所",
+            "Title": "基于高速电磁阀的高精度压力控制系统",
+            "Link": "https://patents.google.com/patent/CN102385397A/zh"
+        },
+        {
+            "Publication Number": "CN102436183A (zh) *",
+            "Priority Date": "2011-09-29",
+            "Publication Date": "2012-05-02",
+            "Assignee": "北京振兴计量测试研究所",
+            "Title": "大气参数模拟器",
+            "Link": "https://patents.google.com/patent/CN102436183A/zh"
+        },
+        {
+            "Publication Number": "US20140195067A1 (en) *",
+            "Priority Date": "2013-01-10",
+            "Publication Date": "2014-07-10",
+            "Assignee": "General Electric Company",
+            "Title": "Method and system for use in controlling a pressure vessel",
+            "Link": "https://patents.google.com/patent/US20140195067A1/en"
+        },
+        {
+            "Publication Number": "CN105547346A (zh) *",
+            "Priority Date": "2016-02-18",
+            "Publication Date": "2016-05-04",
+            "Assignee": "江西洪都航空工业集团有限责任公司",
+            "Title": "一种气压高度模拟器",
+            "Link": "https://patents.google.com/patent/CN105547346A/zh"
+        },
+        {
+            "Publication Number": "CN106184813A (zh) *",
+            "Priority Date": "2016-08-18",
+            "Publication Date": "2016-12-07",
+            "Assignee": "武汉市天毅达测控科技有限公司",
+            "Title": "大气参数综合测试仪",
+            "Link": "https://patents.google.com/patent/CN106184813A/zh"
+        },
+        {
+            "Publication Number": "CN107608233A (zh) *",
+            "Priority Date": "2017-09-12",
+            "Publication Date": "2018-01-19",
+            "Assignee": "江西洪都航空工业集团有限责任公司",
+            "Title": "高动态大气环境模拟系统及两回路控制方法",
+            "Link": "https://patents.google.com/patent/CN107608233A/zh"
+        },
+        {
+            "Publication Number": "CN109542135A (zh) *",
+            "Priority Date": "2017-12-15",
+            "Publication Date": "2019-03-29",
+            "Assignee": "北京市人工影响天气办公室",
+            "Title": "一种人工影响天气实验室系统的压力控制系统",
+            "Link": "https://patents.google.com/patent/CN109542135A/zh"
+        },
+        {
+            "Publication Number": "CN109331554A (zh) *",
+            "Priority Date": "2018-11-23",
+            "Publication Date": "2019-02-15",
+            "Assignee": "江西洪都航空工业集团有限责任公司",
+            "Title": "一种气压高度模拟器快速对接过滤装置",
+            "Link": "https://patents.google.com/patent/CN109331554A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN111025936A (zh) *",
+            "Priority Date": "2019-12-28",
+            "Publication Date": "2020-04-17",
+            "Assignee": "武汉市天毅达测控科技有限公司",
+            "Title": "一种温度气压模拟系统",
+            "Link": "https://patents.google.com/patent/CN111025936A/zh"
+        },
+        {
+            "Publication Number": "CN111443592A (zh) *",
+            "Priority Date": "2020-03-24",
+            "Publication Date": "2020-07-24",
+            "Assignee": "上海卫星工程研究所",
+            "Title": "设备控制权状态的传递方法及传递系统",
+            "Link": "https://patents.google.com/patent/CN111443592A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:48:20"
+}

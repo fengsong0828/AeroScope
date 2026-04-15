@@ -1,0 +1,111 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119274090A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES484771767">
+<invention-title id="title1" lang="ZH">低空飞行器基于海上建筑飞行环境识别监测方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本申请涉及低空飞行器的技术领域，尤其涉及低空飞行器基于海上建筑飞行环境识别监测方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">在低空飞行器的飞行过程中，需要对飞行环境进行识别，以便于更好的进行导航、避障、定位等，更有利于低空飞行器的执行相关任务。目前的低空飞行器对于飞行环境的识别一般依托于雷达、计算机视觉等技术，仅依赖于雷达和计算机视觉等技术在简单、静态的飞行环境中足以支撑飞行任务的执行实现，然而在复杂、动态的飞行环境中例如海上建筑中，基于雷达、计算机视觉等技术识别飞行环境往往难以良好支撑低空飞行器的飞行任务的执行。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0005">发明内容</div>
+<div class="description-paragraph" id="p0006" num="0003">本申请提供了低空飞行器基于海上建筑飞行环境识别监测方法及系统，其有利于在海上建筑的飞行环境中支撑低空飞行器的飞行任务更好的执行。</div>
+<div class="description-paragraph" id="p0007" num="0004">第一方面，本申请提供了低空飞行器基于海上建筑飞行环境识别监测方法。所述方法包括：</div>
+<div class="description-paragraph" id="p0008" num="0005">获取飞行环境监测信息；</div>
+<div class="description-paragraph" id="p0009" num="0006">基于预构建的建筑物特征库，识别所述飞行环境监测信息中的特别建筑物特征，并获取特别建筑物特征的建筑物状态信息；</div>
+<div class="description-paragraph" id="p0010" num="0007">根据所述特别建筑物特征和建筑物状态信息确定特别建筑物特征的建筑物影响空间；</div>
+<div class="description-paragraph" id="p0011" num="0008">结合所述飞行环境监测信息和建筑物影响信息确定环境监测结果信息，所述环境监测结果信息包括飞行环境空间的空间状态信息，所述空间状态信息为允许飞行或禁止飞行。</div>
+<div class="description-paragraph" id="p0012" num="0009">通过采用上述技术方案，能够对包含海上建筑的飞行环境中的特别建筑物特征进行识别，进而智能确定特别建筑物特征的建筑物影响空间，有利于更为智能合理的确定飞行环境空间的空间状态，进而有利于支撑低空飞行器飞行过程中更好的路线规划、避障等，避免海上建筑物和低空飞行器相互影响，即有利于支撑低空飞行器飞行任务更好的执行。</div>
+<div class="description-paragraph" id="p0013" num="0010">进一步地，所述基于预构建的建筑物特征库，识别所述飞行环境监测信息中的特别建筑物特征，并获取特别建筑物特征的建筑物状态信息包括：</div>
+<div class="description-paragraph" id="p0014" num="0011">基于所述飞行环境监测信息，构建环境障碍物模型，并确定环境障碍物模型的运动状态信息，所述运动状态信息为运动中状态或静止中状态；</div>
+<div class="description-paragraph" id="p0015" num="0012">基于所述建筑物特征库，在所述环境障碍物模型中识别特别建筑物特征，所述建筑物特征库中包含建筑物特征模型，若所述环境障碍物为运动中状态且所述环境障碍物模型与所述建筑物特征模型的模型相似度高于第一相似度阈值，则确定所述环境障碍物为特别建筑物特征，若所述环境障碍物为静止中状态且所述环境障碍物模型与所述建筑物特征模型的模型相似度高于第二相似度阈值，则确定所述环境障碍物为特别建筑物特征，所述第一相似度阈值低于第二相似度阈值；</div>
+<div class="description-paragraph" id="p0016" num="0013">根据环境障碍物模型的运动状态信息确定特别建筑物特征的建筑物状态信息。</div>
+<div class="description-paragraph" id="p0017" num="0014">进一步地，确定环境障碍物模型与建筑物特征模型的模型相似度的方法包括：</div>
+<div class="description-paragraph" id="p0018" num="0015">在环境障碍物模型和建筑物特征模型中识别相同轮廓特征点；</div>
+<div class="description-paragraph" id="p0019" num="0016">使相同轮廓特征点对齐，确定环境障碍物模型与建筑物特征模型的模型重合体积和模型未重合体积；</div>
+<div class="description-paragraph" id="p0020" num="0017">计算模型重合体积的平方减去模型未重合体积的结果再除以模型重合体积的平方为所述模型相似度。</div>
+<div class="description-paragraph" id="p0021" num="0018">进一步地，所述根据环境障碍物的运动状态信息确定特别建筑物特征的建筑物状态信息包括：</div>
+<div class="description-paragraph" id="p0022" num="0019">所述建筑物状态信息包括建筑物形态和建筑物动作；根据环境障碍物模型确定特别建筑物特征的建筑物形态，根据建筑物形态和环境障碍物模型的运动状态确定建筑物动作。</div>
+<div class="description-paragraph" id="p0023" num="0020">进一步地，所述根据所述特别建筑物特征和建筑物状态信息确定特别建筑物特征的建筑物影响空间包括：</div>
+<div class="description-paragraph" id="p0024" num="0021">根据所述建筑物状态信息确定预设时长内的建筑物动作空间；</div>
+<div class="description-paragraph" id="p0025" num="0022">确定所述建筑物动作空间为建筑物影响空间。</div>
+<div class="description-paragraph" id="p0026" num="0023">第二方面，本申请提供了低空飞行器基于海上建筑飞行环境识别监测系统。所述系统包括：</div>
+<div class="description-paragraph" id="p0027" num="0024">数据获取模块，用于获取飞行环境监测信息；</div>
+<div class="description-paragraph" id="p0028" num="0025">特征识别模块，用于基于预构建的建筑物特征库，识别所述飞行环境监测信息中的特别建筑物特征，并获取特别建筑物特征的建筑物状态信息；</div>
+<div class="description-paragraph" id="p0029" num="0026">影响确定模块，用于根据所述特别建筑物特征和建筑物状态信息确定特别建筑物特征的建筑物影响空间；以及</div>
+<div class="description-paragraph" id="p0030" num="0027">结果确定模块，用于结合所述飞行环境监测信息和建筑物影响信息确定环境监测结果信息，所述环境监测结果信息包括飞行环境空间的空间状态信息，所述空间状态信息为允许飞行或禁止飞行。</div>
+<div class="description-paragraph" id="p0031" num="0028">进一步地，所述特征识别模块被进一步配置为：</div>
+<div class="description-paragraph" id="p0032" num="0029">基于所述飞行环境监测信息，构建环境障碍物模型，并确定环境障碍物模型的运动状态信息，所述运动状态信息为运动中状态或静止中状态；</div>
+<div class="description-paragraph" id="p0033" num="0030">基于所述建筑物特征库，在所述环境障碍物模型中识别特别建筑物特征，所述建筑物特征库中包含建筑物特征模型，若所述环境障碍物为运动中状态且所述环境障碍物模型与所述建筑物特征模型的模型相似度高于第一相似度阈值，则确定所述环境障碍物为特别建筑物特征，若所述环境障碍物为静止中状态且所述环境障碍物模型与所述建筑物特征模型的模型相似度高于第二相似度阈值，则确定所述环境障碍物为特别建筑物特征，所述第一相似度阈值低于第二相似度阈值；</div>
+<div class="description-paragraph" id="p0034" num="0031">根据环境障碍物模型的运动状态信息确定特别建筑物特征的建筑物状态信息。</div>
+<div class="description-paragraph" id="p0035" num="0032">进一步地，所述特征识别模块被进一步配置为：</div>
+<div class="description-paragraph" id="p0036" num="0033">在环境障碍物模型和建筑物特征模型中识别相同轮廓特征点；</div>
+<div class="description-paragraph" id="p0037" num="0034">使相同轮廓特征点对齐，确定环境障碍物模型与建筑物特征模型的模型重合体积和模型未重合体积；</div>
+<div class="description-paragraph" id="p0038" num="0035">计算模型重合体积的平方减去模型未重合体积的结果再除以模型重合体积的平方为所述模型相似度。</div>
+<div class="description-paragraph" id="p0039" num="0036">进一步地，所述特征识别模块被进一步配置为：</div>
+<div class="description-paragraph" id="p0040" num="0037">所述建筑物状态信息包括建筑物形态和建筑物动作；根据环境障碍物模型确定特别建筑物特征的建筑物形态，根据建筑物形态和环境障碍物模型的运动状态确定建筑物动作。</div>
+<div class="description-paragraph" id="p0041" num="0038">进一步地，所述影响确定模块被进一步配置为：</div>
+<div class="description-paragraph" id="p0042" num="0039">根据所述建筑物状态信息确定预设时长内的建筑物动作空间；</div>
+<div class="description-paragraph" id="p0043" num="0040">确定所述建筑物动作空间为建筑物影响空间。</div>
+<div class="description-paragraph" id="p0044" num="0041">综上所述，本申请至少包含以下有益效果：</div>
+<div class="description-paragraph" id="p0045" num="0042">提供了低空飞行器基于海上建筑飞行环境识别监测方法及系统，其能够识别海上建筑以及确定海上建筑的影响空间，以便于低空飞行器规避海上建筑的影响，有利于低空飞行器更好的执行飞行任务。</div>
+<div class="description-paragraph" id="p0046" num="0043">应当理解，发明内容部分中所描述的内容并非旨在限定本申请的实施例的关键或重要特征，亦非用于限制本申请的范围。本申请的其它特征将通过以下的描述变得容易理解。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0047">附图说明</div>
+<div class="description-paragraph" id="p0048" num="0044">结合附图并参考以下详细说明，本申请各实施例的上述和其他特征、优点及方面将变得更加明显。在附图中，相同或相似的附图标记表示相同或相似的元素，其中：</div>
+<div class="description-paragraph" id="p0049" num="0045">图1示出了本申请实施例中的低空飞行器基于海上建筑飞行环境识别监测方法的流程图；</div>
+<div class="description-paragraph" id="p0050" num="0046">图2示出了本申请实施例中的低空飞行器基于海上建筑飞行环境识别监测系统的方框图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0051">具体实施方式</div>
+<div class="description-paragraph" id="p0052" num="0047">为使本申请实施例的目的、技术方案和优点更加清楚，下面将结合本申请实施例中的附图，对本申请实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例是本申请一部分实施例，而不是全部的实施例。基于本申请中的实施例，本领域普通技术人员在没有作出创造性劳动前提下所获得的全部其他实施例，都属于本申请保护的范围。</div>
+<div class="description-paragraph" id="p0053" num="0048">另外，本文中术语“和/或”，仅仅是描述关联对象的关联关系，表示可以存在三种关系，例如，A和/或B，可以表示：单独存在A，同时存在A和B，单独存在B这三种情况。另外，本文中字符“/”，一般表示前后关联对象是“或”的关系。</div>
+<div class="description-paragraph" id="p0054" num="0049">本申请提供了低空飞行器基于海上建筑飞行环境识别监测方法及系统，其能够识别海上建筑以及确定海上建筑的影响空间，以便于低空飞行器规避海上建筑的影响，有利于低空飞行器更好的执行飞行任务。</div>
+<div class="description-paragraph" id="p0055" num="0050">第一方面，本申请提供了低空飞行器基于海上建筑飞行环境识别监测方法。该方法可以由低空飞行器执行。</div>
+<div class="description-paragraph" id="p0056" num="0051">低空飞行器一般为无人机，其搭载有雷达以及摄像头，以便于对飞行环境进行监测，得到飞行环境监测信息，再对飞行环境监测信息进行处理，即可得到可感知的飞行环境空间的空间状态信息，区分飞行环境空间的空间状态信息有利于更好的进行飞行路线规划，避免低空飞行器和海上建筑之间相互影响。</div>
+<div class="description-paragraph" id="p0057" num="0052">图1示出了本申请实施例中的低空飞行器基于海上建筑飞行环境识别监测方法的流程图。</div>
+<div class="description-paragraph" id="p0058" num="0053">参照图1，该方法具体包括以下步骤：</div>
+<div class="description-paragraph" id="p0059" num="0054">S110：获取飞行环境监测信息。</div>
+<div class="description-paragraph" id="p0060" num="0055">在本申请实施例中，飞行环境监测信息包括雷达监测信息和监测视频信息，结合雷达监测信息和监测视频信息可以综合体现低空飞行器周围飞行空间的情况。</div>
+<div class="description-paragraph" id="p0061" num="0056">S120：基于预构建的建筑物特征库，识别所述飞行环境监测信息中的特别建筑物特征，并获取特别建筑物特征的建筑物状态信息。</div>
+<div class="description-paragraph" id="p0062" num="0057">本步骤的方法具体包括：基于所述飞行环境监测信息，构建环境障碍物模型，并确定环境障碍物模型的运动状态信息，所述运动状态信息为运动中状态或静止中状态；基于所述建筑物特征库，在所述环境障碍物模型中识别特别建筑物特征，所述建筑物特征库中包含建筑物特征模型，若所述环境障碍物为运动中状态且所述环境障碍物模型与所述建筑物特征模型的模型相似度高于第一相似度阈值，则确定所述环境障碍物为特别建筑物特征，若所述环境障碍物为静止中状态且所述环境障碍物模型与所述建筑物特征模型的模型相似度高于第二相似度阈值，则确定所述环境障碍物为特别建筑物特征，所述第一相似度阈值低于第二相似度阈值；根据环境障碍物模型的运动状态信息确定特别建筑物特征的建筑物状态信息。</div>
+<div class="description-paragraph" id="p0063" num="0058">环境障碍物模型为三维模型，利用飞行环境监测信息进行三维重建，可以得到环境障碍物模型，并且基于时序能够确定环境障碍物模型的运动状态信息。建筑物特征库中预存储有建筑物特征模型，并且存储有建筑物特征模型的动作模式，如此比较环境障碍物模型和建筑物特征模型的模型相似度，即可确定环境障碍物模型符合哪一建筑物特征模型，由于海上建筑物在工作时可能会搭载货物或人员，搭载货物或人员也会被识别为环境障碍物特征的一部分，故若环境障碍物模型处于静止中状态，则需要较高的第二相似度阈值确定环境障碍物模型符合建筑物特征模型，若环境障碍物模型处于运动中状态，则仅需要较低的第一相似度阈值即可确定环境障碍物模型符合建筑物特征模型，如此即可确定环境障碍物模型中的特别建筑物特征。特别建筑物特征表征能够动作的海上建筑。</div>
+<div class="description-paragraph" id="p0064" num="0059">在本步骤的方法中，确定环境障碍物模型与建筑物特征模型的模型相似度的方法包括：在环境障碍物模型和建筑物特征模型中识别相同轮廓特征点；使相同轮廓特征点对齐，确定环境障碍物模型与建筑物特征模型的模型重合体积和模型未重合体积；计算模型重合体积的平方减去模型未重合体积的结果再除以模型重合体积的平方为所述模型相似度。</div>
+<div class="description-paragraph" id="p0065" num="0060">在本步骤的方法中，所述建筑物状态信息包括建筑物形态和建筑物动作；根据环境障碍物模型确定特别建筑物特征的建筑物形态，根据建筑物形态和环境障碍物模型的运动状态确定建筑物动作。由于海上建筑物的动作模式预存储于建筑物特征库中，在确定建筑物状态信息即确定建筑物形态(当前姿态)和建筑物动作后，可以结合动作模式预判后续的建筑物动作，即确定完整的建筑物状态信息。</div>
+<div class="description-paragraph" id="p0066" num="0061">S130：根据所述特别建筑物特征和建筑物状态信息确定特别建筑物特征的建筑物影响空间。</div>
+<div class="description-paragraph" id="p0067" num="0062">本步骤的方法具体包括：根据所述建筑物状态信息确定预设时长内的建筑物动作空间；确定所述建筑物动作空间为建筑物影响空间。由于建筑物状态信息包含建筑物形态和建筑物动作，故能够结合未来一段时间内的建筑物动作来确定建筑物动作空间，进而确定建筑物影响空间。</div>
+<div class="description-paragraph" id="p0068" num="0063">S140：结合所述飞行环境监测信息和建筑物影响信息确定环境监测结果信息，所述环境监测结果信息包括飞行环境空间的空间状态信息，所述空间状态信息为允许飞行或禁止飞行。</div>
+<div class="description-paragraph" id="p0069" num="0064">在本步骤的方法中，一般将固定的环境障碍物模型影响的空间和特别建筑物特征的建筑物影响空间均标记为禁止飞行状态，其他空间可以标记为允许飞行状态，如此即可实现海上建筑物飞行环境的环境监测结果信息。利用环境监测结果信息可以指导低空飞行器的避障以及飞行路径规划等操作，有利于低空飞行器更好的飞行，进而有利于飞行任务的实现。</div>
+<div class="description-paragraph" id="p0070" num="0065">需要说明的是，对于前述的各方法实施例，为了简单描述，故将其都表述为一系列的动作组合，但是本领域技术人员应该知悉，本申请并不受所描述的动作顺序的限制，因为依据本申请实施例，某些步骤可以采用其他顺序或者同时进行。其次，本领域技术人员也应该知悉，说明书中所描述的实施例均属于可选实施例，所涉及的动作和模块并不一定是本申请所必须的。</div>
+<div class="description-paragraph" id="p0071" num="0066">第二方面，本申请提供了低空飞行器基于海上建筑飞行环境识别监测系统。所述系统可以被包含于低空飞行器中，或者被包含于控制低空飞行器的服务器中。</div>
+<div class="description-paragraph" id="p0072" num="0067">图2示出了本申请实施例中的低空飞行器基于海上建筑飞行环境识别监测系统的方框图。</div>
+<div class="description-paragraph" id="p0073" num="0068">参照图2，所述系统具体包括：</div>
+<div class="description-paragraph" id="p0074" num="0069">数据获取模块210，用于获取飞行环境监测信息；</div>
+<div class="description-paragraph" id="p0075" num="0070">特征识别模块220，用于基于预构建的建筑物特征库，识别所述飞行环境监测信息中的特别建筑物特征，并获取特别建筑物特征的建筑物状态信息；</div>
+<div class="description-paragraph" id="p0076" num="0071">影响确定模块230，用于根据所述特别建筑物特征和建筑物状态信息确定特别建筑物特征的建筑物影响空间；以及</div>
+<div class="description-paragraph" id="p0077" num="0072">结果确定模块240，用于结合所述飞行环境监测信息和建筑物影响信息确定环境监测结果信息，所述环境监测结果信息包括飞行环境空间的空间状态信息，所述空间状态信息为允许飞行或禁止飞行。</div>
+<div class="description-paragraph" id="p0078" num="0073">进一步地，所述特征识别模块220被进一步配置为：</div>
+<div class="description-paragraph" id="p0079" num="0074">基于所述飞行环境监测信息，构建环境障碍物模型，并确定环境障碍物模型的运动状态信息，所述运动状态信息为运动中状态或静止中状态；</div>
+<div class="description-paragraph" id="p0080" num="0075">基于所述建筑物特征库，在所述环境障碍物模型中识别特别建筑物特征，所述建筑物特征库中包含建筑物特征模型，若所述环境障碍物为运动中状态且所述环境障碍物模型与所述建筑物特征模型的模型相似度高于第一相似度阈值，则确定所述环境障碍物为特别建筑物特征，若所述环境障碍物为静止中状态且所述环境障碍物模型与所述建筑物特征模型的模型相似度高于第二相似度阈值，则确定所述环境障碍物为特别建筑物特征，所述第一相似度阈值低于第二相似度阈值；</div>
+<div class="description-paragraph" id="p0081" num="0076">根据环境障碍物模型的运动状态信息确定特别建筑物特征的建筑物状态信息。</div>
+<div class="description-paragraph" id="p0082" num="0077">进一步地，所述特征识别模块220被进一步配置为：</div>
+<div class="description-paragraph" id="p0083" num="0078">在环境障碍物模型和建筑物特征模型中识别相同轮廓特征点；</div>
+<div class="description-paragraph" id="p0084" num="0079">使相同轮廓特征点对齐，确定环境障碍物模型与建筑物特征模型的模型重合体积和模型未重合体积；</div>
+<div class="description-paragraph" id="p0085" num="0080">计算模型重合体积的平方减去模型未重合体积的结果再除以模型重合体积的平方为所述模型相似度。</div>
+<div class="description-paragraph" id="p0086" num="0081">进一步地，所述特征识别模块220被进一步配置为：</div>
+<div class="description-paragraph" id="p0087" num="0082">所述建筑物状态信息包括建筑物形态和建筑物动作；根据环境障碍物模型确定特别建筑物特征的建筑物形态，根据建筑物形态和环境障碍物模型的运动状态确定建筑物动作。</div>
+<div class="description-paragraph" id="p0088" num="0083">进一步地，所述影响确定模块230被进一步配置为：</div>
+<div class="description-paragraph" id="p0089" num="0084">根据所述建筑物状态信息确定预设时长内的建筑物动作空间；</div>
+<div class="description-paragraph" id="p0090" num="0085">确定所述建筑物动作空间为建筑物影响空间。</div>
+<div class="description-paragraph" id="p0091" num="0086">所属领域的技术人员可以清楚地了解到，为描述的方便和简洁，所述描述的系统的具体工作过程，可以参考前述方法实施例中的对应过程，在此不再赘述。</div>
+<div class="description-paragraph" id="p0092" num="0087">综上所述，本申请至少包含以下有益效果：</div>
+<div class="description-paragraph" id="p0093" num="0088">提供了低空飞行器基于海上建筑飞行环境识别监测方法及系统，其能够识别海上建筑以及确定海上建筑的影响空间，以便于低空飞行器规避海上建筑的影响，有利于低空飞行器更好的执行飞行任务。</div>
+<div class="description-paragraph" id="p0094" num="0089">以上描述仅为本申请的较佳实施例以及对所运用技术原理的说明。本领域技术人员应当理解，本申请中所涉及的公开范围，并不限于上述技术特征的特定组合而成的技术方案，同时也应涵盖在不脱离前述公开构思的情况下，由上述技术特征或其等同特征进行任意组合而形成的其它技术方案。例如上述特征与本申请中公开的(但不限于)具有类似功能的技术特征进行互相替换而形成的技术方案。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

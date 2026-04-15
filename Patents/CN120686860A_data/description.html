@@ -1,0 +1,127 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120686860A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES506304943">
+<invention-title id="title1" lang="ZH">一种跨介质低空无人飞行器自主切换与多机协同控制系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空飞行器技术领域，特别涉及一种集跨介质自主切换、多源环境感知及分布式协同决策功能于一体的无人飞行器控制系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着无人飞行器在城市立体空间监测、水域救援及地下管网巡检等领域的应用深化，复杂介质环境下的可靠切换与多机高效协同需求日益凸显。传统跨介质飞行器系统依赖单一阈值触发机制（如水深&gt;1m）或中心化任务调度，在高动态潮汐、湍流扰动及狭窄地下空间等复杂工况下面临三大技术瓶颈：</div>
+<div class="description-paragraph" id="p0005">（1）感知可靠性不足：异构传感器（毫米波雷达/声呐/LiDAR）在介质切换时数据失效率＞25%（如声呐空中失效、雷达水下失效）；</div>
+<div class="description-paragraph" id="p0006">（2）切换决策僵化：固定阈值法在潮汐波动场景误触发率＞30%；</div>
+<div class="description-paragraph" id="p0007">（3）协同实时性差：中心化调度导致20节点规模下任务响应延迟＞500ms。</div>
+<div class="description-paragraph" id="p0008" num="0003">迄今为止，针对跨介质无人系统的研究仍存在显著局限：</div>
+<div class="description-paragraph" id="p0009">（1）专利CN114802751A《水空跨介质无人航行器及其控制方法》提出基于水深阈值的推进模式切换方案，该方案未考虑密度梯度（▽ρ）对流体动力的影响，其实施例显示在潮汐流场（密度梯度▽ρ≥1.5kg/m³）中推进效率下降38.7%；</div>
+<div class="description-paragraph" id="p0010">（2）专利CN113064438B《多无人机协同路径规划方法及系统》采用中心化任务分配机制，仿真显示20节点规模下主节点失效崩溃概率达43.6%，且缺乏地下管网拓扑约束；</div>
+<div class="description-paragraph" id="p0011">（3）陈涛等人论文《跨介质飞行器多物理场耦合建模研究》指出磁流体推进器在瞬态切换中易产生空化效应，但未解决专利CN116136559A《一种水空跨介质航行器密封装置》实测涵道密封响应延迟＞100ms引发的动力中断问题。</div>
+<div class="description-paragraph" id="p0012" num="0004">因此，亟需一种创新性跨介质控制系统，其应具备通过多源时空融合算法（误差抑制至＜5%）解决感知失真问题、基于六维动态决策模型（置信度≥98%）突破切换可靠性瓶颈、构建分布式协同架构（响应延迟≤80ms）实现多机高效协作的能力。以满足城市立体空间作业中对跨介质适应性、狭窄空间通过性及应急响应实时性的严苛需求。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0013">发明内容</div>
+<div class="description-paragraph" id="p0014" num="0005">本发明的主要目的在于提供一种跨介质低空无人飞行器自主切换与多机协同控制系统，可以有效解决背景技术中提到的问题。</div>
+<div class="description-paragraph" id="p0015" num="0006">为实现上述目的，本发明采取的技术方案为：</div>
+<div class="description-paragraph" id="p0016">一种跨介质低空无人飞行器自主切换与多机协同控制系统，包括多模态感知单元、自主切换单元、协同控制单元，具体包括以下步骤：</div>
+<div class="description-paragraph" id="p0017">S01、构建多模态感知单元，在飞行器主体部署77GHz毫米波雷达、200kHz多波束声呐及905nm固态LiDAR，通过钛合金支架固定传感器，传感器线缆经舱体内部理线槽连接至主控板；</div>
+<div class="description-paragraph" id="p0018">S02、采用时空同步融合算法处理异构数据，建立传感器数据映射矩阵：</div>
+<div class="description-paragraph" id="p0019"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0020">其中时延补偿量<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0021">S03、基于联邦卡尔曼滤波器融合环境参数，构建六维特征向量（水深、密度梯度、浊度、风速、甲烷浓度、卫星导航载噪比），通过SVM分类器（核函数γ=0.5）生成切换决策，当介质概率P≥0.98且满足：</div>
+<div class="description-paragraph" id="p0022"> <span class="patent-image-not-available"></span>时触发模式转换；</div>
+<div class="description-paragraph" id="p0023">S04、执行推进系统重构：</div>
+<div class="description-paragraph" id="p0024">空中切换至水下：50ms内闭合涵道结构（密封压力≥12kPa），启动磁流体推进器（推力5.5N±0.3N）；</div>
+<div class="description-paragraph" id="p0025">地下切换至空中：展开涵道风扇（功率≥850W），激活多模卫星导航/INS组合定位（B1C+B2a双频）；</div>
+<div class="description-paragraph" id="p0026">S05、采用改进合同网协议实现多机协同，包含异构通信系统的动态链路管理，任务分配响应时间t满足：</div>
+<div class="description-paragraph" id="p0027"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0028">其中d为任务距离，v_max为无人机最大速度；</div>
+<div class="description-paragraph" id="p0029">S06、驱动介质自适应路径规划器：</div>
+<div class="description-paragraph" id="p0030">空中模式：RRT*-Smart算法融合湍流代价模型（风速&gt;8m/s时路径代价增加30%）；</div>
+<div class="description-paragraph" id="p0031">水下模式：A*-NS算法嵌入Navier-Stokes方程求解器，代价函数为：</div>
+<div class="description-paragraph" id="p0032"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0033">地下模式：Topo-Dijkstra算法受限于管网拓扑约束（最小转弯半径R≥0.4m）。</div>
+<div class="description-paragraph" id="p0034" num="0007">优选的，所述多模态感知单元的抗干扰硬件架构设计包括：</div>
+<div class="description-paragraph" id="p0035">毫米波雷达安装于飞行器前部，声呐阵列布置于底部防水舱（防护等级IP68），LiDAR置于顶部旋转云台；</div>
+<div class="description-paragraph" id="p0036">磁流体推进器与涵道结构采用模块化设计，通过快拆接口连接，涵道表面覆盖超疏水涂层（接触角&gt;150°）；</div>
+<div class="description-paragraph" id="p0037">主控板集成三层电磁屏蔽罩，传感器线缆采用屏蔽双绞线，接口处使用镀金屏蔽接头；</div>
+<div class="description-paragraph" id="p0038">为各传感器配置4个硅胶减震垫（硬度邵氏A50），呈矩形分布安装。</div>
+<div class="description-paragraph" id="p0039" num="0008">优选的，所述自主切换单元的动态切换决策方法包括：</div>
+<div class="description-paragraph" id="p0040">S31、联邦滤波器设置三个子滤波器：</div>
+<div class="description-paragraph" id="p0041">空中子滤波器：处理毫米波雷达数据（更新频率100Hz）及气压数据；</div>
+<div class="description-paragraph" id="p0042">水介质子滤波器：融合声呐数据（精度±0.05m@5m）和流体压力数据；</div>
+<div class="description-paragraph" id="p0043">地下子滤波器：集成LiDAR点云（扫描速率30Hz）和IMU数据；</div>
+<div class="description-paragraph" id="p0044">S32、联邦滤波器的主滤波器通过改进协方差交叉算法实现跨域融合，输出包含介质类型概率P_m∈[0,1]和界面动态指数D_i∈R⁺的状态向量；</div>
+<div class="description-paragraph" id="p0045">S33、SVM分类器采用RBF核函数（γ=0.5），训练数据集包含潮汐水域、湍流空气及地下管网的三类介质边界样本。</div>
+<div class="description-paragraph" id="p0046" num="0009">优选的，所述协同控制单元的多机协同控制方法包括：</div>
+<div class="description-paragraph" id="p0047">S41、动态角色分配机制基于综合评分函数：</div>
+<div class="description-paragraph" id="p0048"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0049">其中Q为剩余电量，D为相对目标距离，<i>S</i> <sub>res</sub>为传感器分辨率；</div>
+<div class="description-paragraph" id="p0050">S42、分布式容错协议执行流程：</div>
+<div class="description-paragraph" id="p0051">故障检测：心跳包超时&gt;100ms判定节点失效；</div>
+<div class="description-paragraph" id="p0052">任务重分配：通过Paxos共识算法在200ms内完成；</div>
+<div class="description-paragraph" id="p0053">路径重规划：RRT*-Smart算法收敛时间&lt;500ms。</div>
+<div class="description-paragraph" id="p0054" num="0010">优选的，所述异构通信系统包括：</div>
+<div class="description-paragraph" id="p0055">S51、主链路采用5G专网（20MHz带宽），端到端时延≤10ms；</div>
+<div class="description-paragraph" id="p0056">S52、备份链路采用蓝绿激光通信（波长532nm，速率2Mbps）与水声通信（中心频率50kHz）组合；</div>
+<div class="description-paragraph" id="p0057">S53、通信协议转换流程：</div>
+<div class="description-paragraph" id="p0058">空中切换至水下：中断5G链路，激活水声通信模块；</div>
+<div class="description-paragraph" id="p0059">水下切换至空中：关闭声呐调制器，启动激光发射器；</div>
+<div class="description-paragraph" id="p0060">S54、数据安全层采用SM4国密算法加密（密钥更新周期30s），物理层实施OFDM时频加密。</div>
+<div class="description-paragraph" id="p0061" num="0011">与现有技术相比，本发明具有如下有益效果：</div>
+<div class="description-paragraph" id="p0062">本发明提出了一套创新的三栖协同控制系统，用于解决无人飞行器在跨介质环境下的切换与协同难题。采用可变形涵道结构与磁流体推进器，实现空-水-地动力模式自主重构，并通过接触角&gt;150°的超疏水涂层和模块化减震设计，显著提升介质切换可靠性与结构耐久性；利用联邦卡尔曼滤波时空对齐与SVM动态决策模型，大幅降低感知失真率至&lt;5%及切换误触发率至1.3%，生成高精度六维环境状态矩阵；分布式协同架构与介质自适应路径规划确保多机任务响应延迟≤80ms，并在Φ28cm地下管网实现100%避碰成功率；异构通信网关通过时延&lt;10ms的5G专网和速率2Mbps的蓝绿激光双链路冗余，保障跨介质数据传输完整性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0063">附图说明</div>
+<div class="description-paragraph" id="p0064" num="0012">图1为本发明的跨介质自主切换系统流程示意图；</div>
+<div class="description-paragraph" id="p0065">图2为本发明的多机协同控制架构示意图；</div>
+<div class="description-paragraph" id="p0066">图3为本发明的路径规划算法对比示意图；</div>
+<div class="description-paragraph" id="p0067">图4为本发明的异构通信分层模型图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0068">具体实施方式</div>
+<div class="description-paragraph" id="p0069" num="0013">为使本发明实现的技术手段、创作特征、达成目的与功效易于明白了解，下面结合具体实施方式，进一步阐述本发明。</div>
+<div class="description-paragraph" id="p0070" num="0014">一种跨介质低空无人飞行器自主切换与多机协同控制系统，包括多模态感知单元、自主切换单元、协同控制单元，具体包括以下步骤：</div>
+<div class="description-paragraph" id="p0071">S01、根据如图1所示跨介质切换控制流程图，构建多模态感知硬件架构；</div>
+<div class="description-paragraph" id="p0072">S11、飞行器前部安装77GHz毫米波雷达（探测距离0-150m），底部防水舱（IP68）布置200kHz多波束声呐阵列（精度±0.05m@5m），顶部旋转云台搭载905nm固态LiDAR（角分辨率0.05°）；</div>
+<div class="description-paragraph" id="p0073">S12、传感器通过钛合金支架固定，支架与机体框架以M4航空级螺丝连接，线缆经内部理线槽汇集至主控板，采用屏蔽双绞线（阻抗100Ω）传输信号；</div>
+<div class="description-paragraph" id="p0074">例如：毫米波雷达安装于前倾15°支架，声呐阵列呈环形分布（间距λ/2避免干涉），LiDAR云台俯仰角调节范围±30°。所有传感器配备独立PCB转接板，集成TVS瞬态抑制二极管与100μH共模扼流圈，通过0.5mm间距FFC柔性电缆连接主控板，电缆外层覆盖铜镍编织屏蔽网。</div>
+<div class="description-paragraph" id="p0075" num="0015">S02、采用时空同步融合算法处理异构数据，建立传感器数据映射矩阵，完成时空同步融合处理；</div>
+<div class="description-paragraph" id="p0076">S21、建立传感器时间戳映射矩阵：</div>
+<div class="description-paragraph" id="p0077"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0078">其中<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为位置偏移量，<span class="patent-image-not-available"></span>为安装角；</div>
+<div class="description-paragraph" id="p0079">S22、通过滑动窗口补偿算法（窗口50ms）实现数据对齐，时域误差&lt;0.5ms；</div>
+<div class="description-paragraph" id="p0080">S03、基于联邦卡尔曼滤波器融合环境参数，构建六维特征向量，通过SVM分类器生成切换决策；</div>
+<div class="description-paragraph" id="p0081">S31、联邦滤波器融合环境参数：</div>
+<div class="description-paragraph" id="p0082">空中子滤波器：处理雷达数据（100Hz）及气压数据；</div>
+<div class="description-paragraph" id="p0083">水介质子滤波器：融合声呐及流体压力数据；</div>
+<div class="description-paragraph" id="p0084">地下子滤波器：集成LiDAR点云（500点/m²）和IMU数据；</div>
+<div class="description-paragraph" id="p0085">S32、SVM分类器（γ=0.5）判定切换条件：</div>
+<div class="description-paragraph" id="p0086"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0087">例如：潮汐水域实测中，当检测水深1.25m、密度梯度2.3kg/m³、浊度68NTU且持续3秒时，SVM输出介质概率P=0.992，生成切换指令。</div>
+<div class="description-paragraph" id="p0088" num="0016">S04、在飞行器在跨介质过程中，基于联邦滤波器与SVM分类器的决策指令，实时改变动力系统结构形态与能量分配策略，以执行推进系统重构；</div>
+<div class="description-paragraph" id="p0089">S41、空中切换至水下：涵道结构在50ms内闭合（密封压力≥12kPa）；磁流体推进器启动（推力5.5N±0.3N）；重心调节机构偏移ΔCG=3%机长；</div>
+<div class="description-paragraph" id="p0090">S42、地下切换至空中：涵道风扇展开（功率850W）；激活多模卫星导航/INS组合定位（B1C+B2a双频）；释放配重块（质量200g）；</div>
+<div class="description-paragraph" id="p0091">S05、建立介质自适应协同范式，通过动态合同网协议实现异构无人机群的任务-能力-环境三重匹配，完成多机协同控制；</div>
+<div class="description-paragraph" id="p0092">S51、动态合同网协议任务分配：</div>
+<div class="description-paragraph" id="p0093"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0094">S52、介质自适应路径规划：</div>
+<div class="description-paragraph" id="p0095">当系统处于空中模式时，根据RRT*-Smart算法，由约束条件湍流代价因子λ=0.1进行介质自适应路径规划；当系统处于水下模式时，根据A*-NS算法，由约束条件Navier-Stokes流体积分进行介质自适应路径规划；当系统处于地下模式时，根据Topo-Dijkstra算法，由约束条件最小转弯半径R≥0.4m进行介质自适应路径规划；</div>
+<div class="description-paragraph" id="p0096">例如：水下救援任务中，领航机（剩余电量&gt;80%）通过声呐定位目标，动态合同网协议在42ms内分配3台无人机形成三角搜索阵型，A-NS算法规划顺暗流路径（节能27%）。</div>
+<div class="description-paragraph" id="p0097" num="0017">S06、构建三模态智能切换异构通信系统，通过介质感知模块动态选择最优信道；</div>
+<div class="description-paragraph" id="p0098">S61、主链路：5G专网（20MHz@3.5GHz，端到端时延&lt;10ms）；</div>
+<div class="description-paragraph" id="p0099">S62、备份链路：</div>
+<div class="description-paragraph" id="p0100">空中切换至水下：由蓝绿激光（532nm，2Mbps）切换至水声通信（50kHz）；</div>
+<div class="description-paragraph" id="p0101">地下切换至空中：使用北斗短报文（传输延迟&lt;5s）；</div>
+<div class="description-paragraph" id="p0102">S63、安全加密系统架构：</div>
+<div class="description-paragraph" id="p0103">采用分层加密策略，在主链路与备份链路部署差异化加密模块，分为5G专网加密层、空-水激光/水声加密层、地-空北斗加密层；</div>
+<div class="description-paragraph" id="p0104">5G专网加密层：集成国密SM4算法的硬件加密芯片（支持20Gbps吞吐量），基于量子密钥分发的动态密钥更新机制（QKD），密钥更新周期≤30秒，通信模组PCB采用16层埋阻设计，关键信号走线实施蛇形屏蔽罩包裹；</div>
+<div class="description-paragraph" id="p0105">空-水激光/水声加密层：采用混沌激光调制加密（CLME）技术，通过半导体激光器注入扰动实现波形混淆，部署改进的OFDM-Hadamard变换加密，每帧数据插入32位动态校验码，水声换能器前置FPGA加密模块（XilinxZynqUltraScale+，工作频率400MHz）；</div>
+<div class="description-paragraph" id="p0106">地-空北斗加密层：应用北斗三号军用级加密通信协议（BD-SAM），采用128位AES-CBC加密+CRC32校验双保险结构，SIM卡槽集成自毁熔丝电路（触发电流≥3A）；</div>
+<div class="description-paragraph" id="p0107">S64、跨介质加密同步机制：</div>
+<div class="description-paragraph" id="p0108">建立基于可信执行环境（TEE）的密钥管理单元，通过硬件安全模块（HSM）存储根密钥，介质切换时触发密钥同步协议，同步时延≤50ms，密钥错误率&lt;10<sup>-9</sup>；</div>
+<div class="description-paragraph" id="p0109">例如：在渤海跨介质试验中，当飞行器从空中（5G链路）切入水下（激光→水声链路）时：加密控制器检测到介质切换指令（SVM输出P=0.992），触发CLME混沌激光加密初始化，生成初始向量IV=0x7A3E9D（通过水声信道传输），水声接收端FPGA加载256位动态密钥（更新周期2秒），实测数据传输误码率≤10<sup>-6</sup>，成功抵御每秒5×10<sup>5</sup>次暴力破解攻击。</div>
+<div class="description-paragraph" id="p0110" num="0018">以上显示和描述了本发明的基本原理和主要特征和本发明的优点。本文所呈现的背景技术相关内容，旨在为理解本发明的整体构思与创新语境提供必要铺垫。其目的并非用于确认、推断或暗示这些信息已被普遍认知，成为本领域普通技术人员所掌握的现有技术内容。本行业的技术人员应该了解，本发明不受上述实施例的限制，上述实施例和说明书中描述的只是说明本发明的原理，在不脱离本发明精神和范围的前提下，本发明还会有各种变化和改进，这些变化和改进都落入要求保护的本发明范围内。本发明要求保护范围由所附的权利要求书及其等效物界定。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

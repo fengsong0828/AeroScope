@@ -1,0 +1,86 @@
+{
+    "patent_id": "CN112466161A",
+    "title": "CN112466161A - 一种基于多样环境因素的低空飞行器避撞能力评估方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Beihang University Sichuan International Center For Innovation In Western China Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN112466161A/zh",
+    "citations": [
+        {
+            "Publication Number": "DE10115793A1 (de) *",
+            "Priority Date": "2001-03-30",
+            "Publication Date": "2002-10-24",
+            "Assignee": "Hans-Hermann Gudehus",
+            "Title": "Automatische Überwachung der Bewegungsbahn nichtspurgebundener Fahrzeuge",
+            "Link": "https://patents.google.com/patent/DE10115793A1/de"
+        },
+        {
+            "Publication Number": "CN103365299A (zh) *",
+            "Priority Date": "2013-08-02",
+            "Publication Date": "2013-10-23",
+            "Assignee": "中国科学院自动化研究所",
+            "Title": "一种无人机的避障方法及其装置",
+            "Link": "https://patents.google.com/patent/CN103365299A/zh"
+        },
+        {
+            "Publication Number": "CN103913172A (zh) *",
+            "Priority Date": "2013-12-06",
+            "Publication Date": "2014-07-09",
+            "Assignee": "北京航空航天大学",
+            "Title": "一种适用于复杂低空下飞行器的路径规划方法",
+            "Link": "https://patents.google.com/patent/CN103913172A/zh"
+        },
+        {
+            "Publication Number": "US20190121369A1 (en) *",
+            "Priority Date": "2017-10-20",
+            "Publication Date": "2019-04-25",
+            "Assignee": "The Boeing Company",
+            "Title": "Airplane Climb Thrust Optimization",
+            "Link": "https://patents.google.com/patent/US20190121369A1/en"
+        },
+        {
+            "Publication Number": "CN108981715A (zh) *",
+            "Priority Date": "2018-08-22",
+            "Publication Date": "2018-12-11",
+            "Assignee": "北航（四川）西部国际创新港科技有限公司",
+            "Title": "一种山区飞行安全度约束的无人机路径规划方法",
+            "Link": "https://patents.google.com/patent/CN108981715A/zh"
+        },
+        {
+            "Publication Number": "CN110471444A (zh) *",
+            "Priority Date": "2019-08-19",
+            "Publication Date": "2019-11-19",
+            "Assignee": "西安微电子技术研究所",
+            "Title": "基于自主学习的无人机智能避障方法",
+            "Link": "https://patents.google.com/patent/CN110471444A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN113361862A (zh) *",
+            "Priority Date": "2021-05-13",
+            "Publication Date": "2021-09-07",
+            "Assignee": "北航（四川）西部国际创新港科技有限公司",
+            "Title": "一种针对城市环境的无人机风险评估方法及系统",
+            "Link": "https://patents.google.com/patent/CN113361862A/zh"
+        },
+        {
+            "Publication Number": "CN117434967A (zh) *",
+            "Priority Date": "2023-12-18",
+            "Publication Date": "2024-01-23",
+            "Assignee": "成都正扬博创电子技术有限公司",
+            "Title": "一种无人机防撞检测方法、系统、介质及设备",
+            "Link": "https://patents.google.com/patent/CN117434967A/zh"
+        },
+        {
+            "Publication Number": "CN117434967B (zh) *",
+            "Priority Date": "2023-12-18",
+            "Publication Date": "2024-03-15",
+            "Assignee": "成都正扬博创电子技术有限公司",
+            "Title": "一种无人机防撞检测方法、系统、介质及设备",
+            "Link": "https://patents.google.com/patent/CN117434967B/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:55:39"
+}

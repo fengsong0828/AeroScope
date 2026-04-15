@@ -1,0 +1,177 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN121070015A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES513704153">
+<invention-title id="title1" lang="ZH">一种通信覆盖增强的低空飞行器路径规划方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及通信技术领域以及路径规划技术领域，尤其涉及一种通信覆盖增强的低空飞行器路径规划方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">近年来，随着低空经济的快速发展，低空飞行器因其机动性、灵活性以及在多种场景中按需提供服务的能力而受到广泛关注。在无线通信系统的背景下，低空飞行器被视为提升覆盖范围、系统容量与通信可靠性的重要技术。当低空飞行器作为空中用户时，通常需要依托地面蜂窝网络以获得可靠的通信连接。与传统地面用户相比，低空飞行器通常在更高的空域中飞行，从而与地面基站之间形成以视距为主导的信道。一方面，这种特性使低空飞行器即使在远距离情况下也能够建立稳定链路，从而提升其连接机会；另一方面，强视距传播同时也导致低空飞行器更易受到大量非关联基站的同频干扰，给通信性能保障带来了严峻挑战。因此，在低空经济蓬勃发展的背景下，如何进行有效的干扰抑制已成为蜂窝网络中低空飞行器通信中的关键问题。</div>
+<div class="description-paragraph" id="p0005" num="0003">然而，当下的低空飞行器通信性能往往受限于固定天线结构所带来的空间自由度不足，从而限制了干扰抑制能力，导致低空飞行器的轨迹规划结果不理想。故在此提出一种通信覆盖增强的低空飞行器路径规划方法。该方法在低空飞行器上装备可移动天线阵列，通过允许天线在有限区域内灵活移动，提供额外的空间自由度和波束赋形的灵活性，从而实现更有效的干扰抑制，以在确保全程可靠通信性能的同时，最小化低空飞行器的任务完成时间。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">鉴于上述的分析，本发明旨在公开了一种通信覆盖增强的低空飞行器路径规划方法；解决低空飞行器轨迹规划受限于固定天线结构的问题。</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明公开的一种通信覆盖增强的低空飞行器路径规划方法，包括：</div>
+<div class="description-paragraph" id="p0009">对装备有可移动天线的低空飞行器与至少一个基站组成的通信系统进行建模；得到包含飞行器轨迹、天线位置、波束赋形向量和基站关联的联合状态模型；</div>
+<div class="description-paragraph" id="p0010">建立模型的离散化优化问题；所述问题以信干噪比、飞行器最大速度、天线移动范围和速度、最小天线间距、基站关联为约束，以最小化飞行器从起点到终点的任务完成时间为优化目标；</div>
+<div class="description-paragraph" id="p0011">采用选择性一致代价搜索算法在离散网格上迭代扩展节点，每次扩展时联合优化波束赋形、天线位置和基站关联，保留满足信干噪比且潜在任务时间较小的节点，至终点输出最优路径；</div>
+<div class="description-paragraph" id="p0012">飞行器按最优路径飞行并实时调整天线位置和波束赋形，保持链路质量。</div>
+<div class="description-paragraph" id="p0013" num="0006">进一步地，低空飞行器底部安装有由<span class="patent-image-not-available"></span>个可移动天线组成的二维阵列；低空飞行器以固定高度在均匀分布部署<span class="patent-image-not-available"></span>个基站的区域内飞行时，飞行器与基站组成蜂窝网联的通信系统。</div>
+<div class="description-paragraph" id="p0014" num="0007">进一步地，<span class="patent-image-not-available"></span>时刻低空飞行器的接收信干噪比<span class="patent-image-not-available"></span>为：</div>
+<div class="description-paragraph" id="p0015"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0016">其中，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>个基站的集合，<span class="patent-image-not-available"></span>，表示<span class="patent-image-not-available"></span>时刻低空飞行器与基站<span class="patent-image-not-available"></span>的关联，除基站<span class="patent-image-not-available"></span>外的其余基站则作为干扰基站；<span class="patent-image-not-available"></span>表示低空飞行器与基站<span class="patent-image-not-available"></span>通信的波束赋形向量，“<span class="patent-image-not-available"></span>”表示矢量的共轭转置；<span class="patent-image-not-available"></span>为基站的发射功率；<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>分别表示时刻<span class="patent-image-not-available"></span>基站<span class="patent-image-not-available"></span>、基站<span class="patent-image-not-available"></span>与低空飞行器之间的信道向量；<span class="patent-image-not-available"></span>为加性高斯白噪声方差。</div>
+<div class="description-paragraph" id="p0017" num="0008">进一步地，时刻<span class="patent-image-not-available"></span>基站<span class="patent-image-not-available"></span>与低空飞行器之间的信道向量<span class="patent-image-not-available"></span>表示为：</div>
+<div class="description-paragraph" id="p0018"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0019">其中，<span class="patent-image-not-available"></span>表示参考距离为1米时的路径损耗；<span class="patent-image-not-available"></span>为基站<span class="patent-image-not-available"></span>到低空飞行器欧式距离；<span class="patent-image-not-available"></span>是载波波长；<span class="patent-image-not-available"></span>表示时刻<span class="patent-image-not-available"></span>从基站<span class="patent-image-not-available"></span>指向可移动天线阵列的导向矢量；</div>
+<div class="description-paragraph" id="p0020"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0021">其中，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为天线<span class="patent-image-not-available"></span>在可移动天线面板局部坐标系的二维坐标；<span class="patent-image-not-available"></span>为基站<span class="patent-image-not-available"></span>到低空飞行器在<span class="patent-image-not-available"></span>时刻的波矢。</div>
+<div class="description-paragraph" id="p0022" num="0009">进一步地，建立模型的离散化优化问题为：</div>
+<div class="description-paragraph" id="p0023"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0024"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0025"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0026"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0027"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0028"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0029"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0030"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0031"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0032">其中<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>时刻<span class="patent-image-not-available"></span>个天线的天线位置向量，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>时刻低空飞行器与<span class="patent-image-not-available"></span>个基站通信的波束赋形矩阵，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>时刻低空飞行器的位置，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>时刻低空飞行器与基站的连接指示向量；<span class="patent-image-not-available"></span>为低空飞行器从起点到终点的任务完成时间；<span class="patent-image-not-available"></span>是低空飞行器能够保持可信赖通信的最小信干噪比阈值，<span class="patent-image-not-available"></span>是低空飞行器飞行的起点，<span class="patent-image-not-available"></span>是低空飞行器飞行的终点，<span class="patent-image-not-available"></span>是低空飞行器飞行的最大速度，<span class="patent-image-not-available"></span>是可移动天线的移动范围，<span class="patent-image-not-available"></span>是可移动天线的最大移动速度，<span class="patent-image-not-available"></span>为除第<span class="patent-image-not-available"></span>天线外的任一天线位置；<span class="patent-image-not-available"></span>是避免天线耦合效应所需的最小天线间距。</div>
+<div class="description-paragraph" id="p0033" num="0010">进一步地，采用选择性一致代价搜索算法在离散网格上迭代扩展节点的过程中，设置的扩展中间节点为：</div>
+<div class="description-paragraph" id="p0034"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0035">其中，<span class="patent-image-not-available"></span>表示低空飞行器轨迹中已访问网格点的索引；<span class="patent-image-not-available"></span>为网格点位置，<span class="patent-image-not-available"></span>为对应的天线位置，<span class="patent-image-not-available"></span>为低空飞行器-基站关联指示向量，<span class="patent-image-not-available"></span>为截至第<span class="patent-image-not-available"></span>个访问网格点的低空飞行器轨迹历史。</div>
+<div class="description-paragraph" id="p0036" num="0011">进一步地，采用选择性一致代价搜索算法在离散网格上迭代扩展节点的过程中，对于节点<span class="patent-image-not-available"></span>，定义的代价函数包括：</div>
+<div class="description-paragraph" id="p0037">飞行时间代价函数<span class="patent-image-not-available"></span>，为从初始位置<span class="patent-image-not-available"></span>沿轨迹<span class="patent-image-not-available"></span>到达网格点<span class="patent-image-not-available"></span>的累计飞行时间；</div>
+<div class="description-paragraph" id="p0038">潜在最小任务完成时间代价函数<span class="patent-image-not-available"></span>，为从初始位置<span class="patent-image-not-available"></span>到网格点<span class="patent-image-not-available"></span>的飞行时间与从 <span class="patent-image-not-available"></span>到终点<span class="patent-image-not-available"></span>的可实现飞行时间的下界之和；</div>
+<div class="description-paragraph" id="p0039"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0040">其中，<span class="patent-image-not-available"></span>为第<span class="patent-image-not-available"></span>段飞行轨迹所用的时间；</div>
+<div class="description-paragraph" id="p0041"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0042">其中，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别表示终点<span class="patent-image-not-available"></span>的x轴、y轴坐标，而<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别表示网格点<span class="patent-image-not-available"></span>的x轴、y轴坐标。</div>
+<div class="description-paragraph" id="p0043" num="0012">进一步地，规划过程包括：</div>
+<div class="description-paragraph" id="p0044">步骤S301、初始化；检查起始点是否满足信干噪比约束，若满足则生成初始节点并加入节点集合；</div>
+<div class="description-paragraph" id="p0045">步骤S302、当节点集合不为空时，执行分层筛选，从节点集合中筛选的低空飞行器潜在最小任务完成时间最小的第一节点子集合中，再筛选出低空飞行器累计飞行时间最大的第二节点子集合，在第二节点子集合中随机选择一个节点进行扩展，并在节点集合中删除该节点；</div>
+<div class="description-paragraph" id="p0046">步骤S303、判断所选节点的网格点位置是否为终点，是则找到最小的可行低空飞行器路径；否则进入下一步；</div>
+<div class="description-paragraph" id="p0047">步骤S304、对于所选节点的网格点位置的所有邻居网格点，进行邻居网格点的波束赋形向量、天线位置向量、和低空飞行器与基站的关联的联合优化，获最大信干噪比，将满足低空飞行器信干噪比约束的邻居网格点作为可行的邻居网格点；</div>
+<div class="description-paragraph" id="p0048">步骤S305、将由每个可行的邻居网格点组成的下一层节点与节点集合中已存在的，有相同的网格点位置、天线位置和低空飞行器与基站的关联的节点进行比较，保留潜在最小任务完成时间较小的节点，作为候选节点加入节点集合；</div>
+<div class="description-paragraph" id="p0049">步骤S306、限制节点集合中每一轨迹层级所存储候选节点的数量为固定值；</div>
+<div class="description-paragraph" id="p0050">步骤S307、当节点集合为空，且没有找到到达终点的节点，则该场景下没有符合约束的低空飞行器轨迹；当节点集合不为空，则返回步骤S302。</div>
+<div class="description-paragraph" id="p0051" num="0013">进一步地，在步骤304中的联合优化中，邻居网格点的波束成形向量通过最小均方误差方法求解；天线位置向量通过连续优化方法求解；低空飞行器与基站的关联中，使低空飞行器始终只与能带来最大信干噪比的基站建立连接。</div>
+<div class="description-paragraph" id="p0052" num="0014">进一步地，邻居网格点的波束成形向量的计算中，</div>
+<div class="description-paragraph" id="p0053">对于第<span class="patent-image-not-available"></span>个低空飞行器轨迹点，波束成形向量<span class="patent-image-not-available"></span>的闭式解使用最小均方误差方法计算为：</div>
+<div class="description-paragraph" id="p0054"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0055">其中，<span class="patent-image-not-available"></span>为单位矩阵, <span class="patent-image-not-available"></span>低空飞行器位于第<span class="patent-image-not-available"></span>个轨迹点时与基站<span class="patent-image-not-available"></span>的信道向量， <span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0056" num="0015">本发明可实现以下有益效果之一：</div>
+<div class="description-paragraph" id="p0057">本发明公开的通信覆盖增强的低空飞行器路径规划方法，借助可移动天线阵列与联合优化波束赋形，显著抑制非关联基站的强视距干扰，全程维持高信干噪比，保障蜂窝网络下低空飞行器的稳定连接；最小化在满足通信链路质量的情况下低空飞行器的任务完成时间，显著提高低空飞行器的轨迹规划效率；为未来的空中通信网络提供了一种超越传统天线架构的全新且有效的设计模式。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0058">附图说明</div>
+<div class="description-paragraph" id="p0059" num="0016">附图仅用于示出具体实施例的目的，而并不认为是对本发明的限制，在整个附图中，相同的参考符号表示相同的部件；</div>
+<div class="description-paragraph" id="p0060">图1为本发明实施例中的通信覆盖增强的低空飞行器路径规划方法流程图；</div>
+<div class="description-paragraph" id="p0061">图2为本发明实施例中的通信覆盖增强的低空飞行器路径规划模型图；</div>
+<div class="description-paragraph" id="p0062">图3为本发明实施例中的轨迹规划过程流程图；</div>
+<div class="description-paragraph" id="p0063">图4为本发明实施例中的低空飞行器轨迹规划结果对比图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0064">具体实施方式</div>
+<div class="description-paragraph" id="p0065" num="0017">下面结合附图来具体描述本发明的优选实施例，其中，附图构成本申请一部分，并与本发明的实施例一起用于阐释本发明的原理。</div>
+<div class="description-paragraph" id="p0066" num="0018">本发明的一个实施例公开了一种通信覆盖增强的低空飞行器路径规划方法，如图1所示，包括：</div>
+<div class="description-paragraph" id="p0067">步骤S1、对装备有可移动天线的低空飞行器与至少一个基站组成的通信系统进行建模；得到包含飞行器轨迹、天线位置、波束赋形向量和基站关联的联合状态模型；</div>
+<div class="description-paragraph" id="p0068">步骤S2、建立模型的离散化优化问题；所述问题以信干噪比、飞行器最大速度、天线移动范围和速度、最小天线间距、基站关联为约束，以最小化飞行器从起点到终点的任务完成时间为优化目标；</div>
+<div class="description-paragraph" id="p0069">步骤S3、采用选择性一致代价搜索算法在离散网格上迭代扩展节点，每次扩展时联合优化波束赋形、天线位置和基站关联，保留满足信干噪比且潜在任务时间较小的节点，至终点输出最优路径；</div>
+<div class="description-paragraph" id="p0070">步骤S4、飞行器按最优路径飞行并实时调整天线位置和波束赋形，保持链路质量。</div>
+<div class="description-paragraph" id="p0071" num="0019">具体的，在本实施例中，低空飞行器底部安装有由<span class="patent-image-not-available"></span>个可移动天线组成的二维阵列；低空飞行器以固定高度在均匀分布部署<span class="patent-image-not-available"></span>个基站的区域内飞行时，飞行器与基站组成蜂窝网联的通信系统。</div>
+<div class="description-paragraph" id="p0072" num="0020">在本实施例中的一个具体示例中，给出了以基站与低空飞行器之间的下行通信为例的通信系统，如图2所示，</div>
+<div class="description-paragraph" id="p0073">在边长<span class="patent-image-not-available"></span>m的正方形区域，低空飞行器以固定高度<span class="patent-image-not-available"></span>m飞行，起点和终点分别为 <span class="patent-image-not-available"></span>m与<span class="patent-image-not-available"></span>m。低空飞行器的最大飞行速度为<span class="patent-image-not-available"></span>m/s。在该正方形区域内，均匀部署<span class="patent-image-not-available"></span>个基站，每个基站天线高度为<span class="patent-image-not-available"></span>m。低空飞行器配备<span class="patent-image-not-available"></span>个可移动天线，其最大移动速度为 <span class="patent-image-not-available"></span>m/s。载波波长为<span class="patent-image-not-available"></span>m，最小天线间距为<span class="patent-image-not-available"></span>m。天线移动区域的边长为<span class="patent-image-not-available"></span>m。每个基站的发射功率为<span class="patent-image-not-available"></span>dBm，噪声功率为<span class="patent-image-not-available"></span> dBm，参考距离处的平均信道功率增益为<span class="patent-image-not-available"></span>dB。低空飞行器轨迹规划的粒度为<span class="patent-image-not-available"></span>m。</div>
+<div class="description-paragraph" id="p0074" num="0021">具体的，在步骤S1中的通信系统建模中，包括：</div>
+<div class="description-paragraph" id="p0075">1）建立基站<span class="patent-image-not-available"></span>到低空飞行器在<span class="patent-image-not-available"></span>时刻的波向量<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0076"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0077">其中，<span class="patent-image-not-available"></span>是基站<span class="patent-image-not-available"></span>到低空飞行器在<span class="patent-image-not-available"></span>时刻的波矢，<span class="patent-image-not-available"></span>是载波波长，<span class="patent-image-not-available"></span>是低空飞行器在<span class="patent-image-not-available"></span>时刻的水平坐标，<span class="patent-image-not-available"></span>为基站<span class="patent-image-not-available"></span>的水平坐标。</div>
+<div class="description-paragraph" id="p0078" num="0022">2）建立时刻<span class="patent-image-not-available"></span>从基站<span class="patent-image-not-available"></span>指向可移动天线阵列的导向矢量<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0079"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0080">其中，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>；<span class="patent-image-not-available"></span>为天线<span class="patent-image-not-available"></span>在可移动天线面板局部坐标系的二维坐标，<span class="patent-image-not-available"></span>为可移动天线面板的范围；</div>
+<div class="description-paragraph" id="p0081">3）时刻<span class="patent-image-not-available"></span>基站<span class="patent-image-not-available"></span>与低空飞行器之间的信道向量<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0082"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0083">其中，<span class="patent-image-not-available"></span>表示参考距离为1米时的路径损耗；<span class="patent-image-not-available"></span>为基站<span class="patent-image-not-available"></span>到低空飞行器欧式距离，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0084"> <span class="patent-image-not-available"></span>为基站<span class="patent-image-not-available"></span>到低空飞行器的信道功率增益。</div>
+<div class="description-paragraph" id="p0085" num="0023">4）低空飞行器与基站的连接指示向量<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0086"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0087">其中<span class="patent-image-not-available"></span>表示低空飞行器与基站<span class="patent-image-not-available"></span>的关联状态。</div>
+<div class="description-paragraph" id="p0088" num="0024">具体而言，当低空飞行器在时刻<span class="patent-image-not-available"></span>通过分配的时频资源块与基站<span class="patent-image-not-available"></span>建立通信链路时，<span class="patent-image-not-available"></span>，此时其余基站则作为干扰基站，其中<span class="patent-image-not-available"></span>；否则，<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0089" num="0025">5）<span class="patent-image-not-available"></span>时刻低空飞行器的接收信干噪比<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0090"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0091">其中，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>个基站的集合，<span class="patent-image-not-available"></span>，表示<span class="patent-image-not-available"></span>时刻低空飞行器与基站<span class="patent-image-not-available"></span>的关联，除基站<span class="patent-image-not-available"></span>外的其余基站则作为干扰基站；<span class="patent-image-not-available"></span>表示低空飞行器与基站<span class="patent-image-not-available"></span>通信的波束赋形向量，“<span class="patent-image-not-available"></span>”表示矢量的共轭转置；<span class="patent-image-not-available"></span>为基站的发射功率；<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>分别表示时刻<span class="patent-image-not-available"></span>基站<span class="patent-image-not-available"></span>、基站<span class="patent-image-not-available"></span>与低空飞行器之间的信道向量；<span class="patent-image-not-available"></span>为加性高斯白噪声方差。</div>
+<div class="description-paragraph" id="p0092" num="0026">具体的，在步骤S2中，建立模型的离散化优化问题为：</div>
+<div class="description-paragraph" id="p0093"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0094"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0095"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0096"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0097"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0098"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0099"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0100"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0101"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0102">其中<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>时刻<span class="patent-image-not-available"></span>个天线的天线位置向量，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>时刻低空飞行器与<span class="patent-image-not-available"></span>个基站通信的波束赋形矩阵，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>时刻低空飞行器的位置，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>时刻低空飞行器与基站的连接指示向量；<span class="patent-image-not-available"></span>为低空飞行器从起点到终点的任务完成时间；<span class="patent-image-not-available"></span>是低空飞行器能够保持可信赖通信的最小信干噪比阈值，<span class="patent-image-not-available"></span>是低空飞行器飞行的起点，<span class="patent-image-not-available"></span>是低空飞行器飞行的终点，<span class="patent-image-not-available"></span>是低空飞行器飞行的最大速度，<span class="patent-image-not-available"></span>是可移动天线的移动范围，<span class="patent-image-not-available"></span>是可移动天线的最大移动速度，<span class="patent-image-not-available"></span>为除第<span class="patent-image-not-available"></span>天线外的任一天线位置；<span class="patent-image-not-available"></span>是避免天线耦合效应所需的最小天线间距。</div>
+<div class="description-paragraph" id="p0103" num="0027">具体的，所述步骤S3中，对飞行区域进行离散网格的示例中，</div>
+<div class="description-paragraph" id="p0104">低空飞行器在高度为<span class="patent-image-not-available"></span>的平飞高度处的一个边长为<span class="patent-image-not-available"></span>的正方形区域飞行，其中<span class="patent-image-not-available"></span>的取值足够大以覆盖低空飞行器飞行过程中的所有可能位置。将该区域按照粒度<span class="patent-image-not-available"></span>离散化为<span class="patent-image-not-available"></span>个网格，其中<span class="patent-image-not-available"></span>，因此一共有<span class="patent-image-not-available"></span>个离散点。粒度<span class="patent-image-not-available"></span>足够小，可以保证在每个网格单元内的信干噪比不变。记<span class="patent-image-not-available"></span>为第<span class="patent-image-not-available"></span>个网格点的位置，其中<span class="patent-image-not-available"></span>。由此，通过路径离散化方法，当低空飞行器的轨迹为<span class="patent-image-not-available"></span>条线段时，低空飞行器在飞行过程中共访问<span class="patent-image-not-available"></span>个网格点。</div>
+<div class="description-paragraph" id="p0105" num="0028">在本实施例中，采用选择性一致代价搜索算法在离散网格上迭代扩展节点的过程中，设置的扩展中间节点为：</div>
+<div class="description-paragraph" id="p0106"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0107">其中，<span class="patent-image-not-available"></span>表示低空飞行器轨迹中已访问网格点的索引，即节点的层级，<span class="patent-image-not-available"></span>的最大值为M+1，M为规划轨迹中包括的线段数；<span class="patent-image-not-available"></span>为网格点位置，<span class="patent-image-not-available"></span>为对应的天线位置，<span class="patent-image-not-available"></span>为低空飞行器-基站关联指示向量，<span class="patent-image-not-available"></span>为截至第<span class="patent-image-not-available"></span>个访问网格点的低空飞行器轨迹历史。</div>
+<div class="description-paragraph" id="p0108" num="0029">进一步地，采用选择性一致代价搜索算法在离散网格上迭代扩展节点的过程中，对于节点<span class="patent-image-not-available"></span>，定义的代价函数包括：</div>
+<div class="description-paragraph" id="p0109">飞行时间代价函数<span class="patent-image-not-available"></span>，为从初始位置<span class="patent-image-not-available"></span>沿轨迹<span class="patent-image-not-available"></span>到达网格点<span class="patent-image-not-available"></span>的累计飞行时间；</div>
+<div class="description-paragraph" id="p0110">潜在最小任务完成时间代价函数<span class="patent-image-not-available"></span>，为从初始位置<span class="patent-image-not-available"></span>到网格点<span class="patent-image-not-available"></span>的飞行时间与从 <span class="patent-image-not-available"></span>到终点<span class="patent-image-not-available"></span>的可实现飞行时间的下界之和；</div>
+<div class="description-paragraph" id="p0111"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0112">其中，<span class="patent-image-not-available"></span>为第<span class="patent-image-not-available"></span>段飞行轨迹所用的时间；</div>
+<div class="description-paragraph" id="p0113"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0114">其中，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别表示终点<span class="patent-image-not-available"></span>的x轴、y轴坐标，而<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别表示网格点<span class="patent-image-not-available"></span>的x轴、y轴坐标。</div>
+<div class="description-paragraph" id="p0115" num="0030">如图3所示，步骤S3中的规划过程包括：</div>
+<div class="description-paragraph" id="p0116">步骤S301、初始化；检查起始点是否满足信干噪比约束，若满足则生成初始节点并加入节点集合；</div>
+<div class="description-paragraph" id="p0117">即，当起始点<span class="patent-image-not-available"></span>的信干噪比大于低空飞行器能够保持可信赖通信的最小信干噪比阈值；则生成初始节点<span class="patent-image-not-available"></span>并加入节点集合<span class="patent-image-not-available"></span>；<span class="patent-image-not-available"></span>为起始点的天线位置，<span class="patent-image-not-available"></span>为起始点的低空飞行器-基站关联指示向量，<span class="patent-image-not-available"></span>为第0个访问网格点的低空飞行器轨迹历史。</div>
+<div class="description-paragraph" id="p0118" num="0031">步骤S302、当节点集合不为空时，执行分层筛选，从节点集合中筛选的低空飞行器潜在最小任务完成时间最小的第一节点子集合中，再筛选出低空飞行器累计飞行时间最大的第二节点子集合，在第二节点子集合中随机选择一个节点进行扩展，并在节点集合中删除该节点；</div>
+<div class="description-paragraph" id="p0119">第一节点子集合<span class="patent-image-not-available"></span>；第二节点子集合<span class="patent-image-not-available"></span>，在第二节点子集合<span class="patent-image-not-available"></span>中随机选择一个节点<span class="patent-image-not-available"></span>进行扩展，并在节点集合<span class="patent-image-not-available"></span>中删除该节点。</div>
+<div class="description-paragraph" id="p0120" num="0032">步骤S303、判断所选节点的网格点位置<span class="patent-image-not-available"></span>是否为终点<span class="patent-image-not-available"></span>，是则找到最小的可行低空飞行器路径；否则进入下一步；</div>
+<div class="description-paragraph" id="p0121">步骤S304、对于所选节点的网格点位置<span class="patent-image-not-available"></span>的所有邻居网格点，进行邻居网格点的波束赋形向量、天线位置向量、和低空飞行器与基站的关联的联合优化，获最大信干噪比，将满足低空飞行器信干噪比约束的邻居网格点作为可行的邻居网格点；</div>
+<div class="description-paragraph" id="p0122">步骤S305、将由每个可行的邻居网格点组成的下一层节点<span class="patent-image-not-available"></span>与节点集合<span class="patent-image-not-available"></span>中已存在的，有相同的网格点位置、天线位置和低空飞行器与基站的关联的节点进行比较，保留潜在最小任务完成时间较小的节点，作为候选节点加入节点集合；</div>
+<div class="description-paragraph" id="p0123">步骤S306、限制节点集合中每一轨迹层级所存储候选节点的数量为固定值c；</div>
+<div class="description-paragraph" id="p0124"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0125">步骤S307、当节点集合为空，且没有找到到达终点<span class="patent-image-not-available"></span>的节点，则该场景下没有符合约束的低空飞行器轨迹；当节点集合不为空，则返回步骤302。</div>
+<div class="description-paragraph" id="p0126" num="0033">具体的，在步骤S304中的联合优化中，邻居网格点的波束成形向量通过最小均方误差方法求解；天线位置向量通过连续优化方法求解；低空飞行器与基站的关联中，使低空飞行器始终只与能带来最大信干噪比的基站建立连接。</div>
+<div class="description-paragraph" id="p0127" num="0034">更为具体的，邻居网格点的波束成形向量的计算中，</div>
+<div class="description-paragraph" id="p0128">对于第<span class="patent-image-not-available"></span>个低空飞行器轨迹点，波束成形向量<span class="patent-image-not-available"></span>的闭式解使用最小均方误差方法计算为：</div>
+<div class="description-paragraph" id="p0129"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0130">其中，<span class="patent-image-not-available"></span>为单位矩阵，<span class="patent-image-not-available"></span>低空飞行器位于第<span class="patent-image-not-available"></span>个轨迹点时与基站<span class="patent-image-not-available"></span>的信道向量， <span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0131" num="0035">更为具体的，邻居网格点的天线位置向量的计算中，</div>
+<div class="description-paragraph" id="p0132">在已知波束赋形向量和此网格点的天线位置向量后，邻居网格点天线位置向量的优化问题可以被简化为：</div>
+<div class="description-paragraph" id="p0133"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0134"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0135"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0136"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0137">该优化问题可以使用连续优化算法解决。</div>
+<div class="description-paragraph" id="p0138" num="0036">由于第2条约束为非凸约束，使用柯西–施瓦茨不等式可以将该约束松弛为：</div>
+<div class="description-paragraph" id="p0139"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0140">其中，<span class="patent-image-not-available"></span>为连续优化算法第<span class="patent-image-not-available"></span>步迭代过程中的天线位置向量。</div>
+<div class="description-paragraph" id="p0141" num="0037">此时，该优化问题所有约束均为凸约束，因此在每一次迭代中，我们可以首先求解如下的上升方向寻找问题：</div>
+<div class="description-paragraph" id="p0142"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0143"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0144"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0145"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0146">其中，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>在<span class="patent-image-not-available"></span>处的梯度，可以由如下公式得到：</div>
+<div class="description-paragraph" id="p0147"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0148">其中，<span class="patent-image-not-available"></span>是一个<span class="patent-image-not-available"></span>维向量，其第<span class="patent-image-not-available"></span>个元素为1，其余元素为0。该问题为凸优化问题，可以使用标准优化工具箱高效地求解。</div>
+<div class="description-paragraph" id="p0149" num="0038">然后，通过一维搜索方法求得上升方向的步长<span class="patent-image-not-available"></span>为：</div>
+<div class="description-paragraph" id="p0150"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0151">最后，<span class="patent-image-not-available"></span>可以更新为：</div>
+<div class="description-paragraph" id="p0152"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0153">该连续优化算法的迭代在当<span class="patent-image-not-available"></span>的增大量小于阈值<span class="patent-image-not-available"></span>时停止。</div>
+<div class="description-paragraph" id="p0154" num="0039">更为具体的，邻居网格点的低空飞行器-基站关联指示向量计算中，</div>
+<div class="description-paragraph" id="p0155">低空飞行器-基站关联指示值为 <span class="patent-image-not-available"></span>，其中<span class="patent-image-not-available"></span>为使得低空飞行器接收信干噪比最大的基站的索引。</div>
+<div class="description-paragraph" id="p0156" num="0040">步骤S305和步骤S306通过减少可扩展节点的数量降低路径规划算法的复杂度。步骤S307表示当节点集合为空时，无法获得满足条件的低空飞行器轨迹。</div>
+<div class="description-paragraph" id="p0157" num="0041">当得到轨迹规划结果后，在步骤S4中，飞行器按规划的最优路径飞行并实时调整天线位置和波束赋形，保持链路质量，实现通信覆盖增强。</div>
+<div class="description-paragraph" id="p0158" num="0042">如图4所示，本实施例还给出了在本通信覆盖增强的低空飞行器路径规划方法中，使用装备可移动天线的低空飞行器和装备传统固定天线的低空飞行器、装备稀疏天线的低空飞行器轨迹规划对比，装备可移动天线的低空飞行器方案，允许飞行器沿更直、更短的轨迹飞行，显著压缩任务时间，验证了本实施例中的通信覆盖增强效果。</div>
+<div class="description-paragraph" id="p0159" num="0043">综上所述，本实施例公开的通信覆盖增强的低空飞行器路径规划方法，借助可移动天线阵列与联合优化波束赋形，显著抑制非关联基站的强视距干扰，全程维持高信干噪比，保障蜂窝网络下低空飞行器的稳定连接；最小化在满足通信链路质量的情况下低空飞行器的任务完成时间，显著提高低空飞行器的轨迹规划效率；为未来的空中通信网络提供了一种超越传统天线架构的全新且有效的设计模式。</div>
+<div class="description-paragraph" id="p0160" num="0044">以上所述，仅为本发明较佳的具体实施方式，但本发明的保护范围并不局限于此，任何熟悉本技术领域的技术人员在本发明揭露的技术范围内，可轻易想到的变化或替换，都应涵盖在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

@@ -1,0 +1,37 @@
+{
+    "patent_id": "CN119295985A",
+    "title": "CN119295985A - 基于多模态监测的低空飞行器全景侦测方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shenzhen Xiyue Wisdom Data Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119295985A/zh",
+    "citations": [
+        {
+            "Publication Number": "JP2005157823A (ja) *",
+            "Priority Date": "2003-11-27",
+            "Publication Date": "2005-06-16",
+            "Assignee": "Nippon Telegr & Teleph Corp <Ntt>",
+            "Title": "知識ベースシステム、および同システムにおける単語間の意味関係判別方法、ならびにそのコンピュータプログラム",
+            "Link": "https://patents.google.com/patent/JP2005157823A/ja"
+        },
+        {
+            "Publication Number": "US20220051083A1 (en) *",
+            "Priority Date": "2020-08-11",
+            "Publication Date": "2022-02-17",
+            "Assignee": "Nec Laboratories America, Inc.",
+            "Title": "Learning word representations via commonsense reasoning",
+            "Link": "https://patents.google.com/patent/US20220051083A1/en"
+        },
+        {
+            "Publication Number": "CN116993306A (zh) *",
+            "Priority Date": "2023-06-15",
+            "Publication Date": "2023-11-03",
+            "Assignee": "中国科学院自动化研究所",
+            "Title": "基于知识图谱的网络协同制造系统的构建方法和装置",
+            "Link": "https://patents.google.com/patent/CN116993306A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:59:11"
+}

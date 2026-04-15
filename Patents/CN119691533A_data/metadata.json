@@ -1,0 +1,45 @@
+{
+    "patent_id": "CN119691533A",
+    "title": "CN119691533A - 一种基于clkan-rf框架的低空飞行器传感器异常检测方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Guizhou University",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119691533A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN116821858A (zh) *",
+            "Priority Date": "2023-07-27",
+            "Publication Date": "2023-09-29",
+            "Assignee": "贵州大学",
+            "Title": "基于混合模型的无人机飞行数据异常检测和恢复方法",
+            "Link": "https://patents.google.com/patent/CN116821858A/zh"
+        },
+        {
+            "Publication Number": "CN117874673A (zh) *",
+            "Priority Date": "2023-12-18",
+            "Publication Date": "2024-04-12",
+            "Assignee": "复旦大学",
+            "Title": "一种异常数据检测、解释方法",
+            "Link": "https://patents.google.com/patent/CN117874673A/zh"
+        },
+        {
+            "Publication Number": "CN118586442A (zh) *",
+            "Priority Date": "2024-08-05",
+            "Publication Date": "2024-09-03",
+            "Assignee": "济南大学",
+            "Title": "新框架光伏功率预测方法及系统、计算机可读存储介质",
+            "Link": "https://patents.google.com/patent/CN118586442A/zh"
+        },
+        {
+            "Publication Number": "CN119357870A (zh) *",
+            "Priority Date": "2024-11-05",
+            "Publication Date": "2025-01-24",
+            "Assignee": "浙江工业大学",
+            "Title": "融合多头注意力的变分自编码器热计量数据异常检测方法",
+            "Link": "https://patents.google.com/patent/CN119357870A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:09:57"
+}

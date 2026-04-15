@@ -1,0 +1,112 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120302357A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES499336520">
+<invention-title id="title1" lang="ZH">一种实现低空飞行器多链路切换与冗余传输的方法和介质</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及一种实现低空飞行器多链路切换与冗余传输的方法和介质，属于低空飞行器技术领域。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空飞行器，尤其是电动垂直起降飞行器在城市空中交通、应急救援等领域的迅速发展，对其通信系统的可靠性和实时性提出了更高要求。为了确保飞行安全及任务连续性，低空飞行器通常配备多条通信链路，用于实现飞行数据、系统状态及环境感知信息的稳定回传。</div>
+<div class="description-paragraph" id="p0005" num="0003">现有技术中多链路通信策略主要分为两类：一类是采用纯冗余传输机制，即将相同的数据同时通过多条链路发送至地面端；另一类是采用链路切换机制，即在主链路失效或性能下降至一定阈值时切换至备用链路。纯冗余机制虽然能够提高数据传输的可靠性，但会导致带宽资源浪费、能耗上升以及系统处理开销增加。纯切换机制能够优化资源利用，但在链路质量逐步劣化过程中存在数据丢失风险，且切换延迟可能影响飞行控制数据的及时性，带来安全隐患。</div>
+<div class="description-paragraph" id="p0006" num="0004">部分技术方案基于链路性能权重动态分配数据流，虽能实现一定程度的资源优化，但通常缺乏明确的链路状态分级标准，无法针对不同质量状况采取有针对性的传输策略。同时现有多链路管理方案普遍忽略了对数据包重要性的区分处理，所有数据均采用统一的传输策略，导致在资源受限或链路劣化环境下，关键控制数据的传输可靠性无法得到有效保障。</div>
+<div class="description-paragraph" id="p0007" num="0005">综上所述，现有低空飞行器多链路通信技术在链路状态动态感知、策略切换精度、关键数据保障及系统资源利用效率方面仍存在不足。亟需一种能够根据实时链路质量变化进行精细化状态划分，并据此灵活调整传输策略，同时兼顾通信可靠性和资源优化利用的多链路管理方法，以提高低空飞行器在复杂通信环境下的稳定性与飞行安全性。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0008">发明内容</div>
+<div class="description-paragraph" id="p0009" num="0006">本发明的目的在于克服现有技术中的不足，提供一种实现低空飞行器多链路切换与冗余传输的方法，解决了低空飞行器在多链路通信中缺乏智能切换与差异化传输机制的问题，提升其在复杂网络环境下的通信可靠性与资源利用效率。</div>
+<div class="description-paragraph" id="p0010" num="0007">为达到上述目的，本发明是采用下述技术方案实现的：</div>
+<div class="description-paragraph" id="p0011" num="0008">第一方面，本发明提供了一种基于低空飞行器的低时延数据转换方法，包括：</div>
+<div class="description-paragraph" id="p0012" num="0009">构建低空飞行器与地面控制中心之间的通信链路，动态检测各通信链路的质量指标；</div>
+<div class="description-paragraph" id="p0013" num="0010">根据检测到的质量指标计算通信链路综合质量评价值；</div>
+<div class="description-paragraph" id="p0014" num="0011">根据所述通信链路综合质量评价值确定通信链路状态；</div>
+<div class="description-paragraph" id="p0015" num="0012">根据通信链路状态进行多链路切换与冗余传输。</div>
+<div class="description-paragraph" id="p0016" num="0013">进一步地，所述通信链路的链路类型包括自组网、蜂窝通信链路和低轨卫星链路；</div>
+<div class="description-paragraph" id="p0017" num="0014">为每条通信链路分配唯一的链路标识符LinkID，并将所述通信链路的信息注册至链路池中，所述链路池用于管理通信链路的状态和参数；</div>
+<div class="description-paragraph" id="p0018" num="0015">在系统运行过程中周期性监测通信链路存活状态，检测到通信链路连续超时或丢包率异常升高，注销对应通信链路并从链路池中移除。</div>
+<div class="description-paragraph" id="p0019" num="0016">进一步地，所述动态检测各通信链路的质量指标包括：</div>
+<div class="description-paragraph" id="p0020" num="0017">按照预设的采样周期，周期性地向各通信链路发送探测数据包；</div>
+<div class="description-paragraph" id="p0021" num="0018">记录探测数据包的发送时间戳和接收时间戳，计算单次往返时延<span class="patent-image-not-available"></span>：</div>
+<div class="description-paragraph" id="p0022" num="0019"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0023" num="0020">式中：<span class="patent-image-not-available"></span>表示发送时间，<span class="patent-image-not-available"></span>表示接收时间；</div>
+<div class="description-paragraph" id="p0024" num="0021">在设定时间窗口内统计发送与接收的探测包数量，计算通信链路的丢包率<span class="patent-image-not-available"></span>：</div>
+<div class="description-paragraph" id="p0025" num="0022"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0026" num="0023">式中：<span class="patent-image-not-available"></span>表示发送探测包的数量，<span class="patent-image-not-available"></span>表示接收探测包的数量；</div>
+<div class="description-paragraph" id="p0027" num="0024">基于连续<span class="patent-image-not-available"></span>测量结果，计算通信链路抖动值<span class="patent-image-not-available"></span>：</div>
+<div class="description-paragraph" id="p0028" num="0025"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0029" num="0026">式中：n表示<span class="patent-image-not-available"></span>测量次数，<span class="patent-image-not-available"></span>表示第i+1次测得的往返时延，<span class="patent-image-not-available"></span>表示第i次测得的往返时延；</div>
+<div class="description-paragraph" id="p0030" num="0027">将采集到的往返时延<span class="patent-image-not-available"></span>、丢包率<span class="patent-image-not-available"></span>和抖动值<span class="patent-image-not-available"></span>作为质量指标。</div>
+<div class="description-paragraph" id="p0031" num="0028">进一步地，所述通信链路综合质量评价值的计算包括：</div>
+<div class="description-paragraph" id="p0032" num="0029">根据预设权重系数<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>计算每条通信链路的综合质量评价值Q，如下式所示：</div>
+<div class="description-paragraph" id="p0033" num="0030"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0034" num="0031"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0035" num="0032">式中：<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>分别表示往返时延、丢包率、抖动值对应的预设权重系数，<span class="patent-image-not-available"></span>表示接收到的最大往返时延，<span class="patent-image-not-available"></span>表示接收到的最大丢包率，<span class="patent-image-not-available"></span>表示接收到的最大抖动，<span class="patent-image-not-available"></span>表示往返时延预设的最大参考值，<span class="patent-image-not-available"></span>表示丢包率预设的最大参考值，<span class="patent-image-not-available"></span>表示抖动值预设的最大参考值。</div>
+<div class="description-paragraph" id="p0036" num="0033">进一步地，根据所述通信链路综合质量评价值确定通信链路状态包括：</div>
+<div class="description-paragraph" id="p0037" num="0034">将所述通信链路综合质量评价值Q分别与预设的第一阈值T<sub>1</sub>、第二阈值T<sub>2</sub>进行比较，将通信链路状态划分为多个等级，其中：</div>
+<div class="description-paragraph" id="p0038" num="0035">当Q &lt; T<sub>1</sub>时，表示通信链路质量良好；</div>
+<div class="description-paragraph" id="p0039" num="0036">当T<sub>1</sub>≤ Q &lt; T<sub>2</sub>时，表示通信链路轻度劣化；</div>
+<div class="description-paragraph" id="p0040" num="0037">当Q ≥ T<sub>2</sub>时，表示通信链路严重劣化。</div>
+<div class="description-paragraph" id="p0041" num="0038">进一步地，根据所述通信链路状态进行多链路切换与冗余传输包括：</div>
+<div class="description-paragraph" id="p0042" num="0039">当通信链路质量良好时，直接通过当前通信链路传输数据；</div>
+<div class="description-paragraph" id="p0043" num="0040">当通信链路轻度劣化时，启动关键数据包的冗余传输策略；</div>
+<div class="description-paragraph" id="p0044" num="0041">当通信链路严重劣化时，立即触发备用链路预建立连接，完成数据流切换至备用链路。</div>
+<div class="description-paragraph" id="p0045" num="0042">进一步地，当通信链路轻度劣化时，启动关键数据包的冗余传输策略包括：</div>
+<div class="description-paragraph" id="p0046" num="0043">选定重要性高的数据包作为关键数据包，标注关键属性；</div>
+<div class="description-paragraph" id="p0047" num="0044">在当前主链路上正常发送数据包时，在备用链路上对所述关键数据包进行同步冗余发送；</div>
+<div class="description-paragraph" id="p0048" num="0045">所述关键数据包中携带数据序列号和时间戳信息，用于接收端对所述关键数据包的数据去重和重组。</div>
+<div class="description-paragraph" id="p0049" num="0046">进一步地，当通信链路严重劣化时，立即触发备用链路预建立连接，完成数据流切换至备用链路包括：</div>
+<div class="description-paragraph" id="p0050" num="0047">提前在备用链路上完成连接预建立，保持备用链路处于就绪状态；</div>
+<div class="description-paragraph" id="p0051" num="0048">在触发切换条件时，将数据流快速迁移至备用链路，同时在切换窗口期内在主链路和备用链路上双路发送数据以确保数据不中断；</div>
+<div class="description-paragraph" id="p0052" num="0049">在备用链路确认数据接收无误后，断开原主链路连接。</div>
+<div class="description-paragraph" id="p0053" num="0050">进一步地，接收端接收来自不同通信链路传输的多个数据包；</div>
+<div class="description-paragraph" id="p0054" num="0051">根据所述数据包携带的序列号信息，采用哈希表去重算法去除重复数据包；</div>
+<div class="description-paragraph" id="p0055" num="0052">根据所述序列号大小顺序，重组连续数据流，确保数据顺序一致性；</div>
+<div class="description-paragraph" id="p0056" num="0053">将去重并重组后的数据流提供给应用层进行业务处理。</div>
+<div class="description-paragraph" id="p0057" num="0054">第二方面，本发明提供了一种计算机可读存储介质，其上存储有计算机程序，该程序被处理器执行时实现权利要求1至9任一项所述的实现低空飞行器多链路切换与冗余传输的方法的步骤。</div>
+<div class="description-paragraph" id="p0058" num="0055">与现有技术相比，本发明达到的有益效果：</div>
+<div class="description-paragraph" id="p0059" num="0056">本发明所提供的多链路切换与冗余传输的方法，实现了链路状态分级、动态策略切换与关键数据冗余保障，兼顾通信稳定性与系统资源优化，提高了飞行器通信的鲁棒性与实时性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0060">附图说明</div>
+<div class="description-paragraph" id="p0061" num="0057">图1为本发明提供的一种实现低空飞行器多链路切换与冗余传输的方法流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0062">具体实施方式</div>
+<div class="description-paragraph" id="p0063" num="0058">下面通过附图以及具体实施例对本发明技术方案做详细的说明，应当理解本申请实施例以及实施例中的具体特征是对本申请技术方案的详细的说明，而不是对本申请技术方案的限定，在不冲突的情况下，本申请实施例以及实施例中的技术特征可以相互组合。</div>
+<div class="description-paragraph" id="p0064" num="0059">术语“第一”、“第二”等仅用于描述目的，而不能理解为指示或暗示相对重要性或者隐含指明所指示的技术特征的数量。由此，限定有“第一”、“第二”等的特征可以明示或者隐含地包括一个或者更多个该特征。在本公开/本申请的描述中，除非另有说明，“多个”的含义是两个或两个以上。</div>
+<div class="description-paragraph" id="p0065" num="0060">实施例一：</div>
+<div class="description-paragraph" id="p0066" num="0061">本实施例提供了一种实现低空飞行器多链路切换与冗余传输的方法，适用于eVTOL类飞行器在飞行过程中对多种通信链路的智能管理。所述方法由飞行器端与地面站端协同完成，通过构建多条通信链路，动态评估通信链路质量并进行分级管理，从而实现通信链路选择优化与关键数据的可靠传输，如图1所示，包括：</div>
+<div class="description-paragraph" id="p0067" num="0062">构建通信链路并初始化系统；在飞行器系统启动时，分别建立4G蜂窝通信链路、自组网通信链路和低轨卫星链路三种通信通道，系统为每条通信链路分配唯一的链路标识符LinkID，并注册至链路池中进行统一管理。链路池用于记录各通信链路的当前状态、接口信息和上次测量数据，作为后续调度管理的基础，每条通信链路在注册时均初始化状态为“可用”。</div>
+<div class="description-paragraph" id="p0068" num="0063">本实施例中飞行器端设置采样周期为100ms，向每条通信链路周期性发送探测包。系统记录每次发送与响应的时间戳，用于计算单次往返时延<span class="patent-image-not-available"></span>，如下式所示：</div>
+<div class="description-paragraph" id="p0069" num="0064"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0070" num="0065">式中：<span class="patent-image-not-available"></span>表示发送时间，<span class="patent-image-not-available"></span>表示接收时间；</div>
+<div class="description-paragraph" id="p0071" num="0066">在设定时间窗口内统计发送与接收的探测包数量，计算通信链路的丢包率<span class="patent-image-not-available"></span>，如下式所示：</div>
+<div class="description-paragraph" id="p0072" num="0067"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0073" num="0068">式中：<span class="patent-image-not-available"></span>表示发送探测包的数量，<span class="patent-image-not-available"></span>表示接收探测包的数量；</div>
+<div class="description-paragraph" id="p0074" num="0069">基于连续<span class="patent-image-not-available"></span>测量结果，计算通信链路抖动值<span class="patent-image-not-available"></span>：</div>
+<div class="description-paragraph" id="p0075" num="0070"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0076" num="0071">式中：n表示<span class="patent-image-not-available"></span>测量次数，<span class="patent-image-not-available"></span>表示第i+1次测得的往返时延，<span class="patent-image-not-available"></span>表示第i次测得的往返时延；</div>
+<div class="description-paragraph" id="p0077" num="0072">将采集到的往返时延<span class="patent-image-not-available"></span>、丢包率<span class="patent-image-not-available"></span>和抖动值<span class="patent-image-not-available"></span>作为质量指标。</div>
+<div class="description-paragraph" id="p0078" num="0073">根据预设权重系数<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>计算每条通信链路的综合质量评价值Q，本实施例中设置<span class="patent-image-not-available"></span>=0.4，<span class="patent-image-not-available"></span>=0.4，<span class="patent-image-not-available"></span>=0.2，如下式所示：</div>
+<div class="description-paragraph" id="p0079" num="0074"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0080" num="0075"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0081" num="0076">式中：<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>分别表示往返时延、丢包率、抖动值对应的预设权重系数，<span class="patent-image-not-available"></span>表示接收到的最大往返时延，<span class="patent-image-not-available"></span>表示接收到的最大丢包率，<span class="patent-image-not-available"></span>表示接收到的最大抖动，<span class="patent-image-not-available"></span>表示往返时延预设的最大参考值，<span class="patent-image-not-available"></span>表示丢包率预设的最大参考值，<span class="patent-image-not-available"></span>表示抖动值预设的最大参考值。</div>
+<div class="description-paragraph" id="p0082" num="0077">将所述通信链路综合质量评价值Q分别与预设的第一阈值T<sub>1</sub>、第二阈值T<sub>2</sub>进行比较，系统设置第一阈值T<sub>1</sub>=0.4，第二阈值T<sub>2</sub>=0.7，将通信链路状态划分为多个等级，其中：</div>
+<div class="description-paragraph" id="p0083" num="0078">当Q &lt; T<sub>1</sub>时，判定通信链路处于绿色状态，表示通信链路质量良好，直接通过当前通信链路传输数据，无需冗余；</div>
+<div class="description-paragraph" id="p0084" num="0079">当T<sub>1</sub>≤ Q &lt; T<sub>2</sub>时，判定通信链路处于黄色状态，表示通信链路轻度劣化，系统识别当前待发送数据中标记为关键的数据包，如飞行控制指令、姿态控制命令等，执行主链路与备用链路的双链路冗余传输；</div>
+<div class="description-paragraph" id="p0085" num="0080">当Q ≥ T<sub>2</sub>时，判定通信链路处于红色状态，表示通信链路严重劣化，立即启动备用链路的连接预建立过程，采用QUIC协议进行握手，确保备用链路提前进入“连接可用”状态，并完成数据流的无缝切换。在切换期间，关键数据仍以冗余方式在主链路与备用链路上同时传输，确保切换期间数据不丢失。</div>
+<div class="description-paragraph" id="p0086" num="0081">地面端接收模块支持多链路输入，所有接收到的数据包均携带序列号信息。系统构建哈希表，以序列号作为索引字段，执行冗余数据识别与去重操作：当某数据包序列号首次出现时，写入哈希表并保留数据；若再次出现相同序列号的数据包，则视为重复包，直接丢弃。为避免哈希表无限增长，系统设置清理机制，定期清除过期记录。</div>
+<div class="description-paragraph" id="p0087" num="0082">完成去重后的数据包根据序列号顺序进行重新组合，形成连续数据流。所述数据流经缓冲处理后，输入至飞行器应用层系统，供飞控计算模块、遥测显示模块、任务调度模块等后续处理使用，确保数据完整性、顺序性和实时性。</div>
+<div class="description-paragraph" id="p0088" num="0083">实施例二：</div>
+<div class="description-paragraph" id="p0089" num="0084">本发明实施例还提供了一种计算机可读存储介质，其上存储有计算机程序，该程序被处理器执行时首先实现上述实施例一所述的实现低空飞行器多链路切换与冗余传输的方法的步骤。</div>
+<div class="description-paragraph" id="p0090" num="0085">所述计算机可读存储介质包括：U盘、移动硬盘、只读存储器（read-only memory，ROM）、随机存取存储器（random access memory，RAM）、磁碟或者光盘等各种可以存储程序代码的介质。</div>
+<div class="description-paragraph" id="p0091" num="0086">本领域内的技术人员应明白，本申请的实施例可提供为方法、系统、或计算机程序产品。因此，本申请可采用完全硬件实施例、完全软件实施例、或结合软件和硬件方面的实施例的形式。而且，本申请可采用在一个或多个其中包含有计算机可用程序代码的计算机可用存储介质（包括但不限于磁盘存储器、CD-ROM、光学存储器等）上实施的计算机程序产品的形式。</div>
+<div class="description-paragraph" id="p0092" num="0087">本申请是参照根据本申请实施例的方法、设备（系统）、和计算机程序产品的流程图和／或方框图来描述的。应理解可由计算机程序指令实现流程图和／或方框图中的每一流程和／或方框、以及流程图和／或方框图中的流程和／或方框的结合。可提供这些计算机程序指令到通用计算机、专用计算机、嵌入式处理机或其他可编程数据处理设备的处理器以产生一个机器，使得通过计算机或其他可编程数据处理设备的处理器执行的指令产生用于实现在流程图一个流程或多个流程和／或方框图一个方框或多个方框中指定的功能的装置。</div>
+<div class="description-paragraph" id="p0093" num="0088">这些计算机程序指令也可存储在能引导计算机或其他可编程数据处理设备以特定方式工作的计算机可读存储器中，使得存储在该计算机可读存储器中的指令产生包括指令装置的制造品，该指令装置实现在流程图一个流程或多个流程和／或方框图一个方框或多个方框中指定的功能。</div>
+<div class="description-paragraph" id="p0094" num="0089">这些计算机程序指令也可装载到计算机或其他可编程数据处理设备上，使得在计算机或其他可编程设备上执行一系列操作步骤以产生计算机实现的处理，从而在计算机或其他可编程设备上执行的指令提供用于实现在流程图一个流程或多个流程和／或方框图一个方框或多个方框中指定的功能的步骤。</div>
+<div class="description-paragraph" id="p0095" num="0090">以上所述仅是本发明的优选实施方式，应当指出，对于本技术领域的普通技术人员来说，在不脱离本发明技术原理的前提下，还可以做出若干改进和变形，这些改进和变形也应视为本发明的保护范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

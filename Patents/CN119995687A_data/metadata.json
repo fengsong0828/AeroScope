@@ -1,0 +1,37 @@
+{
+    "patent_id": "CN119995687A",
+    "title": "CN119995687A - 一种基于超大规模mimo的低空飞行器轨迹检测与信道跟踪方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Southeast University",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119995687A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN115714612A (zh) *",
+            "Priority Date": "2022-10-31",
+            "Publication Date": "2023-02-24",
+            "Assignee": "南京大学",
+            "Title": "基于感知的通信波束跟踪方法",
+            "Link": "https://patents.google.com/patent/CN115714612A/zh"
+        },
+        {
+            "Publication Number": "CN116600312A (zh) *",
+            "Priority Date": "2023-05-22",
+            "Publication Date": "2023-08-15",
+            "Assignee": "南京航空航天大学",
+            "Title": "一种基于无人机空间定位的波束跟踪方法和系统",
+            "Link": "https://patents.google.com/patent/CN116600312A/zh"
+        },
+        {
+            "Publication Number": "US20250008467A1 (en) *",
+            "Priority Date": "2023-06-28",
+            "Publication Date": "2025-01-02",
+            "Assignee": "Beijing University Of Posts And Telecommunications",
+            "Title": "User equipment positioning method, apparatus, base station and storage medium",
+            "Link": "https://patents.google.com/patent/US20250008467A1/en"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:58:45"
+}

@@ -1,0 +1,45 @@
+{
+    "patent_id": "CN115409437B",
+    "title": "CN115409437B - 低空飞行应急处理方法、装置、飞行器及存储介质 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Chengdu Wofeitianyu Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN115409437B/zh",
+    "citations": [
+        {
+            "Publication Number": "JP2003130676A (ja) *",
+            "Priority Date": "2001-10-25",
+            "Publication Date": "2003-05-08",
+            "Assignee": "Tech Res & Dev Inst Of Japan Def Agency",
+            "Title": "低高度飛行計画経路の作成方法および装置",
+            "Link": "https://patents.google.com/patent/JP2003130676A/ja"
+        },
+        {
+            "Publication Number": "CN108700892A (zh) *",
+            "Priority Date": "2017-09-27",
+            "Publication Date": "2018-10-23",
+            "Assignee": "深圳市大疆创新科技有限公司",
+            "Title": "一种路径调整方法及无人机",
+            "Link": "https://patents.google.com/patent/CN108700892A/zh"
+        },
+        {
+            "Publication Number": "CN108759841A (zh) *",
+            "Priority Date": "2018-05-25",
+            "Publication Date": "2018-11-06",
+            "Assignee": "中国电子科技集团公司第二十九研究所",
+            "Title": "一种复杂环境下的快速航路规划方法",
+            "Link": "https://patents.google.com/patent/CN108759841A/zh"
+        },
+        {
+            "Publication Number": "CN115148053A (zh) *",
+            "Priority Date": "2022-06-29",
+            "Publication Date": "2022-10-04",
+            "Assignee": "沃飞长空科技(成都)有限公司",
+            "Title": "飞行器预警方法、装置、终端设备以及存储介质",
+            "Link": "https://patents.google.com/patent/CN115148053A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:37:54"
+}

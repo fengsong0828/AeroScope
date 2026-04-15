@@ -1,0 +1,70 @@
+{
+    "patent_id": "CN118865760A",
+    "title": "CN118865760A - 一种低空无人飞行器管控系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "PLA AIR FORCE AVIATION UNIVERSITY",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN118865760A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN101833870A (zh) *",
+            "Priority Date": "2010-05-20",
+            "Publication Date": "2010-09-15",
+            "Assignee": "无锡汉和航空技术有限公司",
+            "Title": "一种无人驾驶机空中安全监控方法",
+            "Link": "https://patents.google.com/patent/CN101833870A/zh"
+        },
+        {
+            "Publication Number": "CN106846926A (zh) *",
+            "Priority Date": "2017-04-13",
+            "Publication Date": "2017-06-13",
+            "Assignee": "电子科技大学",
+            "Title": "一种禁飞区无人机预警方法",
+            "Link": "https://patents.google.com/patent/CN106846926A/zh"
+        },
+        {
+            "Publication Number": "CN107911793A (zh) *",
+            "Priority Date": "2017-10-30",
+            "Publication Date": "2018-04-13",
+            "Assignee": "东南大学",
+            "Title": "一种无人机任意图形禁飞区识别导航系统",
+            "Link": "https://patents.google.com/patent/CN107911793A/zh"
+        },
+        {
+            "Publication Number": "CN116312065A (zh) *",
+            "Priority Date": "2022-12-27",
+            "Publication Date": "2023-06-23",
+            "Assignee": "五军防务科技(无锡)股份有限公司",
+            "Title": "一种智能防务低空安全综合管控集成系统",
+            "Link": "https://patents.google.com/patent/CN116312065A/zh"
+        },
+        {
+            "Publication Number": "CN116863761A (zh) *",
+            "Priority Date": "2023-07-10",
+            "Publication Date": "2023-10-10",
+            "Assignee": "北京交通大学",
+            "Title": "基于态势共享的低空无人机探测预警方法及装置",
+            "Link": "https://patents.google.com/patent/CN116863761A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN119782846A (zh) *",
+            "Priority Date": "2025-03-07",
+            "Publication Date": "2025-04-08",
+            "Assignee": "北方天途航空技术发展（北京）有限公司",
+            "Title": "基于云控平台的无人机锁定监控方法及系统",
+            "Link": "https://patents.google.com/patent/CN119782846A/zh"
+        },
+        {
+            "Publication Number": "CN119782846B (zh) *",
+            "Priority Date": "2025-03-07",
+            "Publication Date": "2025-07-29",
+            "Assignee": "北方天途航空技术发展（北京）有限公司",
+            "Title": "基于云控平台的无人机锁定监控方法及系统",
+            "Link": "https://patents.google.com/patent/CN119782846B/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:33:35"
+}

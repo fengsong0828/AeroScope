@@ -1,0 +1,232 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120301715A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES499335878">
+<invention-title id="title1" lang="ZH">一种面向低空飞行器的身份认证与访问控制方法及装置</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于低空安全管控技术领域，具体是一种面向低空飞行器的身份认证与访问控制方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空飞行器的广泛应用，其身份认证与访问控制已成为空域安全管理的关键环节。当前主流认证系统多基于静态多因子认证机制，如固定组合的密钥认证、数字证书或地理围栏技术。然而，现有方案的身份认证策略缺乏动态适应性，无法根据实时环境参数与设备状态智能调整认证强度，导致高风险场景下安全防护不足，容易出现非法接入漏判，导致存在单点攻破风险。此外，传统系统往往以延长认证耗时换取安全性，难以兼顾高密度低空交通场景下的效率需求。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0005">发明内容</div>
+<div class="description-paragraph" id="p0006" num="0003">本申请提供一种面向低空飞行器的身份认证与访问控制方法及装置，解决了现有技术中低空飞行器身份认证安全性不足、无法动态适应复杂空域环境的技术问题。</div>
+<div class="description-paragraph" id="p0007" num="0004">为达到上述目的，本申请采用如下技术方案：</div>
+<div class="description-paragraph" id="p0008">第一方面，提供一种面向低空飞行器的身份认证与访问控制方法，包括：</div>
+<div class="description-paragraph" id="p0009">获取低空飞行器的环境数据、设备状态数据以及历史认证日志，得到采集数据；</div>
+<div class="description-paragraph" id="p0010">将采集数据输入AI决策引擎，通过预训练的深度强化学习模型生成认证因子组合，得到主因子和备用因子；其中，所述备用因子的认证方式的认证精度高于所述主因子的认证方式；</div>
+<div class="description-paragraph" id="p0011">利用主因子进行飞行器的身份认证，当主因子身份认证的匹配度处于预设区间，则触发备用因子进行二次身份认证，得到认证结果；</div>
+<div class="description-paragraph" id="p0012">根据认证结果和风险评估模型生成访问令牌，飞行器根据访问令牌进行访问控制；其中，所述访问令牌用于描述权限等级与认证因子和环境数据之间的关系，所述风险评估模型内置在AI决策引擎。</div>
+<div class="description-paragraph" id="p0013" num="0005">基于上述技术方案，本申请提供的面向低空飞行器的身份认证与访问控制方法，通过动态多因子认证机制，结合AI驱动的智能决策引擎，能够灵活生成因子认证组合，主动识别伪造或异常设备，有效拦截非法接入行为。环境风险模型可实时评估空域复杂条件，动态调整权限等级与访问范围，确保在信号干扰、定位偏差等高风险场景下自动实施严格管控，能够显著提升空域安全性。</div>
+<div class="description-paragraph" id="p0014" num="0006">结合上述第一方面，在一种可能的实现方式中，所述采集数据包括：</div>
+<div class="description-paragraph" id="p0015">包含信号强度、频谱干扰值、水平分量精度因子、温度、湿度、气压的环境数据；</div>
+<div class="description-paragraph" id="p0016">包含飞行器的电池剩余容量、CPU或GPU负载、存储剩余空间以及飞行的高度、速度、航向的设备状态数据；</div>
+<div class="description-paragraph" id="p0017">包含最近多次身份认证的认证结果、认证耗时、认证因子组合以及对应的环境数据和设备状态数据的认证日志。</div>
+<div class="description-paragraph" id="p0018" num="0007">结合上述第一方面，在一种可能的实现方式中，所述AI决策引擎包括：</div>
+<div class="description-paragraph" id="p0019">决策生成单元，用于利用内置的深度强化学习模型对采集数据进行处理，输出认证因子组合；</div>
+<div class="description-paragraph" id="p0020">风险评估单元，用于根据环境数据利用内置的风险评估模型计算环境风险系数。</div>
+<div class="description-paragraph" id="p0021" num="0008">结合上述第一方面，在一种可能的实现方式中，所述根据环境数据利用风险评估模型计算环境风险系数，包括：</div>
+<div class="description-paragraph" id="p0022">对环境数据中各指标数值进行归一化处理，得到各指标的归一化值，包括：</div>
+<div class="description-paragraph" id="p0023">对信号强度RSSI进行归一化，得到信号归一化值RSSI<sub>norm</sub>，计算公式为：<span class="patent-image-not-available"></span>；其中，RSSI<sub>min</sub>表示预设信号强度下限，RSSI<sub>max</sub>表示预设信号强度上限；</div>
+<div class="description-paragraph" id="p0024">对水平分量精度因子HDOP进行归一化，得到定位精度归一化值HDOP<sub>norm</sub>，计算公式为：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0025">根据公式计算得到频谱归一化值Interf<sub>norm</sub>：<span class="patent-image-not-available"></span>；其中，Interf<sub>k</sub>表示第k个频段的频谱干扰值，N<sub>bands</sub>表示监测频段数量，Interf<sub>max</sub>表示最大频谱干扰值；</div>
+<div class="description-paragraph" id="p0026">根据公式计算得到温度归一化值<span class="patent-image-not-available"></span>T：<span class="patent-image-not-available"></span>；其中，T<sub>opt</sub>表示理想温度值，<span class="patent-image-not-available"></span>T<sub>max</sub>表示温度最大偏差值；</div>
+<div class="description-paragraph" id="p0027">根据公式计算得到气压归一化值<span class="patent-image-not-available"></span>P：<span class="patent-image-not-available"></span>；其中，P<sub>std</sub>表示标准气压值，<span class="patent-image-not-available"></span>P<sub>max</sub>表示气压最大偏差值；</div>
+<div class="description-paragraph" id="p0028">根据公式计算得到湿度归一化值<span class="patent-image-not-available"></span>H：<span class="patent-image-not-available"></span>；其中，H<sub>thr</sub>表示预设湿度阈值，<span class="patent-image-not-available"></span>H<sub>max</sub>表示湿度最大偏差值，ReLU()表示ReLU函数；</div>
+<div class="description-paragraph" id="p0029">将所述各指标的归一化值进行加权求和，得到计算环境风险系数R<sub>env</sub>的风险评估模型，公式为：R<sub>env</sub>=w<sub>s</sub>×(1-RSSI<sub>norm</sub>)+w<sub>i</sub>×Interf<sub>norm</sub>+w<sub>h</sub>×HDOP<sub>norm</sub>+w<sub>t</sub>×<span class="patent-image-not-available"></span>T+w<sub>p</sub>×<span class="patent-image-not-available"></span>P+w<sub>hum</sub>×<span class="patent-image-not-available"></span>H；其中，w<sub>s</sub>、w<sub>i</sub>、w<sub>h</sub>、w<sub>t</sub>、w<sub>p</sub>、w<sub>hum</sub>分别表示各项系数，且和为1。</div>
+<div class="description-paragraph" id="p0030" num="0009">结合上述第一方面，在一种可能的实现方式中，所述预训练的深度强化学习模型的训练过程，包括：</div>
+<div class="description-paragraph" id="p0031">设置深度强化学习模型的状态空间、动作空间以及奖励函数；其中，</div>
+<div class="description-paragraph" id="p0032">所述状态空间的构建为：收集历史认证日志，其中，每一次认证日志包括时间戳、认证结果、认证耗时、认证因子组合、环境数据、设备状态数据；</div>
+<div class="description-paragraph" id="p0033">将历史认证日志中的每一项数据进行归一化后再进行拼接，得到状态空间；其中，认证结果利用二元法进行归一化：0表示认证失败，1表示认证成功，认证因子组合通过独热编码方法进行归一化；</div>
+<div class="description-paragraph" id="p0034">所述动作空间的定义规则为：将预定义的认证因子库定义为动作空间，且动作空间中每个动作对应一种因子组合策略，一种因子组合策略包含至少一种主因子和至少一种备用因子；</div>
+<div class="description-paragraph" id="p0035">所述奖励函数R的计算公式为：<span class="patent-image-not-available"></span>；其中，AS∈{0,1}表示认证结果，TS’表示归一化后的认证耗时，R<sub>env</sub>表示通过风险评估模型计算得到的环境风险系数，α<sub>1</sub>、α<sub>2</sub>、α<sub>3</sub>分别表示各项权重系数，β表示认证失败的固定惩罚值；</div>
+<div class="description-paragraph" id="p0036">采用深度Q网络或近端策略优化算法，构建深度强化学习模型，其中深度强化学习模型的输入层维度为状态空间的维度，输出层维度为动作空间的大小；</div>
+<div class="description-paragraph" id="p0037">利用历史认证日志对深度强化学习模型进行迭代训练与优化验证，得到输入数据为采集数据，输出为包括主因子和备用因子的最优认证因子组合的预训练的深度强化学习模型。</div>
+<div class="description-paragraph" id="p0038" num="0010">结合上述第一方面，在一种可能的实现方式中，所述主因子包括但不限于以下认证方式：多频段射频指纹认证、密钥认证、数字证书认证、地理围栏认证；其中，所述地理围栏认证表示通过低空飞行器的实时位置与预设地理围栏数据库的比对进行身份认证；</div>
+<div class="description-paragraph" id="p0039">所述备用因子包括但不限于以下认证方式：生物特征认证、区块链身份溯源认证；</div>
+<div class="description-paragraph" id="p0040">其中，所述生物特征认证包括但不限于工作人员的指纹认证、面部认证、声纹认证；</div>
+<div class="description-paragraph" id="p0041">所述区块链身份溯源认证表示通过智能合约验证低空飞行器的历史飞行记录和工作状态，当低空飞行器不存在历史飞行记录，或工作状态为吊销状态或未知状态，则验证失败；</div>
+<div class="description-paragraph" id="p0042">所述认证因子库包含但不限于所述主因子和所述备用因子包含的所有认证方式。</div>
+<div class="description-paragraph" id="p0043" num="0011">结合上述第一方面，在一种可能的实现方式中，所述主因子身份认证的匹配度，包括：</div>
+<div class="description-paragraph" id="p0044">当主因子为多频段射频指纹认证时，通过计算每个频段的特征向量与注册模板的余弦相似度，并通过加权求和得到射频匹配度S<sub>RF</sub>，计算公式为：<span class="patent-image-not-available"></span>；其中，n表示频段数量，Interf<sub>i</sub>表示第i个频段的频谱干扰值，S<sub>RF,i</sub>表示第i个频段的特征向量与注册模板的余弦相似度；</div>
+<div class="description-paragraph" id="p0045">当主因子为密钥认证时，解密得到的挑战值与认证系统发送的原始挑战值一致时，或解密得到的消息认证码与认证系统本地计算的消息哈希值一致时，根据解密得到的时间戳与认证系统的当前时间的偏差T<sub>resp</sub>计算密钥匹配度S<sub>Key</sub>，公式为：<span class="patent-image-not-available"></span>；其中，T<sub>th</sub>表示预设时间阈；</div>
+<div class="description-paragraph" id="p0046">当主因子为数字证书认证时，证书匹配度S<sub>Cert</sub>的计算公式为<span class="patent-image-not-available"></span>；其中，Valid<sub>chain</sub>∈{0,1}，表示证书链验证结果，且Valid<sub>chain</sub>=1表示证书链有效，Valid<sub>chain</sub>=0表示证书链无效，Valid<sub>signature</sub>∈{0,1}表示签名验证结果，且Valid<sub>signature</sub>=1表示签名有效，Valid<sub>signature</sub>=0表示签名无效，γ<sub>1</sub>、γ<sub>2</sub>表示权重系数，且和为1；</div>
+<div class="description-paragraph" id="p0047">当主因子为地理围栏认证时，计算低空飞行器的实时位置与地理围栏的最小距离D<sub>min</sub>，根据预设距离阈值d<sub>th</sub>计算得到地理匹配度S<sub>Geo</sub>，公式为：<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0048" num="0012">结合上述第一方面，在一种可能的实现方式中，当所述主因子包括多个认证方式时，所述主因子身份认证的匹配度为该多个认证方式的匹配度的平均值。</div>
+<div class="description-paragraph" id="p0049" num="0013">结合上述第一方面，在一种可能的实现方式中，所述根据认证结果和风险评估模型生成访问令牌，包括：</div>
+<div class="description-paragraph" id="p0050">当主因子认证成功，或备用因子认证成功时，根据风险评估模型计算得到的环境风险系数R<sub>env</sub>和认证因子数量N<sub>factor</sub>计算权限值P，公式为：<span class="patent-image-not-available"></span>；其中，λ<sub>1</sub>、λ<sub>2</sub>表示各项权重系数，且和为1，η表示放大因子，值为10，所述认证因子数量表示触发的主因子和/或备用因子的总数；</div>
+<div class="description-paragraph" id="p0051">当权限值位于预设第一区间，则分配第一权限对应的操作权限和令牌有效期；</div>
+<div class="description-paragraph" id="p0052">当权限值位于预设第二区间，则分配第二权限对应的操作权限和令牌有效期；</div>
+<div class="description-paragraph" id="p0053">当权限值位于预设第三区间，则分配第三权限对应的操作权限和令牌有效期；</div>
+<div class="description-paragraph" id="p0054">基于签名算法生成访问令牌，且所述访问令牌包含操作权限和令牌有效期。</div>
+<div class="description-paragraph" id="p0055" num="0014">基于上述技术方案，在本申请实现了从固定策略认证到智能自适应认证的跨越，在保障安全性的同时显著提升了低空飞行器在复杂环境中的认证效率和灵活性，尤其适用于未来高密度、多类型、动态变化的低空交通场景。</div>
+<div class="description-paragraph" id="p0056" num="0015">第二方面，提供一种面向低空飞行器的身份认证与访问控制装置，包括：通信单元和处理单元；所述通信单元，用于获取包含低空飞行器的环境数据、设备状态数据以及历史认证日志的采集数据，还用于传输身份认证结果和访问令牌；</div>
+<div class="description-paragraph" id="p0057">所述处理单元，用于将采集数据输入AI决策引擎，通过预训练的深度强化学习模型生成认证因子组合，得到主因子和备用因子；利用主因子进行飞行器的身份认证，当主因子身份认证的匹配度处于预设区间时，触发备用因子进行二次身份认证，得到认证结果；根据认证结果和风险评估模型生成访问令牌，飞行器根据访问令牌进行访问控制。</div>
+<div class="description-paragraph" id="p0058" num="0016">第三方面，本申请提供了一种面向低空飞行器的身份认证与访问控制装置，包括：处理器和存储介质；存储介质包括指令，处理器用于运行指令，以实现如第一方面和第一方面的任一种可能的实现方式中所描述的方法。该面向低空飞行器的身份认证与访问控制装置可以是电子设备，也可以是电子设备中的芯片。</div>
+<div class="description-paragraph" id="p0059" num="0017">第四方面，本申请提供一种面向低空飞行器的身份认证与访问控制系统，包括：</div>
+<div class="description-paragraph" id="p0060">数据采集模块，用于获取低空飞行器的环境数据、设备状态数据以及历史认证日志，得到采集数据；</div>
+<div class="description-paragraph" id="p0061">AI决策引擎模块，用于对采集数据进行处理，通过预训练的深度强化学习模型生成认证因子组合，同时根据环境数据利用风险评估模型计算环境风险系数；</div>
+<div class="description-paragraph" id="p0062">身份认证模块，用于利用主因子进行飞行器的身份认证，在主因子身份认证匹配度处于预设区间时触发备用因子进行二次认证并得到认证结果，并根据认证结果和环境风险系数生成访问令牌，飞行器根据访问令牌进行访问控制。</div>
+<div class="description-paragraph" id="p0063" num="0018">第五方面，本申请提供了一种计算机可读存储介质，计算机可读存储介质中存储有指令，当该指令在一种面向低空飞行器的身份认证与访问控制装置上运行时，使得一种面向低空飞行器的身份认证与访问控制装置执行如第一方面和第一方面的任一种可能的实现方式中所描述的方法。</div>
+<div class="description-paragraph" id="p0064" num="0019">第六方面，本申请提供一种包含指令的计算机程序产品，当该计算机程序产品在一种面向低空飞行器的身份认证与访问控制装置上运行时，使得一种面向低空飞行器的身份认证与访问控制装置执行如第一方面和第一方面的任一种可能的实现方式中所描述的方法。</div>
+<div class="description-paragraph" id="p0065" num="0020">本申请提供一种面向低空飞行器的身份认证与访问控制方法及装置，能够通过动态多因子认证机制结合AI驱动的智能决策引擎，灵活生成因子认证组合，主动识别伪造或异常设备，有效拦截非法接入行为；实时评估空域复杂条件，动态调整权限等级与访问范围，确保在高风险场景下自动实施严格管控，显著提升空域安全性、认证效率和灵活性，适用于高密度、多类型、动态变化的低空交通场景。</div>
+<div class="description-paragraph" id="p0066" num="0021">应当理解的是，本申请中对技术特征、技术方案、有益效果或类似语言的描述并不是暗示在任意的单个实施例中可以实现所有的特点和优点。相反，可以理解的是对于特征或有益效果的描述意味着在至少一个实施例中包括特定的技术特征、技术方案或有益效果。因此，本说明书中对于技术特征、技术方案或有益效果的描述并不一定是指相同的实施例。进而，还可以任何适当的方式组合本实施例中所描述的技术特征、技术方案和有益效果。本领域技术人员将会理解，无需特定实施例的一个或多个特定的技术特征、技术方案或有益效果即可实现实施例。在其他实施例中，还可在没有体现所有实施例的特定实施例中识别出额外的技术特征和有益效果。</div>
+<div class="description-paragraph" id="p0067" num="0022">与现有技术相比，本发明的有益效果是：</div>
+<div class="description-paragraph" id="p0068">本发明通过动态多因子认证机制与AI驱动的智能决策引擎结合，显著提升了低空飞行器认证的安全性与灵活性。具体而言，系统通过采集环境数据、设备状态数据及历史认证日志，利用预训练的深度强化学习模型动态生成主因子与备用因子组合，可主动识别伪造或异常设备，有效拦截非法接入行为。例如，主因子包含多频段射频指纹认证、密钥认证等方式，备用因子涵盖生物特征认证、区块链身份溯源认证等，通过多因子协同验证，构建了多层次的安全防护体系；</div>
+<div class="description-paragraph" id="p0069">在风险管控与权限管理方面，内置的环境风险评估模型可实时分析信号强度、频谱干扰、定位精度等多维数据，通过归一化处理与加权计算生成环境风险系数，并据此动态调整权限等级与访问范围。当主因子认证匹配度处于预设区间时，系统自动触发备用因子进行二次认证；同时，根据认证结果与风险系数生成包含权限等级和有效期的访问令牌，确保在信号干扰、定位偏差等高风险场景下自动实施严格管控，实现了安全策略与环境变化的动态适配。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0070">附图说明</div>
+<div class="description-paragraph" id="p0071" num="0023">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0072" num="0024">图1为本申请实施例提供的一种面向低空飞行器的身份认证与访问控制系统的系统架构图；</div>
+<div class="description-paragraph" id="p0073">图2为本申请实施例提供的一种面向低空飞行器的身份认证与访问控制方法的流程示意图；</div>
+<div class="description-paragraph" id="p0074">图3为本申请实施例提供的另一种面向低空飞行器的身份认证与访问控制方法的流程示意图；</div>
+<div class="description-paragraph" id="p0075">图4为本申请实施例提供的一种面向低空飞行器的身份认证与访问控制装置的结构示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0076">具体实施方式</div>
+<div class="description-paragraph" id="p0077" num="0025">下面将结合实施例对本发明的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0078" num="0026">在本申请的描述中，除非另有说明，“/”表示“或”的意思，例如，A/B可以表示A或B。本文中的“和/或”仅仅是一种描述关联对象的关联关系，表示可以存在三种关系，例如，A和/或B，可以表示：单独存在A，同时存在A和B，单独存在B这三种情况。此外，“至少一个”是指一个或多个，“多个”是指两个或两个以上。“第一”、“第二”等字样并不对数量和执行次序进行限定，并且“第一”、“第二”等字样也并不限定一定不同。</div>
+<div class="description-paragraph" id="p0079" num="0027">需要说明的是，本申请中，“示例性的”或者“例如”等词用于表示作例子、例证或说明。本申请中被描述为“示例性的”或者“例如”的任何实施例或设计方案不应被解释为比其他实施例或设计方案更优选或更具优势。确切而言，使用“示例性的”或者“例如”等词旨在以具体方式呈现相关概念。</div>
+<div class="description-paragraph" id="p0080" num="0028">本申请实施例所提供的一种面向低空飞行器的身份认证与访问控制方法，可以应用于如图1所示一种面向低空飞行器的身份认证与访问控制系统中，如图1所示，该通信系统包括：数据采集模块，AI决策引擎模块和身份认证模块。</div>
+<div class="description-paragraph" id="p0081" num="0029">其中，数据采集模块，用于获取低空飞行器的环境数据、设备状态数据以及历史认证日志，得到采集数据。</div>
+<div class="description-paragraph" id="p0082" num="0030">AI决策引擎模块，用于对采集数据进行处理，通过预训练的深度强化学习模型生成认证因子组合，同时根据环境数据利用风险评估模型计算环境风险系数。</div>
+<div class="description-paragraph" id="p0083" num="0031">身份认证模块，用于利用主因子进行飞行器的身份认证，在主因子身份认证匹配度处于预设区间时触发备用因子进行二次认证并得到认证结果，并根据认证结果和环境风险系数生成访问令牌，飞行器根据访问令牌进行访问控制。</div>
+<div class="description-paragraph" id="p0084" num="0032">为解决现有技术中低空飞行器身份认证安全性不足、无法动态适应复杂空域环境的技术问题，本申请实施例提供了一种面向低空飞行器的身份认证与访问控制方法，该方法包括：获取多维度采集数据、智能生成认证因子组合、分级执行身份认证、动态生成访问令牌，基于此实现低空飞行器的智能安全管控。</div>
+<div class="description-paragraph" id="p0085" num="0033">如图2所示，本申请实施例提供的一种面向低空飞行器的身份认证与访问控制方法，包括：</div>
+<div class="description-paragraph" id="p0086">S1、获取低空飞行器的环境数据、设备状态数据以及历史认证日志，得到采集数据。</div>
+<div class="description-paragraph" id="p0087" num="0034">其中，采集数据是认证决策的基础信息集合，用于反映飞行器运行环境、设备状态及历史认证行为特征。</div>
+<div class="description-paragraph" id="p0088" num="0035">在一些实现方式中，环境数据可包含信号强度、频谱干扰值、水平分量精度因子等空域环境参数，设备状态数据可包括电池容量、飞行高度、速度等设备运行指标，历史认证日志可记录认证结果、耗时、因子组合等历史信息。</div>
+<div class="description-paragraph" id="p0089" num="0036">需要指出的是，采集数据的类型可根据实际应用场景扩展，例如增加天气数据或空域管制信息等。</div>
+<div class="description-paragraph" id="p0090" num="0037">示例性的，环境数据中的信号强度（RSSI）可通过传感器实时采集，设备状态数据中的飞行高度可通过飞行器内置GPS模块获取。</div>
+<div class="description-paragraph" id="p0091" num="0038">S2、将采集数据输入AI决策引擎，通过预训练的深度强化学习模型生成认证因子组合，得到主因子和备用因子；其中主因子和备用因子表示不同认证方式。</div>
+<div class="description-paragraph" id="p0092" num="0039">其中，AI决策引擎是实现智能认证的核心模块，深度强化学习模型用于从采集数据中提取特征并生成最优认证策略。</div>
+<div class="description-paragraph" id="p0093" num="0040">在一些实现方式中，认证因子组合可包含多种主因子（如射频指纹认证、密钥认证）和备用因子（如生物特征认证）的组合策略。</div>
+<div class="description-paragraph" id="p0094" num="0041">需要指出的是，模型训练过程需基于历史认证日志构建状态空间，通过奖励函数优化因子组合的安全性与效率。</div>
+<div class="description-paragraph" id="p0095" num="0042">示例性的，主因子可优先选择多频段射频指纹认证，备用因子可配置为指纹认证，适用于常规空域环境。</div>
+<div class="description-paragraph" id="p0096" num="0043">S3、利用主因子进行飞行器的身份认证，当主因子身份认证的匹配度处于预设区间，则触发备用因子进行二次身份认证，得到认证结果。</div>
+<div class="description-paragraph" id="p0097" num="0044">其中，主因子认证匹配度用于衡量认证信息与注册模板的一致性，预设区间可根据风险等级动态调整。且，注册模板表示预先存储的、用于验证飞行器身份的基准数据或规则集合，不同认证方式对应不同形式的注册模板。</div>
+<div class="description-paragraph" id="p0098" num="0045">在一些实现方式中，主因子认证可包含多频段射频指纹相似度计算、密钥解密验证等方式，匹配度可综合各认证方式结果生成；例如，对于密钥解密验证、数字签名校验类认证方式，当认证通过，如密钥哈希值与注册模板完全一致、签名验签成功时，则设定匹配度为1；认证失败时，设定匹配度为0；对于多频段射频指纹、传感器特征向量类认证方式（基于连续型特征的相似度匹配），可通过计算认证数据与注册模板的余弦相似度、欧氏距离或动态时间规整（DTW）距离生成匹配度；对于动态令牌时间同步、响应时延类认证方式，可通过计算认证成功时的时间差值绝对值与预设阈值的比较生成匹配度。</div>
+<div class="description-paragraph" id="p0099" num="0046">需要指出的是，预设区间通常为“认证成功但存在一定风险”的阈值范围，例如匹配度为60%-80%时触发二次认证。</div>
+<div class="description-paragraph" id="p0100" num="0047">示例性的，当飞行器进入区域管控区时，向认证系统发送身份认证请求，此时系统会先向飞行器发送数据收集请求，获取设备状态数据，并根据飞行器ID调取历史认证日志，同时从环境监测传感器或飞行器内置传感器获取环境数据，得到所有的采集数据。接着，认证系统对采集数据进行归一化处理后，输入AI决策引擎，通过预训练的深度强化学习模型生成包含主因子和备用因子的认证因子组合。系统向飞行器下发主因子认证指令，如执行多频段射频指纹认证或密钥认证，飞行器完成认证操作后将结果返回系统，系统计算主因子身份认证的匹配度。若匹配度达到第一预设阈值，则表明认证成功。若匹配度小于第二预设阈值，则表明认证失败，此时向飞行器发送禁止访问的信号，并通过认证系统内置的风险管控模块强制执行权限拦截，拒绝飞行器的所有操作请求。若匹配度处于[第一预设阈值,第二预设阈值]的预设区间内，系统会触发备用因子进行二次身份认证，如生物特征认证或区块链身份溯源认证，飞行器再次执行认证并反馈结果。</div>
+<div class="description-paragraph" id="p0101" num="0048">需要说明的是，若认证系统检测到有新飞行器接入区域管控区的网络，但没有发送身份认证请求时，系统会主动向飞行器发送数据收集请求，若飞行器拒绝该收集请求，则直接通过认证系统内置的风险管控模块强制执行权限拦截，并拒绝飞行器的所有操作请求。</div>
+<div class="description-paragraph" id="p0102" num="0049">S4、根据认证结果和风险评估模型生成访问令牌，飞行器根据访问令牌进行访问控制。</div>
+<div class="description-paragraph" id="p0103" num="0050">其中，访问令牌用于描述权限等级、有效期与认证因子、环境风险的关联关系，是访问控制的核心凭证。</div>
+<div class="description-paragraph" id="p0104" num="0051">在一些实现方式中，风险评估模型可基于环境数据计算风险系数，权限等级可划分为基础、中级、高级等层级，不同等级对应不同操作权限与令牌有效期。</div>
+<div class="description-paragraph" id="p0105" num="0052">需要指出的是，认证结果为失败时不生成访问令牌，且高风险环境下可能限制或禁止访问。</div>
+<div class="description-paragraph" id="p0106" num="0053">示例性的，若环境风险系数较高（如强信号干扰），即使认证成功，也仅生成基础权限令牌，限制飞行器的飞行高度与速度。</div>
+<div class="description-paragraph" id="p0107" num="0054">基于上述技术方案，本申请通过获取低空飞行器的环境数据、设备状态数据及历史认证日志，为认证决策提供多维度数据支撑；借助AI决策引擎与预训练的深度强化学习模型动态生成主因子和备用因子组合，构建了灵活的多因子认证机制，可主动识别异常设备并拦截非法接入；通过主因子认证匹配度动态触发备用因子进行二次认证，提升了认证过程的可靠性；结合认证结果与内置的风险评估模型生成访问令牌，实现了根据环境风险动态调整权限等级与访问范围的智能管控，有效提升了低空飞行器在复杂环境中的认证安全性、灵活性和对空域风险的自适应能力。</div>
+<div class="description-paragraph" id="p0108" num="0055">获取低空飞行器的环境数据、设备状态数据以及历史认证日志，得到采集数据；</div>
+<div class="description-paragraph" id="p0109">将采集数据输入AI决策引擎，通过预训练的深度强化学习模型生成认证因子组合，得到主因子和备用因子；</div>
+<div class="description-paragraph" id="p0110">利用主因子进行飞行器的身份认证，当主因子身份认证的匹配度处于预设区间，则触发备用因子进行二次身份认证，得到认证结果；</div>
+<div class="description-paragraph" id="p0111">根据认证结果和风险评估模型生成访问令牌，飞行器根据访问令牌进行访问控制；其中，所述访问令牌用于描述权限等级与认证因子和环境数据之间的关系，所述风险评估模型内置在AI决策引擎。</div>
+<div class="description-paragraph" id="p0112" num="0056">在本实施例中，采集数据包括：</div>
+<div class="description-paragraph" id="p0113">包含信号强度、频谱干扰值、水平分量精度因子、温度、湿度、气压的环境数据；</div>
+<div class="description-paragraph" id="p0114">包含飞行器的电池剩余容量、CPU或GPU负载、存储剩余空间以及飞行的高度、速度、航向的设备状态数据；</div>
+<div class="description-paragraph" id="p0115">包含最近多次身份认证的认证结果、认证耗时、认证因子组合以及对应的环境数据和设备状态数据的认证日志。</div>
+<div class="description-paragraph" id="p0116" num="0057">需要说明的是，环境数据的各项指标数据需通过传感器实时采集，且采集频率可根据空域风险动态调整；设备状态数据可通过飞行器内置的传感器和系统日志获取，例如通过电池管理系统读取剩余电量，通过飞行控制系统获取实时飞行参数。</div>
+<div class="description-paragraph" id="p0117" num="0058">在本申请实施例的一种可能的实现方式中，上述S2具体可以通过以下S201、S202和S203实现，以下进行具体说明：</div>
+<div class="description-paragraph" id="p0118">S201、初始化AI决策引擎的组成单元。</div>
+<div class="description-paragraph" id="p0119" num="0059">其中，AI决策引擎包括决策生成单元和风险评估单元：</div>
+<div class="description-paragraph" id="p0120">决策生成单元利用内置的深度强化学习模型对采集数据进行处理，输出认证因子组合；</div>
+<div class="description-paragraph" id="p0121">风险评估单元根据环境数据利用风险评估模型计算环境风险系数。</div>
+<div class="description-paragraph" id="p0122" num="0060">需要指出的是，两个单元可协同工作，风险评估结果可反馈至决策生成单元以调整因子组合策略。</div>
+<div class="description-paragraph" id="p0123" num="0061">示例性的，当风险评估单元检测到高频谱干扰时，决策生成单元优先选择多频段射频指纹认证作为主因子。</div>
+<div class="description-paragraph" id="p0124" num="0062">S202、通过深度强化学习模型生成认证因子组合。</div>
+<div class="description-paragraph" id="p0125" num="0063">其中，深度强化学习模型的输入为归一化的采集数据，输出为主因子和备用因子。</div>
+<div class="description-paragraph" id="p0126" num="0064">在一些实现方式中，模型训练过程包括：</div>
+<div class="description-paragraph" id="p0127">1、数据收集与预处理：</div>
+<div class="description-paragraph" id="p0128">首先，从低空飞行器认证系统历史运行记录中提取至少10万条认证日志，每条日志包含以下字段：</div>
+<div class="description-paragraph" id="p0129">时间戳：精确到毫秒；</div>
+<div class="description-paragraph" id="p0130">认证结果：包含成功/失败的二元标签；</div>
+<div class="description-paragraph" id="p0131">认证耗时：单位：ms；</div>
+<div class="description-paragraph" id="p0132">认证因子组合：包含主因子类型、备用因子类型；</div>
+<div class="description-paragraph" id="p0133">环境数据：包括信号强度RSSI、频谱干扰Interf、HDOP、温度T、湿度H、气压P；</div>
+<div class="description-paragraph" id="p0134">设备状态数据：包括电池容量、CPU负载、飞行高度、速度。</div>
+<div class="description-paragraph" id="p0135" num="0065">然后对历史认证日志中的每一项数据进行归一化处理，其中，环境数据的归一化处理方式如步骤S203所示。归一化处理方法，包括：</div>
+<div class="description-paragraph" id="p0136">对于时间戳：将时间戳转换为epoch时间的毫秒数，如2020年1月1日00:00:00UTC，再通过线性归一化公式<span class="patent-image-not-available"></span>映射[0,1]区间，其中<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别为历史日志中时间戳的最小和最大值。</div>
+<div class="description-paragraph" id="p0137" num="0066">对于认证耗时：采用线性归一化，公式为<span class="patent-image-not-available"></span>，其中TS为原始耗时（单位：ms），TS<sub>min</sub>和TS<sub>max</sub>分别为历史认证耗时的最小和最大值，归一化后取值范围为[0,1]。</div>
+<div class="description-paragraph" id="p0138" num="0067">对于认证因子组合：采用独热编码（One-HotEncoding），将预定义的认证因子库（如主因子：多频段射频指纹认证、密钥认证；备用因子：生物特征认证、区块链溯源认证）映射为二进制向量。例如，主因子“密钥认证”+备用因子“生物特征认证”组合可编码为([0,1,1,0])（假设主因子库长度为2，备用因子库长度为2），确保每个因子组合对应唯一的稀疏向量表示。</div>
+<div class="description-paragraph" id="p0139" num="0068">需要说明的是，本申请的备用因子的认证精度高于主因子的认证精度是指：备用因子的认证方式基于不可篡改或唯一性特征生成认证凭证，其认证错误率低于主因子认证方式的认证错误率，其中认证错误率可为误认率（FAR）与拒认率（FRR）的加权平均值。</div>
+<div class="description-paragraph" id="p0140" num="0069">例如，备用因子包括生物特征认证、区块链身份溯源认证中的至少一种，</div>
+<div class="description-paragraph" id="p0141">且生物特征认证基于指纹、面部、声纹等生物特征的唯一性进行验证，其误认率通常小于等于0.001%；</div>
+<div class="description-paragraph" id="p0142">区块链身份溯源认证通过智能合约验证飞行器历史飞行记录，利用区块链的分布式不可篡改特性，确保认证凭证不可伪造或篡改，其误认率通常小于等于0.0001%。</div>
+<div class="description-paragraph" id="p0143" num="0070">而主因子的认证方式包括多频段射频指纹认证、密钥认证、数字证书认证、地理围栏认证中的至少一种，在实际操作中，主因子通常会比备用因子更容易被解密，导致其认证精度降低。因此在高风险环境下，当前网络可能正在遭受外来入侵，此时模型会触发备用因子，增加身份认证的认证难度。即备用因子的认证精度高于主因子的认证精度，与备用因子的认证难度高于主因子的认证难度，或备用因子的认证错误率低于主因子的认证错误率是统一含义。</div>
+<div class="description-paragraph" id="p0144" num="0071">对设备状态数据中的各项数值型数据，通过线性归一化公式<span class="patent-image-not-available"></span>处理，其中X为设备状态数据中各项指标的原始数值（如电池剩余容量、CPU负载、飞行高度），X<sub>min</sub>和X<sub>max</sub>分别为该指标的最小和最大值。</div>
+<div class="description-paragraph" id="p0145" num="0072">接着构建状态空间：将归一化后的环境数据、设备状态数据、认证结果、认证耗时、因子组合编码按顺序拼接为长度为L的状态向量<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0146" num="0073">2、环境建模与动作空间定义：</div>
+<div class="description-paragraph" id="p0147">首先将认证系统抽象为强化学习环境E，其中：</div>
+<div class="description-paragraph" id="p0148">状态S<sub>t</sub>：即上述归一化后的状态向量；</div>
+<div class="description-paragraph" id="p0149">动作A<sub>t</sub>：从预定义的认证因子库中选择的组合策略，包含：</div>
+<div class="description-paragraph" id="p0150">主因子集合：{多频段射频指纹认证（F1）、密钥认证（F2）、地理围栏认证（F3）、数字证书认证（F4）}；</div>
+<div class="description-paragraph" id="p0151">备用因子集合：{生物特征认证（B1）、区块链溯源认证（B2）}；</div>
+<div class="description-paragraph" id="p0152">动作空间大小：备用因子必选一种（实际可以不触发），主因子至少选一种，共45种组合策略。</div>
+<div class="description-paragraph" id="p0153" num="0074">接着设置奖励函数为：<span class="patent-image-not-available"></span>；其中，AS∈{0,1}表示认证结果，TS’表示归一化后的认证耗时，R<sub>env</sub>表示通过风险评估模型计算得到的环境风险系数，α<sub>1</sub>、α<sub>2</sub>、α<sub>3</sub>分别表示各项权重系数，且默认值为：α<sub>1</sub>=10，α<sub>2</sub>=5，α<sub>3</sub>=4，β表示认证失败的固定惩罚值，默认值为8。</div>
+<div class="description-paragraph" id="p0154" num="0075">3、算法选择与网络架构：</div>
+<div class="description-paragraph" id="p0155">以近端策略优化算法为例，构建深度强化学习模型，包括：</div>
+<div class="description-paragraph" id="p0156">策略网络：输入层维度为L，隐藏层至少包含2层全连接和激活函数，输出层维度为45的动作空间大小（既包含主因子和备用因子），输出动作概率分布<span class="patent-image-not-available"></span>，例如对“主因子=射频指纹认证，备用因子=生物特征认证”的动作分配0.8的概率，对其他动作分配较低概率，则最后得到的因子组合即为[主因子=射频指纹认证，备用因子=生物特征认证]；</div>
+<div class="description-paragraph" id="p0157">价值网络：输入层同策略网络，隐藏层至少包含2层全连接层，输出层输出标量值V(S<sub>t</sub>)，估计状态价值。</div>
+<div class="description-paragraph" id="p0158" num="0076">4、迭代训练与优化：</div>
+<div class="description-paragraph" id="p0159">设置训练参数为：</div>
+<div class="description-paragraph" id="p0160">设置批量大小：512条日志/批次；学习率：初始值3×10<sup>-4</sup>，每1000轮衰减10%；训练轮数：至少5000轮，直至奖励值收敛（以波动幅度＜5%为标准）；折扣因子：γ=0.99。</div>
+<div class="description-paragraph" id="p0161" num="0077">执行训练流程：</div>
+<div class="description-paragraph" id="p0162">数据采样：从历史日志中随机抽取批量数据<span class="patent-image-not-available"></span>。策略更新：通过PPO损失函数<span class="patent-image-not-available"></span>更新策略网络参数θ，其中<span class="patent-image-not-available"></span>为新旧策略概率比，<span class="patent-image-not-available"></span>为优势函数估计值，<span class="patent-image-not-available"></span>=0.2为裁剪参数，clip()表示裁剪函数；</div>
+<div class="description-paragraph" id="p0163">价值网络更新：通过均方误差（MSE）损失<span class="patent-image-not-available"></span>优化价值网络。</div>
+<div class="description-paragraph" id="p0164" num="0078">循环迭代：重复上述步骤，可每500轮保存模型参数并评估认证成功率、平均耗时等指标。</div>
+<div class="description-paragraph" id="p0165" num="0079">5、模型验证与部署：</div>
+<div class="description-paragraph" id="p0166">预留2万条未参与训练的历史日志作为验证集。且定义评估指标为：认证成功率：成功认证次数/总验证次数（目标≥95%）；平均认证耗时：成功认证的平均耗时（目标≤500ms）；风险覆盖率：高风险环境（如R<sub>env</sub>≥0.7）下触发备用因子的比例（目标≥90%）。将评估指标达到目标的模型保存，得到输入数据为采集数据，输出为包括主因子和备用因子的最优认证因子组合的预训练的深度强化学习模型，并部署认证系统上。</div>
+<div class="description-paragraph" id="p0167" num="0080">且模型部署后，每小时采集最新认证日志（约100条）构成滑动窗口数据集，通过增量学习定期更新模型参数，确保适应空域环境变化。</div>
+<div class="description-paragraph" id="p0168" num="0081">示例性的，模型在低风险环境中输出主因子为密钥认证，备用因子为指纹认证，以平衡效率与安全性。</div>
+<div class="description-paragraph" id="p0169" num="0082">S203，基于环境数据计算环境风险系数。</div>
+<div class="description-paragraph" id="p0170" num="0083">具体地，首先需，对环境数据中各指标数值进行归一化处理，得到各指标的归一化值，包括：</div>
+<div class="description-paragraph" id="p0171">信号归一化值RSSI<sub>norm</sub>：<span class="patent-image-not-available"></span>；其中，RSSI<sub>min</sub>表示预设信号强度下限，RSSI<sub>max</sub>表示预设信号强度上限；</div>
+<div class="description-paragraph" id="p0172">定位精度归一化值HDOP<sub>norm</sub>：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0173">频谱归一化值Interf<sub>norm</sub>：<span class="patent-image-not-available"></span>；其中，Interf<sub>k</sub>表示第k个频段的频谱干扰值，N<sub>bands</sub>表示监测频段数量，Interf<sub>max</sub>表示最大频谱干扰值；</div>
+<div class="description-paragraph" id="p0174">温度归一化值<span class="patent-image-not-available"></span>T：<span class="patent-image-not-available"></span>；其中，T<sub>opt</sub>表示理想温度值，<span class="patent-image-not-available"></span>T<sub>max</sub>表示温度最大偏差值；</div>
+<div class="description-paragraph" id="p0175">气压归一化值<span class="patent-image-not-available"></span>P：<span class="patent-image-not-available"></span>；其中，P<sub>std</sub>表示标准气压值，<span class="patent-image-not-available"></span>P<sub>max</sub>表示气压最大偏差值；</div>
+<div class="description-paragraph" id="p0176">湿度归一化值<span class="patent-image-not-available"></span>H：<span class="patent-image-not-available"></span>；其中，H<sub>thr</sub>表示预设湿度阈值，<span class="patent-image-not-available"></span>H<sub>max</sub>表示湿度最大偏差值，ReLU()表示ReLU函数。</div>
+<div class="description-paragraph" id="p0177" num="0084">然后再将各指标的归一化值进行加权求和，得到计算环境风险系数R<sub>env</sub>的风险评估模型，公式为：R<sub>env</sub>=w<sub>s</sub>×(1-RSSI<sub>norm</sub>)+w<sub>i</sub>×Interf<sub>norm</sub>+w<sub>h</sub>×HDOP<sub>norm</sub>+w<sub>t</sub>×<span class="patent-image-not-available"></span>T+w<sub>p</sub>×<span class="patent-image-not-available"></span>P+w<sub>hum</sub>×<span class="patent-image-not-available"></span>H；其中，w<sub>s</sub>、w<sub>i</sub>、w<sub>h</sub>、w<sub>t</sub>、w<sub>p</sub>、w<sub>hum</sub>分别表示各项系数，且默认值为：w<sub>s</sub>=0.35，w<sub>i</sub>=0.25，w<sub>h</sub>=0.20，w<sub>t</sub>=0.10，w<sub>p</sub>=0.07，w<sub>hum</sub>=0.03。</div>
+<div class="description-paragraph" id="p0178" num="0085">基于上述技术方案，AI决策引擎通过数据驱动的智能算法动态生成认证因子组合，实现了认证策略与环境风险的自适应匹配。具体而言，该引擎包含决策生成单元与风险评估单元两大核心组件：决策生成单元内置预训练的深度强化学习模型，能够基于采集数据构建状态空间，并将预定义的认证因子库作为动作空间，通过奖励函数迭代优化因子组合策略。风险评估单元则对信号强度、频谱干扰、定位精度等环境数据进行归一化处理，通过加权求和生成环境风险系数，并实时反馈至决策生成单元，促使模型在高风险场景下自动选择高强度的多因子组合，在低风险场景下优先采用低强度因子快速认证，实现“风险越高、认证强度越大”的动态适配。</div>
+<div class="description-paragraph" id="p0179" num="0086">在本申请实施例的一种可能的实现方式中，结合图2，如图3所示，上述S3具体可以通过以下步骤实现：</div>
+<div class="description-paragraph" id="p0180">首先，执行主因子身份认证，主因子包括多频段射频指纹认证、密钥认证、数字证书认证、地理围栏认证等方式，不同认证方式对应不同验证逻辑。</div>
+<div class="description-paragraph" id="p0181" num="0087">例如，多频段射频指纹认证通过计算每个频段的特征向量与注册模板的余弦相似度S<sub>RF,i</sub>，并结合该频段的频谱干扰值Interf<sub>i</sub>进行加权求和得到射频匹配度S<sub>RF</sub>，公式为<span class="patent-image-not-available"></span>，干扰越小的频段权重越高；</div>
+<div class="description-paragraph" id="p0182">密钥认证则需验证解密后的挑战值与原始值是否一致，若一致则根据解密时间戳与系统时间的偏差T<sub>resp</sub>计算密钥匹配度S<sub>Key</sub>，公式为：<span class="patent-image-not-available"></span>；其中，T<sub>th</sub>表示预设时间阈值，例如20ms，偏差越小匹配度越高；</div>
+<div class="description-paragraph" id="p0183">数字证认证的匹配度通过证书链验证结果Valid<sub>chain</sub>和签名验证结果Valid<sub>signature</sub>进行加权求和计算得到，公式为：<span class="patent-image-not-available"></span>；其中，Valid<sub>chain</sub>=1表示证书链有效，Valid<sub>chain</sub>=0表示证书链无效，Valid<sub>signature</sub>=1表示签名有效，Valid<sub>signature</sub>=0表示签名无效，γ<sub>1</sub>、γ<sub>2</sub>表示权重系数，且和为1，默认值为：γ<sub>1</sub>=0.4，γ<sub>2</sub>=0.6；</div>
+<div class="description-paragraph" id="p0184">地理围栏认证通过计算飞行器实时位置与预设围栏的最小距离D<sub>min</sub>，根据公式<span class="patent-image-not-available"></span>生成地理匹配度S<sub>Geo</sub>，距离越近匹配度越高，其中，d<sub>th</sub>表示预设距离阈值，例如d<sub>th</sub>=10m。</div>
+<div class="description-paragraph" id="p0185" num="0088">接着，计算主因子认证匹配度。若主因子包含多个认证方式（如同时启用射频指纹和密钥认证），则匹配度取各认证方式匹配度的平均值。预设区间通常设置为60%-80%，表示认证成功但存在一定风险：当匹配度＞80%时直接认证成功，匹配度&lt;60%时认证失败，仅当匹配度处于60%-80%区间时触发备用因子二次认证。其中，预设区间为[第二阈值,第一阈值]，第一阈值和第二阈值可根据具体情况设定。</div>
+<div class="description-paragraph" id="p0186" num="0089">最后，触发备用因子进行二次认证。备用因子包括生物特征认证（指纹、面部、声纹等）和区块链身份溯源认证。</div>
+<div class="description-paragraph" id="p0187" num="0090">例如，生物特征认证通过对比实时采集的指纹特征向量与指纹注册模板的余弦相似度进行验证；区块链身份溯源认证通过智能合约查询飞行器的历史飞行记录和工作状态，若状态为吊销、未知或无记录则验证失败。只有当备用因子认证通过时，最终认证结果才判定为成功，否则失败。</div>
+<div class="description-paragraph" id="p0188" num="0091">基于上述技术方案，本申请实现了主因子快速验证与备用因子风险兜底的双重机制，确保在不同风险等级下提供适应性的认证强度，提升身份认证的可靠性和安全性。</div>
+<div class="description-paragraph" id="p0189" num="0092">在本申请实施例的一种可能的实现方式中，上述S4具体可以通过以下步骤实现：</div>
+<div class="description-paragraph" id="p0190">首先，根据认证结果（主因子认证成功、备用因子认证成功或失败）和风险评估模型计算得到的环境风险系数Renv，结合触发的主因子和备用因子的数量Nfactor计算权限值P。计算公式为<span class="patent-image-not-available"></span>，其中λ<sub>1</sub>、λ<sub>2</sub>为权重系数，且λ<sub>1</sub>+λ<sub>2</sub>=1，η为放大因子，值为10。</div>
+<div class="description-paragraph" id="p0191" num="0093">例如，若触发2个主因子和1个备用因子，则N<sub>factor</sub>=3，假设环境风险系数R<sub>env</sub>=0.6，λ<sub>1</sub>=0.7，λ<sub>2</sub>=0.3，则P=floor(0.7×3+0.3×0.6×10)=floor(2.1+1.8)=3。</div>
+<div class="description-paragraph" id="p0192" num="0094">接着，根据权限值P分配对应的操作权限等级和令牌有效期。其中，预设权限等级分为三级：</div>
+<div class="description-paragraph" id="p0193">当P位于第一区间[0-2]时，分配基础权限，允许飞行器执行基础飞行操作（如直线飞行、高度保持），令牌有效期为2小时；</div>
+<div class="description-paragraph" id="p0194">当P位于第二区间[3-5]时，分配中级权限，允许在特定区域（如划定的低空试验区）飞行，有效期为1小时；</div>
+<div class="description-paragraph" id="p0195">当P位于第三区间[6-10]时，分配高级权限，允许全空域飞行且可执行复杂操作（如航线变更、任务加载），有效期为0.5小时。</div>
+<div class="description-paragraph" id="p0196" num="0095">需要说明的是，权限等级和有效期可根据实时空域管制政策动态调整，例如在临时禁飞区附近自动降低权限等级。</div>
+<div class="description-paragraph" id="p0197" num="0096">最后，基于非对称加密签名算法（如RSA）生成包含权限信息的访问令牌。令牌内容包括：权限等级（如“中级”）、令牌有效期（如“2025-05-28T09:00:00至2025-05-28T13:00:00”）、飞行器唯一标识（如IMEI码）、时间戳（用于防重放攻击）及签名值（通过私钥对上述信息加密生成）。生成的令牌以二进制或JSON格式传输至飞行器，飞行器通过内置公钥验证签名有效性后，根据令牌中的权限等级执行相应的访问控制逻辑，例如拒绝超出权限范围的飞行指令或数据访问请求。</div>
+<div class="description-paragraph" id="p0198" num="0097">基于上述技术方案，本申请实现了从认证强度和环境风险到访问权限的动态映射，确保飞行器在不同场景下获得最小必要权限，提升空域访问的安全性和精细化管理能力。</div>
+<div class="description-paragraph" id="p0199" num="0098">上述主要从设备实现的角度对本申请实施例的方案进行了介绍。可以理解的是，各个设备，例如，一种面向低空飞行器的身份认证与访问控制装置为了实现上述功能，其包含了执行各个功能相应的硬件结构和软件模块中的至少一个。本领域技术人员应该很容易意识到，结合本文中所公开的实施例描述的各示例的单元及算法步骤，本申请能够以硬件或硬件和计算机软件的结合形式来实现。某个功能究竟以硬件还是计算机软件驱动硬件的方式来执行，取决于技术方案的特定应用和设计约束条件。专业技术人员可以对每个特定的应用来使用不同方法来实现所描述的功能，但是这种实现不应认为超出本申请的范围。</div>
+<div class="description-paragraph" id="p0200" num="0099">本申请实施例可以根据上述方法示例对一种面向低空飞行器的身份认证与访问控制装置进行功能单元的划分，例如，可以对应各个功能划分各个功能单元，也可以将两个或两个以上的功能集成在一个处理单元中。上述集成的单元既可以采用硬件的形式实现，也可以采用软件功能单元的形式实现。需要说明的是，本申请实施例中对单元的划分是示意性的，仅仅为一种逻辑功能划分，实际实现时可以有另外的划分方式。</div>
+<div class="description-paragraph" id="p0201" num="0100">在采用集成的单元的情况下，图4示出了上述实施例中所涉及的一种面向低空飞行器的身份认证与访问控制装置（记为装置40）的一种可能的结构示意图，该装置40包括处理单元401和通信单元402，还可以包括存储单元403。图4所示的结构示意图可以用于示意上述实施例中所涉及的装置的结构。</div>
+<div class="description-paragraph" id="p0202" num="0101">当图4所示的结构示意图用于示意上述实施例中所涉及的装置的结构时，处理单元401用于对装置的动作进行控制管理，通信单元402用于装置与其他设备（如低空飞行器、传感器网络）通信，存储单元403用于存储装置的程序代码和数据（如历史认证日志、注册模板、权限配置策略）。</div>
+<div class="description-paragraph" id="p0203" num="0102">例如，通信单元402，用于采集低空飞行器的环境数据（信号强度、频谱干扰等）、设备状态数据（电池容量、飞行高度等）及历史认证日志，并传输至处理单元；</div>
+<div class="description-paragraph" id="p0204">处理单元401，用于将采集数据输入AI决策引擎，通过深度强化学习模型生成认证因子组合，执行主因子认证并计算匹配度，根据匹配度触发备用因子二次认证，结合认证结果与风险评估模型生成访问令牌。</div>
+<div class="description-paragraph" id="p0205" num="0103">在一种可能的实现方式中，处理单元401，还用于对环境数据进行归一化处理，计算环境风险系数，以及根据权限值计算公式动态调整权限等级。</div>
+<div class="description-paragraph" id="p0206" num="0104">在一种可能的实现方式中，通信单元402，还用于向低空飞行器发送访问令牌及权限信息，处理单元401，还用于验证飞行器的实时位置与地理围栏匹配度，或通过区块链智能合约查询飞行器状态。</div>
+<div class="description-paragraph" id="p0207" num="0105">其中，处理单元401可以是处理器或控制器，通信单元402可以是通信接口、收发器、收发机、收发电路、收发装置等。其中，通信接口是统称，可以包括一个或多个接口。存储单元403可以是存储器。当装置40为芯片时，处理单元401可以是处理器或控制器，通信单元402可以是输入接口和/或输出接口、管脚或电路等。存储单元403可以是该芯片内的存储单元（例如，寄存器、缓存等），也可以是位于该芯片外部的存储单元（例如，只读存储器ROM、随机存取存储器RAM等）。</div>
+<div class="description-paragraph" id="p0208" num="0106">其中，通信单元也可以称为收发单元。装置40中的具有收发功能的天线和控制电路可以视为装置40的通信单元402，具有处理功能的处理器可以视为装置40的处理单元401。可选的，通信单元402中用于实现接收功能的器件可以视为通信单元，通信单元用于执行本申请实施例中的接收的步骤，通信单元可以为接收机、接收器、接收电路等。通信单元402中用于实现发送功能的器件可以视为发送单元，发送单元用于执行本申请实施例中的发送的步骤，发送单元可以为发送机、发送器、发送电路等。</div>
+<div class="description-paragraph" id="p0209" num="0107">图4中的集成的单元如果以软件功能模块的形式实现并作为独立的产品销售或使用时，可以存储在一个计算机可读取存储介质中。基于这样的理解，本申请实施例的技术方案本质上或者说对现有技术做出贡献的部分或者该技术方案的全部或部分可以以软件产品的形式体现出来，该计算机软件产品存储在一个存储介质中，包括若干指令用以使得一台计算机设备（可以是个人计算机，服务器，或者网络设备等）或处理器（processor）执行本申请各个实施例所述方法的全部或部分步骤。存储计算机软件产品的存储介质包括：U盘、移动硬盘、只读存储器、随机存取存储器、磁碟或者光盘等各种可以存储程序代码的介质。</div>
+<div class="description-paragraph" id="p0210" num="0108">本申请实施例还提供了一种计算机可读存储介质，包括指令，当其在计算机上运行时，使得计算机执行上述任一方法。</div>
+<div class="description-paragraph" id="p0211" num="0109">本申请实施例还提供了一种包含指令的计算机程序产品，当其在计算机上运行时，使得计算机执行上述任一方法。</div>
+<div class="description-paragraph" id="p0212" num="0110">本申请实施例还提供了一种芯片，该芯片包括处理器和接口电路，该接口电路和该处理器耦合，该处理器用于运行计算机程序或指令，以实现上述方法，该接口电路用于与该芯片之外的其他模块进行通信。</div>
+<div class="description-paragraph" id="p0213" num="0111">在上述实施例中，可以全部或部分地通过软件、硬件、固件或者其任意组合来实现。当使用软件程序实现时，可以全部或部分地以计算机程序产品的形式来实现。该计算机程序产品包括一个或多个计算机指令。在计算机上加载和执行计算机程序指令时，全部或部分地产生按照本申请实施例所述的流程或功能。计算机可以是通用计算机、专用计算机、计算机网络、或者其他可编程装置。计算机指令可以存储在计算机可读存储介质中，或者从一个计算机可读存储介质向另一个计算机可读存储介质传输，例如，计算机指令可以从一个网站站点、计算机、服务器或者数据中心通过有线（例如同轴电缆、光纤、数字用户线digital subscriber line，简称DSL）或无线（例如红外、无线、微波等）方式向另一个网站站点、计算机、服务器或数据中心进行传输。计算机可读存储介质可以是计算机能够存取的任何可用介质或者是包含一个或多个可以用介质集成的服务器、数据中心等数据存储设备。可用介质可以是磁性介质（例如，软盘、硬盘、磁带），光介质（例如，DVD）、或者半导体介质（例如固态硬盘solid state disk，简称SSD）等。</div>
+<div class="description-paragraph" id="p0214" num="0112">尽管在此结合各实施例对本申请进行了描述，然而，在实施所要求保护的本申请过程中，本领域技术人员通过查看附图、公开内容、以及所附权利要求书，可理解并实现公开实施例的其他变化。在权利要求中，“包括”（comprising）一词不排除其他组成部分或步骤，“一”或“一个”不排除多个的情况。单个处理器或其他单元可以实现权利要求中列举的若干项功能。相互不同的从属权利要求中记载了某些措施，但这并不表示这些措施不能组合起来产生良好的效果。</div>
+<div class="description-paragraph" id="p0215" num="0113">尽管结合具体特征及其实施例对本申请进行了描述，显而易见地，在不脱离本申请的精神和范围的情况下，可对其进行各种修改和组合。相应地，本说明书和附图仅仅是所附权利要求所界定的本申请的示例性说明，且视为已覆盖本申请范围内的任意和所有修改、变化、组合或等同物。显然，本领域的技术人员可以对本申请进行各种改动和变型而不脱离本申请的精神和范围。这样，倘若本申请的这些修改和变型属于本申请权利要求及其等同技术的范围之内，则本申请也意图包含这些改动和变形在内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

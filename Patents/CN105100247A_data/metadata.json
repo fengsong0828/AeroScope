@@ -1,0 +1,222 @@
+{
+    "patent_id": "CN105100247A",
+    "title": "CN105100247A - 一种低空飞行器气象信息交互系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Chongqing Sailewei Aviation Technology Co Ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN105100247A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN101533107A (zh) *",
+            "Priority Date": "2009-04-09",
+            "Publication Date": "2009-09-16",
+            "Assignee": "民航数据通信有限责任公司",
+            "Title": "气象信息的获取系统及方法",
+            "Link": "https://patents.google.com/patent/CN101533107A/zh"
+        },
+        {
+            "Publication Number": "CN102682194A (zh) *",
+            "Priority Date": "2010-12-13",
+            "Publication Date": "2012-09-19",
+            "Assignee": "波音公司",
+            "Title": "基于时间的天气符号",
+            "Link": "https://patents.google.com/patent/CN102682194A/zh"
+        },
+        {
+            "Publication Number": "CN103010473A (zh) *",
+            "Priority Date": "2011-09-23",
+            "Publication Date": "2013-04-03",
+            "Assignee": "塔莱斯公司",
+            "Title": "用于飞行器的高空气象现象报警设备",
+            "Link": "https://patents.google.com/patent/CN103010473A/zh"
+        },
+        {
+            "Publication Number": "US20140039733A1 (en) *",
+            "Priority Date": "2012-07-31",
+            "Publication Date": "2014-02-06",
+            "Assignee": "General Electric Company",
+            "Title": "Method and apparatus for providing in-flight weather data",
+            "Link": "https://patents.google.com/patent/US20140039733A1/en"
+        },
+        {
+            "Publication Number": "CN104282177A (zh) *",
+            "Priority Date": "2013-07-01",
+            "Publication Date": "2015-01-14",
+            "Assignee": "霍尼韦尔国际公司",
+            "Title": "用于产生并提交pirep的系统和方法",
+            "Link": "https://patents.google.com/patent/CN104282177A/zh"
+        },
+        {
+            "Publication Number": "CN104318809A (zh) *",
+            "Priority Date": "2014-10-11",
+            "Publication Date": "2015-01-28",
+            "Assignee": "中国电子科技集团公司第二十八研究所",
+            "Title": "一种带3g功能的便携ads-b机载系统",
+            "Link": "https://patents.google.com/patent/CN104318809A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN106950564A (zh) *",
+            "Priority Date": "2017-04-01",
+            "Publication Date": "2017-07-14",
+            "Assignee": "荆州南湖机械股份有限公司",
+            "Title": "一种超低空盲区探测优化装置",
+            "Link": "https://patents.google.com/patent/CN106950564A/zh"
+        },
+        {
+            "Publication Number": "CN107038900A (zh) *",
+            "Priority Date": "2017-04-25",
+            "Publication Date": "2017-08-11",
+            "Assignee": "西安航空学院",
+            "Title": "一种通用航空低空监视与服务系统",
+            "Link": "https://patents.google.com/patent/CN107038900A/zh"
+        },
+        {
+            "Publication Number": "CN107356940A (zh) *",
+            "Priority Date": "2017-08-11",
+            "Publication Date": "2017-11-17",
+            "Assignee": "四川联丰云网科技有限公司",
+            "Title": "基于北斗卫星通信的低空监视系统",
+            "Link": "https://patents.google.com/patent/CN107356940A/zh"
+        },
+        {
+            "Publication Number": "CN111066074A (zh) *",
+            "Priority Date": "2017-09-22",
+            "Publication Date": "2020-04-24",
+            "Assignee": "株式会社东芝",
+            "Title": "航空气象管制系统",
+            "Link": "https://patents.google.com/patent/CN111066074A/zh"
+        },
+        {
+            "Publication Number": "CN111066074B (zh) *",
+            "Priority Date": "2017-09-22",
+            "Publication Date": "2022-04-19",
+            "Assignee": "株式会社东芝",
+            "Title": "航空气象管制系统",
+            "Link": "https://patents.google.com/patent/CN111066074B/zh"
+        },
+        {
+            "Publication Number": "CN108387237A (zh) *",
+            "Priority Date": "2018-03-20",
+            "Publication Date": "2018-08-10",
+            "Assignee": "陈昌志",
+            "Title": "通用航空雷达数传ip电台组网导航系统",
+            "Link": "https://patents.google.com/patent/CN108387237A/zh"
+        },
+        {
+            "Publication Number": "CN108387237B (zh) *",
+            "Priority Date": "2018-03-20",
+            "Publication Date": "2024-05-24",
+            "Assignee": "陈昌志",
+            "Title": "通用航空雷达数传ip电台组网导航系统",
+            "Link": "https://patents.google.com/patent/CN108387237B/zh"
+        },
+        {
+            "Publication Number": "CN108900526B (zh) *",
+            "Priority Date": "2018-07-19",
+            "Publication Date": "2021-04-02",
+            "Assignee": "王立泽",
+            "Title": "航站情报缩短延迟和提高广播数据准确性方法及系统",
+            "Link": "https://patents.google.com/patent/CN108900526B/zh"
+        },
+        {
+            "Publication Number": "CN108900526A (zh) *",
+            "Priority Date": "2018-07-19",
+            "Publication Date": "2018-11-27",
+            "Assignee": "王立泽",
+            "Title": "航站情报缩短延迟和提高广播数据准确性方法及系统",
+            "Link": "https://patents.google.com/patent/CN108900526A/zh"
+        },
+        {
+            "Publication Number": "CN109474327A (zh) *",
+            "Priority Date": "2018-11-26",
+            "Publication Date": "2019-03-15",
+            "Assignee": "中电科航空电子有限公司",
+            "Title": "一种民用宽体客机机载信息系统",
+            "Link": "https://patents.google.com/patent/CN109474327A/zh"
+        },
+        {
+            "Publication Number": "CN109474327B (zh) *",
+            "Priority Date": "2018-11-26",
+            "Publication Date": "2021-08-24",
+            "Assignee": "中电科航空电子有限公司",
+            "Title": "一种民用宽体客机机载信息系统",
+            "Link": "https://patents.google.com/patent/CN109474327B/zh"
+        },
+        {
+            "Publication Number": "CN112215416A (zh) *",
+            "Priority Date": "2019-09-29",
+            "Publication Date": "2021-01-12",
+            "Assignee": "国网通用航空有限公司",
+            "Title": "智能规划巡检航线系统及方法",
+            "Link": "https://patents.google.com/patent/CN112215416A/zh"
+        },
+        {
+            "Publication Number": "CN112215416B (zh) *",
+            "Priority Date": "2019-09-29",
+            "Publication Date": "2024-04-19",
+            "Assignee": "国网电力空间技术有限公司",
+            "Title": "智能规划巡检航线系统及方法",
+            "Link": "https://patents.google.com/patent/CN112215416B/zh"
+        },
+        {
+            "Publication Number": "CN113472898A (zh) *",
+            "Priority Date": "2021-08-16",
+            "Publication Date": "2021-10-01",
+            "Assignee": "民航数据通信有限责任公司",
+            "Title": "基于数据链的飞行全阶段数字化气象服务按需推送装置",
+            "Link": "https://patents.google.com/patent/CN113472898A/zh"
+        },
+        {
+            "Publication Number": "CN114219151B (zh) *",
+            "Priority Date": "2021-12-15",
+            "Publication Date": "2023-05-26",
+            "Assignee": "中国民用航空飞行学院",
+            "Title": "自适应通用航空应急救援气象保障系统",
+            "Link": "https://patents.google.com/patent/CN114219151B/zh"
+        },
+        {
+            "Publication Number": "CN114219151A (zh) *",
+            "Priority Date": "2021-12-15",
+            "Publication Date": "2022-03-22",
+            "Assignee": "中国民用航空飞行学院",
+            "Title": "自适应通用航空应急救援气象保障系统",
+            "Link": "https://patents.google.com/patent/CN114219151A/zh"
+        },
+        {
+            "Publication Number": "CN114971990A (zh) *",
+            "Priority Date": "2022-04-25",
+            "Publication Date": "2022-08-30",
+            "Assignee": "安胜（天津）飞行模拟系统有限公司",
+            "Title": "一种基于区块链的民航信息管理系统",
+            "Link": "https://patents.google.com/patent/CN114971990A/zh"
+        },
+        {
+            "Publication Number": "CN114971990B (zh) *",
+            "Priority Date": "2022-04-25",
+            "Publication Date": "2024-12-31",
+            "Assignee": "安胜（天津）飞行模拟系统有限公司",
+            "Title": "一种基于区块链的民航信息管理系统",
+            "Link": "https://patents.google.com/patent/CN114971990B/zh"
+        },
+        {
+            "Publication Number": "CN114998771A (zh) *",
+            "Priority Date": "2022-07-18",
+            "Publication Date": "2022-09-02",
+            "Assignee": "沃飞长空科技(成都)有限公司",
+            "Title": "飞行器视景增强的显示方法、系统、飞行器及存储介质",
+            "Link": "https://patents.google.com/patent/CN114998771A/zh"
+        },
+        {
+            "Publication Number": "CN114998771B (zh) *",
+            "Priority Date": "2022-07-18",
+            "Publication Date": "2022-11-01",
+            "Assignee": "沃飞长空科技(成都)有限公司",
+            "Title": "飞行器视景增强的显示方法、系统、飞行器及存储介质",
+            "Link": "https://patents.google.com/patent/CN114998771B/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:31:15"
+}

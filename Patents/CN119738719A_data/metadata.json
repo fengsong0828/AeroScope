@@ -1,0 +1,61 @@
+{
+    "patent_id": "CN119738719A",
+    "title": "CN119738719A - 低空飞行器的电池状态监控方法、装置、电子设备、介质及程序产品 - Google Patents",
+    "status": "Unknown",
+    "assignee": "China Mobile Communications Group Co Ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119738719A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN110189072A (zh) *",
+            "Priority Date": "2019-04-17",
+            "Publication Date": "2019-08-30",
+            "Assignee": "中国电子科技集团公司电子科学研究院",
+            "Title": "基于区块链技术的无人机物流系统及其运行方法",
+            "Link": "https://patents.google.com/patent/CN110189072A/zh"
+        },
+        {
+            "Publication Number": "CN113400990A (zh) *",
+            "Priority Date": "2021-05-24",
+            "Publication Date": "2021-09-17",
+            "Assignee": "深圳市智莱科技股份有限公司",
+            "Title": "充电提示方法、系统、计算机设备及计算机可读存储介质",
+            "Link": "https://patents.google.com/patent/CN113400990A/zh"
+        },
+        {
+            "Publication Number": "CN113484765A (zh) *",
+            "Priority Date": "2021-08-03",
+            "Publication Date": "2021-10-08",
+            "Assignee": "广州极飞科技股份有限公司",
+            "Title": "无人机的续航时间确定方法、装置、处理设备及介质",
+            "Link": "https://patents.google.com/patent/CN113484765A/zh"
+        },
+        {
+            "Publication Number": "CN116794532A (zh) *",
+            "Priority Date": "2023-06-21",
+            "Publication Date": "2023-09-22",
+            "Assignee": "广东电网有限责任公司广州供电局",
+            "Title": "基于多模态传感器融合算法的无人机电池电量预测方法",
+            "Link": "https://patents.google.com/patent/CN116794532A/zh"
+        },
+        {
+            "Publication Number": "CN117314161A (zh) *",
+            "Priority Date": "2023-09-25",
+            "Publication Date": "2023-12-29",
+            "Assignee": "云南大学",
+            "Title": "低空智联网中低空飞行器全生命周期安全风险评估方法",
+            "Link": "https://patents.google.com/patent/CN117314161A/zh"
+        },
+        {
+            "Publication Number": "CN117584809A (zh) *",
+            "Priority Date": "2023-11-03",
+            "Publication Date": "2024-02-23",
+            "Assignee": "广东汇天航空航天科技有限公司",
+            "Title": "飞行汽车的航时预测方法、装置、电子设备及存储介质",
+            "Link": "https://patents.google.com/patent/CN117584809A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:11:04"
+}

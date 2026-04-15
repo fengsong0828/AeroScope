@@ -1,0 +1,82 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN115880332A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES412424296">
+<invention-title id="title1" lang="ZH">一种低空飞行器视角的目标跟踪方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="n0001">本发明属于人工智能、光电工程、计算机视觉、目标跟踪技术领域，涉及一种低空飞行器视角的目标跟踪方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="n0002">人工智能产业已全面渗透到人类社会的各行各业,并深刻改变着人们的工作方式和生活习惯。其中计算机视觉是使用计算机及相关设备对生物视觉的一种模拟技术，视觉系统的建模需要光电工程等技术的指导。计算机视觉技术中目标跟踪有着广泛的应用，目标跟踪是在影像序列中持续定位选定对象的过程，是计算机视觉领域的一个重要研究课题，单目标跟踪作为目标跟踪的一个重要研究方向，单目标跟踪任务通过初始几帧给定目标的前提下，完成对后续的目标定位过程。跟踪模型分为生成式模型和判别式模型，根据跟踪的结果实时更新模板信息，通过适当的模板更新策略可以在很大程度上提高跟踪器的精度和鲁棒性。</div>
+<div class="description-paragraph" id="p0005" num="n0003">低空飞行器(如无人机、低空载人飞行器)视角下的目标跟踪在军事战略打击与防御、无人机定位、边境巡查、交通控制等方面有着广泛的应用。由于目标跟踪是在影像序列中持续定位选定对象的过程，可以理解为时间序列上的目标识别行为，目标跟踪任务中会由于完全不同的目标和约束条件产生了一系列的难点问题，除了其他计算机视觉任务中常见的一些挑战，如不同视点下的物体、光照、类内变化等，航空视角下目标跟踪的挑战还包括但不限于以下几个方面:物体的旋转和缩放变化(如小物体)，物体的精确定位，物体的密集和遮挡检测，检测速度等。同时航空单目标跟踪是在时间序列上特定单目标的持续定位过程，因此面临的难点问题还包括长期跟踪的误差累积，类内相似目标的干扰导致跟踪漂移，跟踪过程中遮挡导致的跟踪失败问题，以及尺度变化下的目标精确跟踪等，这些难点问题也推动了航空单目标跟踪算法的研究。本发明聚焦于低空飞行器视角的目标跟踪中的难点问题，通过设计网络框架、改良目标搜索策略，制定模板更新方法来提出一套精确精准的低空飞行器视角的目标跟踪方案。</div>
+<div class="description-paragraph" id="p0006" num="n0004">基于孪生网络的单目标跟踪算法特点是使用共享权重的网络对目标和搜索域进行特征提取，简化了目标跟踪的特征处理，提高了跟踪速度。其大致流程是针对目标模板和搜索域的特征提取，通过对深度特征的交互，完成对目标位置及大小的估计任务。Bertinetto等人在文献“L.Bertinetto,J.Valmadre,J.Henriques,A.Vedaldi,andP.Torr,“Fully-Convolutional Siamese Networks for Object Tracking,”inProc.European Conference on Computer Vision,2016,pp.850-865.”中提出了一种简单高效的单目标跟踪算法，一方面在特征提取的骨干网络部分使用的是全卷积网络，另一方面在相似性度量方面使用了简单的互相关操作，很大程度上提高了目标跟踪的精度与速度。然而，复杂的背景变化对局部目标特征带来了干扰，依靠单一的互相关操作会影响目标特征匹配的准确率。</div>
+<div class="description-paragraph" id="p0007" num="n0005">目标跟踪的搜索策略分为局部搜索策略和全局搜索策略，局部搜索策略为根据上一帧目标的位置信息，对本帧的局部内进行目标的搜索跟踪。Wang等人在文献“B.Li,W.Wu,Q.Wang,F.Zhang,J.Xing,and J.Yan,“SiamRPN++:Evolution of Siamese VisualTracking with Very Deep Networks,”in Proc.IEEE Conference on Computer Visionand Pattern Recognition,2019,pp.4277-4286.”提出了一种简单并有效的采样策略来打破空间不变性的限制，提出了跨层特征聚合结构来聚合多尺度的特征图。然而，由于方法遵循了局部性假设在跟踪目标丢失后的无法重新跟踪目标，因此这些跟踪方法只会在局部进行检测，导致了不适用于长期跟踪的要求。全局搜索策略为直接对本帧进行全局的目标的搜索跟踪。Huang等人在文献“L.Huang,X.Zhao,and K.Huang,“GlobalTrack:A Simple andStrong Baseline for Long-Term Tracking,”in Proc.AAAI Conference on ArtificialIntelligence,2020,pp.11037-11044.”中消除局部位置假设，提出了一种基于two-stage的全局实例搜索的跟踪器，可以在任意位置和比例尺上搜索目标，从而避免长期跟踪过程中的累积误差，然而，全局搜索策略带来的问题就是模型处理时间慢，实时响应不强。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0008">发明内容</div>
+<div class="description-paragraph" id="p0009" num="n0006">要解决的技术问题</div>
+<div class="description-paragraph" id="p0010" num="n0007">为了避免现有技术的不足之处，本发明提出一种低空飞行器视角的目标跟踪方法，主要缓解现有方法在短时遮挡下的目标跟踪丢失问题，同时提高低空飞行器视角的目标跟踪的准确率与精度。</div>
+<div class="description-paragraph" id="p0011" num="n0008">本发明的目的在于改善以下几个方面。</div>
+<div class="description-paragraph" id="p0012" num="n0009">1、现有的航空目标跟踪方法在短时遮挡后的目标丢失。</div>
+<div class="description-paragraph" id="p0013" num="n0010">2、基于低空飞行器的目标跟踪方法在目标的特征有效的提取挖掘。</div>
+<div class="description-paragraph" id="p0014" num="n0011">3、低空飞行器视角的目标跟踪方法目标特征与模板特征匹配的精确度。</div>
+<div class="description-paragraph" id="p0015" num="n0012">4、低空飞行器视角的目标跟踪方法分别在目标端和追踪端的移动会造成物体位置的不确定。</div>
+<div class="description-paragraph" id="p0016" num="n0013">技术方案</div>
+<div class="description-paragraph" id="p0017" num="n0014">一种低空飞行器视角的目标跟踪方法，其特征在于步骤如下：</div>
+<div class="description-paragraph" id="p0018" num="n0015">步骤1：利用无人机采集真实场景下的数据，在虚拟场景下的模拟低空飞行器视角的目标跟踪数据，最后在darklabel上进行数据的标注，建立真实虚拟的航空遥感数据集；</div>
+<div class="description-paragraph" id="p0019" num="n0016">步骤2：对孪生网络最后两个卷积块的总步长修改降为8，在每个卷积块输出上添加额外的1×1卷积层来将特征通道降低为256；</div>
+<div class="description-paragraph" id="p0020" num="n0017">以利用现有通用的目标跟踪数据集作为网络模型的训练数据，改进后的孪生网络的输入为目标模板和当前搜索帧的RGB图像，得到目标模板和搜索帧的特征图；</div>
+<div class="description-paragraph" id="p0021" num="n0018">步骤3：将孪生骨干网络提取到的目标模板和当前帧的特征图进行压缩处理转换为一维表征，然后通过位置嵌入编码得到q，k；不进行处理的一维表征信息为v，输入特征融合模块在目标与模板的匹配阶段进行特征的加强；</div>
+<div class="description-paragraph" id="p0022" num="n0019">所述特征融合模块分为时间的特征融合和空间的特征融合，具体为：</div>
+<div class="description-paragraph" id="p0023" num="n0020">将前一帧目标模板特征图与当前帧目标模板信息输入到第一Transformer结构中，，其中当前帧目标模板信息输入到Transformer的decoder模块，将前一帧的目标模板特征的k，v随后输入进行特征匹配；</div>
+<div class="description-paragraph" id="p0024" num="n0021">将当前搜索帧特征图与前一搜索帧特征图信息输入到第二Transformer结构中，其中当前搜索帧特征图输入到Transformer的decoder模块，将前一搜索帧特征图信息的k，v随后输入进行特征匹配；</div>
+<div class="description-paragraph" id="p0025" num="n0022">将当前搜索帧特征图与当前帧目标模板信息到第三Transformer结构中，其中当前帧目标模板信息输入到Transformer的encoder模块，当前搜索帧特征图输入到Transformer的decoder模块，进行特征匹配；</div>
+<div class="description-paragraph" id="p0026" num="n0023">将第一Transformer结构融合后的信息与第二Transformer结构融合后的信息输入第一多头交叉注意力模块融合，再与第二Transformer结构融合后的信息输入第一求和正则化模块融合，输入第一前馈神经网络融合；第一前馈神经网络的输出与第一求和正则化模块的输出同时输入第二求和正则化模块融合；第二求和正则化模块的输出与第三Transformer结构输出同时输入第二多头交叉注意力模块融合后，再与第三Transformer结构输出同时输入第三求和正则化模块融合，输入第二前馈神经网络融合；第二前馈神经网络的输出与第三求和正则化模块的输出同时输入第四求和正则化模块融合得到特征融合信息的输出；</div>
+<div class="description-paragraph" id="p0027" num="n0024">步骤4：对步骤3得到的结果输入分类网络及回归网络，通过分类网络得到目标的中心位置，通过回归网络得到目标的大小；</div>
+<div class="description-paragraph" id="p0028" num="n0025">步骤5：以公开的数据集对步骤2～步骤4的网络框架进行端到端训练；</div>
+<div class="description-paragraph" id="p0029" num="n0026">步骤6：在线学习阶段，通过本帧前的若干帧的目标位置估算目标运动信息，实现低空飞行器视角的目标跟踪方法。</div>
+<div class="description-paragraph" id="p0030" num="n0027">所述步骤4分类网络输出w*h*2的特征图，w,h分别为特征图长和宽，即每个点包含2维的向量为前景和背景相应位置分数，进行分类。</div>
+<div class="description-paragraph" id="p0031" num="n0028">所述步骤4回归网络输出w*h*4的特征图，每个点包含四维向量分别为四个边角的距离，实现目标的确定。</div>
+<div class="description-paragraph" id="p0032" num="n0029">所述步骤5在完成端到端的训练完成之后，将得到的网络框架在我们采集到的数据上进行微调工作。</div>
+<div class="description-paragraph" id="p0033" num="n0030">所述步骤6目标跟踪中，在未遮挡的情况中，利用目标匹配结果确定目标位置，同时对目标运动的估算做出纠正，更新目标模板。</div>
+<div class="description-paragraph" id="p0034" num="n0031">所述步骤6目标跟踪中，在遮挡情况下，利用目标运动信息估计目标位置，保持目标搜索区域，不进行模板更新，预测接下来在短时遮挡下目标的运动轨迹，当判断不再被遮挡时，继续依靠模板对目标进行再跟踪。</div>
+<div class="description-paragraph" id="p0035" num="n0032">有益效果</div>
+<div class="description-paragraph" id="p0036" num="n0033">本发明提出的一种低空飞行器视角的目标跟踪方法，针对航空目标跟踪数据特点分析，设计特定状况下的特征提取与特征匹配的网络框架。同时在目标跟踪过程中，当移动目标发生短时的前景遮挡现象时，通过遮挡前的窗口下目标移动轨迹的计算，通过保持目标物体在遮挡下的位置估计，实现遮挡后准确的目标再跟踪。</div>
+<div class="description-paragraph" id="p0037" num="n0034">本发明相对于现有的航空目标跟踪方法有以下优点：</div>
+<div class="description-paragraph" id="p0038" num="n0035">1、目标特征提取边缘信息更丰富，特征表达更准确。本发明是低空飞行器视角的目标跟踪方法，通过对低空飞行器视角的时空序列数据的分析，设计适应于其数据特点的骨干网络，得到耦合度低，丰富的目标空间和语义信息。</div>
+<div class="description-paragraph" id="p0039" num="n0036">2、目标特征匹配更准确。本发明在目标特征和模板特征的匹配过程中采用注意力机制来强化目标与模板的相似度，减少背景干扰，同时通过两层的特征融合进一步保证跟踪的准确。</div>
+<div class="description-paragraph" id="p0040" num="n0037">3、短时遮挡后的目标再跟踪更准确。本发明在目标发生短时的前景遮挡时，利用前若干帧帧的目标运动信息估计遮挡后的目标位置，实现在短时遮挡后的目标再跟踪，使得发生目标跟踪失败或漂移的概率降低。</div>
+<div class="description-paragraph" id="p0041" num="n0038">4、目标模板的信息污染减少。本发明在目标遮挡后不会更新目标模板，减少前景信息对模板的干扰，同时利用目标的运动信息辅助指导目标的跟踪，可以得到更精确的目标位置和大小的估计，从而使得目标模板信息更加准确，减少了随着时间产生的误差累积。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0042">附图说明</div>
+<div class="description-paragraph" id="p0043" num="n0039">图1：整体框架的流程图</div>
+<div class="description-paragraph" id="p0044" num="n0040">图2：目标运动信息估计流程图</div>
+<div class="description-paragraph" id="p0045" num="n0041">图3：本发明的网络框架</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0046">具体实施方式</div>
+<div class="description-paragraph" id="p0047" num="n0042">现结合实施例、附图对本发明作进一步描述：</div>
+<div class="description-paragraph" id="p0048" num="n0043">本发明提出一种低空飞行器视角的目标跟踪方法，针对航空目标跟踪数据特点分析，设计特定状况下的特征提取与特征匹配的网络框架。同时在目标跟踪过程中，当移动目标发生短时的前景遮挡现象时，通过遮挡前的窗口下目标移动轨迹的计算，通过保持目标物体在遮挡下的位置估计，实现遮挡后准确的目标再跟踪。其技术方案具体如下：</div>
+<div class="description-paragraph" id="p0049" num="n0044">1、自适应感受野的目标特征提取：在目标特征信息的提取方面，使用卷积模型搭建基于孪生的骨干网络。通过调整卷积核参数使其适用于航空遥感目标感受野，改善模型对于目标边缘信息的敏感度，提高模型对于目标在运动中的特征变化以及学习目标整体特征的能力。利用分组卷积的思想，在空间维度上做信息混合，并且通过把depth wise卷积层提前来在一定程度上减小网络参数。通过对整体的骨干网络设计完成对航空视角下的目标特征提取工作。</div>
+<div class="description-paragraph" id="p0050" num="n0045">2、多级目标特征匹配融合策略：对孪生的骨干网络中的目标特征与模板特征的匹配过程中，使用两层串行的特征融合网络加强特征匹配的效果，在每一层中首先利用自注意力机制分别对模板特征和当前帧下的目标特征进行自注意力的特征处理，强化语义信息，其次使用处理模板特征与目标特征进行交叉注意力的特征融合，在当前帧的目标特征上强化模板的信息，提高目标匹配效果。在串行的特征融合网络中利用多层融合的方法，进一步强化当前帧目标特征信息，最大程度地降低噪声和背景的干扰。</div>
+<div class="description-paragraph" id="p0051" num="n0046">3、基于运动目标信息的目标再跟踪与模板选择更新方法：根据目标特征置信度和目标运动信息确定目标是否被遮挡，通过当前帧前的若干帧的目标位置估算目标运动信息。在未遮挡的情况中，利用目标匹配结果确定目标位置，同时对目标运动的估算做出纠正，更新目标模板。在遮挡情况下，利用目标运动信息估计目标位置，保持目标搜索区域，不进行模板更新，预测接下来在短时遮挡下目标的运动轨迹，当判断不再被遮挡时，继续依靠模板对目标进行再跟踪。</div>
+<div class="description-paragraph" id="p0052" num="n0047">具体实施例：参照图1，本发明的实现步骤如下：</div>
+<div class="description-paragraph" id="p0053" num="n0048">步骤1，为了得到鲁棒性强的低空飞行器视角目标跟踪模型，首先建立丰富的航空遥感跟踪数据集，利用无人机采集真实场景下的数据，在虚拟场景下的模拟低空飞行器视角的目标跟踪数据，最后在darklabel上进行数据的标注，完成真实虚拟的航空遥感数据集的建立。</div>
+<div class="description-paragraph" id="p0054" num="n0049">步骤2，利用现有通用的目标跟踪数据集作为网络模型的训练数据，网络的输入为目标模板和当前搜索帧的RGB图像。针对两个输入的RGB图像输入，采用权重共享的孪生网络，得到目标和搜索帧的特征图。其中孪生网络使用在分类任务中性能表现良好的ConvNext，其得到的空间信息对于目标的准确定位至关重要，所以在我们的跟踪任务中使用，我们对最后两个卷积块的步长进行了修改，将总步长降低到8，并通过空洞卷积来增加感受野。在每个卷积块输出上添加额外的1×1卷积层来将特征通道降低为256。利用合适的卷积核形成适应性强的感受野，利用分组卷积强化空间维度信息交叉的理解，采用改进的残差网络提取耦合度低、表征性强的特征，增强网络对目标特征的提取和鉴别能力。</div>
+<div class="description-paragraph" id="p0055" num="n0050">步骤3，在特征融合阶段，针对孪生骨干网络提取到的模板和当前帧的特征图，利用特征融合模块在目标与模板的匹配阶段进行特征的加强，同时为减缓网络加深导致的梯度弥散问题。同时利用时间背景上下文信息加强时空目标特征信息之间的联系，完成特征融合模块的设计。特征融合模块分为时间的特征融合和空间的特征融合，在时间的特征融合中，利用上一帧中的特征图输出，分别与通过自注意力加强的特征图输入到交叉注意力模块，在进行模板特征与目标特征的注意力匹配。在空间的特征融合中，直接将模板与当前帧特征输入到Transformer结构中，进行特征匹配。最终将两个模块的到的输出再输入到时空特征融合中。如图3，最终得到输出。</div>
+<div class="description-paragraph" id="p0056" num="n0051">具体为：将孪生骨干网络提取到的目标模板和当前帧的特征图进行压缩处理转换为一维表征，然后通过位置嵌入编码得到q，k；不进行处理的一维表征信息为v，输入特征融合模块在目标与模板的匹配阶段进行特征的加强；</div>
+<div class="description-paragraph" id="p0057" num="n0052">所述特征融合模块分为时间的特征融合和空间的特征融合，具体为：</div>
+<div class="description-paragraph" id="p0058" num="n0053">将前一帧目标模板特征图与当前帧目标模板信息输入到第一Transformer结构中，，其中当前帧目标模板信息输入到Transformer的decoder模块，将前一帧的目标模板特征的k，v随后输入进行特征匹配；</div>
+<div class="description-paragraph" id="p0059" num="n0054">将当前搜索帧特征图与前一搜索帧特征图信息输入到第二Transformer结构中，其中当前搜索帧特征图输入到Transformer的decoder模块，将前一搜索帧特征图信息的k，v随后输入进行特征匹配；</div>
+<div class="description-paragraph" id="p0060" num="n0055">将当前搜索帧特征图与当前帧目标模板信息到第三Transformer结构中，其中当前帧目标模板信息输入到Transformer的encoder模块，当前搜索帧特征图输入到Transformer的decoder模块，进行特征匹配；</div>
+<div class="description-paragraph" id="p0061" num="n0056">将第一Transformer结构融合后的信息与第二Transformer结构融合后的信息输入第一多头交叉注意力模块融合，再与第二Transformer结构融合后的信息输入第一求和正则化模块融合，输入第一前馈神经网络融合；第一前馈神经网络的输出与第一求和正则化模块的输出同时输入第二求和正则化模块融合；第二求和正则化模块的输出与第三Transformer结构输出同时输入第二多头交叉注意力模块融合后，再与第三Transformer结构输出同时输入第三求和正则化模块融合，输入第二前馈神经网络融合；第二前馈神经网络的输出与第三求和正则化模块的输出同时输入第四求和正则化模块融合得到特征融合信息的输出；</div>
+<div class="description-paragraph" id="p0062" num="n0057">步骤4，对步骤3得到的结果对其进行分类和回归分别确定目标的位置和大小，同时在分类和回归上同步优化，以生成精度一致的输出，完成网络的整体框架设计。(首先目标跟踪过程中分类是确定目标的中心位置，回归是确定目标的大小，其也是网络的一部分，再得到响应图后分为分类分支和回归分支，主要表现为分类分支输出w*h*2的特征图，w,h分别为特征图长和宽，即每个点包含2维的向量为前景和背景相应位置分数，进行分类。回归分支输出w*h*4的特征图，每个点包含四维向量分别为四个边角的距离，实现目标的确定)。</div>
+<div class="description-paragraph" id="p0063" num="n0058">步骤5，在公开的数据集上对网络框架进行端到端训练，同时在自己的数据集上完成微调工作。</div>
+<div class="description-paragraph" id="p0064" num="n0059">步骤6，在在线学习阶段，通过本帧前的若干帧的目标位置估算目标运动信息。在未遮挡的情况中，利用目标匹配结果确定目标位置，同时对目标运动的估算做出纠正，更新目标模板。在遮挡情况下，利用目标运动信息估计目标位置，保持目标搜索区域，不进行模板更新，预测接下来在短时遮挡下目标的运动轨迹，当判断不再被遮挡时，继续依靠模板对目标进行再跟踪。保证了在遮挡情况下不需要全局搜索就能确定目标大致位置，保证了模型的实时性，实现低空飞行器视角的目标跟踪方法。</div>
+<div class="description-paragraph" id="p0065" num="n0060">总体来说，本发明是一种低空飞行器视角的目标跟踪方法，保证航空目标跟踪的准确率和精度。在目标发生短时遮挡时，通过遮挡前的目标位置估计遮挡后的目标轨迹，同时还可作为目标跟踪过程中的辅助信息指导，防止目标漂移及相似目标干扰。通过特征提取得到耦合度低的目标信息，通过目标与模板的匹配得到精确的低空飞行器视角的目标跟踪结果。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

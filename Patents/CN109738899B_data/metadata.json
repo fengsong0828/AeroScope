@@ -1,0 +1,165 @@
+{
+    "patent_id": "CN109738899B",
+    "title": "CN109738899B - 一种基于随机共振探测阵列的低空飞行器探测方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Hunan Zhijing Electronic Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN109738899B/zh",
+    "citations": [
+        {
+            "Publication Number": "US4686605A (en) *",
+            "Priority Date": "1985-01-10",
+            "Publication Date": "1987-08-11",
+            "Assignee": "Apti, Inc.",
+            "Title": "Method and apparatus for altering a region in the earth's atmosphere, ionosphere, and/or magnetosphere",
+            "Link": "https://patents.google.com/patent/US4686605A/en"
+        },
+        {
+            "Publication Number": "JP2000003350A (ja) *",
+            "Priority Date": "1998-06-12",
+            "Publication Date": "2000-01-07",
+            "Assignee": "Nippon Telegr & Teleph Corp <Ntt>",
+            "Title": "時空間パターン検出方法及び装置ならびに記録媒体",
+            "Link": "https://patents.google.com/patent/JP2000003350A/ja"
+        },
+        {
+            "Publication Number": "US7030808B1 (en) *",
+            "Priority Date": "2004-03-05",
+            "Publication Date": "2006-04-18",
+            "Assignee": "The United States Of America As Represented By The Secretary Of The Air Force",
+            "Title": "Nonlinear target recognition",
+            "Link": "https://patents.google.com/patent/US7030808B1/en"
+        },
+        {
+            "Publication Number": "CN101294845A (zh) *",
+            "Priority Date": "2008-05-05",
+            "Publication Date": "2008-10-29",
+            "Assignee": "西北工业大学",
+            "Title": "转子早期故障的多频率微弱信号检测方法",
+            "Link": "https://patents.google.com/patent/CN101294845A/zh"
+        },
+        {
+            "Publication Number": "CN105519262B (zh) *",
+            "Priority Date": "2008-11-21",
+            "Publication Date": "2012-09-19",
+            "Assignee": "中国兵器工业第二〇二研究所",
+            "Title": "飞行目标无源实时探测方法",
+            "Link": "https://patents.google.com/patent/CN105519262B/zh"
+        },
+        {
+            "Publication Number": "CN101592730A (zh) *",
+            "Priority Date": "2009-06-05",
+            "Publication Date": "2009-12-02",
+            "Assignee": "浙江大学",
+            "Title": "基于参数调节随机共振及后处理的传感器阵波束域微弱信号处理方法",
+            "Link": "https://patents.google.com/patent/CN101592730A/zh"
+        },
+        {
+            "Publication Number": "CN201666956U (zh) *",
+            "Priority Date": "2010-03-29",
+            "Publication Date": "2010-12-08",
+            "Assignee": "中国人民解放军国防科学技术大学",
+            "Title": "总线式多光学探测系统",
+            "Link": "https://patents.google.com/patent/CN201666956U/zh"
+        },
+        {
+            "Publication Number": "CN102096113A (zh) *",
+            "Priority Date": "2010-12-03",
+            "Publication Date": "2011-06-15",
+            "Assignee": "吉林大学",
+            "Title": "时间域地空电磁探测系统及标定方法",
+            "Link": "https://patents.google.com/patent/CN102096113A/zh"
+        },
+        {
+            "Publication Number": "CN104089883A (zh) *",
+            "Priority Date": "2013-12-17",
+            "Publication Date": "2014-10-08",
+            "Assignee": "浙江工商大学",
+            "Title": "基于激光器阵列的检测装置及小黄鱼存储时间检测方法",
+            "Link": "https://patents.google.com/patent/CN104089883A/zh"
+        },
+        {
+            "Publication Number": "CN106197523A (zh) *",
+            "Priority Date": "2016-06-30",
+            "Publication Date": "2016-12-07",
+            "Assignee": "重庆邮电大学",
+            "Title": "基于一阶线性系统的弱信号检测及复原",
+            "Link": "https://patents.google.com/patent/CN106197523A/zh"
+        },
+        {
+            "Publication Number": "CN106682615A (zh) *",
+            "Priority Date": "2016-12-28",
+            "Publication Date": "2017-05-17",
+            "Assignee": "西北工业大学",
+            "Title": "一种水下弱小目标检测方法",
+            "Link": "https://patents.google.com/patent/CN106682615A/zh"
+        },
+        {
+            "Publication Number": "WO2018167476A1 (en) *",
+            "Priority Date": "2017-03-16",
+            "Publication Date": "2018-09-20",
+            "Assignee": "University Of Surrey",
+            "Title": "Signal detection based on stochastic resonance",
+            "Link": "https://patents.google.com/patent/WO2018167476A1/en"
+        },
+        {
+            "Publication Number": "CN107300689A (zh) *",
+            "Priority Date": "2017-06-28",
+            "Publication Date": "2017-10-27",
+            "Assignee": "南京理工大学",
+            "Title": "一种低空无人飞行器声源方位探测系统",
+            "Link": "https://patents.google.com/patent/CN107300689A/zh"
+        },
+        {
+            "Publication Number": "CN107329141A (zh) *",
+            "Priority Date": "2017-08-03",
+            "Publication Date": "2017-11-07",
+            "Assignee": "厦门大学",
+            "Title": "一种海洋环境下的航体微弱辐射噪声信号检测方法",
+            "Link": "https://patents.google.com/patent/CN107329141A/zh"
+        },
+        {
+            "Publication Number": "CN107884749A (zh) *",
+            "Priority Date": "2017-10-16",
+            "Publication Date": "2018-04-06",
+            "Assignee": "电子科技大学",
+            "Title": "一种低空无人机被动声探测定位装置",
+            "Link": "https://patents.google.com/patent/CN107884749A/zh"
+        },
+        {
+            "Publication Number": "CN108089166A (zh) *",
+            "Priority Date": "2017-12-07",
+            "Publication Date": "2018-05-29",
+            "Assignee": "北京无线电测量研究所",
+            "Title": "一种基于毫米波测云雷达的自适应频域检测方法",
+            "Link": "https://patents.google.com/patent/CN108089166A/zh"
+        },
+        {
+            "Publication Number": "CN108614268A (zh) *",
+            "Priority Date": "2018-04-26",
+            "Publication Date": "2018-10-02",
+            "Assignee": "中国人民解放军91550部队",
+            "Title": "低空高速飞行目标的声学跟踪方法",
+            "Link": "https://patents.google.com/patent/CN108614268A/zh"
+        },
+        {
+            "Publication Number": "CN108549105A (zh) *",
+            "Priority Date": "2018-07-02",
+            "Publication Date": "2018-09-18",
+            "Assignee": "西北工业大学",
+            "Title": "一种自适应随机共振的地震波特征提取方法",
+            "Link": "https://patents.google.com/patent/CN108549105A/zh"
+        },
+        {
+            "Publication Number": "CN108875685A (zh) *",
+            "Priority Date": "2018-07-02",
+            "Publication Date": "2018-11-23",
+            "Assignee": "西北工业大学",
+            "Title": "一种自适应匹配随机共振的水下auv检测方法",
+            "Link": "https://patents.google.com/patent/CN108875685A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:40:13"
+}

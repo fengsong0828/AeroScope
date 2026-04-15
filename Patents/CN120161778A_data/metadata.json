@@ -1,0 +1,53 @@
+{
+    "patent_id": "CN120161778A",
+    "title": "CN120161778A - 一种抗传感器故障的低空飞行器多模态推进控制方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Xiamen University",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120161778A/zh",
+    "citations": [
+        {
+            "Publication Number": "WO2021007391A1 (en) *",
+            "Priority Date": "2019-07-09",
+            "Publication Date": "2021-01-14",
+            "Assignee": "President And Fellows Of Harvard College",
+            "Title": "Iterative learning control with sparse measurements for insulin injections in people with type 1 diabetes",
+            "Link": "https://patents.google.com/patent/WO2021007391A1/en"
+        },
+        {
+            "Publication Number": "WO2022258079A1 (zh) *",
+            "Priority Date": "2021-06-09",
+            "Publication Date": "2022-12-15",
+            "Assignee": "山东大学",
+            "Title": "基于深度学习的电传动推土机电池热管理控制方法及系统",
+            "Link": "https://patents.google.com/patent/WO2022258079A1/zh"
+        },
+        {
+            "Publication Number": "CN117217071A (zh) *",
+            "Priority Date": "2023-07-20",
+            "Publication Date": "2023-12-12",
+            "Assignee": "厦门大学",
+            "Title": "基于deorl的航空发动机最低油耗控制优化方法",
+            "Link": "https://patents.google.com/patent/CN117217071A/zh"
+        },
+        {
+            "Publication Number": "CN119202497A (zh) *",
+            "Priority Date": "2024-04-18",
+            "Publication Date": "2024-12-27",
+            "Assignee": "西北工业大学",
+            "Title": "Tbcc发动机容错机载自适应模型建模方法",
+            "Link": "https://patents.google.com/patent/CN119202497A/zh"
+        },
+        {
+            "Publication Number": "CN120143855A (zh) *",
+            "Priority Date": "2025-05-14",
+            "Publication Date": "2025-06-13",
+            "Assignee": "厦门大学",
+            "Title": "一种短垂飞机多模态智能推进控制方法、装置、设备及存储介质",
+            "Link": "https://patents.google.com/patent/CN120143855A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:58:03"
+}

@@ -1,0 +1,288 @@
+<html><head><meta charset='utf-8'></head><body><h1>WO2018214969A1</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="WIPO-XML" mxw-id="PDES176984977">
+<invention-title lang="ZH">低空飞行器监管系统、方法、设备和低空飞行器管理平台系统</invention-title>
+<heading id="h0001">技术领域</heading>
+<div class="description-paragraph" num="0001">本发明的实施例涉及低空飞行器管制领域，尤其涉及低空飞行器监管系统、一种低空飞行器监管方法、一种低空飞行器监管设备以及一种低空飞行器管理平台系统。</div>
+<heading id="h0002">背景技术</heading>
+<div class="description-paragraph" num="0002">近年来，伴随着我国低空资源的逐步开放，低空飞行器行业发生了跨越式发展，其在军事和民用领域的应用越来越广泛。据前瞻产业研究院发布的相关报告统计，仅2015年,全球低空飞行器大约销售58.7万架，其中军用低空飞行器约占3％，民用低空飞行器占97％。民用低空飞行器销量中，中国市场销量占70％以上。预计到2020年中国低空飞行器年销量将达到29万架，且未来几年将保持42％以上的复合增长率。目前，低空飞行器已在航拍、快递、灾后搜救、工业巡线、国土测绘、数据采集等领域广泛应用。</div>
+<div class="description-paragraph" num="0003">低空飞行器的应用在带来诸多便利的同时，带来的安全隐患也日趋严重。</div>
+<div class="description-paragraph" num="0004">一方面，若低空飞行器被未经专业训练的、缺乏法律常识的用户使用，或者被不法分子等利用，将会给公共安全、人民生命财产安全等造成巨大威胁。没有飞行计划的“黑飞”现象所引发的安全隐患，在全国各地频频出现。据报道，2017年4月21日，仅在3个小时里，成都双流国际机场遭遇4架“黑飞”低空飞行器干扰，导致58个航班备降西安、重庆、贵阳和绵阳机场，4架飞机返航，逾1万名旅客出行受阻被滞留机场。</div>
+<div class="description-paragraph" num="0005">另一方面，由于缺乏应对低空飞行器恐怖袭击的有效系统性技术手段，恐怖分子利用低空飞行器对敏感设施及密集人群实施恐怖袭击的可能性与日俱增。</div>
+<div class="description-paragraph" num="0006">为此，加强低空飞行器飞行监管,治理“黑飞”刻不容缓。</div>
+<div class="description-paragraph" num="0007">此外，鉴于低空飞行器或者民用低空飞行器的广泛应用以及存在广大的低空飞行器或者民用低空飞行器爱好者群体，在治理“黑飞”的同时，还需要对于合法的民用低空飞行器进行监管，或者提供一个监管平台，为低空飞行器或者民用低空飞行器的广泛应用找到合法的疏解通道。</div>
+<div class="description-paragraph" num="0008">发明内容</div>
+<div class="description-paragraph" num="0009">为解决或缓解上述技术问题的至少一个方面，提出本发明。</div>
+<div class="description-paragraph" num="0010">根据本发明实施例的一个方面，提出了一种低空飞行器监管系统，包括：</div>
+<div class="description-paragraph" num="0011">申飞申请模块，所述申飞申请模块适于向审批后台提交低空飞行器飞行计划，以及接收来自审批后台的审核结果；</div>
+<div class="description-paragraph" num="0012">飞行监管模块，适于将低空飞行器的实时飞行数据与审批的飞行计划对比，基于对比结果发出操作指令。</div>
+<div class="description-paragraph" num="0013">可选的，所述低空飞行器监管系统还包括申飞审批模块，所述申飞审批模块作为所述审批后台，用于接收来自申飞申请模块的申请信息，并审核该申请信息以及将审核结果发送给申飞申请模块。</div>
+<div class="description-paragraph" num="0014">可选的，所述飞行计划包括飞行时间，空域范围和/或飞行用途。</div>
+<div class="description-paragraph" num="0015">可选的，所述申飞申请模块还适于向审批后台提交低空飞行器身份识别码进行审核。进一步的，所述低空飞行器身份识别码中包含了如下信息：低空飞行器设计厂家、低空飞行器生产厂家、低空飞行器生产日期、低空飞行器型号、低空飞行器设计参数、低空飞行器用途中的至少一种，以及与低空飞行器一一对应的识别码。</div>
+<div class="description-paragraph" num="0016">可选的，所述实时飞行数据包括飞行时间、飞行高度、飞行速度、飞行经纬度、飞行地域范围中的至少一种。</div>
+<div class="description-paragraph" num="0017">可选的，所述飞行监管系统适于基于获得的低空飞行器实时飞行数据预测预定时间段内的低空飞行器飞行轨迹。</div>
+<div class="description-paragraph" num="0018">可选的，在飞行监管模块执行对比后判断低空飞行器偏离飞行计划后，适于向低空飞行器操控器发送警告或者迫降指令。</div>
+<div class="description-paragraph" num="0019">可选的，在飞行监管模块执行对比后判断低空飞行器偏离飞行计划后，适于指示相应的低空飞行器防御设备向偏离飞行计划的低空飞行器执行防御措施，以干扰所述低空飞行器进入敏感区域。</div>
+<div class="description-paragraph" num="0020">可选的，在飞行监管模块执行对比后判断低空飞行器偏离飞行计划后，适于指示相应的低空飞行器反制设备向偏离飞行计划的低空飞行器执行反制措施，以击毁或者捕获偏离飞行计划的低空飞行器。</div>
+<div class="description-paragraph" num="0021">可选的，对于飞行监管模块无法获得身份识别码或者身份识别码没有备案的黑飞低空飞行器，所述飞行监管模块适于指示相应的低空飞行器反制设备向所述黑飞低空飞行器执行反制措施，以击毁或者捕获所述黑飞低空飞行器，或者适于指示相应的低空飞行器防御设备向所述黑飞低空飞行器执行防御措施，以干扰所述黑飞低空飞行器进入敏感区域。</div>
+<div class="description-paragraph" num="0022">可选的，对于飞行监管模块无法获得对应的申请的飞行计划的黑飞低空飞行器，所述飞行监管模块适于指示相应的低空飞行器反制设备向所述黑飞低空飞行器执行反制措施，以击毁或者捕 获所述黑飞低空飞行器，或者适于指示相应的低空飞行器防御设备向所述黑飞低空飞行器执行防御措施，以干扰所述黑飞低空飞行器进入敏感区域。</div>
+<div class="description-paragraph" num="0023">可选的，所述申飞申请模块还适于向审批后台提交飞控手身份信息进行审核。</div>
+<div class="description-paragraph" num="0024">可选的，所述飞行监管模块适于选定监管区域，以实时监管所述区域内的所有低空飞行器的飞行数据。</div>
+<div class="description-paragraph" num="0025">可选的，所述区域包括敏感区域、市级行政区域、省级行政区域、全国行政区域中的至少一种。</div>
+<div class="description-paragraph" num="0026">可选的，所述申飞申请模块适于选定飞行地域范围。</div>
+<div class="description-paragraph" num="0027">可选的，所述飞行监管模块和/或申飞审批模块中存储有禁飞区域。</div>
+<div class="description-paragraph" num="0028">可选的，所述系统还包括注册模块，所述注册模块适于执行申飞之前的注册，注册的信息包括低空飞行器身份识别码、低空飞行器设计厂家、低空飞行器生产厂家、低空飞行器生产日期、低空飞行器型号、低空飞行器设计参数、低空飞行器用途、低空飞行器销售厂家、低空飞行器销售时间、飞控手中的至少一种，注册的信息适于传输给所述审批后台和/或所述飞行监管模块。</div>
+<div class="description-paragraph" num="0029">可选的，所述飞行监管模块包括报警单元，在出现黑飞低空飞行器或者出现偏离申报的飞行计划的低空飞行器时，所述报警单元对监管人员发出报警信号，并且在显示装置上对于该黑飞低空飞行器或者出现偏离申报的飞行计划的低空飞行器进行突出显示。</div>
+<div class="description-paragraph" num="0030">可选的，在审核通过时，所述审批后台发送的审查结果为解锁对低空飞行器的禁飞控制的由数字和/或字母组成的秘钥。</div>
+<div class="description-paragraph" num="0031">可选的，所述系统还包括：</div>
+<div class="description-paragraph" num="0032">需求对接模块，用于飞控手、低空飞行器持有者、低空飞行器使用需求方发布需求信息以及进行需求对接，</div>
+<div class="description-paragraph" num="0033">所述申飞申请模块适于向审批后台提交低空飞行器身份识别码、飞控手身份信息、低空飞行器飞行计划，以及接收来自审批后台的审核结果，</div>
+<div class="description-paragraph" num="0034">其中：</div>
+<div class="description-paragraph" num="0035">飞控手适于经由所述申飞申请模块提交飞控手身份信息给审批后台以及获得审核结果；</div>
+<div class="description-paragraph" num="0036">低空飞行器使用需求方适于经由所述申飞申请模块提交低空飞行器飞行计划给审批后台以及获得审核结果；</div>
+<div class="description-paragraph" num="0037">低空飞行器持有者适于经由所述申飞申请模块提交低空飞行器身份识别码给审批后台以及获得审核结果。</div>
+<div class="description-paragraph" num="0038">可选的，所述审批后台还适于审查飞控手是否有资格驾驶所述低空飞行器和/或所述低空飞行 器是否适合满足低空飞行器使用需求方发布的需求。</div>
+<div class="description-paragraph" num="0039">可选的，所述系统还包括支付模块，用于进行了需求对接的飞控手、低空飞行器持有者、低空飞行器使用需求方之间支付相关费用。</div>
+<div class="description-paragraph" num="0040">根据本发明的实施例的另一方面，提出一种低空飞行器监管方法，包括步骤：</div>
+<div class="description-paragraph" num="0041">申飞审批步骤，对低空飞行器飞行计划进行审核或者接收审核结果；</div>
+<div class="description-paragraph" num="0042">飞行监管步骤，将低空飞行器的实时飞行数据与审批的飞行计划对比，基于对比结果发出操作指令。</div>
+<div class="description-paragraph" num="0043">可选的，所述飞行计划包括飞行时间，空域范围和/或飞行用途。</div>
+<div class="description-paragraph" num="0044">可选的，所述实时飞行数据包括飞行时间、飞行高度、飞行速度、飞行经纬度、飞行地域范围中的至少一种。</div>
+<div class="description-paragraph" num="0045">可选的，所述飞行监管步骤包括：基于获得的低空飞行器实时飞行数据预测预定时间段内的低空飞行器飞行轨迹。</div>
+<div class="description-paragraph" num="0046">可选的，所述飞行监管步骤包括：判断低空飞行器是否偏离飞行计划，以及在低空飞行器偏离飞行计划后向低空飞行器操控器发送警告或者迫降指令。</div>
+<div class="description-paragraph" num="0047">可选的，所述飞行监管步骤包括：判断低空飞行器是否偏离飞行计划，以及在低空飞行器偏离飞行计划后指示相应的低空飞行器防御设备向偏离飞行计划的低空飞行器执行防御措施，以干扰所述低空飞行器进入敏感区域，或者指示相应的低空飞行器反制设备向偏离飞行计划的低空飞行器执行反制措施，以击毁或者捕获偏离飞行计划的低空飞行器。</div>
+<div class="description-paragraph" num="0048">可选的，所述飞行监管步骤包括：对于无法获得对应的申请的飞行计划的黑飞低空飞行器，指示相应的低空飞行器反制设备向所述黑飞低空飞行器执行反制措施，以击毁或者捕获所述黑飞低空飞行器，或者指示相应的低空飞行器防御设备向所述黑飞低空飞行器执行防御措施，以干扰所述黑飞低空飞行器进入敏感区域。</div>
+<div class="description-paragraph" num="0049">可选的，所述申飞审批步骤包括对低空飞行器身份识别码进行审核或者接收审核结果。</div>
+<div class="description-paragraph" num="0050">可选的，对于飞行监管模块无法获得身份识别码的黑飞低空飞行器，所述飞行监管模块适于指示相应的低空飞行器反制设备向所述黑飞低空飞行器执行反制措施，以击毁或者捕获所述黑飞低空飞行器，或者适于指示相应的低空飞行器防御设备向所述黑飞低空飞行器执行防御措施，以干扰所述黑飞低空飞行器进入敏感区域。</div>
+<div class="description-paragraph" num="0051">可选的，所述申飞申请模块还适于向审批后台提交飞控手身份信息进行审核。</div>
+<div class="description-paragraph" num="0052">可选的，所述飞行监管步骤包括：选定监管区域，以实时监管所述区域内的所有低空飞行器的飞行数据。</div>
+<div class="description-paragraph" num="0053">可选的，所述区域包括敏感区域、市级行政区域、省级行政区域、全国行政区域中的至少一种。</div>
+<div class="description-paragraph" num="0054">可选的，所述飞行监管步骤包括：在出现黑飞低空飞行器或者出现偏离申报的飞行计划的低空飞行器时，对监管人员发出报警信号，并且在显示装置上对于该黑飞低空飞行器或者出现偏离申报的飞行计划的低空飞行器进行突出显示。</div>
+<div class="description-paragraph" num="0055">可选的，在申飞审批步骤中，在审核通过时，生成解锁对低空飞行器的禁飞控制的、由数字和/或字母组成的秘钥。</div>
+<div class="description-paragraph" num="0056">根据本发明的实施例的再一方面，提出了一种低空飞行器监管设备，包括：</div>
+<div class="description-paragraph" num="0057">申飞申请装置，用于向审批后台发送低空飞行器飞行申请以及接收审核结果，所述飞行申请包括飞行计划；和</div>
+<div class="description-paragraph" num="0058">飞行监管装置，用于获取低空飞行器的实时飞行数据，以及将获得的实时飞行数据与审批的飞行计划对比，基于对比结果发出操作指令。</div>
+<div class="description-paragraph" num="0059">可选的，所述低空飞行器监管设备还包括申飞审批装置，所述申飞审批装置作为所述审批后台，用于接收来自申飞申请装置的申请信息，并审核该申请信息以及将审核结果发送给申飞申请装置。</div>
+<div class="description-paragraph" num="0060">可选的，所述低空飞行器监管设备还包括低空飞行器身份认证芯片，为低空飞行器赋予身份识别码。进一步的，所述低空飞行器身份认证芯片嵌入到低空飞行器的自动驾驶仪中。</div>
+<div class="description-paragraph" num="0061">可选的，所述低空飞行器监管设备还包括低空飞行器控制装置，由飞控手操作以控制低空飞行器。</div>
+<div class="description-paragraph" num="0062">可选的，所述低空飞行器监管设备还包括低空飞行器防御装置，用于对低空飞行器执行防御措施，以干扰所述低空飞行器进入敏感区域。</div>
+<div class="description-paragraph" num="0063">可选的，所述低空飞行器监管设备还包括低空飞行器反制装置，用于对低空飞行器执行反制措施，以击毁或者捕获偏离飞行计划的低空飞行器。</div>
+<div class="description-paragraph" num="0064">可选的，所述低空飞行器身份认证芯片嵌入到低空飞行器的自动驾驶仪中。</div>
+<div class="description-paragraph" num="0065">可选的，所述申飞申请装置为移动通信装置。进一步可选的，所述移动通信装置同时作为由飞控手操纵以控制低空飞行器的低空飞行器控制装置。</div>
+<div class="description-paragraph" num="0066">可选的，所述审批后台与所述低空飞行器控制装置通信，以在审批没有通过时，所述审批后台向所述低空飞行器控制装置发送禁飞信号，以阻止低空飞行器起飞，或者所述审批后台向所述低空飞行器控制装置发送指令以切断低空飞行器的电源。</div>
+<div class="description-paragraph" num="0067">可选的，所述飞行监管装置还包括显示装置，所述显示装置用于显示飞行监管区域内的所有 低空飞行器的飞行信息。</div>
+<div class="description-paragraph" num="0068">可选的，所述飞行监管设备还包括报警装置，在出现黑飞低空飞行器或者出现偏离申报的飞行计划的低空飞行器时，所述报警装置对监管人员发出报警信号，同时在所述显示装置上对于该黑飞低空飞行器或者出现偏离申报的飞行计划的低空飞行器进行突出显示。</div>
+<div class="description-paragraph" num="0069">可选的，在审核通过时，所述申飞申请装置适于接收来自审批后台的解锁对低空飞行器的禁飞控制的、由数字和/或字母组成的秘钥。</div>
+<div class="description-paragraph" num="0070">可选的，所述低空飞行器监管设备还包括需求对接装置，用于飞控手、低空飞行器持有者、低空飞行器使用需求方发布需求信息以及进行需求对接；</div>
+<div class="description-paragraph" num="0071">其中：</div>
+<div class="description-paragraph" num="0072">所述申飞申请装置适于向审批后台提交低空飞行器身份识别码、飞控手身份信息、低空飞行器飞行计划，以及接收来自审批后台的审核结果；</div>
+<div class="description-paragraph" num="0073">飞控手适于经由所述申飞申请装置提交飞控手身份信息给审批后台以及获得审核结果；</div>
+<div class="description-paragraph" num="0074">低空飞行器使用需求方适于经由所述申飞申请装置提交低空飞行器飞行计划给审批后台以及获得审核结果；</div>
+<div class="description-paragraph" num="0075">低空飞行器持有者适于经由所述申飞申请装置提交低空飞行器身份识别码给审批后台以及获得审核结果。</div>
+<div class="description-paragraph" num="0076">可选的，所述低空飞行器监管设备还包括支付装置，用于进行了需求对接的飞控手、低空飞行器持有者、低空飞行器使用需求方之间支付相关费用。</div>
+<div class="description-paragraph" num="0077">根据本发明的实施例的还一方面，提出了一种低空飞行器管理平台系统，包括：</div>
+<div class="description-paragraph" num="0078">需求对接模块，用于飞控手、低空飞行器持有者、低空飞行器使用需求方发布需求信息以及进行需求对接；</div>
+<div class="description-paragraph" num="0079">申飞申请模块，所述申飞申请模块适于向审批后台提交低空飞行器身份识别码、飞控手身份信息、低空飞行器飞行计划，以及接收来自审批后台的审核结果，</div>
+<div class="description-paragraph" num="0080">其中：</div>
+<div class="description-paragraph" num="0081">飞控手适于经由所述申飞申请模块提交飞控手身份信息给审批后台以及获得审核结果；</div>
+<div class="description-paragraph" num="0082">低空飞行器使用需求方适于经由所述申飞申请模块提交低空飞行器飞行计划给审批后台以及获得审核结果；</div>
+<div class="description-paragraph" num="0083">低空飞行器持有者适于经由所述申飞申请模块提交低空飞行器身份识别码给审批后台以及获得审核结果。</div>
+<div class="description-paragraph" num="0084">可选的，所述平台系统还包括申飞审批模块，所述申飞审批模块作为所述审批后台，用于接 收来自申飞申请模块的申请信息，并审核该申请信息以及将审核结果发送给申飞申请模块。</div>
+<div class="description-paragraph" num="0085">可选的，所述申飞审批模块还审查飞控手是否有资格驾驶所述低空飞行器，所述低空飞行器是否适合满足低空飞行器使用需求方发布的需求。</div>
+<div class="description-paragraph" num="0086">可选的，所述平台系统还包括支付模块，用于进行了需求对接的飞控手、低空飞行器持有者、低空飞行器使用需求方之间支付相关费用。</div>
+<heading id="h0003">附图说明</heading>
+<div class="description-paragraph" num="0087">以下描述与附图可以更好地帮助理解本发明所公布的各种实施例中的这些和其他特点、优点，图中相同的附图标记始终表示相同的部件，其中：</div>
+<div class="description-paragraph" num="0088">图1为根据本发明的一个示例性实施例的无人机监管系统的结构示意图；</div>
+<div class="description-paragraph" num="0089">图2为根据本发明的另一个示例性实施例的无人机监管系统的结构示意图；</div>
+<div class="description-paragraph" num="0090">图3为根据本发明的再一个示例性实施例的无人机监管系统的结构示意图；</div>
+<div class="description-paragraph" num="0091">图4为根据本发明的还一个示例性实施例的无人机监管系统的结构示意图；</div>
+<div class="description-paragraph" num="0092">图5为根据本发明的又一个示例性实施例的无人机监管系统的结构示意图；</div>
+<div class="description-paragraph" num="0093">图6为根据本发明的进一步的示例性实施例的无人机监管系统的结构示意图；</div>
+<div class="description-paragraph" num="0094">图7为根据本发明的一个示例性实施例的无人机监管方法的流程图；</div>
+<div class="description-paragraph" num="0095">图8为根据本发明的另一个示例性实施例的无人机监管方法的流程图；</div>
+<div class="description-paragraph" num="0096">图9为根据本发明的一个示例性实施例的无人机监管设备的结构示意图；</div>
+<div class="description-paragraph" num="0097">图10为根据本发明的另一个示例性实施例的无人机监管设备的结构示意图；</div>
+<div class="description-paragraph" num="0098">图11为根据本发明的再一个示例性实施例的无人机监管设备的结构示意图；</div>
+<div class="description-paragraph" num="0099">图12为根据本发明的又一个示例性实施例的无人机监管设备的结构示意图；</div>
+<div class="description-paragraph" num="0100">图13为根据本发明的还一个示例性实施例的无人机监管设备的结构示意图；</div>
+<div class="description-paragraph" num="0101">图14为根据本发明的可选示例性实施例的无人机监管设备的结构示意图；</div>
+<div class="description-paragraph" num="0102">图15为根据本发明的可选示例性实施例的无人机监管设备的结构示意图；</div>
+<div class="description-paragraph" num="0103">图16为根据本发明的可选示例性实施例的无人机监管设备的结构示意图；</div>
+<div class="description-paragraph" num="0104">图17为根据本发明的一个示例性实施例的无人机管理平台系统的结构示意图；</div>
+<div class="description-paragraph" num="0105">图18为根据本发明的一个示例性实施例的反无人机设备的结构示意图；</div>
+<div class="description-paragraph" num="0106">图19为根据本发明的另一个示例性实施例的反无人机设备的结构示意图；</div>
+<div class="description-paragraph" num="0107">图20为根据本发明的一个示例性实施例的反无人机设备的示意图；</div>
+<div class="description-paragraph" num="0108">图21为根据本发明的另一个示例性实施例的反无人机设备的示意图；</div>
+<div class="description-paragraph" num="0109">图22为根据本发明的一个示例性实施例的反无人机的方法的流程图。</div>
+<heading id="h0004">具体实施方式</heading>
+<div class="description-paragraph" num="0110">下面通过实施例，并结合附图，对本发明的技术方案作进一步具体的说明。在说明书中，相同或相似的附图标号指示相同或相似的部件。下述参照附图对本发明实施方式的说明旨在对本发明的总体发明构思进行解释，而不应当理解为对本发明的一种限制。</div>
+<div class="description-paragraph" num="0111">参见图1，本发明的示例性实施例提出了一种无人机监管系统1000，包括：</div>
+<div class="description-paragraph" num="0112">申飞申请模块1100，所述申飞申请模块适于向审批后台1200提交无人机飞行计划，以及接收来自审批后台1200的审核结果；</div>
+<div class="description-paragraph" num="0113">飞行监管模块1300，适于将无人机的实时飞行数据与审批的飞行计划对比，基于对比结果发出操作指令。</div>
+<div class="description-paragraph" num="0114">首先需要指出的是，在本发明中，虽然以无人机为例做了具体说明，但是，本发明不限于无人机，所有的低空飞行器也在本发明的保护范围之内。</div>
+<div class="description-paragraph" num="0115">还需要指出的是，如果无人机没有提交飞行计划，此时，与之对应的审批的飞行计划可以认为是没有飞行计划，从而获得的实时飞行数据与“审批的飞行计划”的对比结果相差巨大，可以认定为“黑飞”。</div>
+<div class="description-paragraph" num="0116">如上面限定的，这里的无人机监管系统1000本身可以不包括审批后台，而只是与审批后台通信，传送飞行计划以及接收审核结果。</div>
+<div class="description-paragraph" num="0117">在可选的实施例中，审核通过时，所述审批后台1200发送的审查结果为解锁对无人机的禁飞控制的由数字和/或字母组成的秘钥。可以通过将秘钥输送到无人机的控制平台或者控制装置以对无人机的飞行锁定进行解锁。</div>
+<div class="description-paragraph" num="0118">不过，如图2所示，无人机监管系统1000本身也可以设置为包括审批后台1200。此时，审批后台对应于申飞审批模块，用于接收来自申飞申请模块1100的申请信息，并审核该申请信息以及将审核结果发送给申飞申请模块1100。</div>
+<div class="description-paragraph" num="0119">在本发明的示例性实施例中，飞行计划可以包括飞行时间，空域范围和/或飞行用途等。</div>
+<div class="description-paragraph" num="0120">可以通过分析无人机的实时飞行数据，例如得到飞行时间、飞行高度、飞行速度、飞行经纬度、飞行地域范围中的至少一种，然后将分析得到的飞行计划与报备批准的飞行计划进行对比，明显的，例如，如果发现飞行的空域范围与报备批准的不符，则飞行监管模块就需要发出相应的操作指令，如后面提到的预警、干扰或者击落、捕获等。</div>
+<div class="description-paragraph" num="0121">所述飞行监管系统适于基于获得的无人机实时飞行数据预测预定时间段内的无人机飞行轨迹。</div>
+<div class="description-paragraph" num="0122">在本发明的示例性实施例中，飞行监管模块可以自身具有无人机实时飞行数据获取功能，也可以仅仅是接收从外部设备传输来的实时飞行数据而进行分析。</div>
+<div class="description-paragraph" num="0123">无人机的实时飞行数据可以是通过后面提到的无人机身份认证芯片直接向飞行监管模块或者是监管后台传输。</div>
+<div class="description-paragraph" num="0124">无人机的实时飞行数据可以通过后面提到的雷达、光电探测装置等获得。</div>
+<div class="description-paragraph" num="0125">可选的，申飞申请模块还适于向审批后台或者申飞审批模块1200提交无人机身份识别码进行审核。所述无人机身份识别码中可以包含如下信息：无人机设计厂家、无人机生产厂家、无人机生产日期、无人机型号、无人机设计参数、无人机用途中的至少一种，以及与无人机一一对应的识别码。</div>
+<div class="description-paragraph" num="0126">可选的，所述申飞申请模块还适于向审批后台提交飞控手身份信息进行审核。</div>
+<div class="description-paragraph" num="0127">在飞行监管模块1300执行对比后判断无人机偏离飞行计划后，适于向无人机操控器发送警告或者迫降指令。这相当于针对无人机偏离飞行计划提出预警，在飞行监管模块1300可以通过无人机操控器发送命令的情况下，也可以直接将无人机迫降或者让无人机符合预定的飞行计划。</div>
+<div class="description-paragraph" num="0128">可选的，在飞行监管模块1300执行对比后判断无人机偏离飞行计划后，适于指示相应的无人机防御设备(例如图21中的设备)向偏离飞行计划的无人机执行防御措施，以干扰所述无人机进入敏感区域。</div>
+<div class="description-paragraph" num="0129">可选的，在飞行监管模块1300执行对比后判断无人机偏离飞行计划后，适于指示相应的无人机反制设备(例如图20中的设备)向偏离飞行计划的无人机执行反制措施，以击毁或者捕获偏离飞行计划的无人机。</div>
+<div class="description-paragraph" num="0130">可选的，对于飞行监管模块1300无法获得身份识别码或者身份识别码没有备案的黑飞无人机，所述飞行监管模块1300适于指示相应的无人机反制设备向所述黑飞无人机执行反制措施，以击毁或者捕获所述黑飞无人机，或者适于指示相应的无人机防御设备向所述黑飞无人机执行防御措施，以干扰所述黑飞无人机进入敏感区域。</div>
+<div class="description-paragraph" num="0131">可选的，对于飞行监管模块1300无法获得对应的申请的飞行计划的黑飞无人机，所述飞行监管模块适于指示相应的无人机反制设备向所述黑飞无人机执行反制措施，以击毁或者捕获所述黑飞无人机，或者适于指示相应的无人机防御设备向所述黑飞无人机执行防御措施，以干扰所述黑飞无人机进入敏感区域。</div>
+<div class="description-paragraph" num="0132">监控人员可以通过飞行监管模块1300选定监管区域，以实时监管所述区域内的所有无人机的飞行数据。可选的，所述区域包括敏感区域、市级行政区域、省级行政区域、全国行政区域中的至少一种。在根据本发明的实施例的飞行监管系统中，可以通过申飞申请模块1100选定飞行地域 范围。</div>
+<div class="description-paragraph" num="0133">为了便于申请飞行的人员避开禁飞区域，所述飞行监管模块1300和/或申飞审批模块1200中存储有禁飞区域。这样，对于民用的无人机，一旦申请在禁飞区域飞行，则可以直接予以拒绝，而且，在飞行过程中，可以随时观测无人机是否处于禁飞区域内。</div>
+<div class="description-paragraph" num="0134">如图3所示，所述系统1000还包括注册模块1400，所述注册模块1400适于执行申飞之前的注册，注册的信息包括无人机身份识别码、无人机设计厂家、无人机生产厂家、无人机生产日期、无人机型号、无人机设计参数、无人机用途、无人机销售厂家、无人机销售时间、飞控手中的至少一种，注册的信息适于传输给所述审批后台1200和/或所述飞行监管模块1300。</div>
+<div class="description-paragraph" num="0135">如图4所示，所述飞行监管模块1300包括报警单元1310，在出现黑飞无人机或者出现偏离申报的飞行计划的无人机时，所述报警单元1310对监管人员发出报警信号，并且在显示装置上对于该黑飞无人机或者出现偏离申报的飞行计划的无人机进行突出显示。突出显示可以是颜色变化、闪动等。</div>
+<div class="description-paragraph" num="0136">如图5所示，所述系统1000还包括需求对接模块1500，用于飞控手、无人机持有者、无人机使用需求方发布需求信息以及进行需求对接，</div>
+<div class="description-paragraph" num="0137">所述申飞申请模块1100适于向审批后台提交无人机身份识别码、飞控手身份信息、无人机飞行计划，以及接收来自审批后台的审核结果，其中：</div>
+<div class="description-paragraph" num="0138">飞控手适于经由所述申飞申请模块提交飞控手身份信息给审批后台以及获得审核结果；</div>
+<div class="description-paragraph" num="0139">无人机使用需求方适于经由所述申飞申请模块提交无人机飞行计划给审批后台以及获得审核结果；</div>
+<div class="description-paragraph" num="0140">无人机持有者适于经由所述申飞申请模块提交无人机身份识别码给审批后台以及获得审核结果。</div>
+<div class="description-paragraph" num="0141">以上表明，即使是进行需求对接时，也需要遵循对于飞行计划的审批、对无人机的身份认证以及对飞控手资格的认证。</div>
+<div class="description-paragraph" num="0142">在更具体的示例中，审批后台1200还适于审查飞控手是否有资格驾驶所述无人机和/或所述无人机是否适合满足无人机使用需求方发布的需求。</div>
+<div class="description-paragraph" num="0143">如图6所示，所述系统1000还可包括支付模块1600，用于进行了需求对接的飞控手、无人机持有者、无人机使用需求方之间支付相关费用。不过，费用也可以不经由所述系统支付。</div>
+<div class="description-paragraph" num="0144">如图7所示，本发明的实施例还提出了一种无人机监管方法，包括步骤：</div>
+<div class="description-paragraph" num="0145">申飞审批步骤，对无人机飞行计划进行审核或者接收审核结果；</div>
+<div class="description-paragraph" num="0146">飞行监管步骤，将无人机的实时飞行数据与审批的飞行计划对比，基于对比结果发出操作指 令。</div>
+<div class="description-paragraph" num="0147">可选的，所述飞行计划包括飞行时间，空域范围和/或飞行用途。</div>
+<div class="description-paragraph" num="0148">可选的，所述实时飞行数据包括飞行时间、飞行高度、飞行速度、飞行经纬度、飞行地域范围中的至少一种。</div>
+<div class="description-paragraph" num="0149">可选的，所述飞行监管步骤包括：基于获得的无人机实时飞行数据预测预定时间段内的无人机飞行轨迹。</div>
+<div class="description-paragraph" num="0150">可选的，所述飞行监管步骤包括：判断无人机是否偏离飞行计划，以及在无人机偏离飞行计划后向无人机操控器发送警告或者迫降指令。</div>
+<div class="description-paragraph" num="0151">可选的，所述飞行监管步骤包括：判断无人机是否偏离飞行计划，以及在无人机偏离飞行计划后指示相应的无人机防御设备向偏离飞行计划的无人机执行防御措施，以干扰所述无人机进入敏感区域，或者指示相应的无人机反制设备向偏离飞行计划的无人机执行反制措施，以击毁或者捕获偏离飞行计划的无人机。</div>
+<div class="description-paragraph" num="0152">可选的，所述飞行监管步骤包括：对于无法获得对应的申请的飞行计划的黑飞无人机，指示相应的无人机反制设备向所述黑飞无人机执行反制措施，以击毁或者捕获所述黑飞无人机，或者指示相应的无人机防御设备向所述黑飞无人机执行防御措施，以干扰所述黑飞无人机进入敏感区域。</div>
+<div class="description-paragraph" num="0153">可选的，所述申飞审批步骤包括对无人机身份识别码进行审核或者接收审核结果。</div>
+<div class="description-paragraph" num="0154">可选的，对于飞行监管模块无法获得身份识别码的黑飞无人机，所述飞行监管模块适于指示相应的无人机反制设备向所述黑飞无人机执行反制措施，以击毁或者捕获所述黑飞无人机，或者适于指示相应的无人机防御设备向所述黑飞无人机执行防御措施，以干扰所述黑飞无人机进入敏感区域。</div>
+<div class="description-paragraph" num="0155">可选的，所述申飞申请模块还适于向审批后台提交飞控手身份信息进行审核。</div>
+<div class="description-paragraph" num="0156">可选的，所述飞行监管步骤包括：选定监管区域，以实时监管所述区域内的所有无人机的飞行数据。</div>
+<div class="description-paragraph" num="0157">可选的，所述区域包括敏感区域、市级行政区域、省级行政区域、全国行政区域中的至少一种。</div>
+<div class="description-paragraph" num="0158">如图8所示，在一个具体的实施例中，所述飞行监管步骤包括预警步骤，即在出现黑飞无人机或者出现偏离申报的飞行计划的无人机时，对监管人员发出报警信号，并且在显示装置上对于该黑飞无人机或者出现偏离申报的飞行计划的无人机进行突出显示。</div>
+<div class="description-paragraph" num="0159">可选的，在申飞审批步骤中，在审核通过时，生成解锁对无人机的禁飞控制的、由数字和/ 或字母组成的秘钥。</div>
+<div class="description-paragraph" num="0160">相应的，参见图9，本发明的实施例也提出了一种无人机监管设备2000，包括：</div>
+<div class="description-paragraph" num="0161">申飞申请装置2100，用于向审批后台1200’发送无人机飞行申请以及接收审核结果，所述飞行申请包括飞行计划；和</div>
+<div class="description-paragraph" num="0162">飞行监管装置2200，用于获取无人机的实时飞行数据，以及将获得的实时飞行数据与审批的飞行计划对比，基于对比结果发出操作指令。</div>
+<div class="description-paragraph" num="0163">可选的，所述无人机监管设备还包括申飞审批装置1200’，所述申飞审批装置作为所述审批后台，用于接收来自申飞申请装置的申请信息，并审核该申请信息以及将审核结果发送给申飞申请装置。</div>
+<div class="description-paragraph" num="0164">如图10所示，无人机监管设备还可包括无人机身份认证芯片2300，为无人机赋予身份识别码。所述无人机身份认证芯片2300可以嵌入到无人机的自动驾驶仪中。可选的，芯片2300也可以外挂到无人机上，进一步可选的，外挂到无人机上的芯片2300可以控制无人机的电池或者驱动电力的通断。</div>
+<div class="description-paragraph" num="0165">需要指出的是，无人机身份认证芯片2300可以对无人机所有信息进行数据登记，含无人机的身份信息、机型、载荷等相关数据。</div>
+<div class="description-paragraph" num="0166">移动通信用于控制，GPS或者北斗用于导航，但是导航的目的地可以通过移动通信输入，自动驾驶仪一方面与GPS或者北斗通信，另一方面通过移动通信以接收控制信号。这样，自动驾驶仪同时接收两者的信号，从而控制无人机的飞行方向。</div>
+<div class="description-paragraph" num="0167">在本发明的示例性实施例中，无人机身份认证芯片可以跟申飞申请模块或者装置关联，在申飞时，作为无人机的唯一身份认证；无人机身份认证芯片也可以跟飞行监管模块或者装置关联，可以将无人机飞行参数信息(位置、高度、速度等)实时传送至后台系统进行监管，以实时掌握无人机状态。</div>
+<div class="description-paragraph" num="0168">可以在自动驾驶仪中设定程序，只有得到了申飞审批通过后，才允许无人机启用GPS模块或者北斗导航模块。</div>
+<div class="description-paragraph" num="0169">在本发明中，无人机监管设备以无人机身份认证芯片+北斗/GPS+GPRS为基础，建立无人机产品、无人机制造企业、购买者、驾驶员/飞控手、低空飞行计划管理与飞行实时监控大数据，实现对无人机的设计、制造、购买、飞行及监控各环节全链条控管功能，并结合申飞审批系统，根据实际使用需求及安全要求对航线进行任务规划，分门别类设置各种飞行范围、时间、高度等要素，最终通过空域监管部门审批，并将审批结果反馈至使用者手中。无人机在飞行过程中，空域监管部门可实时监控我国境内(选定区域)无人机是飞行状况。飞行结束后系统自动向相关管理部门 上传飞行报表。通过此设备可以对各类重点防护地区(如机场、化工园区、重要建筑等)周边飞行器进行主动监测，大大提高安全监视与打击效率。</div>
+<div class="description-paragraph" num="0170">如图11所示，无人机监管设备还可包括无人机控制装置2400，由飞控手操作以控制无人机。</div>
+<div class="description-paragraph" num="0171">如图12所示，无人机监管设备还可包括无人机防御装置2500，用于对无人机执行防御措施，以干扰所述无人机进入敏感区域。无人机防御装置2500可以对应于图19中的反无人机设备。例如，可以采用定向干扰与全向干扰组网相结合的技术，实现了要害地点净空区外围建立电子围栏保护功能，24小时无人值守阻碍非法无人机入侵，通过在保护区域周边布置定向干扰系统，建立阻隔非法无人机临近的电子围栏，扫除干扰盲区，保护要害地点周边净空区不受非法无人飞行器侵害，并时时观察到无人机是否入侵信息，如果是申请飞行的无人机可以提供驱离，是黑飞就可以采用后面提到的反制装置直接迫降或击毁。</div>
+<div class="description-paragraph" num="0172">如图13所示，无人机监管设备还可包括无人机反制装置2600，用于对无人机执行反制措施，以击毁或者捕获偏离飞行计划的无人机。无人机反制装置2600可以对应于图18中的反无人机设备。例如，可以采用大功率定向/全向干扰技术与雷达-光电一体化侦测技术，在15公里范围内完成发现、跟踪与打击无人机功能，避免造成二次伤害，消除非法低空飞行器可能对进行暴恐袭击以及可能对人民群众生命财产所造成的安全威胁。系统包含固定式反制系统、低空安全多功能指挥车、便携式反无人机系统以及侦测无人机、遥控机器人等专用设备。</div>
+<div class="description-paragraph" num="0173">可选的，所述申飞申请装置2100为移动通信装置。进一步的，所述移动通信装置2100同时作为由飞控手操纵以控制无人机的无人机控制装置。</div>
+<div class="description-paragraph" num="0174">可选的，所述审批后台1200’与所述无人机控制装置通信，以在审批没有通过时，所述审批后台向所述无人机控制装置2400发送禁飞信号，以阻止无人机起飞，或者所述审批后台向所述无人机控制装置发送指令以切断无人机的电源。</div>
+<div class="description-paragraph" num="0175">可选的，如图14所示，所述飞行监管装置还包括显示装置2700，所述显示装置2700用于显示飞行监管区域内的所有无人机的飞行信息。</div>
+<div class="description-paragraph" num="0176">可选的，如图15所示，所述飞行监管设备还包括报警装置2800，在出现黑飞无人机或者出现偏离申报的飞行计划的无人机时，所述报警装置对监管人员发出报警信号，同时可以在所述显示装置上对于该黑飞无人机或者出现偏离申报的飞行计划的无人机进行突出显示。</div>
+<div class="description-paragraph" num="0177">可选的，在所述无人机监管设备中，在审核通过时，所述申飞申请装置2100适于接收来自审批后台1200’的解锁对无人机的禁飞控制的、由数字和/或字母组成的秘钥。</div>
+<div class="description-paragraph" num="0178">可选的，如图16所示，无人机监管设备还可包括需求对接装置2900，用于飞控手、无人机持有者、无人机使用需求方发布需求信息以及进行需求对接，其中：</div>
+<div class="description-paragraph" num="0179">所述申飞申请装置2100适于向审批后台1200’提交无人机身份识别码、飞控手身份信息、无人机飞行计划，以及接收来自审批后台的审核结果；</div>
+<div class="description-paragraph" num="0180">飞控手适于经由所述申飞申请装置提交飞控手身份信息给审批后台以及获得审核结果；</div>
+<div class="description-paragraph" num="0181">无人机使用需求方适于经由所述申飞申请装置提交无人机飞行计划给审批后台以及获得审核结果；</div>
+<div class="description-paragraph" num="0182">无人机持有者适于经由所述申飞申请装置提交无人机身份识别码给审批后台以及获得审核结果。</div>
+<div class="description-paragraph" num="0183">通过以上方案，可以产生对应于“滴滴”平台的效果。</div>
+<div class="description-paragraph" num="0184">可选的，虽然没有示出，所述无人机监管设备还可包括支付装置，用于进行了需求对接的飞控手、无人机持有者、无人机使用需求方之间支付相关费用。</div>
+<div class="description-paragraph" num="0185">虽然没有示出，但是无人机监管设备包括各种数据存储器，用于存储与无人机相关的各种信息和数据。</div>
+<div class="description-paragraph" num="0186">如图17所示，根据本发明的一个实施例，还提出了一种无人机管理平台系统3000，包括：</div>
+<div class="description-paragraph" num="0187">需求对接模块3100，用于飞控手、无人机持有者、无人机使用需求方发布需求信息以及进行需求对接；</div>
+<div class="description-paragraph" num="0188">申飞申请模块3200，所述申飞申请模块适于向审批后台提交无人机身份识别码、飞控手身份信息、无人机飞行计划，以及接收来自审批后台的审核结果，</div>
+<div class="description-paragraph" num="0189">其中：</div>
+<div class="description-paragraph" num="0190">飞控手适于经由所述申飞申请模块提交飞控手身份信息给审批后台以及获得审核结果；</div>
+<div class="description-paragraph" num="0191">无人机使用需求方适于经由所述申飞申请模块提交无人机飞行计划给审批后台以及获得审核结果；</div>
+<div class="description-paragraph" num="0192">无人机持有者适于经由所述申飞申请模块提交无人机身份识别码给审批后台以及获得审核结果。</div>
+<div class="description-paragraph" num="0193">可选的，申飞审批模块作为所述审批后台，用于接收来自申飞申请模块的申请信息，并审核该申请信息以及将审核结果发送给申飞申请模块。</div>
+<div class="description-paragraph" num="0194">上述平台系统中，可选的，所述申飞审批模块还审查飞控手是否有资格驾驶所述无人机，所述无人机是否适合满足无人机使用需求方发布的需求。</div>
+<div class="description-paragraph" num="0195">上述平台系统中，可选的，虽然没有示出，所述平台系统还可包括支付模块，用于进行了需求对接的飞控手、无人机持有者、无人机使用需求方之间支付相关费用。</div>
+<div class="description-paragraph" num="0196">通过以上方案，同样可以产生对应于“滴滴”平台的效果。</div>
+<div class="description-paragraph" num="0197">下面参照图18-22示例性描述用于对无人机采取防御和反制措施的设备。</div>
+<div class="description-paragraph" num="0198">图18为根据本发明的一个示例性实施例的反无人机设备的结构示意图。</div>
+<div class="description-paragraph" num="0199">如图18所示，反无人机设备100包括：</div>
+<div class="description-paragraph" num="0200">雷达装置10，所述雷达装置适于对目标定位；</div>
+<div class="description-paragraph" num="0201">光电探测装置20，所述光电探测装置接收来自雷达装置10传输的目标方位信息以对所述目标实时跟踪和成像；以及</div>
+<div class="description-paragraph" num="0202">反制装置30，反制装置30用于反制基于光电探测装置20确定为非法目标的非法无人机，反制装置30包括干扰部32、击毁部(未示出)、捕获部(没有示出)中的至少一种，所述干扰部32用于干扰、迫降或者驱离非法无人机，所述击毁部用于击落或者击毁非法无人机，所述捕获部用于机械捕获或者反向控制非法无人机。</div>
+<div class="description-paragraph" num="0203">在本发明中，实时跟踪和成像表明雷达装置与光电探测装置实现了雷达-光电联动定位的功能。具体的，在本发明中，雷达装置10输出方位角、仰角和距离给光电探测装置20，光电探测装置20基于从雷达装置10接收到的信号联动从而以对应的方位角、仰角和焦距指向目标无人机。</div>
+<div class="description-paragraph" num="0204">这里的联动，简而言之，就是利用雷达装置10引导光电探测装置20。</div>
+<div class="description-paragraph" num="0205">联动时，可以通过在光电探测装置20内置的控制单位内设置接收和计算功能，然后将基于接收的信号计算出的方位角、仰角和焦距控制光电探测装置20。</div>
+<div class="description-paragraph" num="0206">联动也可以是专门设置一个控制装置40，其控制光电探测装置20以及雷达装置10，从而可以从雷达装置10接收有关方位角、仰角和距离的信号，然后基于这些信号计算出对应的方位角、仰角和焦距，再以对应的方位角、仰角和焦距控制光电探测装置20。</div>
+<div class="description-paragraph" num="0207">击毁部除了可以是微波炮之外，还可以是现有的反无人机枪等，甚至包括激光枪。</div>
+<div class="description-paragraph" num="0208">捕获部可以是发射或者布置的网状捕捉器，或者是可以阻断无人机的控制通信链路后对无人机进行反向劫持的任何装置。</div>
+<div class="description-paragraph" num="0209">所述雷达装置可以为低空探测雷达。</div>
+<div class="description-paragraph" num="0210">下面的表1公开了雷达装置的一个示例性实施例。</div>
+<div class="description-paragraph" num="0211">表1</div>
+<div class="description-paragraph" num="0212">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/d8/49/28/f83977e3b04475/PCTCN2018088483-appb-000001.png"><img alt="Figure PCTCN2018088483-appb-000001" class="patent-full-image" file="PCTCN2018088483-appb-000001.tif" he="33" height="132" img-content="drawing" img-format="tif" inline="yes" orientation="portrait" src="./description_images/desc_img_0.png" wi="141" width="564"/></a></div>
+</div>
+<div class="description-paragraph" num="0213">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/1b/3d/8d/286af956b06a25/PCTCN2018088483-appb-000002.png"><img alt="Figure PCTCN2018088483-appb-000002" class="patent-full-image" file="PCTCN2018088483-appb-000002.tif" he="50" height="200" img-content="drawing" img-format="tif" inline="yes" orientation="portrait" src="./description_images/desc_img_1.png" wi="141" width="564"/></a></div>
+</div>
+<div class="description-paragraph" num="0214">所述雷达装置适于探测距离5km-10km、反射面≥0.001m
+      <sup>2</sup>的目标。如本领域技术人员能够理解的，雷达装置当然也可以探测距离小于5km的无人机目标。这里讲雷达装置的探测距离限定为5-10km，是为了增加针对非法无人机的应对时间。
+    </div>
+<div class="description-paragraph" num="0215">光电探测装置20可以集成了高倍率的变焦镜头，且最大视距与雷达装置的最大探测距离对应，不小于10km。为了便于在夜间成像，光电探测装置20还可以配备红外探测器。</div>
+<div class="description-paragraph" num="0216">下面的表2示出了光电探测装置的一个示例性实施例。</div>
+<div class="description-paragraph" num="0217">表2</div>
+<div class="description-paragraph" num="0218">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/3c/a1/cf/68f0400a3227cf/PCTCN2018088483-appb-000003.png"><img alt="Figure PCTCN2018088483-appb-000003" class="patent-full-image" file="PCTCN2018088483-appb-000003.tif" he="97" height="388" img-content="drawing" img-format="tif" inline="yes" orientation="portrait" src="./description_images/desc_img_2.png" wi="143" width="572"/></a></div>
+</div>
+<div class="description-paragraph" num="0219">所述干扰部32包括不小于16db的高增益干扰天线322和不小于100W的大功率干扰主机324(例如参见图19)，所述干扰主机324产生功率信号，所述功率信号被传输给干扰天线322。在可选的示例中，干扰天线为定向干扰天线，其支持的频段包括WIFI 5.8G、WIFI2.4G、GPS或者北斗。利用干扰主机和定向干扰天线，可以切断无人机的遥控、通信、导航等信号，从而迫使无人机迫降或者返航(也起到驱离的作用)。</div>
+<div class="description-paragraph" num="0220">参见图19，定向干扰天线322与所述光电探测装置20同轴布置，使得在非法无人机处于光电探测装置的视场内时，所述定向干扰天线对准非法无人机。在图19中，干扰天线322与光电探测装置20同轴布置在二维转台70上。</div>
+<div class="description-paragraph" num="0221">反无人机设备的控制装置40可以仅控制雷达装置10和光电探测装置20，可选的，还可以控制反制设备30，例如控制干扰部32，从而在确定了非法无人机进入到需要干扰或者击落的范围内时，可以自动发动反制设备30或者干扰部32反制非法无人机。</div>
+<div class="description-paragraph" num="0222">反制设备30的启动也可以是人为控制的。</div>
+<div class="description-paragraph" num="0223">可以将没有得到控制装置40身份识别的无人机作为非法无人机，也可以通过操作人员在人机交互界面50查看光电探测装置20获得的图像来确定是否为非法无人机。人机交互界面可以本身是控制装置的一部分。</div>
+<div class="description-paragraph" num="0224">在某些情况下，可以认为只要识别为无人机，就是非法无人机。对于自动识别是否为无人机，可以对常用无人机建立特征库，光电信号的特征与该特征库进行匹配，若匹配，则认为是无人机。</div>
+<div class="description-paragraph" num="0225">结合上面的附图18和19，下面说明根据本发明的反无人机设备的具体实施。</div>
+<div class="description-paragraph" num="0226">根据本发明实施例的反无人机设备可以提供2-5km的防御半径，其中对于远距离接近需要防御的空域时，反无人机设备的雷达装置10会在在5km以上搜索并发现低空目标，搜索到目标后通过控制装置40可自动引导光电探测装置20对目标进行可见光和红外成像，由操作人员通过人机交互界面50对目标进行判定是否为需要监视的非法目标，如果是非法目标则设定为监视目标；当目标进入安全警戒半径2km，则启动反制装置30例如干扰部32对非法目标进行强制迫降或驱离。</div>
+<div class="description-paragraph" num="0227">在本发明中，可以提供2-5km的防御半径，远超目前常用的防护系统。</div>
+<div class="description-paragraph" num="0228">对于防御空域内直接起飞的无人机，反无人机设备的雷达装置10搜索发现低空目标后控制装置40可自动引导光电探测设备20对目标进行可见光和红外成像，由操作人员通过人机交互界面50对目标进行判定是否为非法目标，若为非法目标直接启动反制装置30例如干扰部32对非法目标进行强制迫降或驱离。</div>
+<div class="description-paragraph" num="0229">一个典型的工作流程是：雷达装置10持续扫描目标空域，直到扫描到目标信号后，通过三坐标雷达装置10反馈的信号引导光电探测装置20跟踪监视目标，由安全监控人员根据图像进行非法目标识别，如果不是非法目标，则跟踪雷达搜索到的下一个目标；确认为非法目标后，根据是否进入安全范围进行不同的处置。未进行安全范围则进行警戒跟踪观测，进入安全范围则启动无线电攻击对准目标方向进行攻击，强制非法无人机迫降或返航。</div>
+<div class="description-paragraph" num="0230">为了发现非法无人机的操作人员在哪里，还可以设置跟踪用无人机，用于跟踪被干扰的非法 无人机的返回路线，并报告或者传输非法无人机的操作人员的大体位置。</div>
+<div class="description-paragraph" num="0231">基于以上，本发明也提出了一种反无人机的方法，包括步骤：</div>
+<div class="description-paragraph" num="0232">步骤1：利用雷达装置将目标定位；</div>
+<div class="description-paragraph" num="0233">步骤2：将光电探测装置与雷达装置联动以对所述目标实时跟踪和成像；</div>
+<div class="description-paragraph" num="0234">步骤3：基于光电探测装置获得的信息确定所述目标是否为非法无人机；</div>
+<div class="description-paragraph" num="0235">步骤4：利用反制装置对非法无人机进行反制，所述反制装置包括干扰部、击毁部、捕获部中的至少一种，所述干扰部用于干扰、迫降或者驱离非法无人机，所述击毁部用于击落或者击毁非法无人机，所述捕获部用于机械捕获或者反向控制非法无人机。</div>
+<div class="description-paragraph" num="0236">在步骤3中，可以基于光电探测装置获得的所述目标的图像判断该目标是否为非法无人机。当然也可以基于说明书中提到的特征匹配信息判断。</div>
+<div class="description-paragraph" num="0237">当雷达装置搜索到的非法无人机进入预警半径5km以内时，可以提供预警信号。</div>
+<div class="description-paragraph" num="0238">在步骤4中，当步骤3中确认的非法无人机进入安全警戒半径2km及以内时，可以利用反制装置对非法无人机进行反制。</div>
+<div class="description-paragraph" num="0239">在步骤4中，所述反制装置可以采用干扰部，所述干扰部包括高增益定向干扰天线和大功率干扰主机，所述定向干扰天线与所述光电探测装置同轴，使得在非法无人机处于光电探测装置的视场内时，所述定向干扰天线对准非法无人机。</div>
+<div class="description-paragraph" num="0240">在步骤2中，所述雷达装置输出方位角、仰角和距离给光电探测装置，所述光电探测装置可以基于从所述雷达装置接收到的信号联动从而以对应的方位角、仰角和焦距指向所述目标。</div>
+<div class="description-paragraph" num="0241">在本发明的实施例中，雷达装置与光电探测装置联动，从而可以在追踪低空目标时，可以通过图像来判断该目标是否为无人机(当然也可以通过前文提到的特征匹配来自动识别)，这样，综合了雷达与光电探测技术，具体的，采用雷达搜索定位，采用光电探测装置跟踪识别。这不仅可以大大提高非法无人机的发现距离，从而提供了充足的预警时间和预警空间，而且可以实现自动搜索，可便捷的发现目标并且跟踪锁定，从而大大降低了安保人员的工作负担。</div>
+<div class="description-paragraph" num="0242">相应的，根据本发明的实施例，本发明还提出了一种无人机识别方法，包括：</div>
+<div class="description-paragraph" num="0243">步骤1：利用雷达装置搜索、定位目标；</div>
+<div class="description-paragraph" num="0244">步骤2：利用雷达装置引导光电探测装置实时跟踪所述目标和获得所述目标的图像；</div>
+<div class="description-paragraph" num="0245">步骤3：基于光电探测装置获得的信息判断所述目标是否为无人机。</div>
+<div class="description-paragraph" num="0246">可选的，无人机识别方法的步骤2中，所述雷达装置输出方位角、仰角和距离给光电探测装置，所述光电探测装置基于从所述雷达装置接收到的信号联动从而以对应的方位角、仰角和焦距指向所述目标。</div>
+<div class="description-paragraph" num="0247">本发明的实施例还提出了一种无人机识别设备，包括：</div>
+<div class="description-paragraph" num="0248">雷达装置，所述雷达装置适于对目标定位；</div>
+<div class="description-paragraph" num="0249">光电探测装置，所述光电探测装置接收来自雷达装置的信号以对所述目标实时跟踪和成像，其中基于光电探测装置获得的信息适于判断所述目标是否为无人机。</div>
+<div class="description-paragraph" num="0250">在本发明的示例性实施例中，不仅实现了雷达与光电探测技术的结合，而且因为所述定向干扰天线与所述光电探测装置同轴布置以使得在非法无人机处于光电探测装置的视场内时所述定向干扰天线对准非法无人机，所以实现了光电探测技术与反制技术(例如干扰)的结合。具体的，反无人机设备因为集成了高增益大功率定向干扰装置，可以在2km内可以对非法目标进行强制驱离或迫降。这样，在一个具体的实施例中，首先采用雷达搜索定位，同时光电探测器联动跟踪识别，然后干扰器精确定向干扰迫降或驱离。</div>
+<div class="description-paragraph" num="0251">如图20所示，本发明也提出了一种反无人机系统，该系统包括至少三个前面提到的反无人机设备100，围绕保护区域A外围分开设置。这样，多个反无人机设备100可以组成一个防护网，如本领域技术人员容易理解的，这多个反无人机设备100可以相互配合以限定各自管辖区域。</div>
+<div class="description-paragraph" num="0252">如图21所示，本发明还提出了一种反无人机系统，包括：</div>
+<div class="description-paragraph" num="0253">至少三个反无人机设备100’，围绕保护区域外围分开设置，每一个所述反无人机设备100’包括：</div>
+<div class="description-paragraph" num="0254">雷达装置，所述雷达装置适于对目标定位，这里的雷达装置与图18和图19中的雷达装置相同；</div>
+<div class="description-paragraph" num="0255">光电探测装置，所述光电探测装置接收来自雷达装置传输的目标方位信息以对所述目标实时跟踪和成像，这里的光电探测装置与图18和图19中的光电探测装置相同；</div>
+<div class="description-paragraph" num="0256">定向干扰部，所述定向干扰部用于定向干扰、迫降或者驱离基于光电探测装置确定的作为非法目标的非法无人机；</div>
+<div class="description-paragraph" num="0257">全向干扰部60，设置在所述保护区域A内。</div>
+<div class="description-paragraph" num="0258">这样的反无人机系统采用定向干扰与全向干扰结合的方式，通过在保护区域A周边布置定向干扰部，建立阻隔非法无人机临近的电子围栏，同时在保护区域中心或者内布置全向干扰部60，可以扫除干扰盲区，保护要害要地不受非法无人飞行器侵害。</div>
+<div class="description-paragraph" num="0259">本发明提出的反无人机方案可实现重点防护区域如化工园区、政府部门、大型活动等地点2-5公里低空空域范围内“低、慢、小”无人飞行器的及时预警、监控、反制，用于保证区域范围内的安全。</div>
+<div class="description-paragraph" num="0260">图22为根据本发明的一个示例性实施例的反无人机的方法的流程图。</div>
+<div class="description-paragraph" num="0261">本发明针对低空安全的发展需求，设计了反无人机方案。可以将有效的、远距离发现无人机目标、跟踪目标、打击目标一体化，用于满足低空空域安全的防护要求。</div>
+<div class="description-paragraph" num="0262">根据本发明中公开的上述实施例，可知，低空飞行器的监管和反制方案可以包括如下的系统：</div>
+<div class="description-paragraph" num="0263">——低空飞行器数字身份认证芯片系统，解决了嵌入式数字身份认证芯片植入无人飞行器自动驾驶仪中的关键技术，可绑定无人飞行器购买者身份证信息赋予每架飞行器唯一身份识别码，解决飞行器身份识别认证难题。</div>
+<div class="description-paragraph" num="0264">——低空飞行器安全监管系统。以低空飞行器实名身份认证芯片+北斗/GPS+移动通信为基础，建立低空飞行器产品、低空飞行器制造企业、购买者、驾驶员/飞控手、低空飞行计划管理与飞行实时监控大数据，实现对低空飞行器的设计、制造、购买、飞行及监控各环节全链条控管功能，并结合申飞审批系统，根据实际使用需求及安全要求对航线进行任务规划，分门别类设置各种飞行范围、时间、高度等要素，最终通过空域监管部门审批，并将审批结果反馈至使用者手中。飞行器在飞行过程中，空域监管部门可通过“全国无人飞行器联网联控平台”实时监控我国境内无人飞行器飞行状况。飞行结束后系统自动向相关管理部门上传飞行报表。</div>
+<div class="description-paragraph" num="0265">——申飞审批系统。系统采用手机APP系统与空域监管部门飞行计划审批系统相结合的方式，开通了飞行计划申请与审批的快速通道，改变了当前合法飞行申请流程长，渠道不畅的现象，有利于将广大低空飞行器使用者纳入到合法飞行渠道中来，疏堵结合，促进低空飞行器的合法使用。</div>
+<div class="description-paragraph" num="0266">——低空安全防御系统。系统利用定向干扰与全向干扰相结合的技术实现了重点区域电子围栏保护功能，有效保护政府机关、军事设施、危化品仓库、机场、重大活动场所等要地不受非法飞行器侵袭，消除空中潜在威胁。</div>
+<div class="description-paragraph" num="0267">——低空安全反制系统。综合利用微波打击技术、大功率定向干扰技术与雷达-光电一体化侦测技术，在12公里范围内完成发现、跟踪与打击功能，避免造成二次伤害，消除低空飞行器暴恐袭击与“黑飞”等威胁。</div>
+<div class="description-paragraph" num="0268">——无人飞行器空中“滴滴”平台系统。系统将飞控手、使用方、购买方等各方面资源联系起来，细分行业需求，进行有效资源整合，建立飞行需求单位与飞控手、飞行器持有者资源共享平台，提供有偿飞行服务，保障飞行安全，推动低空行业健康有序安全发展。</div>
+<div class="description-paragraph" num="0269">尽管已经示出和描述了本发明的实施例，对于本领域的普通技术人员而言，可以理解在不脱离本发明的原理和精神的情况下可以对这些实施例进行变化，本发明的范围由所附权利要求及其等同物限定。</div>
+</div>
+</div>
+</section></body></html>

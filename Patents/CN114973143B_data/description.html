@@ -1,0 +1,165 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN114973143B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES422144591">
+<invention-title id="title1" lang="ZH">一种融合运动特征的低空飞行器鲁棒检测方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及图像识别领域，尤其涉及一种融合运动特征的低空飞行器鲁棒检测方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着消费级小型无人机的快速发展，对小型无人机的有效监管越发重要。现有解决方案中，基于视频图像分析的无人机检测是一大类研究热点，已知的相关研究成果已经可以实现对尺度范围在20～30像素的无人机目标的检测。</div>
+<div class="description-paragraph" id="p0005" num="0003">对于尺度范围在20～30像素的无人机目标，实际应用系统面临的一大难题是相同尺度范围下的飞鸟目标极易触发虚警，严重影响用户体验。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本发明的目的在于提供一种融合运动特征的低空飞行器鲁棒检测方法。</div>
+<div class="description-paragraph" id="p0008" num="0005">为实现上述发明目的，本发明提供一种融合运动特征的低空飞行器鲁棒检测方法，包括：</div>
+<div class="description-paragraph" id="p0009" num="0006">S1.基于监控视频获取其中运动目标的运动目标轨迹；</div>
+<div class="description-paragraph" id="p0010" num="0007">S2.基于预训练的低空飞行器目标检测模型从所述运动目标轨迹中抽取出候选目标轨迹；</div>
+<div class="description-paragraph" id="p0011" num="0008">S3.将所述候选目标轨迹划分为多个轨迹分段，并获取候选目标在每个所述轨迹分段的轨迹特征；</div>
+<div class="description-paragraph" id="p0012" num="0009">S4.基于所述轨迹特征计算出所述候选目标运动到第i段时刻的整体类别置信度，若所述整体类别置信度大于预设的阈值，则判定第i时刻轨迹分段中的候选目标为低空飞行器。</div>
+<div class="description-paragraph" id="p0013" num="0010">根据本发明的一个方面，步骤S1中，基于监控视频获取其中运动目标的运动目标轨迹的步骤中，包括：</div>
+<div class="description-paragraph" id="p0014" num="0011">S11.截取多帧所述监控视频中的监控图像，基于获取的所述监控图像采用高斯背景建模方法建立当前所述监控视频的背景模型；</div>
+<div class="description-paragraph" id="p0015" num="0012">S12.利用所述背景模型对所述监控视频中的每帧监控图像进行去背景处理，提取所述监控图像中的运动像素区域；</div>
+<div class="description-paragraph" id="p0016" num="0013">S13.对所述运动像素区域进行去噪处理，并提取保留下的连通区域；</div>
+<div class="description-paragraph" id="p0017" num="0014">S14.采用相关滤波法对相邻帧的所述连通区域进行跟踪，确定不同帧所提取的所述连通区域的隶属度关系，基于所述隶属度关系确定出不同所述连通区域的帧序列；</div>
+<div class="description-paragraph" id="p0018" num="0015">S15.获取不同帧所提取的所述连通区域的质心坐标和空间尺度信息，并基于所述连通区域的帧序列构建出所述运动目标轨迹。</div>
+<div class="description-paragraph" id="p0019" num="0016">根据本发明的一个方面，步骤S11中，截取所述监控视频中的前N帧所述监控图像建立所述背景模型；</div>
+<div class="description-paragraph" id="p0020" num="0017">步骤S12中，利用所述背景模型对所述监控视频中第N帧后的所述监控图像进行去背景处理，并提取所述运动像素区域。</div>
+<div class="description-paragraph" id="p0021" num="0018">根据本发明的一个方面，步骤S3中，所述轨迹特征包括：航向变化幅度和航速变化幅度；</div>
+<div class="description-paragraph" id="p0022" num="0019">步骤S3中，包括：</div>
+<div class="description-paragraph" id="p0023" num="0020">S31.基于所述连通区域的质心坐标和空间尺度信息确定出所述候选目标轨迹上的轨迹点，并按照预设数量的所述轨迹点对所述候选目标轨迹进行划分；</div>
+<div class="description-paragraph" id="p0024" num="0021">S32.选取所述轨迹分段中的多个所述轨迹点获取所述航向变化幅度和所述航速变化幅度。</div>
+<div class="description-paragraph" id="p0025" num="0022">根据本发明的一个方面，步骤S32中，选取所述轨迹分段中的多个所述轨迹点获取所述航向变化幅度的步骤中，包括：</div>
+<div class="description-paragraph" id="p0026" num="0023">S321.在同一所述轨迹分段上选取具有先后顺序的第一轨迹点和第二轨迹点，并分别获取在先的所述第一轨迹点至在后的所述第二轨迹点的第一航向和第一航速；</div>
+<div class="description-paragraph" id="p0027" num="0024">S322.在同一所述轨迹分段上继续选取在后的第三轨迹点，并分别获取在先的所述第二轨迹点至在后的所述第三轨迹点的第二航向和第二航速，并基于所述第一航向和所述第二航向获取所述轨迹分段的航向变化关系，以及基于所述第一航速和所述第二航速获取所述轨迹分段的航速变化关系；</div>
+<div class="description-paragraph" id="p0028" num="0025">S323.基于所述航向变化关系和所述航速变化关系分别计算同一所述轨迹分段中的航向变化均值和航速变化均值，以获取所述航向变化幅度和所述航速变化幅度。</div>
+<div class="description-paragraph" id="p0029" num="0026">根据本发明的一个方面，步骤S321中，所述第一航向表示为：</div>
+<div class="description-paragraph" id="p0030" num="0027">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/e6/72/20/6065217fcc0e24/BDA0003700340700000031.png"><img alt="Figure BDA0003700340700000031" class="patent-full-image" file="BDA0003700340700000031.GIF" he="136" height="544" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_0.png" wi="496" width="1984"/></a></div>
+</div>
+<div class="description-paragraph" id="p0031" num="0028">其中，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/34/3e/63/10b18b0a403146/BDA0003700340700000032.png"><img alt="Figure BDA0003700340700000032" class="patent-full-image" file="BDA0003700340700000032.GIF" he="77" height="308" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_1.png" wi="157" width="628"/></a></div>表示所述第一轨迹点至所述第二轨迹点的第一航向；i表示所述轨迹分段的序号；j表示轨迹点的帧序列编号，且j<sub>1</sub>＜j<sub>2</sub>；x、y分别为所述轨迹点的坐标；</div>
+<div class="description-paragraph" id="p0032" num="0029">所述第一航速表示为：</div>
+<div class="description-paragraph" id="p0033" num="0030">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/2c/ad/ce/23a1bb360a2ed7/BDA0003700340700000033.png"><img alt="Figure BDA0003700340700000033" class="patent-full-image" file="BDA0003700340700000033.GIF" he="183" height="732" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_2.png" wi="753" width="3012"/></a></div>
+</div>
+<div class="description-paragraph" id="p0034" num="0031">其中，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/0f/5e/aa/87fac63db8b4a9/BDA0003700340700000034.png"><img alt="Figure BDA0003700340700000034" class="patent-full-image" file="BDA0003700340700000034.GIF" he="80" height="320" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_3.png" wi="165" width="660"/></a></div>表示所述第一轨迹点至所述第二轨迹点的第一航速；i表示所述轨迹分段的序号；j表示轨迹点的帧序列编号，且j<sub>1</sub>＜j<sub>2</sub>；x、y分别为所述轨迹点的坐标。</div>
+<div class="description-paragraph" id="p0035" num="0032">根据本发明的一个方面，步骤S322中，所述航向变化关系表示为：</div>
+<div class="description-paragraph" id="p0036" num="0033">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/3e/06/9d/2c15b3b24e1ad8/BDA0003700340700000035.png"><img alt="Figure BDA0003700340700000035" class="patent-full-image" file="BDA0003700340700000035.GIF" he="95" height="380" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_4.png" wi="844" width="3376"/></a></div>
+</div>
+<div class="description-paragraph" id="p0037" num="0034">其中，Δθ<sub>[i][j1][j2][j3]</sub>表示航向变化关系，Δθ<sub>[i][j1][j2]</sub>表示第一航向,Δθ<sub>[i][j2][j3]</sub>表示第二航向；</div>
+<div class="description-paragraph" id="p0038" num="0035">所述航速变化关系表示为：</div>
+<div class="description-paragraph" id="p0039" num="0036">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/52/6b/d0/f021ec7c76c928/BDA0003700340700000036.png"><img alt="Figure BDA0003700340700000036" class="patent-full-image" file="BDA0003700340700000036.GIF" he="95" height="380" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_5.png" wi="838" width="3352"/></a></div>
+</div>
+<div class="description-paragraph" id="p0040" num="0037">其中，ΔS<sub>[i][j1][j2][j3]</sub>表示航速变化关系，ΔS<sub>[i][j1][j2]</sub>表示第一航速,ΔS<sub>[i][j2][j3]</sub>表示第二航速。</div>
+<div class="description-paragraph" id="p0041" num="0038">根据本发明的一个方面，步骤S323中，基于所述航向变化关系和所述航速变化关系分别计算同一所述轨迹分段中的航向变化均值和航速变化均值的步骤中，选取三组不同帧序列间隔的所述轨迹点并基于所述航向变化关系和所述航速变化关系分别计算出相应的航向变化均值和航速变化均值，其中，第一组所述轨迹点之间的帧序列间隔小于第二组所述轨迹点之间的帧序列间隔，第二组所述轨迹点之间的帧序列间隔小于第三组所述轨迹点之间的帧序列间隔。</div>
+<div class="description-paragraph" id="p0042" num="0039">根据本发明的一个方面，步骤S4中，基于所述轨迹特征计算出所述候选目标运动到第i段时刻的整体类别置信度，若所述整体类别置信度大于预设的阈值，则判定第i时刻轨迹分段中的候选目标为低空飞行器的步骤中，包括：</div>
+<div class="description-paragraph" id="p0043" num="0040">获取第i段轨迹分段的所述轨迹特征中所述航向变化幅度和所述航速变化幅度所对应的类别置信度；其中，以获得的所述航向变化均值和所述航速变化均值计算所述类别置信度；</div>
+<div class="description-paragraph" id="p0044" num="0041">基于所述类别置信度获取所述候选目标运动到第i段时刻的整体类别置信度；</div>
+<div class="description-paragraph" id="p0045" num="0042">将所述整体类别置信度与所述阈值相比较，若所述整体类别置信度大于预设的阈值，则判定序列中第i时刻的候选目标为低空飞行器。</div>
+<div class="description-paragraph" id="p0046" num="0043">根据本发明的一个方面，所述整体类别置信度表示为：</div>
+<div class="description-paragraph" id="p0047" num="0044">Q<sub>1</sub>＝q<sub>1</sub> </div>
+<div class="description-paragraph" id="p0048" num="0045">Q<sub>i</sub>＝(q<sub>i-1</sub>+q<sub>i</sub>)/2,i＞1</div>
+<div class="description-paragraph" id="p0049" num="0046">其中，Q<sub>i</sub>表示整体类别置信度，q<sub>i</sub>表示类别置信度。</div>
+<div class="description-paragraph" id="p0050" num="0047">根据本发明的一种方案，本发明的方案通过采用区分运动特征并融合的方式可以有效的分辨出各类低空飞行器，极大的提高了本方案的分辨能力和分辨效率。</div>
+<div class="description-paragraph" id="p0051" num="0048">根据本发明的一种方案，本发明的方案分辨精度高，其对低空飞行器的平均分辨准确率超过了93％。</div>
+<div class="description-paragraph" id="p0052" num="0049">根据本发明的一种方案，本发明的方案可以有效区分在小尺度范围内的飞鸟和无人机，不仅效率高，而且有效降低了误触发的概率，极大的提高了用户体验。</div>
+<div class="description-paragraph" id="p0053" num="0050">根据本发明的一种方案，本发明的方案的执行过程中其计算量小，有效降低了对处理设备的性能要求，有效的增强了本发明的实用性和适用范围。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0054">附图说明</div>
+<div class="description-paragraph" id="p0055" num="0051">图1是示意性表示根据本发明的一种实施方式的融合运动特征的低空飞行器鲁棒检测方法的步骤框图。</div>
+<div class="description-paragraph" id="p0056" num="0052">图2是示意性表示根据本发明的一种实施方式的融合运动特征的低空飞行器鲁棒检测方法的流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0057">具体实施方式</div>
+<div class="description-paragraph" id="p0058" num="0053">下面结合附图和具体实施方式对本发明作详细地描述，实施方式不能在此一一赘述，但本发明的实施方式并不因此限定于以下实施方式。</div>
+<div class="description-paragraph" id="p0059" num="0054">结合图1和图2所示，根据本发明的一种实施方式，本发明的融合运动特征的低空飞行器鲁棒检测方法，包括：</div>
+<div class="description-paragraph" id="p0060" num="0055">S1.基于监控视频获取其中运动目标的运动目标轨迹；</div>
+<div class="description-paragraph" id="p0061" num="0056">S2.基于预训练的低空飞行器目标检测模型从运动目标轨迹中抽取出候选目标轨迹；</div>
+<div class="description-paragraph" id="p0062" num="0057">S3.将候选目标轨迹划分为多个轨迹分段，并获取候选目标在每个轨迹分段的轨迹特征；</div>
+<div class="description-paragraph" id="p0063" num="0058">S4.基于轨迹特征计算出候选目标运动到第i段时刻的整体类别置信度，若整体类别置信度大于预设的阈值，则判定第i时刻轨迹分段中的候选目标为低空飞行器。</div>
+<div class="description-paragraph" id="p0064" num="0059">根据本发明的一种实施方式，步骤S1中，基于监控视频获取其中运动目标的运动目标轨迹的步骤中，包括：</div>
+<div class="description-paragraph" id="p0065" num="0060">S11.截取多帧监控视频中的监控图像，基于获取的监控图像采用高斯背景建模方法建立当前监控视频的背景模型；在本实施方式中，截取监控视频中的前N帧监控图像建立背景模型；其中，N的取值范围可设置在5～30之间。</div>
+<div class="description-paragraph" id="p0066" num="0061">S12.利用背景模型对监控视频中的每帧监控图像进行去背景处理，提取监控图像中的运动像素区域；在本实施方式中，利用背景模型并结合背景减除法对监控视频中第N帧后的监控图像进行去背景处理，并提取运动像素区域。</div>
+<div class="description-paragraph" id="p0067" num="0062">S13.对运动像素区域进行去噪处理，并提取保留下的连通区域；在本实施方式中，采用中值滤波、膨胀、腐蚀等数学形态学方法滤除运动像素区域的离散噪声干扰，并提取保留下来的连通区域。</div>
+<div class="description-paragraph" id="p0068" num="0063">S14.采用相关滤波法对相邻帧的连通区域进行跟踪，确定不同帧所提取的连通区域的隶属度关系，基于隶属度关系确定出不同连通区域的帧序列；</div>
+<div class="description-paragraph" id="p0069" num="0064">S15.获取不同帧所提取的连通区域的质心坐标和空间尺度信息，并基于连通区域的帧序列构建出运动目标轨迹。即同一运动像素区域的质心坐标和空间尺度信息共同构成了该运动目标的轨迹信息。</div>
+<div class="description-paragraph" id="p0070" num="0065">根据本发明的一种实施方式，步骤S2中，采用预训练的基于深度学习的低空飞行器目标检测模型(如SSD模型)，对每个运动目标轨迹包含的运动像素区域(也可以为质心坐标和空间掩膜)做检测，找出分类为低空飞行器目标的区域，将该区域对应的轨迹作为候选目标轨迹。</div>
+<div class="description-paragraph" id="p0071" num="0066">根据本发明的一种实施方式，步骤S3中，轨迹特征包括：航向变化幅度和航速变化幅度；在本实施方式中，步骤S3中，包括：</div>
+<div class="description-paragraph" id="p0072" num="0067">S31.基于连通区域的质心坐标和空间尺度信息确定出候选目标轨迹上的轨迹点，并按照预设数量的轨迹点对候选目标轨迹进行划分；在本实施方式中从运动目标轨迹起始点开始，每16个轨迹点为1段。对于轨迹中第i段的第j个轨迹点，编号为T<sub>ij</sub>。这里i为轨迹段的序号，从1开始，数值越大表示轨迹越新；j为轨迹段内轨迹点的帧序列顺序编号，取值范围为1～16，数值越大表示轨迹点越新。</div>
+<div class="description-paragraph" id="p0073" num="0068">S32.选取轨迹分段中的多个轨迹点获取航向变化幅度和航速变化幅度。</div>
+<div class="description-paragraph" id="p0074" num="0069">根据本发明的一种实施方式，步骤S32中，选取轨迹分段中的多个轨迹点获取航向变化幅度的步骤中，包括：</div>
+<div class="description-paragraph" id="p0075" num="0070">S321.在同一轨迹分段上选取具有先后顺序的第一轨迹点和第二轨迹点，并分别获取在先的第一轨迹点至在后的第二轨迹点的第一航向和第一航速；在本实施方式中，从旧轨迹点T<sub>ij1</sub>(在先的第一轨迹点)画一条指向新轨迹点T<sub>ij2</sub>(在后的第二轨迹点)的直线，将该直线的指向记为这两个轨迹点对应的航向，即第一航向表示为：</div>
+<div class="description-paragraph" id="p0076" num="0071">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/fb/23/b8/0ecd83c7c956dd/BDA0003700340700000071.png"><img alt="Figure BDA0003700340700000071" class="patent-full-image" file="BDA0003700340700000071.GIF" he="140" height="560" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_6.png" wi="497" width="1988"/></a></div>
+</div>
+<div class="description-paragraph" id="p0077" num="0072">其中，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/27/6a/4f/c8ae7f4ca5a4b4/BDA0003700340700000072.png"><img alt="Figure BDA0003700340700000072" class="patent-full-image" file="BDA0003700340700000072.GIF" he="77" height="308" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_7.png" wi="160" width="640"/></a></div>表示第一轨迹点至第二轨迹点的第一航向；i表示轨迹分段的序号；j表示轨迹点的帧序列编号，且j<sub>1</sub>＜j<sub>2</sub>；x、y分别为轨迹点的坐标；</div>
+<div class="description-paragraph" id="p0078" num="0073">在本实施方式中，从旧轨迹点T<sub>ij1</sub>(在先的第一轨迹点)画一条指向新轨迹点T<sub>ij2</sub>(在后的第二轨迹点)的直线，将该直线的的长度与这两个轨迹点帧间隔之比记为这两个轨迹点对应的航速，即第一航速表示为：</div>
+<div class="description-paragraph" id="p0079" num="0074">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/9a/18/a8/1d1b457c57597d/BDA0003700340700000073.png"><img alt="Figure BDA0003700340700000073" class="patent-full-image" file="BDA0003700340700000073.GIF" he="184" height="736" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_8.png" wi="758" width="3032"/></a></div>
+</div>
+<div class="description-paragraph" id="p0080" num="0075">其中，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/a3/d9/83/b28f754c292ca9/BDA0003700340700000074.png"><img alt="Figure BDA0003700340700000074" class="patent-full-image" file="BDA0003700340700000074.GIF" he="73" height="292" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_9.png" wi="165" width="660"/></a></div>表示第一轨迹点至第二轨迹点的第一航速；i表示轨迹分段的序号；j表示轨迹点的帧序列编号，且j<sub>1</sub>＜j<sub>2</sub>；x、y分别为轨迹点的坐标。</div>
+<div class="description-paragraph" id="p0081" num="0076">S322.在同一轨迹分段上继续选取在后的第三轨迹点，并分别获取在先的第二轨迹点至在后的第三轨迹点的第二航向和第二航速，并基于第一航向和第二航向获取轨迹分段的航向变化关系，以及基于第一航速和第二航速获取轨迹分段的航速变化关系；在本实施方式中，运动目标从T<sub>ij1</sub>(在先的第一轨迹点)运动到T<sub>ij2</sub>(在后的第二轨迹点)，再从T<sub>ij2</sub>(在后的第二轨迹点)的运动到T<sub>ij3</sub>(在后的第三轨迹点)的过程具有一定的航向变化，进而该航向变化关系表示为：</div>
+<div class="description-paragraph" id="p0082" num="0077">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/e2/3d/13/cc2c6281cf2e47/BDA0003700340700000075.png"><img alt="Figure BDA0003700340700000075" class="patent-full-image" file="BDA0003700340700000075.GIF" he="94" height="376" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_10.png" wi="845" width="3380"/></a></div>
+</div>
+<div class="description-paragraph" id="p0083" num="0078">其中，Δθ<sub>[i][j1][j2][j3]</sub>表示航向变化关系，Δθ<sub>[i][j1][j2]</sub>表示第一航向,Δθ<sub>[i][j2][j3]</sub>表示第二航向；</div>
+<div class="description-paragraph" id="p0084" num="0079">在本实施方式中，运动目标从T<sub>ij1</sub>(在先的第一轨迹点)运动到T<sub>ij2</sub>(在后的第二轨迹点)，再从T<sub>ij2</sub>(在后的第二轨迹点)的运动到T<sub>ij3</sub>(在后的第三轨迹点)的过程具有一定的航速变化，进而该航速变化关系表示为：</div>
+<div class="description-paragraph" id="p0085" num="0080">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/2f/c1/62/c031aa900784b1/BDA0003700340700000076.png"><img alt="Figure BDA0003700340700000076" class="patent-full-image" file="BDA0003700340700000076.GIF" he="100" height="400" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_11.png" wi="840" width="3360"/></a></div>
+</div>
+<div class="description-paragraph" id="p0086" num="0081">其中，ΔS<sub>[i][j1][j2][j3]</sub>表示航速变化关系，ΔS<sub>[i][j1][j2]</sub>表示第一航速,ΔS<sub>[i][j2][j3]</sub>表示第二航速。</div>
+<div class="description-paragraph" id="p0087" num="0082">S323.基于航向变化关系和航速变化关系分别计算同一轨迹分段中的航向变化均值和航速变化均值，以获取航向变化幅度和航速变化幅度。在本实施方式中，选取三组不同帧序列间隔的轨迹点并基于航向变化关系和航速变化关系分别计算出相应的航向变化均值和航速变化均值，其中，第一组轨迹点之间的帧序列间隔小于第二组轨迹点之间的帧序列间隔，第二组轨迹点之间的帧序列间隔小于第三组轨迹点之间的帧序列间隔。</div>
+<div class="description-paragraph" id="p0088" num="0083">在本实施方式中，选取三组不同帧序列间隔的轨迹点并基于航向变化关系计算出相应的航向变化均值的步骤中，基于前述的轨迹分段的长度限制，在其范围内分别取三组不同帧序列间隔的轨迹点进行计算，在本实施方式中，选取瞬时、短时和长时三组不同帧序列间隔的轨迹点进行计算，其中，瞬时选取相邻点以进行计算，短时考选取帧间隔为3的点以进行计算，长时选取帧间隔为6的点以进行计算，进而，其分别为：</div>
+<div class="description-paragraph" id="p0089" num="0084">瞬时航向变化均值<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/a8/d1/4b/c8873cce931f10/BDA0003700340700000081.png"><img alt="Figure BDA0003700340700000081" class="patent-full-image" file="BDA0003700340700000081.GIF" he="68" height="272" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_12.png" wi="96" width="384"/></a></div> </div>
+<div class="description-paragraph" id="p0090" num="0085">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/83/1e/58/c6b8788b0f9bcd/BDA0003700340700000082.png"><img alt="Figure BDA0003700340700000082" class="patent-full-image" file="BDA0003700340700000082.GIF" he="148" height="592" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_13.png" wi="659" width="2636"/></a></div>
+</div>
+<div class="description-paragraph" id="p0091" num="0086">短时航向变化均值<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/89/3e/64/5c2a38aaaa793f/BDA0003700340700000083.png"><img alt="Figure BDA0003700340700000083" class="patent-full-image" file="BDA0003700340700000083.GIF" he="71" height="284" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_14.png" wi="108" width="432"/></a></div> </div>
+<div class="description-paragraph" id="p0092" num="0087">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/a0/c1/07/5b05ef7604fd8f/BDA0003700340700000084.png"><img alt="Figure BDA0003700340700000084" class="patent-full-image" file="BDA0003700340700000084.GIF" he="150" height="600" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_15.png" wi="648" width="2592"/></a></div>
+</div>
+<div class="description-paragraph" id="p0093" num="0088">长时航向变化均值<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/dd/d5/5e/3f94fd77be2f70/BDA0003700340700000085.png"><img alt="Figure BDA0003700340700000085" class="patent-full-image" file="BDA0003700340700000085.GIF" he="68" height="272" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_16.png" wi="94" width="376"/></a></div> </div>
+<div class="description-paragraph" id="p0094" num="0089">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/0e/2f/af/0cac0f2b7dae05/BDA0003700340700000086.png"><img alt="Figure BDA0003700340700000086" class="patent-full-image" file="BDA0003700340700000086.GIF" he="150" height="600" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_17.png" wi="648" width="2592"/></a></div>
+</div>
+<div class="description-paragraph" id="p0095" num="0090">其中，δ<sub>i</sub>为归一化因子，计算公式如下：</div>
+<div class="description-paragraph" id="p0096" num="0091">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/1a/30/f0/ea0ad28765b4e0/BDA0003700340700000087.png"><img alt="Figure BDA0003700340700000087" class="patent-full-image" file="BDA0003700340700000087.GIF" he="140" height="560" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_18.png" wi="569" width="2276"/></a></div>
+</div>
+<div class="description-paragraph" id="p0097" num="0092">其中，ws<sub>in</sub>的ws<sub>in</sub>为第i段轨迹分段中第n个轨迹点对应区域宽度与视频图像宽度的比值，hs<sub>in</sub>为第i段轨迹中第n个轨迹点对应区域高度与视频图像高度的比值，对于同一个目标而言，其距离摄像机越近，则这两个比值越大。</div>
+<div class="description-paragraph" id="p0098" num="0093">选取三组不同帧序列间隔的轨迹点并基于航速变化关系计算出相应的航速变化均值的步骤中，基于前述的轨迹分段的长度限制，在其范围内分别取三组不同帧序列间隔的轨迹点进行计算，在本实施方式中，选取瞬时、短时和长时三组不同帧序列间隔的轨迹点进行计算，其中，瞬时选取相邻点以进行计算，短时考选取帧间隔为3的点以进行计算，长时选取帧间隔为6的点以进行计算，进而，其分别为：</div>
+<div class="description-paragraph" id="p0099" num="0094">瞬时航速变化均值<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/99/23/9b/8511473d20ed88/BDA0003700340700000091.png"><img alt="Figure BDA0003700340700000091" class="patent-full-image" file="BDA0003700340700000091.GIF" he="71" height="284" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_19.png" wi="95" width="380"/></a></div> </div>
+<div class="description-paragraph" id="p0100" num="0095">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/5c/a9/f7/122962c06f933b/BDA0003700340700000092.png"><img alt="Figure BDA0003700340700000092" class="patent-full-image" file="BDA0003700340700000092.GIF" he="150" height="600" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_20.png" wi="646" width="2584"/></a></div>
+</div>
+<div class="description-paragraph" id="p0101" num="0096">短时航速变化均值<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/03/06/b8/8cb2be74c6c4d0/BDA0003700340700000093.png"><img alt="Figure BDA0003700340700000093" class="patent-full-image" file="BDA0003700340700000093.GIF" he="75" height="300" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_21.png" wi="101" width="404"/></a></div> </div>
+<div class="description-paragraph" id="p0102" num="0097">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/d3/2e/c5/1011653bf52d3f/BDA0003700340700000094.png"><img alt="Figure BDA0003700340700000094" class="patent-full-image" file="BDA0003700340700000094.GIF" he="151" height="604" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_22.png" wi="643" width="2572"/></a></div>
+</div>
+<div class="description-paragraph" id="p0103" num="0098">长时航速变化均值<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/36/dd/e1/c7059777f28ea3/BDA0003700340700000095.png"><img alt="Figure BDA0003700340700000095" class="patent-full-image" file="BDA0003700340700000095.GIF" he="71" height="284" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_23.png" wi="92" width="368"/></a></div> </div>
+<div class="description-paragraph" id="p0104" num="0099">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/d7/31/57/3117d00ea66787/BDA0003700340700000096.png"><img alt="Figure BDA0003700340700000096" class="patent-full-image" file="BDA0003700340700000096.GIF" he="151" height="604" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_24.png" wi="649" width="2596"/></a></div>
+</div>
+<div class="description-paragraph" id="p0105" num="0100">其中，δ<sub>i</sub>为归一化因子，计算公式如下：</div>
+<div class="description-paragraph" id="p0106" num="0101">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/bb/de/c7/1739ae1244c3cc/BDA0003700340700000097.png"><img alt="Figure BDA0003700340700000097" class="patent-full-image" file="BDA0003700340700000097.GIF" he="139" height="556" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_25.png" wi="566" width="2264"/></a></div>
+</div>
+<div class="description-paragraph" id="p0107" num="0102">其中，ws<sub>in</sub>的ws<sub>in</sub>为第i段轨迹分段中第n个轨迹点对应区域宽度与视频图像宽度的比值，hs<sub>in</sub>为第i段轨迹中第n个轨迹点对应区域高度与视频图像高度的比值，对于同一个目标而言，其距离摄像机越近，则这两个比值越大。</div>
+<div class="description-paragraph" id="p0108" num="0103">根据本发明的一种实施方式，步骤S4中，基于轨迹特征计算出所述候选目标运动到第i段时刻的整体类别置信度，若整体类别置信度大于预设的阈值，则判定第i时刻轨迹分段中的候选目标为低空飞行器的步骤中，包括：</div>
+<div class="description-paragraph" id="p0109" num="0104">获取第i段轨迹分段的轨迹特征中航向变化幅度和航速变化幅度所对应的类别置信度q<sub>i</sub>；其中，以获得的航向变化均值和航速变化均值计算类别置信度；具体的，获取前述第i段轨迹分段的轨迹特征中3个航向变化均值和3个航速变化均值，使用预训练的SVM分类器来计算其对应的类别置信度q<sub>i</sub>；</div>
+<div class="description-paragraph" id="p0110" num="0105">基于类别置信度q<sub>i</sub>获取候选目标运动到第i段时刻的整体类别置信度Q<sub>i</sub>，即计算目标运动到轨迹分段i时的整体类别置信度Q<sub>i</sub>；在本实施方式中，整体类别置信度表示为：</div>
+<div class="description-paragraph" id="p0111" num="0106">Q<sub>1</sub>＝q<sub>1</sub> </div>
+<div class="description-paragraph" id="p0112" num="0107">Q<sub>i</sub>＝(q<sub>i-1</sub>+q<sub>i</sub>)/2,i＞1</div>
+<div class="description-paragraph" id="p0113" num="0108">其中，Q<sub>i</sub>表示整体类别置信度，q<sub>i</sub>表示类别置信度。</div>
+<div class="description-paragraph" id="p0114" num="0109">将整体类别置信度与阈值相比较，若整体类别置信度大于预设的阈值，则判定序列中第i时刻的候选目标为低空飞行器。</div>
+<div class="description-paragraph" id="p0115" num="0110">上述内容仅为本发明的具体方案的例子，对于其中未详尽描述的设备和结构，应当理解为采取本领域已有的通用设备及通用方法来予以实施。</div>
+<div class="description-paragraph" id="p0116" num="0111">以上所述仅为本发明的一个方案而已，并不用于限制本发明，对于本领域的技术人员来说，本发明可以有各种更改和变化。凡在本发明的精神和原则之内，所作的任何修改、等同替换、改进等，均应包含在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

@@ -1,0 +1,78 @@
+{
+    "patent_id": "CN110553549B",
+    "title": "CN110553549B - 一种低空飞行器指挥控制系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "China Aeronautic Pivotal Defence Technologies Beijing Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN110553549B/zh",
+    "citations": [
+        {
+            "Publication Number": "RU50689U1 (ru) *",
+            "Priority Date": "2005-09-02",
+            "Publication Date": "2006-01-20",
+            "Assignee": "Федеральное государственное унитарное предприятие Научно-исследовательский институт авиационного оборудования",
+            "Title": "Информационно-командная система летательного аппарата",
+            "Link": "https://patents.google.com/patent/RU50689U1/ru"
+        },
+        {
+            "Publication Number": "CN104240539A (zh) *",
+            "Priority Date": "2013-06-13",
+            "Publication Date": "2014-12-24",
+            "Assignee": "霍尼韦尔国际公司",
+            "Title": "用于向飞行器提供atc中心数据的系统和方法",
+            "Link": "https://patents.google.com/patent/CN104240539A/zh"
+        },
+        {
+            "Publication Number": "CN107490992A (zh) *",
+            "Priority Date": "2017-09-29",
+            "Publication Date": "2017-12-19",
+            "Assignee": "中航天元防务技术（北京）有限公司",
+            "Title": "近程低空防御控制方法及系统",
+            "Link": "https://patents.google.com/patent/CN107490992A/zh"
+        },
+        {
+            "Publication Number": "CN108061572A (zh) *",
+            "Priority Date": "2017-11-14",
+            "Publication Date": "2018-05-22",
+            "Assignee": "中国船舶重工集团公司第七〇九研究所",
+            "Title": "一种海洋核动力平台综合态势显控系统及方法",
+            "Link": "https://patents.google.com/patent/CN108061572A/zh"
+        },
+        {
+            "Publication Number": "CN108415452A (zh) *",
+            "Priority Date": "2017-12-25",
+            "Publication Date": "2018-08-17",
+            "Assignee": "彩虹无人机科技有限公司",
+            "Title": "一种中空长航时无人机任务规划系统",
+            "Link": "https://patents.google.com/patent/CN108415452A/zh"
+        },
+        {
+            "Publication Number": "CN109709589A (zh) *",
+            "Priority Date": "2019-01-09",
+            "Publication Date": "2019-05-03",
+            "Assignee": "深圳市芯鹏智能信息有限公司",
+            "Title": "一种海空区域立体感知防控系统",
+            "Link": "https://patents.google.com/patent/CN109709589A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "US20210284335A1 (en) *",
+            "Priority Date": "2020-03-16",
+            "Publication Date": "2021-09-16",
+            "Assignee": "Asylon, Inc.",
+            "Title": "Automated alert system using unmanned aerial vehicles",
+            "Link": "https://patents.google.com/patent/US20210284335A1/en"
+        },
+        {
+            "Publication Number": "US12333923B2 (en) *",
+            "Priority Date": "2020-03-16",
+            "Publication Date": "2025-06-17",
+            "Assignee": "Asylon, Inc.",
+            "Title": "Automated alert system using unmanned aerial vehicles",
+            "Link": "https://patents.google.com/patent/US12333923B2/en"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:31:24"
+}

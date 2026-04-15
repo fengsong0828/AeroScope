@@ -1,0 +1,45 @@
+{
+    "patent_id": "CN105759834B",
+    "title": "CN105759834B - 一种主动捕获低空小型无人飞行器的系统及方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shanghai Institute of Microsystem and Information Technology of CAS",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN105759834B/zh",
+    "citations": [
+        {
+            "Publication Number": "CN103856751A (zh) *",
+            "Priority Date": "2012-11-30",
+            "Publication Date": "2014-06-11",
+            "Assignee": "大连宏宇科技有限公司",
+            "Title": "一种基于质心跟踪算法的低空飞行物监控系统",
+            "Link": "https://patents.google.com/patent/CN103856751A/zh"
+        },
+        {
+            "Publication Number": "CN103049764A (zh) *",
+            "Priority Date": "2012-12-13",
+            "Publication Date": "2013-04-17",
+            "Assignee": "中国科学院上海微系统与信息技术研究所",
+            "Title": "一种低空飞行器目标识别方法",
+            "Link": "https://patents.google.com/patent/CN103049764A/zh"
+        },
+        {
+            "Publication Number": "CN103925920A (zh) *",
+            "Priority Date": "2014-04-10",
+            "Publication Date": "2014-07-16",
+            "Assignee": "西北工业大学",
+            "Title": "一种基于图像透视的微型无人机室内自主导航方法",
+            "Link": "https://patents.google.com/patent/CN103925920A/zh"
+        },
+        {
+            "Publication Number": "CN104930922A (zh) *",
+            "Priority Date": "2015-06-05",
+            "Publication Date": "2015-09-23",
+            "Assignee": "华南农业大学",
+            "Title": "一种用于捕捉低空小型无人飞行器的便携式装置及其捕捉方法",
+            "Link": "https://patents.google.com/patent/CN104930922A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:19:37"
+}

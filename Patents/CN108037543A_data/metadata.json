@@ -1,0 +1,118 @@
+{
+    "patent_id": "CN108037543A",
+    "title": "CN108037543A - 一种监测低空无人飞行器的多谱红外成像检测跟踪方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Henan University of Technology",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN108037543A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN101252677A (zh) *",
+            "Priority Date": "2007-10-19",
+            "Publication Date": "2008-08-27",
+            "Assignee": "西安交通大学",
+            "Title": "一种基于多光谱图像传感器的目标跟踪方法",
+            "Link": "https://patents.google.com/patent/CN101252677A/zh"
+        },
+        {
+            "Publication Number": "GB2537122A (en) *",
+            "Priority Date": "2015-04-07",
+            "Publication Date": "2016-10-12",
+            "Assignee": "James Tansley John",
+            "Title": "Automated drone package receiver module",
+            "Link": "https://patents.google.com/patent/GB2537122A/en"
+        },
+        {
+            "Publication Number": "CN107219520A (zh) *",
+            "Priority Date": "2017-05-31",
+            "Publication Date": "2017-09-29",
+            "Assignee": "成都新越科技有限公司",
+            "Title": "一种反无人机分布式组网探测方法及其装置",
+            "Link": "https://patents.google.com/patent/CN107219520A/zh"
+        },
+        {
+            "Publication Number": "CN107392173A (zh) *",
+            "Priority Date": "2017-08-04",
+            "Publication Date": "2017-11-24",
+            "Assignee": "成都云擎科技有限公司",
+            "Title": "一种基于光电搜索的反无人机系统",
+            "Link": "https://patents.google.com/patent/CN107392173A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN109684429A (zh) *",
+            "Priority Date": "2018-12-18",
+            "Publication Date": "2019-04-26",
+            "Assignee": "南京云灿信息科技有限公司",
+            "Title": "一种基于三维数字地球的低空飞行目标识别系统及算法",
+            "Link": "https://patents.google.com/patent/CN109684429A/zh"
+        },
+        {
+            "Publication Number": "CN109708659A (zh) *",
+            "Priority Date": "2018-12-25",
+            "Publication Date": "2019-05-03",
+            "Assignee": "四川九洲空管科技有限责任公司",
+            "Title": "一种分布式智能光电低空防护系统",
+            "Link": "https://patents.google.com/patent/CN109708659A/zh"
+        },
+        {
+            "Publication Number": "CN110245566A (zh) *",
+            "Priority Date": "2019-05-16",
+            "Publication Date": "2019-09-17",
+            "Assignee": "西安交通大学",
+            "Title": "一种基于背景特征的红外目标远距离追踪方法",
+            "Link": "https://patents.google.com/patent/CN110245566A/zh"
+        },
+        {
+            "Publication Number": "CN110245566B (zh) *",
+            "Priority Date": "2019-05-16",
+            "Publication Date": "2021-07-13",
+            "Assignee": "西安交通大学",
+            "Title": "一种基于背景特征的红外目标远距离追踪方法",
+            "Link": "https://patents.google.com/patent/CN110245566B/zh"
+        },
+        {
+            "Publication Number": "CN110276254A (zh) *",
+            "Priority Date": "2019-05-17",
+            "Publication Date": "2019-09-24",
+            "Assignee": "恒锋信息科技股份有限公司",
+            "Title": "基于无人机的禁止摆摊区域摊贩自动识别预警方法",
+            "Link": "https://patents.google.com/patent/CN110276254A/zh"
+        },
+        {
+            "Publication Number": "CN110276254B (zh) *",
+            "Priority Date": "2019-05-17",
+            "Publication Date": "2024-06-07",
+            "Assignee": "恒锋信息科技股份有限公司",
+            "Title": "基于无人机的禁止摆摊区域摊贩自动识别预警方法",
+            "Link": "https://patents.google.com/patent/CN110276254B/zh"
+        },
+        {
+            "Publication Number": "RU201367U1 (ru) *",
+            "Priority Date": "2020-07-28",
+            "Publication Date": "2020-12-11",
+            "Assignee": "Акционерное общество Научно-производственный центр «Электронные вычислительно-информационные системы» (АО НПЦ «ЭЛВИС»)",
+            "Title": "Система детектирования беспилотных летальных аппаратов (бпла)",
+            "Link": "https://patents.google.com/patent/RU201367U1/ru"
+        },
+        {
+            "Publication Number": "RU2746394C1 (ru) *",
+            "Priority Date": "2020-07-28",
+            "Publication Date": "2021-04-13",
+            "Assignee": "Акционерное общество Научно-производственный центр \"Электронные вычислительно-информационные системы\" (АО НПЦ \"ЭЛВИС\")",
+            "Title": "Система и способ детектирования беспилотных летальных аппаратов (бпла)",
+            "Link": "https://patents.google.com/patent/RU2746394C1/ru"
+        },
+        {
+            "Publication Number": "CN115899498A (zh) *",
+            "Priority Date": "2022-11-28",
+            "Publication Date": "2023-04-04",
+            "Assignee": "南京航空航天大学",
+            "Title": "一种空域运行风险监测设备",
+            "Link": "https://patents.google.com/patent/CN115899498A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:23:30"
+}

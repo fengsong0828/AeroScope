@@ -1,0 +1,276 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN114120715A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES325228735">
+<invention-title id="title1" lang="ZH">低空飞行器防碰撞的方法、装置、设备及计算机存储介质</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="n0001">本发明属于低空飞行器领域，尤其涉及一种低空飞行器防碰撞的方法、装置、设备及计算机存储介质。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="n0002">随着低空飞行器的不断普及，低空飞行器因其轻巧灵活、便捷、适应多种飞行环境要求的特点广泛应用于植保、快递、搜救、航拍以及巡检方等方面，给人们日常生活带来了较多的便利。</div>
+<div class="description-paragraph" id="p0005" num="n0003">与高空、超高空飞行不同，低空飞行高度低，山脉、建筑物等地面障碍物对低空飞行器而言都可能构成一种潜在的威胁，甚至空中的其他飞行器也会给低空飞行器带来危险。低空飞行器在很多复杂的环境下飞行，很容易发生碰撞等情况。因此，防碰撞处理对低空飞行器的可操作性、安全性至关重要。</div>
+<div class="description-paragraph" id="p0006" num="n0004">现有的低空飞行器防碰撞技术主要有采用主动感知、广播和互联网的方式。其中，采用主动感知的方式载荷较大，不适合载荷能力较小的低空飞行器；采用广播的方式由于飞行器上嵌入式设备的算力有限，因此，对算法效率要求较高；采用互联网的方式，低空飞行器通过互联网的通信时延较大，不适用于需要实时碰撞预警的场景。现有的防碰撞技术应用范围有限，在不同的场景下，无法保证碰撞预警系统的可靠性，得到的碰撞预警信息不够精确，为低空飞行器带来安全隐患。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="n0005">本发明实施例提供一种低空飞行器防碰撞的方法、装置、设备及计算机存储介质，能够减少负荷、降低对嵌入式设备算力的要求、减少通信时延，得到更加精确的预警信息，提高碰撞预警系统的可靠性。</div>
+<div class="description-paragraph" id="p0009" num="n0006">第一方面，本发明实施例提供一种低空飞行器防碰撞的方法，该方法应用于第一边缘服务器，包括：</div>
+<div class="description-paragraph" id="p0010" num="n0007">接收预设碰撞检测区域中至少一个第一低空飞行器的第一飞行信息；</div>
+<div class="description-paragraph" id="p0011" num="n0008">接收至少一个第二边缘服务器发送的预设碰撞检测区域中至少一个第二低空飞行器的第二飞行信息，以及第二边缘服务器与至少一个第二低空飞行器的第二通信时延；</div>
+<div class="description-paragraph" id="p0012" num="n0009">根据第一飞行信息和第二飞行信息，确定至少一个第一低空飞行器和至少一个第二低空飞行器中每两个低空飞行器之间的水平距离、高度差及航向夹角；</div>
+<div class="description-paragraph" id="p0013" num="n0010">当高度差小于预设高度，水平距离小于预设距离且航向夹角不大于预设航向夹角时，根据第一飞行信息、第一边缘服务器与至少一个第一低空飞行器的第一通信时延、第二飞行信息和第二通信时延生成预警信息，并向目标低空飞行器发送预警信息，其中，预警信息包括碰撞时间和碰撞位置。</div>
+<div class="description-paragraph" id="p0014" num="n0011">在一种可选的实现方式中，第一飞行信息和第二飞行信息均包括飞行器标识；该方法还包括：</div>
+<div class="description-paragraph" id="p0015" num="n0012">当第一边缘服务器存储飞行器标识对应的飞行信息时，更新第一飞行信息和第二飞行信息；</div>
+<div class="description-paragraph" id="p0016" num="n0013">当第一边缘服务器未存储飞行器标识对应的飞行信息时，保存第一飞行信息和第二飞行信息。</div>
+<div class="description-paragraph" id="p0017" num="n0014">在一种可选的实现方式中，第一飞行信息包括飞行器标识；该方法还包括：当第一边缘服务器存储飞行器标识对应的飞行信息，且在第一预设时间时长内未更新飞行信息时，删除第一飞行信息。</div>
+<div class="description-paragraph" id="p0018" num="n0015">在一种可选的实现方式中，第二飞行信息包括飞行器标识，该方法还包括：</div>
+<div class="description-paragraph" id="p0019" num="n0016">根据至少一个第二飞行器的第二飞行信息和第一边缘服务器存储的飞行器标识对应的历史飞行信息，确定至少一个第二飞行器的第二飞行信息的信息未更新时长；</div>
+<div class="description-paragraph" id="p0020" num="n0017">当第一边缘服务器存储飞行器标识对应的飞行信息，且信息未更新时长大于第二预设时长时，生成故障信息。</div>
+<div class="description-paragraph" id="p0021" num="n0018">在一种可选的实现方式中，根据第一飞行信息、第一边缘服务器与至少一个第一低空飞行器的第一通信时延、第二飞行信息和第二通信时延生成预警信息，包括：</div>
+<div class="description-paragraph" id="p0022" num="n0019">根据第一飞行信息、第一通信时延、第二飞行信息和第二通信时延，确定碰撞时间和碰撞位置；</div>
+<div class="description-paragraph" id="p0023" num="n0020">根据碰撞时间和碰撞位置生成预警信息。</div>
+<div class="description-paragraph" id="p0024" num="n0021">在一种可选的实现方式中，第一飞行信息和第二飞行信息还包括飞行速度、飞行加速度、飞行位置信息；根据第一飞行信息、第一通信时延、第二飞行信息和第二通信时延，确定碰撞位置，包括：</div>
+<div class="description-paragraph" id="p0025" num="n0022">根据第一飞行信息中的飞行速度、飞行加速度、飞行位置信息，以及第二飞行信息的飞行速度、飞行加速度、飞行位置信息得到计算碰撞时间；</div>
+<div class="description-paragraph" id="p0026" num="n0023">根据第一飞行信息中的飞行速度、飞行加速度、飞行位置信息，以及计算碰撞时间得到碰撞位置。</div>
+<div class="description-paragraph" id="p0027" num="n0024">在一种可选的实现方式中，根据第一飞行信息、第一通信时延、第二飞行信息和第二通信时延，确定碰撞时间，包括：</div>
+<div class="description-paragraph" id="p0028" num="n0025">若目标低空飞行器均为第一低空飞行器，根据计算碰撞时间和第一通信时延得到碰撞时间，表示为以下公式：</div>
+<div class="description-paragraph" id="p0029" num="n0026">T＝Tpc–Tec，</div>
+<div class="description-paragraph" id="p0030" num="n0027">其中，T表示碰撞时间，Tpc表示计算碰撞时间，Tec表示第一时通信时延；</div>
+<div class="description-paragraph" id="p0031" num="n0028">若目标低空飞行器为第一低空飞行器和第二低空飞行器，根据计算碰撞时间、第一通信时延和第二通信时延得到碰撞时间，表示为以下公式：</div>
+<div class="description-paragraph" id="p0032" num="n0029">T＝Tpc–max{Tec,Ted}，</div>
+<div class="description-paragraph" id="p0033" num="n0030">其中，T表示碰撞时间，Tpc表示计算碰撞时间，Tec表示第一时通信时延，Ted表示第二通信时延。</div>
+<div class="description-paragraph" id="p0034" num="n0031">在一种可选的实现方式中，根据第一飞行信息、第一通信时延、第二飞行信息和第二通信时延，确定碰撞时间，包括：</div>
+<div class="description-paragraph" id="p0035" num="n0032">接收第一低空飞行器发送的第一系统时延、第二低空飞行器发送的第二系统时延、第二边缘服务器的第三系统时延，以及第一边缘服务器与第二边缘服务器之间的第三通信时延；</div>
+<div class="description-paragraph" id="p0036" num="n0033">根据第一飞行信息、第一通信时延、第二飞行信息、第二通信时延、第一系统时延、第二系统时延、第一边缘服务器的第四系统时延和第三通信时延确定碰撞时间。</div>
+<div class="description-paragraph" id="p0037" num="n0034">在一种可选的实现方式中，当碰撞时间小于预设的预警时间时，向目标低空飞行器发送预警信息。</div>
+<div class="description-paragraph" id="p0038" num="n0035">第二方面，本发明实施例提供了一种低空飞行器防碰撞的装置，装置包括：</div>
+<div class="description-paragraph" id="p0039" num="n0036">接收模块，用于接收预设碰撞检测区域中至少一个第一低空飞行器的第一飞行信息；</div>
+<div class="description-paragraph" id="p0040" num="n0037">接收模块，用于接收至少一个第二边缘服务器发送的至少一个第二低空飞行器的第二飞行信息，以及第二边缘服务器与至少一个第二低空飞行器的第二通信时延；</div>
+<div class="description-paragraph" id="p0041" num="n0038">确定模块，用于根据第一飞行信息和第二飞行信息，确定至少一个第一低空飞行器和至少一个第二低空飞行器中每两个低空飞行器之间的水平距离和高度差；</div>
+<div class="description-paragraph" id="p0042" num="n0039">生成模块，用于当高度差小于预设高度，水平距离小于预设距离且航向夹角不大于预设航向夹角时，根据第一飞行信息、第一边缘服务器与至少一个第一低空飞行器的第一通信时延、第二飞行信息和第二通信时延生成预警信息，并向目标低空飞行器发送预警信息，其中，预警信息包括碰撞时间和碰撞位置。</div>
+<div class="description-paragraph" id="p0043" num="n0040">第三方面，本发明实施例提供了一种低空飞行器防碰撞设备，设备包括：处理器，以及存储有计算机程序指令的存储器；处理器读取并执行计算机程序指令，以实现第一方面或者第一方面任意一种可选的实现方式中的低空飞行器防碰撞方法。</div>
+<div class="description-paragraph" id="p0044" num="n0041">第四方面，本发明实施例提供了一种计算机存储介质，计算机存储介质上存储有计算机程序指令，计算机程序指令被处理器执行时实现第一方面或者第一方面任意一种可选的实现方式中的低空飞行器防碰撞方法。</div>
+<div class="description-paragraph" id="p0045" num="n0042">本发明实施例提供的低空飞行器防碰撞方法、装置、设备及计算机存储介质，其中，方法包括：接收预设碰撞检测区域中至少一个第一低空飞行器的第一飞行信息，接收至少一个第二边缘服务器发送的至少一个第二低空飞行器的第二飞行信息，以及第二边缘服务器与至少一个第二低空飞行器的第二通信时延，有利于第一边缘服务器准确地了解低空飞行器的位置，能够更好地监测低空飞行器可能碰撞的情况。根据第一飞行信息和第二飞行信息，确定至少一个第一低空飞行器和至少一个第二低空飞行器中每两个低空飞行器之间的水平距离和高度差，当高度差小于预设高度，水平距离小于预设距离且航向夹角不大于预设航向夹角时，根据第一飞行信息、第一边缘服务器与至少一个第一低空飞行器的第一通信时延、第二飞行信息和第二通信时延生成预警信息，并向目标低空飞行器发送预警信息，其中，预警信息包括碰撞时间和碰撞位置。由于在计算碰撞时间的过程中考虑了通信时延的情况，提高碰撞时间的计算精度，提高了防碰撞系统的可靠性；低空飞行器只需要装配通信模块，不要需要配置其他采集信息的辅助模块，减少载荷；同时，将防碰撞系统部署到边缘服务器上，降低对嵌入式设备的算力要求。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0046">附图说明</div>
+<div class="description-paragraph" id="p0047" num="n0043">为了更清楚地说明本发明实施例的技术方案，下面将对本发明实施例中所需要使用的附图作简单的介绍，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0048" num="n0044">图1是本发明实施例提供的一种低空飞行器防碰撞的方法的流程示意图；</div>
+<div class="description-paragraph" id="p0049" num="n0045">图2是本发明实施例提供的一种单个边缘服务器与多个基站信息交互示意图；</div>
+<div class="description-paragraph" id="p0050" num="n0046">图3是本发明实施例提供的一种相邻边缘服务器之间信息交互示意图；</div>
+<div class="description-paragraph" id="p0051" num="n0047">图4是本发明实施例提供的一种低空飞行器基站切换的流程示意图；</div>
+<div class="description-paragraph" id="p0052" num="n0048">图5是本发明实施例提供的一种低空飞行器行驶方向的分解示意图；</div>
+<div class="description-paragraph" id="p0053" num="n0049">图6是本发明实施例提供的一种防碰撞系统的通信时延示意图；</div>
+<div class="description-paragraph" id="p0054" num="n0050">图7是本发明实施例提供的另一种防碰撞系统的通信时延示意图；</div>
+<div class="description-paragraph" id="p0055" num="n0051">图8是本发明实施例提供的一种碰撞位置的空间划分示意图；</div>
+<div class="description-paragraph" id="p0056" num="n0052">图9是本发明实施例提供的一种低空飞行器防碰撞的装置的结构示意图；</div>
+<div class="description-paragraph" id="p0057" num="n0053">图10是本发明实施例提供的一种低空飞行器防碰撞设备的结构示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0058">具体实施方式</div>
+<div class="description-paragraph" id="p0059" num="n0054">下面将详细描述本发明的各个方面的特征和示例性实施例，为了使本发明的目的、技术方案及优点更加清楚明白，以下结合附图及具体实施例，对本发明进行进一步详细描述。应理解，此处所描述的具体实施例仅被配置为解释本发明，并不被配置为限定本发明。对于本领域技术人员来说，本发明可以在不需要这些具体细节中的一些细节的情况下实施。下面对实施例的描述仅仅是为了通过示出本发明的示例来提供对本发明更好的理解。</div>
+<div class="description-paragraph" id="p0060" num="n0055">需要说明的是，在本文中，诸如第一和第二等之类的关系术语仅仅用来将一个实体或者操作与另一个实体或操作区分开来，而不一定要求或者暗示这些实体或操作之间存在任何这种实际的关系或者顺序。而且，术语“包括”、“包含”或者其任何其他变体意在涵盖非排他性的包含，从而使得包括一系列要素的过程、方法、物品或者设备不仅包括那些要素，而且还包括没有明确列出的其他要素，或者是还包括为这种过程、方法、物品或者设备所固有的要素。在没有更多限制的情况下，由语句“包括……”限定的要素，并不排除在包括所述要素的过程、方法、物品或者设备中还存在另外的相同要素。</div>
+<div class="description-paragraph" id="p0061" num="n0056">主动感知防碰撞处理主要通过机载比如雷达、激光、摄像头、红外热像仪等传感器，主动实时检测障碍物相对低空飞行器的相对距离来对低空飞行器进行防碰撞，例如，采用主动感知的方式，通过4路摄像模块提取障碍物的图像特征信息，根据提取的图像信息，来计算低空飞行器与障碍物的距离；采用广播方式时，实时广播未来短时预测的自身飞行信息，同时接收一定范围内的低空飞行器飞行信息，通过对比自身未来短时预测的飞行信息和其他飞行器预测的飞行信息，确定是否在安全距离范围内，判断碰撞风险；采用互联网方式，通过布置在地面基站获取当前运行的所有低空飞行器的行驶轨迹，然后设定待飞行低空飞行器的待行驶轨迹，使其行驶轨迹有别于其他低空飞行器的行驶轨迹。</div>
+<div class="description-paragraph" id="p0062" num="n0057">然而，若低空飞行器采用主动感知方法，其载荷较大，不适合载荷能力较小的低空飞行器；若低空飞行器采用广播方式，低空飞行器上嵌入式设备算力有限，对算法效率要求较高；若低空飞行器采用互联网方式，低空飞行器通过互联网的通信时延较大，需要实时碰撞预警的场景不合适。在不同的场景下，无法保证碰撞预警系统的可靠性，得到的碰撞预警信息不够精确，为低空飞行器带来安全隐患。</div>
+<div class="description-paragraph" id="p0063" num="n0058">为了解决现有技术问题，本发明实施例提供了一种低空飞行器防碰撞的方法、装置、设备及计算机存储介质。</div>
+<div class="description-paragraph" id="p0064" num="n0059">本发明实施例通过将低空飞行器的空域划分为碰撞检测空域和无需检测空域，第一边缘服务器接收碰撞检测空域中自身基站侧的第一低空飞行器的第一飞行信息，同时接收相第二缘服务器基站侧的第二低空飞行器的第二飞行信息和低空飞行器与第二边缘服务器之间的第二通信时延。根据第一飞行信息和第二飞行信息确定至少一个第一低空飞行器和至少一个第二低空飞行器中每两个低空飞行器之间的水平距离和高度差及航向夹角，当高度差小于预设的安全高度，水平距离小于预设距离且航向夹角不大于预设航向夹角时，存在碰撞风险，根据第一飞行信息和第二飞行信息预测碰撞时间和碰撞位置，将碰撞时间和碰撞位置发送给存在碰撞风险的目标低空飞行器，目标低空飞行器根据预测的碰撞时间和碰撞位置做出相应的避障飞行行为。</div>
+<div class="description-paragraph" id="p0065" num="n0060">下面首先对本发明实施例所提供的低空飞行器防碰撞方法进行介绍。</div>
+<div class="description-paragraph" id="p0066" num="n0061">图1示出了本发明一个实施例提供的低空飞行器防碰撞方法的流程示意图。如图1所示，该方法可以包括以下步骤：</div>
+<div class="description-paragraph" id="p0067" num="n0062">S110、接收预设碰撞检测区域中至少一个第一低空飞行器的第一飞行信息。</div>
+<div class="description-paragraph" id="p0068" num="n0063">第一边缘服务器部署有防碰撞系统，预先配置碰撞检测区域到第一边缘服务器。第一低空飞行器为第一边缘服务器部署的基站覆盖范围内的低空飞行器，第一飞行信息为第一边缘服务器部署的基站覆盖范围内的低空飞行器的飞行信息，如表1所示，该飞行信息包括第一低空飞行器的序列号、时间戳、飞行器标识、维度、经度、航向夹角、速度、加速度、最大速度。</div>
+<div class="description-paragraph" id="p0069" num="n0064">
+<tables num="0001">
+<patent-tables>
+<table class="description-table" cols="2" width="100%">
+<tbody><tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">飞行信息名称</td>
+<td class="description-td" morerows="1" rowspan="2">飞行信息内容</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">序列号</td>
+<td class="description-td" morerows="1" rowspan="2">数据每发送一次自加一</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">时间戳</td>
+<td class="description-td" morerows="1" rowspan="2">低空飞行器发送信息得到时间</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">飞行器标识</td>
+<td class="description-td" morerows="1" rowspan="2">低空飞行器识别标识</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">经度</td>
+<td class="description-td" morerows="1" rowspan="2">低空飞行器发送数据时刻的经度</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">维度</td>
+<td class="description-td" morerows="1" rowspan="2">低空飞行器发送数据时刻的经度</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">高度</td>
+<td class="description-td" morerows="1" rowspan="2">低空飞行器发送数据时刻的高度</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">航向夹角</td>
+<td class="description-td" morerows="1" rowspan="2">低空飞行器发送数据时刻的航向夹角</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">速度</td>
+<td class="description-td" morerows="1" rowspan="2">低空飞行器发送数据时刻的速度</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">加速度</td>
+<td class="description-td" morerows="1" rowspan="2">低空飞行器发送数据时刻的加速度</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">最大速度</td>
+<td class="description-td" morerows="1" rowspan="2">低空飞行器的最大速度</td>
+</tr>
+</tbody></table>
+</patent-tables>
+</tables>
+</div>
+<div class="description-paragraph" id="p0070" num="n0065">表1</div>
+<div class="description-paragraph" id="p0071" num="n0066">低空飞行器与基站之间采用1588V2同步方案，使用低空飞行器的5G窝蜂通信模块进行同步。当第一低空飞行器进入基站有效覆盖范围内，第一低空飞行器通过5G蜂窝网络模块每隔一定时间间隔向基站无线接入侧的第一边缘服务器发送第一飞行信息，第一低空飞行器只需要配置5G蜂窝网络模块，不需要配置其他采集信息的辅助模块，减少负荷。第一边缘服务器接收预设碰撞检测区域中至少一个第一低空飞行器的第一飞行信息，用于评估与其他低空飞行器的碰撞风险。</div>
+<div class="description-paragraph" id="p0072" num="n0067">S120、接收至少一个第二边缘服务器发送的预设碰撞检测区域中至少一个第二低空飞行器的第二飞行信息，以及第二边缘服务器与至少一个第二低空飞行器的第二通信时延。</div>
+<div class="description-paragraph" id="p0073" num="n0068">第二边缘服务器为与第一边缘服务器相邻的至少一个边缘服务器，第二低空飞行器为相邻边缘服务器部署的基站的覆盖范围内的至少一个低空飞行器，第二飞行信息为相邻边缘服务器部署的基站的覆盖范围内的至少一个低空飞行器的飞行信息，如表1所示，该飞行信息包括第二低空飞行器的维度、经度、航向夹角等。</div>
+<div class="description-paragraph" id="p0074" num="n0069">如图2所示，第一边缘服务器不仅能接收自身部署的基站覆盖范围内第一低空飞行器发送的第一飞行信息，并同时和多个基站进行信息同步。如图3所示，第一边缘服务器与第二边缘服务器之间可以进行信息同步，通过第二边缘服务器接收第二边缘服务器部署的基站发送的第二低空飞行器的第二飞行信息，以及第二边缘服务器与第二低空飞行器的第二通信时延，同时第一边缘服务器也可以将第一飞行信息同步给第二边缘服务器。第一边缘服务器接收至少一个第二边缘服务器发送的预设碰撞检测区域中至少一个第二低空飞行器的第二飞行信息，以及第二边缘服务器与至少一个第二低空飞行器的第二通信时延，用于评估与其他低空飞行器的碰撞风险。</div>
+<div class="description-paragraph" id="p0075" num="n0070">S130、根据第一飞行信息和第二飞行信息，确定至少一个第一低空飞行器和至少一个第二低空飞行器中每两个低空飞行器之间的水平距离、高度差以及航向夹角。</div>
+<div class="description-paragraph" id="p0076" num="n0071">由于碰撞检测空域内存在至少一个低空飞行器，其中每两个低空飞行器之间都有碰撞的可能性，且低空飞行器在空中不同平面内不断移动，无法直接测量两个低空飞行器之间的距离。因此，根据第一飞行信息和第二飞行信息，确定至少一个第一低空飞行器和至少一个第二低空飞行器中每两个低空飞行器之间实时的水平距离和高度差以及航向夹角，以确定两低空飞行器之间的位置关系，预测碰撞风险。</div>
+<div class="description-paragraph" id="p0077" num="n0072">S140、当高度差小于预设高度，水平距离小于预设距离且航向夹角不大于预设航向夹角时，根据第一飞行信息、第一边缘服务器与至少一个第一低空飞行器的第一通信时延、第二飞行信息和第二通信时延生成预警信息，并向目标低空飞行器发送预警信息，其中，预警信息包括碰撞时间和碰撞位置。</div>
+<div class="description-paragraph" id="p0078" num="n0073">预设高度是预先设置的碰撞检测区域内的每两个低空飞行器之间的安全高度，预设距离是预先设置的碰撞检测区域内的每两个低空飞行器之间的安全距离，预设航向夹角是预先设置的两个低空飞行器飞行方向的夹角，该预设航向夹角为180°。第一边缘服务器根据每两个低空飞行器之间实时的水平距离和高度差以及航向夹角，对低空飞行器之间的碰撞可能性进行评估。若高度差大于等于安全高度，则不存在碰撞危险；若高度差小于预设的安全高度，则比较水平距离与预设的安全距离之间的大小关系，如果水平距离大于等于预设的安全距离，则不存在碰撞危险，如果水平距离小于预设的安全距离，则这两个低空飞行器可能会存在碰撞危险。</div>
+<div class="description-paragraph" id="p0079" num="n0074">此时，需要根据这两个低空飞行器之间的航向夹角对碰撞可能性进一步评估，若这两个低空飞行器之间的航向夹角大于180°时，则不存在碰撞风险，若这两个低空飞行器之间的航向夹角不大于180°时，则存在碰撞风险。根据第一飞行信息、第一边缘服务器与至少一个第一低空飞行器的第一通信时延、第二飞行信息和第二通信时延生成预警信息，并向目标低空飞行器发送预警信息，其中，预警信息包括碰撞时间和碰撞位置。目标飞行器可以是两个第一低空飞行器，也可以是一个第一低空飞行器，一个第二低空飞行器，在不同的情况下，计算出的两个低空飞行器之间的碰撞时间不同。</div>
+<div class="description-paragraph" id="p0080" num="n0075">在本发明实施例中，第一边缘服务器接收预设碰撞检测区域中至少一个第一低空飞行器的第一飞行信息，接收至少一个第二边缘服务器发送的至少一个第二低空飞行器的第二飞行信息，以及第二边缘服务器与至少一个第二低空飞行器的第二通信时延，有利于第一边缘服务器准确地了解低空飞行器的位置，能够更好地监测低空飞行器可能碰撞的情况。根据第一飞行信息和第二飞行信息，确定至少一个第一低空飞行器和至少一个第二低空飞行器中每两个低空飞行器之间的水平距离和高度差，当高度差小于预设高度，水平距离小于预设距离且航向夹角不大于180°时，根据第一飞行信息、第一边缘服务器与至少一个第一低空飞行器的第一通信时延、第二飞行信息和第二通信时延生成预警信息，并向目标低空飞行器发送预警信息，其中，预警信息包括碰撞时间和碰撞位置。由于在计算碰撞时间的过程中考虑了通信时延的情况，提高碰撞时间的计算精度，提高了防碰撞系统的可靠性；同时，将防碰撞系统部署到边缘服务器上，降低了低空飞行器对嵌入式设备的算力要求。</div>
+<div class="description-paragraph" id="p0081" num="n0076">在一个实施例中，第一飞行信息和第二飞行信息均包括飞行器标识，该方法还包括：当第一边缘服务器存储飞行器标识对应的飞行信息时，更新第一飞行信息和第二飞行信息，当第一边缘服务器未存储飞行器标识对应的飞行信息时，保存第一飞行信息和第二飞行信息。</div>
+<div class="description-paragraph" id="p0082" num="n0077">当第一边缘服务器获取第一飞行信息和第二飞行信息后，判断第一边缘服务器系统中是否存在第一飞行信息和第二飞行信息中的飞行器标识，如果不存在，则保存该飞行器标识对应的飞行信息，如果存在，则更新原有的飞行信息，以便第一边缘服务器能够实时地监测低空飞行器的飞行情况，有效防止低空飞行器之间的碰撞。</div>
+<div class="description-paragraph" id="p0083" num="n0078">在一个实施例中，第一飞行信息包括飞行器标识，该方法还包括：当第一边缘服务器存储飞行器标识对应的飞行信息，且在第一预设时间时长内未更新飞行信息时，删除第一飞行信息。</div>
+<div class="description-paragraph" id="p0084" num="n0079">当第一低空飞行器在第一预设时间时长内没有向第一边缘服务器发送第一飞行信息时，意味着该第一低空飞行器可能离开了第一边缘服务器部署的基站的覆盖范围，不会在第一边缘服务器覆盖的碰撞范围内与其他低空飞行器发生碰撞，则从第一边缘服务器系统中删除第一飞行信息，从而节省第一边缘服务器系统的存储空间，保证第一边缘服务器系统的运行性能。</div>
+<div class="description-paragraph" id="p0085" num="n0080">假设低空飞行器在基站之间完成一次信号切换的时间为Tc，低空飞行器向基站发送飞行信息的时间间隔为Ti，当低空飞行发生一次信号切换时，</div>
+<div class="description-paragraph" id="p0086" num="n0081">若Tc&lt;Ti，至多发生一次飞行信息丢失；</div>
+<div class="description-paragraph" id="p0087" num="n0082">若Ti&lt;＝Tc&lt;2*Ti，发生两次飞行信息丢失。</div>
+<div class="description-paragraph" id="p0088" num="n0083">因此，当Ti一定的情况下，降低Tc的值，能够提高系统的可靠性，</div>
+<div class="description-paragraph" id="p0089" num="n0084">在实际情况下，Tc的值受基站负载等因素影响不容易主动降低，因此需要一套平滑过渡机制。</div>
+<div class="description-paragraph" id="p0090" num="n0085">在一个实施例中，第二飞行信息包括飞行器标识，该方法还包括：根据至少一个第二飞行器的第二飞行信息和第一边缘服务器存储的飞行器标识对应的历史飞行信息，确定至少一个第二飞行器的第二飞行信息的信息未更新时长；当第一边缘服务器存储飞行器标识对应的飞行信息，且信息未更新时长大于第二预设时长时，生成故障信息。</div>
+<div class="description-paragraph" id="p0091" num="n0086">信息未更新时长是第二低空飞行器没有向第二边缘服务器部署的基站发送第二飞行信息的时间间隔，第二预设时长是低空飞行器的掉线阈值，当低空飞行器的信息未更新时长小于第二预设时长时，低空飞行器的设备链路通信正常，当低空飞行器的信息未更新时长大于第二预设时长时，低空飞行器的设备链路通信异常。</div>
+<div class="description-paragraph" id="p0092" num="n0087">如果第二低空飞行器不断地向第二边缘服务器部署的基站发送第二飞行信息，第一边缘服务器能够持续地接收到第二边缘服务器同步的第二飞行信息，则认为第二低空飞行器没有进行基站切换；如果第一边缘服务器检测到第二飞行信息在某一时间时长内没有更新，则认为第二低空飞行器可能在进行基站切换，根据第二飞行信息和第一边缘服务器存储的飞行器标识对应的历史飞行信息，确定第二低空飞行器的信息未更新时长。如果第二低空飞行器的信息未更新时长小于第二预设时长，则认为飞行器正在进行切换，如果第二低空飞行器的信息未更新时长大于第二预设时长，则认为第二低空飞行器的设备通信链路异常，生成故障信息，避免了因异常的飞行信息而产生错误的预警信息，提高了整个防碰撞系统的可靠性。</div>
+<div class="description-paragraph" id="p0093" num="n0088">图4示出了本发明一个实施例提供的低空飞行器基站切换的流程示意图。</div>
+<div class="description-paragraph" id="p0094" num="n0089">假设第一边缘服务器周边部署基站A，第二边缘服务器周边部署基站B，如图4所示，低空飞行器基站切换过程包括以下步骤：</div>
+<div class="description-paragraph" id="p0095" num="n0090">S401、低空飞行器定时上报飞行信息。</div>
+<div class="description-paragraph" id="p0096" num="n0091">低空飞行器从基站A的覆盖范围飞往基站B的覆盖范围中，该低空飞行器每隔时间Ti向基站A发送低空飞行器的飞行信息，基站A实时将飞行信息同步给基站A无线接入侧的第一边缘服务器。当第一边缘服务器接收到低空飞行器的飞行信息后，将飞行信息同步给基站B无线接入侧的第二边缘服务器，第二边缘服务器将接收的飞行信息同步给基站B。</div>
+<div class="description-paragraph" id="p0097" num="n0092">S402、第一边缘服务器检测每间隔时间Ti是否接收基站A覆盖范围内低空飞行器的飞行信息。</div>
+<div class="description-paragraph" id="p0098" num="n0093">若第一边缘服务器每间隔时间Ti接收到低空飞行器发送的飞行信息，则执行S403；若第一边缘服务器每间隔时间Ti未接收到低空飞行器发送的飞行信息，则执行S404。</div>
+<div class="description-paragraph" id="p0099" num="n0094">S403、更新低空飞行器的飞行信息。</div>
+<div class="description-paragraph" id="p0100" num="n0095">S404、检测基站B无线接入侧的第二边缘服务器是否在掉线阈值Tf内接收到飞行信息。</div>
+<div class="description-paragraph" id="p0101" num="n0096">由于低空飞行器在切换的过程中，低空飞行器无法和基站A和B正常通信，若基站B无线接入侧的第二边缘服务器在间隔时间Ti后没有接收到低空飞行器的飞行信息，根据历史飞行信息得到信息未更新时长，比较信息未更新时长与掉线阈值的关系，检测基站B无线接入侧的第二边缘服务器是否在掉线阈值Tf内接收到飞行信息。</div>
+<div class="description-paragraph" id="p0102" num="n0097">当信息未更新时长大于掉线阈值Tf时，基站B无线接入侧的第二边缘服务器在掉线阈值Tf内未接收到飞行信息，则执行S406。当信息未更新时长小于掉线阈值Tf时，基站B无线接入侧的第二边缘服务器在掉线阈值Tf内接收到飞行信息，说明低空飞行器处于正常切换过程中，则执行S405。</div>
+<div class="description-paragraph" id="p0103" num="n0098">S405、通过历史飞行信息预测下一时刻的飞行信息，根据下一时刻的飞行信息判断是否碰撞风险。</div>
+<div class="description-paragraph" id="p0104" num="n0099">根据下一时刻的飞行信息，若预测出低空飞行器存在碰撞风险，则执行S407；若预测出低空飞行器不存在碰撞风险，则执行S402。</div>
+<div class="description-paragraph" id="p0105" num="n0100">S406、低空飞行器的通讯链路故障，生成故障信息。</div>
+<div class="description-paragraph" id="p0106" num="n0101">生成故障信息后，第二边缘服务器将故障信息上报给第一边缘服务器。</div>
+<div class="description-paragraph" id="p0107" num="n0102">S407、根据下一刻飞行信息计算碰撞时间和碰撞位置。</div>
+<div class="description-paragraph" id="p0108" num="n0103">在一个实施例中，根据第一飞行信息、第一边缘服务器与至少一个第一低空飞行器的第一通信时延、第二飞行信息和第二通信时延生成预警信息，包括：根据第一飞行信息、第一通信时延、第二飞行信息和第二通信时延，确定碰撞时间和碰撞位置，根据碰撞时间和碰撞位置生成预警信息。</div>
+<div class="description-paragraph" id="p0109" num="n0104">第一边缘服务器接收自身基站和相邻基站覆盖范围内所有第一低空飞行器的飞行信息，若该第一低空飞行器在碰撞检测区域内，第一边缘服务器对第一低空飞行器的下一时刻Ti’的第一飞行信息进行预测，结合第一通信时延和第二通信时延，判断自身基站内第一低空飞行器之间以及自身基站内低空飞行器和相邻基站内第二低空飞行器是否存在碰撞的风险，如果存在风险，则第一边缘服务器根据第一飞行信息、第一通信时延、第二飞行信息和第二通信时延，确定碰撞时间和碰撞位置，根据碰撞时间和碰撞位置生成预警信息，将预警信息发送给存在碰撞风险的目标低空飞行器。</div>
+<div class="description-paragraph" id="p0110" num="n0105">在一个实施例中，第一飞行信息和第二飞行信息还包括飞行速度、飞行加速度、飞行位置信息；根据第一飞行信息、第一通信时延、第二飞行信息和第二通信时延，确定碰撞位置，包括：</div>
+<div class="description-paragraph" id="p0111" num="n0106">根据第一飞行信息中的飞行速度、飞行加速度、飞行位置信息，以及第二飞行信息的飞行速度、飞行加速度、飞行位置信息得到计算碰撞时间；根据第一飞行信息中的飞行速度、飞行加速度、飞行位置信息，以及计算碰撞时间得到碰撞位置。</div>
+<div class="description-paragraph" id="p0112" num="n0107">当高度差小于预设的安全高度，水平距离小于预设的安全距离且航向夹角不大于180°时，低空飞行器之间存在碰撞风险。在对低空飞行器的飞行情况进行分析时，将飞行器的3维信息近似到2维中对存在碰撞的可能性进行预测。</div>
+<div class="description-paragraph" id="p0113" num="n0108">如图5所示，假设已知低空飞行器A和低空飞行器B之间的高度差M小于预设的安全高度，水平距离L小于预设的安全距离，定义低空飞行器A和低空飞行器B之间的航向夹角为β，低空飞行器A和低空飞行器B的航向夹角β小于180°，因此，低空飞行器A和低空飞行器B之间存在碰撞风险。</div>
+<div class="description-paragraph" id="p0114" num="n0109">利用卡尔曼滤波器分别预测低空飞行器A和低空飞行器B下一时刻的第一飞行信息和第二飞行信息，根据第一飞行信息和第二飞行信息得到低空飞行器A坐标(X<sub>a</sub>，Y<sub>a</sub>，Z)和低空飞行器B坐标(X<sub>b</sub>，Y<sub>b</sub>，Z)，低空飞行器A的飞行速度V1和飞行加速度a<sub>1</sub>，低空飞行器B的飞行速度V<sub>2</sub>和飞行加速度a<sub>2</sub>，以及两低空飞行器之间的实际距离S，对实际距离S在水平方向和垂直方向进行分解可以得到两低空飞行器在竖直分解方向上的距离S<sub>y</sub>和两低空飞行器在水平分解方向上的距离S<sub>x</sub>。</div>
+<div class="description-paragraph" id="p0115" num="n0110">假设两个低空飞行器是按照各自的飞行加速度，飞行速度的匀加速运动，对低空飞行器行驶方向按照水平和垂直方向进行分解，设竖直分解方向上两低空飞行器的相遇时间为t，根据方向分解图可得竖直分解方向上距离的表达式：</div>
+<div class="description-paragraph" id="p0116" num="n0111">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/50/01/f9/45895b132dc687/BDA0002659350070000141.png"><img alt="Figure BDA0002659350070000141" class="patent-full-image" file="BDA0002659350070000141.GIF" he="74" height="296" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_0.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0117" num="n0112">其中，S<sub>y</sub>表示两低空飞行器在竖直分解方向上的距离，a<sub>1y</sub>表示低空飞行器A在竖直分解方向上的飞行加速度，t为两低空飞行器在竖直分解方向上的相遇时间，a<sub>2y</sub>表示低空飞行器B在竖直分解方向上的飞行加速度，V<sub>2y</sub>表示低空飞行器B在竖直分解方向上的飞行速度。</div>
+<div class="description-paragraph" id="p0118" num="n0113">由公式(1)可推导出两低空飞行器在竖直分解方向上的相遇时间t的表达式为：</div>
+<div class="description-paragraph" id="p0119" num="n0114">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/fd/07/7b/4dac6760750f5c/BDA0002659350070000151.png"><img alt="Figure BDA0002659350070000151" class="patent-full-image" file="BDA0002659350070000151.GIF" he="123" height="492" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_1.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0120" num="n0115">在t时间内，设低空飞行器A和低空飞行器B在水平分解方向上的运动距离差为SΔ，则SΔ的表达式为：</div>
+<div class="description-paragraph" id="p0121" num="n0116">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/9c/55/15/a6594c5d93e686/BDA0002659350070000152.png"><img alt="Figure BDA0002659350070000152" class="patent-full-image" file="BDA0002659350070000152.GIF" he="65" height="260" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_2.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0122" num="n0117">其中，SΔ表示两低空飞行器在水平分解方向上的运动距离差，a<sub>1x</sub>表示低空飞行器A在水平分解方向上的飞行加速度，V<sub>1x</sub>表示低空飞行器A在水平分解方向上的飞行速度，a<sub>2x</sub>表示低空飞行器B在水平分解方向上的飞行加速度，V<sub>2x</sub>表示低空飞行器B在水平分解方向上的飞行速度。</div>
+<div class="description-paragraph" id="p0123" num="n0118">若S<sub>x</sub>与SΔ满足S<sub>x</sub>≈SΔ，两低空飞行器碰撞风险较大，此时计算得到的时间t为预测的计算碰撞时间Tpc。</div>
+<div class="description-paragraph" id="p0124" num="n0119">此时，低空飞行器A的坐标为碰撞位置，即低空飞行器B的坐标，表示为<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/b9/de/52/1be69bfdd44201/BDA0002659350070000153.png"><img alt="Figure BDA0002659350070000153" class="patent-full-image" file="BDA0002659350070000153.GIF" he="67" height="268" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_3.png" wi="1000" width="4000"/></a></div>Z)。</div>
+<div class="description-paragraph" id="p0125" num="n0120">在一个实施例中，根据第一飞行信息、第一通信时延、第二飞行信息和第二通信时延，确定碰撞时间，包括：</div>
+<div class="description-paragraph" id="p0126" num="n0121">若目标低空飞行器均为第一低空飞行器，即存在碰撞风险较大的两个低空飞行器均为第一边缘服务器基站内的低空飞行器，根据计算碰撞时间Tpc和第一通信时延Tec得到碰撞时间，表示为以下公式：</div>
+<div class="description-paragraph" id="p0127" num="n0122">T＝Tpc–Tec                     (4)</div>
+<div class="description-paragraph" id="p0128" num="n0123">其中，T表示碰撞时间，Tpc表示计算碰撞时间，Tec表示第一时通信时延；</div>
+<div class="description-paragraph" id="p0129" num="n0124">若目标低空飞行器为第一低空飞行器和第二低空飞行器，即存在碰撞风险较大的两个低空飞行器，一个为自身基站的低空飞行器，另一个为相邻基站的低空飞行器，根据计算碰撞时间、第一通信时延和第二通信时延得到碰撞时间，表示为以下公式：</div>
+<div class="description-paragraph" id="p0130" num="n0125">T＝Tpc–max{Tec,Ted}                    (5)</div>
+<div class="description-paragraph" id="p0131" num="n0126">其中，T表示碰撞时间，Tpc表示计算碰撞时间，Tec表示第一时通信时延，Ted表示第二通信时延。</div>
+<div class="description-paragraph" id="p0132" num="n0127">在一个实施例中，根据第一飞行信息、第一通信时延、第二飞行信息和第二通信时延，确定碰撞时间，包括：</div>
+<div class="description-paragraph" id="p0133" num="n0128">接收第一低空飞行器发送的第一系统时延、第二低空飞行器发送的第二系统时延、第二边缘服务器的第三系统时延，以及第一边缘服务器与第二边缘服务器之间的第三通信时延；</div>
+<div class="description-paragraph" id="p0134" num="n0129">根据第一飞行信息、第一通信时延、第二飞行信息、第二通信时延、第一系统时延、第二系统时延、第一边缘服务器的第四系统时延和第三通信时延确定碰撞时间。</div>
+<div class="description-paragraph" id="p0135" num="n0130">为了提升碰撞时间T的准确性，算法引入了节点和链路延迟。</div>
+<div class="description-paragraph" id="p0136" num="n0131">第一通信时延包括第一边缘服务器通过5G蜂窝网络模块向第一低空飞行器发送预警信息至第一低空飞行器接收到预警信息的通信时延，以及第一低空飞行器通过5G蜂窝网络模块向第一边缘服务器上报第一飞行信息至第一边缘服务器收到第一飞行信息的通信时延。</div>
+<div class="description-paragraph" id="p0137" num="n0132">第二通信时延包括第二边缘服务器通过5G蜂窝网络模块向第二低空飞行器发送预警信息至第二低空飞行器接收到预警信息的通信时延，以及第二低空飞行器通过5G蜂窝网络模块向第二边缘服务器上报第二飞行信息至第二边缘服务器收到第二飞行信息的通信时延。</div>
+<div class="description-paragraph" id="p0138" num="n0133">第三通信时延包括第一边缘服务器向第二边缘服务器同步信息的通信时延，以及第一边缘服务器向第二边缘服务器同步信息的通信时延。</div>
+<div class="description-paragraph" id="p0139" num="n0134">第一系统时延包括第一低空飞行器通过传感器实时采集当前低空飞行器的第一飞行信息到准备发送第一飞行信息的通信时延，以及第一低空飞行器接收到预警信息做出相应避障飞行行为的通信时延。</div>
+<div class="description-paragraph" id="p0140" num="n0135">第二系统时延包括第二低空飞行器通过传感器实时采集当前低空飞行器的第二飞行信息到准备发送第二飞行信息的通信时延，以及第二低空飞行器接收到预警信息做出相应避障飞行行为的通信时延。</div>
+<div class="description-paragraph" id="p0141" num="n0136">第三系统时延是第二边缘服务器自身系统的时延；第四系统时延是第一边缘服务器自身系统的时延。</div>
+<div class="description-paragraph" id="p0142" num="n0137">第一通信时延、第二通信时延、第一系统时延、第二系统时延、第四系统时延和第三通信时延包含了低空飞行器在整个预警过程中每个环节的通信时延，提高了预测碰撞时间的准确性。</div>
+<div class="description-paragraph" id="p0143" num="n0138">如图6所示，低空飞行器A与相邻边缘服务器部署的基站接入的低空飞行器B进行碰撞预警，碰撞点发生在基站A覆盖范围内，第一通信时延包括第一边缘服务器通过5G蜂窝网络模块向低空飞行器A发送预警信息至低空飞行器A接收到预警信息的通信时延T3_a1，以及低空飞行器A通过5G蜂窝网络模块向第一边缘服务器上报第一飞行信息至第一边缘服务器收到第一飞行信息的通信时延T2_a1。</div>
+<div class="description-paragraph" id="p0144" num="n0139">第二通信时延包括第二边缘服务器通过5G蜂窝网络模块向低空飞行器B发送预警信息至低空飞行器B接收到预警信息的通信时延T3_b1，以及低空飞行器B通过5G蜂窝网络模块向第二边缘服务器上报第二飞行信息至第二边缘服务器收到第二飞行信息的通信时延T2_b1。</div>
+<div class="description-paragraph" id="p0145" num="n0140">第三通信时延包括第一边缘服务器向第二边缘服务器同步信息的通信时延Ta1_b1，以及第一边缘服务器向第二边缘服务器同步信息的通信时延Tb1_a1。</div>
+<div class="description-paragraph" id="p0146" num="n0141">第一系统时延包括低空飞行器A通过传感器实时采集当前低空飞行器的第一飞行信息到准备发送第一飞行信息的通信时延T1_a1，以及低空飞行器A接收到预警信息做出相应避障飞行行为的通信时延T4_a1。</div>
+<div class="description-paragraph" id="p0147" num="n0142">第二系统时延包括低空飞行器B通过传感器实时采集当前低空飞行器的第二飞行信息到准备发送第二飞行信息的通信时延T1_b1，以及低空飞行器B接收到预警信息做出相应避障飞行行为的通信时延T4_b1。</div>
+<div class="description-paragraph" id="p0148" num="n0143">第三系统时延是第二边缘服务器自身系统的时延Tb1。</div>
+<div class="description-paragraph" id="p0149" num="n0144">第四系统时延是第一边缘服务器自身系统的时延Ta1。</div>
+<div class="description-paragraph" id="p0150" num="n0145">第一边缘服务器与低空飞行器A之间的总时延T1可以表示为T1_a1+T2_a1+T3_a1+T4_a1+Ta1，第二边缘服务器与低空飞行器B之间的总时延T2可以表示为T1_b1+T2_b1+T3_b1+T4_b1+Tb1，由上述实施例可知，当整个系统总时延仅包括第一通信时延和第二通信时延时，计算得到碰撞时间为T，当考虑整个系统总时延时，碰撞时间Tea可以表示为如下公式：</div>
+<div class="description-paragraph" id="p0151" num="n0146">Tea＝T-(max{T1_a1+T4_a1+Ta1，T1_b1+T4_b1+Tb1}+Tb1_a1+Ta1_b1)(6)</div>
+<div class="description-paragraph" id="p0152" num="n0147">根据公式(6)可知，设定低空飞行器传感器采集飞行信息的频率和发送飞行信息的频率一致，即采集到的飞行信息立刻发送，能够提高传感器采集飞行信息的频率，降低飞行器内部的延迟时延，缩短飞行器对预警信息作出避障飞行行为的时间，减小通信时延Ta1_b1和通信时延Tb1_a1，能够减少整个防碰撞系统的时延误差。在通信时延T4_a1和通信时延T4_b1一定的情况下，在一些紧急情况下可以通过提高低空飞行器系统采样频率和发送频率，同时加入对通信时延T2_a1、通信时延T2_b1、通信时延Ta_b 1、通信时延Tb_a1、通信时延T3_a1、通信时延T3_b1的预估模块，预估一个整体的通信时延，来提高防碰撞系统的可靠性。</div>
+<div class="description-paragraph" id="p0153" num="n0148">在另一个实施例中，如图7所示，当低空飞行器A与自身边缘服务器部署的基站接入的低空飞行器B进行碰撞预警，第一通信时延包括第一边缘服务器通过5G蜂窝网络模块向低空飞行器A和低空飞行器B发送预警信息至低空飞行器A和低空飞行器B接收到预警信息的通信时延分别为T3_a2和T3_b2，以及低空飞行器A和低空飞行器B通过5G蜂窝网络模块向第一边缘服务器上报第一飞行信息和第二飞行信息至第一边缘服务器收到第一飞行信息和第二飞行信息的通信时延分别为T2_a2和T2_b2。</div>
+<div class="description-paragraph" id="p0154" num="n0149">第一系统时延包括低空飞行器A和低空飞行器B通过传感器实时采集低空飞行器A和低空飞行器B的飞行信息到准备发送各自的飞行信息的通信时延分别为T1_a2和T1_b2，以及低空飞行器A和低空飞行器B接收到预警信息做出相应避障飞行行为的通信时延分别为T4_a2和T4_b2。</div>
+<div class="description-paragraph" id="p0155" num="n0150">第四系统时延是第一边缘服务器自身系统的时延Ta2。</div>
+<div class="description-paragraph" id="p0156" num="n0151">第一边缘服务器与低空飞行器A之间的总时延T3可以表示为T1_a2+T2_a2+T3_a2+T4_a2+Ta2，第一边缘服务器与低空飞行器B之间的总时延T4可以表示为T1_b2+T2_b2+T3_b2+T4_b 2+Ta2，由上述实施例可知，当整个系统总时延仅包括第一通信时延时，计算得到碰撞时间为T，当考虑整个系统总时延时，碰撞时间Tea可以表示为如下公式：</div>
+<div class="description-paragraph" id="p0157" num="n0152">Tea＝T-(max{T1_a2+T4_a2，T1_b2+T4_b2}+Ta2)            (7)</div>
+<div class="description-paragraph" id="p0158" num="n0153">在一个实施例中，若碰撞时间T小于预设的预警时间，则通过第一边缘服务器向存在碰撞风险的两个低空飞行器发送预警信息。为了进一步提高防碰撞系统的可靠性，保障低空飞行器的飞行安全，也可以设置当碰撞时间Tea小于预设的预警时间时，通过第一边缘服务器向存在碰撞风险的两个低空飞行器发送预警信息。</div>
+<div class="description-paragraph" id="p0159" num="n0154">低空飞行器接收预警信息后，根据碰撞时间和碰撞位置对碰撞点空间划分为不同的空域，如图8所示，依据预先设定的保持间隔门限时间Ts2和防碰撞门限时间Ts1将碰撞点空间划分为安全空间、入侵空间、冲突空间，具体划分过程如下：</div>
+<div class="description-paragraph" id="p0160" num="n0155">第一边缘服务器根据预警信息中的碰撞位置确定碰撞点，根据碰撞时间T与保持间隔门限时间Ts2和防碰撞门限时间Ts1之间的关系划分碰撞点空间：</div>
+<div class="description-paragraph" id="p0161" num="n0156">当T&gt;＝Ts2时为安全空间，低空飞行器处于安全航线，不会接收到预警信息；</div>
+<div class="description-paragraph" id="p0162" num="n0157">当Ts1&lt;T&lt;Ts2时为入侵空间，该空间内存在较小碰撞风险，低空飞行器接收到预警信息，同时低空飞行器应该时刻保持充分间隔；</div>
+<div class="description-paragraph" id="p0163" num="n0158">当T&lt;Ts1时为冲突空间，该空间内存在较大碰撞风险，低空飞行器进入碰撞冲突模式，通过增加预警信息的发送频率，做出相应的避障飞行行为。</div>
+<div class="description-paragraph" id="p0164" num="n0159">图9是本发明实施例提供的一种装置结构示意图。如图9所示，该装置可以包括接收模块910，确定模块920和生成模块930。</div>
+<div class="description-paragraph" id="p0165" num="n0160">接收模块910，用于接收预设碰撞检测区域中至少一个第一低空飞行器的第一飞行信息；</div>
+<div class="description-paragraph" id="p0166" num="n0161">接收模块910，还用于接收至少一个第二边缘服务器发送的至少一个第二低空飞行器的第二飞行信息，以及第二边缘服务器与至少一个第二低空飞行器的第二通信时延；</div>
+<div class="description-paragraph" id="p0167" num="n0162">确定模块920，用于根据第一飞行信息和第二飞行信息，确定至少一个第一低空飞行器和至少一个第二低空飞行器中每两个低空飞行器之间的水平距离、高度差及航向夹角；</div>
+<div class="description-paragraph" id="p0168" num="n0163">生成模块930，用于当高度差小于预设高度，水平距离小于预设距离且航向夹角不大于预设航向夹角时，根据第一飞行信息、第一边缘服务器与至少一个第一低空飞行器的第一通信时延、第二飞行信息和第二通信时延生成预警信息，该模块还包括发送模块，用于向目标低空飞行器发送预警信息，其中，预警信息包括碰撞时间和碰撞位置。</div>
+<div class="description-paragraph" id="p0169" num="n0164">在一个实施例中，第一飞行信息和第二飞行信息均包括飞行器标识；该装置还包括更新模块，用于当第一边缘服务器存储飞行器标识对应的飞行信息时，更新第一飞行信息和第二飞行信息；</div>
+<div class="description-paragraph" id="p0170" num="n0165">该装置还包括保存模块940，用于当第一边缘服务器未存储飞行器标识对应的飞行信息时，保存第一飞行信息和第二飞行信息。</div>
+<div class="description-paragraph" id="p0171" num="n0166">在一个实施例中，第一飞行信息包括飞行器标识；该装置还包括删除模块950，用于当第一边缘服务器存储飞行器标识对应的飞行信息，且在第一预设时间时长内未更新飞行信息时，删除第一飞行信息。</div>
+<div class="description-paragraph" id="p0172" num="n0167">在一个实施例中，第二飞行信息包括飞行器标识，确定模块920，还用于根据至少一个第二飞行器的第二飞行信息和第一边缘服务器存储的飞行器标识对应的历史飞行信息，确定至少一个第二飞行器的第二飞行信息的信息未更新时长；</div>
+<div class="description-paragraph" id="p0173" num="n0168">生成模块930还用于当第一边缘服务器存储飞行器标识对应的飞行信息，且信息未更新时长大于第二预设时长时，生成故障信息。</div>
+<div class="description-paragraph" id="p0174" num="n0169">在一个实施例中，生成模块930，具体用于根据第一飞行信息、第一通信时延、第二飞行信息和第二通信时延，确定碰撞时间和碰撞位置；</div>
+<div class="description-paragraph" id="p0175" num="n0170">根据碰撞时间和碰撞位置生成预警信息。</div>
+<div class="description-paragraph" id="p0176" num="n0171">在一个实施例中，第一飞行信息和第二飞行信息还包括飞行速度、飞行加速度、飞行位置信息；确定模块920还用于根据第一飞行信息中的飞行速度、飞行加速度、飞行位置信息，以及第二飞行信息的飞行速度、飞行加速度、飞行位置信息得到计算碰撞时间；</div>
+<div class="description-paragraph" id="p0177" num="n0172">根据第一飞行信息中的飞行速度、飞行加速度、飞行位置信息，以及计算碰撞时间得到碰撞位置。</div>
+<div class="description-paragraph" id="p0178" num="n0173">在一个实施例中，确定模块920具体用于若目标低空飞行器均为第一低空飞行器，根据计算碰撞时间和第一通信时延得到碰撞时间，表示为以下公式：</div>
+<div class="description-paragraph" id="p0179" num="n0174">T＝Tpc–Tec</div>
+<div class="description-paragraph" id="p0180" num="n0175">其中，T表示碰撞时间，Tpc表示计算碰撞时间，Tec表示第一时通信时延；</div>
+<div class="description-paragraph" id="p0181" num="n0176">若目标低空飞行器为第一低空飞行器和第二低空飞行器，根据计算碰撞时间、第一通信时延和第二通信时延得到碰撞时间，表示为以下公式：</div>
+<div class="description-paragraph" id="p0182" num="n0177">T＝Tpc–max{Tec,Ted}</div>
+<div class="description-paragraph" id="p0183" num="n0178">其中，T表示碰撞时间，Tpc表示计算碰撞时间，Tec表示第一时通信时延，Ted表示第二通信时延。</div>
+<div class="description-paragraph" id="p0184" num="n0179">在一个实施例中，确定模块920还用于接收第一低空飞行器发送的第一系统时延、第二低空飞行器发送的第二系统时延、第二边缘服务器的第三系统时延，以及第一边缘服务器与第二边缘服务器之间的第三通信时延；</div>
+<div class="description-paragraph" id="p0185" num="n0180">根据第一飞行信息、第一通信时延、第二飞行信息、第二通信时延、第一系统时延、第二系统时延、第一边缘服务器的第四系统时延和第三通信时延确定碰撞时间。</div>
+<div class="description-paragraph" id="p0186" num="n0181">在一个实施例中，发送模块具体用于当碰撞时间小于预设的预警时间时，向目标低空飞行器发送预警信息。</div>
+<div class="description-paragraph" id="p0187" num="n0182">图9所示装置中的各个模块具有实现图1中各个步骤的功能，并能达到其相应的技术效果，为简洁描述，在此不再赘述。</div>
+<div class="description-paragraph" id="p0188" num="n0183">图10示出了本发明实施例提供的低空飞行器防碰撞设备的硬件结构示意图。</div>
+<div class="description-paragraph" id="p0189" num="n0184">在低空飞行器防碰撞设备可以包括处理器1001以及存储有计算机程序指令的存储器1002。</div>
+<div class="description-paragraph" id="p0190" num="n0185">具体地，上述处理器1001可以包括中央处理器(Central Processing Unit，CPU)，或者特定集成电路(Application Specific Integrated Circuit，ASIC)，或者可以被配置成实施本发明实施例的一个或多个集成电路。</div>
+<div class="description-paragraph" id="p0191" num="n0186">存储器1002可以包括用于数据或指令的大容量存储器。举例来说而非限制，存储器1002可包括硬盘驱动器(Hard Disk Drive，HDD)、软盘驱动器、闪存、光盘、磁光盘、磁带或通用串行总线(Universal Serial Bus，USB)驱动器或者两个或更多个以上这些的组合。在一个实例中，存储器1002可以包括可移除或不可移除(或固定)的介质，或者存储器1002是非易失性固态存储器。存储器1002可在综合网关容灾设备的内部或外部。</div>
+<div class="description-paragraph" id="p0192" num="n0187">在一个实例中，存储器1002可以是只读存储器(Read Only Memory，ROM)。在一个实例中，该ROM可以是掩模编程的ROM、可编程ROM(PROM)、可擦除PROM(EPROM)、电可擦除PROM(EEPROM)、电可改写ROM(EAROM)或闪存或者两个或更多个以上这些的组合。</div>
+<div class="description-paragraph" id="p0193" num="n0188">处理器1001通过读取并执行存储器1002中存储的计算机程序指令，以实现图1所示实施例中的步骤S110至S140，并达到图1所示实例执行其步骤达到的相应技术效果，为简洁描述在此不再赘述。</div>
+<div class="description-paragraph" id="p0194" num="n0189">在一个示例中，低空飞行器防碰撞设备还可包括通信接口1003和总线1010。其中，如图10所示，处理器1001、存储器1002、通信接口1003通过总线1010连接并完成相互间的通信。</div>
+<div class="description-paragraph" id="p0195" num="n0190">通信接口1003，主要用于实现本发明实施例中各模块、装置、单元和/或设备之间的通信。</div>
+<div class="description-paragraph" id="p0196" num="n0191">总线1010包括硬件、软件或两者，将低空飞行器防碰撞设备的部件彼此耦接在一起。举例来说而非限制，总线可包括加速图形端口(Accelerated Graphics Port，AGP)或其他图形总线、增强工业标准架构(Extended Industry Standard Architecture，EISA)总线、前端总线(Front Side Bus，FSB)、超传输(Hyper Transport，HT)互连、工业标准架构(Industry Standard Architecture，ISA)总线、无限带宽互连、低引脚数(LPC)总线、存储器总线、微信道架构(MCA)总线、外围组件互连(PCI)总线、PCI-Express(PCI-X)总线、串行高级技术附件(SATA)总线、视频电子标准协会局部(VLB)总线或其他合适的总线或者两个或更多个以上这些的组合。在合适的情况下，总线1010可包括一个或多个总线。尽管本发明实施例描述和示出了特定的总线，但本发明考虑任何合适的总线或互连。</div>
+<div class="description-paragraph" id="p0197" num="n0192">该低空飞行器防碰撞设备可以基于第一低空飞行器的第一飞行信息和第一通信时延以及第二低空飞行器的第二飞行信息和第二通信时延执行本发明实施例中的低空飞行器防碰撞的方法，从而实现结合图1和图9描述的低空飞行器防碰撞的方法和装置。</div>
+<div class="description-paragraph" id="p0198" num="n0193">另外，结合上述实施例中的低空飞行器防碰撞的方法，本发明实施例可提供一种计算机存储介质来实现。该计算机存储介质上存储有计算机程序指令；该计算机程序指令被处理器执行时实现上述实施例中的任意一种低空飞行器防碰撞的方法。</div>
+<div class="description-paragraph" id="p0199" num="n0194">需要明确的是，本发明并不局限于上文所描述并在图中示出的特定配置和处理。为了简明起见，这里省略了对已知方法的详细描述。在上述实施例中，描述和示出了若干具体的步骤作为示例。但是，本发明的方法过程并不限于所描述和示出的具体步骤，本领域的技术人员可以在领会本发明的精神后，作出各种改变、修改和添加，或者改变步骤之间的顺序。</div>
+<div class="description-paragraph" id="p0200" num="n0195">以上所述的结构框图中所示的功能块可以实现为硬件、软件、固件或者它们的组合。当以硬件方式实现时，其可以例如是电子电路、专用集成电路(Application SpecificIntegrated Circuit，ASIC)、适当的固件、插件、功能卡等等。当以软件方式实现时，本发明的元素是被用于执行所需任务的程序或者代码段。程序或者代码段可以存储在机器可读介质中，或者通过载波中携带的数据信号在传输介质或者通信链路上传送。“机器可读介质”可以包括能够存储或传输信息的任何介质。机器可读介质的例子包括电子电路、半导体存储器设备、ROM、闪存、可擦除ROM(EROM)、软盘、CD-ROM、光盘、硬盘、光纤介质、射频(RadioFrequency，RF)链路，等等。代码段可以经由诸如因特网、内联网等的计算机网络被下载。</div>
+<div class="description-paragraph" id="p0201" num="n0196">还需要说明的是，本发明中提及的示例性实施例，基于一系列的步骤或者装置描述一些方法或系统。但是，本发明不局限于上述步骤的顺序，也就是说，可以按照实施例中提及的顺序执行步骤，也可以不同于实施例中的顺序，或者若干步骤同时执行。</div>
+<div class="description-paragraph" id="p0202" num="n0197">以上所述，仅为本发明的具体实施方式，所属领域的技术人员可以清楚地了解到，为了描述的方便和简洁，上述描述的系统、模块和单元的具体工作过程，可以参考前述方法实施例中的对应过程，在此不再赘述。应理解，本发明的保护范围并不局限于此，任何熟悉本技术领域的技术人员在本发明揭露的技术范围内，可轻易想到各种等效的修改或替换，这些修改或替换都应涵盖在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

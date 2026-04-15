@@ -1,0 +1,70 @@
+{
+    "patent_id": "CN116597696A",
+    "title": "CN116597696A - 基于多样环境因素的低空飞行器避撞预警系统及其方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shenzhen Xiyue Wisdom Data Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN116597696A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN106959702A (zh) *",
+            "Priority Date": "2017-05-23",
+            "Publication Date": "2017-07-18",
+            "Assignee": "广东容祺智能科技有限公司",
+            "Title": "一种无人机自主避让方法及系统",
+            "Link": "https://patents.google.com/patent/CN106959702A/zh"
+        },
+        {
+            "Publication Number": "CN107831777A (zh) *",
+            "Priority Date": "2017-09-26",
+            "Publication Date": "2018-03-23",
+            "Assignee": "中国科学院长春光学精密机械与物理研究所",
+            "Title": "一种飞行器自主避障系统、方法及飞行器",
+            "Link": "https://patents.google.com/patent/CN107831777A/zh"
+        },
+        {
+            "Publication Number": "US20190186918A1 (en) *",
+            "Priority Date": "2017-12-20",
+            "Publication Date": "2019-06-20",
+            "Assignee": "National Chung Shan Institute Of Science And Technology",
+            "Title": "Uav navigation obstacle avoidance system and method thereof",
+            "Link": "https://patents.google.com/patent/US20190186918A1/en"
+        },
+        {
+            "Publication Number": "CN111045444A (zh) *",
+            "Priority Date": "2018-10-12",
+            "Publication Date": "2020-04-21",
+            "Assignee": "极光飞行科学公司",
+            "Title": "自适应感测和避让系统",
+            "Link": "https://patents.google.com/patent/CN111045444A/zh"
+        },
+        {
+            "Publication Number": "CN114913717A (zh) *",
+            "Priority Date": "2022-07-20",
+            "Publication Date": "2022-08-16",
+            "Assignee": "成都天巡微小卫星科技有限责任公司",
+            "Title": "一种基于智能终端的便携式低空飞行防撞系统及方法",
+            "Link": "https://patents.google.com/patent/CN114913717A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN118191844A (zh) *",
+            "Priority Date": "2024-05-17",
+            "Publication Date": "2024-06-14",
+            "Assignee": "中国民航科学技术研究院",
+            "Title": "一种低空空域无人机运行的动态风险态势感知方法",
+            "Link": "https://patents.google.com/patent/CN118191844A/zh"
+        },
+        {
+            "Publication Number": "CN119296388A (zh) *",
+            "Priority Date": "2024-09-23",
+            "Publication Date": "2025-01-10",
+            "Assignee": "南方电网大数据服务有限公司",
+            "Title": "无人机低空公共航路网设计方法、系统和装置",
+            "Link": "https://patents.google.com/patent/CN119296388A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:34:55"
+}

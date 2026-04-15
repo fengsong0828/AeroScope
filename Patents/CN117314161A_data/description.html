@@ -1,0 +1,96 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN117314161A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES446587306">
+<invention-title id="title1" lang="ZH">低空智联网中低空飞行器全生命周期安全风险评估方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于低空飞行器技术领域，更为具体地讲，涉及一种低空智联网中低空飞行器全生命周期安全风险评估方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空飞行器是指消费级和商业无人机、小型低空飞机、热气球等，已广泛应用于各行各业，如大众就能购买和使用的航拍机和穿越机、用于农业喷药的无人机、用于防灾减灾的无人机、用于气象监测的热气球、用于体验飞行的低空滑翔机等。低空飞行器虽发展繁荣，但是自身漏洞与外部威胁的存在是影响飞行安全与阻碍低空飞行器广泛应用的一大因素。如对于消费级和商业无人机来说，普通人使用航拍机或穿越机不需要特殊的飞行执照就能任意飞行，可能会用于从事非法活动，偷拍他人隐私；控制速度更快的穿越机到人员密集的地方飞行会对公众安全产生威胁；对于商业热气球来说，缺乏安全监管会导致安全事故频发，如突发的大风会将热气球吹离安全区域，造成生命财产损失。现有的商业无人机仅仅重视运行安全，没有重视操作者使用飞行器的行为安全，所以急需将这些低空飞行器接入网络并且进行统一管控。</div>
+<div class="description-paragraph" id="p0005" num="0003">低空智联网的概念于2018年提出，是低空飞行器进行网络互联的基础设施，目前在国内已完成了关键技术的突破并正进行试验区的搭建，但是对于低空飞行器接入网络后的风险评估及飞行数据安全保护策略没有具体的方法，所以急需一个能够对各种低空飞行器进行飞行风险评估和飞行数据安全保护的方法。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本发明的目的在于克服现有技术的不足，提供一种低空智联网中低空飞行器全生命周期安全风险评估方法，实现对低空飞行器安全风险的准确评估，提升低空飞行器的飞行安全性。</div>
+<div class="description-paragraph" id="p0008" num="0005">为了实现上述发明目的，本发明低空智联网中低空飞行器全生命周期安全风险评估方法包括以下步骤：</div>
+<div class="description-paragraph" id="p0009" num="0006">S1：根据实际需要设置用于评估目标飞行器风险等级的指标参数，包括M个飞行器参数和N个环境参数，M和N的值根据实际情况设置；</div>
+<div class="description-paragraph" id="p0010" num="0007">S2：分别收集飞行器在正常飞行状态下和发生安全事故时的若干历史数据，从中提取出同一时刻的指标参数数值构成指标参数序列作为飞行数据样本，并评定该飞行数据样本所对应风险等级；将每个飞行数据样本及对应风险等级作为一个训练样本，从而构成训练样本集；</div>
+<div class="description-paragraph" id="p0011" num="0008">S3：根据实际需要构建风险评估模型，其输入为飞行数据，输出为评估得到的风险等级，采用步骤S2得到的训练样本集对风险评估模型进行训练，得到训练好的风险评估模型并部署在低空智联网中的地面管控中心上；</div>
+<div class="description-paragraph" id="p0012" num="0009">S4：对低空飞行器进行全生命周期安全风险评估，具体步骤包括：</div>
+<div class="description-paragraph" id="p0013" num="0010">S4.1：操作人员启动飞行器，并向地面管控中心发送起飞请求；</div>
+<div class="description-paragraph" id="p0014" num="0011">S4.2：地面管控中心接收到起飞请求后，复制一个训练好的风险评估模型作为该飞行器的风险评估系统并与飞行器建立连接；</div>
+<div class="description-paragraph" id="p0015" num="0012">S4.3：飞行器周期性地采集飞行器参数和环境参数，构成飞行数据并向地面管控中心上报；</div>
+<div class="description-paragraph" id="p0016" num="0013">S4.4：地面管控中心将飞行数据输入该飞行器对应的风险评估系统，得到对应时刻的评估风险等级；</div>
+<div class="description-paragraph" id="p0017" num="0014">S4.5：地面管控中心根据评估风险等级对飞行器进行飞行控制，具体方法为：</div>
+<div class="description-paragraph" id="p0018" num="0015">当飞行器处于等待起飞状态，如果评估风险等级属于安全范围，则向操作人员发送批准起飞指令，否则向操作人员发送禁止起飞指令；</div>
+<div class="description-paragraph" id="p0019" num="0016">当飞行器处于飞行状态，如果评估风险等级属于安全范围，则不作任何操作，如果评估风险等级属于轻度危险，则向操作人员发送危险提示指令，如果评估风险等级属于重度危险，则由地面管控中心接管飞行器的控制权，当评估风险等级降回安全范围再向操作人员交还控制权。</div>
+<div class="description-paragraph" id="p0020" num="0017">本发明低空智联网中低空飞行器全生命周期安全风险评估方法，根据实际需要设置用于评估目标飞行器风险等级的指标参数，分别收集飞行器在正常飞行状态下和发生安全事故时的若干历史数据，从中提取出训练样本构成训练样本集，根据实际需要构建风险评估模型并采用训练样本集对风险评估模型进行训练，得到训练好的风险评估模型并部署在低空智联网中的地面管控中心上，在低空飞行器从启动到飞行的过程中，地面管控中心通过基于风险评估模型得到的风险评估系统对低空飞行器进行全生命周期安全风险评估。</div>
+<div class="description-paragraph" id="p0021" num="0018">本发明具有以下有益效果：</div>
+<div class="description-paragraph" id="p0022" num="0019">1)本发明针对低空飞行器安全风险评估问题，提出了低空飞行器全生命周期安全风险评估方法，实现对低空飞行器安全风险的准确评估，提升低空飞行器的飞行安全性；</div>
+<div class="description-paragraph" id="p0023" num="0020">2)本发明还考虑到低空飞行器中心化的监管存在可信度和安全问题，在安全风险评估的同时，使用区块链技术记录飞行数据，以达到不可篡改的目的，方便责任追溯。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0024">附图说明</div>
+<div class="description-paragraph" id="p0025" num="0021">图1是本发明低空智联网中低空飞行器全生命周期安全风险评估方法的具体实施方式流程图；</div>
+<div class="description-paragraph" id="p0026" num="0022">图2是本实施例中风险评估模型的结构图；</div>
+<div class="description-paragraph" id="p0027" num="0023">图3是本发明中低空飞行器全生命周期安全风险评估的流程图；</div>
+<div class="description-paragraph" id="p0028" num="0024">图4是本实施例中基于联盟区块链的飞行数据存储方法；</div>
+<div class="description-paragraph" id="p0029" num="0025">图5是本实施例中联盟区块链的示例图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0030">具体实施方式</div>
+<div class="description-paragraph" id="p0031" num="0026">下面结合附图对本发明的具体实施方式进行描述，以便本领域的技术人员更好地理解本发明。需要特别提醒注意的是，在以下的描述中，当已知功能和设计的详细描述也许会淡化本发明的主要内容时，这些描述在这里将被忽略。</div>
+<div class="description-paragraph" id="p0032" num="0027">实施例</div>
+<div class="description-paragraph" id="p0033" num="0028">图1是本发明低空智联网中低空飞行器全生命周期安全风险评估方法的具体实施方式流程图。如图1所示，本发明低空智联网中低空飞行器全生命周期安全风险评估方法的具体步骤包括：</div>
+<div class="description-paragraph" id="p0034" num="0029">S101：设置指标参数：</div>
+<div class="description-paragraph" id="p0035" num="0030">根据实际需要设置用于评估目标飞行器风险等级的指标参数，包括M个飞行器参数和N个环境参数，M和N的值根据实际情况设置。为了提高目标飞行器风险等级的准确率，本实施例中飞行器参数包括飞行器类型、最大飞行速度、制动距离、自身重量、最大功率，环境参数包括天气环境、空气密度、地面人群密度、空域坐标信息、网络情况、飞行操作指令。</div>
+<div class="description-paragraph" id="p0036" num="0031">S102：获取训练样本：</div>
+<div class="description-paragraph" id="p0037" num="0032">分别收集飞行器在正常飞行状态下和发生安全事故时的若干历史数据，从中提取出同一时刻的指标参数数值构成指标参数序列作为飞行数据样本，并评定该飞行数据样本所对应风险等级。将每个飞行数据样本及对应风险等级作为一个训练样本，从而构成训练样本集。在实际应用中，风险等级的级别数量可以根据需要设置。</div>
+<div class="description-paragraph" id="p0038" num="0033">S103：构建并训练风险评估模型：</div>
+<div class="description-paragraph" id="p0039" num="0034">根据实际需要构建风险评估模型，其输入为飞行数据，输出为评估得到的风险等级，采用步骤S102得到的训练样本集对风险评估模型进行训练，得到训练好的风险评估模型并部署在低空智联网中的地面管控中心上。</div>
+<div class="description-paragraph" id="p0040" num="0035">风险评估模型的具体结构可以根据实际需要确定。图2是本实施例中风险评估模型的结构图。如图2所示，本实施例中风险评估模型包括参数编码模块，编码向量整合模块，第一卷积(Convolution)层，最大归一化(MaxPooling)层，第二卷积层，扁平化(Flatten)层，多层感知机(Multilayer Perceptron)和Softmax层，接下来对各个模块进行详细说明。</div>
+<div class="description-paragraph" id="p0041" num="0036">参数编码模块包括K个参数编码单元，K＝M+N，第k个参数编码单元用于对飞行数据中第k个指标参数进行编码，得到维度为L的编码向量并发送至编码向量整合模块，L的值根据实际需要确定。由于评估指标参数可能存在多种类型，因此各个参数编码单元的具体编码方法可以根据实际对象来进行设置，可以根据不同评估指标参数的特点选择更加适宜的编码方式。</div>
+<div class="description-paragraph" id="p0042" num="0037">编码向量整合模块用于将接收到的K个指标参数的编码向量作为行向量构成大小为K×L的编码矩阵，并发送至第一卷积层。</div>
+<div class="description-paragraph" id="p0043" num="0038">第一卷积层用于对接收到的编码矩阵进行卷积操作，将得到的特征矩阵发送至最大归一化层。</div>
+<div class="description-paragraph" id="p0044" num="0039">最大归一化层用于对接收到的特征矩阵进行最大归一化处理，将得到的特征矩阵发送至第二卷积层。采用最大归一化层的目的是为了突出重要特征，将特征信息进行融合。</div>
+<div class="description-paragraph" id="p0045" num="0040">第二卷积层用于对接收到的特征矩阵进行卷积操作，将得到的特征矩阵发送至扁平化层。</div>
+<div class="description-paragraph" id="p0046" num="0041">扁平化层用于将接收到的特征矩阵展开为一维特征向量，并发送至多层感知机。</div>
+<div class="description-paragraph" id="p0047" num="0042">多层感知机用于根据接收到的一维特征向量预测得到输入指标参数序列属于各个风险等级的概率并发送至Softmax层。</div>
+<div class="description-paragraph" id="p0048" num="0043">Softmax层用于根据接收的各个风险等级的概率确定最终的评估风险等级。</div>
+<div class="description-paragraph" id="p0049" num="0044">S104：全生命周期安全风险评估：</div>
+<div class="description-paragraph" id="p0050" num="0045">为了保证低空飞行器的飞行安全，本发明对低空飞行器进行全生命周期安全风险评估。图3是本发明中低空飞行器全生命周期安全风险评估的流程图。</div>
+<div class="description-paragraph" id="p0051" num="0046">如图3所示，本发明低空飞行器全生命周期安全风险评估的具体步骤包括：</div>
+<div class="description-paragraph" id="p0052" num="0047">S301：发送起飞请求：</div>
+<div class="description-paragraph" id="p0053" num="0048">操作人员启动飞行器，并向地面管控中心发送起飞请求。</div>
+<div class="description-paragraph" id="p0054" num="0049">S302：配置风险评估系统：</div>
+<div class="description-paragraph" id="p0055" num="0050">地面管控中心接收到起飞请求后，复制一个训练好的风险评估模型作为该飞行器的风险评估系统并与飞行器建立连接。</div>
+<div class="description-paragraph" id="p0056" num="0051">S303：上报飞行器参数：</div>
+<div class="description-paragraph" id="p0057" num="0052">飞行器周期性地采集飞行器参数和环境参数，构成飞行数据并向地面管控中心上报。</div>
+<div class="description-paragraph" id="p0058" num="0053">S304：风险等级评估：</div>
+<div class="description-paragraph" id="p0059" num="0054">地面管控中心将飞行数据输入该飞行器对应的风险评估系统，得到对应时刻的评估风险等级。</div>
+<div class="description-paragraph" id="p0060" num="0055">S305：飞行控制：</div>
+<div class="description-paragraph" id="p0061" num="0056">地面管控中心根据评估风险等级对飞行器进行飞行控制，具体方法为：</div>
+<div class="description-paragraph" id="p0062" num="0057">当飞行器处于等待起飞状态，如果评估风险等级属于安全范围，则向操作人员发送批准起飞指令，否则向操作人员发送禁止起飞指令；</div>
+<div class="description-paragraph" id="p0063" num="0058">当飞行器处于飞行状态，如果评估风险等级属于安全范围，则不作任何操作，即不干扰飞行任务，如果评估风险等级属于轻度危险，则向操作人员发送危险提示指令，如果评估风险等级属于重度危险，则由地面管控中心接管飞行器的控制权，当评估风险等级降回安全范围再向操作人员交还控制权。</div>
+<div class="description-paragraph" id="p0064" num="0059">根据以上流程可知，在本发明低空飞行器全生命周期安全风险评估中，低空飞行器需要实时向地面管控中心上报由飞行器参数和环境参数构成的飞行数据，而飞行数据是追溯违法操作，认定事故责任的证据，因此需要妥善存储。由于常规地面管控中心提供的存储服务是中心化的，可能存在被窃取和被篡改的风险，难以获得大众的信任，所以本实施例中提出了一种基于联盟区块链的飞行数据存储方法，将飞行数据构成飞行数据时间序列保存在区块链上，为飞行数据提供不可篡改、去中心化、安全、可控的存储服务。图4是本实施例中基于联盟区块链的飞行数据存储方法。如图4所示，本实施例中基于联盟区块链的飞行数据存储方法的具体步骤包括：</div>
+<div class="description-paragraph" id="p0065" num="0060">S401：构建联盟区块链：</div>
+<div class="description-paragraph" id="p0066" num="0061">在低空智联网中设置多个地面管控中心，由这些地面管控中心构成联盟区块链，从所有地面管控中心中选择一个作为领导者。图5是本实施例中联盟区块链的示例图。</div>
+<div class="description-paragraph" id="p0067" num="0062">S402：上报飞行数据：</div>
+<div class="description-paragraph" id="p0068" num="0063">飞行器根据预设的飞行数据存储周期，周期性向所有地面管控中心上报当前周期内的飞行数据集。</div>
+<div class="description-paragraph" id="p0069" num="0064">S403：构建飞行数据序列：</div>
+<div class="description-paragraph" id="p0070" num="0065">作为领导者的地面管控中心每当接收到飞行器的T个飞行数据集后，将其按时间序列排列成飞行数据序列seq＝(FD<sub>1</sub>,FD<sub>2</sub>,…,FD<sub>T</sub>)，FD<sub>t</sub>表示时刻t的飞行数据集。</div>
+<div class="description-paragraph" id="p0071" num="0066">S404：生成存储交易：</div>
+<div class="description-paragraph" id="p0072" num="0067">作为领导者的地面管控中心将飞行数据序列seq打包成为一个存储交易ST<sub>x</sub>(seq,Hash,TimeRange,DSN)，其中Hash表示飞行数据序列seq计算得到的哈希值，TimeRange表示飞行数据序列seq对应的时间范围，DSN表示飞行器的序列号。</div>
+<div class="description-paragraph" id="p0073" num="0068">S405：构造新区块并广播：</div>
+<div class="description-paragraph" id="p0074" num="0069">作为领导者的地面管控中心构造新区块并选取存储交易ST<sub>x</sub>打包进入新区块，然后将新区块签名后广播给其他地面管控中心。</div>
+<div class="description-paragraph" id="p0075" num="0070">S406：新区块验证：</div>
+<div class="description-paragraph" id="p0076" num="0071">其他地面管控中心在接收到新区块后先验证签名，如果验证通过，则再验证自身收到的对应飞行器的飞行数据与存储交易ST<sub>x</sub>中的飞行数据是否一致，如果一致则通过验证，进入步骤S407，如果以上两项验证均不通过，则抛弃区块。</div>
+<div class="description-paragraph" id="p0077" num="0072">S407：新区块共识存储：</div>
+<div class="description-paragraph" id="p0078" num="0073">联盟区块链中的所有地面管控中心之间采用共识算法对新区块进行共识，以确保领导者给各节点发送的区块是一致的。如果共识通过则加入区块链，否则抛弃该新区块。本实施例中采用PBFT(Practical Byzantine Fault Tolerance，拜占庭共识算法)共识算法。</div>
+<div class="description-paragraph" id="p0079" num="0074">尽管上面对本发明说明性的具体实施方式进行了描述，以便于本技术领域的技术人员理解本发明，但应该清楚，本发明不限于具体实施方式的范围，对本技术领域的普通技术人员来讲，只要各种变化在所附的权利要求限定和确定的本发明的精神和范围内，这些变化是显而易见的，一切利用本发明构思的发明创造均在保护之列。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

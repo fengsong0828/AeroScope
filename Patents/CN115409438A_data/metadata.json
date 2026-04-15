@@ -1,0 +1,94 @@
+{
+    "patent_id": "CN115409438A",
+    "title": "CN115409438A - 低空飞行风险控制方法、装置、飞行器及存储介质 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Chengdu Wofeitianyu Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN115409438A/zh",
+    "citations": [
+        {
+            "Publication Number": "US6940426B1 (en) *",
+            "Priority Date": "2003-09-05",
+            "Publication Date": "2005-09-06",
+            "Assignee": "Ridgeback Systems Llc",
+            "Title": "Aircraft flight risk measuring system and method of operation",
+            "Link": "https://patents.google.com/patent/US6940426B1/en"
+        },
+        {
+            "Publication Number": "CN107430710A (zh) *",
+            "Priority Date": "2014-11-10",
+            "Publication Date": "2017-12-01",
+            "Assignee": "联邦快递公司",
+            "Title": "风险评估架构",
+            "Link": "https://patents.google.com/patent/CN107430710A/zh"
+        },
+        {
+            "Publication Number": "CN108985621A (zh) *",
+            "Priority Date": "2018-07-13",
+            "Publication Date": "2018-12-11",
+            "Assignee": "南京航空航天大学",
+            "Title": "基于风险管控的区域多机场不正常航班恢复方法",
+            "Link": "https://patents.google.com/patent/CN108985621A/zh"
+        },
+        {
+            "Publication Number": "CN112368660A (zh) *",
+            "Priority Date": "2019-05-24",
+            "Publication Date": "2021-02-12",
+            "Assignee": "空中客车A^3有限责任公司",
+            "Title": "无人驾驶飞行器风险评估",
+            "Link": "https://patents.google.com/patent/CN112368660A/zh"
+        },
+        {
+            "Publication Number": "CN110443521A (zh) *",
+            "Priority Date": "2019-08-15",
+            "Publication Date": "2019-11-12",
+            "Assignee": "中国国际航空股份有限公司",
+            "Title": "航班运行风险获取方法、系统和计算机设备",
+            "Link": "https://patents.google.com/patent/CN110443521A/zh"
+        },
+        {
+            "Publication Number": "CN112308125A (zh) *",
+            "Priority Date": "2020-10-23",
+            "Publication Date": "2021-02-02",
+            "Assignee": "安徽启新明智科技有限公司",
+            "Title": "一种安检系统危险等级分类方法、装置和存储介质",
+            "Link": "https://patents.google.com/patent/CN112308125A/zh"
+        },
+        {
+            "Publication Number": "CN113359834A (zh) *",
+            "Priority Date": "2021-06-22",
+            "Publication Date": "2021-09-07",
+            "Assignee": "中国民用航空总局第二研究所",
+            "Title": "一种无人机运行监控方法、系统及监控平台",
+            "Link": "https://patents.google.com/patent/CN113359834A/zh"
+        },
+        {
+            "Publication Number": "CN114331052A (zh) *",
+            "Priority Date": "2021-12-13",
+            "Publication Date": "2022-04-12",
+            "Assignee": "阿里云计算有限公司",
+            "Title": "航空运行风险的确定方法、计算设备及存储介质",
+            "Link": "https://patents.google.com/patent/CN114331052A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN118469306A (zh) *",
+            "Priority Date": "2024-07-10",
+            "Publication Date": "2024-08-09",
+            "Assignee": "民航成都电子技术有限责任公司",
+            "Title": "一种航空运行风险的预测方法、装置、设备及介质",
+            "Link": "https://patents.google.com/patent/CN118469306A/zh"
+        },
+        {
+            "Publication Number": "CN120579834A (zh) *",
+            "Priority Date": "2025-08-05",
+            "Publication Date": "2025-09-02",
+            "Assignee": "华航信航空科技(浙江)有限公司",
+            "Title": "机场应急处理方法、装置、设备、存储介质及程序产品",
+            "Link": "https://patents.google.com/patent/CN120579834A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:27:47"
+}

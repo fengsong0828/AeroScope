@@ -1,0 +1,298 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN115409438A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES365712069">
+<invention-title id="title1" lang="ZH">低空飞行风险控制方法、装置、飞行器及存储介质</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="n0001">本发明涉及飞行技术领域，尤其涉及一种低空飞行风险控制方法、装置、飞行器及存储介质。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="n0002">相比没有生成应急切换航路或航线需求的普通民航客机，低空空域(3000m以下)飞行由于架次多、飞行距离短，有限空域执飞的飞行器的密度大等原因，对航路航线应急切换有较为紧迫的需求。</div>
+<div class="description-paragraph" id="p0005" num="n0003">由于低空飞行在气流环境较复杂的对流层底部，较低的飞行高度(尤其是在城市中的飞行航线)除了易受各类自然因素的影响，还易受地面各种电子设备、工业排放、建筑群、人类各种活动等因素的影响，目前民航原有应急航路航线生成和处理机制，不能完全适应如今新的低空物流及出行的需求。</div>
+<div class="description-paragraph" id="p0006" num="n0004">因此，有必要提出一种提高低空飞行的安全性的解决方案。</div>
+<div class="description-paragraph" id="p0007" num="n0005">上述内容仅用于辅助理解本发明的技术方案，并不代表承认上述内容是现有技术。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0008">发明内容</div>
+<div class="description-paragraph" id="p0009" num="n0006">本发明的主要目的在于提供一种低空飞行风险控制方法、装置、飞行器及存储介质，旨在提高低空飞行的安全性。</div>
+<div class="description-paragraph" id="p0010" num="n0007">为实现上述目的，本发明提供一种低空飞行风险控制方法，所述低空飞行风险控制方法包括：</div>
+<div class="description-paragraph" id="p0011">获取飞行相关风险信息；</div>
+<div class="description-paragraph" id="p0012">基于预先构建的飞行风险等级库，对所述飞行相关风险信息进行归类评分，得到各风险评分；</div>
+<div class="description-paragraph" id="p0013">通过添加特征系数对所述各风险评分进行修正，得到各修正评分；</div>
+<div class="description-paragraph" id="p0014">基于所述各修正评分计算各风险得分，并对所述各风险得分进行汇总计算，得到目标风险值。</div>
+<div class="description-paragraph" id="p0015" num="n0008">可选地，所述获取飞行相关风险信息的步骤包括：</div>
+<div class="description-paragraph" id="p0016">通过地面信息源获取地面信息；</div>
+<div class="description-paragraph" id="p0017">通过空中信息源获取空中信息。</div>
+<div class="description-paragraph" id="p0018" num="n0009">可选地，所述基于预先构建的飞行风险等级库，对所述飞行相关风险信息进行归类评分，得到各风险评分的步骤之前还包括：</div>
+<div class="description-paragraph" id="p0019">采集飞行和/或飞行器相关的历史过往信息；</div>
+<div class="description-paragraph" id="p0020">基于所述历史过往信息进行风险类别划分，得到风险分类标准；</div>
+<div class="description-paragraph" id="p0021">基于所述历史过往信息对所述风险分类标准进行等级划分，得到风险等级标准；</div>
+<div class="description-paragraph" id="p0022">基于所述历史过往信息对所述风险等级标准进行分值赋值，得到风险等级评分标准；</div>
+<div class="description-paragraph" id="p0023">根据所述风险分类标准、风险等级标准和/或风险等级评分标准构建所述飞行风险等级库，以用于对所述飞行相关风险信息进行归类评分。</div>
+<div class="description-paragraph" id="p0024" num="n0010">可选地，所述基于预先构建的飞行风险等级库，对所述飞行相关风险信息进行归类评分，得到各风险评分的步骤包括：</div>
+<div class="description-paragraph" id="p0025">基于所述飞行风险等级库，将所述飞行相关风险信息与所述风险分类标准进行匹配，得到各风险分类；</div>
+<div class="description-paragraph" id="p0026">将所述各风险分类中的风险信息与所述风险等级标准进行匹配，得到各风险分类等级；</div>
+<div class="description-paragraph" id="p0027">将所述各风险分类等级中的风险信息与所述风险等级评分标准进行比对，计算得到所述各风险评分。</div>
+<div class="description-paragraph" id="p0028" num="n0011">可选地，所述通过添加特征系数对所述各风险评分进行修正，得到各修正评分的步骤之前还包括：</div>
+<div class="description-paragraph" id="p0029">基于所述历史过往信息，提取所述风险分类标准和/或风险等级标准对应的风险特征及影响因素，形成对应的特征系数。</div>
+<div class="description-paragraph" id="p0030" num="n0012">可选地，所述通过添加特征系数对所述各风险评分进行修正，得到各修正评分的步骤包括：</div>
+<div class="description-paragraph" id="p0031">根据所述各风险分类对应的风险特征及影响因素，匹配对应的特征系数；</div>
+<div class="description-paragraph" id="p0032">将所述各风险评分与对应的特征系数进行运算和/或算法计算，得到所述各修正评分。</div>
+<div class="description-paragraph" id="p0033" num="n0013">可选地，所述各风险分类包括航线和/或航路管制风险、天气和/或灾害风险、雷电风险、感知信息异常风险、机载设备状态异常风险、飞行器碰撞应急风险、紧急避让情况风险、地面活动影响风险中的一项或多项。</div>
+<div class="description-paragraph" id="p0034" num="n0014">此外，为实现上述目的，本发明还提供一种低空飞行风险控制装置，所述低空飞行风险控制装置包括：</div>
+<div class="description-paragraph" id="p0035">获取模块，用于获取飞行相关风险信息；</div>
+<div class="description-paragraph" id="p0036">归类模块，用于基于预先构建的飞行风险等级库，对所述飞行相关风险信息进行归类评分，得到各风险评分；</div>
+<div class="description-paragraph" id="p0037">修正模块，用于通过添加特征系数对所述各风险评分进行修正，得到各修正评分；</div>
+<div class="description-paragraph" id="p0038">计算模块，用于基于所述各修正评分计算各风险得分，并对所述各风险得分进行汇总计算，得到目标风险值。</div>
+<div class="description-paragraph" id="p0039" num="n0015">此外，为实现上述目的，本发明还提供一种飞行器，所述飞行器包括存储器、处理器及存储在所述存储器上并可在所述处理器上运行的低空飞行风险控制程序，所述低空飞行风险控制程序被所述处理器执行时实现如上所述的低空飞行风险控制方法的步骤。</div>
+<div class="description-paragraph" id="p0040" num="n0016">此外，为实现上述目的，本发明还提供一种计算机可读存储介质，所述计算机可读存储介质上存储有低空飞行风险控制程序，所述低空飞行风险控制程序被处理器执行时实现如上所述的低空飞行风险控制方法的步骤。</div>
+<div class="description-paragraph" id="p0041" num="n0017">本发明实施例提出的一种低空飞行风险控制方法、装置、飞行器以及存储介质，通过获取飞行相关风险信息；基于预先构建的飞行风险等级库，对所述飞行相关风险信息进行归类评分，得到各风险评分；通过添加特征系数对所述各风险评分进行修正，得到各修正评分；基于所述各修正评分计算各风险得分，并对所述各风险得分进行汇总计算，得到目标风险值。通过预先构建的飞行风险等级库，提炼出飞行中的共性风险因素和等级，从而对飞行相关风险信息进行准确归类和评分；通过特征系数，对引起风险的非共性元素作为评分修正方式，使所得的目标风险值更加科学、准确，更好地用于应急航路航线生成和处理机制，从而提高了低空飞行的安全性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0042">附图说明</div>
+<div class="description-paragraph" id="p0043" num="n0018">图1为本发明低空飞行风险控制装置所属飞行器的功能模块示意图；</div>
+<div class="description-paragraph" id="p0044">图2为本发明低空飞行风险控制方法一示例性实施例的流程示意图；</div>
+<div class="description-paragraph" id="p0045">图3为本发明低空飞行风险控制方法另一示例性实施例的流程示意图；</div>
+<div class="description-paragraph" id="p0046">图4为图2实施例中步骤S20的具体流程示意图；</div>
+<div class="description-paragraph" id="p0047">图5为本发明实施例中的飞行风险等级判定和计算评分的整体流程示意图。</div>
+<div class="description-paragraph" id="p0048" num="n0019">本发明目的实现、功能特点及优点将结合实施例，参照附图做进一步说明。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0049">具体实施方式</div>
+<div class="description-paragraph" id="p0050" num="n0020">应当理解，此处所描述的具体实施例仅仅用以解释本发明，并不用于限定本发明。</div>
+<div class="description-paragraph" id="p0051" num="n0021">本发明实施例的主要解决方案是：通过获取飞行相关风险信息；基于预先构建的飞行风险等级库，对所述飞行相关风险信息进行归类评分，得到各风险评分；通过添加特征系数对所述各风险评分进行修正，得到各修正评分；基于所述各修正评分计算各风险得分，并对所述各风险得分进行汇总计算，得到目标风险值。通过预先构建的飞行风险等级库，提炼出飞行中的共性风险因素和等级，从而对飞行相关风险信息进行准确归类和评分；通过特征系数，对引起风险的非共性元素作为评分修正方式，使所得的目标风险值更加科学、准确，更好地用于应急航路航线生成和处理机制，从而提高了低空飞行的安全性。</div>
+<div class="description-paragraph" id="p0052" num="n0022">本发明实施例涉及的技术术语：</div>
+<div class="description-paragraph" id="p0053">航线(Airway)：指连接机场与机场、机场与航路、给定地理点之间的飞行路线，简称航线。</div>
+<div class="description-paragraph" id="p0054" num="n0023">航路(Air Route)：由航空主管当局批准建立的一条由导航系统划定的空域结构的空中通道，在这个通道上空，交通管理机构要提供必要的空中交通管制和航行情报服务。</div>
+<div class="description-paragraph" id="p0055" num="n0024">对于普通民航客机的飞行而言，由于其飞行中的多数时间是在平流层中。在平流层中气流稳定、能见度高、受天气影响小，几乎不受地面社会活动的影响，在这种相对不复杂的飞行环境中，在遇到需要改变航路或航线的情况时，民航客机只需听从地面空管中心的指挥即可。鲜有需要民航客机进行紧急航线或航路切换的情况。正因上述这些原因全球民航运营了近百年的时间，一直没有生成应急切换航路或航线的需求。</div>
+<div class="description-paragraph" id="p0056" num="n0025">本发明中提到的“应急切换航路航线”只在出现紧急情况时，指引飞行器紧急避险，生成/使用的脱离当前原定航路或航线的过渡航路或航线。即其只是上一原定航路航线到避险而要去到的目标航路航线之间的临时避险通道或者方式。</div>
+<div class="description-paragraph" id="p0057" num="n0026">具体而言，民航没有生成应急切换航路或航线的原因主要有以下几个方面：</div>
+<div class="description-paragraph" id="p0058">（1）民航飞行时生成应急切换航路航线的紧迫性低：民航飞行大部分时间巡航在平流层中，气流稳定、能见度高、受天气影响小，飞鸟出现的概率极低，受地面社会活动的影响小。此外，水平方向，由于民航客机的飞行距离较，多数情况执飞距离都在800km以上，民航客机在收到紧急修改航路航线的信息或指令时，有充足的水平距离给飞机做出调整。垂直方向，民航客机飞行高度高，被允许的情况下可降高进行航路航线的修改，同时，在被允许的情况下，还可通过提升飞行高度(只要不超出飞机设计飞行高度上限)。这些相对宽松的飞行环境，使得要为民航飞行/民航飞机增加生成应急切换航路航线，或者是专门制定航路航线切换相关的应急处置方法，显得不紧迫，没有迫切的需求；</div>
+<div class="description-paragraph" id="p0059">（2）对民航客机飞行进行变更的手续和流程较繁杂：民航客机航线距离长，多数为跨域、跨区、跨省甚至是跨国飞行。在紧急情况下，如果想要协助飞机完成一次紧急航路航线的切换或修改，至少需要相关空域的空中交通服务报告室、塔台管制单位和区域空中管制单位等多个单位/部门的同时协作，而如果是跨国飞行，这样的协调将更加复杂和困难；</div>
+<div class="description-paragraph" id="p0060">注：本申请中将空中交通服务报告室、塔台管制单位和区域空中管制单位等空中管制单位/部门，统称为空管中心。同时在本专利中，提及空管中心还可以是可移动的指控站点，而可移动的站点不仅可以是地面移动指控站点，还可以是空中或者水上的移动指控站点。</div>
+<div class="description-paragraph" id="p0061" num="n0027">（3）与民航客机飞行相比，低空空域(3000m以下)飞行架次多，飞行距离短，有限空域执飞的飞行器的密度大，航路航线应急切换更有必要：随着政策的逐步放开，低空物流和出行迎来了机遇的同时，也面对着挑战。在城市有限的低空空域，同时有多架次、多机种和多型号的物流和载人飞行器执飞，将会是不远的未来的空中物流出行的常态。在遇到紧急情况时，如何迅速生成应急处理方案和应急切换航路航线，保证飞行的安全有序，将是热点话题，也是热点难题。低空物流出行，急需一套行之有效的生成应急处理方案和应急切换航路航线的方法；</div>
+<div class="description-paragraph" id="p0062">（4）民航飞行原有的应急航路航线切换管理方法不能完全适应低空空域飞行：低空空域的开放，各国随之产生的关于低空飞行器的新的空管和适航条例，都对低空空域飞行的视景展示提出新的要求（也是机遇）。低空飞行在气流环境较复杂的对流层底部，较低的飞行高度(尤其是在城市中的飞行航线)除了易受雷电影响、恶劣天气影响、自然灾害影响、飞鸟影响、地形地貌影响，低空飞行器(尤其是低空城市空中出行飞行器)还易受地面各种电子设备的干扰(如电磁干扰、通信干扰等)、易受地面各种工业排放的影响(如工业废气排放、工业烟尘粉尘排放等)、易受建筑群(高低建筑交替、陆地建筑和湖泊江河交替)引起的空气乱流的影响、易受地面人类各种活动的影响(如光污染、地面噪音干扰、人造风场、烟花爆竹燃放影响、放风筝、气球影响、放飞小型私人无人飞行器的影响、建筑火灾烟尘等)。民航原有应急航路航线生成和处理机制，不能完全适应如今新的低空物流及出行的需求。</div>
+<div class="description-paragraph" id="p0063" num="n0028">本发明提供一种解决方案，通过将过往各个渠道搜集的相关信息进行分类和分级，形成“飞行风险等级库”；将实际飞行中搜集的风险信息与“飞行风险等级库”进行对比和评分；添加“特征系数”对评分进行修正；汇总各项风险评分，得到一个量化的风险值，便于用作指导飞行器进行风险相应的参考和依据。</div>
+<div class="description-paragraph" id="p0064" num="n0029">具体地，参照图1，图1为本发明低空飞行风险控制装置所属飞行器的功能模块示意图。该低空飞行风险控制装置可以为独立于飞行器的、能够进行低空飞行风险控制的装置，其可以通过硬件或软件的形式承载于飞行器上。</div>
+<div class="description-paragraph" id="p0065" num="n0030">在本实施例中，该低空飞行风险控制装置所属飞行器至少包括输出模块110、处理器120、存储器130以及通信模块140。</div>
+<div class="description-paragraph" id="p0066" num="n0031">存储器130中存储有操作系统以及低空飞行风险控制程序，低空飞行风险控制装置可以将获取的飞行相关风险信息、基于预先构建的飞行风险等级库，对所述飞行相关风险信息进行归类评分，得到的各风险评分、通过添加特征系数对所述各风险评分进行修正，得到的各修正评分，以及基于所述各修正评分计算各风险得分，并对所述各风险得分进行汇总计算，得到的目标风险值等信息存储于该存储器130中；输出模块110可为显示屏等。通信模块140可以包括WIFI模块、移动通信模块以及蓝牙模块等，通过通信模块140与外部设备或服务器进行通信。</div>
+<div class="description-paragraph" id="p0067" num="n0032">其中，存储器130中的低空飞行风险控制程序被处理器执行时实现以下步骤：</div>
+<div class="description-paragraph" id="p0068">获取飞行相关风险信息；</div>
+<div class="description-paragraph" id="p0069">基于预先构建的飞行风险等级库，对所述飞行相关风险信息进行归类评分，得到各风险评分；</div>
+<div class="description-paragraph" id="p0070">通过添加特征系数对所述各风险评分进行修正，得到各修正评分；</div>
+<div class="description-paragraph" id="p0071">基于所述各修正评分计算各风险得分，并对所述各风险得分进行汇总计算，得到目标风险值。</div>
+<div class="description-paragraph" id="p0072" num="n0033">进一步地，存储器130中的低空飞行风险控制程序被处理器执行时还实现以下步骤：</div>
+<div class="description-paragraph" id="p0073">通过地面信息源获取地面信息；</div>
+<div class="description-paragraph" id="p0074">通过空中信息源获取空中信息。</div>
+<div class="description-paragraph" id="p0075" num="n0034">进一步地，存储器130中的低空飞行风险控制程序被处理器执行时还实现以下步骤：</div>
+<div class="description-paragraph" id="p0076">采集飞行和/或飞行器相关的历史过往信息；</div>
+<div class="description-paragraph" id="p0077">基于所述历史过往信息进行风险类别划分，得到风险分类标准；</div>
+<div class="description-paragraph" id="p0078">基于所述历史过往信息对所述风险分类标准进行等级划分，得到风险等级标准；</div>
+<div class="description-paragraph" id="p0079">基于所述历史过往信息对所述风险等级标准进行分值赋值，得到风险等级评分标准；</div>
+<div class="description-paragraph" id="p0080">根据所述风险分类标准、风险等级标准和/或风险等级评分标准构建所述飞行风险等级库，以用于对所述飞行相关风险信息进行归类评分。</div>
+<div class="description-paragraph" id="p0081" num="n0035">进一步地，存储器130中的低空飞行风险控制程序被处理器执行时还实现以下步骤：</div>
+<div class="description-paragraph" id="p0082">基于所述飞行风险等级库，将所述飞行相关风险信息与所述风险分类标准进行匹配，得到各风险分类；</div>
+<div class="description-paragraph" id="p0083">将所述各风险分类中的风险信息与所述风险等级标准进行匹配，得到各风险分类等级；</div>
+<div class="description-paragraph" id="p0084">将所述各风险分类等级中的风险信息与所述风险等级评分标准进行比对，计算得到所述各风险评分。</div>
+<div class="description-paragraph" id="p0085" num="n0036">进一步地，存储器130中的低空飞行风险控制程序被处理器执行时还实现以下步骤：</div>
+<div class="description-paragraph" id="p0086">基于所述历史过往信息，提取所述风险分类标准和/或风险等级标准对应的风险特征及影响因素，形成对应的特征系数。</div>
+<div class="description-paragraph" id="p0087" num="n0037">进一步地，存储器130中的低空飞行风险控制程序被处理器执行时还实现以下步骤：</div>
+<div class="description-paragraph" id="p0088">根据所述各风险分类对应的风险特征及影响因素，匹配对应的特征系数；</div>
+<div class="description-paragraph" id="p0089">将所述各风险评分与对应的特征系数进行运算和/或算法计算，得到所述各修正评分。</div>
+<div class="description-paragraph" id="p0090" num="n0038">本实施例通过上述方案，具体通过获取飞行相关风险信息；基于预先构建的飞行风险等级库，对所述飞行相关风险信息进行归类评分，得到各风险评分；通过添加特征系数对所述各风险评分进行修正，得到各修正评分；基于所述各修正评分计算各风险得分，并对所述各风险得分进行汇总计算，得到目标风险值。通过预先构建的飞行风险等级库，提炼出飞行中的共性风险因素和等级，从而对飞行相关风险信息进行准确归类和评分；通过特征系数，对引起风险的非共性元素作为评分修正方式，使所得的目标风险值更加科学、准确，更好地用于应急航路航线生成和处理机制，从而提高了低空飞行的安全性。</div>
+<div class="description-paragraph" id="p0091" num="n0039">基于上述飞行器架构但不限于上述架构，提出本发明方法实施例。</div>
+<div class="description-paragraph" id="p0092" num="n0040">本实施例方法的执行主体可以为一种低空飞行风险控制装置或飞行器等，本实施例以低空飞行风险控制装置进行举例。</div>
+<div class="description-paragraph" id="p0093" num="n0041">参照图2，图2为本发明低空飞行风险控制方法一示例性实施例的流程示意图。所述低空飞行风险控制方法包括：</div>
+<div class="description-paragraph" id="p0094">步骤S10，获取飞行相关风险信息；</div>
+<div class="description-paragraph" id="p0095">在飞行过程中，可以通过各渠道实时获取飞行相关风险信息，具体包括：</div>
+<div class="description-paragraph" id="p0096">通过地面信息源获取地面信息；</div>
+<div class="description-paragraph" id="p0097">通过空中信息源获取空中信息。</div>
+<div class="description-paragraph" id="p0098" num="n0042">具体地，本发明实施例中的地面是相对于空域而言的广义地面，其可以是各种地形地貌的地面和地面上的建筑表面，甚至还可以是水面，其为与飞行相关的信息采集设备的安装用到的各种地面的综述。其中，地面信息源可以是飞行器起飞地的空管中心，也可以是背离飞行器飞行方向的但临近飞行器的空管中心；可以是飞行器飞行目的地的空管中心，也可以是飞行器飞行方向前方的临近飞行器的空管中心；还可以包括权威职能部门，如消防部门、市政管理部门、环境部门、应急响应部门等。</div>
+<div class="description-paragraph" id="p0099" num="n0043">可选地，地面信息源提供的地面信息包括空域内其他飞行器主动发出的各种信息上报信息，如ADS-B广播信息等；地面雷达信息，如气象雷达、多普勒雷达和监视雷达等；卫星系统发来的信息；地面卫星通信系统接收卫星信息转发来的信息；权威职能部门，如消防部门、市政管理部门、环境部门、应急响应部门等发布的消防信息通报、地面各种活动信息通报、环境污染信息通报，其他应急信息通报；以及空管中心通过与飞行器双向通信获取到的信息：通过进行高频/甚高频(HF/VHF)通话来获取到的信息；通过空中管制系统ATC通信获取的信息；通过选择呼叫系统SELCAL通信获取的信息；通过通信寻址与报告系统ACARS通信获取的信息；其他通信方式获取的信息，如天地5G通信等。</div>
+<div class="description-paragraph" id="p0100" num="n0044">可选地，空中信息主要是飞行器自身接收的信息以及其他执飞飞行器分享的信息。其中，飞行器自身接收的信息包括飞行器各机载设备的状态信息、机上卫星系统接收的卫星通信信息、接收全球卫星导航系统(GNSS，如北斗系统、GPS、GLONASS、Galileo系统)的信息、机载气象雷达收集的信息、机载设备/传感器采集和受的速度、高度、航向、加速度、姿态等信息、机载载荷等信息；其他执飞飞行器分享的信息包括高频/甚高频通信信息、ADS-B广播信息、TCAS避撞信息，以及通过其他通信方式分享的信息，如5G网络、卫星电话、卫星中继，甚至闪灯莫斯码等方式分享的信息。</div>
+<div class="description-paragraph" id="p0101" num="n0045">步骤S20，基于预先构建的飞行风险等级库，对所述飞行相关风险信息进行归类评分，得到各风险评分；</div>
+<div class="description-paragraph" id="p0102">进一步地，通过各渠道获取到实时的飞行相关风险信息后，即可将飞行相关风险信息导入预先构建的飞行风险等级库，在飞行风险等级库中，基于历史过往信息对各风险中的在同一空域、同一运营范围、相同飞行环境或相同飞行器类型下，提炼出了共性风险因素和等级，并对各风险等级进行了分值赋值，因此可以将导入的飞行相关风险信息与飞行相关风险等级库中的风险分类标准进行匹配，确定所属的各风险分类，进而与风险等级标准进行匹配，确定各类风险的等级，并进一步与风险等级评分标准进行比对，得到各风险评分。</div>
+<div class="description-paragraph" id="p0103" num="n0046">步骤S30，通过添加特征系数对所述各风险评分进行修正，得到各修正评分；</div>
+<div class="description-paragraph" id="p0104">本发明实施例中，通过特征系数为各对应的风险等级和对应分值提供修正，其形成步骤包括：</div>
+<div class="description-paragraph" id="p0105">基于所述历史过往信息，提取所述风险分类标准和/或风险等级标准对应的风险特征及影响因素，形成对应的特征系数。</div>
+<div class="description-paragraph" id="p0106" num="n0047">具体地，对引起风险的非共性元素或需要灵活处理的元素，采用特征系数作为一种对风险评判打分后的一种修正，具体包括：</div>
+<div class="description-paragraph" id="p0107">根据所述各风险分类对应的风险特征及影响因素，匹配对应的特征系数；</div>
+<div class="description-paragraph" id="p0108">将所述各风险评分与对应的特征系数进行运算和/或算法计算，得到所述各修正评分。</div>
+<div class="description-paragraph" id="p0109" num="n0048">根据各风险分类对应的风险特征及影响因素可以匹配到对应的特征系数，进而将各风险评分与对应的特征系数进行运算或算法计算，得到所述各修正评分。例如，一级雷电风险对应的特征因素是执飞飞行器雷电抗性(如飞行器机身是否为金属、选用不同防雷密度铜网、选用的为铝网等)特征；二级感知信息异常风险对应的特征因素是不同飞行器，对感知信息与其他机载设备、空管反馈或其他途径得到的参考值相比的差值大小要求，根据特征因素对应的特征系数计算各修正评分，其目的是根据实际情况或较少出现特殊情况，对判断进行二次纠偏，使应急判断更接近真实情况、更准确、更有可行度，使应急航路航线的切换更加科学和安全。</div>
+<div class="description-paragraph" id="p0110" num="n0049">步骤S40，基于所述各修正评分计算各风险得分，并对所述各风险得分进行汇总计算，得到目标风险值。</div>
+<div class="description-paragraph" id="p0111" num="n0050">更进一步地，将得出的各风险类别和等级修正后(若该风险无需使用“特征系数”则不添加“特征系数”进行修正计算即可)的评分进行汇总计算，得出最终的目标风险值，基于目标风险值可以进行应急处置和应急切换航路航线的生成。</div>
+<div class="description-paragraph" id="p0112" num="n0051">在本实施例中，通过获取飞行相关风险信息；基于预先构建的飞行风险等级库，对所述飞行相关风险信息进行归类评分，得到各风险评分；通过添加特征系数对所述各风险评分进行修正，得到各修正评分；基于所述各修正评分计算各风险得分，并对所述各风险得分进行汇总计算，得到目标风险值。通过预先构建的飞行风险等级库，提炼出飞行中的共性风险因素和等级，从而对飞行相关风险信息进行准确归类和评分；通过特征系数，对引起风险的非共性元素作为评分修正方式，使所得的目标风险值更加科学、准确，更好地用于应急航路航线生成和处理机制，从而提高了低空飞行的安全性。</div>
+<div class="description-paragraph" id="p0113" num="n0052">参照图3，图3为本发明低空飞行风险控制方法另一示例性实施例的流程示意图。基于上述图2所示的实施例，在本实施例中，在基于预先构建的飞行风险等级库，对所述飞行相关风险信息进行归类评分，得到各风险评分的步骤之前，所述低空飞行风险控制方法还包括：</div>
+<div class="description-paragraph" id="p0114">步骤S00，构建所述飞行风险等级库。本实施例以步骤S00在步骤S10之前实施，在其他实施例中，步骤S00也可以在步骤S10与步骤S20之间实施。</div>
+<div class="description-paragraph" id="p0115" num="n0053">相比上述图2所示的实施例，本实施例还包括构建所述飞行风险等级库的方案。</div>
+<div class="description-paragraph" id="p0116" num="n0054">具体地，构建所述飞行风险等级库的步骤可以包括：</div>
+<div class="description-paragraph" id="p0117">步骤S001，采集飞行和/或飞行器相关的历史过往信息；</div>
+<div class="description-paragraph" id="p0118">步骤S002，基于所述历史过往信息进行风险类别划分，得到风险分类标准；</div>
+<div class="description-paragraph" id="p0119">步骤S003，基于所述历史过往信息对所述风险分类标准进行等级划分，得到风险等级标准；</div>
+<div class="description-paragraph" id="p0120">步骤S004，基于所述历史过往信息对所述风险等级标准进行分值赋值，得到风险等级评分标准；</div>
+<div class="description-paragraph" id="p0121">步骤S005，根据所述风险分类标准、风险等级标准和/或风险等级评分标准构建所述飞行风险等级库，以用于对所述飞行相关风险信息进行归类评分。</div>
+<div class="description-paragraph" id="p0122" num="n0055">可选地，通过各渠道可以收集飞行和飞行器相关的历史过往信息，其中包括空管中心接收获取到的历史信息：空域内其他飞行器主动发出的各种信息上报信息，如ADS-B广播信息等；地面雷达信息，如气象雷达、多普勒雷达和监视雷达等；卫星系统发来的信息；地面卫星通信系统接收卫星信息转发来的信息；权威职能部门，如消防部门、市政管理部门、环境部门、应急响应部门等发布的消防信息通报、地面各种活动信息通报、环境污染信息通报，其他应急信息通报。空管中心通过与飞行器双向通信获取到的历史信息：通过进行高频/甚高频(HF/VHF)通话来获取到的信息；通过空中管制系统ATC通信获取的信息；通过选择呼叫系统SELCAL通信获取的信息；通过通信寻址与报告系统ACARS通信获取的信息；其他通信方式获取的信息，如天地5G通信等。</div>
+<div class="description-paragraph" id="p0123" num="n0056">此外，还包括飞行器自身接收的历史信息：飞行器各机载设备的状态信息；机上卫星系统接收的卫星通信信息；接收全球卫星导航系统(GNSS，如北斗系统、GPS、GLONASS、Galileo系统)的信息；机载气象雷达收集的信息；机载设备/传感器采集和受的速度、高度、航向、加速度、姿态等信息；机载载荷、空管中心和社会媒体等日常采集的地面社会活动的信息；日常飞行器处理突发情况的经验和信息，如突然遭遇飞鸟、飞虫群等；日常机务修护维修发现的常见故障经验信息等。其他执飞飞行器分享的信息：高频/甚高频通信信息；ADS-B广播信息；TCAS避撞信息；通过其他通信方式分享的信息，如5G网络、卫星电话、卫星中继，甚至闪灯莫斯码等方式。</div>
+<div class="description-paragraph" id="p0124" num="n0057">进一步地，将各个渠道搜集并积累的大量信息结合适航、空域划分、空管、飞行和飞行器等相关的法律、法规、常识和资料等，对收集累计的信息进行识别，将与管制或风险相关的信息整理出与决断如何处理风险相关的各个信息类型；对各个信息类别依据相关的法律、法规、常识和资料等，进行管制和风险等级划分，如，航线/航路管制等级、天气风险等级、雷电风险等级、感知信息(如，速度、高度、加速度等)异常等级、机载(设备)状态异常等级、避撞应急等级、紧急避让情况等级，以及地面活动影响等级等；同时对各个管制和风险等级进行定性的分值赋值，比如管制/风险等级越高，分值越高/越低；将等级划分与分值划分公共构成飞行风险等级库。</div>
+<div class="description-paragraph" id="p0125" num="n0058">飞行风险等级库中，风险种类和各自种类下所划分的等级将直接影响风险等级的评估和划定，其划分既要合理合法，又要遵循科学，这样各等级划分和各等级对应的分值才能即能区分风险高低，又可指导采取相应的飞行修正策略。</div>
+<div class="description-paragraph" id="p0126" num="n0059">可选地，飞行风险等级库中的各风险分类包括航线和/或航路管制风险、天气和/或灾害风险、雷电风险、感知信息异常风险、机载设备状态异常风险、飞行器碰撞应急风险、紧急避让情况风险、地面活动影响风险中的一项或多项。</div>
+<div class="description-paragraph" id="p0127" num="n0060">具体地，航线/航路管制风险等级-R1类风险：等级划分主要依托相关法律、法规和行业准则，及其指令来源于空中管制部门，但等级划定和分值制定需要：</div>
+<div class="description-paragraph" id="p0128">（1）航空管理部门和低空空域空管中心负责将航线/航路管理风险划分出来；</div>
+<div class="description-paragraph" id="p0129">（2）将各种各样的因素按照对航路航线和飞行安全的影响大小，进行风险等级分类，判断何种因素属于一级风险、何种因素属于二级风险等；</div>
+<div class="description-paragraph" id="p0130">（3）航线/航路管制风险等级与以下其他风险等级不同的是其各级风险等级中都有各种风险因素。如，一级“航线/航路管制风险等级”中包含影响较大的天气&amp;灾害风险因素、雷电风险因素、感知信息异常因素、机载设备状态因素、飞行器避撞应急因素、紧急避让情况、地面活动影响。</div>
+<div class="description-paragraph" id="p0131" num="n0061">其中，航路航线管制，是基于以下几条不同风险等级，而其风险等级(或约束等级)比下面几天风险等级都高，其对于应急决策具有主导作用，其他风险等级是对“航路航线管制风险”的补充，如补充在管制还没下达时采取应急措施，或是在“航路航线管制风险”警示下达后需要其他风险等级来对应急措施进行综合地补充(制定航路航线管制风险时考虑不到各种突发情况，或各种因素交织成的复杂情况)、细化或微调。故而，本发明实施例中是以一种“航路航线管制风险”等级为主，其他风险等级为辅，来制定应急策略，生成应急切换航路和航线的方法。</div>
+<div class="description-paragraph" id="p0132" num="n0062">天气&amp;灾害风险等级-R2类风险：等级划分主要依据天气&amp;灾害的危害等级、飞行器抗性，以及空管依据法律法规指结合天气情况下达的指令。等级划定和分值制定需要：</div>
+<div class="description-paragraph" id="p0133">将天气&amp;灾害的危害等级与飞行器抗性特点结合，如大风和暴雨，对各种飞行器其都有影响，但是有抗风和抗雨水设计的飞机，此类天气的影响风险等级在飞行器风险等级中需要重新划定。另外，地面遭遇泥石流、积雪、积水或滑坡等灾害时，对地面交通工具而言这些都是高风险，但是对于飞行器而言，其在飞行时，不会受上述这些灾害的影响。再如，地面交通工具几乎不会考虑云团是否造成自身外壳结冰，而飞行的飞行器会较关注机身结冰的风险。故该类风险等级划分时，需要将天气和灾害的危险等级、飞行器抗性特点和空管指令等因素进行综合考虑。</div>
+<div class="description-paragraph" id="p0134" num="n0063">雷电风险等级-R3类风险：该风险严格来讲是属于天气风险，但由于其对飞行器而言的影响较大的风险，尤其是对于低空空域(3000米以下)，云地间的雷电放电会比高空更频繁。风险等级划分依据：季节因素、飞行器设计抗性(如防雷设计&amp;举措)、地面有无雷电探测系统和空管指令等因素。</div>
+<div class="description-paragraph" id="p0135" num="n0064">感知信息异常等级-R4类风险：该风险主要是来源于飞行器上的各种传感器设备/系统，即根据采集到的速度、高度、航向、加速度、姿态等数值时，发现异常，如：</div>
+<div class="description-paragraph" id="p0136">（1）多个传感器采集同一信息对象而数值不一致时的等级划分；</div>
+<div class="description-paragraph" id="p0137">（2）采集到的对象数值与常识、飞机状态、外部环境或空管分享不一致时的不同等级划分；</div>
+<div class="description-paragraph" id="p0138">（3）采集到的相关信息对象的数值相抵触或矛盾时的等级划分；</div>
+<div class="description-paragraph" id="p0139">（4）上述多个情况同时出现时的等级划分。</div>
+<div class="description-paragraph" id="p0140" num="n0065">机载设备状态异常等级-R5类风险：该风险主要来源于飞行器的飞管计算机对于机载关键设备的监测，如对动力系统、空速管、大气数据系统(主要采集和计算空速、迎角角度、侧滑角角度、大气高度等)、高度表、导航系统、ADS-B系统、空中管制系统(简称ATC，用于给地面空管进行询问、识别和监控，其包括交通避撞系统TCAS，但TCAS相关风险等级划归在“避撞应急等级”中)、空对空通信系统、空对地通信系统和气象雷达等的检测。根据：机载设备关乎飞行安全的重要性、异常设备能否通过其他设备/方式/空管指挥等进行替代、异常状态的严重程度(与飞行风险的相关程度)这几个关键因素对“机载设备状态异常等级”进行划分；</div>
+<div class="description-paragraph" id="p0141">飞行器避撞应急等级-R6类风险：影响此项等级划分的主要来源于：空域其他飞行器ADS-B广播、空管中心指令/分享、飞行器间交通防撞系统(TCAS)的S模式询问和应答，以及飞行器的态势感知系统等。等级划分依据：</div>
+<div class="description-paragraph" id="p0142">（1）以与空域中存在碰撞风险的飞行器的水平方向(包含前后和侧向)距离远近划分等级；</div>
+<div class="description-paragraph" id="p0143">（2）以与空域中存在碰撞风险的飞行器的垂直方向距离远近划分等级；</div>
+<div class="description-paragraph" id="p0144">（3）掌握对象飞行器的信息的详尽程度划分等级，掌握得越详细风险等级越低，如对于不明飞行信息的飞行器该项风险就高；</div>
+<div class="description-paragraph" id="p0145">（4）对象飞行器的飞行轨迹预知程度，预知程度越高风险等级越低，比如其为执行正常任务执飞的飞机且有向外分享飞行计划线路则其风险低，而对于飞行轨迹不定或难以准确感知(如人为随意操控)，此项风险就高。</div>
+<div class="description-paragraph" id="p0146" num="n0066">紧急避让情况等级-R7类风险：紧急避让情况的主要来源于：突发的、不可提前预知的避让情况，如突然进入航路/航线的：飞鸟、飞行动物、飞虫、风筝、气球、其他上方空域飞行器掉落零部件，以及大风吹来的异物，甚至是突然坠落的其他飞行器等。风险等级划分依据该紧急情况的概率性和影响大小：</div>
+<div class="description-paragraph" id="p0147">（1）概率性大且影响大的为高风险等级；</div>
+<div class="description-paragraph" id="p0148">（2）概率小且影响小的为低风险等级；</div>
+<div class="description-paragraph" id="p0149">（3）中间的等级根据划分概率性和影响性来综合判定等级。</div>
+<div class="description-paragraph" id="p0150" num="n0067">其中，“紧急避让风险等级”与“飞行器避撞应急等级”有区别，前者为后者的补充，其关键的风险特点是“突发”。此外还要分两种情况：</div>
+<div class="description-paragraph" id="p0151">1)尚有时间供飞行器处理的突发情况，此时按照本发明实施例中的方法进行对比和计算以处理“紧急避让情况”即可；</div>
+<div class="description-paragraph" id="p0152">2)当情况瞬时突发，没有足够时间来进行本发明实施例中的“紧急避让情况”处理，处理方式为：</div>
+<div class="description-paragraph" id="p0153">由飞行员进行手动迅速处理，或飞行器的飞管系统进行紧急处理。如果迅速处理失败，发生了碰撞，那么按照本发明实施例中与飞行器机身和机载设备相关的“感知信息异常等级-R4类风险”“机载设备状态异常等级-R5类风险”的描述进行处理。</div>
+<div class="description-paragraph" id="p0154" num="n0068">地面活动影响等级-R8类风险：地面人类活动对飞行安全的影响，对于高空空域而言地面活动的影响有限，但是对于3000m以下的低空空域，受地面活动的影响较大。地面活动的影响主要是指：如地面火灾、人造烟尘、人造强风场、人造强电场、人造强磁场、人造强热源、人造强光源、有毒有害气体泄露等。合理的地面的人类活动本身并没有所谓的风险，但当其影响飞行器飞行安全时就成为了风险，故而，“地面活动影响等级”的划分依据该项风险对飞行器飞行安全的影响大小：</div>
+<div class="description-paragraph" id="p0155">（1）考虑飞行器有无人(无人：无人驾驶同时没有载有乘客)时：</div>
+<div class="description-paragraph" id="p0156">地面火灾产生的烟尘、人造烟尘，以及有毒有害气体泄露都会对机上的人员的人身健康和安全产生影响，其风险等级必然会相应提高。而对于无人飞行器(如无人货运，或载人飞行器执行不载客的无人驾驶)，以上会影响到人的风险此时就低；</div>
+<div class="description-paragraph" id="p0157">（2）考虑自动驾驶还是飞行员驾驶时：</div>
+<div class="description-paragraph" id="p0158">当为飞行员驾驶时，地面火灾产生的烟尘、人造烟尘、人造强光源和有毒有害气体这些会降低能见度，以及影响飞行员身体舒适度的因素，都会影响飞行员操作，风险等级判断会相应提高；</div>
+<div class="description-paragraph" id="p0159">当飞行器进行自动驾驶时，地面火灾产生的烟尘、人造烟尘、人造强光源和有毒有害气体这些虽然降低能见度，但是飞行器可以借助导航设备进行自主飞行，此时这些风险因素的等级较飞行员驾驶低。出现人造强风场时，飞行器控制律辅助的自动增稳比飞行员驾驶反应更加迅速和准确，处理也更科学，所以此时虽是相同的风险，但最终等级判断更低。</div>
+<div class="description-paragraph" id="p0160" num="n0069">而对于人造强电场、人造强磁场和人造强热源，当这些因素损坏关键航电/机载设备，或超过航电设备的抗干扰上限，导致某些关键航电/机载设备功能性能下降甚至“宕机”，此时：</div>
+<div class="description-paragraph" id="p0161">其中一种情况，由人类飞行员驾驶时，可以依据人类飞行员的素质进行人为操作来，取代/修正这些因素对飞行器的影响，此时人类飞行员驾驶比飞行器自动驾驶风险等级更低；</div>
+<div class="description-paragraph" id="p0162">其中另一种情况，此时人类飞行员可能面对复杂的情况人为操作可能有短板。而飞行器自动驾驶时可通过飞行器自身的感知和算法，在发现受到影响时，可以通过飞管系统自行采取增稳措施。此种情况下，飞行器自动驾驶比人类飞行员驾驶风险等级更低。</div>
+<div class="description-paragraph" id="p0163" num="n0070">（3）在面对如上的各种因素时，光靠“地面活动影响”的各因素来划分和判断风险等级时不够的，需要结合“机载设备状态异常等级”、“感知信息异常等级”，以及“航线/航路管制风险等级(空管中心在接收到关于地面活动的通报后，可能会直接给空域飞机下达各种指令或建议)”，多个风险等级的评判来综合给出该风险类别的最终等级评定/评分。</div>
+<div class="description-paragraph" id="p0164" num="n0071">其他风险类别-Rn类风险：根据实际情况，逐渐补充和完善；</div>
+<div class="description-paragraph" id="p0165">综上，各风险类别中的等级划分既相互独立又相互关联，最终的最终等级评定/评分需要综合各种等级类别；各类别的风险等级划定后，建立成库，并发送到飞管系统的存储介质和空管中心中进行保存，在需要使用时直接发送调取请求即可。</div>
+<div class="description-paragraph" id="p0166" num="n0072">本实施例通过上述方案，具体通过采集飞行和/或飞行器相关的历史过往信息；基于所述历史过往信息进行风险类别划分，得到风险分类标准；基于所述历史过往信息对所述风险分类标准进行等级划分，得到风险等级标准；基于所述历史过往信息对所述风险等级标准进行分值赋值，得到风险等级评分标准；根据所述风险分类标准、风险等级标准和/或风险等级评分标准构建所述飞行风险等级库，以用于对所述飞行相关风险信息进行归类评分。通过将各风险中的在同一空域、同一运营范围、相同飞行环境或相同飞行器类型下，提炼出的共性风险因素和等级构成飞行风险等级库，以用于对飞行相关风险信息进行归类评分，从而提高了低空飞行的安全性。</div>
+<div class="description-paragraph" id="p0167" num="n0073">参照图4，图4为图2实施例中步骤S20的具体流程示意图。本实施例基于上述图2所示的实施例，在本实施例中，上述步骤S20包括：</div>
+<div class="description-paragraph" id="p0168">步骤S201，基于所述飞行风险等级库，将所述飞行相关风险信息与所述风险分类标准进行匹配，得到各风险分类；</div>
+<div class="description-paragraph" id="p0169">步骤S202，将所述各风险分类中的风险信息与所述风险等级标准进行匹配，得到各风险分类等级；</div>
+<div class="description-paragraph" id="p0170">步骤S203，将所述各风险分类等级中的风险信息与所述风险等级评分标准进行比对，计算得到所述各风险评分。</div>
+<div class="description-paragraph" id="p0171" num="n0074">通过各渠道获取到实时的飞行相关风险信息后，即可将飞行相关风险信息导入预先构建的飞行风险等级库，在飞行风险等级库中，基于历史过往信息对各风险中的在同一空域、同一运营范围、相同飞行环境或相同飞行器类型下，提炼出了共性风险因素和等级，并对各风险等级进行了分值赋值，因此可以将导入的飞行相关风险信息与飞行相关风险等级库中的风险分类标准进行匹配，确定所属的各风险分类，进而与风险等级标准进行匹配，确定各类风险的等级，并进一步与风险等级评分标准进行比对，得到各风险评分，并进一步添加对应的特征系数得到各修正评分。</div>
+<div class="description-paragraph" id="p0172" num="n0075">可选地，航线/航路管制风险等级划分表可参照表1：</div>
+<div class="description-paragraph" id="p0173">表1、 R1类风险-航线/航路管制风险等级划分表</div>
+<div class="description-paragraph" id="p0174">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/75/41/3f/8d33f3859dbc2f/18119DEST_PATH_IMAGE001.png"><img alt="Figure 18119DEST_PATH_IMAGE001" class="patent-full-image" file="18119DEST_PATH_IMAGE001.GIF" he="369" height="1476" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_0.png" wi="600" width="2400"/></a></div>
+</div>
+<div class="description-paragraph" id="p0175">其中，风险A1与评分La1，A2与La2，…，Ax与Lax，…，An与Lan一一对应；特征因素AS1与特征系数Ca1，AS2与Ca2，…，ASy与Cay，…，ASn与Can一一对应；结合“风险程度评分”和“特征系数”计算得分S1：</div>
+<div class="description-paragraph" id="p0176">S1=(Lax) Δ(Cay)，其中Δ为运算符或算法其具体细节由软件/算法工程师依据实际需求来制定编写，其中，当Δ为运算符号时，可以直接根据运算关系计算得分；当Δ为算法时，可以表示“风险程度评分”和“特征系数”之间的关联关系，进而基于特定算法得到对应的得分。x与y没有关系只取决于各自对应的“风险等级”和“特征因素”，若该风险无需使用“特征系数”则不添加“特征系数”进行修正计算即可。</div>
+<div class="description-paragraph" id="p0177" num="n0076">可选地，天气&amp;灾害风险等级划分表可参照表2：</div>
+<div class="description-paragraph" id="p0178">表2、 R2类风险-天气&amp;灾害风险等级划分表</div>
+<div class="description-paragraph" id="p0179">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/df/00/57/2c1a4efa5c2b59/886849DEST_PATH_IMAGE002.png"><img alt="Figure 886849DEST_PATH_IMAGE002" class="patent-full-image" file="886849DEST_PATH_IMAGE002.GIF" he="467" height="1868" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_1.png" wi="609" width="2436"/></a></div>
+</div>
+<div class="description-paragraph" id="p0180">其中，风险B1与评分Lb1，B2与Lb2，…，Bx与Lbx，…，Bn与Lbn一一对应；特征因素BS1与特征系数Cb1，BS2与Cb2，…BSy与Cby，…，BSn与Cbn一一对应；结合“风险程度评分”和“特征系数”计算得分S2：</div>
+<div class="description-paragraph" id="p0181">S2=(Lbx) Δ(Cby)，</div>
+<div class="description-paragraph" id="p0182">当有多种天气&amp;灾害风险因素时：</div>
+<div class="description-paragraph" id="p0183">S2=[(Lbx1) Δ(Cby1)] Δ [(Lbx2) Δ(Cby2] Δ…</div>
+<div class="description-paragraph" id="p0184">其中Δ为运算符或算法其具体细节由软件/算法工程师依据实际需求来制定编写，其中，当Δ为运算符号时，可以直接根据运算关系计算得分；当Δ为算法时，可以表示“风险程度评分”和“特征系数”之间的关联关系，进而基于特定算法得到对应的得分。x1与y1， x2与y2，…没有关系只取决于各自对应的“风险等级”和“特征因素”，若该风险无需使用“特征系数”则不添加“特征系数”进行修正计算即可。</div>
+<div class="description-paragraph" id="p0185" num="n0077">可选地，雷电风险等级划分表可参照表3：</div>
+<div class="description-paragraph" id="p0186">表3、 R3类风险-雷电风险等级划分表</div>
+<div class="description-paragraph" id="p0187">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/4a/b0/76/fc53c282cae143/906757DEST_PATH_IMAGE003.png"><img alt="Figure 906757DEST_PATH_IMAGE003" class="patent-full-image" file="906757DEST_PATH_IMAGE003.GIF" he="499" height="1996" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_2.png" wi="609" width="2436"/></a></div>
+</div>
+<div class="description-paragraph" id="p0188">其中，风险C1与评分Lc1，C2与Lc2，…，Cx与Lcx，…，Cn与Lcn一一对应；特征因素CS1与特征系数Cc1，CS2与Cc2，…，CSy与Ccy，…，CSn与Ccn一一对应；结合“风险程度评分”和“特征系数”计算得分S3：</div>
+<div class="description-paragraph" id="p0189">S3=(Lcx) Δ(Ccy)，</div>
+<div class="description-paragraph" id="p0190">当有多种天气&amp;灾害风险因素时：</div>
+<div class="description-paragraph" id="p0191">S3=[(Lcx1) Δ(Ccy1)] Δ [(Lcx2) Δ(Ccy2] Δ…</div>
+<div class="description-paragraph" id="p0192">其中Δ为运算符或算法其具体细节由软件/算法工程师依据实际需求来制定编写，x1与y1， x2与y2，…没有关系只取决于各自对应的“风险等级”和“特征因素”，若该风险无需使用“特征系数”则不添加“特征系数”进行修正计算即可。</div>
+<div class="description-paragraph" id="p0193" num="n0078">可选地，感知信息异常等级划分表可参照表4：</div>
+<div class="description-paragraph" id="p0194">表4、 R4类风险-感知信息异常等级划分表</div>
+<div class="description-paragraph" id="p0195">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/e9/c1/fd/9973e5510f8fa6/315873DEST_PATH_IMAGE004.png"><img alt="Figure 315873DEST_PATH_IMAGE004" class="patent-full-image" file="315873DEST_PATH_IMAGE004.GIF" he="697" height="2788" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_3.png" wi="611" width="2444"/></a></div>
+</div>
+<div class="description-paragraph" id="p0196">其中，风险D1与评分Ld1，D2与Ld2，…，Dx与Ldx，…，Dn与Ldn一一对应；特征因素DS1与特征系数Cd1，DS2与Cd2，…，DSy与Cdy，…，DSn与Cdn一一对应；结合“风险程度评分”和“特征系数”计算得分S4：</div>
+<div class="description-paragraph" id="p0197">S4=(Ldx) Δ(Cdy)，</div>
+<div class="description-paragraph" id="p0198">当有多种天气&amp;灾害风险因素时：</div>
+<div class="description-paragraph" id="p0199">S4=[(Ldx1) Δ(Cdy1)] Δ [(Ldx2) Δ(Cdy2] Δ…</div>
+<div class="description-paragraph" id="p0200">其中Δ为运算符或算法其具体细节由软件/算法工程师依据实际需求来制定编写，x1与y1， x2与y2，…没有关系只取决于各自对应的“风险等级”和“特征因素”，若该风险无需使用“特征系数”则不添加“特征系数”进行修正计算即可。</div>
+<div class="description-paragraph" id="p0201" num="n0079">可选地，机载设备状态异常等级划分表可参照表5：</div>
+<div class="description-paragraph" id="p0202">表5、 R5类风险-机载设备状态异常等级划分表</div>
+<div class="description-paragraph" id="p0203">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/77/69/07/e48af029feea95/855570DEST_PATH_IMAGE005.png"><img alt="Figure 855570DEST_PATH_IMAGE005" class="patent-full-image" file="855570DEST_PATH_IMAGE005.GIF" he="513" height="2052" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_4.png" wi="610" width="2440"/></a></div>
+</div>
+<div class="description-paragraph" id="p0204">其中，风险E1与评分Le1，E2与Le2，…，Ex与Lex，…，En与Len一一对应；特征因素ES1与特征系数Ce1，ES2与Ce2，…，ESy与Cey，…，ESn与Cen一一对应；结合“风险程度评分”和“特征系数”计算得分S5：</div>
+<div class="description-paragraph" id="p0205">S5=(Lex) Δ(Cey)，</div>
+<div class="description-paragraph" id="p0206">当有多种天气&amp;灾害风险因素时：</div>
+<div class="description-paragraph" id="p0207">S5=[(Lex1) Δ(Cey1)] Δ [(Lex2) Δ(Cey2] Δ…</div>
+<div class="description-paragraph" id="p0208">其中Δ为运算符或算法其具体细节由软件/算法工程师依据实际需求来制定编写，x1与y1， x2与y2，…没有关系只取决于各自对应的“风险等级”和“特征因素”，若该风险无需使用“特征系数”则不添加“特征系数”进行修正计算即可。</div>
+<div class="description-paragraph" id="p0209" num="n0080">可选地，飞行器避撞应急等级划分表可参照表6：</div>
+<div class="description-paragraph" id="p0210">表6、R6类风险-飞行器避撞应急等级划分表</div>
+<div class="description-paragraph" id="p0211">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/fd/a9/31/b98f060f604e10/160780DEST_PATH_IMAGE006.png"><img alt="Figure 160780DEST_PATH_IMAGE006" class="patent-full-image" file="160780DEST_PATH_IMAGE006.GIF" he="673" height="2692" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_5.png" wi="608" width="2432"/></a></div>
+</div>
+<div class="description-paragraph" id="p0212">其中，风险F1与评分Lf1，F2与Lf2，…，Fx与Lfx，…，Fn与Lfn一一对应；特征因素FS1与特征系数Cf1，FS2与Cf2，…，FSy与Cfy，…，FSn与Cfn一一对应；结合“风险程度评分”和“特征系数”计算得分S6：</div>
+<div class="description-paragraph" id="p0213">S6=(Lfx) Δ(Cfy)，</div>
+<div class="description-paragraph" id="p0214">当有多种天气&amp;灾害风险因素时：</div>
+<div class="description-paragraph" id="p0215">S6=[(Lfx1) Δ(Cfy1)] Δ [(Lfx2) Δ(Cfy2] Δ…</div>
+<div class="description-paragraph" id="p0216">其中Δ为运算符或算法其具体细节由软件/算法工程师依据实际需求来制定编写，x1与y1， x2与y2，…没有关系只取决于各自对应的“风险等级”和“特征因素”，若该风险无需使用“特征系数”则不添加“特征系数”进行修正计算即可。</div>
+<div class="description-paragraph" id="p0217" num="n0081">可选地，紧急避让情况等级划分表可参照表7：</div>
+<div class="description-paragraph" id="p0218">表7、 R7类风险-紧急避让情况等级划分表</div>
+<div class="description-paragraph" id="p0219">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/0c/ae/30/26f282e8c90259/464723DEST_PATH_IMAGE007.png"><img alt="Figure 464723DEST_PATH_IMAGE007" class="patent-full-image" file="464723DEST_PATH_IMAGE007.GIF" he="670" height="2680" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_6.png" wi="611" width="2444"/></a></div>
+</div>
+<div class="description-paragraph" id="p0220">其中，风险G1与评分Lg1，G2与Lg2，…，Gx与Lgx，…，Gn与Lgn一一对应；特征因素GS1与特征系数Cg1，GS2与Cg2，…，GSy与Cgy，…，GSn与Cgn一一对应；结合“风险程度评分”和“特征系数”计算得分S7：</div>
+<div class="description-paragraph" id="p0221">S7=(Lgx) Δ(Cgy)，</div>
+<div class="description-paragraph" id="p0222">当有多种天气&amp;灾害风险因素时：</div>
+<div class="description-paragraph" id="p0223">S7=[(Lgx1) Δ(Cgy1)] Δ [(Lgx2) Δ(Cgy2] Δ…</div>
+<div class="description-paragraph" id="p0224">其中Δ为运算符或算法其具体细节由软件/算法工程师依据实际需求来制定编写，x1与y1， x2与y2，…没有关系只取决于各自对应的“风险等级”和“特征因素”，若该风险无需使用“特征系数”则不添加“特征系数”进行修正计算即可。</div>
+<div class="description-paragraph" id="p0225" num="n0082">需要说明的是，紧急避让情况时突发情况，其分为两种情况：</div>
+<div class="description-paragraph" id="p0226">尚有时间供飞行器处理的突发情况，此时按照本发明实施例中的方法进行对比和计算以处理“紧急避让情况”即可；</div>
+<div class="description-paragraph" id="p0227">当情况瞬时突发，没有足够时间来进行本专利本章节中的“紧急避让情况”处理，处理方式为：</div>
+<div class="description-paragraph" id="p0228">由飞行员进行手动迅速处理，或飞行器自行进行紧急处理。如果迅速处理失败，发生了碰撞，那么按照本专利中与飞行器机身和机载设备相关的“感知信息异常等级-R4类风险”“机载设备状态异常等级-R5类风险”的描述进行处理。</div>
+<div class="description-paragraph" id="p0229" num="n0083">可选地，地面活动影响等级划分表可参照表8：</div>
+<div class="description-paragraph" id="p0230">表8、 R8类风险-地面活动影响等级划分表</div>
+<div class="description-paragraph" id="p0231">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/74/97/f0/80788e630dc202/552896DEST_PATH_IMAGE008.png"><img alt="Figure 552896DEST_PATH_IMAGE008" class="patent-full-image" file="552896DEST_PATH_IMAGE008.GIF" he="475" height="1900" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_7.png" wi="608" width="2432"/></a></div>
+</div>
+<div class="description-paragraph" id="p0232">其中，风险H1与评分Lh1，H2与Lh2，…，Hx与Lhx，…，Hn与Lhn一一对应；特征因素HS1与特征系数Ch1，HS2与Ch2，…，HSy与Chy，…，HSn与Chn一一对应；结合“风险程度评分”和“特征系数”计算得分S6：</div>
+<div class="description-paragraph" id="p0233">S8=(Lhx) Δ(Chy)，</div>
+<div class="description-paragraph" id="p0234">当有多种天气&amp;灾害风险因素时：</div>
+<div class="description-paragraph" id="p0235">S8=[(Lhx1) Δ(Chy1)] Δ [(Lhx2) Δ(Cfy2] Δ…</div>
+<div class="description-paragraph" id="p0236">其中Δ为运算符或算法其具体细节由软件/算法工程师依据实际需求来制定编写，x1与y1， x2与y2，…没有关系只取决于各自对应的“风险等级”和“特征因素”，若该风险无需使用“特征系数”则不添加“特征系数”进行修正计算即可。</div>
+<div class="description-paragraph" id="p0237" num="n0084">进一步地，对各项评判等级/分值进行汇总计算：</div>
+<div class="description-paragraph" id="p0238">进行计算有两种途径：</div>
+<div class="description-paragraph" id="p0239">（1）依靠软件编程，在飞管计算机或在空管中心其中一侧，或者在飞管计算机和空管中心两侧同时，进行运算或者算法计算；</div>
+<div class="description-paragraph" id="p0240">（2）借助逻辑判断硬件电路/设备(如FPGA、CPLD等逻辑器件和电路)与软件结合，在飞管计算机或在空管中心其中一侧，或者在飞管计算机和空管中心两侧同时，进行运算或者算法计算。</div>
+<div class="description-paragraph" id="p0241" num="n0085">汇总计算：S=S1 Δ S2 Δ S3 Δ…Δ Sn</div>
+<div class="description-paragraph" id="p0242">其中，Δ为运算符或算法其具体细节由软件/算法工程师依据实际需求来制定编写。</div>
+<div class="description-paragraph" id="p0243" num="n0086">需要说明的是，根据风险的情况，当实际飞行时风险只为上述分类中的某一种，那么计算出的值为“单项值”。当实际飞行时，同时出现两类或以上的风险时，那么计算出的值为“多项总值”</div>
+<div class="description-paragraph" id="p0244">本实施例通过上述方案，具体通过基于所述飞行风险等级库，将所述飞行相关风险信息与所述风险分类标准进行匹配，得到各风险分类；将所述各风险分类中的风险信息与所述风险等级标准进行匹配，得到各风险分类等级；将所述各风险分类等级中的风险信息与所述风险等级评分标准进行比对，计算得到所述各风险评分。通过预先构建的飞行风险等级库，提炼出飞行中的共性风险因素和等级，从而对飞行相关风险信息进行准确归类和评分；通过特征系数，对引起风险的非共性元素作为评分修正方式，使所得的目标风险值更加科学、准确，更好地用于应急航路航线生成和处理机制，从而提高了低空飞行的安全性。</div>
+<div class="description-paragraph" id="p0245" num="n0087">此外，本发明实施例还提出一种低空飞行风险控制装置，所述低空飞行风险控制装置包括：</div>
+<div class="description-paragraph" id="p0246">获取模块，用于获取飞行相关风险信息；</div>
+<div class="description-paragraph" id="p0247">归类模块，用于基于预先构建的飞行风险等级库，对所述飞行相关风险信息进行归类评分，得到各风险评分；</div>
+<div class="description-paragraph" id="p0248">修正模块，用于通过添加特征系数对所述各风险评分进行修正，得到各修正评分；</div>
+<div class="description-paragraph" id="p0249">计算模块，用于基于所述各修正评分计算各风险得分，并对所述各风险得分进行汇总计算，得到目标风险值。</div>
+<div class="description-paragraph" id="p0250" num="n0088">参照图5，图5为本发明实施例中的飞行风险等级判定和计算评分的整体流程示意图，如图5所示，飞行风险等级判定和计算评分方法的步骤包括：</div>
+<div class="description-paragraph" id="p0251">第一步：导入：导入实际风险中获取的风险相关信息；</div>
+<div class="description-paragraph" id="p0252">第二步：归类和分级：与“飞行风险等级库”中比较，首先通过比对将实际风险信息匹配到相应的风险分类中；</div>
+<div class="description-paragraph" id="p0253">第三步：对比和评分：在各类风险大项中，再次比对，从而将实际获取的风险信息与相应的风险等级匹配，得到相应的风险等级对应的评分；</div>
+<div class="description-paragraph" id="p0254">第四步：添加“特征系数”进行修正：根据风险特征和实际影响因素，选择合适；</div>
+<div class="description-paragraph" id="p0255">第五步：计算得分：将得到的风险评分与特定对应“特征系数”进行计算（使用运算或者算法），得出一个修正后的值；</div>
+<div class="description-paragraph" id="p0256">第六步：汇总计算：将得出的各风险类别和等级修正后(若该风险无需使用“特征系数”则不添加“特征系数”进行修正计算即可)的评分进行汇总计算，得出最终的风险值。</div>
+<div class="description-paragraph" id="p0257" num="n0089">此外，本发明实施例还提出一种飞行器，所述飞行器包括存储器、处理器及存储在所述存储器上并可在所述处理器上运行的低空飞行风险控制程序，所述低空飞行风险控制程序被所述处理器执行时实现如上所述的低空飞行风险控制方法的步骤。</div>
+<div class="description-paragraph" id="p0258" num="n0090">由于本低空飞行风险控制程序被处理器执行时，采用了前述所有实施例的全部技术方案，因此至少具有前述所有实施例的全部技术方案所带来的所有有益效果，在此不再一一赘述。</div>
+<div class="description-paragraph" id="p0259" num="n0091">此外，本发明实施例还提出一种计算机可读存储介质，所述计算机可读存储介质上存储有低空飞行风险控制程序，所述低空飞行风险控制程序被处理器执行时实现如上所述的低空飞行风险控制方法的步骤。</div>
+<div class="description-paragraph" id="p0260" num="n0092">由于本低空飞行风险控制程序被处理器执行时，采用了前述所有实施例的全部技术方案，因此至少具有前述所有实施例的全部技术方案所带来的所有有益效果，在此不再一一赘述。</div>
+<div class="description-paragraph" id="p0261" num="n0093">相比现有技术，本发明实施例提出的低空飞行风险控制方法、装置、飞行器以及存储介质，通过获取飞行相关风险信息；基于预先构建的飞行风险等级库，对所述飞行相关风险信息进行归类评分，得到各风险评分；通过添加特征系数对所述各风险评分进行修正，得到各修正评分；基于所述各修正评分计算各风险得分，并对所述各风险得分进行汇总计算，得到目标风险值。通过预先构建的飞行风险等级库，提炼出飞行中的共性风险因素和等级，从而对飞行相关风险信息进行准确归类和评分；通过特征系数，对引起风险的非共性元素作为评分修正方式，使所得的目标风险值更加科学、准确，更好地用于应急航路航线生成和处理机制，从而提高了低空飞行的安全性。</div>
+<div class="description-paragraph" id="p0262" num="n0094">需要说明的是，在本文中，术语“包括”、“包含”或者其任何其他变体意在涵盖非排他性的包含，从而使得包括一系列要素的过程、方法、物品或者系统不仅包括那些要素，而且还包括没有明确列出的其他要素，或者是还包括为这种过程、方法、物品或者系统所固有的要素。在没有更多限制的情况下，由语句“包括一个……”限定的要素，并不排除在包括该要素的过程、方法、物品或者系统中还存在另外的相同要素。</div>
+<div class="description-paragraph" id="p0263" num="n0095">上述本申请实施例序号仅仅为了描述，不代表实施例的优劣。</div>
+<div class="description-paragraph" id="p0264" num="n0096">通过以上的实施方式的描述，本领域的技术人员可以清楚地了解到上述实施例方法可借助软件加必需的通用硬件平台的方式来实现，当然也可以通过硬件，但很多情况下前者是更佳的实施方式。基于这样的理解，本申请的技术方案本质上或者说对现有技术做出贡献的部分可以以软件产品的形式体现出来，该计算机软件产品存储在如上的一个存储介质(如ROM/RAM、磁碟、光盘)中，包括若干指令用以使得一台飞行器执行本申请每个实施例的方法。</div>
+<div class="description-paragraph" id="p0265" num="n0097">以上仅为本发明的优选实施例，并非因此限制本发明的专利范围，凡是利用本发明说明书及附图内容所作的等效结构或等效流程变换，或直接或间接运用在其他相关的技术领域，均同理包括在本发明的专利保护范围内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

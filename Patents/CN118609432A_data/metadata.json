@@ -1,0 +1,86 @@
+{
+    "patent_id": "CN118609432A",
+    "title": "CN118609432A - 一种低空交通全数字路口飞行器控制方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Zhuhai Genu Information Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN118609432A/zh",
+    "citations": [
+        {
+            "Publication Number": "US20120191333A1 (en) *",
+            "Priority Date": "2011-01-25",
+            "Publication Date": "2012-07-26",
+            "Assignee": "Sawhill Bruce K",
+            "Title": "Method and apparatus for dynamic aircraft trajectory management",
+            "Link": "https://patents.google.com/patent/US20120191333A1/en"
+        },
+        {
+            "Publication Number": "US20200324901A1 (en) *",
+            "Priority Date": "2017-12-29",
+            "Publication Date": "2020-10-15",
+            "Assignee": "SZ DJI Technology Co., Ltd.",
+            "Title": "Control method for unmanned aerial vehicle, flight controller and unmanned aerial vehicle",
+            "Link": "https://patents.google.com/patent/US20200324901A1/en"
+        },
+        {
+            "Publication Number": "US20210373580A1 (en) *",
+            "Priority Date": "2020-05-21",
+            "Publication Date": "2021-12-02",
+            "Assignee": "Edgar Emilio Morales Delgado",
+            "Title": "System and method for autonomous air traffic control of unmanned aerial vehicles",
+            "Link": "https://patents.google.com/patent/US20210373580A1/en"
+        },
+        {
+            "Publication Number": "KR20230083846A (ko) *",
+            "Priority Date": "2021-12-03",
+            "Publication Date": "2023-06-12",
+            "Assignee": "주식회사 네이비",
+            "Title": "3차원 환경에서의 항공 차량 이동노선 계획 방법",
+            "Link": "https://patents.google.com/patent/KR20230083846A/ko"
+        },
+        {
+            "Publication Number": "CN115966108A (zh) *",
+            "Priority Date": "2023-01-06",
+            "Publication Date": "2023-04-14",
+            "Assignee": "中国商用飞机有限责任公司北京民用飞机技术研究中心",
+            "Title": "一种基于弹性电子围栏机制的飞机场面避撞方法及系统",
+            "Link": "https://patents.google.com/patent/CN115966108A/zh"
+        },
+        {
+            "Publication Number": "CN115953918A (zh) *",
+            "Priority Date": "2023-01-13",
+            "Publication Date": "2023-04-11",
+            "Assignee": "中国人民解放军战略支援部队信息工程大学",
+            "Title": "一种飞行器计划航线的时空冲突检测方法",
+            "Link": "https://patents.google.com/patent/CN115953918A/zh"
+        },
+        {
+            "Publication Number": "CN116486655A (zh) *",
+            "Priority Date": "2023-05-06",
+            "Publication Date": "2023-07-25",
+            "Assignee": "南京航空航天大学",
+            "Title": "一种城市低空无人机航路构型设计方法",
+            "Link": "https://patents.google.com/patent/CN116486655A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN119199360A (zh) *",
+            "Priority Date": "2024-11-25",
+            "Publication Date": "2024-12-27",
+            "Assignee": "四川航空股份有限公司",
+            "Title": "基于人工智能的民航故障监测方法及系统",
+            "Link": "https://patents.google.com/patent/CN119199360A/zh"
+        },
+        {
+            "Publication Number": "CN119721476A (zh) *",
+            "Priority Date": "2024-12-10",
+            "Publication Date": "2025-03-28",
+            "Assignee": "浙江大学高端装备研究院",
+            "Title": "一种适用于低空经济的飞行器工作管理平台及方法",
+            "Link": "https://patents.google.com/patent/CN119721476A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:25:47"
+}

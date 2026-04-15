@@ -1,0 +1,106 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN115131406A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES341797797">
+<invention-title id="title1" lang="ZH">用于监视低空复杂背景下小型飞行器的鲁棒视觉跟踪方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="n0001">本发明涉及低空飞行避障技术领域，尤其涉及一种用于监视低空复杂背景下小型飞行器的鲁棒视觉跟踪方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="n0002">当前，无人机等低空空域飞行器相关技术发展迅速，被广泛应用于国民生产的各行各业。然而，随着低空空域飞行器的数量越来越多，给航空飞行、安全保卫、泄密防护、隐私保护带来了极大的威胁和挑战。</div>
+<div class="description-paragraph" id="p0005" num="n0003">为了利用计算机视觉尽可能早、尽可能远地及时发现低空空域飞行器，往往需要实施远距离探测与跟踪，这就会受到飞行器的成像尺寸小、信号弱、背景复杂、遮挡等因素的干扰，导致跟踪漂移、目标丢失等情况的发生。</div>
+<div class="description-paragraph" id="p0006" num="n0004">因此，有必要开发一种用于监视低空复杂背景下小型飞行器的鲁棒视觉跟踪方法，能够解决对低空空域飞行器进行跟踪过程中由于背景复杂、目标遮挡导致跟踪失败的问题。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="n0005">本发明旨在解决现有技术或相关技术中存在的技术问题之一。</div>
+<div class="description-paragraph" id="p0009" num="n0006">有鉴于此，本发明提出了一种用于监视低空复杂背景下小型飞行器的鲁棒视觉跟踪方法，所述鲁棒视觉跟踪方法包括如下步骤：</div>
+<div class="description-paragraph" id="p0010" num="n0007">将包含小型飞行器的待跟踪视频提取成帧，将初始帧送入混合注意力机制的主干特征提取网络提取初始目标特征，并作为模板；</div>
+<div class="description-paragraph" id="p0011" num="n0008">对于之后的每一帧，在图像搜索区域内使用混合注意力机制的主干特征提取网络提取目标特征；</div>
+<div class="description-paragraph" id="p0012" num="n0009">将所述目标特征与所述模板进行互相关生成高斯型响应图；</div>
+<div class="description-paragraph" id="p0013" num="n0010">引入遮挡感知模块，利过所述高斯型响应图判断当前帧的所述小型飞行器是否被遮挡；</div>
+<div class="description-paragraph" id="p0014" num="n0011">若所述飞行器未被遮挡，则输出所述高斯型响应图峰值位置作为所述小型飞行器的位置，同时将当前帧更新为新模板；</div>
+<div class="description-paragraph" id="p0015" num="n0012">若所述小型飞行器被遮挡，则调用基于LSTM的轨迹预测模块对遮挡后的所述小型飞行器的位置进行预测，将预测位置作为所述小型飞行器的位置，同时停止所述模板的更新；</div>
+<div class="description-paragraph" id="p0016" num="n0013">在获得所述小型飞行器的位置后，使用IoU网络确定所述小型飞行器在当前帧的最佳位置框。</div>
+<div class="description-paragraph" id="p0017" num="n0014">进一步地，所述使用混合注意力机制的主干特征提取网络提取目标特征包括：</div>
+<div class="description-paragraph" id="p0018" num="n0015">对所述主干特征提取网络ResNet-18和提取后的所述目标特征引入SeNet注意力机制来增强提取到的所述目标特征。</div>
+<div class="description-paragraph" id="p0019" num="n0016">进一步地，提取后的所述目标特征引入SeNet注意力机制包括如下步骤：</div>
+<div class="description-paragraph" id="p0020" num="n0017">通过转换函数F<sub>tr</sub>将提取的所述目标特征X∈R<sup>H′×W′×C′</sup>映射为U∈R<sup>H×W×C</sup>；</div>
+<div class="description-paragraph" id="p0021" num="n0018">通过全局平均池化F<sub>sq</sub>(·)获取每个通道映射后的所述目标特征在全局信息的通道特征描述值z<sub>i</sub>；</div>
+<div class="description-paragraph" id="p0022" num="n0019">通过Fex(·,W)对所述通道特征描述值z<sub>i</sub>进行自适应校准，通过训练过程学习对不同的特征通道的依赖程度，获取不同的所述特征通道上的权重；</div>
+<div class="description-paragraph" id="p0023" num="n0020">通过Fscale(·,·)把所述权重与映射后的所述目标特征相乘得到所述增强后的特征X′∈R<sup>H×W×C</sup>。</div>
+<div class="description-paragraph" id="p0024" num="n0021">进一步地，所述生成高斯型响应图：</div>
+<div class="description-paragraph" id="p0025" num="n0022">将经过所述主干特征提取网络得到的所述增强后的目标特征与所述模板进行互相关得到高斯型响应图，并在所述高斯型响应图找出响应值在一定范围的点，记录其位置集合为A，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/77/99/c5/9044a5fedb9fff/BDA0003732385290000021.png"><img alt="Figure BDA0003732385290000021" class="patent-full-image" file="BDA0003732385290000021.GIF" he="81" height="324" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_0.png" wi="1000" width="4000"/></a></div>其中，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/9c/13/c0/27108a1933d2e1/BDA0003732385290000022.png"><img alt="Figure BDA0003732385290000022" class="patent-full-image" file="BDA0003732385290000022.GIF" he="57" height="228" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_1.png" wi="40" width="160"/></a></div>为当前帧生成的高斯型响应图，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/0b/73/08/b7ddadfd1e9719/BDA0003732385290000023.png"><img alt="Figure BDA0003732385290000023" class="patent-full-image" file="BDA0003732385290000023.GIF" he="69" height="276" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_2.png" wi="190" width="760"/></a></div>为当前帧的高斯型响应图中所有点的响应值的平均值，(i,j)是高斯型响应图中点的坐标，η<sub>1</sub>和η<sub>2</sub>是为了保证遮挡判断的准确性而设置的参数，η<sub>1</sub>的取值范围为5-10，η<sub>2</sub>的取值范围为0.7-0.9。</div>
+<div class="description-paragraph" id="p0026" num="n0023">进一步地，判断所述目标特征是否被遮挡包括：</div>
+<div class="description-paragraph" id="p0027" num="n0024">定义所述高斯型响应图的全局遮挡距离均值D<sub>0</sub>，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/73/1d/c2/28834f02d55428/BDA0003732385290000024.png"><img alt="Figure BDA0003732385290000024" class="patent-full-image" file="BDA0003732385290000024.GIF" he="149" height="596" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_3.png" wi="676" width="2704"/></a></div>其中，n为集合A所包含点的个数，(m,n)为响应峰值f<sub>max</sub>所在位置，(i,j)为集合A中的点坐标；</div>
+<div class="description-paragraph" id="p0028" num="n0025">当所述全局遮挡距离均值D<sub>0</sub>大于设定的阈值θ且所述高斯型响应图的峰值f<sub>max</sub>小于设定的阈值ε时，判定所述小型飞行器被遮挡；否则判定所述小型飞行器未被遮挡，输出所述高斯型响应图峰值位置作为所述小型飞行器的位置。</div>
+<div class="description-paragraph" id="p0029" num="n0026">进一步地，若所述目标特征被遮挡，则调用基于LSTM的轨迹预测模块对遮挡后的所述小型飞行器位置进行预测包括：</div>
+<div class="description-paragraph" id="p0030" num="n0027">将连续k个时刻的所述小型飞行器飞行轨迹[pos<sub>t-k</sub>,…,pos<sub>t-1</sub>]作为输入，其中k为时间步长，由人为设置，可在{5,10,15,…}中选取；pos<sub>t</sub>为小型飞行器在t时刻的位置；</div>
+<div class="description-paragraph" id="p0031" num="n0028">经过一次LSTM的编码器和解码器，输出所述小型飞行器在当前帧的预测位置pos<sub>t</sub>，停止所述模板的更新，防止所述模板被遮挡物污染。</div>
+<div class="description-paragraph" id="p0032" num="n0029">进一步地，所述在获得所述小型飞行器的位置后，使用IoU网络确定所述小型飞行器在当前帧的最佳位置框包括：</div>
+<div class="description-paragraph" id="p0033" num="n0030">在获得所述小型飞行器的位置时，以所述位置为中心提取不同大小的目标框，通过与所述模板进行IoU计算，得到每个所述目标框的IoU分值，分值最大的为当前帧的所述小型飞行器的最佳位置框；</div>
+<div class="description-paragraph" id="p0034" num="n0031">将每一帧中所述小型飞行器的最佳位置框连接即可构成完整的飞行轨迹。</div>
+<div class="description-paragraph" id="p0035" num="n0032">本发明提供的技术方案可以包括以下有益效果：</div>
+<div class="description-paragraph" id="p0036" num="n0033">在主干特征提取网络中使用混合注意力机制提高目标特征之间的相互关联，增强目标的特征，降低背景杂波的影响；引入了遮挡感知模块，精确判断目标是否被遮挡，从而有针对性解决，从而实现跟踪准确率与跟踪速度的最佳性能；对遮挡的目标使用基于LSTM的轨迹预测模块预测飞行器的飞行轨迹，避免跟丢目标，从而提高低空复杂背景中的飞行器跟踪准确率和鲁棒性。</div>
+<div class="description-paragraph" id="p0037" num="n0034">应当理解的是，以上的一般描述和后文的细节描述仅是示例性和解释性的，并不能限制本发明。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0038">附图说明</div>
+<div class="description-paragraph" id="p0039" num="n0035">此处的附图被并入说明书中并构成本说明书的一部分，示出了符合本发明的实施例，并与说明书一起用于解释本发明的原理。</div>
+<div class="description-paragraph" id="p0040" num="n0036">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍，显而易见地，对于本领域普通技术人员而言，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0041" num="n0037">图1示出了根据本发明的用于监视低空复杂背景下小型飞行器的鲁棒视觉跟踪方法的步骤流程图；</div>
+<div class="description-paragraph" id="p0042" num="n0038">图2示出了根据本发明的混合注意力机制的主干特征提取网络的结构图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0043">具体实施方式</div>
+<div class="description-paragraph" id="p0044" num="n0039">这里将详细地对示例性实施例进行说明，其示例表示在附图中。下面的描述涉及附图时，除非另有表示，不同附图中的相同数字表示相同或相似的要素。以下示例性实施例中所描述的实施方式并不代表与本发明相一致的所有实施方式。相反，它们仅是与如所附权利要求书中所详述的、本发明的一些方面相一致的装置和方法的例子。</div>
+<div class="description-paragraph" id="p0045" num="n0040">
+<u>实施例</u>
+</div>
+<div class="description-paragraph" id="p0046" num="n0041">图1示出了根据本发明的用于监视低空复杂背景下小型飞行器的鲁棒视觉跟踪方法的步骤流程图。</div>
+<div class="description-paragraph" id="p0047" num="n0042">如图1所示，本实施例提供了一种用于监视低空复杂背景下小型飞行器的鲁棒视觉跟踪方法，该鲁棒视觉跟踪方法包括如下步骤：</div>
+<div class="description-paragraph" id="p0048" num="n0043">步骤1，将包含小型飞行器的待跟踪视频提取成帧，将初始帧送入混合注意力机制的主干特征提取网络提取初始目标特征，并作为模板；</div>
+<div class="description-paragraph" id="p0049" num="n0044">步骤2，对于之后的每一帧，在图像搜索区域内使用混合注意力机制的主干特征提取网络提取目标特征；</div>
+<div class="description-paragraph" id="p0050" num="n0045">步骤3，将目标特征与模板进行互相关生成高斯型响应图；</div>
+<div class="description-paragraph" id="p0051" num="n0046">步骤4，引入遮挡感知模块，利过高斯型响应图判断当前帧的小型飞行器是否被遮挡；</div>
+<div class="description-paragraph" id="p0052" num="n0047">步骤5，若飞行器未被遮挡，则输出高斯型响应图峰值位置作为小型飞行器的位置，同时将当前帧更新为新模板；</div>
+<div class="description-paragraph" id="p0053" num="n0048">步骤6，若小型飞行器被遮挡，则调用基于LSTM的轨迹预测模块对遮挡后的小型飞行器的位置进行预测，将预测位置作为小型飞行器的位置，同时停止模板的更新；</div>
+<div class="description-paragraph" id="p0054" num="n0049">步骤7，在获得小型飞行器的位置后，使用IoU网络确定小型飞行器在当前帧的最佳位置框。</div>
+<div class="description-paragraph" id="p0055" num="n0050">其中，目标特征是指经过主干特征提取网络后提取到的小型飞行器的特征；获得的小型飞行器的位置通常为理论上的小型飞行器中心点的坐标，通过IoU网络得到的是一个包含小型飞行器的目标框。</div>
+<div class="description-paragraph" id="p0056" num="n0051">在主干特征提取网络中使用混合注意力机制提高目标特征之间的相互关联，增强目标的特征，降低背景杂波的影响；引入了遮挡感知模块，精确判断目标是否被遮挡，从而有针对性解决，从而实现跟踪准确率与跟踪速度的最佳性能；对遮挡的目标使用基于LSTM的轨迹预测模块预测飞行器的飞行轨迹，避免跟丢目标，从而提高低空复杂背景中的飞行器跟踪准确率和鲁棒性。</div>
+<div class="description-paragraph" id="p0057" num="n0052">需要说明的是，鲁棒性是一个专业术语，指系统在不确定性的扰动下，具有保持某种性能不变的能力。</div>
+<div class="description-paragraph" id="p0058" num="n0053">进一步地，使用混合注意力机制的主干特征提取网络提取目标特征包括：</div>
+<div class="description-paragraph" id="p0059" num="n0054">对主干特征提取网络ResNet-18和提取后的目标特征引入SeNet注意力机制来增强提取到的目标特征。</div>
+<div class="description-paragraph" id="p0060" num="n0055">需要说明的是，在主干特征提取网络中使用混合注意力机制提高目标特征之间的相互关联，增强目标的特征，降低背景杂波的影响。</div>
+<div class="description-paragraph" id="p0061" num="n0056">图2示出了根据本发明的混合注意力机制的主干特征提取网络的结构图。</div>
+<div class="description-paragraph" id="p0062" num="n0057">如图2所示，提取后的目标特征引入SeNet注意力机制包括如下步骤：</div>
+<div class="description-paragraph" id="p0063" num="n0058">步骤201，通过转换函数F<sub>tr</sub>将提取的目标特征X∈R<sup>H′×W′×C′</sup>映射为U∈R<sup>H×W×C</sup>；</div>
+<div class="description-paragraph" id="p0064" num="n0059">步骤202，通过全局平均池化F<sub>sq</sub>(·)获取每个通道映射后的目标特征在全局信息的通道特征描述值z<sub>i</sub>；</div>
+<div class="description-paragraph" id="p0065" num="n0060">步骤203，通过Fex(·,W)对通道特征描述值z<sub>i</sub>进行自适应校准，通过训练过程学习对不同的特征通道的依赖程度，获取不同的特征通道上的权重；</div>
+<div class="description-paragraph" id="p0066" num="n0061">步骤204，通过Fscale(·,·)把权重与映射后的目标特征相乘得到增强后的特征X′∈R<sup>H×W×C</sup>。</div>
+<div class="description-paragraph" id="p0067" num="n0062">在主干特征提取网络中使用混合注意力机制提高目标特征之间的相互关联，增强目标的特征，降低背景杂波的影响。</div>
+<div class="description-paragraph" id="p0068" num="n0063">进一步地，生成高斯型响应图包括：</div>
+<div class="description-paragraph" id="p0069" num="n0064">将经过主干特征提取网络得到的增强后的目标特征与模板进行互相关得到高斯型响应图，并在高斯型响应图找出响应值在一定范围的点，记录其位置集合为A，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/80/0b/24/eb84ded15e4bab/BDA0003732385290000051.png"><img alt="Figure BDA0003732385290000051" class="patent-full-image" file="BDA0003732385290000051.GIF" he="80" height="320" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_4.png" wi="1000" width="4000"/></a></div>其中，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/95/26/72/c43bfb7028e14b/BDA0003732385290000052.png"><img alt="Figure BDA0003732385290000052" class="patent-full-image" file="BDA0003732385290000052.GIF" he="54" height="216" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_5.png" wi="40" width="160"/></a></div>为当前帧生成的高斯型响应图，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/09/39/d3/92d4bd4a3829fe/BDA0003732385290000053.png"><img alt="Figure BDA0003732385290000053" class="patent-full-image" file="BDA0003732385290000053.GIF" he="71" height="284" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_6.png" wi="192" width="768"/></a></div>为当前帧的高斯型响应图中所有点的响应值的平均值，(i,j)是高斯型响应图中点的坐标，η<sub>1</sub>和η<sub>2</sub>是为了保证遮挡判断的准确性而设置的参数，η<sub>1</sub>的取值范围为5-10，η<sub>2</sub>的取值范围为0.7-0.9。</div>
+<div class="description-paragraph" id="p0070" num="n0065">通过上述方法选取位置集合A可以更好地进行下一步全局遮挡距离均值D<sub>0</sub>的计算，从而判断遮挡的状态。</div>
+<div class="description-paragraph" id="p0071" num="n0066">进一步地，判断目标特征是否被遮挡包括：</div>
+<div class="description-paragraph" id="p0072" num="n0067">定义高斯型响应图的全局遮挡距离均值D<sub>0</sub>，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/3b/c9/06/39307754a6744e/BDA0003732385290000061.png"><img alt="Figure BDA0003732385290000061" class="patent-full-image" file="BDA0003732385290000061.GIF" he="152" height="608" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_7.png" wi="681" width="2724"/></a></div>其中，n为集合A所包含点的个数，(m,n)为响应峰值f<sub>max</sub>所在位置，(i,j)为集合A中的点坐标；</div>
+<div class="description-paragraph" id="p0073" num="n0068">当全局遮挡距离均值D<sub>0</sub>大于设定好的阈值θ且高斯型响应图的峰值f<sub>max</sub>小于设定的阈值ε时，判定小型飞行器被遮挡；否则判定小型飞行器未被遮挡，输出高斯型响应图峰值位置作为小型飞行器的位置。</div>
+<div class="description-paragraph" id="p0074" num="n0069">引入了遮挡感知模块，精确判断目标是否被遮挡，从而有针对性解决，从而实现跟踪准确率与跟踪速度的最佳性能。</div>
+<div class="description-paragraph" id="p0075" num="n0070">需要说明的是，生成高斯型响应图时，这个过程也会同时给出响应峰值的坐标。</div>
+<div class="description-paragraph" id="p0076" num="n0071">进一步地，若目标特征被遮挡，则调用基于LSTM的轨迹预测模块对遮挡后的小型飞行器位置进行预测包括：</div>
+<div class="description-paragraph" id="p0077" num="n0072">将连续k个时刻的小型飞行器飞行轨迹[pos<sub>t-k</sub>,…,pos<sub>t-1</sub>]作为输入，其中k为时间步长，由人为设置，可在{5,10,15,…}中选取；pos<sub>t</sub>为小型飞行器在t时刻的位置；</div>
+<div class="description-paragraph" id="p0078" num="n0073">经过一次LSTM的编码器和解码器，输出小型飞行器在当前帧的预测位置pos<sub>t</sub>，停止模板的更新，防止模板被遮挡物污染。</div>
+<div class="description-paragraph" id="p0079" num="n0074">其中，LSTM由Sepp Hochreiter与Jürgen Schmidhuber在1997年发表在论文《LongShort-Term Memory》中，属于本领域的常规手段，在此不再赘述。</div>
+<div class="description-paragraph" id="p0080" num="n0075">需要说明的是，通过全局遮挡距离均值D<sub>0</sub>判断小型飞行器是否被遮挡，未被遮挡则直接输出高斯型响应图峰值位置作为小型飞行器的位置pos<sub>t</sub>；当小型飞行器被遮挡后通过调用基于LSTM的轨迹预测模块预测遮挡后的小型飞行器位置pos<sub>t</sub>，根据获得的小型飞行器的位置进行后续预测。</div>
+<div class="description-paragraph" id="p0081" num="n0076">对遮挡的目标使用基于LSTM的轨迹预测模块预测飞行器的飞行轨迹，避免跟丢目标，从而提高低空复杂背景中的飞行器跟踪准确率和鲁棒性。</div>
+<div class="description-paragraph" id="p0082" num="n0077">进一步地，在获得小型飞行器的位置后，使用IoU网络确定小型飞行器在当前帧的最佳位置框包括：</div>
+<div class="description-paragraph" id="p0083" num="n0078">在获得小型飞行器的位置时，以位置为中心提取不同大小的目标框，通过与模板进行IoU计算，得到每个目标框的IoU分值，分值最大的为当前帧的小型飞行器的最佳位置框；</div>
+<div class="description-paragraph" id="p0084" num="n0079">将每一帧中小型飞行器的最佳位置框连接即可构成完整的飞行轨迹。</div>
+<div class="description-paragraph" id="p0085" num="n0080">该方法可以解决低空空域飞行器的跟踪过程中由于背景复杂、目标遮挡导致跟踪失败的问题，提升跟踪的精度和鲁棒性。</div>
+<div class="description-paragraph" id="p0086" num="n0081">本领域技术人员在考虑说明书及实践这里公开的发明后，将容易想到本发明的其它实施方案。本申请旨在涵盖本发明的任何变型、用途或者适应性变化，这些变型、用途或者适应性变化遵循本发明的一般性原理并包括本发明未公开的本技术领域中的公知常识或惯用技术手段。说明书和实施例仅被视为示例性的，本发明的真正范围和精神由下面的权利要求指出。</div>
+<div class="description-paragraph" id="p0087" num="n0082">应当理解的是，本发明并不局限于上面已经描述并在附图中示出的精确结构，并且可以在不脱离其范围进行各种修改和改变。本发明的范围仅由所附的权利要求来限制。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

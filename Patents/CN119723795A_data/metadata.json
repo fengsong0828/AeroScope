@@ -1,0 +1,61 @@
+{
+    "patent_id": "CN119723795A",
+    "title": "CN119723795A - 一种基于气象观测的低空飞行器结冰预警方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Jiangxi Meteorological Service Center Jiangxi Professional Meteorological Observatory Jiangxi Meteorological Publicity And Science Popularization Center",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119723795A/zh",
+    "citations": [
+        {
+            "Publication Number": "US6125327A (en) *",
+            "Priority Date": "1997-01-15",
+            "Publication Date": "2000-09-26",
+            "Assignee": "Harris Corporation",
+            "Title": "System for identifying and generating geographic map display of aircraft icing conditions",
+            "Link": "https://patents.google.com/patent/US6125327A/en"
+        },
+        {
+            "Publication Number": "CN111738481A (zh) *",
+            "Priority Date": "2020-04-01",
+            "Publication Date": "2020-10-02",
+            "Assignee": "南京航空航天大学",
+            "Title": "基于bp神经网络的飞机结冰气象参数mvd预测方法",
+            "Link": "https://patents.google.com/patent/CN111738481A/zh"
+        },
+        {
+            "Publication Number": "CN114549914A (zh) *",
+            "Priority Date": "2022-04-24",
+            "Publication Date": "2022-05-27",
+            "Assignee": "中国民航大学",
+            "Title": "一种飞机大面积结冰检测方法及检测系统",
+            "Link": "https://patents.google.com/patent/CN114549914A/zh"
+        },
+        {
+            "Publication Number": "CN115790597A (zh) *",
+            "Priority Date": "2022-11-14",
+            "Publication Date": "2023-03-14",
+            "Assignee": "中国民用航空华东地区空中交通管理局",
+            "Title": "一种基于卫星云图的极端天气条件下航空器改航方法",
+            "Link": "https://patents.google.com/patent/CN115790597A/zh"
+        },
+        {
+            "Publication Number": "WO2024156957A1 (fr) *",
+            "Priority Date": "2023-01-26",
+            "Publication Date": "2024-08-02",
+            "Assignee": "Safran Aerosystems",
+            "Title": "Procédé de discrimination de conditions givrantes par apprentissage automatique",
+            "Link": "https://patents.google.com/patent/WO2024156957A1/fr"
+        },
+        {
+            "Publication Number": "CN116992310A (zh) *",
+            "Priority Date": "2023-09-26",
+            "Publication Date": "2023-11-03",
+            "Assignee": "北京弘象科技有限公司",
+            "Title": "飞机积冰实时监测预警方法、系统、电子设备及介质",
+            "Link": "https://patents.google.com/patent/CN116992310A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:58:40"
+}

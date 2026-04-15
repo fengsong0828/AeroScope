@@ -1,0 +1,86 @@
+{
+    "patent_id": "CN115880332A",
+    "title": "CN115880332A - 一种低空飞行器视角的目标跟踪方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Northwestern Polytechnical University",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN115880332A/zh",
+    "citations": [
+        {
+            "Publication Number": "US20200051250A1 (en) *",
+            "Priority Date": "2018-08-08",
+            "Publication Date": "2020-02-13",
+            "Assignee": "Beihang University",
+            "Title": "Target tracking method and device oriented to airborne-based monitoring scenarios",
+            "Link": "https://patents.google.com/patent/US20200051250A1/en"
+        },
+        {
+            "Publication Number": "CN113344971A (zh) *",
+            "Priority Date": "2021-05-21",
+            "Publication Date": "2021-09-03",
+            "Assignee": "河南科技大学",
+            "Title": "一种融合卡尔曼滤波的孪生红外目标跟踪方法",
+            "Link": "https://patents.google.com/patent/CN113344971A/zh"
+        },
+        {
+            "Publication Number": "CN113744311A (zh) *",
+            "Priority Date": "2021-09-02",
+            "Publication Date": "2021-12-03",
+            "Assignee": "北京理工大学",
+            "Title": "基于全连接注意力模块的孪生神经网络运动目标跟踪方法",
+            "Link": "https://patents.google.com/patent/CN113744311A/zh"
+        },
+        {
+            "Publication Number": "CN113963032A (zh) *",
+            "Priority Date": "2021-12-01",
+            "Publication Date": "2022-01-21",
+            "Assignee": "浙江工业大学",
+            "Title": "一种融合目标重识别的孪生网络结构目标跟踪方法",
+            "Link": "https://patents.google.com/patent/CN113963032A/zh"
+        },
+        {
+            "Publication Number": "CN115272405A (zh) *",
+            "Priority Date": "2022-06-17",
+            "Publication Date": "2022-11-01",
+            "Assignee": "温州大学",
+            "Title": "一种基于孪生网络的鲁棒在线学习船舶跟踪方法",
+            "Link": "https://patents.google.com/patent/CN115272405A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN116703980A (zh) *",
+            "Priority Date": "2023-08-04",
+            "Publication Date": "2023-09-05",
+            "Assignee": "南昌工程学院",
+            "Title": "基于金字塔池化Transformer主干网络的目标跟踪方法与系统",
+            "Link": "https://patents.google.com/patent/CN116703980A/zh"
+        },
+        {
+            "Publication Number": "CN116703980B (zh) *",
+            "Priority Date": "2023-08-04",
+            "Publication Date": "2023-10-24",
+            "Assignee": "南昌工程学院",
+            "Title": "基于金字塔池化Transformer主干网络的目标跟踪方法与系统",
+            "Link": "https://patents.google.com/patent/CN116703980B/zh"
+        },
+        {
+            "Publication Number": "CN119919454A (zh) *",
+            "Priority Date": "2025-04-02",
+            "Publication Date": "2025-05-02",
+            "Assignee": "中国人民解放军军事航天部队航天工程大学",
+            "Title": "一种结合cnn和解码器的卫星视频单目标跟踪方法",
+            "Link": "https://patents.google.com/patent/CN119919454A/zh"
+        },
+        {
+            "Publication Number": "CN119919454B (zh) *",
+            "Priority Date": "2025-04-02",
+            "Publication Date": "2025-07-11",
+            "Assignee": "中国人民解放军军事航天部队航天工程大学",
+            "Title": "一种结合cnn和解码器的卫星视频单目标跟踪方法",
+            "Link": "https://patents.google.com/patent/CN119919454B/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:48:48"
+}

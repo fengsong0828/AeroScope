@@ -1,0 +1,106 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120260340A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES498635435">
+<invention-title id="title1" lang="ZH">一种低空智联网中飞行器全生命周期安全风险评估方法和
+系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空飞行的技术领域，具体地涉及一种低空智联网中飞行器全生命周期安全风险评估方法和系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空飞行器(如无人机、eVTOL等)数量的激增和应用的多元化，传统的风险评估方法传统风险评估方法依赖静态模型或人工经验，无法实时响应低空飞行器突发状态变化(如极端天气、空域冲突、设备故障等)，导致风险评估滞后，威胁飞行安全。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0005">发明内容</div>
+<div class="description-paragraph" id="p0006" num="0003">本发明实施例的目的是提供一种低空智联网中飞行器全生命周期安全风险评估方法和系统，该设备低空智联网中飞行器全生命周期安全风险评估方法和系统可以满足低空飞行器执行任务时高速机动的实时避障。</div>
+<div class="description-paragraph" id="p0007" num="0004">为了实现上述目的，本发明实施例提供一种低空智联网中飞行器全生命周期安全风险评估方法，所述低空智联网中飞行器全生命周期安全风险评估方法包括：</div>
+<div class="description-paragraph" id="p0008" num="0005">获取飞行器在全飞行周期中当前所处阶段；</div>
+<div class="description-paragraph" id="p0009" num="0006">根据当前飞行所处的阶段，确定当前动态权重分配模型；</div>
+<div class="description-paragraph" id="p0010" num="0007">获取并向当前动态权重分配模型输入所需的输入数据得到输出动态权重值，所述输入数据包括飞行器状态信息、低空基站信息和气象雷达信息；</div>
+<div class="description-paragraph" id="p0011" num="0008">根据所述动态权重分配模型的输出动态权重值确定所述飞行器的各安全风险概率，并根据所述各安全风险概率执行应急措施。</div>
+<div class="description-paragraph" id="p0012" num="0009">优选地，所述获取飞行器在全飞行周期中当前所处阶段包括：启动阶段、起飞阶段、飞行阶段、降落阶段；其中，每一个阶段对应一个动态权重分配模型；</div>
+<div class="description-paragraph" id="p0013" num="0010">所述根据当前飞行所处的阶段，确定当前动态权重分配模型包括：</div>
+<div class="description-paragraph" id="p0014" num="0011">根据当前飞行所处的阶段，获取当前飞行所处的阶段对应的当前动态权重分配模型。</div>
+<div class="description-paragraph" id="p0015" num="0012">优选地，获取并向当前动态权重分配模型输入所需的输入数据得到输出动态权重值，所述输入数据包括飞行器状态信息、低空基站信息和气象雷达信息包括：</div>
+<div class="description-paragraph" id="p0016" num="0013">根据当前动态权重分配模型的输入数据需求，建立与飞行器传感器、低空基站和/或气象雷达的连接通道；</div>
+<div class="description-paragraph" id="p0017" num="0014">通过所述数据连接通道获取相应的飞行器状态信息、低空基站信息和气象雷达信息；</div>
+<div class="description-paragraph" id="p0018" num="0015">将所述行器状态信息、低空基站信息和气象雷达信息输入当前动态权重分配模型以得到输出动态权重值。</div>
+<div class="description-paragraph" id="p0019" num="0016">优选地，所述根据所述各安全风险概率执行应急措施包括：</div>
+<div class="description-paragraph" id="p0020" num="0017">获取各安全风险概率中最大安全风险概率；以及</div>
+<div class="description-paragraph" id="p0021" num="0018">在最大安全风险概率大于预设定的概率阈值时，按照预设定的该最大安全风险对应的应急措施执行。</div>
+<div class="description-paragraph" id="p0022" num="0019">另外，本发明还提供一种低空智联网中飞行器全生命周期安全风险评估系统，所述低空智联网中飞行器全生命周期安全风险评估系统包括：</div>
+<div class="description-paragraph" id="p0023" num="0020">阶段获取单元，用于获取飞行器在全飞行周期中当前所处阶段；</div>
+<div class="description-paragraph" id="p0024" num="0021">模型确定单元，用于根据当前飞行所处的阶段，确定当前动态权重分配模型；</div>
+<div class="description-paragraph" id="p0025" num="0022">输出获取单元，用于获取并向当前动态权重分配模型输入所需的输入数据得到输出动态权重值，所述输入数据包括飞行器状态信息、低空基站信息和气象雷达信息；</div>
+<div class="description-paragraph" id="p0026" num="0023">评估执行单元，用于根据所述动态权重分配模型的输出动态权重值确定所述飞行器的各安全风险概率，并根据所述各安全风险概率执行应急措施。</div>
+<div class="description-paragraph" id="p0027" num="0024">优选地，所述获取飞行器在全飞行周期中当前所处阶段包括：启动阶段、起飞阶段、飞行阶段、降落阶段；其中，每一个阶段对应一个动态权重分配模型；</div>
+<div class="description-paragraph" id="p0028" num="0025">所述模型确定单元所述根据当前飞行所处的阶段，确定当前动态权重分配模型包括：</div>
+<div class="description-paragraph" id="p0029" num="0026">根据当前飞行所处的阶段，获取当前飞行所处的阶段对应的当前动态权重分配模型。</div>
+<div class="description-paragraph" id="p0030" num="0027">优选地，所述输出获取单元用于：</div>
+<div class="description-paragraph" id="p0031" num="0028">根据当前动态权重分配模型的输入数据需求，建立与飞行器传感器、低空基站和/或气象雷达的连接通道；</div>
+<div class="description-paragraph" id="p0032" num="0029">通过所述数据连接通道获取相应的飞行器状态信息、低空基站信息和气象雷达信息；</div>
+<div class="description-paragraph" id="p0033" num="0030">将所述行器状态信息、低空基站信息和气象雷达信息输入当前动态权重分配模型以得到输出动态权重值。</div>
+<div class="description-paragraph" id="p0034" num="0031">优选地，所述评估执行单元用于：</div>
+<div class="description-paragraph" id="p0035" num="0032">获取各安全风险概率中最大安全风险概率；以及</div>
+<div class="description-paragraph" id="p0036" num="0033">在最大安全风险概率大于预设定的概率阈值时，按照预设定的该最大安全风险对应的应急措施执行。</div>
+<div class="description-paragraph" id="p0037" num="0034">另外，本发明还提供一种机器可读存储介质，该机器可读存储介质上存储有指令，该指令用于使得机器执行上述的低空智联网中飞行器全生命周期安全风险评估方法。</div>
+<div class="description-paragraph" id="p0038" num="0035">另外，本发明还提供一种处理器，用于运行程序，其中，所述程序被运行时用于执行：上述的低空智联网中飞行器全生命周期安全风险评估方法。</div>
+<div class="description-paragraph" id="p0039" num="0036">通过上述技术方案，轻量化模型使机载端计算功耗减少，支持低算力设备(如小型无人机)本地化部署；通过动态权重分配，关键风险参数(如电池过载)的检测灵敏度提高，事故响应时间缩短。模型对复杂场景(如雷暴天气+多机协同)的风险识别准确率更高，较静态模型有较大提升；误报率降低，减少无效管控指令对飞行效率的影响。</div>
+<div class="description-paragraph" id="p0040" num="0037">本发明实施例的其它特征和优点将在随后的具体实施方式部分予以详细说明。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0041">附图说明</div>
+<div class="description-paragraph" id="p0042" num="0038">附图是用来提供对本发明实施例的进一步理解，并且构成说明书的一部分，与下面的具体实施方式一起用于解释本发明实施例，但并不构成对本发明实施例的限制。在附图中：</div>
+<div class="description-paragraph" id="p0043" num="0039">图1是说明本发明的一种低空智联网中飞行器全生命周期安全风险评估方法的流程图。</div>
+<div class="description-paragraph" id="p0044" num="0040">图2是说明本发明的低空智联网中飞行器全生命周期安全风险评估系统的模块框图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0045">具体实施方式</div>
+<div class="description-paragraph" id="p0046" num="0041">以下结合附图对本发明实施例的具体实施方式进行详细说明。应当理解的是，此处所描述的具体实施方式仅用于说明和解释本发明实施例，并不用于限制本发明实施例。</div>
+<div class="description-paragraph" id="p0047" num="0042">图1是本发明提供的一种低空智联网中飞行器全生命周期安全风险评估方法，所述低空智联网中飞行器全生命周期安全风险评估方法包括：</div>
+<div class="description-paragraph" id="p0048" num="0043">S101，获取飞行器在全飞行周期中当前所处阶段；所述获取飞行器在全飞行周期中当前所处阶段包括：启动阶段、起飞阶段、飞行阶段、降落阶段；其中，每一个阶段对应一个动态权重分配模型。因为飞行器的全生命工作场景中，不同的飞行阶段，适配于不同的权重分配模型，需要不同的输入和输出，继而便于对最终的安全风险原因进行评估。</div>
+<div class="description-paragraph" id="p0049" num="0044">S102，根据当前飞行所处的阶段，确定当前动态权重分配模型；</div>
+<div class="description-paragraph" id="p0050" num="0045">根据当前飞行所处的阶段，获取当前飞行所处的阶段对应的当前动态权重分配模型。</div>
+<div class="description-paragraph" id="p0051" num="0046">S103，获取并向当前动态权重分配模型输入所需的输入数据得到输出动态权重值，所述输入数据包括飞行器状态信息、低空基站信息和气象雷达信息；</div>
+<div class="description-paragraph" id="p0052" num="0047">其中，飞行器内置传感器(速度、姿态、电池状态)、低空智联网基站(5G-A通感一体信号)、卫星网络(空域占用信息)、气象雷达(突发天气数据)。本发明通过时空对齐模块对异构数据进行标准化处理，消除时间戳差异与量纲干扰，生成统一时空坐标系下的多维度输入矩阵。根据所述动态权重分配模型的输出动态权重值确定所述飞行器的各安全风险概率，并根据所述各安全风险概率执行应急措施。低风险(置信度≥90％)：保持飞行状态，仅记录数据；中风险(60％～90％)：通过低空智联网向操作员推送避障建议(如调整高度、减速)；高风险(&lt;60％)：自动触发应急协议(强制切换至安全航线、启动冗余电源、申请紧急降落权限)。</div>
+<div class="description-paragraph" id="p0053" num="0048">S104，根据动态权重分配模型的输出动态权重值确定所述飞行器的各安全风险概率，并根据所述各安全风险概率执行应急措施。</div>
+<div class="description-paragraph" id="p0054" num="0049">优选地，获取并向当前动态权重分配模型输入所需的输入数据得到输出动态权重值，所述输入数据包括飞行器状态信息、低空基站信息和气象雷达信息包括：</div>
+<div class="description-paragraph" id="p0055" num="0050">根据当前动态权重分配模型的输入数据需求，建立与飞行器传感器、低空基站和/或气象雷达的连接通道；</div>
+<div class="description-paragraph" id="p0056" num="0051">通过所述数据连接通道获取相应的飞行器状态信息、低空基站信息和气象雷达信息；</div>
+<div class="description-paragraph" id="p0057" num="0052">将所述行器状态信息、低空基站信息和气象雷达信息输入当前动态权重分配模型以得到输出动态权重值。</div>
+<div class="description-paragraph" id="p0058" num="0053">优选地，所述根据所述各安全风险概率执行应急措施包括：</div>
+<div class="description-paragraph" id="p0059" num="0054">获取各安全风险概率中最大安全风险概率；以及</div>
+<div class="description-paragraph" id="p0060" num="0055">在最大安全风险概率大于预设定的概率阈值90％时，按照预设定的该最大安全风险对应的应急措施执行。</div>
+<div class="description-paragraph" id="p0061" num="0056">突发强风场景：动态权重分配使“风速”参数权重从基线0.3提升至0.9，模型在更短的时间内识别到侧翻风险；对比固定权重模型，预警时间提前，避障成功率提升。当检测到周边无人机密度&gt;6架/km<sup>3</sup>时，“空域占用率”权重自动增加，冲突预测准确率提升。</div>
+<div class="description-paragraph" id="p0062" num="0057">另外，图2是本发明还提供的另外，本发明还提供一种低空智联网中飞行器全生命周期安全风险评估系统，所述低空智联网中飞行器全生命周期安全风险评估系统包括：</div>
+<div class="description-paragraph" id="p0063" num="0058">阶段获取单元，用于获取飞行器在全飞行周期中当前所处阶段；</div>
+<div class="description-paragraph" id="p0064" num="0059">模型确定单元，用于根据当前飞行所处的阶段，确定当前动态权重分配模型；</div>
+<div class="description-paragraph" id="p0065" num="0060">输出获取单元，用于获取并向当前动态权重分配模型输入所需的输入数据得到输出动态权重值，所述输入数据包括飞行器状态信息、低空基站信息和气象雷达信息；</div>
+<div class="description-paragraph" id="p0066" num="0061">评估执行单元，用于根据所述动态权重分配模型的输出动态权重值确定所述飞行器的各安全风险概率，并根据所述各安全风险概率执行应急措施。</div>
+<div class="description-paragraph" id="p0067" num="0062">优选地，所述获取飞行器在全飞行周期中当前所处阶段包括：启动阶段、起飞阶段、飞行阶段、降落阶段；其中，每一个阶段对应一个动态权重分配模型；</div>
+<div class="description-paragraph" id="p0068" num="0063">所述模型确定单元所述根据当前飞行所处的阶段，确定当前动态权重分配模型包括：</div>
+<div class="description-paragraph" id="p0069" num="0064">根据当前飞行所处的阶段，获取当前飞行所处的阶段对应的当前动态权重分配模型。</div>
+<div class="description-paragraph" id="p0070" num="0065">优选地，所述输出获取单元用于：</div>
+<div class="description-paragraph" id="p0071" num="0066">根据当前动态权重分配模型的输入数据需求，建立与飞行器传感器、低空基站和/或气象雷达的连接通道；</div>
+<div class="description-paragraph" id="p0072" num="0067">通过所述数据连接通道获取相应的飞行器状态信息、低空基站信息和气象雷达信息；</div>
+<div class="description-paragraph" id="p0073" num="0068">将所述行器状态信息、低空基站信息和气象雷达信息输入当前动态权重分配模型以得到输出动态权重值。</div>
+<div class="description-paragraph" id="p0074" num="0069">优选地，所述评估执行单元用于：</div>
+<div class="description-paragraph" id="p0075" num="0070">获取各安全风险概率中最大安全风险概率；以及</div>
+<div class="description-paragraph" id="p0076" num="0071">在最大安全风险概率大于预设定的概率阈值时，按照预设定的该最大安全风险对应的应急措施执行。</div>
+<div class="description-paragraph" id="p0077" num="0072">另外，本发明还提供一种机器可读存储介质，该机器可读存储介质上存储有指令，该指令用于使得机器执行上述的低空智联网中飞行器全生命周期安全风险评估方法。</div>
+<div class="description-paragraph" id="p0078" num="0073">另外，本发明还提供一种处理器，用于运行程序，其中，所述程序被运行时用于执行：上述的低空智联网中飞行器全生命周期安全风险评估方法。</div>
+<div class="description-paragraph" id="p0079" num="0074">本领域内的技术人员应明白，本申请的实施例可提供为方法、系统、或计算机程序产品。因此，本申请可采用完全硬件实施例、完全软件实施例、或结合软件和硬件方面的实施例的形式。而且，本申请可采用在一个或多个其中包含有计算机可用程序代码的计算机可用存储介质(包括但不限于磁盘存储器、CD-ROM、光学存储器等)上实施的计算机程序产品的形式。</div>
+<div class="description-paragraph" id="p0080" num="0075">本申请是参照根据本申请实施例的方法、设备(系统)、和计算机程序产品的流程图和/或方框图来描述的。应理解可由计算机程序指令实现流程图和/或方框图中的每一流程和/或方框、以及流程图和/或方框图中的流程和/或方框的结合。可提供这些计算机程序指令到通用计算机、专用计算机、嵌入式处理机或其他可编程数据处理设备的处理器以产生一个机器，使得通过计算机或其他可编程数据处理设备的处理器执行的指令产生用于实现在流程图一个流程或多个流程和/或方框图一个方框或多个方框中指定的功能的装置。</div>
+<div class="description-paragraph" id="p0081" num="0076">这些计算机程序指令也可存储在能引导计算机或其他可编程数据处理设备以特定方式工作的计算机可读存储器中，使得存储在该计算机可读存储器中的指令产生包括指令装置的制造品，该指令装置实现在流程图一个流程或多个流程和/或方框图一个方框或多个方框中指定的功能。</div>
+<div class="description-paragraph" id="p0082" num="0077">这些计算机程序指令也可装载到计算机或其他可编程数据处理设备上，使得在计算机或其他可编程设备上执行一系列操作步骤以产生计算机实现的处理，从而在计算机或其他可编程设备上执行的指令提供用于实现在流程图一个流程或多个流程和/或方框图一个方框或多个方框中指定的功能的步骤。</div>
+<div class="description-paragraph" id="p0083" num="0078">在一个典型的配置中，计算设备包括一个或多个处理器(CPU)、输入/输出接口、网络接口和内存。</div>
+<div class="description-paragraph" id="p0084" num="0079">存储器可能包括计算机可读介质中的非永久性存储器，随机存取存储器(RAM)和/或非易失性内存等形式，如只读存储器(ROM)或闪存(flash RAM)。存储器是计算机可读介质的示例。</div>
+<div class="description-paragraph" id="p0085" num="0080">计算机可读介质包括永久性和非永久性、可移动和非可移动媒体可以由任何方法或技术来实现信息存储。信息可以是计算机可读指令、数据结构、程序的模块或其他数据。计算机的存储介质的例子包括，但不限于相变内存(PRAM)、静态随机存取存储器(SRAM)、动态随机存取存储器(DRAM)、其他类型的随机存取存储器(RAM)、只读存储器(ROM)、电可擦除可编程只读存储器(EEPROM)、快闪记忆体或其他内存技术、只读光盘只读存储器(CD-ROM)、数字多功能光盘(DVD)或其他光学存储、磁盒式磁带，磁带磁磁盘存储或其他磁性存储设备或任何其他非传输介质，可用于存储可以被计算设备访问的信息。按照本文中的界定，计算机可读介质不包括暂存电脑可读媒体(transitory media)，如调制的数据信号和载波。</div>
+<div class="description-paragraph" id="p0086" num="0081">还需要说明的是，术语“包括”、“包含”或者其任何其他变体意在涵盖非排他性的包含，从而使得包括一系列要素的过程、方法、商品或者设备不仅包括那些要素，而且还包括没有明确列出的其他要素，或者是还包括为这种过程、方法、商品或者设备所固有的要素。在没有更多限制的情况下，由语句“包括一个……”限定的要素，并不排除在包括要素的过程、方法、商品或者设备中还存在另外的相同要素。</div>
+<div class="description-paragraph" id="p0087" num="0082">本领域技术人员应明白，本申请的实施例可提供为方法、系统或计算机程序产品。因此，本申请可采用完全硬件实施例、完全软件实施例或结合软件和硬件方面的实施例的形式。而且，本申请可采用在一个或多个其中包含有计算机可用程序代码的计算机可用存储介质(包括但不限于磁盘存储器、CD-ROM、光学存储器等)上实施的计算机程序产品的形式。</div>
+<div class="description-paragraph" id="p0088" num="0083">以上仅为本申请的实施例而已，并不用于限制本申请。对于本领域技术人员来说，本申请可以有各种更改和变化。凡在本申请的精神和原理之内所作的任何修改、等同替换、改进等，均应包含在本申请的权利要求范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

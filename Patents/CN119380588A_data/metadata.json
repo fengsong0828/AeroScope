@@ -1,0 +1,110 @@
+{
+    "patent_id": "CN119380588A",
+    "title": "CN119380588A - 一种低空飞行器实时监管及冲突预警系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Qixing Communication Technology Anhui Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119380588A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN105070105A (zh) *",
+            "Priority Date": "2015-07-29",
+            "Publication Date": "2015-11-18",
+            "Assignee": "重庆赛乐威航空科技有限公司",
+            "Title": "一种低空飞行器动态监视系统",
+            "Link": "https://patents.google.com/patent/CN105070105A/zh"
+        },
+        {
+            "Publication Number": "CN110109476A (zh) *",
+            "Priority Date": "2019-05-06",
+            "Publication Date": "2019-08-09",
+            "Assignee": "中国人民解放军军事科学院国防科技创新研究院",
+            "Title": "基于碰撞概率的异构无人飞行器自主碰撞预警方法",
+            "Link": "https://patents.google.com/patent/CN110109476A/zh"
+        },
+        {
+            "Publication Number": "CN113470440A (zh) *",
+            "Priority Date": "2021-07-09",
+            "Publication Date": "2021-10-01",
+            "Assignee": "伍文",
+            "Title": "一种无人机空域管理方法及系统",
+            "Link": "https://patents.google.com/patent/CN113470440A/zh"
+        },
+        {
+            "Publication Number": "WO2023130622A1 (zh) *",
+            "Priority Date": "2022-01-07",
+            "Publication Date": "2023-07-13",
+            "Assignee": "北京航空航天大学杭州创新研究院",
+            "Title": "基于飞行趋势推理的时空概率分布网格飞行冲突检测方法",
+            "Link": "https://patents.google.com/patent/WO2023130622A1/zh"
+        },
+        {
+            "Publication Number": "CN116859990A (zh) *",
+            "Priority Date": "2023-06-26",
+            "Publication Date": "2023-10-10",
+            "Assignee": "北京锐士装备科技有限公司",
+            "Title": "一种无人机飞行管理方法及系统",
+            "Link": "https://patents.google.com/patent/CN116859990A/zh"
+        },
+        {
+            "Publication Number": "CN117391137A (zh) *",
+            "Priority Date": "2023-11-22",
+            "Publication Date": "2024-01-12",
+            "Assignee": "浙江建德通用航空研究院",
+            "Title": "一种基于多层神经网络的飞行冲突探测方法",
+            "Link": "https://patents.google.com/patent/CN117391137A/zh"
+        },
+        {
+            "Publication Number": "CN117633640A (zh) *",
+            "Priority Date": "2023-11-23",
+            "Publication Date": "2024-03-01",
+            "Assignee": "西安交通大学城市学院",
+            "Title": "一种飞行模式识别进行无人机航迹预测方法",
+            "Link": "https://patents.google.com/patent/CN117633640A/zh"
+        },
+        {
+            "Publication Number": "CN118485189A (zh) *",
+            "Priority Date": "2024-05-29",
+            "Publication Date": "2024-08-13",
+            "Assignee": "北京航空航天大学杭州创新研究院",
+            "Title": "基于城市低空安全态势场的航线推荐方法及相关装置",
+            "Link": "https://patents.google.com/patent/CN118485189A/zh"
+        },
+        {
+            "Publication Number": "CN118280168A (zh) *",
+            "Priority Date": "2024-06-04",
+            "Publication Date": "2024-07-02",
+            "Assignee": "国科星图(深圳)数字技术产业研发中心有限公司",
+            "Title": "基于通感一体的低空空域管理方法及系统",
+            "Link": "https://patents.google.com/patent/CN118280168A/zh"
+        },
+        {
+            "Publication Number": "CN118658342A (zh) *",
+            "Priority Date": "2024-08-16",
+            "Publication Date": "2024-09-17",
+            "Assignee": "国科星图(深圳)数字技术产业研发中心有限公司",
+            "Title": "低空空域管控方法及系统",
+            "Link": "https://patents.google.com/patent/CN118658342A/zh"
+        },
+        {
+            "Publication Number": "CN119152733A (zh) *",
+            "Priority Date": "2024-11-19",
+            "Publication Date": "2024-12-17",
+            "Assignee": "中国电信股份有限公司深圳分公司",
+            "Title": "一种低空空域的飞行器管制方法、系统及终端",
+            "Link": "https://patents.google.com/patent/CN119152733A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN120075777A (zh) *",
+            "Priority Date": "2025-04-23",
+            "Publication Date": "2025-05-30",
+            "Assignee": "深圳市金固祥科技有限公司",
+            "Title": "一种用于低空飞行的应急指挥方法及系统",
+            "Link": "https://patents.google.com/patent/CN120075777A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:54:55"
+}

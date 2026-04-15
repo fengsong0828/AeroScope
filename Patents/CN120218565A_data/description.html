@@ -1,0 +1,177 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120218565A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES498261033">
+<invention-title id="title1" lang="ZH">一种低空飞行器的高效能管理与分配系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明低空飞行器管理领域，具体的说是一种低空飞行器的高效能管理与分配系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">在实际应用中，众多低空飞行器需要执行不同的飞行任务，如何合理地安排飞行器的任务执行顺序，以及在飞行器电量管理方面，确保高效充电且不超过安全阈值，同时应对突发任务，成为亟待解决的问题。现有技术中，飞行器的任务调度和充电管理通常缺乏动态调整能力，无法有效应对突发任务或充电资源的限制，导致任务执行效率低下，甚至可能引发安全隐患。</div>
+<div class="description-paragraph" id="p0005" num="0003">如授权公告号为CN106886423B的中国专利公开了分配可加载软件飞行器部件(LSAP)的方法和设备，软件飞行器部件管理设备包括：库、接收模块、代理服务器、飞行器上的机载电子分配系统和便携的软件维护工具。地面数据处理系统上的库存储和管理飞行器的软件飞行器部件。接收模块能够从供应商接收软件飞行器部件并且将软件飞行器部件发送给库。代理服务器与库通信并且能够将软件分发给多个飞行器客户系统。机载电子分配系统是飞行器客户系统并且能够通过代理服务器从库接收飞行器的软件飞行器部件。便携式软件维护工具提供将软件飞行器部件发送给飞行器的机载电子分配系统的替代途径。</div>
+<div class="description-paragraph" id="p0006" num="0004">以上现有技术存在以下问题：只涵盖了软件飞行器部件的接收、存储、分发及维护等环节，未涉及飞行器任务规划、优先级确定以及电量管理等关键方面，无法实现对飞行器运行的全面管理与优化，难以保障飞行器在执行各类任务时的高效运作；缺乏任务导向性，没有针对突发任务的应对机制，当出现紧急任务需要优先执行时，无法及时调整软件部件的分配策略。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">针对现有技术的不足，本发明提出了一种低空飞行器的高效能管理与分配系统，通过任务接收模块获取飞行任务信息并传输至任务优先级评估模块，依据评估规则生成任务优先级序列；充电管理模块实时比对飞行器电量与任务所需电量，生成充电需求列表，并制定充电策略；若突发任务响应模块接收到突发任务，任务优先级评估模块会生成突发任务优先级，高优先级突发任务对应的飞行器可插队充电或执行任务；状态监控模块实时反馈飞行器状态，并动态调整任务优先级序列与充电策略，实现对低空飞行器的高效管理，提升了使用效率，保障了飞行安全。</div>
+<div class="description-paragraph" id="p0009" num="0006">为实现上述目的，本发明提供如下技术方案：</div>
+<div class="description-paragraph" id="p0010" num="0007">一种低空飞行器的高效能管理与分配系统，包括：任务接收模块、任务优先级评估模块、充电管理模块、突发任务响应模块；</div>
+<div class="description-paragraph" id="p0011" num="0008">通过任务接收模块获取飞行器的飞行任务信息并传输至任务优先级评估模块，任务优先级评估模块根据飞行任务评估规则，生成飞行任务的任务优先级序列；</div>
+<div class="description-paragraph" id="p0012" num="0009">根据所述任务优先级序列和实时获取的飞行器电量信息，充电管理模块制定飞行器充电策略；</div>
+<div class="description-paragraph" id="p0013" num="0010">若突发任务响应模块接收到突发任务信息，则通过对比所述任务优先级序列，调整突发任务对应的飞行器的飞行任务优先级和任务优先级序列。</div>
+<div class="description-paragraph" id="p0014" num="0011">具体地，所述生成飞行任务的任务优先级序列的具体过程包括：</div>
+<div class="description-paragraph" id="p0015" num="0012">A1：任务接收模块从外部系统中获取飞行任务信息，并将获取的飞行任务信息传输至任务优先级评估模块；所述飞行任务信息包括任务类型、任务目标、任务时间要求；</div>
+<div class="description-paragraph" id="p0016" num="0013">A2：任务优先级评估模块根据预设的飞行任务评估规则，对每个飞行任务进行评估；所述飞行任务评估规则包括任务的紧急程度、重要性和时间要求；</div>
+<div class="description-paragraph" id="p0017" num="0014">A3：根据评估结果，使用优先级分数计算公式为每个飞行任务分配优先级分数P，优先级分数计算公式是通过对任务的紧急程度、任务的重要性和任务的时间要求进行加权求和实现的；</div>
+<div class="description-paragraph" id="p0018" num="0015">A4：根据优先级分数对所有飞行任务进行排序，生成任务优先级序列。</div>
+<div class="description-paragraph" id="p0019" num="0016">具体地，所述根据所述任务优先级序列和实时获取的飞行器电量信息，充电管理模块制定飞行器充电策略，包括：</div>
+<div class="description-paragraph" id="p0020" num="0017">B1：充电管理模块实时获取飞行器的电量信息，并将飞行器的当前电量与任务优先级序列中的任务所需电量进行动态比对，同时，引入动态电量需求调整机制，若为非单一任务环境，系统自动调整任务所需电量的计算值，生成电量比对结果；</div>
+<div class="description-paragraph" id="p0021" num="0018">B2：根据电量比对结果，筛选出当前电量低于飞行任务所需电量的飞行器，结合任务优先级序列和飞行器的任务执行时间窗口，判断飞行器是否执行充电动作；</div>
+<div class="description-paragraph" id="p0022" num="0019">若飞行器的任务执行时间窗口在<span class="patent-image-not-available"></span>内，则标记为紧急充电，其中，<span class="patent-image-not-available"></span>取值为30分钟；</div>
+<div class="description-paragraph" id="p0023" num="0020">若飞行器的任务执行时间窗口在<span class="patent-image-not-available"></span>内，则标记为常规充电，其中，<span class="patent-image-not-available"></span>取值为120分钟。</div>
+<div class="description-paragraph" id="p0024" num="0021">具体地，所述根据所述任务优先级序列和实时获取的飞行器电量信息，充电管理模块制定飞行器充电策略，还包括：</div>
+<div class="description-paragraph" id="p0025" num="0022">B3：将执行充电动作的飞行器及其优先级信息整理生成充电需求列表，并根据充电需求列表和任务优先级序列，制定充电顺序，结合飞行器的电量缺口和充电速率，使用充电时间分配策略制定飞行器充电策略；所述飞行器充电策略包括充电顺序、充电电压和充电时间；</div>
+<div class="description-paragraph" id="p0026" num="0023">B4：充电设备依据飞行器充电策略，按照飞行器的充电顺序在预设的充电电压安全阈值范围内依次为飞行器充电；所述充电电压安全阈值为总电压的50%；</div>
+<div class="description-paragraph" id="p0027" num="0024">B5：实时监测充电电压、电流和温度，若飞行器在充电过程中出现异常，则系统暂停充电并发出警报；</div>
+<div class="description-paragraph" id="p0028" num="0025">B6：充电完成后，系统更新飞行器的电量信息，若飞行器电量已满足任务需求，系统将其标记为可执行任务。</div>
+<div class="description-paragraph" id="p0029" num="0026">具体地，所述B3的具体步骤包括：</div>
+<div class="description-paragraph" id="p0030" num="0027">B3.1：根据电量比对结果，筛选出执行充电动作的飞行器，结合任务优先级序列，为每个执行充电动作的飞行器分配充电优先级，整理生成充电需求列表；所述充电需求列表包括飞行器编号、当前电量、任务所需电量、电量缺口、充电优先级；</div>
+<div class="description-paragraph" id="p0031" num="0028">B3.2：根据充电需求列表中的充电优先级，从高到低排序，确定充电顺序；</div>
+<div class="description-paragraph" id="p0032" num="0029">若至少2个飞行器的充电优先级相同，则根据任务执行时间窗口的紧迫性进行再次排序；</div>
+<div class="description-paragraph" id="p0033" num="0030">B3.3：根据飞行器的当前电量和任务所需电量，通过计算差值得到电量缺口；</div>
+<div class="description-paragraph" id="p0034" num="0031">B3.4：基于电量缺口，结合充电速率，通过计算比值得到充电时间；</div>
+<div class="description-paragraph" id="p0035" num="0032">B3.5：引入充电时间分配策略；</div>
+<div class="description-paragraph" id="p0036" num="0033">若充电设备的充电接口数量小于执行充电动作的飞行器数量，则采用动态规划算法将充电任务和充电设备进行动态分配；</div>
+<div class="description-paragraph" id="p0037" num="0034">若充电设备的充电接口数量大于或等于执行充电动作的飞行器数量，则采用并行充电机制，按照充电优先级进行飞行器充电；</div>
+<div class="description-paragraph" id="p0038" num="0035">B3.6：根据充电顺序、充电时间和充电设备分配结果，生成飞行器充电策略。</div>
+<div class="description-paragraph" id="p0039" num="0036">具体地，所述若突发任务响应模块接收到突发任务信息，则通过对比所述任务优先级序列，调整突发任务对应的飞行器的飞行任务优先级和任务优先级序列，包括：</div>
+<div class="description-paragraph" id="p0040" num="0037">C1：突发任务响应模块接收到突发任务信息，对突发任务信息进行预处理，得到预处理后的突发任务信息，并将预处理后的突发任务信息传输至任务优先级评估模块；</div>
+<div class="description-paragraph" id="p0041" num="0038">C2：任务优先级评估模块按照飞行任务评估规则，对突发任务信息进行优先级评估，生成突发任务优先级，并将突发任务优先级与当前任务优先级序列中的任务优先级进行比对；</div>
+<div class="description-paragraph" id="p0042" num="0039">C3：若突发任务优先级高于正在排队等待充电或执行任务的飞行器所对应的任务优先级，则调整突发任务对应的飞行器的飞行任务优先级，并引入插队机制，将突发任务插入到任务优先级序列的前端，使其优先执行；</div>
+<div class="description-paragraph" id="p0043" num="0040">C4：充电管理模块根据调整后的任务优先级序列，动态更新飞行器充电策略，重新分配充电资源，并对原有飞行任务的执行顺序进行动态调整。</div>
+<div class="description-paragraph" id="p0044" num="0041">具体地，所述若突发任务响应模块接收到突发任务信息，则通过对比所述任务优先级序列，调整突发任务对应的飞行器的飞行任务优先级和任务优先级序列，还包括：</div>
+<div class="description-paragraph" id="p0045" num="0042">C5：状态监控模块实时监控所有飞行器的状态，并将监控的状态数据传输至任务优先级评估模块和充电管理模块；</div>
+<div class="description-paragraph" id="p0046" num="0043">C6：任务优先级评估模块根据实时状态数据，动态调整任务优先级序列；</div>
+<div class="description-paragraph" id="p0047" num="0044">C7：充电管理模块根据动态调整后的任务优先级序列和实时电量信息，动态优化飞行器充电策略；</div>
+<div class="description-paragraph" id="p0048" num="0045">C8：充电设备依据优化后的飞行器充电策略，按照优先级顺序为飞行器充电。</div>
+<div class="description-paragraph" id="p0049" num="0046">具体地，所述突发任务信息包括任务类型、任务目标、任务时间要求；所述预处理后的突发任务信息包括使用任务特征提取算法生成的突发任务特征向量和提取的突发任务紧急程度、任务复杂度参数。</div>
+<div class="description-paragraph" id="p0050" num="0047">具体地，所述动态调整任务优先级序列的过程包括：</div>
+<div class="description-paragraph" id="p0051" num="0048">若飞行器的当前电量低于任务所需电量，则提高其任务优先级；</div>
+<div class="description-paragraph" id="p0052" num="0049">若飞行器的任务执行进度延迟，则调整其任务优先级。</div>
+<div class="description-paragraph" id="p0053" num="0050">与现有技术相比，本发明的有益效果是：</div>
+<div class="description-paragraph" id="p0054" num="0051">1.本发明提出一种低空飞行器的高效能管理与分配系统，并进行了架构、运行步骤和流程上的优化改进，系统具备流程简单，投资运行费用低廉，生产工作成本低的优点。</div>
+<div class="description-paragraph" id="p0055" num="0052">2.本发明提出一种低空飞行器的高效能管理与分配系统，通过任务接收、优先级评估等模块，精准确定飞行任务优先级，依据电量信息和任务优先级合理规划充电策略，保障飞行器在电量充足的情况下高效执行任务；同时，预设充电电压安全阈值，确保飞行器充电过程安全可靠，避免因过压充电引发的安全隐患。</div>
+<div class="description-paragraph" id="p0056" num="0053">3.本发明提出一种低空飞行器的高效能管理与分配系统，具备动态应变能力和实时监控优化机制，面对突发任务，能迅速评估其优先级并调整任务顺序，使飞行器资源优先向重要任务倾斜，确保紧急任务得以高效完成；状态监控模块实时反馈飞行器状态，促使任务优先级和充电策略动态调整，进一步提升系统的灵活性和适应性，从而提高飞行器的整体使用效率和任务执行质量。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0057">附图说明</div>
+<div class="description-paragraph" id="p0058" num="0054">图1为本发明一种低空飞行器的高效能管理与分配系统架构图；</div>
+<div class="description-paragraph" id="p0059" num="0055">图2为本发明一种低空飞行器的高效能管理与分配系统原理流程图；</div>
+<div class="description-paragraph" id="p0060" num="0056">图3为本发明一种低空飞行器的高效能管理与分配系统飞行任务的任务优先级序列生成流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0061">具体实施方式</div>
+<div class="description-paragraph" id="p0062" num="0057">实施例1</div>
+<div class="description-paragraph" id="p0063" num="0058">请参阅图1和图2，本发明提供的一种实施例：一种低空飞行器的高效能管理与分配系统，包括以下步骤：</div>
+<div class="description-paragraph" id="p0064" num="0059">任务接收模块、任务优先级评估模块、充电管理模块、突发任务响应模块、状态监控模块、充电设备模块、任务执行模块；</div>
+<div class="description-paragraph" id="p0065" num="0060">任务接收模块，用于获取所有飞行器的飞行任务信息，并将飞行任务信息传输至后续模块进行处理；</div>
+<div class="description-paragraph" id="p0066" num="0061">任务优先级评估模块，用于根据预设的飞行任务评估规则，为每个飞行任务分配优先级，生成任务优先级序列，并在突发任务出现时动态调整优先级；</div>
+<div class="description-paragraph" id="p0067" num="0062">充电管理模块，用于实时监测飞行器的电量信息，制定充电策略，并在充电过程中确保充电电压不超过安全阈值；</div>
+<div class="description-paragraph" id="p0068" num="0063">突发任务响应模块，用于接收突发任务信息，并将其传输至任务优先级评估模块进行优先级评估和动态调整；</div>
+<div class="description-paragraph" id="p0069" num="0064">状态监控模块，用于实时监控所有飞行器的状态，并将监控的状态数据传输至相关模块，用于动态调整和优化；</div>
+<div class="description-paragraph" id="p0070" num="0065">充电设备模块，用于根据充电管理模块制定的充电策略，为飞行器提供充电服务，并确保充电电压在安全范围内；</div>
+<div class="description-paragraph" id="p0071" num="0066">任务执行模块，用于根据任务优先级序列，调度飞行器执行任务，并在突发任务出现时动态调整任务执行顺序。</div>
+<div class="description-paragraph" id="p0072" num="0067">任务接收模块包括：任务获取单元和任务传输单元；</div>
+<div class="description-paragraph" id="p0073" num="0068">任务获取单元，用于从外部系统或用户输入中获取飞行任务信息；</div>
+<div class="description-paragraph" id="p0074" num="0069">任务传输单元，用于将获取的飞行任务信息传输至任务优先级评估模块。</div>
+<div class="description-paragraph" id="p0075" num="0070">任务优先级评估模块包括：任务评估单元、优先级序列生成单元、突发任务评估单元、动态调整单元；</div>
+<div class="description-paragraph" id="p0076" num="0071">任务评估单元，用于根据飞行任务评估规则，为每个飞行任务分配优先级；所述飞行任务评估规则包括任务的紧急程度、重要性和时间要求；</div>
+<div class="description-paragraph" id="p0077" num="0072">优先级序列生成单元，用于将评估后的任务优先级排序，生成任务优先级序列；</div>
+<div class="description-paragraph" id="p0078" num="0073">突发任务评估单元，用于当接收到突发任务信息时，根据飞行任务评估规则对突发任务信息进行优先级评估，生成突发任务优先级；</div>
+<div class="description-paragraph" id="p0079" num="0074">动态调整单元，用于根据突发任务优先级或实时状态数据，动态调整任务优先级序列。</div>
+<div class="description-paragraph" id="p0080" num="0075">充电管理模块包括：电量监测单元、充电需求判断单元、充电策略制定单元、充电执行单元、动态优化单元；</div>
+<div class="description-paragraph" id="p0081" num="0076">电量监测单元，用于实时获取所有飞行器的电量信息；</div>
+<div class="description-paragraph" id="p0082" num="0077">充电需求判断单元，用于将飞行器的当前电量与任务所需电量进行比对，判断是否执行充电动作，并生成充电需求列表；</div>
+<div class="description-paragraph" id="p0083" num="0078">充电策略制定单元，用于根据任务优先级序列和充电需求列表，制定飞行器充电策略；</div>
+<div class="description-paragraph" id="p0084" num="0079">充电执行单元，用于控制充电设备按照飞行器充电策略，在预设的充电电压安全阈值范围内为飞行器充电。</div>
+<div class="description-paragraph" id="p0085" num="0080">动态优化单元，用于根据调整后的任务优先级序列和实时电量信息，动态优化充电策略。</div>
+<div class="description-paragraph" id="p0086" num="0081">突发任务响应模块包括：突发任务接收单元和突发任务传输单元；</div>
+<div class="description-paragraph" id="p0087" num="0082">突发任务接收单元，用于从外部系统或用户输入中获取突发任务信息；</div>
+<div class="description-paragraph" id="p0088" num="0083">突发任务传输单元，用于将突发任务信息传输至任务优先级评估模块。</div>
+<div class="description-paragraph" id="p0089" num="0084">状态监控模块包括：状态数据采集单元和状态数据传输单元；</div>
+<div class="description-paragraph" id="p0090" num="0085">状态数据采集单元，用于实时采集飞行器的状态数据，如电量、位置、任务执行进度；</div>
+<div class="description-paragraph" id="p0091" num="0086">状态数据传输单元，用于将采集到的状态数据传输至任务优先级评估模块和充电管理模块。</div>
+<div class="description-paragraph" id="p0092" num="0087">需要说明的是，任务接收模块将飞行任务信息传输至任务优先级评估模块，生成任务优先级序列；充电管理模块根据任务优先级序列和电量信息，制定充电策略并控制充电设备模块；突发任务响应模块将突发任务信息传输至任务优先级评估模块，触发动态调整；状态监控模块实时采集飞行器状态数据，并传输至任务优先级评估模块和充电管理模块，用于动态优化；任务执行模块根据任务优先级序列调度飞行器执行任务，并在需要时动态调整。</div>
+<div class="description-paragraph" id="p0093" num="0088">具体而言，一种低空飞行器的高效能管理与分配系统的整体实现流程包括：</div>
+<div class="description-paragraph" id="p0094" num="0089">通过任务接收模块获取飞行器的飞行任务信息，并将飞行任务信息传输至任务优先级评估模块，任务优先级评估模块根据飞行任务评估规则，为每个飞行任务分配优先级，形成任务优先级序列；</div>
+<div class="description-paragraph" id="p0095" num="0090">充电管理模块实时获取飞行器的电量信息，并与任务优先级序列中的任务所需电量进行比对，若监测到飞行器电量低于飞行任务所需电量，则充电管理模块根据任务优先级序列，判断该飞行器是否需要立即充电，并生成充电需求列表；</div>
+<div class="description-paragraph" id="p0096" num="0091">充电管理模块根据充电需求列表和任务优先级序列，制定飞行器充电策略，充电设备依据飞行器充电策略，按照飞行器的充电顺序在预设的充电电压安全阈值范围内依次为飞行器充电；</div>
+<div class="description-paragraph" id="p0097" num="0092">若突发任务响应模块接收到突发任务信息，则将突发任务信息传输至任务优先级评估模块，任务优先级评估模块按照飞行任务评估规则，对突发任务进行优先级评估，生成突发任务优先级，若突发任务优先级高于正在排队等待充电或执行任务的飞行器所对应的任务优先级，则调整突发任务对应的飞行器的飞行任务优先级，使其插队进入充电流程或优先执行任务；</div>
+<div class="description-paragraph" id="p0098" num="0093">充电管理模块根据调整后的任务优先级序列，动态更新飞行器充电策略，重新分配充电资源，并对原有飞行任务的执行顺序进行动态调整；</div>
+<div class="description-paragraph" id="p0099" num="0094">通过状态监控模块实时监控所有飞行器的状态，并将监控的状态数据传输至任务优先级评估模块和充电管理模块；</div>
+<div class="description-paragraph" id="p0100" num="0095">任务优先级评估模块根据实时状态数据，动态调整任务优先级序列；</div>
+<div class="description-paragraph" id="p0101" num="0096">充电管理模块根据动态调整后的任务优先级序列和实时电量信息，动态优化飞行器充电策略。</div>
+<div class="description-paragraph" id="p0102" num="0097">实施例2</div>
+<div class="description-paragraph" id="p0103" num="0098">请参阅图3，本实施例中生成飞行任务的任务优先级序列的具体过程包括：</div>
+<div class="description-paragraph" id="p0104" num="0099">A1：任务接收模块从外部系统中获取飞行任务信息，并将获取的飞行任务信息传输至任务优先级评估模块；所述飞行任务信息包括任务类型、任务目标、任务时间要求；</div>
+<div class="description-paragraph" id="p0105" num="0100">A2：任务优先级评估模块根据预设的飞行任务评估规则，对每个飞行任务进行评估；所述飞行任务评估规则包括任务的紧急程度、重要性和时间要求三个维度；</div>
+<div class="description-paragraph" id="p0106" num="0101">进一步地，对每个飞行任务进行评估的具体过程包括：</div>
+<div class="description-paragraph" id="p0107" num="0102">（1）获取飞行任务信息，根据预设的飞行任务评估规则，定义三个评估维度：</div>
+<div class="description-paragraph" id="p0108" num="0103">紧急程度：任务需要被执行的紧迫性，取值范围为1-5，5为最紧急；</div>
+<div class="description-paragraph" id="p0109" num="0104">重要性：任务对整体任务目标的影响程度，取值范围为1-5，5为最重要；</div>
+<div class="description-paragraph" id="p0110" num="0105">时间要求：任务完成的时间限制，取值范围为1-5，5为最紧迫；</div>
+<div class="description-paragraph" id="p0111" num="0106">（2）为每个评估维度分配权重系数，且权重系数的累加和为1。</div>
+<div class="description-paragraph" id="p0112" num="0107">A3：根据评估结果，使用优先级分数计算公式为每个飞行任务分配优先级分数P，优先级分数计算公式是通过对任务的紧急程度、任务的重要性和任务的时间要求进行加权求和实现的，具体公式为：<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>表示任务的紧急程度，<span class="patent-image-not-available"></span>表示任务的重要性，<span class="patent-image-not-available"></span>表示任务的时间要求，且满足<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>分别表示任务的紧急程度、重要性和时间要求的权重系数；</div>
+<div class="description-paragraph" id="p0113" num="0108">A4：根据优先级分数对所有飞行任务进行排序，生成任务优先级序列。</div>
+<div class="description-paragraph" id="p0114" num="0109">根据所述任务优先级序列和实时获取的飞行器电量信息，充电管理模块制定飞行器充电策略，包括：</div>
+<div class="description-paragraph" id="p0115" num="0110">B1：充电管理模块实时获取飞行器的电量信息，并将飞行器的当前电量与任务优先级序列中的任务所需电量进行动态比对，同时，引入动态电量需求调整机制，若为非单一任务环境，如风速、温度等外部因素影响电量消耗，系统自动调整任务所需电量的计算值，生成电量比对结果；</div>
+<div class="description-paragraph" id="p0116" num="0111">进一步地，B1的具体步骤包括：</div>
+<div class="description-paragraph" id="p0117" num="0112">（1）充电管理模块通过无线通信技术实时获取所有飞行器的电量信息，包括当前电量百分比<span class="patent-image-not-available"></span>和电池健康状态；</div>
+<div class="description-paragraph" id="p0118" num="0113">（2）从任务优先级序列中获取每个飞行任务所需的电量<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0119" num="0114">（3）引入动态电量需求调整机制，根据任务环境的复杂度，调整任务所需电量的计算值，调整公式为：<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>表示调整后的任务所需电量，k表示环境复杂度影响系数，C表示环境复杂度评分，且环境复杂度评分需要依据本领域技术人员通过大量试验确定或根据专家经验进行预先设置；</div>
+<div class="description-paragraph" id="p0120" num="0115">（4）将飞行器的当前电量<span class="patent-image-not-available"></span>与调整后的任务所需电量<span class="patent-image-not-available"></span>进行比对，若<span class="patent-image-not-available"></span>，则标记该飞行器执行充电动作；</div>
+<div class="description-paragraph" id="p0121" num="0116">（5）整理生成电量比对结果，包含飞行器编号、当前电量、调整后的任务所需电量、电量缺口等信息。</div>
+<div class="description-paragraph" id="p0122" num="0117">B2：根据电量比对结果，筛选出当前电量低于飞行任务所需电量的飞行器，结合任务优先级序列和飞行器的任务执行时间窗口，判断飞行器是否执行充电动作；</div>
+<div class="description-paragraph" id="p0123" num="0118">若飞行器的任务执行时间窗口在<span class="patent-image-not-available"></span>内，则标记为紧急充电，其中，<span class="patent-image-not-available"></span>取值为30分钟；</div>
+<div class="description-paragraph" id="p0124" num="0119">若飞行器的任务执行时间窗口在<span class="patent-image-not-available"></span>内，则标记为常规充电，其中，<span class="patent-image-not-available"></span>取值为120分钟；</div>
+<div class="description-paragraph" id="p0125" num="0120">B3：将执行充电动作的飞行器及其优先级信息整理生成充电需求列表，并根据充电需求列表和任务优先级序列，制定充电顺序，结合飞行器的电量缺口和充电速率，使用充电时间分配策略制定飞行器充电策略；所述飞行器充电策略包括充电顺序、充电电压和充电时间；</div>
+<div class="description-paragraph" id="p0126" num="0121">B4：充电设备依据飞行器充电策略，按照飞行器的充电顺序在预设的充电电压安全阈值范围内依次为飞行器充电；所述充电电压安全阈值为总电压的50%；</div>
+<div class="description-paragraph" id="p0127" num="0122">B5：实时监测充电电压、电流和温度，若飞行器在充电过程中出现异常，则系统立即暂停充电并发出警报；</div>
+<div class="description-paragraph" id="p0128" num="0123">其中，异常情况包括电池过热、通信中断。</div>
+<div class="description-paragraph" id="p0129" num="0124">B6：充电完成后，系统更新飞行器的电量信息，若飞行器电量已满足任务需求，系统将其标记为可执行任务。</div>
+<div class="description-paragraph" id="p0130" num="0125">B3的具体步骤包括：</div>
+<div class="description-paragraph" id="p0131" num="0126">B3.1：根据电量比对结果，筛选出执行充电动作的飞行器，结合任务优先级序列，为每个执行充电动作的飞行器分配充电优先级，整理生成充电需求列表；所述充电需求列表包括飞行器编号、当前电量、任务所需电量、电量缺口、充电优先级；</div>
+<div class="description-paragraph" id="p0132" num="0127">B3.2：根据充电需求列表中的充电优先级，从高到低排序，确定充电顺序；</div>
+<div class="description-paragraph" id="p0133" num="0128">若至少2个飞行器的充电优先级相同，则根据任务执行时间窗口的紧迫性进行再次排序；</div>
+<div class="description-paragraph" id="p0134" num="0129">B3.3：通过计算飞行器的当前电量和任务所需电量的差值得到电量缺口；</div>
+<div class="description-paragraph" id="p0135" num="0130">B3.4：基于电量缺口，结合充电速率，通过计算比值得到充电时间；</div>
+<div class="description-paragraph" id="p0136" num="0131">B3.5：引入充电时间分配策略；</div>
+<div class="description-paragraph" id="p0137" num="0132">若充电设备的充电接口数量小于执行充电动作的飞行器数量，则采用动态规划算法将充电任务和充电设备进行动态分配；</div>
+<div class="description-paragraph" id="p0138" num="0133">进一步地，动态规划的具体过程包括：</div>
+<div class="description-paragraph" id="p0139" num="0134">（1）将充电任务分配问题建模为一个动态规划问题；</div>
+<div class="description-paragraph" id="p0140" num="0135">（2）定义状态<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>表示前i个充电任务和前j个充电设备的分配情况，i表示充电任务的索引，j表示充电设备的索引；</div>
+<div class="description-paragraph" id="p0141" num="0136">（3）定义决策变量<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>表示是否将第i个充电任务分配给第j个充电设备，且满足：当任务i分配给设备j时，<span class="patent-image-not-available"></span>，否则，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0142" num="0137">（4）定义目标函数，其中，目标函数是最小化所有充电任务的总完成时间；</div>
+<div class="description-paragraph" id="p0143" num="0138">（5）设置约束条件，包括每个充电任务只能分配给一个充电设备、每个充电设备的总充电时间不超过其最大可用时间；</div>
+<div class="description-paragraph" id="p0144" num="0139">（6）使用动态规划转移方程求解上述动态规划问题，得到最优的充电任务分配方案，其中，动态规划转移方程为本领域的现有技术内容，不为本申请的创造性方案，在此不做赘述。</div>
+<div class="description-paragraph" id="p0145" num="0140">若充电设备的充电接口数量大于或等于执行充电动作的飞行器数量，则采用并行充电机制，按照充电优先级进行飞行器充电；</div>
+<div class="description-paragraph" id="p0146" num="0141">B3.6：根据充电顺序、充电时间和充电设备分配结果，生成飞行器充电策略。</div>
+<div class="description-paragraph" id="p0147" num="0142">若突发任务响应模块接收到突发任务信息，则通过对比所述任务优先级序列，调整突发任务对应的飞行器的飞行任务优先级和任务优先级序列，包括：</div>
+<div class="description-paragraph" id="p0148" num="0143">C1：突发任务响应模块接收到突发任务信息，对突发任务信息进行预处理，得到预处理后的突发任务信息，并将预处理后的突发任务信息传输至任务优先级评估模块；</div>
+<div class="description-paragraph" id="p0149" num="0144">C1中所述突发任务信息包括任务类型、任务目标、任务时间要求；所述预处理后的突发任务信息包括使用任务特征提取算法生成的突发任务特征向量和提取的突发任务紧急程度、任务复杂度参数，其中，任务特征提取算法采用主成分分析方法，而主成分分析方法为本领域的现有技术内容，不为本申请的创造性方案，在此不做赘述。</div>
+<div class="description-paragraph" id="p0150" num="0145">C2：任务优先级评估模块按照飞行任务评估规则，对突发任务信息进行优先级评估，生成突发任务优先级，并将突发任务优先级与当前任务优先级序列中的任务优先级进行比对；</div>
+<div class="description-paragraph" id="p0151" num="0146">C3：若突发任务优先级高于正在排队等待充电或执行任务的飞行器所对应的任务优先级，则调整突发任务对应的飞行器的飞行任务优先级，并引入插队机制，将突发任务插入到任务优先级序列的前端，使其优先执行；</div>
+<div class="description-paragraph" id="p0152" num="0147">C4：充电管理模块根据调整后的任务优先级序列，动态更新飞行器充电策略，重新分配充电资源，并对原有飞行任务的执行顺序进行动态调整；</div>
+<div class="description-paragraph" id="p0153" num="0148">C5：状态监控模块实时监控所有飞行器的状态，并将监控的状态数据传输至任务优先级评估模块和充电管理模块；</div>
+<div class="description-paragraph" id="p0154" num="0149">C6：任务优先级评估模块根据实时状态数据，动态调整任务优先级序列；</div>
+<div class="description-paragraph" id="p0155" num="0150">C6中动态调整任务优先级序列的过程包括：</div>
+<div class="description-paragraph" id="p0156" num="0151">若飞行器的电量低于任务所需电量，则提高其任务优先级；</div>
+<div class="description-paragraph" id="p0157" num="0152">若飞行器的任务执行进度延迟，则调整其任务优先级。</div>
+<div class="description-paragraph" id="p0158" num="0153">C7：充电管理模块根据动态调整后的任务优先级序列和实时电量信息，动态优化飞行器充电策略；</div>
+<div class="description-paragraph" id="p0159" num="0154">C8：充电设备依据优化后的飞行器充电策略，按照优先级顺序为飞行器充电。</div>
+<div class="description-paragraph" id="p0160" num="0155">以上结合附图对本发明的实施例进行了描述，但是本发明并不局限于上述的具体实施方式，上述的具体实施方式仅仅是示意性的，而不是限制性的，本领域的普通技术人员在本发明的启示下，在不脱离本发明宗旨和所保护的范围情况下，还可以对上述实施例进行变化、修改、替换和变型，这些均属于本发明的保护之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

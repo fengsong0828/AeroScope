@@ -1,0 +1,173 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN121075180A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES513709318">
+<invention-title id="title1" lang="ZH">一种低空飞行器低空空域精准管控系统及方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及空域管制技术领域，具体为一种低空飞行器低空空域精准管控系统及方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着通用航空和无人机技术的发展，低空空域的使用需求增加，随着低空飞行器的不断普及，低空飞行器给人们日常生活带来了较多的便利，具有体积小、速度快、隐蔽性强的特点。</div>
+<div class="description-paragraph" id="p0005" num="0003">目前，由于低空空域环境存在多重动态干扰因素，在进行飞行器实时监测时，部署的多模态传感器网络采集低空环境数据，无法实时识别监测信号是否受到电磁干扰及气象畸变，当采集的传感数据出现波形失真，会导致空域态势感知误差扩大，影响数字孪生模型的构建精度。</div>
+<div class="description-paragraph" id="p0006" num="0004">因此，现提出一种低空飞行器低空空域精准管控系统及方法解决上述问题。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">（一）解决的技术问题</div>
+<div class="description-paragraph" id="p0009">针对现有技术的不足，本发明提供了一种低空飞行器低空空域精准管控系统及方法,解决了上述背景技术中提出的问题。</div>
+<div class="description-paragraph" id="p0010" num="0006">（二）技术方案</div>
+<div class="description-paragraph" id="p0011">为实现以上目的，本发明提供如下技术方案予以实现：一种低空飞行器低空空域精准管控系统及方法，所述方法包括以下步骤：</div>
+<div class="description-paragraph" id="p0012">S1、通过多模态传感器网络采集低空环境动态数据，包括气象参数、地理信息、飞行器运行状态及实时碳排数据，生成低空多源异构数据集；</div>
+<div class="description-paragraph" id="p0013">S2、构建数字孪生空域模型，基于毫米级精度的三维地理信息数据和厘米级定位数据，通过时空融合算法生成动态空域数字孪生体；</div>
+<div class="description-paragraph" id="p0014">S3、执行空域资源动态分配：基于数字孪生体模拟低空交通流，采用强化学习算法预测空域冲突节点，生成三维网格化空域分配方案；</div>
+<div class="description-paragraph" id="p0015">S4、实施飞行器精准导航控制：通过5G-A通感基站组网建立飞行器间通信链路，结合北斗差分定位数据生成自适应飞行剖面，动态调整飞行器航迹及速度参数；</div>
+<div class="description-paragraph" id="p0016">S5、融合碳排数据进行空域优化：实时采集飞行器能源消耗数据，结合碳排因子库计算动态碳排强度，在空域分配方案中叠加碳排约束条件；</div>
+<div class="description-paragraph" id="p0017">S6、建立分级预警响应机制：通过雷达与光电复合监测系统识别异常飞行状态，当偏离阈值大于5%时触发三级预警，同步启动应急航路再规划；</div>
+<div class="description-paragraph" id="p0018">S7、生成空域管控数字资产：将空域状态数据、飞行器控制指令及碳排指标封装为区块链可追溯数据包，实时同步至低空经济智算中心。</div>
+<div class="description-paragraph" id="p0019" num="0007">优选的，所述S1包括：</div>
+<div class="description-paragraph" id="p0020">S11、部署气象梯度监测无人机群，以100米网格精度采集温度、气压、风切变数据；</div>
+<div class="description-paragraph" id="p0021">S12、通过激光雷达测绘车获取厘米级地形高程数据，融合卫星遥感影像生成三维实景底图；</div>
+<div class="description-paragraph" id="p0022">S13、在飞行器植入多模态认证芯片，实时回传位置、速度、姿态及电池能耗参数；</div>
+<div class="description-paragraph" id="p0023">S14、在起降点布设碳排监测终端，采集充电过程能量来源及转换效率数据。</div>
+<div class="description-paragraph" id="p0024" num="0008">优选的，所述S2中时空融合算法采用：</div>
+<div class="description-paragraph" id="p0025">S21、建立空域时空编码矩阵：</div>
+<div class="description-paragraph" id="p0026"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0027">其中<span class="patent-image-not-available"></span>为空域时空编码矩阵，<span class="patent-image-not-available"></span>为地理信息子矩阵，<span class="patent-image-not-available"></span>为气象参数子矩阵，<span class="patent-image-not-available"></span>为交通流时空分布张量，<span class="patent-image-not-available"></span>为碳排强度向量；</div>
+<div class="description-paragraph" id="p0028">S22、通过图卷积神经网络解耦矩阵关联特征，输出动态更新的数字孪生体。</div>
+<div class="description-paragraph" id="p0029" num="0009">优选的，所述S3包括：</div>
+<div class="description-paragraph" id="p0030">S31、将空域划分为50m×50m×10m的三维网格单元；</div>
+<div class="description-paragraph" id="p0031">S32、基于历史交通流数据训练时空预测模型，输出未来15分钟空域占用热力图；</div>
+<div class="description-paragraph" id="p0032">S33、采用多目标优化算法求解空域分配方案，目标函数为：</div>
+<div class="description-paragraph" id="p0033"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0034">其中<span class="patent-image-not-available"></span>为航路时间延误量，<span class="patent-image-not-available"></span>为航迹偏离度，<span class="patent-image-not-available"></span>为碳排增量，<span class="patent-image-not-available"></span>为时间延误惩罚因子，<span class="patent-image-not-available"></span>为路径偏离惩罚因子，<span class="patent-image-not-available"></span>为碳排放超标惩罚因子。</div>
+<div class="description-paragraph" id="p0035" num="0010">优选的，所述S5中碳排约束条件建立方法为：</div>
+<div class="description-paragraph" id="p0036">S51、构建能源-碳排转换因子库：</div>
+<div class="description-paragraph" id="p0037"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0038">其中<span class="patent-image-not-available"></span>为能源-碳排转换因子库，<span class="patent-image-not-available"></span>为第k类能源的碳排转换因子，<span class="patent-image-not-available"></span>为能源类型索引参数；</div>
+<div class="description-paragraph" id="p0039">S52、实时计算飞行器碳排强度：</div>
+<div class="description-paragraph" id="p0040"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0041">其中<span class="patent-image-not-available"></span>为飞行器i的累计碳排强度，<span class="patent-image-not-available"></span>为飞行器i的瞬时功率函数，<span class="patent-image-not-available"></span>为时间积分算子，<span class="patent-image-not-available"></span>为时间微分变量，<span class="patent-image-not-available"></span>为瞬时功率；</div>
+<div class="description-paragraph" id="p0042">S53、在空域网格单元叠加碳排密度阈值<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0043" num="0011">优选的，所述S6的三级预警机制包括：</div>
+<div class="description-paragraph" id="p0044">S61、一级预警：航迹偏离大于5%时，通过5G-A基站发送声光告警指令；</div>
+<div class="description-paragraph" id="p0045">S62、二级预警：持续偏离大于10秒时，启动备用导航链路重规划500米缓冲航路；</div>
+<div class="description-paragraph" id="p0046">S63、三级预警：存在碰撞风险时，接管控制权并执行紧急避障机动，避障响应时间小于200ms。</div>
+<div class="description-paragraph" id="p0047" num="0012">优选的，系统包括：</div>
+<div class="description-paragraph" id="p0048">空域数字孪生构建模块、多维空域分配引擎及碳约束飞行控制模块；</div>
+<div class="description-paragraph" id="p0049">所述空域数字孪生构建模块集成激光雷达扫描单元、气象梯度感知单元及区块链数据锚定单元；</div>
+<div class="description-paragraph" id="p0050">所述多维空域分配引擎内置强化学习决策核心，支持三维网格化空域资源调度；</div>
+<div class="description-paragraph" id="p0051">所述碳约束飞行控制模块包含能耗优化算法库和5G-A通感一体化基站。</div>
+<div class="description-paragraph" id="p0052" num="0013">优选的，所述空域数字孪生构建模块包含：</div>
+<div class="description-paragraph" id="p0053">毫米级地理信息重构单元，通过移动测绘平台获取点云密度大于200点/㎡的三维模型；</div>
+<div class="description-paragraph" id="p0054">通感一体化数据中台，融合北斗定位数据、5G-A基站感知数据及无人机回传数据；</div>
+<div class="description-paragraph" id="p0055">时空编码处理器，采用张量分解算法压缩多源异构数据维度。</div>
+<div class="description-paragraph" id="p0056" num="0014">优选的，所述多维空域分配引擎具体包括：</div>
+<div class="description-paragraph" id="p0057">空域网格化管理单元，将空域划分为可动态组合的立体网格单元；</div>
+<div class="description-paragraph" id="p0058">冲突预测神经网络，基于历史事故数据训练得到预警模型；</div>
+<div class="description-paragraph" id="p0059">鱼鹰优化算法核心，采用探索-开发双阶段优化机制动态调整分配方案。</div>
+<div class="description-paragraph" id="p0060" num="0015">优选的，所述碳约束飞行控制模块进一步包含：</div>
+<div class="description-paragraph" id="p0061">飞行剖面优化器，基于实时能源市场电价信号动态调整飞行器爬升率与巡航高度；</div>
+<div class="description-paragraph" id="p0062">碳排监控终端，集成燃料电池效率传感器及绿电溯源芯片；</div>
+<div class="description-paragraph" id="p0063">应急反制系统，配备Ku波段相控阵雷达及定向电磁干扰装置。</div>
+<div class="description-paragraph" id="p0064" num="0016">（三）有益效果</div>
+<div class="description-paragraph" id="p0065">与现有技术相比，本发明提供了一种低空飞行器低空空域精准管控系统及方法，具备以下有益效果：</div>
+<div class="description-paragraph" id="p0066">1.本发明中，在构建低空数字孪生空域时，系统通过部署多源环境干扰过滤算法，实时分析传感器数据波形特征，动态识别并消除电磁干扰与气象畸变对监测信号的影响，能够消解空域态势感知中的信号失真问题，保证环境动态数据采集的真实性与可靠性，提升数字孪生模型的构建精度，进一步保障空域管控决策的准确性。</div>
+<div class="description-paragraph" id="p0067" num="0017">2.本发明中，在实施飞行器航迹动态监控时，通过建立三维姿态实时反馈机制，持续解算飞行器实际航向与规划路径的空间矢量夹角，使得系统能够及时感知位姿偏移状态，且在检测到位姿偏转异常时，自主生成航迹协同修正指令，实时优化网格化空域匹配策略，避免因突发气流导致的空域资源调度失准，进一步增强低空密集交通流的鲁棒控制能力。</div>
+<div class="description-paragraph" id="p0068" num="0018">3.本发明中，在优化全域碳排管理时，通过构建机型-工况差异化建模引擎，自动识别飞行器类型及其所处飞行阶段特征，包括垂直起降、过渡、巡航，按需加载适配的能耗计算规则，使得系统能够准确量化不同机动状态下的碳排强度，避免统一碳排系数导致的统计偏差，提升空域资源分配的环保效能与能耗调度公平性，进一步推动低空绿色交通体系的可持续发展。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0069">附图说明</div>
+<div class="description-paragraph" id="p0070" num="0019">图1为本发明一种低空飞行器低空空域精准管控方法的流程图；</div>
+<div class="description-paragraph" id="p0071">图2为本发明一种低空飞行器低空空域精准管控系统的构架图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0072">具体实施方式</div>
+<div class="description-paragraph" id="p0073" num="0020">下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0074" num="0021">具体实施例：请参阅图1-2，一种低空飞行器低空空域精准管控系统及方法，方法包括以下步骤：</div>
+<div class="description-paragraph" id="p0075">S1、通过多模态传感器网络采集低空环境动态数据，包括气象参数、地理信息、飞行器运行状态及实时碳排数据，生成低空多源异构数据集；</div>
+<div class="description-paragraph" id="p0076">S2、构建数字孪生空域模型，基于毫米级精度的三维地理信息数据和厘米级定位数据，通过时空融合算法生成动态空域数字孪生体；</div>
+<div class="description-paragraph" id="p0077">S3、执行空域资源动态分配：基于数字孪生体模拟低空交通流，采用强化学习算法预测空域冲突节点，生成三维网格化空域分配方案；</div>
+<div class="description-paragraph" id="p0078">S4、实施飞行器精准导航控制：通过5G-A通感基站组网建立飞行器间通信链路，结合北斗差分定位数据生成自适应飞行剖面，动态调整飞行器航迹及速度参数；</div>
+<div class="description-paragraph" id="p0079">S5、融合碳排数据进行空域优化：实时采集飞行器能源消耗数据，结合碳排因子库计算动态碳排强度，在空域分配方案中叠加碳排约束条件；</div>
+<div class="description-paragraph" id="p0080">S6、建立分级预警响应机制：通过雷达与光电复合监测系统识别异常飞行状态，当偏离阈值大于5%时触发三级预警，同步启动应急航路再规划；</div>
+<div class="description-paragraph" id="p0081">S7、生成空域管控数字资产：将空域状态数据、飞行器控制指令及碳排指标封装为区块链可追溯数据包，实时同步至低空经济智算中心。</div>
+<div class="description-paragraph" id="p0082" num="0022">S1包括：</div>
+<div class="description-paragraph" id="p0083">S11、部署气象梯度监测无人机群，以100米网格精度采集温度、气压、风切变数据；</div>
+<div class="description-paragraph" id="p0084">S12、通过激光雷达测绘车获取厘米级地形高程数据，融合卫星遥感影像生成三维实景底图；</div>
+<div class="description-paragraph" id="p0085">S13、在飞行器植入多模态认证芯片，实时回传位置、速度、姿态及电池能耗参数；</div>
+<div class="description-paragraph" id="p0086">S14、在起降点布设碳排监测终端，采集充电过程能量来源及转换效率数据。</div>
+<div class="description-paragraph" id="p0087" num="0023">S2中时空融合算法采用：</div>
+<div class="description-paragraph" id="p0088">S21、建立空域时空编码矩阵：</div>
+<div class="description-paragraph" id="p0089"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0090">其中<span class="patent-image-not-available"></span>为空域时空编码矩阵，<span class="patent-image-not-available"></span>为地理信息子矩阵，<span class="patent-image-not-available"></span>为气象参数子矩阵，<span class="patent-image-not-available"></span>为交通流时空分布张量，<span class="patent-image-not-available"></span>为碳排强度向量；</div>
+<div class="description-paragraph" id="p0091">S22、通过图卷积神经网络解耦矩阵关联特征，输出动态更新的数字孪生体；</div>
+<div class="description-paragraph" id="p0092">S23、按预设周期更新交通流数据：</div>
+<div class="description-paragraph" id="p0093"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0094">其中<span class="patent-image-not-available"></span>为未来空域交通流张量增量，<span class="patent-image-not-available"></span>为时空预测神经网络，<span class="patent-image-not-available"></span>为训练参数，<span class="patent-image-not-available"></span>为历史交通流滑动窗口，<span class="patent-image-not-available"></span>为时间滑动窗口，<span class="patent-image-not-available"></span>为地理约束权重矩阵。</div>
+<div class="description-paragraph" id="p0095" num="0024">S3包括：</div>
+<div class="description-paragraph" id="p0096">S31、将空域划分为50m×50m×10m的三维网格单元；</div>
+<div class="description-paragraph" id="p0097">S32、基于历史交通流数据训练时空预测模型，输出未来15分钟空域占用热力图；</div>
+<div class="description-paragraph" id="p0098">S33、生成动态安全空域集合：</div>
+<div class="description-paragraph" id="p0099"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0100">其中<span class="patent-image-not-available"></span>为可分配三维空域集合，<span class="patent-image-not-available"></span>为三维网格单元，j为索引号，<span class="patent-image-not-available"></span>为碰撞风险缓冲半径，n为空域网格总数；</div>
+<div class="description-paragraph" id="p0101">S34、采用多目标优化算法求解空域分配方案，目标函数为：</div>
+<div class="description-paragraph" id="p0102"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0103">其中<span class="patent-image-not-available"></span>为航路时间延误量，<span class="patent-image-not-available"></span>为航迹偏离度，<span class="patent-image-not-available"></span>为碳排增量，<span class="patent-image-not-available"></span>为时间延误惩罚因子，<span class="patent-image-not-available"></span>为路径偏离惩罚因子，<span class="patent-image-not-available"></span>为碳排放超标惩罚因子。</div>
+<div class="description-paragraph" id="p0104" num="0025">S5中碳排约束条件建立方法为：</div>
+<div class="description-paragraph" id="p0105">S51、构建能源-碳排转换因子库：</div>
+<div class="description-paragraph" id="p0106"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0107">其中<span class="patent-image-not-available"></span>为能源-碳排转换因子库，<span class="patent-image-not-available"></span>为第k类能源的碳排转换因子，<span class="patent-image-not-available"></span>为能源类型索引参数；</div>
+<div class="description-paragraph" id="p0108">S52、实时计算飞行器碳排强度：</div>
+<div class="description-paragraph" id="p0109"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0110">其中<span class="patent-image-not-available"></span>为飞行器i的累计碳排强度，<span class="patent-image-not-available"></span>为飞行器i的瞬时功率函数，<span class="patent-image-not-available"></span>为时间积分算子，<span class="patent-image-not-available"></span>为时间微分变量，<span class="patent-image-not-available"></span>为瞬时功率；</div>
+<div class="description-paragraph" id="p0111">S53、在空域网格单元叠加碳排密度阈值<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0112" num="0026">S6的三级预警机制包括：</div>
+<div class="description-paragraph" id="p0113">S61、一级预警：航迹偏离大于5%时，通过5G-A基站发送声光告警指令；</div>
+<div class="description-paragraph" id="p0114">S62、二级预警：持续偏离大于10秒时，启动备用导航链路重规划500米缓冲航路；</div>
+<div class="description-paragraph" id="p0115">S63、三级预警：存在碰撞风险时，接管控制权并执行紧急避障机动，避障响应时间小于200ms。</div>
+<div class="description-paragraph" id="p0116" num="0027">系统包括：</div>
+<div class="description-paragraph" id="p0117">空域数字孪生构建模块、多维空域分配引擎及碳约束飞行控制模块；</div>
+<div class="description-paragraph" id="p0118">空域数字孪生构建模块集成激光雷达扫描单元、气象梯度感知单元及区块链数据锚定单元；</div>
+<div class="description-paragraph" id="p0119">碳约束飞行控制模块航迹修正方法为：</div>
+<div class="description-paragraph" id="p0120"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0121">其中<span class="patent-image-not-available"></span>为飞行控制矢量，<span class="patent-image-not-available"></span>为误差变化率，<span class="patent-image-not-available"></span>为航迹跟踪误差，<span class="patent-image-not-available"></span>为环境自适应比例系数，<span class="patent-image-not-available"></span>为微分阻尼系数；</div>
+<div class="description-paragraph" id="p0122">多维空域分配引擎内置强化学习决策核心，支持三维网格化空域资源调度；</div>
+<div class="description-paragraph" id="p0123">碳约束飞行控制模块包含能耗优化算法库和5G-A通感一体化基站。</div>
+<div class="description-paragraph" id="p0124" num="0028">空域数字孪生构建模块包含：</div>
+<div class="description-paragraph" id="p0125">毫米级地理信息重构单元，通过移动测绘平台获取点云密度大于200点/㎡的三维模型；</div>
+<div class="description-paragraph" id="p0126">通感一体化数据中台，融合北斗定位数据、5G-A基站感知数据及无人机回传数据；</div>
+<div class="description-paragraph" id="p0127">时空编码处理器，采用张量分解算法压缩多源异构数据维度。</div>
+<div class="description-paragraph" id="p0128" num="0029">多维空域分配引擎具体包括：</div>
+<div class="description-paragraph" id="p0129">空域网格化管理单元，将空域划分为可动态组合的立体网格单元；</div>
+<div class="description-paragraph" id="p0130">冲突预测神经网络，基于历史事故数据训练得到预警模型；</div>
+<div class="description-paragraph" id="p0131">鱼鹰优化算法核心，采用探索-开发双阶段优化机制动态调整分配方案，鱼鹰优化算法动态调节策略为：</div>
+<div class="description-paragraph" id="p0132"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0133">其中<span class="patent-image-not-available"></span>为方案突变概率，<span class="patent-image-not-available"></span>为非线性调节因子，<span class="patent-image-not-available"></span>为空域交通密度，<span class="patent-image-not-available"></span>为密度临界阈值，e为自然常数。</div>
+<div class="description-paragraph" id="p0134" num="0030">碳约束飞行控制模块进一步包含：</div>
+<div class="description-paragraph" id="p0135">飞行剖面优化器，基于实时能源市场电价信号动态调整飞行器爬升率与巡航高度；</div>
+<div class="description-paragraph" id="p0136">碳排监控终端，集成燃料电池效率传感器及绿电溯源芯片；</div>
+<div class="description-paragraph" id="p0137">应急反制系统，配备Ku波段相控阵雷达及定向电磁干扰装置，雷达干扰频率控制算法为：</div>
+<div class="description-paragraph" id="p0138"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0139">其中<span class="patent-image-not-available"></span>为动态干扰频率，<span class="patent-image-not-available"></span>为频率偏移量，<span class="patent-image-not-available"></span>为双曲正切函数，<span class="patent-image-not-available"></span>为安全临界距离，<span class="patent-image-not-available"></span>为威胁目标距离，<span class="patent-image-not-available"></span>为基础干扰频点。</div>
+<div class="description-paragraph" id="p0140" num="0031">该系统的运行步骤如下：</div>
+<div class="description-paragraph" id="p0141">多模态空域感知与数据融合：</div>
+<div class="description-paragraph" id="p0142">通过分布式传感器网络实时采集低空环境多维度动态数据，包括气象梯度：温度、气压、风切变、地理信息：地形高程、障碍物坐标、飞行器运行状态：位置、速度、姿态及能源消耗参数。气象监测无人机群以百米网格精度扫描大气扰动，激光雷达测绘车构建厘米级实景底图，机载多模芯片回传实时动力学数据。多源异构数据经时空编码引擎融合，生成动态空域数字孪生体的基础输入矩阵，实现物理环境与交通流的全息映射。</div>
+<div class="description-paragraph" id="p0143" num="0032">动态数字孪生体构建与冲突预测：</div>
+<div class="description-paragraph" id="p0144">基于毫米级三维地理信息与实时交通流数据，采用时空融合算法构建数字孪生空域模型。通过图卷积神经网络解析空域时空编码矩阵的关联特征，解耦环境约束与交通行为的耦合关系。利用LSTM时序预测模块滚动推演未来空域状态，输出包含冲突热力图、湍流风险区及碳排密度分布的动态孪生体，为资源调度提供超前决策依据。</div>
+<div class="description-paragraph" id="p0145" num="0033">三维网格化空域资源智能分配：</div>
+<div class="description-paragraph" id="p0146">将目标空域划分为50m×50m×10m的立体网格单元，基于孪生体模拟结果识别高冲突节点。采用多目标优化算法计算空域分配方案，同步优化飞行时效性、路径精准度及环保指标。通过密度自适应突变机制动态调整优化策略，增强随机探索能力生成多模态备选方案。</div>
+<div class="description-paragraph" id="p0147" num="0034">碳约束航迹精准控制与动态纠偏：</div>
+<div class="description-paragraph" id="p0148">依托5G-A通感基站组网建立飞行器间高可靠通信链路，将空域分配方案转化为飞行控制指令。通过自适应PD控制算法动态解算航迹跟踪误差<span class="patent-image-not-available"></span>及其变化率<span class="patent-image-not-available"></span>，结合实时风场数据生成三维控制矢量<span class="patent-image-not-available"></span>，驱动飞行器按优化后的速度剖面和航向角飞行。当检测到位姿偏离大于5%及碳排强度超标时，自主触发分级修正策略：轻偏时通过航向微调回归网格中心点，重偏时重规划500米缓冲航路。</div>
+<div class="description-paragraph" id="p0149" num="0035">闭环验证与反制保障：</div>
+<div class="description-paragraph" id="p0150">通过雷达-光电复合系统持续验证飞行状态与数字孪生体的吻合度，建立“监测-预测-控制-校验”闭环。异常场景下启动三级应急机制：一级告警通过声光提示人工介入；二级偏差启动冗余导航链路；三级威胁激活自适应电磁干扰波束，以双曲正切函数调控干扰频率压制非法信号。全流程数据封装为区块链可追溯资产，同步至低空经济智算中心支撑策略迭代。</div>
+<div class="description-paragraph" id="p0151" num="0036">空域资源分配策略智能优化：</div>
+<div class="description-paragraph" id="p0152">基于实时交通密度<span class="patent-image-not-available"></span>与预设临界阈值<span class="patent-image-not-available"></span>=30架/立方公里的动态关系，通过概率调控模型驱动空域分配策略自适应演化。当监测到空域交通密度突破阈值时，系统自动提升方案突变概率<span class="patent-image-not-available"></span>，触发全局探索机制：利用蒙特卡洛随机采样生成备选空域分配方案池，结合梯度下降算法进行多目标寻优。当检测到局部网格碳排浓度超标<span class="patent-image-not-available"></span>＞0.2kgCO<sub>2</sub>/m<sup>3</sup>，则调节非线性因子β增强突变灵敏度，生成绕行高碳排区域的节能航路。该过程实现空域资源分配策略在运行效率与环保效能间的动态平衡。</div>
+<div class="description-paragraph" id="p0153" num="0037">全流程数据可信存证与策略演进：</div>
+<div class="description-paragraph" id="p0154">基于区块链技术将孪生模型输出、空域分配方案及飞行控制指令封装为可追溯数据包，同步至低空经济智算中心。通过构建包含时空维度、碳排强度、交通状态的三维验证矩阵，持续比对实际飞行数据与数字孪生体预测结果。当航迹跟踪误差持续率大于8%及碳排统计偏差大于15%时，自动启动模型校准协议：利用历史数据回灌训练LSTM时空预测网络，更新能源-碳排转换因子库<span class="patent-image-not-available"></span>，动态优化密度突变概率函数参数β、<span class="patent-image-not-available"></span>，形成闭环自我演进机制。</div>
+<div class="description-paragraph" id="p0155" num="0038">需要说明的是，在本文中，诸如第一和第二等之类的关系术语仅仅用来将一个实体或者操作与另一个实体或操作区分开来，而不一定要求或者暗示这些实体或操作之间存在任何这种实际的关系或者顺序。而且，术语“包括”、“包含”或者其任何其他变体意在涵盖非排他性的包含，从而使得包括一系列要素的过程、方法、物品或者设备不仅包括那些要素，而且还包括没有明确列出的其他要素，或者是还包括为这种过程、方法、物品或者设备所固有的要素。在没有更多限制的情况下，由语句“包括一个……”限定的要素，并不排除在包括所述要素的过程、方法、物品或者设备中还存在另外的相同要素。</div>
+<div class="description-paragraph" id="p0156" num="0039">尽管已经示出和描述了本发明的实施例，对于本领域的普通技术人员而言，可以理解在不脱离本发明的原理和精神的情况下可以对这些实施例进行多种变化、修改、替换和变型，本发明的范围由所附权利要求及其等同物限定。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

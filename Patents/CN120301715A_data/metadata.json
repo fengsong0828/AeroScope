@@ -1,0 +1,85 @@
+{
+    "patent_id": "CN120301715A",
+    "title": "CN120301715A - 一种面向低空飞行器的身份认证与访问控制方法及装置 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shanghai Yishi Intelligent Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120301715A/zh",
+    "citations": [
+        {
+            "Publication Number": "US20180012227A1 (en) *",
+            "Priority Date": "2016-07-05",
+            "Publication Date": "2018-01-11",
+            "Assignee": "NXT-ID, Inc.",
+            "Title": "Biometric, Behavioral-Metric, Knowledge-Metric, and Electronic-Metric Directed Authentication and Transaction Method and System",
+            "Link": "https://patents.google.com/patent/US20180012227A1/en"
+        },
+        {
+            "Publication Number": "JP2019064584A (ja) *",
+            "Priority Date": "2018-10-31",
+            "Publication Date": "2019-04-25",
+            "Assignee": "エスゼット ディージェイアイ テクノロジー カンパニー リミテッドＳｚ Ｄｊｉ Ｔｅｃｈｎｏｌｏｇｙ Ｃｏ．，Ｌｔｄ",
+            "Title": "無人航空機（ｕａｖ）の動作に対して認証のレベルを判定する方法及びシステム",
+            "Link": "https://patents.google.com/patent/JP2019064584A/ja"
+        },
+        {
+            "Publication Number": "CN113383333A (zh) *",
+            "Priority Date": "2018-11-19",
+            "Publication Date": "2021-09-10",
+            "Assignee": "源有限公司",
+            "Title": "用于自适应确定最优认证方案的系统和方法",
+            "Link": "https://patents.google.com/patent/CN113383333A/zh"
+        },
+        {
+            "Publication Number": "US20210400087A1 (en) *",
+            "Priority Date": "2020-06-17",
+            "Publication Date": "2021-12-23",
+            "Assignee": "At&T Intellectual Property I, L.P.",
+            "Title": "Methods, systems, and devices to dynamically determine an authentication method for a user device to access services based on security risk",
+            "Link": "https://patents.google.com/patent/US20210400087A1/en"
+        },
+        {
+            "Publication Number": "US20240010165A1 (en) *",
+            "Priority Date": "2021-03-16",
+            "Publication Date": "2024-01-11",
+            "Assignee": "Huawei Technologies Co., Ltd.",
+            "Title": "Authentication Method and Apparatus, and Storage Medium",
+            "Link": "https://patents.google.com/patent/US20240010165A1/en"
+        },
+        {
+            "Publication Number": "CN118474741A (zh) *",
+            "Priority Date": "2024-03-22",
+            "Publication Date": "2024-08-09",
+            "Assignee": "国网浙江省电力有限公司双创中心",
+            "Title": "一种基于双重认证机制的无人机身份识别方法",
+            "Link": "https://patents.google.com/patent/CN118474741A/zh"
+        },
+        {
+            "Publication Number": "CN118870324A (zh) *",
+            "Priority Date": "2024-06-25",
+            "Publication Date": "2024-10-29",
+            "Assignee": "中国人民解放军国防科技大学",
+            "Title": "一种无人机集群安全认证方法及系统",
+            "Link": "https://patents.google.com/patent/CN118870324A/zh"
+        },
+        {
+            "Publication Number": "CN119728081A (zh) *",
+            "Priority Date": "2025-02-28",
+            "Publication Date": "2025-03-28",
+            "Assignee": "天津云翔无人机科技有限公司",
+            "Title": "基于无人机管控要求的远程身份识别方法和系统",
+            "Link": "https://patents.google.com/patent/CN119728081A/zh"
+        },
+        {
+            "Publication Number": "CN119966747A (zh) *",
+            "Priority Date": "2025-03-04",
+            "Publication Date": "2025-05-09",
+            "Assignee": "中国人民解放军海军工程大学",
+            "Title": "一种基于云平台的无人机安全可认证信息通信处理方法",
+            "Link": "https://patents.google.com/patent/CN119966747A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:57:35"
+}

@@ -1,0 +1,182 @@
+{
+    "patent_id": "CN107117312A",
+    "title": "CN107117312A - 一种无人飞行器低空辐射监测系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "China Institute of Atomic of Energy",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN107117312A/zh",
+    "citations": [
+        {
+            "Publication Number": "US20090283686A1 (en) *",
+            "Priority Date": "2008-05-16",
+            "Publication Date": "2009-11-19",
+            "Assignee": "James Gary Barnes",
+            "Title": "Aircraft having an integrated radiation detection system and method therefor",
+            "Link": "https://patents.google.com/patent/US20090283686A1/en"
+        },
+        {
+            "Publication Number": "CN105137469A (zh) *",
+            "Priority Date": "2015-06-03",
+            "Publication Date": "2015-12-09",
+            "Assignee": "南京航空航天大学",
+            "Title": "一种放射性探测系统及放射性探测方法",
+            "Link": "https://patents.google.com/patent/CN105137469A/zh"
+        },
+        {
+            "Publication Number": "CN105258978A (zh) *",
+            "Priority Date": "2015-10-09",
+            "Publication Date": "2016-01-20",
+            "Assignee": "华南理工大学",
+            "Title": "一种用于环境样品采集的无人机吊舱及采集方法",
+            "Link": "https://patents.google.com/patent/CN105258978A/zh"
+        },
+        {
+            "Publication Number": "CN105510951A (zh) *",
+            "Priority Date": "2015-11-24",
+            "Publication Date": "2016-04-20",
+            "Assignee": "中国原子能科学研究院",
+            "Title": "一种辐射监测系统",
+            "Link": "https://patents.google.com/patent/CN105510951A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN107479476A (zh) *",
+            "Priority Date": "2017-09-28",
+            "Publication Date": "2017-12-15",
+            "Assignee": "河南汇纳科技有限公司",
+            "Title": "一种智能电网的电磁环境的监控系统",
+            "Link": "https://patents.google.com/patent/CN107479476A/zh"
+        },
+        {
+            "Publication Number": "CN108146628A (zh) *",
+            "Priority Date": "2017-12-18",
+            "Publication Date": "2018-06-12",
+            "Assignee": "佛山市神风航空科技有限公司",
+            "Title": "搭载气溶胶采样装置的无人机",
+            "Link": "https://patents.google.com/patent/CN108146628A/zh"
+        },
+        {
+            "Publication Number": "CN108238250A (zh) *",
+            "Priority Date": "2018-02-08",
+            "Publication Date": "2018-07-03",
+            "Assignee": "北京森馥科技股份有限公司",
+            "Title": "一种电离辐射监测无人机、系统及电离辐射监测方法",
+            "Link": "https://patents.google.com/patent/CN108238250A/zh"
+        },
+        {
+            "Publication Number": "CN108572397A (zh) *",
+            "Priority Date": "2018-03-27",
+            "Publication Date": "2018-09-25",
+            "Assignee": "西南科技大学",
+            "Title": "一种基于异构机器人的放射物搜寻系统及方法",
+            "Link": "https://patents.google.com/patent/CN108572397A/zh"
+        },
+        {
+            "Publication Number": "CN111324930B (zh) *",
+            "Priority Date": "2018-12-14",
+            "Publication Date": "2023-11-03",
+            "Assignee": "通用电气公司",
+            "Title": "用于了解发动机健康和维护的全球环境数据及应用方法",
+            "Link": "https://patents.google.com/patent/CN111324930B/zh"
+        },
+        {
+            "Publication Number": "CN111324930A (zh) *",
+            "Priority Date": "2018-12-14",
+            "Publication Date": "2020-06-23",
+            "Assignee": "通用电气公司",
+            "Title": "用于了解发动机健康和维护的全球环境数据及应用方法",
+            "Link": "https://patents.google.com/patent/CN111324930A/zh"
+        },
+        {
+            "Publication Number": "CN111323805A (zh) *",
+            "Priority Date": "2018-12-17",
+            "Publication Date": "2020-06-23",
+            "Assignee": "环境保护部核与辐射安全中心",
+            "Title": "空中三维伽玛成像监测系统",
+            "Link": "https://patents.google.com/patent/CN111323805A/zh"
+        },
+        {
+            "Publication Number": "CN109490941A (zh) *",
+            "Priority Date": "2018-12-29",
+            "Publication Date": "2019-03-19",
+            "Assignee": "苏州瑞派宁科技有限公司",
+            "Title": "飞行探测装置、成像系统及其辐射探测方法",
+            "Link": "https://patents.google.com/patent/CN109490941A/zh"
+        },
+        {
+            "Publication Number": "CN110068663A (zh) *",
+            "Priority Date": "2019-04-25",
+            "Publication Date": "2019-07-30",
+            "Assignee": "西南科技大学",
+            "Title": "一种海洋核污染程度的评估方法",
+            "Link": "https://patents.google.com/patent/CN110068663A/zh"
+        },
+        {
+            "Publication Number": "CN111158396A (zh) *",
+            "Priority Date": "2020-01-13",
+            "Publication Date": "2020-05-15",
+            "Assignee": "中国人民解放军联勤保障部队第九六四医院",
+            "Title": "一种多功能空气检测式无人机的控制系统",
+            "Link": "https://patents.google.com/patent/CN111158396A/zh"
+        },
+        {
+            "Publication Number": "CN111158396B (zh) *",
+            "Priority Date": "2020-01-13",
+            "Publication Date": "2023-03-10",
+            "Assignee": "中国人民解放军联勤保障部队第九六四医院",
+            "Title": "一种多功能空气检测式无人机的控制系统",
+            "Link": "https://patents.google.com/patent/CN111158396B/zh"
+        },
+        {
+            "Publication Number": "CN112067042A (zh) *",
+            "Priority Date": "2020-08-13",
+            "Publication Date": "2020-12-11",
+            "Assignee": "东南大学",
+            "Title": "一种海洋辐射与核素扩散监测系统及方法",
+            "Link": "https://patents.google.com/patent/CN112067042A/zh"
+        },
+        {
+            "Publication Number": "CN112630819A (zh) *",
+            "Priority Date": "2020-12-23",
+            "Publication Date": "2021-04-09",
+            "Assignee": "徐志雄",
+            "Title": "一种机载吊舱辐射环境监测装置",
+            "Link": "https://patents.google.com/patent/CN112630819A/zh"
+        },
+        {
+            "Publication Number": "CN112630819B (zh) *",
+            "Priority Date": "2020-12-23",
+            "Publication Date": "2022-08-26",
+            "Assignee": "徐志雄",
+            "Title": "一种机载吊舱辐射环境监测装置",
+            "Link": "https://patents.google.com/patent/CN112630819B/zh"
+        },
+        {
+            "Publication Number": "RU2755604C1 (ru) *",
+            "Priority Date": "2021-01-11",
+            "Publication Date": "2021-09-17",
+            "Assignee": "Федеральное государственное казённое учреждение \"12 Центральный научно-исследовательский институт\" Министерства обороны Российской Федерации",
+            "Title": "Способ определения параметров аварийного радиационного источника по данным воздушной радиационной разведки местности",
+            "Link": "https://patents.google.com/patent/RU2755604C1/ru"
+        },
+        {
+            "Publication Number": "CN116009053A (zh) *",
+            "Priority Date": "2022-12-08",
+            "Publication Date": "2023-04-25",
+            "Assignee": "成都新核泰科科技有限公司",
+            "Title": "一种分布式区域辐射剂量监测系统及监测方法",
+            "Link": "https://patents.google.com/patent/CN116009053A/zh"
+        },
+        {
+            "Publication Number": "CN115856985A (zh) *",
+            "Priority Date": "2023-02-27",
+            "Publication Date": "2023-03-28",
+            "Assignee": "西南科技大学",
+            "Title": "一种大气放射性污染的无人机协同监测方法",
+            "Link": "https://patents.google.com/patent/CN115856985A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:23:01"
+}

@@ -1,0 +1,206 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120540342A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES503854977">
+<invention-title id="title1" lang="ZH">一种面向低空飞行器状态不确定性的风险评估及避障方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本申请涉及飞行器控制技术领域，尤其是一种面向低空飞行器状态不确定性的风险评估及避障方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着城市人口持续增长与城市功能不断提升，居民对高效出行方式的需求持续上升，而传统依赖地面道路的交通系统已面临容量瓶颈，难以有效应对高密度出行需求。城市低空空域作为尚未充分开发的新型空间资源，被视为未来城市出行体系的重要补充。然而，与传统高空航空运行环境相比，城市低空空域具有空间狭窄、障碍物密集、飞行密度高等特征，飞行器在运行过程中需频繁应对来自建筑物、其他飞行器、突发气象等多种风险源带来的潜在威胁。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0005">发明内容</div>
+<div class="description-paragraph" id="p0006" num="0003">有鉴于此，本申请实施例提供了一种面向低空飞行器状态不确定性的风险评估及避障方法，以提高飞行器的飞行安全。</div>
+<div class="description-paragraph" id="p0007" num="0004">本申请实施例的一方面提供了一种面向低空飞行器状态不确定性的风险评估及避障方法，所述方法包括以下步骤：</div>
+<div class="description-paragraph" id="p0008" num="0005">根据飞行器的状态和所述状态的历史偏差数据对飞行器状态的不确定性构建包围高斯分布；</div>
+<div class="description-paragraph" id="p0009" num="0006">根据高斯函数生成各个风险源在空间中的场强分布；</div>
+<div class="description-paragraph" id="p0010" num="0007">根据所述包围高斯分布和各个所述风险源对应的所述场强分布构建风险概率场；</div>
+<div class="description-paragraph" id="p0011" num="0008">确定飞行器在所述风险概率场中的期望场强进而确定飞行器的受力；</div>
+<div class="description-paragraph" id="p0012" num="0009">根据所述受力调整飞行器的轨迹以进行避障。</div>
+<div class="description-paragraph" id="p0013" num="0010">在一些实施例中，所述根据飞行器的状态和所述状态的历史偏差数据对飞行器状态的不确定性构建包围高斯分布，包括以下步骤：</div>
+<div class="description-paragraph" id="p0014" num="0011">根据飞行器的位置偏差构建第一包围高斯分布模型；</div>
+<div class="description-paragraph" id="p0015" num="0012">根据飞行器的速度偏差构建第二包围高斯分布模型；</div>
+<div class="description-paragraph" id="p0016" num="0013">其中，飞行器的所述状态包括位置和速度。</div>
+<div class="description-paragraph" id="p0017" num="0014">在一些实施例中，所述根据飞行器的位置偏差构建第一包围高斯分布模型，包括以下步骤：</div>
+<div class="description-paragraph" id="p0018" num="0015">采用多元高斯分布以建模飞行器的位置偏差的概率密度为：</div>
+<div class="description-paragraph" id="p0019" num="0016"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0020" num="0017"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0021" num="0018">其中，<span class="patent-image-not-available"></span>表示误差概率分布；<span class="patent-image-not-available"></span>为飞行器不同的状态在不同方向上的协方差，用于描述在对应各方向上的关联性；<span class="patent-image-not-available"></span>为协方差矩阵，当各向误差独立时为对角阵即飞行器在X、Y和Z三个方向上的误差均完全独立。</div>
+<div class="description-paragraph" id="p0022" num="0019">在一些实施例中，所述根据高斯函数生成各个风险源在空间中的场强分布，包括以下步骤：</div>
+<div class="description-paragraph" id="p0023" num="0020">根据高斯函数对各个所述风险源在空间中生成风险场分布；</div>
+<div class="description-paragraph" id="p0024" num="0021">所述风险场分布的场强分布为：</div>
+<div class="description-paragraph" id="p0025" num="0022"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0026" num="0023">其中，<span class="patent-image-not-available"></span>表示缩放因子，用于调整场强缩放倍率；<span class="patent-image-not-available"></span>为空域中指定位置到该场源的距离；<span class="patent-image-not-available"></span>为方差，表示势能场场强梯度强度；</div>
+<div class="description-paragraph" id="p0027" num="0024">结合飞行器的动态属性将所述风险场分布改为动态风险场；</div>
+<div class="description-paragraph" id="p0028" num="0025">所述动态风险场为：</div>
+<div class="description-paragraph" id="p0029" num="0026"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0030" num="0027"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0031" num="0028"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0032" num="0029">其中，<span class="patent-image-not-available"></span>为场源；<span class="patent-image-not-available"></span>表示障碍物的质量；<span class="patent-image-not-available"></span>为协方差矩阵，描述场强分布形状；<span class="patent-image-not-available"></span>为飞行器与障碍物位置连线与障碍物速度方向的夹角；<span class="patent-image-not-available"></span>为衰减系数；<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别表示场强在速度方向与垂直速度方向的分布。</div>
+<div class="description-paragraph" id="p0033" num="0030">在一些实施例中，所述确定飞行器在所述风险概率场中的期望场强，包括以下步骤：</div>
+<div class="description-paragraph" id="p0034" num="0031">确定考虑飞行器状态偏移分布后在空间中任意位置的所述期望场强为：</div>
+<div class="description-paragraph" id="p0035" num="0032"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0036" num="0033">其中，<span class="patent-image-not-available"></span>表示所述期望场强，<span class="patent-image-not-available"></span>为飞行器位置的概率密度函数；<span class="patent-image-not-available"></span>为飞行器速度的概率密度函数；<span class="patent-image-not-available"></span>表示若飞行器处于状态<span class="patent-image-not-available"></span>在位置<span class="patent-image-not-available"></span>感知到的风险场强。</div>
+<div class="description-paragraph" id="p0037" num="0034">在一些实施例中，确定飞行器在所述风险概率场中的受力，包括以下步骤：</div>
+<div class="description-paragraph" id="p0038" num="0035">确定飞行器在由障碍物运行时所产生的场强影响范围内受到的场强力为：</div>
+<div class="description-paragraph" id="p0039" num="0036"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0040" num="0037">其中，<span class="patent-image-not-available"></span>为执行避障机动的飞行器的速度；<span class="patent-image-not-available"></span>为执行避障机动的飞行器的质量；</div>
+<div class="description-paragraph" id="p0041" num="0038">确定飞行器受到目标点处的吸引力为：</div>
+<div class="description-paragraph" id="p0042" num="0039"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0043" num="0040">其中，<span class="patent-image-not-available"></span>为飞行器当前所处位置；<span class="patent-image-not-available"></span>为目标点所处位置；<span class="patent-image-not-available"></span>为缩放因子。</div>
+<div class="description-paragraph" id="p0044" num="0041">在一些实施例中，在所述根据所述受力调整飞行器的轨迹以进行避障之后，所述方法还包括以下步骤：</div>
+<div class="description-paragraph" id="p0045" num="0042">更新飞行器的所述状态，进而返回所述根据飞行器的状态和所述状态的历史偏差数据对飞行器状态的不确定性构建包围高斯分布的步骤。</div>
+<div class="description-paragraph" id="p0046" num="0043">本申请实施例的另一方面还提供了一种面向低空飞行器状态不确定性的风险评估及避障装置，所述装置包括：</div>
+<div class="description-paragraph" id="p0047" num="0044">不确定性建模单元，用于根据飞行器的状态和所述状态的历史偏差数据对飞行器状态的不确定性构建包围高斯分布；</div>
+<div class="description-paragraph" id="p0048" num="0045">风险场强生成单元，用于根据高斯函数生成各个风险源在空间中的场强分布；</div>
+<div class="description-paragraph" id="p0049" num="0046">风险概率场构建单元，用于根据所述包围高斯分布和各个所述风险源对应的所述场强分布构建风险概率场；</div>
+<div class="description-paragraph" id="p0050" num="0047">受力确定单元，用于确定飞行器在所述风险概率场中的期望场强进而确定飞行器的受力；</div>
+<div class="description-paragraph" id="p0051" num="0048">避障单元，用于根据所述受力调整飞行器的轨迹以进行避障。</div>
+<div class="description-paragraph" id="p0052" num="0049">本申请实施例的另一方面还提供了一种电子设备，包括处理器以及存储器；</div>
+<div class="description-paragraph" id="p0053" num="0050">所述存储器用于存储程序；</div>
+<div class="description-paragraph" id="p0054" num="0051">所述处理器执行所述程序实现上述任一项所述的方法。</div>
+<div class="description-paragraph" id="p0055" num="0052">本申请实施例的另一方面还提供了一种计算机可读存储介质，所述存储介质存储有程序，所述程序被处理器执行实现上述任一项所述的方法。</div>
+<div class="description-paragraph" id="p0056" num="0053">本申请至少包括以下有益效果：</div>
+<div class="description-paragraph" id="p0057" num="0054">本申请可以根据飞行器的状态和状态的历史偏差数据对飞行器状态的不确定性构建包围高斯分布；根据高斯函数生成各个风险源在空间中的场强分布；根据包围高斯分布和各个风险源对应的场强分布构建风险概率场；确定飞行器在风险概率场中的期望场强进而确定飞行器的受力；根据受力调整飞行器的轨迹以进行避障。本申请基于包围高斯分布的偏移模型描述了飞行器在观测误差影响下的实际运行偏差，作为风险场构建的重要基础。其次，提出基于飞行器运行状态的动态场强设计方法，根据高斯函数生成各个风险源在空间中的场强分布，提升模型在动态环境下的适应性。最后，融合所构建的飞行器状态概率分布与动态风险场模型，设计了一种适用于低空飞行器的动态飞行器风险概率场，为并飞行器避障提供决策支持，有效提升低空飞行的安全性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0058">附图说明</div>
+<div class="description-paragraph" id="p0059" num="0055">为了更清楚地说明本申请实施例中的技术方案，下面将对实施例描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本申请的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0060" num="0056">图1为本申请实施例提供的一种面向低空飞行器状态不确定性的风险评估及避障方法的流程示意图；</div>
+<div class="description-paragraph" id="p0061" num="0057">图2为本申请实施例提供的基于飞行器状态不确定性的风险概率场模型避障流程图；</div>
+<div class="description-paragraph" id="p0062" num="0058">图3为本申请实施例提供的包围高斯分布示例图；</div>
+<div class="description-paragraph" id="p0063" num="0059">图4为本申请实施例提供的飞行器位置偏移示意图；</div>
+<div class="description-paragraph" id="p0064" num="0060">图5为本申请实施例提供的动态风险场空间场强分布示例图；</div>
+<div class="description-paragraph" id="p0065" num="0061">图6为本申请实施例提供的一种面向低空飞行器状态不确定性的风险评估及避障装置的结构框图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0066">具体实施方式</div>
+<div class="description-paragraph" id="p0067" num="0062">为了使本申请的目的、技术方案及优点更加清楚明白，以下结合附图及实施例，对本申请进行进一步详细说明。应当理解，此处所描述的具体实施例仅仅用以解释本申请，并不用于限定本申请。</div>
+<div class="description-paragraph" id="p0068" num="0063">在对本申请实施例进行详细说明之前，首先对本申请实施例中涉及的部分相关技术进行说明，如下：</div>
+<div class="description-paragraph" id="p0069" num="0064">鉴于现有技术存在的问题，如何实现对复杂空域中潜在风险的准确建模和实时感知，并将其有效融入飞行路径规划和避障策略中，是保障城市低空交通系统安全运行的关键问题。构建动态响应空域环境变化的风险评估机制，能够为飞行器提供更具安全性的路径决策支持，从源头上降低冲突和碰撞的概率，为城市低空交通的可持续运营打下基础。</div>
+<div class="description-paragraph" id="p0070" num="0065">目前已有多种风险评估与避障方法被提出，如A*、RRT、几何避障法、速度障碍法等，虽在结构化或静态环境中具有效果，但通常需要较高的计算资源，难以适应实时动态复杂的低空环境。此外，飞行器在实际运行中存在误差的影响，导致其观测状态（速度、位置）与真实状态出现偏差，进而偏离规划路径，进入潜在高风险区域。因此，面向动态、不确定的飞行环境，传统方法在安全性和鲁棒性方面存在不足，难以满足城市低空空域风险评估对实时性与可靠性的双重要求。</div>
+<div class="description-paragraph" id="p0071" num="0066">为提升低空飞行器在复杂环境中的运行安全性，现有的城市低空空域避障与风险评估研究已经提出了多种路径规划与风险建模方法。常见的路径规划方法包括A*、Dijkstra、D*、快速随机树（RRT）、RRT*等图搜索类算法及几何避障方法等改进版本。这些方法在结构化或静态环境中具有效果显著、易于实现等优点，尤其是在已知地图或可预见静态障碍物环境下，能够规划出有效避障路径。然而，这些传统方法通常面临两个主要问题：一方面，路径规划过程对计算资源要求较高，在面对动态、非结构化的城市低空空域时，难以满足实时性的需求；另一方面，这些方法多数是基于飞行器状态确定性假设进行建模和规划，忽略了飞行器在实际运行过程中由于传感误差、风扰、环境干扰等带来的状态不确定性，进而影响风险评估的可靠性与避障的合理性。</div>
+<div class="description-paragraph" id="p0072" num="0067">针对低空运行中的实时飞行器交互风险建模问题，近年来一些研究引入了“风险场”或“势能场”模型，从场论视角刻画空域中潜在威胁源（如障碍物与其他飞行器等）对飞行器运行安全的影响。这一类方法通常受到人工势场理论的启发，将风险源抽象为排斥源，目标点视为吸引源，在空间中形成分布式的势场或风险势场，飞行器根据在场中的受力调整自身路径，实现避障或趋向目标。例如，有学者构建了结合动态障碍物的三维风险场模型，考虑飞行器与障碍物间距离信息；也有研究尝试使用多源融合策略，将静态障碍、动态障碍与空域规则共同纳入势场建模框架中，以反映更真实的风险分布态势。这些模型在一定程度上克服了传统避障算法难以处理连续空间复杂分布问题的缺陷，为飞行器避障提供了直观且连续的风险信息。</div>
+<div class="description-paragraph" id="p0073" num="0068">然而，现有风险场模型仍存在一定缺陷，影响飞行器在复杂动态空域中的风险评估精度。首先，现有风险场模型在构建过程中假设飞行器的状态为完全可观测且确定的，即飞行器的实际位置与观测位置高度一致。这一假设在理想环境下较为合理，但在实际城市低空空域运行中，飞行器状态往往受到多种因素影响而产生不确定性偏移。如GNSS等导航系统存在精度限制，易受城市高楼、天气等因素干扰，导致位置估计误差；另一方面，飞行器在飞行过程中容易受到气流扰动、执行系统误差等外部扰动因素的影响，使其位置或速度可能发生轻微但不可忽略的偏移。若风险评估模型未考虑这种不确定性，则可能导致风险评估结果与实际情况存在显著偏差，从而产生两种风险：一是飞行器在被判定为安全区域内运行，但由于实际偏移而进入高风险区域；二是系统对部分区域风险高估，限制了飞行器的路径规划灵活性，降低了空域利用效率。此外，一些风险场模型在场强设计过程中考虑因素较为有限，普遍基于飞行器与障碍物之间的距离计算排斥力场，忽视了诸如飞行器速度、类型、质量、运动方向等动态特征的影响，难以准确反映空域中飞行器交互风险。</div>
+<div class="description-paragraph" id="p0074" num="0069">相关术语解释：</div>
+<div class="description-paragraph" id="p0075" num="0070">（一）风险场模型。</div>
+<div class="description-paragraph" id="p0076" num="0071">风险场是本申请中用于表示空间风险分布的核心模型。其本质是一种基于势场思想的空间映射函数，用于描述障碍物或其他飞行器在其周围区域所产生的风险影响。风险场的强度通常与飞行器与障碍物之间的空间距离有关，距离越近风险越高。此外，本技术中的风险场还引入了障碍物的速度和质量等动态属性，使得风险场具有方向性和动态感知能力，能够更真实地反映障碍物对飞行器的潜在威胁。</div>
+<div class="description-paragraph" id="p0077" num="0072">（二）飞行器状态偏移概率建模。</div>
+<div class="description-paragraph" id="p0078" num="0073">在实际运行过程中，飞行器受到多种干扰因素影响，如卫星定位误差、传感器噪声、风扰动等，导致其真实状态与观测状态之间存在差异。为了刻画这种偏移特性，本申请采用概率建模方式，分别对飞行器的位置和速度建立独立的概率分布模型。通过这种方式，飞行器的状态不再被视为确定值，而是服从一定的概率分布。此外，这种“包围式建模”思想，不追求对实际误差分布的精确拟合，而是采用相对更保守的建模方式，用于覆盖飞行器可能出现的所有区域，从而提升系统对误差的容忍性和建模的安全冗余。</div>
+<div class="description-paragraph" id="p0079" num="0074">（三）风险概率场的构建思路。</div>
+<div class="description-paragraph" id="p0080" num="0075">传统的风险势场仅考虑飞行器当前位置与障碍物的空间关系，难以反映其在不同可能状态下所面临的整体风险。本申请基于飞行器状态的不确定性分布，提出构建风险概率场的方法，即通过对飞行器可能出现的各个位置及速度所感知到的风险场强进行加权整合，形成一个更具合理性的风险空间图谱，从而实现更为安全、主动的避障控制策略。</div>
+<div class="description-paragraph" id="p0081" num="0076">（四）排斥力建模与导航引导机制。</div>
+<div class="description-paragraph" id="p0082" num="0077">风险概率场构建完成后，本申请通过风险场强与飞行器当前状态之间的关系，计算飞行器受到的排斥力，用于引导其避开高风险区域。与此同时，飞行器也受到来自目标点的吸引力。两种力场共同作用于飞行器动力学模型，驱动其完成避障与导航控制。相比于基于硬约束或启发式规划的传统方法，本技术通过势场力引导实现了更加自然、连续的路径调整，且具备良好的响应性。</div>
+<div class="description-paragraph" id="p0083" num="0078">（五）整体建模与系统实现流程。</div>
+<div class="description-paragraph" id="p0084" num="0079">本申请流程自下而上依次包括：飞行器状态不确定性建模、风险场建模、风险概率场生成、排斥与吸引力计算，构成一个可实时迭代的闭环控制体系。在运行过程中，系统根据飞行器当前观测状态生成其概率分布，并据此评估其在空域中的风险程度，从而驱动避障路径的动态调整。该方法适用于城市低空、物流航线、密集交通等多种应用场景，尤其在存在大量不确定性与干扰因素的环境下，具备较强的鲁棒性与实用性。</div>
+<div class="description-paragraph" id="p0085" num="0080">参照图1，本申请实施例提供了一种面向低空飞行器状态不确定性的风险评估及避障方法，具体包括以下步骤S100~S140：</div>
+<div class="description-paragraph" id="p0086" num="0081">S100：根据飞行器的状态和所述状态的历史偏差数据对飞行器状态的不确定性构建包围高斯分布；</div>
+<div class="description-paragraph" id="p0087" num="0082">S110：根据高斯函数生成各个风险源在空间中的场强分布；</div>
+<div class="description-paragraph" id="p0088" num="0083">S120：根据所述包围高斯分布和各个所述风险源对应的所述场强分布构建风险概率场；</div>
+<div class="description-paragraph" id="p0089" num="0084">S130：确定飞行器在所述风险概率场中的期望场强进而确定飞行器的受力；</div>
+<div class="description-paragraph" id="p0090" num="0085">S140：根据所述受力调整飞行器的轨迹以进行避障。</div>
+<div class="description-paragraph" id="p0091" num="0086">在一些实施例中，所述根据飞行器的状态和所述状态的历史偏差数据对飞行器状态的不确定性构建包围高斯分布，包括以下步骤：</div>
+<div class="description-paragraph" id="p0092" num="0087">根据飞行器的位置偏差构建第一包围高斯分布模型；</div>
+<div class="description-paragraph" id="p0093" num="0088">根据飞行器的速度偏差构建第二包围高斯分布模型；</div>
+<div class="description-paragraph" id="p0094" num="0089">其中，飞行器的所述状态包括位置和速度。</div>
+<div class="description-paragraph" id="p0095" num="0090">在一些实施例中，所述根据飞行器的位置偏差构建第一包围高斯分布模型，包括以下步骤：</div>
+<div class="description-paragraph" id="p0096" num="0091">采用多元高斯分布以建模飞行器的位置偏差的概率密度为：</div>
+<div class="description-paragraph" id="p0097" num="0092"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0098" num="0093"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0099" num="0094">其中，<span class="patent-image-not-available"></span>表示误差概率分布；<span class="patent-image-not-available"></span>为飞行器不同的状态在不同方向上的协方差，用于描述在对应各方向上的关联性；<span class="patent-image-not-available"></span>为协方差矩阵，当各向误差独立时为对角阵即飞行器在X、Y和Z三个方向上的误差均完全独立。</div>
+<div class="description-paragraph" id="p0100" num="0095">在一些实施例中，所述根据高斯函数生成各个风险源在空间中的场强分布，包括以下步骤：</div>
+<div class="description-paragraph" id="p0101" num="0096">根据高斯函数对各个所述风险源在空间中生成风险场分布；</div>
+<div class="description-paragraph" id="p0102" num="0097">所述风险场分布的场强分布为：</div>
+<div class="description-paragraph" id="p0103" num="0098"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0104" num="0099">其中，<span class="patent-image-not-available"></span>表示缩放因子，用于调整场强缩放倍率；<span class="patent-image-not-available"></span>为空域中指定位置到该场源的距离；<span class="patent-image-not-available"></span>为方差，表示势能场场强梯度强度；</div>
+<div class="description-paragraph" id="p0105" num="0100">结合飞行器的动态属性将所述风险场分布改为动态风险场；</div>
+<div class="description-paragraph" id="p0106" num="0101">所述动态风险场为：</div>
+<div class="description-paragraph" id="p0107" num="0102"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0108" num="0103"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0109" num="0104"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0110" num="0105">其中，<span class="patent-image-not-available"></span>为场源；<span class="patent-image-not-available"></span>表示障碍物的质量；<span class="patent-image-not-available"></span>为协方差矩阵，描述场强分布形状；<span class="patent-image-not-available"></span>为飞行器与障碍物位置连线与障碍物速度方向的夹角；<span class="patent-image-not-available"></span>为衰减系数；<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别表示场强在速度方向与垂直速度方向的分布。</div>
+<div class="description-paragraph" id="p0111" num="0106">在一些实施例中，所述确定飞行器在所述风险概率场中的期望场强，包括以下步骤：</div>
+<div class="description-paragraph" id="p0112" num="0107">确定考虑飞行器状态偏移分布后在空间中任意位置的所述期望场强为：</div>
+<div class="description-paragraph" id="p0113" num="0108"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0114" num="0109">其中，<span class="patent-image-not-available"></span>表示所述期望场强，<span class="patent-image-not-available"></span>为飞行器位置的概率密度函数；<span class="patent-image-not-available"></span>为飞行器速度的概率密度函数；<span class="patent-image-not-available"></span>表示若飞行器处于状态<span class="patent-image-not-available"></span>在位置<span class="patent-image-not-available"></span>感知到的风险场强。</div>
+<div class="description-paragraph" id="p0115" num="0110">在一些实施例中，确定飞行器在所述风险概率场中的受力，包括以下步骤：</div>
+<div class="description-paragraph" id="p0116" num="0111">确定飞行器在由障碍物运行时所产生的场强影响范围内受到的场强力为：</div>
+<div class="description-paragraph" id="p0117" num="0112"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0118" num="0113">其中，<span class="patent-image-not-available"></span>为执行避障机动的飞行器的速度；<span class="patent-image-not-available"></span>为执行避障机动的飞行器的质量；</div>
+<div class="description-paragraph" id="p0119" num="0114">确定飞行器受到目标点处的吸引力为：</div>
+<div class="description-paragraph" id="p0120" num="0115"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0121" num="0116">其中，<span class="patent-image-not-available"></span>为飞行器当前所处位置；<span class="patent-image-not-available"></span>为目标点所处位置；<span class="patent-image-not-available"></span>为缩放因子。</div>
+<div class="description-paragraph" id="p0122" num="0117">在一些实施例中，在所述根据所述受力调整飞行器的轨迹以进行避障之后，所述方法还包括以下步骤：</div>
+<div class="description-paragraph" id="p0123" num="0118">更新飞行器的所述状态，进而返回所述根据飞行器的状态和所述状态的历史偏差数据对飞行器状态的不确定性构建包围高斯分布的步骤。</div>
+<div class="description-paragraph" id="p0124" num="0119">接下来将结合具体的应用例子，对本申请实施例的方案作详细介绍和说明。</div>
+<div class="description-paragraph" id="p0125" num="0120">为了克服现有技术中未能充分考虑飞行器状态不确定性及风险场建模不完善的问题，本实施例提出了一种面向低空飞行器状态不确定性的风险评估及避障方案。该方案构建了融合飞行器状态不确定性的风险概率场建模框架，首先，基于包围高斯分布的偏移模型描述飞行器在观测误差影响下的实际运行偏差，作为风险场构建的重要基础。其次，进一步考虑飞行器的速度、航向、质量等动态属性对风险场强的影响，提出基于飞行器运行状态的动态场强设计方法，提升模型在动态环境下的适应性。最后，融合所构建的飞行器状态概率分布与动态风险场模型，设计了一种适用于低空飞行器的动态飞行器风险概率场，为并飞行器避障提供决策支持，有效提升低空飞行的安全性，基于飞行器状态不确定性的风险概率场模型避障流程如图2所示。</div>
+<div class="description-paragraph" id="p0126" num="0121">具体地，本实施例可以包括以下技术方案：</div>
+<div class="description-paragraph" id="p0127" num="0122">1、飞行器状态不确定性分布模型构建。</div>
+<div class="description-paragraph" id="p0128" num="0123">在实际低空飞行器的运行过程中，其观测位置不可避免地受到多种误差源的干扰，例如GNSS定位误差、传感器噪声、环境遮挡、信号多径效应等。这些误差将导致飞行器的实际运行状态（位置、速度）与其观测状态之间产生偏差。为了准确评估飞行器在空域中所处状态的安全性，本实施例建立飞行器运行状态的不确定性模型，以此为基础构建风险概率场。</div>
+<div class="description-paragraph" id="p0129" num="0124">该模型主要考虑飞行器的三维位置与速度的动态状态特征，结合飞行器运动的不确定性，基于飞行器状态偏差分布建模推测其在空域中可能出现的状态分布。但构建高精度的飞行器偏移概率分布模型通常需要大量历史观测数据，高昂的计算成本高难以满足实际系统中对实时性和泛化能力的要求。因此，本实施例采用包围高斯分布的思想对飞行器状态偏差概率进行建模，构建一个方差更大、覆盖范围更广的高斯分布，用于“包围”飞行器在一定时段内可能出现的状态区域，如图3所示。这种方法不仅有效简化建模过程，而且显著降低对历史数据规模和质量的依赖。在包围策略下，即使真实偏差分布呈现非高斯形态，仍能通过一个保守的高斯模型对其进行近似包容，确保风险评估的安全性与鲁棒性。</div>
+<div class="description-paragraph" id="p0130" num="0125">在该建模假设下，当飞行器在三个正交方向（X, Y, Z）上的偏差相互独立时，飞行器的位置误差与速度误差可以各自分别建模为各向独立的三维高斯分布，如图4所示。其概率服从函数形式如下：</div>
+<div class="description-paragraph" id="p0131" num="0126"> <span class="patent-image-not-available"></span> （1）</div>
+<div class="description-paragraph" id="p0132" num="0127"> <span class="patent-image-not-available"></span> （2）</div>
+<div class="description-paragraph" id="p0133" num="0128"> <span class="patent-image-not-available"></span> （3）</div>
+<div class="description-paragraph" id="p0134" num="0129">其中，<span class="patent-image-not-available"></span>为轨迹偏移均值，<span class="patent-image-not-available"></span>为方差，描述轨迹偏移的不确定性程度。</div>
+<div class="description-paragraph" id="p0135" num="0130">然而，由于建筑导致的信号遮挡或飞行器受到风等气象因素的影响，其位置与速度分布往往在各个方向上存在一定的关联性，因此为准确建模飞行器在不同方向上偏移的关联，本实施例采用多元高斯分布以建模飞行器的位置偏差相关性，其概率密度为：</div>
+<div class="description-paragraph" id="p0136" num="0131"> <span class="patent-image-not-available"></span> （4）</div>
+<div class="description-paragraph" id="p0137" num="0132"> <span class="patent-image-not-available"></span> （5）</div>
+<div class="description-paragraph" id="p0138" num="0133">其中<span class="patent-image-not-available"></span>表示误差概率分布；<span class="patent-image-not-available"></span>为不同飞行器状态在不同方向上的协方差，用于描述其在各方向上的关联性；<span class="patent-image-not-available"></span>为协方差矩阵，当各向误差独立时为对角阵即飞行器在X、Y和Z三个方向上的误差均完全独立。此外，由于位置误差与速度误差之间通常为各自独立的，因此在建模中应分别构建基于飞行器位置偏差与速度偏差的包围高斯分布模型。</div>
+<div class="description-paragraph" id="p0139" num="0134">在实际低空空域监控与管理中，准确理解和评估飞行器因偏移到某个特定区域的概率，是确保飞行安全的关键问题之一。由于飞行器状态偏移具有连续概率密度特性，其不确定性表现为在三维空间中分布的一种可能性概率分布，可将连续偏移概率密度映射至离散空域区域以更好度量飞行器对空域资源的占用。对于指定范围网格下飞行器偏移概率，可通过在x、y、z三个维度的多重积分计算得到。</div>
+<div class="description-paragraph" id="p0140" num="0135">2、面向飞行器运行风险的动态风险场建模。</div>
+<div class="description-paragraph" id="p0141" num="0136">为准确刻画复杂空中交通场景中多源、多类风险的空间分布特性，本实施例提出一种基于势场理论的风险建模方法。该方法以势能场理论为基础，将飞行器与空域内其他风险因素及目标点之间的相互作用建模为空间中的“力场效应”，用以描述飞行器在运行过程中可能遭遇的多重风险压力。</div>
+<div class="description-paragraph" id="p0142" num="0137">在低空复杂环境下，飞行器往往受到多种因素的共同影响，包括其他飞行器的运行干扰、自身运行状态风险等。这些影响不是孤立存在，而是彼此交织、动态变化，构成了具有高度耦合性的风险交互系统。为了有效评估飞行器在这一系统中所面临的综合交互风险，仅依靠离散的点状障碍或静态边界模型难以满足需求。本实施例将上述各类风险源抽象为空间中的“势场源”，并引入高斯函数描述其在空间中生成的风险场分布，其场强分布如下所示：</div>
+<div class="description-paragraph" id="p0143" num="0138"> <span class="patent-image-not-available"></span>（6）</div>
+<div class="description-paragraph" id="p0144" num="0139">其中<span class="patent-image-not-available"></span>表示缩放因子，用于调整场强缩放倍率，可依据飞行器类型进行确定；<span class="patent-image-not-available"></span>为空域中指定位置到该场源的距离；<span class="patent-image-not-available"></span>为方差，表示势能场场强梯度强度；</div>
+<div class="description-paragraph" id="p0145" num="0140">然而，该类风险势场模型仍存在一定局限性。风险场的构建主要基于飞行器与风险源之间的空间距离，而未充分引入飞行器自身的运动状态因素，如速度、航向及质量等。在实际飞行中，飞行器的速度越大，其风险越强，越难以快速调整路径规避风险；飞行器质量的不同也会影响其响应外力的能力；而航向则直接决定了风险作用方向与飞行器运动方向之间的交互关系。忽略这些动态属性，可能导致风险场对实际避障行为指导能力的下降，尤其在高速或大质量飞行器运行场景下，其势能响应模型与真实飞行反应之间可能存在偏差。因此本实施例在高斯风险场的基础上进行改进，得到如下动态风险场：</div>
+<div class="description-paragraph" id="p0146" num="0141"> <span class="patent-image-not-available"></span>（7）</div>
+<div class="description-paragraph" id="p0147" num="0142"> <span class="patent-image-not-available"></span>（8）</div>
+<div class="description-paragraph" id="p0148" num="0143"> <span class="patent-image-not-available"></span>（9）</div>
+<div class="description-paragraph" id="p0149" num="0144">其中<span class="patent-image-not-available"></span>为场源，即障碍物的速度；<span class="patent-image-not-available"></span>表示障碍物的质量；<span class="patent-image-not-available"></span>为协方差矩阵，描述场强分布形状；<span class="patent-image-not-available"></span>为飞行器与障碍物位置连线与障碍物速度方向的夹角；<span class="patent-image-not-available"></span>为衰减系数；<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别表示场强在速度方向与垂直速度方向的分布。从垂直方向看由飞行器运行时产生的动态场强分布如图5所示，其形状与速度方向高度相关，从而反映不同运动状态下的风险差异。</div>
+<div class="description-paragraph" id="p0150" num="0145">飞行器在由障碍物（其他飞行器）运行时所产生的场强影响范围内将受到场强力的影响从而执行避障机动，此时飞行器受力可由以下公式计算：</div>
+<div class="description-paragraph" id="p0151" num="0146"> <span class="patent-image-not-available"></span>（10）</div>
+<div class="description-paragraph" id="p0152" num="0147">其中<span class="patent-image-not-available"></span>为执行避障机动飞行器的速度；<span class="patent-image-not-available"></span>为该飞行器质量。</div>
+<div class="description-paragraph" id="p0153" num="0148">飞行器除受障碍物运行时产生的场强排斥力外，同时受到目标点处的吸引力，其吸引力大小与飞行器当前与目标点处的距离相关，其具体定义可表示为：</div>
+<div class="description-paragraph" id="p0154" num="0149"> <span class="patent-image-not-available"></span> （11）</div>
+<div class="description-paragraph" id="p0155" num="0150">其中<span class="patent-image-not-available"></span>为UAV当前所处位置；<span class="patent-image-not-available"></span>为目标点所处位置；<span class="patent-image-not-available"></span>为缩放因子。</div>
+<div class="description-paragraph" id="p0156" num="0151">3、融合不确定性建模的风险概率场建构。</div>
+<div class="description-paragraph" id="p0157" num="0152">在面向低空复杂环境的飞行器避障任务中，传统确定性风险势场由于忽略飞行器状态不确定性，难以准确反映其对潜在风险源的实际暴露程度。本实施例引入风险概率场建模方法，从整体概率角度出发，计算飞行器在不确定位置分布下对风险源的期望感知强度，能够显著提升避障策略的前瞻性与鲁棒性。</div>
+<div class="description-paragraph" id="p0158" num="0153">在上述方案中飞行器位置与速度已分别建模为具有概率分布的随机变量，可基于此推算其在空间中各个位置可能感知到的风险场强期望，从而获得覆盖整个三维空域的风险概率场。设在均值时飞行器场强为<span class="patent-image-not-available"></span>，则考虑状态偏移分布后在空间中任意位置<span class="patent-image-not-available"></span>的期望场强为：</div>
+<div class="description-paragraph" id="p0159" num="0154"> <span class="patent-image-not-available"></span> （12）</div>
+<div class="description-paragraph" id="p0160" num="0155">其中<span class="patent-image-not-available"></span>为飞行器位置的概率密度函数；<span class="patent-image-not-available"></span>为飞行器速度的概率密度函数；<span class="patent-image-not-available"></span>表示若飞行器处于状态<span class="patent-image-not-available"></span>在位置<span class="patent-image-not-available"></span>感知到的风险场强。</div>
+<div class="description-paragraph" id="p0161" num="0156">该积分表达式体现了飞行器在空间中任意状态条件下，感知障碍物所生成风险场的期望效应。与传统“点对点”式的风险感知不同，风险概率场通过对飞行器位置与速度分布的加权评估，建立了更加真实且连续的风险分布模型。</div>
+<div class="description-paragraph" id="p0162" num="0157">综上，本实施例包括以下技术手段：</div>
+<div class="description-paragraph" id="p0163" num="0158">（1）融合飞行器状态不确定性的偏移分布建模机制：通过构建基于扰动影响与定位误差的概率偏移模型，量化飞行器在实际运行中与其规划路径之间的偏离程度，为风险评估提供基础支持。</div>
+<div class="description-paragraph" id="p0164" num="0159">（2）面向飞行器运行风险的动态风险场建模方法：基于人工势场理论，考虑飞行器速度、航向、质量等动态属性的风险场强函数，提高对飞行器状态变化的响应能力。</div>
+<div class="description-paragraph" id="p0165" num="0160">（3）融合不确定性建模的风险概率场建构方法：在风险场的基础上融合飞行器偏移概率分布，将各类风险源的观测偏差转化为概率表达，形成风险概率场模型，实现对潜在区域内飞行器运行状态不确定性的概率化刻画，提升对飞行器在空域运行风险的评估能力。</div>
+<div class="description-paragraph" id="p0166" num="0161">（4）基于风险场引导的低空飞行器避障路径规划策略：基于风险概率场模型，设计一套具备实时计算能力的飞行器避障方法，在动态空域环境基于风险实时引导飞行器执行避障操作。</div>
+<div class="description-paragraph" id="p0167" num="0162">本实施例的有益效果包括：</div>
+<div class="description-paragraph" id="p0168" num="0163">（一）综合考虑飞行器状态不确定性，建模更加精确。</div>
+<div class="description-paragraph" id="p0169" num="0164">本实施例通过引入飞行器状态不确定性与风险场建模，弥补了现有技术中未充分考虑飞行器观测误差的问题。传统的风险场模型通常假设飞行器观测状态精确无误差，采用静态或简化的风险评估方法。然而，在复杂动态低空环境下，飞行器不仅受到各种障碍物和其他飞行器的影响，还会因定位误差、外部气象干扰以及动态路径规划中的不可预见因素而发生状态偏移，这些因素对基于飞行器实时状态及其周围空域的风险评估产生显著影响。</div>
+<div class="description-paragraph" id="p0170" num="0165">针对这一问题，本实施例在一般风险场的基础上，创新性地提出了基于飞行器状态偏移的风险概率场，能够动态地对飞行器的定位误差进行建模，通过计算误差分布，建立飞行器状态的不确定性模型。这一创新使得风险评估不仅考虑了飞行器的当前状态，还考虑了其误差的分布，从而可以更为准确地分析飞行器在复杂空域环境中与其他飞行器的交互风险，避免了传统方法中因忽略飞行器不确定性带来的风险评估偏差。</div>
+<div class="description-paragraph" id="p0171" num="0166">（二）实时动态风险场设计，提升避障安全性。</div>
+<div class="description-paragraph" id="p0172" num="0167">本实施例的风险场设计进一步考虑了飞行器的动态属性，如速度与航向，使得飞行器与空域中其他因素的相互作用关系得以更精确建模。相比于传统静态模型，动态风险场能够根据飞行器状态的实时变化动态更新风险分布，更贴合实际飞行环境，有效提升了风险评估的准确性和及时性。能帮助飞行器提前识别潜在风险，实现更具前瞻性的避障策略。</div>
+<div class="description-paragraph" id="p0173" num="0168">此外，本实施例还设计了飞行器在场中的受力模型，考虑飞行器在复杂环境中所受的外力，并利用这些受力信息引导飞行器进行避障。通过模拟飞行器所受外部风险场的影响，引导飞行器依据受力变化做出反应，从而实现避障，减少潜在的碰撞风险。这一设计不仅提升了飞行器在复杂动态环境中的避障能力，使其能够在各种外部影响下安全飞行。与传统静态模型相比，本实施例能够更有效地适应飞行环境中的突发变化，提供更加安全、可靠的避障方案。</div>
+<div class="description-paragraph" id="p0174" num="0169">参照图6，本申请实施例提供了一种面向低空飞行器状态不确定性的风险评估及避障装置，包括：</div>
+<div class="description-paragraph" id="p0175" num="0170">不确定性建模单元，用于根据飞行器的状态和所述状态的历史偏差数据对飞行器状态的不确定性构建包围高斯分布；</div>
+<div class="description-paragraph" id="p0176" num="0171">风险场强生成单元，用于根据高斯函数生成各个风险源在空间中的场强分布；</div>
+<div class="description-paragraph" id="p0177" num="0172">风险概率场构建单元，用于根据所述包围高斯分布和各个所述风险源对应的所述场强分布构建风险概率场；</div>
+<div class="description-paragraph" id="p0178" num="0173">受力确定单元，用于确定飞行器在所述风险概率场中的期望场强进而确定飞行器的受力；</div>
+<div class="description-paragraph" id="p0179" num="0174">避障单元，用于根据所述受力调整飞行器的轨迹以进行避障。</div>
+<div class="description-paragraph" id="p0180" num="0175">可以理解的是，上述方法实施例中的内容均适用于本装置实施例中，本装置实施例所具体实现的功能与上述方法实施例相同，并且达到的有益效果与上述方法实施例所达到的有益效果也相同。</div>
+<div class="description-paragraph" id="p0181" num="0176">在一些可选择的实施例中，在方框图中提到的功能/操作可以不按照操作示图提到的顺序发生。例如，取决于所涉及的功能/操作，连续示出的两个方框实际上可以被大体上同时地执行或所述方框有时能以相反顺序被执行。此外，在本申请的流程图中所呈现和描述的实施例以示例的方式被提供，目的在于提供对技术更全面的理解。所公开的方法不限于本文所呈现的操作和逻辑流程。可选择的实施例是可预期的，其中各种操作的顺序被改变以及其中被描述为较大操作的一部分的子操作被独立地执行。</div>
+<div class="description-paragraph" id="p0182" num="0177">此外，虽然在功能性模块的背景下描述了本申请，但应当理解的是，除非另有相反说明，所述的功能和/或特征中的一个或多个可以被集成在单个物理装置和/或软件模块中，或者一个或多个功能和/或特征可以在单独的物理装置或软件模块中被实现。还可以理解的是，有关每个模块的实际实现的详细讨论对于理解本申请是不必要的。更确切地说，考虑到在本文中公开的装置中各种功能模块的属性、功能和内部关系的情况下，在工程师的常规技术内将会了解该模块的实际实现。因此，本领域技术人员运用普通技术就能够在无需过度试验的情况下实现在权利要求书中所阐明的本申请。还可以理解的是，所公开的特定概念仅仅是说明性的，并不意在限制本申请的范围，本申请的范围由所附权利要求书及其等同方案的全部范围来决定。</div>
+<div class="description-paragraph" id="p0183" num="0178">所述功能如果以软件功能单元的形式实现并作为独立的产品销售或使用时，可以存储在一个计算机可读取存储介质中。基于这样的理解，本申请的技术方案本质上或者说对现有技术做出贡献的部分或者该技术方案的部分可以以软件产品的形式体现出来，该计算机软件产品存储在一个存储介质中，包括若干指令用以使得一台计算机设备（可以是个人计算机，服务器，或者网络设备等）执行本申请各个实施例所述方法的全部或部分步骤。而前述的存储介质包括：U盘、移动硬盘、只读存储器（ROM，Read-Only Memory）、随机存取存储器（RAM，Random Access Memory）、磁碟或者光盘等各种可以存储程序代码的介质。</div>
+<div class="description-paragraph" id="p0184" num="0179">在流程图中表示或在此以其他方式描述的逻辑和/或步骤，例如，可以被认为是用于实现逻辑功能的可执行指令的定序列表，可以具体实现在任何计算机可读介质中，以供指令执行系统、装置或设备（如基于计算机的系统、包括处理器的系统或其他可以从指令执行系统、装置或设备取指令并执行指令的系统）使用，或结合这些指令执行系统、装置或设备而使用。就本说明书而言，“计算机可读介质”可以是任何可以包含、存储、通信、传播或传输程序以供指令执行系统、装置或设备或结合这些指令执行系统、装置或设备而使用的装置。</div>
+<div class="description-paragraph" id="p0185" num="0180">计算机可读介质的更具体的示例（非穷尽性列表）包括以下：具有一个或多个布线的电连接部（电子装置）、便携式计算机盘盒（磁装置）、随机存取存储器（RAM）、只读存储器（ROM）、可擦除可编辑只读存储器（EPROM或闪速存储器）、光纤装置以及便携式光盘只读存储器（CDROM）。另外，计算机可读介质甚至可以是可在其上打印所述程序的纸或其他合适的介质，因为可以例如通过对纸或其他介质进行光学扫描，接着进行编辑、解译或必要时以其他合适方式进行处理来以电子方式获得所述程序，然后将其存储在计算机存储器中。</div>
+<div class="description-paragraph" id="p0186" num="0181">应当理解，本申请的各部分可以用硬件、软件、固件或它们的组合来实现。在上述实施方式中，多个步骤或方法可以用存储在存储器中且由合适的指令执行系统执行的软件或固件来实现。例如，如果用硬件来实现，和在另一实施方式中一样，可用本领域公知的下列技术中的任一项或他们的组合来实现：具有用于对数据信号实现逻辑功能的逻辑门电路的离散逻辑电路，具有合适的组合逻辑门电路的专用集成电路，可编程门阵列（PGA），现场可编程门阵列（FPGA）等。</div>
+<div class="description-paragraph" id="p0187" num="0182">在本说明书的描述中，参考术语“一个实施例”、“一些实施例”、“示例”、“具体示例”、或“一些示例”等的描述意指结合该实施例或示例描述的具体特征、结构、材料或者特点包含于本申请的至少一个实施例或示例中。在本说明书中，对上述术语的示意性表述不一定指的是相同的实施例或示例。而且，描述的具体特征、结构、材料或者特点可以在任何的一个或多个实施例或示例中以合适的方式结合。</div>
+<div class="description-paragraph" id="p0188" num="0183">尽管已经示出和描述了本申请的实施例，本领域的普通技术人员可以理解：在不脱离本申请的原理和宗旨的情况下可以对这些实施例进行多种变化、修改、替换和变型，本申请的范围由权利要求及其等同物限定。</div>
+<div class="description-paragraph" id="p0189" num="0184">以上是对本申请的较佳实施进行了具体说明，但本申请并不限于所述实施例，熟悉本领域的技术人员在不违背本申请精神的前提下还可做出种种的等同变形或替换，这些等同的变形或替换均包含在本申请权利要求所限定的范围内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

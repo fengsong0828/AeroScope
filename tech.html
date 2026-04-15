@@ -28,7 +28,7 @@
         .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
 
         /* --- 2. 新闻列表核心样式 (优化高度匹配) --- */
-        .news-feed { display: flex; flex-direction: column; gap: 4px; } 
+        .news-feed { display: flex; flex-direction: column; gap: 2px; } 
         
         .news-item { 
             display: flex; 
@@ -38,14 +38,14 @@
             overflow: hidden; 
             transition: 0.2s; 
             /* 修改：降低最小高度，防止外框比内容高太多 */
-            min-height: 80px; 
+            min-height: 60px; 
         }
         .news-item:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.05); border-color: #3b82f6; }
         
         /* 图片区域：宽度微调 */
         .news-image { 
-            width: 120px; /* 修改：稍微收窄，匹配高度 */
-            min-width: 120px; 
+            width: 100px; /* 修改：稍微收窄，匹配高度 */
+            min-width: 100px; 
             background-color: #cbd5e1; 
             display: block; 
             background-size: cover; 
@@ -54,7 +54,7 @@
         
         /* 右侧内容：紧凑排版 */
         .news-content { 
-            padding: 8px 12px; /* 修改：减少上下内边距 */
+            padding: 6px 10px; /* 修改：减少上下内边距 */
             flex: 1; 
             display: flex; 
             flex-direction: column; 

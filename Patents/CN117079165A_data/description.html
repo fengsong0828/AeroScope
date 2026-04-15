@@ -1,0 +1,100 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN117079165A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES439417012">
+<invention-title id="title1" lang="ZH">面向低空空域飞行器的多目标跟踪方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及多目标跟踪技术领域，尤其涉及一种面向低空空域飞行器的多目标跟踪方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">当前，无人机等低空空域飞行器相关技术发展迅速，被广泛应用于国民生产的各行各业。在军事领域，以无人机为代表的低空空域飞行器集群作战正朝着智能化、实战化迅猛发展，将在未来战场上造成巨大威胁，面向反制低空空域飞行器集群的可见光探测与跟踪研究势在必行。</div>
+<div class="description-paragraph" id="p0005" num="0003">然而，由于低空飞行器几何尺寸小、雷达散射截面小、红外特征弱，普通防空系统难以及时发现和截获目标，主要依靠低空搜索雷达、红外和可见光探测系统等进行探测与跟踪。</div>
+<div class="description-paragraph" id="p0006" num="0004">在复杂场景下飞行器集群存在目标之间相互遮挡、目标尺寸较小等问题，导致跟踪漂移、目标丢失等情况的发生，进而使得视觉检测和跟踪的精度低。因此，基于视觉的多目标跟踪技术成为反制低空空域飞行器集群的关键技术之一。</div>
+<div class="description-paragraph" id="p0007" num="0005">现有的多目标跟踪方法FairMOT是多目标跟踪领域中一种典型的基于联合检测和外观表达(Joint Detection and Embedding，JDE)框架的方法，可以用于实时的多目标跟踪，在对多个感兴趣目标定位的同时，维持各自的身份序号，并记录连续的运动轨迹。FairMOT包括Encoder-Decoder网络、目标检测网络、重识别网络以及数据关联模块。但该方法是针对行人数据集提出，针对低空空域飞行器集群的特点，本发明在FairMOT基础上加以改进，使其更适用于低空空域的飞行器集群跟踪。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0008">发明内容</div>
+<div class="description-paragraph" id="p0009" num="0006">针对上述现有技术存在的不足，本发明提出了一种面向低空空域飞行器的多目标跟踪方法，目的是解决在复杂场景下，由于低空空域飞行器集群目标之间相互遮挡、目标尺寸较小等原因造成的检测和跟踪精度低的问题，提升多目标识别和跟踪的精度。</div>
+<div class="description-paragraph" id="p0010" num="0007">为解决上述技术问题，本发明所采取的技术方案包括如下步骤：</div>
+<div class="description-paragraph" id="p0011" num="0008">步骤1：获取包含飞行器目标的位置信息和身份序号的视频序列，构建训练数据集；</div>
+<div class="description-paragraph" id="p0012" num="0009">步骤2：将训练数据集输入基于FairMOT架构的Encoder-Decoder网络进行特征提取，并将提取到的飞行器目标特征输入坐标注意力机制，获得增强的飞行器目标特征；</div>
+<div class="description-paragraph" id="p0013" num="0010">进一步的，所述的将提取到的飞行器目标特征输入坐标注意力机制获得增强的飞行器目标特征的方法，包括如下步骤：</div>
+<div class="description-paragraph" id="p0014" num="0011">步骤2.1：对提取到的飞行器目标特征分别沿着水平方向和垂直方向进行池化操作，获得宽度和高度两个方向上的特征图；</div>
+<div class="description-paragraph" id="p0015" num="0012">步骤2.2：将得到的两个方向上的特征图进行拼接，将拼接后的特征图输入卷积核为1×1的卷积层进行卷积变换，再经过批量归一化处理和Sigmoid非线性激活函数获得特征图F；</div>
+<div class="description-paragraph" id="p0016" num="0013">步骤2.3：将特征图F分别沿着水平方向和垂直方向进行卷积核为1×1的卷积操作，再分别经过Sigmoid非线性激活函数后得到特征图F在高度和宽度上的注意力权重g<sup>h</sup>和g<sup>w</sup>；</div>
+<div class="description-paragraph" id="p0017" num="0014">步骤2.4：将提取到的飞行器目标特征与特征图F在高度和宽度上的注意力权重g<sup>h</sup>和g<sup>w</sup>进行乘法加权计算，得到增强的飞行器目标特征；</div>
+<div class="description-paragraph" id="p0018" num="0015">步骤3：将增强的飞行器目标特征输入基于FairMOT架构的目标检测网络得到目标检测结果，将增强的飞行器目标特征输入基于FairMOT架构的重识别网络得到目标的外观特征，并对目标检测网络和重识别网络进行训练，得到训练好的目标检测器；</div>
+<div class="description-paragraph" id="p0019" num="0016">进一步的，所述目标检测器包括：Encoder-Decoder网络、坐标注意力机制、目标检测网络和重识别网络；</div>
+<div class="description-paragraph" id="p0020" num="0017">进一步的，所述对目标检测网络和重识别网络进行训练的方法为：利用由训练目标检测网络的损失函数L<sub>detection</sub>和训练重识别网络的损失函数L<sub>ArcFace</sub>共同构成的网络总损失函数训练目标检测网络和重识别网络，该网络总损失函数为：</div>
+<div class="description-paragraph" id="p0021" num="0018">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0022" num="0019">其中，L<sub>detection</sub>表示用于训练目标检测网络的损失函数，L<sub>ArcFace</sub>表示用于训练重识别网络的损失函数；w<sub>1</sub>和w<sub>2</sub>分别为目标检测网络的权重系数和重识别网络的权重系数；</div>
+<div class="description-paragraph" id="p0023" num="0020">步骤4：获取包含待检测飞行器目标的视频序列，并将包含待检测飞行器目标的视频序列输入目标检测器，获得目标检测结果和目标的外观特征；</div>
+<div class="description-paragraph" id="p0024" num="0021">所述目标检测结果，包括：检测框和检测分数；</div>
+<div class="description-paragraph" id="p0025" num="0022">步骤5：将目标检测结果和目标的外观特征输入BYTE数据关联模块进行跟踪，输出多目标跟踪结果；</div>
+<div class="description-paragraph" id="p0026" num="0023">所述多目标跟踪结果，包括：目标的边界框和身份序号；</div>
+<div class="description-paragraph" id="p0027" num="0024">步骤5.1：设置检测分数阈值τ，将检测分数高于检测分数阈值的检测框划分到高分检测框D<sub>high</sub>中，反之则划分到低分检测框D<sub>low</sub>中；将第一帧中目标的边界框和身份序号视为一个目标轨迹，根据视频序列中所有帧中的目标轨迹建立轨迹集合T，将轨迹集合T初始化为空，初始化第一次未成功匹配的检测框集合D<sub>remain</sub>、第一次未成功匹配的轨迹集合T<sub>remain</sub>、第二次未成功匹配的轨迹集合T<sub>re-remain</sub>和两次均未成功匹配的轨迹集合T<sub>lost</sub>为空；对于视频序列中的每一帧，重复步骤5.2-5.5；</div>
+<div class="description-paragraph" id="p0028" num="0025">步骤5.2：使用卡尔曼滤波器预测待检测飞行器目标在当前帧中新的目标轨迹，并获得该目标轨迹的预测框；</div>
+<div class="description-paragraph" id="p0029" num="0026">步骤5.3：在D<sub>high</sub>和T之间进行第一次匹配，将未成功匹配的高分检测框保留到D<sub>remain</sub>，将未成功匹配的目标轨迹保留到T<sub>remain</sub>；</div>
+<div class="description-paragraph" id="p0030" num="0027">所述在D<sub>high</sub>和T之间进行第一次匹配的方法为：利用D<sub>high</sub>和T在当前帧中新的目标轨迹的预测框之间的交并比和由重识别网络提取到的目标的外观特征来计算D<sub>high</sub>和待检测飞行器目标在当前帧中新的目标轨迹的预测框的相似性；基于该相似性使用匈牙利算法来完成D<sub>high</sub>和T之间的匹配；</div>
+<div class="description-paragraph" id="p0031" num="0028">步骤5.4：在D<sub>low</sub>和T<sub>remain</sub>之间进行第二次匹配，将未成功匹配的目标轨迹保留到T<sub>re-remain</sub>，并删除当前帧中所有未成功匹配的低分检测框；</div>
+<div class="description-paragraph" id="p0032" num="0029">所述在D<sub>low</sub>和T<sub>remain</sub>之间进行第二次匹配的方法为：利用D<sub>low</sub>和T<sub>remain</sub>在当前帧中新的目标轨迹的预测框之间的交并比计算D<sub>low</sub>和当前帧中新的目标轨迹的预测框相似性，基于该相似性使用匈牙利算法来完成D<sub>low</sub>和T<sub>remain</sub>之间的匹配；</div>
+<div class="description-paragraph" id="p0033" num="0030">步骤5.5：将T<sub>re-remain</sub>中的轨迹保留到T<sub>lost</sub>中，对其连续观测30帧，若其仍未能匹配到检测框，则将其从T和T<sub>lost</sub>中删除，同时用D<sub>remain</sub>中的检测框初始化新的目标轨迹并放入T中；</div>
+<div class="description-paragraph" id="p0034" num="0031">步骤5.6：直到视频序列的所有帧匹配结束，输出轨迹集合T为多目标跟踪结果，包括目标在每一帧中的位置和身份序号。</div>
+<div class="description-paragraph" id="p0035" num="0032">采用上述技术方案所产生的有益效果在于：</div>
+<div class="description-paragraph" id="p0036" num="0033">本发明方法通过向Encoder-Decoder网络引入坐标注意力机制，将飞行器目标的位置信息嵌入到信道注意中，同时考虑了图像各通道间关系和位置信息，有助于网络更好地定位和识别目标；在训练过程中，在重识别网络中采用ArcFace Loss作为损失函数，使其能提取更精确的表观特征，增强判别能力，提高了视觉检测和跟踪的精度；本发明方法选择BYTE数据关联模块进行目标跟踪，利用检测框和跟踪轨迹之间的相似性，在保留高分检测结果的同时，从低分检测结果中去除背景，挖掘出真正的物体，从而降低漏检并提高轨迹的连贯性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0037">附图说明</div>
+<div class="description-paragraph" id="p0038" num="0034">图1为本实施方式中面向低空空域飞行器的多目标跟踪方法的流程图；</div>
+<div class="description-paragraph" id="p0039" num="0035">图2为本实施方式中面向低空空域飞行器的多目标跟踪方法的原理图；</div>
+<div class="description-paragraph" id="p0040" num="0036">图3为本实施方式中坐标注意力机制的原理图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0041">具体实施方式</div>
+<div class="description-paragraph" id="p0042" num="0037">为了便于理解本申请，下面结合附图和实施方式，对本发明的具体实施方式作进一步详细描述。以下实施方式用于说明本发明，但不用来限制本发明的范围。相反地，提供这些实施方式的目的是使对本申请的公开内容理解的更加透彻全面。</div>
+<div class="description-paragraph" id="p0043" num="0038">本发明方法的核心思路是：采用训练数据集训练目标检测器并利用目标检测器和BYTE数据关联模块完成飞行器多目标跟踪。所述训练目标检测器的过程包括：将训练数据集输入基于FairMOT架构的Encoder-Decoder网络进行特征提取，并将提取到的飞行器目标特征引入坐标注意力机制，获得增强的飞行器目标特征；将增强的飞行器目标特征输入基于FairMOT架构的目标检测网络和重识别网络，获得目标检测结果；在训练目标检测器的过程中，通过损失函数L<sub>detection</sub>和L<sub>ArcFace</sub>一起训练目标检测网络和重识别网络，获得目标检测器。所述利用目标检测器和BYTE数据关联模块完成飞行器多目标跟踪的过程包括：将包含待检测飞行器目标的视频序列送入目标检测器，获得目标检测结果；将目标检测结果输入BYTE数据关联模块，输出多目标跟踪结果，包括目标的边界框和身份序号。</div>
+<div class="description-paragraph" id="p0044" num="0039">本实施方式的一种面向低空空域飞行器的多目标跟踪方法，如图1所示，包括如下步骤：</div>
+<div class="description-paragraph" id="p0045" num="0040">步骤1：获取包含飞行器目标的位置信息和身份序号的视频序列，构建训练数据集；</div>
+<div class="description-paragraph" id="p0046" num="0041">在本实施方式中，不对训练数据集的获取方式进行限定，训练数据集可以从现有的数据库中获取，也可以将预先采集并进行手动标注的视频序列作为训练数据集，方法为：采集包含多架无人机目标的视频序列，将其按帧转为图片，标注目标的位置信息，即边界框坐标和身份序号。</div>
+<div class="description-paragraph" id="p0047" num="0042">步骤2：将训练数据集输入基于FairMOT架构的Encoder-Decoder网络进行特征提取，并将提取到的飞行器目标特征输入坐标注意力机制，获得增强的飞行器目标特征；</div>
+<div class="description-paragraph" id="p0048" num="0043">在本实施方式中，如图2所示，将训练数据集输入基于FairMOT架构的Encoder-Decoder网络进行特征提取，选择现有的基于FairMOT架构的Encoder-Decoder网络并采用DLA-34作为主干网络进行特征提取，该Encoder-Decoder网络包括level0～level5六个层级结构，其中level0和level1分别由步长为1和步长为2的3×3卷积组成，再经过level2～level5四个树形层级结构处理，其层级内部通过下采样与拼接操作实现残差结构，且不同层级间进行比层级内部残差结构更大的残差连接；通过不同层级间的残差连接来实现对不同尺度目标的检测，使其能够根据目标的尺寸和姿态来动态调整感受野。</div>
+<div class="description-paragraph" id="p0049" num="0044">进一步地，所述坐标注意力机制包括：坐标信息嵌入和坐标注意生成，其中坐标信息嵌入包括两个并行的平均池化层，坐标注意生成包括拼接和卷积层、批归一化和Sigmoid非线性层、两个并行的卷积层、Sigmoid非线性层；</div>
+<div class="description-paragraph" id="p0050" num="0045">所述的将提取到的飞行器目标特征输入坐标注意力机制获得增强的飞行器目标特征的方法，包括如下步骤：</div>
+<div class="description-paragraph" id="p0051" num="0046">步骤2.1：对提取到的飞行器目标特征分别沿着水平方向和垂直方向进行池化操作，获得宽度和高度两个方向上的特征图；</div>
+<div class="description-paragraph" id="p0052" num="0047">步骤2.2：将得到的两个方向上的特征图进行拼接，将拼接后的特征图输入卷积核为1×1的卷积层进行卷积变换，再经过批量归一化处理和Sigmoid非线性激活函数获得特征图F；</div>
+<div class="description-paragraph" id="p0053" num="0048">步骤2.3：将特征图F分别沿着水平方向和垂直方向进行卷积核为1×1的卷积操作，再分别经过Sigmoid非线性激活函数后得到特征图F在高度和宽度上的注意力权重g<sup>h</sup>和g<sup>w</sup>；</div>
+<div class="description-paragraph" id="p0054" num="0049">步骤2.4：将提取到的飞行器目标特征与特征图F在高度和宽度上的注意力权重g<sup>h</sup>和g<sup>w</sup>进行乘法加权计算，得到增强的飞行器目标特征；</div>
+<div class="description-paragraph" id="p0055" num="0050">步骤3：将增强的飞行器目标特征输入基于FairMOT架构的目标检测网络得到目标检测结果，将增强的飞行器目标特征输入基于FairMOT架构的重识别网络得到目标的外观特征，并对目标检测网络和重识别网络进行训练，得到训练好的目标检测器；</div>
+<div class="description-paragraph" id="p0056" num="0051">在本实施方式中，如图3所示，将经过Encoder-Decoder网络提取出的飞行器目标特征输入坐标注意力机制，分别经过X方向平均池化层和Y方向平均池化层，再经过拼接和卷积层进行拼接和卷积变换，将变换后的飞行器目标特征输入批归一化和Sigmoid非线性层得到特征图F，特征图F分别沿X方向和Y方向进行卷积变换并经过Sigmoid非线性层，得到特征图F在高度和宽度上的注意力权重g<sup>h</sup>和g<sup>w</sup>，将提取到的飞行器目标特征与特征图F在高度和宽度上的注意力权重g<sup>h</sup>和g<sup>w</sup>进行乘法加权计算，得到增强的飞行器目标特征。</div>
+<div class="description-paragraph" id="p0057" num="0052">所述目标检测器包括：Encoder-Decoder网络、坐标注意力机制、目标检测网络和重识别网络；</div>
+<div class="description-paragraph" id="p0058" num="0053">在本实施方式中，所述目标检测网络包括：热图heatmap head、中心偏置centeroffset head和边框尺寸box size head三个平行分支，每个分支由一个256通道的3×3卷积层和一个1×1卷积层组成；</div>
+<div class="description-paragraph" id="p0059" num="0054">其中，heatmap head负责估计目标中心的位置，输出尺寸为1×H×W；centeroffset head负责更精确的定位物体，输出尺寸为2×H×W；box size head负责估计每个锚点处目标边界框的高度和宽度，输出尺寸为2×H×W；其中，H和W分别为所述增强的飞行器目标特征的高和宽；</div>
+<div class="description-paragraph" id="p0060" num="0055">所述重识别网络包含一个重识别嵌入Re-ID embedding head分支，由一个256通道的3×3卷积层和一个1×1卷积层组成，该分支用于生成能够区分不同飞行器目标的外观特征，以对不同目标进行身份识别，所述重识别网络输出尺寸为128×H×W的特征层，其中，H和W分别为所述增强的飞行器目标特征的高和宽；</div>
+<div class="description-paragraph" id="p0061" num="0056">所述目标检测结果包括检测框和检测分数；</div>
+<div class="description-paragraph" id="p0062" num="0057">进一步的，所述对目标检测网络和重识别网络进行训练的方法为：利用由训练目标检测网络的损失函数L<sub>detection</sub>和训练重识别网络的损失函数L<sub>ArcFace</sub>构成的总损失函数训练目标检测网络和重识别网络，该网络总损失函数为：</div>
+<div class="description-paragraph" id="p0063" num="0058">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0064" num="0059">其中，L<sub>detection</sub>表示用于训练目标检测网络的损失函数，L<sub>ArcFace</sub>表示用于训练重识别网络的损失函数；w<sub>1</sub>和w<sub>2</sub>分别为目标检测网络和重识别网络的权重系数，用于平衡目标检测和重识别这两个分支任务；</div>
+<div class="description-paragraph" id="p0065" num="0060">在本实施方式中，利用多目标跟踪评价指标中的多目标跟踪精确度MOTA来判断目标检测器的训练效果，由于MOTA的取值范围为(-∞，1)，所以在该取值范围内，MOTA的数值越大表示目标检测器的训练效果越好；除此之外，判断目标检测器的训练效果的评价指标有很多，例如：在训练时根据训练数据的数量和网络的结构指定训练轮数，本方法中不对判断目标检测器的训练效果的评价指标进行限定。</div>
+<div class="description-paragraph" id="p0066" num="0061">步骤4：获取包含待检测飞行器目标的视频序列，并将包含待检测飞行器目标的视频序列输入目标检测器，获得目标检测结果和目标的外观特征；</div>
+<div class="description-paragraph" id="p0067" num="0062">步骤5：将目标检测结果和目标的外观特征输入BYTE数据关联模块进行跟踪，输出多目标跟踪结果，包括目标的边界框和身份序号；</div>
+<div class="description-paragraph" id="p0068" num="0063">步骤5.1：设置检测分数阈值τ，将检测分数高于检测分数阈值的检测框划分到高分检测框D<sub>high</sub>中，反之则划分到低分检测框D<sub>low</sub>中；将第一帧中目标的边界框和身份序号视为一个目标轨迹，根据视频序列中所有帧中的目标轨迹建立轨迹集合T，将轨迹集合T初始化为空，初始化第一次未成功匹配的检测框集合D<sub>remain</sub>、第一次未成功匹配的轨迹集合T<sub>remain</sub>、第二次未成功匹配的轨迹集合T<sub>re-remain</sub>和两次均未成功匹配的轨迹集合T<sub>lost</sub>为空；对于视频序列中的每一帧，重复步骤5.2-5.5；</div>
+<div class="description-paragraph" id="p0069" num="0064">在本实施方式中，根据实验结果，将检测分数阈值设置为τ＝0.6，此时对目标的跟踪效果较好；</div>
+<div class="description-paragraph" id="p0070" num="0065">步骤5.2：使用卡尔曼滤波器预测待检测飞行器目标在当前帧中新的目标轨迹，并获得该目标轨迹的预测框；</div>
+<div class="description-paragraph" id="p0071" num="0066">步骤5.3：在D<sub>high</sub>和T之间进行第一次匹配，将未成功匹配的高分检测框保留到D<sub>remain</sub>，将未成功匹配的目标轨迹保留到T<sub>remain</sub>；</div>
+<div class="description-paragraph" id="p0072" num="0067">利用D<sub>high</sub>和T在当前帧中新的目标轨迹的预测框之间的交并比(Intersectionover Union,IoU)和由重识别网络提取到的目标的外观特征来计算D<sub>high</sub>和待检测飞行器目标在当前帧中新的目标轨迹的预测框的相似性；基于该相似性使用匈牙利算法来完成D<sub>high</sub>和T之间的匹配；</div>
+<div class="description-paragraph" id="p0073" num="0068">步骤5.4：在D<sub>low</sub>和T<sub>remain</sub>之间进行第二次匹配，将未成功匹配的目标轨迹保留到T<sub>re-remain</sub>，并删除当前帧中所有未成功匹配的低分检测框；</div>
+<div class="description-paragraph" id="p0074" num="0069">利用D<sub>low</sub>和T<sub>remain</sub>在当前帧中新的目标轨迹的预测框之间的交并比计算D<sub>low</sub>和当前帧中新的目标轨迹的预测框相似性，基于该相似性使用匈牙利算法来完成D<sub>low</sub>和T<sub>remain</sub>之间的匹配；</div>
+<div class="description-paragraph" id="p0075" num="0070">在本实施方式中，步骤5.4仅使用交并比计算相似性，而不添加外观特征，因为低分检测框通常包含严重的遮挡或运动模糊，此时的外观特征是不可靠的；</div>
+<div class="description-paragraph" id="p0076" num="0071">步骤5.5：将T<sub>re-remain</sub>中的轨迹保留到T<sub>lost</sub>中，对其连续观测30帧，若其仍未能匹配到检测框，则将其从T和T<sub>lost</sub>中删除，同时用D<sub>remain</sub>中的检测框初始化新的目标轨迹并放入T中；</div>
+<div class="description-paragraph" id="p0077" num="0072">在本实施方式中，D<sub>remain</sub>代表步骤5.3中的第一次未成功匹配到飞行器轨迹的检测框，且未成功匹配的检测框的检测分数又足够高，说明D<sub>remain</sub>中的检测框对应的飞行器目标应该是在这一帧中新出现的目标，需要用D<sub>remain</sub>，也就是检测框为新出现的目标建立一个新的轨迹。</div>
+<div class="description-paragraph" id="p0078" num="0073">步骤5.6：直到视频序列的所有帧匹配结束，输出轨迹集合T为多目标跟踪结果，包括目标在每一帧中的位置和身份序号。</div>
+<div class="description-paragraph" id="p0079" num="0074">最后应说明的是：以上各实施例仅用以说明本发明的技术方案，而非对其限制；尽管参照前述各实施例对本发明进行了详细的说明，本领域的普通技术人员应当理解：其依然可以对前述各实施例所记载的技术方案进行修改，或者对其中部分或者全部技术特征进行等同替换；而这些修改或者替换，并不使相应技术方案的本质脱离本发明权利要求所限定的范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

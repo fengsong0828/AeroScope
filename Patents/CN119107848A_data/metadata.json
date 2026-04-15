@@ -1,0 +1,69 @@
+{
+    "patent_id": "CN119107848A",
+    "title": "CN119107848A - 基于Zigbee和边缘检测设备的低空飞行器预警系统及构建方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shanghai Jiao Tong University",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119107848A/zh",
+    "citations": [
+        {
+            "Publication Number": "US20180114451A1 (en) *",
+            "Priority Date": "2015-06-12",
+            "Publication Date": "2018-04-26",
+            "Assignee": "Airspace Systems Inc.",
+            "Title": "Low altitude aircraft identification system",
+            "Link": "https://patents.google.com/patent/US20180114451A1/en"
+        },
+        {
+            "Publication Number": "CN105338662A (zh) *",
+            "Priority Date": "2015-09-30",
+            "Publication Date": "2016-02-17",
+            "Assignee": "浙江开盈信息科技有限公司",
+            "Title": "ZigBee网络",
+            "Link": "https://patents.google.com/patent/CN105338662A/zh"
+        },
+        {
+            "Publication Number": "CN207586420U (zh) *",
+            "Priority Date": "2017-10-19",
+            "Publication Date": "2018-07-06",
+            "Assignee": "杨锐",
+            "Title": "一种自组网低空无人机综合预警探测系统",
+            "Link": "https://patents.google.com/patent/CN207586420U/zh"
+        },
+        {
+            "Publication Number": "CN112580421A (zh) *",
+            "Priority Date": "2019-09-30",
+            "Publication Date": "2021-03-30",
+            "Assignee": "卡巴斯基实验室股份制公司",
+            "Title": "用于探测无人驾驶飞行器的系统和方法",
+            "Link": "https://patents.google.com/patent/CN112580421A/zh"
+        },
+        {
+            "Publication Number": "US20230081924A1 (en) *",
+            "Priority Date": "2020-04-17",
+            "Publication Date": "2023-03-16",
+            "Assignee": "Telefonaktiebolaget Lm Ericsson (Publ)",
+            "Title": "A method of and an unmanned aerial vehicle for acting upon a restriction in services for the uav, a uav control server and a base station",
+            "Link": "https://patents.google.com/patent/US20230081924A1/en"
+        },
+        {
+            "Publication Number": "CN116312065A (zh) *",
+            "Priority Date": "2022-12-27",
+            "Publication Date": "2023-06-23",
+            "Assignee": "五军防务科技(无锡)股份有限公司",
+            "Title": "一种智能防务低空安全综合管控集成系统",
+            "Link": "https://patents.google.com/patent/CN116312065A/zh"
+        },
+        {
+            "Publication Number": "CN118115897A (zh) *",
+            "Priority Date": "2024-02-01",
+            "Publication Date": "2024-05-31",
+            "Assignee": "中国人民解放军军事科学院国防工程研究院工程防护研究所",
+            "Title": "一种基于可见光图像的无人飞行器检测方法",
+            "Link": "https://patents.google.com/patent/CN118115897A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:13:23"
+}

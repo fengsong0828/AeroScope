@@ -1,0 +1,61 @@
+{
+    "patent_id": "CN120690062A",
+    "title": "CN120690062A - 基于网格的低空飞行器碰撞预警方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Hangzhou Low Altitude Industry Development Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120690062A/zh",
+    "citations": [
+        {
+            "Publication Number": "KR20180114348A (ko) *",
+            "Priority Date": "2017-04-10",
+            "Publication Date": "2018-10-18",
+            "Assignee": "한국과학기술원",
+            "Title": "격자 기반 무인비행장치 경로 리스크 산정방법",
+            "Link": "https://patents.google.com/patent/KR20180114348A/ko"
+        },
+        {
+            "Publication Number": "CN115200585A (zh) *",
+            "Priority Date": "2022-07-08",
+            "Publication Date": "2022-10-18",
+            "Assignee": "北斗伏羲中科数码合肥有限公司",
+            "Title": "基于空域网格的无人机航迹规划方法、装置及电子设备",
+            "Link": "https://patents.google.com/patent/CN115200585A/zh"
+        },
+        {
+            "Publication Number": "CN115953918A (zh) *",
+            "Priority Date": "2023-01-13",
+            "Publication Date": "2023-04-11",
+            "Assignee": "中国人民解放军战略支援部队信息工程大学",
+            "Title": "一种飞行器计划航线的时空冲突检测方法",
+            "Link": "https://patents.google.com/patent/CN115953918A/zh"
+        },
+        {
+            "Publication Number": "KR102662285B1 (ko) *",
+            "Priority Date": "2023-11-16",
+            "Publication Date": "2024-05-03",
+            "Assignee": "한화시스템(주)",
+            "Title": "Msaw를 위한 장애물 그리드 맵 생성 장치 및 그 방법",
+            "Link": "https://patents.google.com/patent/KR102662285B1/ko"
+        },
+        {
+            "Publication Number": "CN120513470A (zh) *",
+            "Priority Date": "2025-04-07",
+            "Publication Date": "2025-08-19",
+            "Assignee": "上海三吉电子工程有限公司",
+            "Title": "基于空域网格化的低空飞行动态安全保障方法及系统",
+            "Link": "https://patents.google.com/patent/CN120513470A/zh"
+        },
+        {
+            "Publication Number": "CN120452254A (zh) *",
+            "Priority Date": "2025-07-10",
+            "Publication Date": "2025-08-08",
+            "Assignee": "北斗伏羲信息技术有限公司",
+            "Title": "适用于低空多飞行器混合起降场的红绿灯管控方法及设备",
+            "Link": "https://patents.google.com/patent/CN120452254A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:57:26"
+}

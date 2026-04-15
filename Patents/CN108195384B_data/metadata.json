@@ -1,0 +1,85 @@
+{
+    "patent_id": "CN108195384B",
+    "title": "CN108195384B - 一种面向低空飞行器的基于实景的航路点指示方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "China Aeronautical Radio Electronics Research Institute",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN108195384B/zh",
+    "citations": [
+        {
+            "Publication Number": "CN101923789A (zh) *",
+            "Priority Date": "2010-03-24",
+            "Publication Date": "2010-12-22",
+            "Assignee": "北京航空航天大学",
+            "Title": "一种基于多传感器信息融合的飞机安全进近方法",
+            "Link": "https://patents.google.com/patent/CN101923789A/zh"
+        },
+        {
+            "Publication Number": "CN101833104A (zh) *",
+            "Priority Date": "2010-04-27",
+            "Publication Date": "2010-09-15",
+            "Assignee": "北京航空航天大学",
+            "Title": "一种基于多传感器信息融合的三维可视化导航方法",
+            "Link": "https://patents.google.com/patent/CN101833104A/zh"
+        },
+        {
+            "Publication Number": "US8831798B1 (en) *",
+            "Priority Date": "2011-09-27",
+            "Publication Date": "2014-09-09",
+            "Assignee": "Rockwell Collins, Inc.",
+            "Title": "Systems and methods for positioning a heading-based image within a track-based image and for generating steering commands to a steerable forward-looking image capture device of an enhanced vision system",
+            "Link": "https://patents.google.com/patent/US8831798B1/en"
+        },
+        {
+            "Publication Number": "CN103708041A (zh) *",
+            "Priority Date": "2012-05-30",
+            "Publication Date": "2014-04-09",
+            "Assignee": "霍尼韦尔国际公司",
+            "Title": "用于过滤翼尖传感器信息的系统和方法",
+            "Link": "https://patents.google.com/patent/CN103708041A/zh"
+        },
+        {
+            "Publication Number": "CN103529838A (zh) *",
+            "Priority Date": "2013-09-23",
+            "Publication Date": "2014-01-22",
+            "Assignee": "南京航空航天大学",
+            "Title": "自动导引车的多目视觉导引驱动装置及其协同标定方法",
+            "Link": "https://patents.google.com/patent/CN103529838A/zh"
+        },
+        {
+            "Publication Number": "CN105302146A (zh) *",
+            "Priority Date": "2014-07-25",
+            "Publication Date": "2016-02-03",
+            "Assignee": "空中客车运营简化股份公司",
+            "Title": "用于飞行器的自动自主着陆的方法及系统",
+            "Link": "https://patents.google.com/patent/CN105302146A/zh"
+        },
+        {
+            "Publication Number": "CN104406580A (zh) *",
+            "Priority Date": "2014-11-21",
+            "Publication Date": "2015-03-11",
+            "Assignee": "北京科航军威科技有限公司",
+            "Title": "一种通用航空飞行器的导航方法、装置和系统",
+            "Link": "https://patents.google.com/patent/CN104406580A/zh"
+        },
+        {
+            "Publication Number": "EP3073225A1 (en) *",
+            "Priority Date": "2015-03-26",
+            "Publication Date": "2016-09-28",
+            "Assignee": "Honeywell International Inc.",
+            "Title": "Aircraft synthetic vision systems utilizing data from local area augmentation systems, and methods for operating such aircraft synthetic vision systems",
+            "Link": "https://patents.google.com/patent/EP3073225A1/en"
+        },
+        {
+            "Publication Number": "CN105243173A (zh) *",
+            "Priority Date": "2015-08-25",
+            "Publication Date": "2016-01-13",
+            "Assignee": "中国民航科学技术研究院",
+            "Title": "基于性能的导航飞行程序计算机虚拟环境仿真校验系统",
+            "Link": "https://patents.google.com/patent/CN105243173A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:54:21"
+}

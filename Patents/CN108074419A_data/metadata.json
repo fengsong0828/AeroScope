@@ -1,0 +1,29 @@
+{
+    "patent_id": "CN108074419A",
+    "title": "CN108074419A - 一种低空飞行器管理系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "China Changfeng Science Technology Industry Group Corp",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN108074419A/zh",
+    "citations": [],
+    "cited_by": [
+        {
+            "Publication Number": "CN111192480A (zh) *",
+            "Priority Date": "2020-01-11",
+            "Publication Date": "2020-05-22",
+            "Assignee": "中国人民解放军93209部队",
+            "Title": "一种分布式空域使用信息处理与同步方法及系统",
+            "Link": "https://patents.google.com/patent/CN111192480A/zh"
+        },
+        {
+            "Publication Number": "CN111192480B (zh) *",
+            "Priority Date": "2020-01-11",
+            "Publication Date": "2022-01-28",
+            "Assignee": "中国人民解放军93209部队",
+            "Title": "一种分布式空域使用请求信息处理与同步方法及系统",
+            "Link": "https://patents.google.com/patent/CN111192480B/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:37:25"
+}

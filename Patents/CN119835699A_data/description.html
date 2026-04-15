@@ -1,0 +1,181 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119835699A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES492548880">
+<invention-title id="title1" lang="ZH">一种面向飞行器的低空任务卸载方法、装置及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及飞行器技术领域，尤其涉及一种面向飞行器的低空任务卸载方法及装置。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">为进一步开拓城市交通资源，减缓迅速激增的地面交通工具与有限的城市道路资源之间的矛盾，电动垂直起降飞行器已成为城市交通的研究热点。为确保电动垂直起降飞行器的正常控制和运行，保障电动垂直起降飞行器通信过程中数据传输的低时延和超高可靠性需求是现有研究关注的焦点，通过合理规划通信链路上的时隙和频率等资源，信令数据的传输效率得以提升。</div>
+<div class="description-paragraph" id="p0005" num="0003">然而，为承载新兴行业应用，电动垂直起降飞行器往往会产生计算密集型任务，任务数据需要消耗大量的算力和存储资源，需要实时借助边缘算力设备来进行任务卸载和计算，现有针对链路传输资源规划的方法不能满足对计算、存储性能要求严苛的电动垂直起降飞行器的需求。因此，面向电动垂直起降飞行器进行任务卸载规划需要联合考虑链路传输、计算和存储等多维资源的协同分配。</div>
+<div class="description-paragraph" id="p0006" num="0004">现有针对电动垂直起降飞行器任务卸载研究聚焦于时隙、频率等无线网络链路传输资源的分配来降低数据传输时延，然而在实际应用中，低空网络内的计算、存储等资源分配也会影响电动垂直起降飞行器低空任务卸载过程中整体的时延和可靠性。因此为了达到更加全面地面向传输、计算和存储等多个资源维度协同优化电动垂直起降飞行器低空任务卸载效率的目的，本发明构建一种面向电动垂直起降飞行器的低空任务卸载方法及装置。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明提供了一种面向飞行器的低空任务卸载方法，包括：</div>
+<div class="description-paragraph" id="p0009" num="0006">采集飞行器当前飞行状态信息；</div>
+<div class="description-paragraph" id="p0010" num="0007">根据飞行器当前飞行状态信息建立任务卸载约束优化问题；</div>
+<div class="description-paragraph" id="p0011" num="0008">构建深度强化学习和任务卸载场景所需的深度强化学习网络模型；</div>
+<div class="description-paragraph" id="p0012" num="0009">利用深度强化学习网络模型求解任务卸载约束优化问题，得到低空任务卸载资源分配规划结果。</div>
+<div class="description-paragraph" id="p0013" num="0010">如上所述的一种面向飞行器的低空任务卸载方法，其中，建立任务卸载约束优化问题具体为建立电动垂直起降飞行器任务卸载的目标优化函数，即最大化所有时隙内成功卸载任务的总数，包括根据当前飞行状态信息确定的成功卸载到基站的任务个数和成功卸载到边缘算力设备的任务个数。</div>
+<div class="description-paragraph" id="p0014" num="0011">如上所述的一种面向飞行器的低空任务卸载方法，其中，为任务卸载约束优化问题设置任务卸载约束条件，包括通信连接约束条件和资源分配比例约束条件。</div>
+<div class="description-paragraph" id="p0015" num="0012">如上所述的一种面向飞行器的低空任务卸载方法，其中，在建立任务卸载约束优化问题后，还包括将任务卸载约束优化问题转化为马尔可夫决策过程，设计马尔可夫决策过程的状态空间、动作空间以及奖励；将飞行器当前飞行状态信息作为马尔可夫决策过程的状态空间；将任务卸载约束条件作为马尔可夫决策过程的动作空间；奖励用于利用回报塑型方式优化所述目标优化函数。</div>
+<div class="description-paragraph" id="p0016" num="0013">如上所述的一种面向飞行器的低空任务卸载方法，其中，构建深度强化学习网络模型包括构建策略估计神经网络和创建状态评判神经网络，策略估计神经网络根据飞行器当前飞行状态信息计算任务卸载动作方向，状态评判神经网络用于评判飞行器当前飞行状态信息的价值。</div>
+<div class="description-paragraph" id="p0017" num="0014">如上所述的一种面向飞行器的低空任务卸载方法，其中，利用深度强化学习网络模型求解任务卸载约束优化问题，具体包括：通过循环迭代方式更新策略估计神经网络和状态评判神经网络的参数；</div>
+<div class="description-paragraph" id="p0018" num="0015">更新策略估计神经网络，具体包括：在每次迭代时间步内，获取当前时隙上的状态空间特征，通过策略估计神经网络生成对应的动作决策，与环境交互执行动作；将状态转移到下一时隙的状态，并获取当前时间步的奖励，根据下一时隙的状态和任务卸载需求确定动作执行结果；迭代结束产生每次迭代的轨迹样本集合，轨迹样本集合包含当前状态空间特征、动作决策、下一状态空间特征、当前状态对应的奖励和动作执行结果；</div>
+<div class="description-paragraph" id="p0019" num="0016">更新状态评判神经网络，具体包括：采集轨迹样本集合；使用轨迹样本集合中的每条轨迹序列更新状态评判神经网络的参数。</div>
+<div class="description-paragraph" id="p0020" num="0017">本发明还提供一种面向飞行器的低空任务卸载装置，包括：所述装置执行上述任一项所述的一种面向飞行器的低空任务卸载方法。</div>
+<div class="description-paragraph" id="p0021" num="0018">本发明还提供一种面向飞行器的低空任务卸载系统，包括基站、电动垂直起降飞行器和低空飞行器；在基站侧安装所述低空任务卸载装置，在电动垂直起降飞行器和低空飞行器侧均配有边缘算力设备，电动垂直起降飞行器和每架低空飞行器在任务卸载时间段内都能够被基站的信号覆盖到。</div>
+<div class="description-paragraph" id="p0022" num="0019">本发明还提供一种计算机存储介质，其特征在于，包括：至少一个存储器和至少一个处理器；</div>
+<div class="description-paragraph" id="p0023" num="0020">存储器用于存储一个或多个程序指令；</div>
+<div class="description-paragraph" id="p0024" num="0021">处理器，用于运行一个或多个程序指令，用以执行上述任一项所述的一种面向飞行器的低空任务卸载方法。</div>
+<div class="description-paragraph" id="p0025" num="0022">本发明实现的有益效果如下：不同于传统的基于动态规划、启发式等算法的任务卸载优化算法，本发明设计了一种基于深度强化学习的智能资源规划算法，通过主动学习不同调度时隙内各任务与多维资源之间的映射关系，能够更加快速、高效的实现任务数据到低空算力设备的协同适配，提升每个调度时隙电动垂直起降飞行器任务的卸载成功率。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0026">附图说明</div>
+<div class="description-paragraph" id="p0027" num="0023">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明中记载的一些实施例，对于本领域普通技术人员来讲，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0028" num="0024">图1是本发明实施例应用场景示意图；</div>
+<div class="description-paragraph" id="p0029" num="0025">图2是本申请实施例一提供的一种面向飞行器的低空任务卸载方法流程图；</div>
+<div class="description-paragraph" id="p0030" num="0026">图3是本申请实施例二提供的一种面向飞行器的低空任务卸载装置示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0031">具体实施方式</div>
+<div class="description-paragraph" id="p0032" num="0027">下面结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0033" num="0028">实施例一</div>
+<div class="description-paragraph" id="p0034" num="0029">图1描述了本发明实施例的一个应用场景。在该场景下，电动垂直起降飞行器沿着预先设定的空中走廊匀速飞行，飞行高度距离地面约300-500米，距离地面约150米处设有低空飞行器，如无人机群，每架无人机上配有边缘算力设备，可以提供计算能力，地面设有基站。基站配有高性能边缘服务器，提供高性能计算服务，所述高性能边缘服务器用于执行下述任务卸载方法；电动垂直起降飞行器和每架无人机在任务卸载时间段内都能够被地面基站的信号覆盖到。本实施例对电动垂直起降飞行器任务卸载场景中所包含的低空飞行器类型、飞行器数量、飞行高度以及地形地貌不作具体限定。</div>
+<div class="description-paragraph" id="p0035" num="0030">电动垂直起降飞行器在每个传输时隙内有不同的计算密集型任务需要卸载到无人机侧或基站侧，无人机侧的CPU算力相比基站侧的算力较小，计算时间开销大，但是无人机距离电动垂直起降飞行器距离更近，链路传输时延短，因此整体的回传时延需要权衡。</div>
+<div class="description-paragraph" id="p0036" num="0031">基站侧可提供的最大频率带宽、计算资源和存储资源量分别为{2MHz,30GHz,6kb}，无人机侧可提供的最大频率带宽、计算资源和存储资源量分别为{10MHz,250GHz,50kb}，电动垂直起降飞行器任务数据大小为0.5～1kb，CPU计算频率需求为50～100MHz，回传时延需求为20～60ms，数据传输功率为20dBm。</div>
+<div class="description-paragraph" id="p0037" num="0032">电动垂直起降飞行器到基站侧的路径损耗为L<sub>1</sub>＝-40-35lg(D<sub>i,s</sub>)，其中D<sub>i,s</sub>是电动垂直起降飞行器与基站之间的距离；电动垂直起降飞行器到无人机侧的路径损耗为L<sub>2</sub>＝-30-35lg(D<sub>i,u</sub>)，其中D<sub>i,u</sub>是电动垂直起降飞行器与无人机之间的距离，上述测量过程中设定背景噪声功率为-110dBm。</div>
+<div class="description-paragraph" id="p0038" num="0033">为了解决电动垂直起降飞行器低空任务卸载过程中传输、计算和存储等资源的联合分配问题，本申请实施例提供一种面向电动垂直起降飞行器的低空任务卸载方法，应用于基站侧所配有的高性能边缘服务器中，如图2所示，该低空任务卸载方法包括如下步骤：</div>
+<div class="description-paragraph" id="p0039" num="0034">步骤210、采集飞行器当前飞行状态信息；</div>
+<div class="description-paragraph" id="p0040" num="0035">飞行器当前飞行状态信息包括飞行器位置、网络和任务数据信息。</div>
+<div class="description-paragraph" id="p0041" num="0036">具体地，基站在每个传输时隙统一采集其覆盖范围内的电动垂直起降飞行器以及提供边缘算力服务的低空飞行器的位置信息，通过建立横、纵、竖三维坐标系标识来每个飞行器在不同时隙内所在的位置。并且基站在每个传输时隙统一采集其覆盖范围内的网络数据信息和任务数据信息，网络数据信息包括频率带宽、低空边缘算力设备数量、算力大小、存储空间大小等；任务数据信息包括任务数据量大小、CPU周期需求、最大回传时延需求等。</div>
+<div class="description-paragraph" id="p0042" num="0037">步骤220：根据飞行器当前飞行状态信息建立任务卸载约束优化问题；</div>
+<div class="description-paragraph" id="p0043" num="0038">任务卸载约束优化问题包括传输、计算和存储三个维度的约束优化问题。</div>
+<div class="description-paragraph" id="p0044" num="0039">具体地，建立电动垂直起降飞行器任务卸载的优化目标，即最大化所有时隙内成功卸载任务的总数，公式描述为：</div>
+<div class="description-paragraph" id="p0045" num="0040">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0046" num="0041">其中，Δ<sub>s</sub>(t)表示第t个时隙内成功卸载到基站的任务个数，t∈T，T为时隙总数，Δ<sub>u</sub>(t)表示第t个时隙内成功卸载到边缘算力设备的任务个数。</div>
+<div class="description-paragraph" id="p0047" num="0042">由于当同时满足任务的回传时延和存储空间需求时，任务才能够被成功卸载，因此Δ<sub>s</sub>(t)与基站侧回传时延和存储资源分配相关，公式描述为：</div>
+<div class="description-paragraph" id="p0048" num="0043">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0049" num="0044">其中，Θ<sub>i,s</sub>(t)∈{0,1}指示当前任务是否向基站侧卸载，<span class="patent-image-not-available"></span>是第i个任务的回传时延需求，<span class="patent-image-not-available"></span>是电动垂直起降飞行器的第i个任务数据大小，i∈Υ(t)，Υ(t)是任务总数，Γ(·)用于指示卸载任务的服务质量需求是否满足，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别表示基站的存储空间大小以及基站分配给当前任务的存储空间比例，T<sub>i,b</sub>(t)是第t个时隙内第i个任务数据的实际回传时延，该时延等于电动垂直起降飞行器与边缘算力设备之间发送、计算和接收数据总共花费的时间，公式表示为：</div>
+<div class="description-paragraph" id="p0050" num="0045">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0051" num="0046">公式(3)中，<span class="patent-image-not-available"></span>表示在第t个时隙内电动垂直起降飞行器上的第i个任务卸载到边缘算力设备时所需要的上行链路传输时延；</div>
+<div class="description-paragraph" id="p0052" num="0047">当任务数据发送到地面基站时，链路传输时延<span class="patent-image-not-available"></span>为：</div>
+<div class="description-paragraph" id="p0053" num="0048">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0054" num="0049">其中，B<sub>s</sub>表示基站s的频率带宽，e<sub>i,s</sub>(t)表示在第t个时隙内电动垂直起降飞行器与基站通信的效率，P是电动垂直起降飞行器发送任务数据的功率，G<sub>i,s</sub>(t)是在第t个时隙内电动垂直起降飞行器与基站通信时的链路增益，σ<sup>2</sup>是白噪声的功率谱密度。</div>
+<div class="description-paragraph" id="p0055" num="0050">当任务数据发送到低空飞行器设备的边缘算力设备时，链路传输时延<span class="patent-image-not-available"></span>为：</div>
+<div class="description-paragraph" id="p0056" num="0051">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0057" num="0052">其中，B<sub>f</sub>表示低空飞行器设备提供的频率带宽大小，e<sub>i,u</sub>(t)表示在第t个时隙内第i个电动垂直起降飞行器与第u个低空飞行器设备通信的效率，G<sub>i,u</sub>(t)表示在第t个时隙内第i个电动垂直起降飞行器与第u个低空飞行器设备通信时具有的链路增益，G<sub>i,v</sub>(t)表示在第t个时隙内除第u个低空飞行器以外的其他第v个飞行器对第i个电动垂直起降飞行器产生的干扰。</div>
+<div class="description-paragraph" id="p0058" num="0053">公式(3)中，当在基站计算任务时，T<sub>i,c</sub>(t)计算时间为：</div>
+<div class="description-paragraph" id="p0059" num="0054">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0060" num="0055">其中，<span class="patent-image-not-available"></span>表示在第t个时隙内电动垂直起降飞行器上的第i个任务所需要的CPU周期，<span class="patent-image-not-available"></span>是基站具有的计算频率，<span class="patent-image-not-available"></span>是在第t个时隙内基站分配给当前任务计算资源的比例。</div>
+<div class="description-paragraph" id="p0061" num="0056">公式(3)中，当在低空飞行器的边缘算力设备上计算任务时，T<sub>i,c</sub>(t)计算时间为：</div>
+<div class="description-paragraph" id="p0062" num="0057">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0063" num="0058">其中，<span class="patent-image-not-available"></span>表示低空飞行器边缘算力设备具有的计算资源，<span class="patent-image-not-available"></span>表示第t个时隙内第u个低空飞行器边缘算力设备分配给当前任务计算资源的比例。</div>
+<div class="description-paragraph" id="p0064" num="0059">公式(3)中，<span class="patent-image-not-available"></span>表示在第t个时隙内边缘算力设备到电动垂直起降飞行器所需要的下行链路传输时延。考虑到反馈给电动垂直起降飞行器上用户的数据量一般很小，且边缘算力设备具有较大的发射功率，因此<span class="patent-image-not-available"></span>值远小于<span class="patent-image-not-available"></span>和T<sub>i,c</sub>(t)，在计算过程中可以忽略。</div>
+<div class="description-paragraph" id="p0065" num="0060">需要说明的是，链路传输时延与传输的任务数据大小和链路数据率有关，可通过香农公式计算得到，在此不作赘述。</div>
+<div class="description-paragraph" id="p0066" num="0061">与上述推理过程类似，Δ<sub>u</sub>(t)可以描述为：</div>
+<div class="description-paragraph" id="p0067" num="0062">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0068" num="0063">其中，Θ<sub>i,u</sub>(t)∈{0,1}指示当前第i个任务是否卸载到第u个低空飞行器边缘算力设备，u∈Ω(t)，Ω(t)表示在第t个时隙内的低空飞行器边缘算力设备数量，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别表示低空飞行器边缘算力设备的存储空间大小以及每个设备分配给当前任务的存储空间比例。</div>
+<div class="description-paragraph" id="p0069" num="0064">任务卸载过程的约束条件包括通信连接条件和资源分配比例条件：</div>
+<div class="description-paragraph" id="p0070" num="0065">①通信连接条件要求电动垂直起降飞行器上的每个任务在每个时隙内能且只能卸载到一个边缘算力设备上，即需要满足公式：</div>
+<div class="description-paragraph" id="p0071" num="0066">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0072" num="0067">②资源分配比例条件要求在每个边缘算力设备上为不同任务分配的频率带宽、计算、存储资源的比例之和不能超过1。</div>
+<div class="description-paragraph" id="p0073" num="0068">对于基站侧的边缘算力服务器，约束条件描述为：</div>
+<div class="description-paragraph" id="p0074" num="0069">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0075" num="0070">对于低空飞行器侧的边缘算力设备，约束条件描述为：</div>
+<div class="description-paragraph" id="p0076" num="0071">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0077" num="0072">本申请实施例中，可以将约束优化问题转化为马尔可夫决策过程进行计算；</div>
+<div class="description-paragraph" id="p0078" num="0073">具体地，马尔可夫决策过程转化包括状态空间、动作空间以及奖励。</div>
+<div class="description-paragraph" id="p0079" num="0074">状态空间包括电动垂直起降飞行器以及低空飞行器在每个时隙内的位置信息、电动垂直起降飞行器的任务数据大小、CPU周期需求和最大回传时延需求，公式描述为：</div>
+<div class="description-paragraph" id="p0080" num="0075">s(t)＝{x<sub>1</sub>(t),…,x<sub>N</sub>(t),y<sub>1</sub>(t),…,y<sub>N</sub>(t),z<sub>1</sub>(t),…,z<sub>N</sub>(t),d<sub>i</sub> <sup>size</sup>(t),d<sub>i</sub> <sup>cycle</sup>(t),d<sub>i</sub> <sup>delay</sup>(t)}  (12)</div>
+<div class="description-paragraph" id="p0081" num="0076">其中，x<sub>1</sub>(t),…,x<sub>N</sub>(t),y<sub>1</sub>(t),…,y<sub>N</sub>(t),z<sub>1</sub>(t),…,z<sub>N</sub>(t)表示电动垂直起降飞行器以及低空飞行器在每个时隙内的位置坐标信息，<span class="patent-image-not-available"></span>表示电动垂直起降飞行器的第i个任务数据大小，<span class="patent-image-not-available"></span>表示电动垂直起降飞行器上的第i个任务所需要的CPU周期，<span class="patent-image-not-available"></span>表示第i个任务的回传时延需求。</div>
+<div class="description-paragraph" id="p0082" num="0077">动作空间包含通信连接指示变量以及各种资源的分配比例，公式描述为：</div>
+<div class="description-paragraph" id="p0083" num="0078">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0084" num="0079">为了优化目标函数，奖励通过利用回报塑形的方式设计为：</div>
+<div class="description-paragraph" id="p0085" num="0080">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0086" num="0081">其中，α,β∈[0,1]是权重系数，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别是当前步任务数据卸载到基站侧边缘算力设备时的回传时延和存储空间分配奖励，具体描述为：</div>
+<div class="description-paragraph" id="p0087" num="0082">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0088" num="0083">同理，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别是当前步任务数据卸载到低空飞行器边缘算力设备时的回传时延和存储空间分配奖励，具体描述为：</div>
+<div class="description-paragraph" id="p0089" num="0084">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0090" num="0085">步骤230：构建深度强化学习和任务卸载场景所需的深度强化学习网络模型；</div>
+<div class="description-paragraph" id="p0091" num="0086">具体地，构建深度强化学习网络模型具体包括构建策略估计神经网络和状态评判神经网络。</div>
+<div class="description-paragraph" id="p0092" num="0087">策略估计神经网络用于根据当前的状态s(t)计算生成对应的动作a(t)，在不同状态下生成动作的概率为π<sub>θ</sub>(a<sub>t</sub>|s<sub>t</sub>)，其中θ是策略估计神经网络的参数矩阵。策略估计神经网络包含输入层、中间层和输出层。深度强化学习算法使用Adam优化器，学习率为0.0001，中间层包含两层全连接神经网络和一层ReLU，经验池大小设置为2048，采样的批量大小设为64，折扣因子均为0.95。其中，输入层维度等于s(t)的特征维度，输出层的维度等于a(t)的特征维度。具体地，输出层分为4个动作组，分别是卸载决策动作组、频率资源决策动作组、计算资源决策动作组和存储资源决策动作组。卸载决策动作组用于决策电动垂直起降飞行器的任务向哪个边缘算力设备卸载，此动作组内嵌实域扩展层，将Θ<sub>i,s</sub>(t)和Θ<sub>i,u</sub>(t)扩展到实数域范围，分别记作R[Θ<sub>i,s</sub>(t)]和R[Θ<sub>i,u</sub>(t)]，根据通信连接约束条件，动作组需要根据该实数值的大小决策当前任务卸载的方向，如果R[Θ<sub>i,s</sub>(t)]＞R[Θ<sub>i,u</sub>(t)]，则任务卸载到基站侧，否则任务卸载到低空飞行器侧。各资源决策动作组用于决策相应资源分配到当前任务的比例，各动作组均内嵌Softmax层以满足资源分配比例约束条件。策略估计神经网络包含M≤3个介于输入层和输出层之间的中间层，前M-1个中间层是全连接层，第M个中间层是ReLU层，用于非线性化特征。</div>
+<div class="description-paragraph" id="p0093" num="0088">状态评判神经网络用于评判当前状态的价值，包含输入层、中间层和输出层。输入层维度等于s(t)的特征维度，输出层维度等于1，输出值为V<sub>μ</sub>(s<sub>t</sub>)，用于评价输入状态s(t)具有的价值。其中μ是状态评判神经网络的参数矩阵。状态评判神经网络的中间层结构与策略估计神经网络中间层的结构相同。</div>
+<div class="description-paragraph" id="p0094" num="0089">步骤240、利用深度强化学习网络模型求解任务卸载约束优化问题，得到低空任务卸载资源分配规划结果；</div>
+<div class="description-paragraph" id="p0095" num="0090">利用深度强化学习网络模型求解任务卸载约束优化问题，具体包括如下子步骤：</div>
+<div class="description-paragraph" id="p0096" num="0091">步骤241、设计基于深度强化学习的智能化求解器算法结构；</div>
+<div class="description-paragraph" id="p0097" num="0092">具体地，基站作为深度强化学习算法的智能体，算法通过循环迭代的方式来更新策略估计神经网络和状态评判神经网络的参数，在每次迭代时间步内，智能体观察当前时隙上的状态空间特征，通过策略估计神经网络生成对应的动作决策a(t)，然后智能体与环境交互执行动作，使状态s(t)转移到下一个状态s(t+1)，同时获得当前步的奖励r(t)，智能体判断s(t+1)是否满足任务的回传时延和存储空间需求，若不满足任务需求，则返回done＝True，同时结束当前轮次迭代，否则返回done＝False，然后继续迭代。智能体将每次迭代产生的轨迹{s(t),a(t),s(t+1),r(t),done}存储在经验池中等待采样更新神经网络。</div>
+<div class="description-paragraph" id="p0098" num="0093">在神经网络参数更新过程中，智能体批量按序采集经验池中的轨迹样本，形成包含多个轨迹序列的样本集合，再从集合中依次遍历每条轨迹序列逐渐更新参数θ和μ。具体地，参数θ使用梯度上升法来最大化目标J(θ)：</div>
+<div class="description-paragraph" id="p0099" num="0094">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0100" num="0095">其中，T是轨迹序列的步长，t<sub>0</sub>是轨迹序列的初始步，clip(·)函数用于将返回值限制在1-ε和1+ε之间以避免训练过程中抖动过大，θ<sub>0</sub>是更新前的旧参数，θ是更新后的参数。<span class="patent-image-not-available"></span>是优势值，定义为：</div>
+<div class="description-paragraph" id="p0101" num="0096">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0102" num="0097">其中，λ,ω∈[0,1]是折扣因子，<span class="patent-image-not-available"></span>表示从0开始累加的步长，<span class="patent-image-not-available"></span>V是值函数，μ<sub>0</sub>是上一训练步的旧参数，μ表示状态评判神经网络的参数，μ是通过梯度下降法最小化损失来更新的，损失函数L(μ)描述为：</div>
+<div class="description-paragraph" id="p0103" num="0098">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0104" num="0099">步骤242、运行求解器求解任务卸载约束优化问题，得到低空任务卸载资源分配规划结果；</div>
+<div class="description-paragraph" id="p0105" num="0100">低空任务卸载资源分配规划结果包括但不限于通信连接、信道带宽资源、计算资源和存储资源的规划结果等。</div>
+<div class="description-paragraph" id="p0106" num="0101">实施例二</div>
+<div class="description-paragraph" id="p0107" num="0102">如图3所示，本发明实施例二提供一种面向飞行器的低空任务卸载装置，具体设置在基站侧的高性能边缘服务器中，所述装置包括：</div>
+<div class="description-paragraph" id="p0108" num="0103">飞行状态信息采集模块310，用于采集飞行器当前飞行状态信息；</div>
+<div class="description-paragraph" id="p0109" num="0104">任务卸载约束优化问题建立模块320，用于根据飞行器当前飞行状态信息建立任务卸载约束优化问题；建立任务卸载约束优化问题具体为建立电动垂直起降飞行器任务卸载的目标优化函数，即最大化所有时隙内成功卸载任务的总数，包括根据当前飞行状态信息确定的成功卸载到基站的任务个数和成功卸载到边缘算力设备的任务个数；并为任务卸载约束优化问题设置任务卸载约束条件，包括通信连接约束条件和资源分配比例约束条件。</div>
+<div class="description-paragraph" id="p0110" num="0105">优选地，所述任务卸载约束优化问题建立模块建立后，还包括马尔可夫决策过程转化模块，用于将任务卸载约束优化问题转化为马尔可夫决策过程，设计马尔可夫决策过程的状态空间、动作空间以及奖励；将飞行器当前飞行状态信息作为马尔可夫决策过程的状态空间；将任务卸载约束条件作为马尔可夫决策过程的动作空间；奖励用于利用回报塑型方式优化所述目标优化函数。</div>
+<div class="description-paragraph" id="p0111" num="0106">深度强化学习网络模型构建模块330，用于构建深度强化学习和任务卸载场景所需的深度强化学习网络模型；构建深度强化学习网络模型包括构建策略估计神经网络和创建状态评判神经网络，策略估计神经网络根据飞行器当前飞行状态信息计算任务卸载动作方向，状态评判神经网络用于评判飞行器当前飞行状态信息的价值。</div>
+<div class="description-paragraph" id="p0112" num="0107">任务卸载约束优化问题求解模块340，用于利用深度强化学习网络模型求解任务卸载约束优化问题，得到低空任务卸载资源分配规划结果。</div>
+<div class="description-paragraph" id="p0113" num="0108">具体地，利用深度强化学习网络模型求解任务卸载约束优化问题，具体包括：通过循环迭代方式更新策略估计神经网络和状态评判神经网络的参数；</div>
+<div class="description-paragraph" id="p0114" num="0109">更新策略估计神经网络，具体包括：在每次迭代时间步内，获取当前时隙上的状态空间特征，通过策略估计神经网络生成对应的动作决策，与环境交互执行动作；将状态转移到下一时隙的状态，并获取当前时间步的奖励，根据下一时隙的状态和任务卸载需求确定动作执行结果；迭代结束产生每次迭代的轨迹样本集合，轨迹样本集合包含当前状态空间特征、动作决策、下一状态空间特征、当前状态对应的奖励和动作执行结果；</div>
+<div class="description-paragraph" id="p0115" num="0110">更新状态评判神经网络，具体包括：采集轨迹样本集合；使用轨迹样本集合中的每条轨迹序列更新状态评判神经网络的参数。</div>
+<div class="description-paragraph" id="p0116" num="0111">与上述实施例对应的，本发明实施例提供一种计算机存储介质，包括：至少一个存储器和至少一个处理器；</div>
+<div class="description-paragraph" id="p0117" num="0112">存储器用于存储一个或多个程序指令；</div>
+<div class="description-paragraph" id="p0118" num="0113">处理器，用于运行一个或多个程序指令，用以执行一种面向飞行器的低空任务卸载方法。</div>
+<div class="description-paragraph" id="p0119" num="0114">与上述实施例对应的，本发明实施例提供一种计算机可读存储介质，计算机存储介质中包含一个或多个程序指令，一个或多个程序指令用于被处理器执行一种面向飞行器的低空任务卸载方法。</div>
+<div class="description-paragraph" id="p0120" num="0115">本发明所公开的实施例提供一种计算机可读存储介质，所述计算机可读存储介质中存储有计算机程序指令，当所述计算机程序指令在计算机上运行时，使得计算机执行上述的一种面向飞行器的低空任务卸载方法。</div>
+<div class="description-paragraph" id="p0121" num="0116">在本发明实施例中，处理器可以是一种集成电路芯片，具有信号的处理能力。处理器可以是通用处理器、数字信号处理器(Digital Signal Processor，简称DSP)、专用集成电路(Application Specific Integrated Circuit，简称ASIC)、现场可编程门阵列(FieldProgrammable Gate Array，简称FPGA)或者其他可编程逻辑器件、分立门或者晶体管逻辑器件、分立硬件组件。</div>
+<div class="description-paragraph" id="p0122" num="0117">可以实现或者执行本发明实施例中的公开的各方法、步骤及逻辑框图。通用处理器可以是微处理器或者该处理器也可以是任何常规的处理器等。结合本发明实施例所公开的方法的步骤可以直接体现为硬件译码处理器执行完成，或者用译码处理器中的硬件及软件模块组合执行完成。软件模块可以位于随机存储器，闪存、只读存储器，可编程只读存储器或者电可擦写可编程存储器、寄存器等本领域成熟的存储介质中。处理器读取存储介质中的信息，结合其硬件完成上述方法的步骤。</div>
+<div class="description-paragraph" id="p0123" num="0118">存储介质可以是存储器，例如可以是易失性存储器或非易失性存储器，或可包括易失性和非易失性存储器两者。</div>
+<div class="description-paragraph" id="p0124" num="0119">其中，非易失性存储器可以是只读存储器(Read-OnlyMemory，简称ROM)、可编程只读存储器(Programmable ROM，简称PROM)、可擦除可编程只读存储器(Erasable PROM，简称EPROM)、电可擦除可编程只读存储器(Electrically EPROM，简称EEPROM)或闪存。</div>
+<div class="description-paragraph" id="p0125" num="0120">易失性存储器可以是随机存取存储器(Random Access Memory，简称RAM)，其用作外部高速缓存。通过示例性但不是限制性说明，许多形式的RAM可用，例如静态随机存取存储器(Static RAM，简称SRAM)、动态随机存取存储器(Dynamic RAM，简称DRAM)、同步动态随机存取存储器(Synchronous DRAM，简称SDRAM)、双倍数据速率同步动态随机存取存储器(Double Data RateSDRAM，简称DDRSDRAM)、增强型同步动态随机存取存储器(EnhancedSDRAM，简称ESDRAM)、同步连接动态随机存取存储器(Synchlink DRAM，简称SLDRAM)和直接内存总线随机存取存储器(DirectRambus RAM，简称DRRAM)。</div>
+<div class="description-paragraph" id="p0126" num="0121">本发明实施例描述的存储介质旨在包括但不限于这些和任意其它适合类型的存储器。</div>
+<div class="description-paragraph" id="p0127" num="0122">本领域技术人员应该可以意识到，在上述一个或多个示例中，本发明所描述的功能可以用硬件与软件组合来实现。当应用软件时，可以将相应功能存储在计算机可读介质中或者作为计算机可读介质上的一个或多个指令或代码进行传输。计算机可读介质包括计算机存储介质和通信介质，其中通信介质包括便于从一个地方向另一个地方传送计算机程序的任何介质。存储介质可以是通用或专用计算机能够存取的任何可用介质。</div>
+<div class="description-paragraph" id="p0128" num="0123">以上所述的具体实施方式，对本发明的目的、技术方案和有益效果进行了进一步详细说明，所应理解的是，以上所述仅为本发明的具体实施方式而已，并不用于限定本发明的保护范围，凡在本发明的技术方案的基础之上，所做的任何修改、等同替换、改进等，均应包括在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

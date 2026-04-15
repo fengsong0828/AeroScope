@@ -1,0 +1,246 @@
+{
+    "patent_id": "CN106595572A",
+    "title": "CN106595572A - 一种飞行器低空飞行高度测量方法及装置 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Beijing Institute of Technology BIT",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN106595572A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN87104480A (zh) *",
+            "Priority Date": "1986-04-18",
+            "Publication Date": "1988-02-24",
+            "Assignee": "森德斯特兰德数据控制公司",
+            "Title": "无源无线电高度计",
+            "Link": "https://patents.google.com/patent/CN87104480A/zh"
+        },
+        {
+            "Publication Number": "CN1735896A (zh) *",
+            "Priority Date": "2002-11-05",
+            "Publication Date": "2006-02-15",
+            "Assignee": "半导体技术及器械公司",
+            "Title": "凸块高度测量的系统和方法",
+            "Link": "https://patents.google.com/patent/CN1735896A/zh"
+        },
+        {
+            "Publication Number": "CN1932549A (zh) *",
+            "Priority Date": "2006-09-29",
+            "Publication Date": "2007-03-21",
+            "Assignee": "重庆邮电大学",
+            "Title": "一种低空飞行目标无源定位方法及系统",
+            "Link": "https://patents.google.com/patent/CN1932549A/zh"
+        },
+        {
+            "Publication Number": "CN201266242Y (zh) *",
+            "Priority Date": "2007-12-27",
+            "Publication Date": "2009-07-01",
+            "Assignee": "中国人民解放军空军工程大学",
+            "Title": "低空无人驾驶飞行器的高度测量半实物仿真装置",
+            "Link": "https://patents.google.com/patent/CN201266242Y/zh"
+        },
+        {
+            "Publication Number": "CN102597801A (zh) *",
+            "Priority Date": "2009-07-02",
+            "Publication Date": "2012-07-18",
+            "Assignee": "鹦鹉股份有限公司",
+            "Title": "能区别从另一无人驾驶飞机发出的伪回声的无人驾驶飞机的超声遥测方法",
+            "Link": "https://patents.google.com/patent/CN102597801A/zh"
+        },
+        {
+            "Publication Number": "CN102387109A (zh) *",
+            "Priority Date": "2010-09-06",
+            "Publication Date": "2012-03-21",
+            "Assignee": "电信科学技术研究院",
+            "Title": "一种削除信号峰值功率的方法及装置",
+            "Link": "https://patents.google.com/patent/CN102387109A/zh"
+        },
+        {
+            "Publication Number": "CN201803718U (zh) *",
+            "Priority Date": "2010-09-19",
+            "Publication Date": "2011-04-20",
+            "Assignee": "航宇救生装备有限公司",
+            "Title": "一种中低空高度测量装置",
+            "Link": "https://patents.google.com/patent/CN201803718U/zh"
+        },
+        {
+            "Publication Number": "JP2013170860A (ja) *",
+            "Priority Date": "2012-02-20",
+            "Publication Date": "2013-09-02",
+            "Assignee": "Pasuko:Kk",
+            "Title": "計測点抽出プログラム、計測点抽出方法及び計測点抽出装置",
+            "Link": "https://patents.google.com/patent/JP2013170860A/ja"
+        },
+        {
+            "Publication Number": "CN102650689A (zh) *",
+            "Priority Date": "2012-05-17",
+            "Publication Date": "2012-08-29",
+            "Assignee": "中国路桥工程有限责任公司",
+            "Title": "一种步进频率脉冲雷达位移测量方法",
+            "Link": "https://patents.google.com/patent/CN102650689A/zh"
+        },
+        {
+            "Publication Number": "CN104838229A (zh) *",
+            "Priority Date": "2012-10-23",
+            "Publication Date": "2015-08-12",
+            "Assignee": "通用电气公司",
+            "Title": "超声波测量设备和方法",
+            "Link": "https://patents.google.com/patent/CN104838229A/zh"
+        },
+        {
+            "Publication Number": "CN203803115U (zh) *",
+            "Priority Date": "2013-02-08",
+            "Publication Date": "2014-09-03",
+            "Assignee": "上海科斗电子科技有限公司",
+            "Title": "浮力飞行器高度控制装置",
+            "Link": "https://patents.google.com/patent/CN203803115U/zh"
+        },
+        {
+            "Publication Number": "CN203385413U (zh) *",
+            "Priority Date": "2013-06-18",
+            "Publication Date": "2014-01-08",
+            "Assignee": "桂林理工大学",
+            "Title": "一种适用于低空无人机的高度测量系统",
+            "Link": "https://patents.google.com/patent/CN203385413U/zh"
+        },
+        {
+            "Publication Number": "CN104502812A (zh) *",
+            "Priority Date": "2014-11-26",
+            "Publication Date": "2015-04-08",
+            "Assignee": "国家电网公司",
+            "Title": "局部放电采集方法和装置",
+            "Link": "https://patents.google.com/patent/CN104502812A/zh"
+        },
+        {
+            "Publication Number": "CN105319546A (zh) *",
+            "Priority Date": "2015-04-02",
+            "Publication Date": "2016-02-10",
+            "Assignee": "沈阳天择智能交通工程有限公司",
+            "Title": "多目标雷达及其所采用的数字信号处理方法",
+            "Link": "https://patents.google.com/patent/CN105319546A/zh"
+        },
+        {
+            "Publication Number": "CN105068063A (zh) *",
+            "Priority Date": "2015-07-16",
+            "Publication Date": "2015-11-18",
+            "Assignee": "同济大学",
+            "Title": "一种基于回波全波形分解的地物特征获取方法",
+            "Link": "https://patents.google.com/patent/CN105068063A/zh"
+        },
+        {
+            "Publication Number": "CN205049136U (zh) *",
+            "Priority Date": "2015-10-21",
+            "Publication Date": "2016-02-24",
+            "Assignee": "零度智控（北京）智能科技有限公司",
+            "Title": "无人机飞行高度测量装置",
+            "Link": "https://patents.google.com/patent/CN205049136U/zh"
+        },
+        {
+            "Publication Number": "CN205121343U (zh) *",
+            "Priority Date": "2015-11-08",
+            "Publication Date": "2016-03-30",
+            "Assignee": "杨珊珊",
+            "Title": "基于无人飞行器的植被数据采集装置及无人飞行器",
+            "Link": "https://patents.google.com/patent/CN205121343U/zh"
+        },
+        {
+            "Publication Number": "CN105891828A (zh) *",
+            "Priority Date": "2016-04-22",
+            "Publication Date": "2016-08-24",
+            "Assignee": "西安电子科技大学",
+            "Title": "一种机载cssar雷达动目标的检测方法",
+            "Link": "https://patents.google.com/patent/CN105891828A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN108496130A (zh) *",
+            "Priority Date": "2017-05-31",
+            "Publication Date": "2018-09-04",
+            "Assignee": "深圳市大疆创新科技有限公司",
+            "Title": "飞行控制方法、设备、控制终端及其控制方法、无人机",
+            "Link": "https://patents.google.com/patent/CN108496130A/zh"
+        },
+        {
+            "Publication Number": "CN108496130B (zh) *",
+            "Priority Date": "2017-05-31",
+            "Publication Date": "2021-06-11",
+            "Assignee": "深圳市大疆创新科技有限公司",
+            "Title": "飞行控制方法、设备、控制终端及其控制方法、无人机",
+            "Link": "https://patents.google.com/patent/CN108496130B/zh"
+        },
+        {
+            "Publication Number": "CN109375199A (zh) *",
+            "Priority Date": "2017-08-09",
+            "Publication Date": "2019-02-22",
+            "Assignee": "宏碁股份有限公司",
+            "Title": "距离检测装置及其距离检测方法",
+            "Link": "https://patents.google.com/patent/CN109375199A/zh"
+        },
+        {
+            "Publication Number": "CN109375199B (zh) *",
+            "Priority Date": "2017-08-09",
+            "Publication Date": "2022-12-06",
+            "Assignee": "宏碁股份有限公司",
+            "Title": "距离检测装置及其距离检测方法",
+            "Link": "https://patents.google.com/patent/CN109375199B/zh"
+        },
+        {
+            "Publication Number": "CN111480092A (zh) *",
+            "Priority Date": "2017-12-07",
+            "Publication Date": "2020-07-31",
+            "Assignee": "威力登激光雷达有限公司",
+            "Title": "用于高效多返回光检测器的系统和方法",
+            "Link": "https://patents.google.com/patent/CN111480092A/zh"
+        },
+        {
+            "Publication Number": "US12449306B2 (en)",
+            "Priority Date": "2017-12-07",
+            "Publication Date": "2025-10-21",
+            "Assignee": "Velodyne Lidar Usa, Inc.",
+            "Title": "Systems and methods for efficient multi-return light detectors",
+            "Link": "https://patents.google.com/patent/US12449306B2/en"
+        },
+        {
+            "Publication Number": "CN109633525A (zh) *",
+            "Priority Date": "2018-11-29",
+            "Publication Date": "2019-04-16",
+            "Assignee": "上海无线电设备研究所",
+            "Title": "一种快速的均匀圆阵空间谱测向实现方法",
+            "Link": "https://patents.google.com/patent/CN109633525A/zh"
+        },
+        {
+            "Publication Number": "CN109673280A (zh) *",
+            "Priority Date": "2019-01-10",
+            "Publication Date": "2019-04-26",
+            "Assignee": "珠海格力电器股份有限公司",
+            "Title": "基于微波雷达的栽培方法、装置、设备及处理器",
+            "Link": "https://patents.google.com/patent/CN109673280A/zh"
+        },
+        {
+            "Publication Number": "CN113116153A (zh) *",
+            "Priority Date": "2019-12-31",
+            "Publication Date": "2021-07-16",
+            "Assignee": "佛山市顺德区美的饮水机制造有限公司",
+            "Title": "水杯高度的测量方法、出水控制方法和出水控制装置",
+            "Link": "https://patents.google.com/patent/CN113116153A/zh"
+        },
+        {
+            "Publication Number": "WO2025190307A1 (zh) *",
+            "Priority Date": "2024-03-13",
+            "Publication Date": "2025-09-18",
+            "Assignee": "阿尔卑斯阿尔派株式会社",
+            "Title": "脉冲雷达的信号采样方法以及脉冲雷达装置",
+            "Link": "https://patents.google.com/patent/WO2025190307A1/zh"
+        },
+        {
+            "Publication Number": "CN119714195A (zh) *",
+            "Priority Date": "2024-12-19",
+            "Publication Date": "2025-03-28",
+            "Assignee": "中电科星河北斗技术(西安)有限公司",
+            "Title": "一种飞机高度的测量方法、装置、设备及存储介质",
+            "Link": "https://patents.google.com/patent/CN119714195A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:23:14"
+}

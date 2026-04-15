@@ -1,0 +1,37 @@
+{
+    "patent_id": "CN120930268A",
+    "title": "CN120930268A - 一种低空飞行器环境噪声建模方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Suzhou University",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120930268A/zh",
+    "citations": [
+        {
+            "Publication Number": "US20190228790A1 (en) *",
+            "Priority Date": "2018-01-25",
+            "Publication Date": "2019-07-25",
+            "Assignee": "Sogang University Research Foundation",
+            "Title": "Sound source localization method and sound source localization apparatus based coherence-to-diffuseness ratio mask",
+            "Link": "https://patents.google.com/patent/US20190228790A1/en"
+        },
+        {
+            "Publication Number": "CN120047721A (zh) *",
+            "Priority Date": "2025-01-06",
+            "Publication Date": "2025-05-27",
+            "Assignee": "河南工程学院",
+            "Title": "基于深度学习多模态融合的高分辨率遥感图像精准分类系统及方法",
+            "Link": "https://patents.google.com/patent/CN120047721A/zh"
+        },
+        {
+            "Publication Number": "CN119558356A (zh) *",
+            "Priority Date": "2025-01-24",
+            "Publication Date": "2025-03-04",
+            "Assignee": "湖南大学",
+            "Title": "自适应场景空间的交互式音乐智能生成方法和系统",
+            "Link": "https://patents.google.com/patent/CN119558356A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:03:52"
+}

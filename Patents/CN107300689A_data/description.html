@@ -1,0 +1,110 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN107300689A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES360070597">
+<invention-title id="tilte1" lang="ZH">一种低空无人飞行器声源方位探测系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001" num="0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0002">本发明涉及嵌入式声信号采集技术，特别是涉及一种低空无人飞行器声源方位探测系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003" num="0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0004">近年来低空无人飞行器因其成本低廉易于操作的特点迅速在民间普及，且数量急剧增加。但是，对于载荷小于7kg、飞行高度仅有数十米至200米的小型低空无人飞行器，目前暂无证照管理。罗宏伟在试论大型活动安保工作中“低慢小”目标的防范与处置一文中提出，由于缺乏有效监管，目前经常会出现利用无人飞行器进行各种恐怖活动、间谍活动、非法入侵等犯罪行为，在人口密集的城市环境中，无人飞行器失控损物伤人现象更为严重。</div>
+<div class="description-paragraph" id="p0005" num="0005">现有的低空无人飞行器探测方法包括雷达探测、类似公安天网系统的光学手段和综合运用雷达、可见光、红外、无线电等多种探测装备协同探测。吴聪,李海飞等利用PD雷达探测低小慢目标，但是由于低空无人飞行器体积小、反射弱、速度慢，容易被强大地杂波淹没或被建筑物遮挡，因而该方法不适用于城市环境。公安天网系统因视角有限或视线易受阻存在大量监测盲区，并且其探测范围在雨雪雾霾等恶劣天气下还会显著下降，探测性能亦不佳。秦清,徐毓针对低小慢目标多装备协同探测分配问题进行了研究，综合运用雷达、可见光、红外、无线电等多种探测装备协同探测低空无人飞行器，探测性能优异，但是这一套完备的系统往往动辄数十甚至上百万，成本高昂，不利于推广使用。</div>
+<div class="description-paragraph" id="p0006" num="0006">由于小型低空无人飞行器技术工艺的限制，飞行过程中会产生较大噪音，因此利用声学手段成为低空监测的自然合理选项。何发亮等人在声波探测技术的新发展及应用一文中提出声探测具有全被动、方位、非通视等优势，其探测性能在雾霾大湿度条件下还会提升，因而利用声探测手段实现低空无人飞行器探测这一技术手段切实可行。但是目前我国正在研制的声学低空探测系统多为军用或民航背景，覆盖空域和探测目标不同，并且体积较大、成本高昂，不涉及数十米高度的低空监测，因而很难在城市公安监测领域推广。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007" num="0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0008">本发明的目的在于提供一种集低空无人飞行器声音采集、音频数据存储传输、飞行器方位角测定等多种功能于一体，并且易于安装、存放、多点分布架设的低功耗便携式智能声探测系统。</div>
+<div class="description-paragraph" id="p0009" num="0009">实现本发明目的的技术解决方案为：一种低空无人飞行器声源方位探测系统，包括麦克风阵列、可编程处理板、计算机和电源；</div>
+<div class="description-paragraph" id="p0010" num="0010">所述麦克风阵列包括四个麦克风，四个麦克风通过四个伸缩杆固定在旋转基座上，通过旋转和拉伸伸缩杆构建不同几何结构不同尺寸的麦克风阵列，以检测飞行器的飞行音频数据，并将采集的四通道音频数据传输给可编程处理板；</div>
+<div class="description-paragraph" id="p0011" num="0011">所述可编程处理板将四路音频信号，经过滤波、放大、阻抗变换、AD转化后传送给计算机；</div>
+<div class="description-paragraph" id="p0012" num="0012">所述计算机根据接收的音频数据计算出飞行器方位信息；</div>
+<div class="description-paragraph" id="p0013" num="0013">所述电源用于给麦克风阵列、可编程处理板供电。</div>
+<div class="description-paragraph" id="p0014" num="0014">本发明与现有技术相比，具有显著优点是：(1)本发明以高性能可编程控制处理器为核心，采用麦克风阵列形式，能够完成声源信号采集、声纹数据存储传输、飞行器定位等多种功能，在复杂城市环境下能够通过多点分布式架设该设备，通过多系统组网来扩大无人飞行器监控区域。(2)麦克风阵列可以根据实际需求灵活改变阵列几何结构和阵列尺寸大小，能够适用于多种麦克风阵列定位识别算法，具有非常强的适应性。(3)可编程处理板硬件采用了通用可编程方式，软件系统采用了模块化设计思想，可以针对特定应用快速开发相应处理软件和接口方案，满足相关的应用需求。(4)与现有低空无人飞行器探测设备相比，该声学探测系统采用被动式声源探测方式，不存在任何可见光、红外线、电磁波等辐射源，隐秘性强，存活率高。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0015" num="0015">附图说明</div>
+<div class="description-paragraph" id="p0016" num="0016">图1是低空无人飞行器声源方位探测系统麦克风阵列三种结构变换示意图。</div>
+<div class="description-paragraph" id="p0017" num="0017">图2是低空无人飞行器声源方位探测系统的可编程处理板硬件架构图。</div>
+<div class="description-paragraph" id="p0018" num="0018">图3是低空无人飞行器声源方位探测系统软件系统架构图。</div>
+<div class="description-paragraph" id="p0019" num="0019">图4是低空无人飞行器声源方位探测系统主控软件程序流程图。</div>
+<div class="description-paragraph" id="p0020" num="0020">图5是低空无人飞行器声源方位探测系统平面四元十字阵声源定位原理图。</div>
+<div class="description-paragraph" id="p0021" num="0021">图6是低空无人飞行器声源方位探测系统测角精度误差分析图。</div>
+<div class="description-paragraph" id="p0022" num="0022">图7是低空无人飞行器声源方位探测系统采集的飞行器声纹数据时频谱图。</div>
+<div class="description-paragraph" id="p0023" num="0023">图8是低空无人飞行器探测系统特征频点距离拟合图，其中(a)为200Hz的距离拟合图，(b)为3500Hz的距离拟合图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0024" num="0024">具体实施方式</div>
+<div class="description-paragraph" id="p0025" num="0025">下面结合附图和具体实施方式，进一步阐述本发明方案。</div>
+<div class="description-paragraph" id="p0026" num="0026">一种低空无人飞行器声源方位探测系统，包括麦克风阵列、可编程处理板、计算机和电源；</div>
+<div class="description-paragraph" id="p0027" num="0027">所述麦克风阵列包括四个麦克风，四个麦克风通过四个伸缩杆固定在旋转基座上，通过旋转和拉伸伸缩杆构建不同几何结构不同尺寸的麦克风阵列，以检测飞行器的飞行音频数据，并将采集的四通道音频数据传输给可编程处理板；</div>
+<div class="description-paragraph" id="p0028" num="0028">所述可编程处理板将四路音频信号，经过滤波、放大、阻抗变换、AD转化后传送给计算机；</div>
+<div class="description-paragraph" id="p0029" num="0029">所述计算机根据接收的音频数据计算出飞行器方位信息(包括俯仰角和方位角)；</div>
+<div class="description-paragraph" id="p0030" num="0030">所述电源用于给麦克风阵列、可编程处理板供电。</div>
+<div class="description-paragraph" id="p0031" num="0031">所述麦克风为电容麦克风、驻极体麦克风或者硅微麦克风。</div>
+<div class="description-paragraph" id="p0032" num="0032">所述麦克风阵列几的何结构包括一维线性麦克风阵列、平面四元十字阵以及空间立体阵。</div>
+<div class="description-paragraph" id="p0033" num="0033">所述电源的供电方式包括外部电源输入和内置电池两种。</div>
+<div class="description-paragraph" id="p0034" num="0034">所述可编程处理板包括依次相连的信号调理电路、多路同步音频编解码电路、可编程控制处理器、数据存储电路以及外部通讯电路，其中信号调理电路接收麦克风阵列输出的四路音频信号，经过滤波、放大、阻抗变换后传输给多路同步音频编解码电路，多路同步音频编解码电路将输入模拟信号转换为数字信号后传输给可编程控制处理器，可编程控制处理器将数据缓存至数据存储电路，并将缓存数据通过外部通讯电路传输给计算机。</div>
+<div class="description-paragraph" id="p0035" num="0035">所述多路同步音频编解码电路采用型号为PCM3168A的芯片,为六路输入八路输出。</div>
+<div class="description-paragraph" id="p0036" num="0036">所述可编程控制处理器包括DSP、ARM、FPGA以及单片机。</div>
+<div class="description-paragraph" id="p0037" num="0037">所述数据存储电路包括低容量缓存SRAM芯片和主存eMMC芯片，两者配合使用能够极大提高存储速率。</div>
+<div class="description-paragraph" id="p0038" num="0038">所述外部通讯电路包括RS232接口和USB通讯接口,当检测和处理工作完成后，可编程控制处理器通过上述通讯接口电路将数据传输至PC终端或者存储到外部U盘。</div>
+<div class="description-paragraph" id="p0039" num="0039">下面结合附图进行具体描述：</div>
+<div class="description-paragraph" id="p0040" num="0040">低空无人飞行器声源方位探测系统，包括麦克风阵列、可编程处理板、计算机和电源；麦克风阵列用于检测飞行器的飞行音频数据，并将采集的四通道音频数据传输给可编程处理板；可编程处理板用于将四路音频信号，经过滤波、放大、阻抗变换、AD转化后传送给计算机；计算机根据接收的音频数据计算出飞行器方位信息(包括俯仰角和方位角)；电源用于给麦克风阵列、可编程处理板供电。</div>
+<div class="description-paragraph" id="p0041" num="0041">如图1所示，麦克风阵列包括四个麦克风，四根可伸缩变换的圆柱形空心伸缩杆，以及一个可以任意转动的基座，四个麦克风分别安装在四根伸缩杆前端，伸缩杆后端集中安装于可旋转基座上。每个麦克风的三根走线信号线、电源线、地线从伸缩管内部经过并且汇集到可旋转基座上，在可旋转基座上留有一个六芯接口，分别为四个麦克风音频信号走线、一根电源线以及一根地线，利用六芯接口插件将麦克风阵列与采集板连接，可以实现声音信号输入。</div>
+<div class="description-paragraph" id="p0042" num="0042">四个圆柱形空心伸缩杆可以在水平面内以0°～360°任意角度旋转，也可以在竖直空间内以0°～90°角度旋转，伸缩杆可以自由拉伸，通过拉伸伸缩杆来改变麦克风阵元之间的间距，再通过水平或者竖直旋转四个麦克风可以构建多种几何结构的麦克风阵列，常用的四通道麦克风阵列结构包括一维线性麦克风阵列、平面四元十字阵以及空间立体阵。</div>
+<div class="description-paragraph" id="p0043" num="0043">一维线性麦克风阵列由处在一条直线上的若干个麦克分构成，按照麦克风间距可分为均匀线性阵列和和嵌套线性阵列。线性阵列是最简单的阵列拓扑结构，其对应的定位算法复杂度较低，但是只能实现平面内的声源定位。</div>
+<div class="description-paragraph" id="p0044" num="0044">平面四元十字阵由安装在正方形的四个顶点上的四个麦克风构成。四元十字阵具有分维特性，可将二维参量分开，其阵列冗余度较小，在平面内定位性能优越，空间内定位性能良好，可以选择的定位算法也很多，是目前运用最为广泛的麦克风阵列。</div>
+<div class="description-paragraph" id="p0045" num="0045">空间立体阵的麦克风中心分布在立体空间中。根据阵列的立体形状可分为四面体阵、正方体阵、长方体阵、球型阵，空间立体阵在平面和空间内都能够实现精确定位，但是其对应算法复杂度高，阵列结构复杂。</div>
+<div class="description-paragraph" id="p0046" num="0046">麦克风采用电容麦克风、驻极体麦克风或者硅微麦克风，在麦克风前端安装专业级防风罩，能够有效降低风噪对声音采集的影响。</div>
+<div class="description-paragraph" id="p0047" num="0047">如图2所示，可编程处理板包括依次连接的信号调理电路、多路同步音频编解码电路、可编程控制处理器、数据存储电路以及外部通讯电路。作为处理板核心的可编程控制处理器可在DSP、ARM、FPGA和单片机中选用其中一种或者多种配合构成。可编程控制处理器通过控制多路同步音频编解码电路实现麦克风阵列输入信号的同步采集，然后依据编写的算法完成对阵列信号的传输与处理工作。</div>
+<div class="description-paragraph" id="p0048" num="0048">可编程处理板的硬件平台备有RS232接口以及USB接口，可以根据实际需要将采集数据上传至计算终端或者存储到外部U盘中去。可编程处理板的采样频率以及采样精度通过控制总线向音频编解码芯片发送控制字来设置，采样率在8kHz至96kHz之间，能够满足大部分声探测的要求；采样精度有两种选择，分别为16-bit和24-bit，可以满足不同应用环境中的信噪比要求。</div>
+<div class="description-paragraph" id="p0049" num="0049">如图3所示，可编程处理板的嵌入式软件系统采用模块化设计思想，将独立的各接口驱动模块与主控软件相结合，以核心算法为主体协同工作，共同完成特定应用所要求的工作。通过嵌入相应核心算法，能够完成麦克风阵列信号实时采集传输与存储，具有很好的灵活性和适应性。缓存SRAM驱动和主存eMMC驱动两者配合使用能够大大提高缓存速率。包含RS232接口、USB接口驱动的多种接口驱动模块配合使用能够完成不同接口协议的数据双向通讯。</div>
+<div class="description-paragraph" id="p0050" num="0050">主控软件程序的流程如图4所示，由此可以看出低空无人飞行器声源方位探测系统的工作过程。首先麦克风阵列接收到无人飞行器声信号，经过可编程处理板上的信号调理电路进行滤波、放大、阻抗变换等处理之后传送至多路同步音频编解码电路。主控软件在完成各模块初始化工作后配置并启动用于流水帧处理的DMA中断，当多路音频编解码电路连续采集数据存满一帧即触发一次DMA中断，同时切换DMA数据存储目的地址，如此反复直到存满外部缓存SRAM，外部SRAM存满数据之后会产生一个“发生触发事件且已处理完成”标志位，告知主控程序数据存储完成。主控程序通过不断查询该标志位检测存储是否完成，一旦检测到该标志位被置位，主控程序会选择通过串口将数据发送到计算终端或者通过USB接口存储到外部U盘中去。最后主控程序会清零各个相关变量和标志位，继续等待下次有效时间的检测和处理结果。</div>
+<div class="description-paragraph" id="p0051" num="0051">四元十字定位算法利用广义互相关算法(GCC)计算阵元之间的波达时间差(TDOA)，四路麦克风输入可以得到六个阵元之间的TDOA，再根据远场声源模型之间的角度关系可以计算得出相应的角度。下面针对平面四元十字阵介绍四元十字定位算法。如图5令第i个阵元的三维空间坐标为<span class="patent-image-not-available"></span>其中<span class="patent-image-not-available"></span>为第i个阵元的方位角，r<sub>i</sub>为该阵元至坐标原点O的距离，声源S的位置坐标为<span class="patent-image-not-available"></span>其中θ，<span class="patent-image-not-available"></span>分别表示声源对应的俯仰角和方位角，R为声源至坐标原点O的距离。</div>
+<div class="description-paragraph" id="p0052" num="0052">以坐标原点为参考点，不妨令声源信号传播至坐标原点时刻为零时刻，则声源信号到达第i个阵元时刻与到达坐标原点时刻之间的时延可表示为：</div>
+<div class="description-paragraph" id="p0053" num="0053">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0054" num="0054">其中，c为大气中的声传播速度。对于远场声源，r<sub>i</sub>/R＜＜1，通过二项式展开可将式(1)简化为：</div>
+<div class="description-paragraph" id="p0055" num="0055">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0056" num="0056">由此可得任意一对阵元(i,j)之间的TDOA信息：</div>
+<div class="description-paragraph" id="p0057" num="0057">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0058" num="0058">对于四元平面阵，总共可以得到6对麦克风之间的TDOA信息τ<sub>ij</sub>,i,j∈{1,2,3,4}且i＞j，用矩阵表示如下：</div>
+<div class="description-paragraph" id="p0059" num="0059">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0060" num="0060">简记为：</div>
+<div class="description-paragraph" id="p0061" num="0061">Ax＝b (5)</div>
+<div class="description-paragraph" id="p0062" num="0062">该超定方程存在唯一最小二乘解：</div>
+<div class="description-paragraph" id="p0063" num="0063">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0064" num="0064">其中，A<sup>+</sup>为A的广义逆矩阵，令<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0065" num="0065">代入式(5)得，</div>
+<div class="description-paragraph" id="p0066" num="0066">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0067" num="0067">由此得远场声源方位角：</div>
+<div class="description-paragraph" id="p0068" num="0068">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0069" num="0069">由于arctan函数具有周期性且取值范围为[-90°,90°]，而实际声源方位角为[0°,360°]，因此，需要根据TDOA<sub>ij</sub>正负对计算结果进行修订：</div>
+<div class="description-paragraph" id="p0070" num="0070">当目标在第一象限时，<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0071" num="0071">当目标在第二象限时，<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0072" num="0072">当目标在第三象限时，<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0073" num="0073">当目标在第四象限时，<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0074" num="0074">当<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0075" num="0075">当<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0076" num="0076">再将求出的<span class="patent-image-not-available"></span>代入式(8)，得出角度θ。</div>
+<div class="description-paragraph" id="p0077" num="0077">为了验证低空无人飞行器声源方位探测系统测角精度和探测距离两个参数分别设计系统平面测角实验以及系统探测距离实验。</div>
+<div class="description-paragraph" id="p0078" num="0078">系统平面测角实验中利用麦克风阵列从不同标定的角度采集声源数据，利用采集的声源数据计算声源的实际方位角信息，通过比较标定的角度与实际算法计算出的角度得出系统测角精度误差，如图6所示，可以看出实际测量角度与设定角度的误差在[-2°，2°]之间，处在允许测角误差范围之内，说明系统具有良好的测角精度，同时也初步验证了系统测向性能。</div>
+<div class="description-paragraph" id="p0079" num="0079">结合图7低空无人飞行器声源方位探测系统采集飞行器音频数据时频谱图，可以发现无人飞行器飞行音频数据能量主要集中在200Hz和3500Hz附近，这两个频点就是无人飞行器飞行音频数据的特征频点。系统探测距离实验通过计算不同距离处这两个频点的信噪比，利用matlab中的多项式拟合函数拟合出不同距离下特征频点信噪比衰减曲线。结合图8两个特征频点信噪比衰减曲线可以发现，在标准的90％发现概率，10<sup>-6</sup>虚警概率，信噪比13dB情况下，200Hz特征频率作用距离大约为300米，3500Hz特征频率作用距离大约为40米；当信号能量是噪声能量两倍时，即信噪比为3dB，200Hz特征频率作用距离大约为645米，3500Hz特征频率作用距离大约为50米，发现系统作用距离良好，另外在城市环境中可以通过多点分布架设系统来扩大探测范围以及提高定位精度。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

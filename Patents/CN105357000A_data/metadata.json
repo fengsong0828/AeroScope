@@ -1,0 +1,102 @@
+{
+    "patent_id": "CN105357000A",
+    "title": "CN105357000A - 基于低空飞行器的量子密钥分发方法、系统、通信网络及通信方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Anhui Asky Quantum Technology Co Ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN105357000A/zh",
+    "citations": [
+        {
+            "Publication Number": "EP2555466A1 (en) *",
+            "Priority Date": "2011-08-05",
+            "Publication Date": "2013-02-06",
+            "Assignee": "Selex Sistemi Integrati S.p.A.",
+            "Title": "System for distributing cryptographic keys",
+            "Link": "https://patents.google.com/patent/EP2555466A1/en"
+        },
+        {
+            "Publication Number": "CN102611200A (zh) *",
+            "Priority Date": "2012-03-12",
+            "Publication Date": "2012-07-25",
+            "Assignee": "中国电力科学研究院",
+            "Title": "一种基于激光量子密码通信的无人机输变电监测系统",
+            "Link": "https://patents.google.com/patent/CN102611200A/zh"
+        },
+        {
+            "Publication Number": "CN103763099A (zh) *",
+            "Priority Date": "2014-02-13",
+            "Publication Date": "2014-04-30",
+            "Assignee": "国家电网公司",
+            "Title": "一种基于量子密钥分配技术的电力安全通信网络",
+            "Link": "https://patents.google.com/patent/CN103763099A/zh"
+        },
+        {
+            "Publication Number": "CN104993925A (zh) *",
+            "Priority Date": "2015-07-01",
+            "Publication Date": "2015-10-21",
+            "Assignee": "清华大学",
+            "Title": "一种飞行器的量子密钥分配系统",
+            "Link": "https://patents.google.com/patent/CN104993925A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN107040378A (zh) *",
+            "Priority Date": "2017-06-01",
+            "Publication Date": "2017-08-11",
+            "Assignee": "浙江九州量子信息技术股份有限公司",
+            "Title": "一种基于多用户远程通信的密钥分配系统与方法",
+            "Link": "https://patents.google.com/patent/CN107040378A/zh"
+        },
+        {
+            "Publication Number": "CN109842442A (zh) *",
+            "Priority Date": "2017-11-26",
+            "Publication Date": "2019-06-04",
+            "Assignee": "成都零光量子科技有限公司",
+            "Title": "一种以机场为区域中心的量子密钥服务网络与方法",
+            "Link": "https://patents.google.com/patent/CN109842442A/zh"
+        },
+        {
+            "Publication Number": "CN109842485A (zh) *",
+            "Priority Date": "2017-11-26",
+            "Publication Date": "2019-06-04",
+            "Assignee": "成都零光量子科技有限公司",
+            "Title": "一种有中心的量子密钥服务网络系统",
+            "Link": "https://patents.google.com/patent/CN109842485A/zh"
+        },
+        {
+            "Publication Number": "CN109842485B (zh) *",
+            "Priority Date": "2017-11-26",
+            "Publication Date": "2021-07-20",
+            "Assignee": "成都零光量子科技有限公司",
+            "Title": "一种有中心的量子密钥服务网络系统",
+            "Link": "https://patents.google.com/patent/CN109842485B/zh"
+        },
+        {
+            "Publication Number": "CN114679267A (zh) *",
+            "Priority Date": "2022-03-25",
+            "Publication Date": "2022-06-28",
+            "Assignee": "合肥硅臻芯片技术有限公司",
+            "Title": "一种基于量子加密的无人机控制系统",
+            "Link": "https://patents.google.com/patent/CN114679267A/zh"
+        },
+        {
+            "Publication Number": "JPWO2023228387A1 (zh) *",
+            "Priority Date": "2022-05-26",
+            "Publication Date": "2023-11-30",
+            "Assignee": "",
+            "Title": "",
+            "Link": "https://patents.google.com/patent/JPWO2023228387A1/zh"
+        },
+        {
+            "Publication Number": "JP7776000B2 (ja)",
+            "Priority Date": "2022-05-26",
+            "Publication Date": "2025-11-26",
+            "Assignee": "日本電気株式会社",
+            "Title": "移動体、暗号鍵配送システム、暗号鍵配送方法およびプログラム",
+            "Link": "https://patents.google.com/patent/JP7776000B2/ja"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:35:17"
+}

@@ -1,0 +1,61 @@
+{
+    "patent_id": "CN119136198A",
+    "title": "CN119136198A - 一种低空飞行器认证方法、装置、终端及存储介质 - Google Patents",
+    "status": "Unknown",
+    "assignee": "China Telecom Corp Ltd Shenzhen Branch",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119136198A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN104134373A (zh) *",
+            "Priority Date": "2013-05-02",
+            "Publication Date": "2014-11-05",
+            "Assignee": "波音公司",
+            "Title": "用于ads-b验证和导航的使用到达角测量的装置、系统和方法",
+            "Link": "https://patents.google.com/patent/CN104134373A/zh"
+        },
+        {
+            "Publication Number": "CN107922050A (zh) *",
+            "Priority Date": "2015-08-28",
+            "Publication Date": "2018-04-17",
+            "Assignee": "迈克菲有限责任公司",
+            "Title": "无人驾驶飞行器的位置验证和安全禁飞逻辑",
+            "Link": "https://patents.google.com/patent/CN107922050A/zh"
+        },
+        {
+            "Publication Number": "CN107864137A (zh) *",
+            "Priority Date": "2017-11-09",
+            "Publication Date": "2018-03-30",
+            "Assignee": "佛山市海科云筹信息技术有限公司",
+            "Title": "飞行器飞行许可方法、装置、存储介质及服务器",
+            "Link": "https://patents.google.com/patent/CN107864137A/zh"
+        },
+        {
+            "Publication Number": "US20210035457A1 (en) *",
+            "Priority Date": "2019-07-31",
+            "Publication Date": "2021-02-04",
+            "Assignee": "The Boeing Company",
+            "Title": "System and method for verifying aircraft position information",
+            "Link": "https://patents.google.com/patent/US20210035457A1/en"
+        },
+        {
+            "Publication Number": "WO2023193684A1 (zh) *",
+            "Priority Date": "2022-04-06",
+            "Publication Date": "2023-10-12",
+            "Assignee": "维沃移动通信有限公司",
+            "Title": "验证终端位置的方法、终端及网络侧设备",
+            "Link": "https://patents.google.com/patent/WO2023193684A1/zh"
+        },
+        {
+            "Publication Number": "CN118113053A (zh) *",
+            "Priority Date": "2024-04-26",
+            "Publication Date": "2024-05-31",
+            "Assignee": "粤港澳大湾区数字经济研究院(福田)",
+            "Title": "一种低空飞行器的飞行轨迹验证方法、装置、终端及介质",
+            "Link": "https://patents.google.com/patent/CN118113053A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:59:20"
+}

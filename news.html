@@ -28,7 +28,7 @@
         .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
 
         /* --- 2. 新闻列表样式 (紧凑版) --- */
-        .news-feed { display: flex; flex-direction: column; gap: 4px; } /* 减少间距 */
+        .news-feed { display: flex; flex-direction: column; gap: 2px; } /* 减少间距 */
         
         .news-item { 
             display: flex; 
@@ -37,12 +37,12 @@
             border-radius: 8px; 
             overflow: hidden; 
             transition: 0.2s; 
-            min-height: 80px; /* 压缩高度 */
+            min-height: 60px; /* 压缩高度 */
         }
         .news-item:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.05); border-color: #3b82f6; }
         
         .news-image { 
-            width: 140px; min-width: 140px; 
+            width: 100px; min-width: 100px; 
             background-color: #cbd5e1; 
             display: block; 
             background-size: cover; 
@@ -50,7 +50,7 @@
         }
         
         .news-content { 
-            padding: 8px 12px; /* 压缩内边距 */
+            padding: 6px 10px; /* 压缩内边距 */
             flex: 1; 
             display: flex; 
             flex-direction: column; 
@@ -65,11 +65,11 @@
         .news-meta { 
             display: flex; align-items: center; gap: 10px; 
             font-size: 0.75rem; color: #64748b; 
-            margin-bottom: 2px; flex-wrap: wrap; 
+            margin-bottom: 1px; flex-wrap: wrap; 
         }
         
         .news-content p {
-            font-size: 0.85rem; color: #64748b; margin-top: 4px;
+            font-size: 0.85rem; color: #64748b; margin-top: 2px;
             display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
             line-height: 1.5;
         }

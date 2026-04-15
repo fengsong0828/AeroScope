@@ -1,0 +1,187 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120675682A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES505945850">
+<invention-title id="title1" lang="ZH">一种低空飞行器通信决策方法、装置及可读存储介质</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及一种低空飞行器通信决策方法、装置及可读存储介质，属于网络通信技术领域。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空飞行器在实际飞行过程中，常面临多种不同通信链路的挑战。具体为:（1）低空飞行器的无线电链路（如VHF/UHF）的通信问题：由于受地形、距离等因素影响，信号稳定性不佳；（2）低空飞行器与地面网络（如LTE/5G）的通信问题：在近地面区域信号较好，但飞行高度增高或覆盖区域不均时会出现信号弱化、带宽下降；（3）低空飞行器在卫星通信链路（如LEO）方面的通信问题：提供覆盖范围广，但通常具有较高延迟和有限带宽；因此现有的低空飞行器的通信质量难以保证，</div>
+<div class="description-paragraph" id="p0005">在这些环境下，低空飞行器若采用单一链路通信，往往难以满足低延迟、高可靠性的需求，特别是在网络状态快速变化、链路质量不稳定的情况下，频繁的链路切换会导致数据丢失、乱序、延迟增大和通信中断，更无法顺应未来城市低空交通的发展趋势。</div>
+<div class="description-paragraph" id="p0006" num="0003">现有技术为了对抗信号干扰、链路中断等风险，通常会采用多路冗余传输策略。例如，一个飞行器可能同时通过卫星和5G两条异构链路，向地面站或服务器发送相同的数据包。这种设计通过链路冗余，极大地提高了通信的可靠性，确保关键数据至少有一份能够成功送达。然而，这种架构在接收端必然会产生大量的冗余数据包，如何高效、智能、且对上层业务透明地消除这些冗余，是该技术路线成功的关键。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0004">本发明的目的是提供一种低空飞行器通信决策方法、装置及可读存储介质，旨在解决低空飞行器多路冗余传输及对动态异构网络的适应性不足的难题，通过计数型布隆过滤器和超时滑动窗口组合成具有快筛和精校功能的两级过滤架构，有效甄别冗余数据包和新数据包，避免了将计算和内存资源浪费在无效数据的后续处理上，显著提升了系统的有效吞吐量；再结合多维决策引擎对本周期内的网络状态参数进行计算和网络诊断，获得下一周期的最优决策，以提高下一周期消冗的网络自适应能力，实现了在各种网络条件下，都能智能地感知网络状态并高效地以最优策略完成消冗任务。</div>
+<div class="description-paragraph" id="p0009" num="0005">为解决上述技术问题，本发明是采用下述技术方案实现的。</div>
+<div class="description-paragraph" id="p0010" num="0006">第一方面，本发明提供一种低空飞行器通信决策方法，包括：</div>
+<div class="description-paragraph" id="p0011">低空飞行器接收数据包；</div>
+<div class="description-paragraph" id="p0012">对接收的数据包进行标识提取，获得每个数据包的标识序号；</div>
+<div class="description-paragraph" id="p0013">使用计数型布隆过滤器CBF对标识序号进行查询，得到标识查询结果并判断所接收数据包是否为疑似冗余数据包；</div>
+<div class="description-paragraph" id="p0014">当所接收数据包为疑似冗余数据包时，利用超时滑动窗口对疑似冗余数据包进行再次查询，得出查询结果；</div>
+<div class="description-paragraph" id="p0015">根据查询结果，丢弃数据包和修改滑动窗口后台记录；</div>
+<div class="description-paragraph" id="p0016">对超时滑动窗口后台记录进行计算，得出本周期内的冗余成功率、消冗超时率、无效查询率；</div>
+<div class="description-paragraph" id="p0017">采用多维网络状态决策引擎对冗余成功率、消冗超时率、无效查询率进行处理，得到当前网络状态的诊断结果并输出最优对应决策；</div>
+<div class="description-paragraph" id="p0018">基于最优对应决策调整下一周期超时滑动窗口的参数，动态控制下周期超时滑动窗口常规优化、收缩或容忍。</div>
+<div class="description-paragraph" id="p0019" num="0007">可选的，所述低空飞行器接收数据包还包括：</div>
+<div class="description-paragraph" id="p0020">通过QUIC协议与多个频段型号的网络建立通信并构建出多路QUIC通信链路；</div>
+<div class="description-paragraph" id="p0021">基于多路QUIC通信链路同步接收数据包；</div>
+<div class="description-paragraph" id="p0022">使用数据接口对接收的每个数据包嵌入QUIC标识序号，用于后续计数型布隆过滤器CBF的查询和滑动窗口的验证。</div>
+<div class="description-paragraph" id="p0023" num="0008">可选的，使用计数型布隆过滤器CBF对标识序号进行查询，得到标识查询结果并判断所接收数据包是否为疑似冗余数据包，包括：</div>
+<div class="description-paragraph" id="p0024">若计数型布隆过滤器CBF中查询出所述标识序号，则初步判断所述数据包为疑似冗余数据；</div>
+<div class="description-paragraph" id="p0025">若计数型布隆过滤器CBF中未查询出所述标识序号，则初步判断所述数据包为新数据包。</div>
+<div class="description-paragraph" id="p0026" num="0009">可选的，若计数型布隆过滤器CBF中未查询出所述标识序号，则初步判断所述数据包为新数据包，还包括：</div>
+<div class="description-paragraph" id="p0027">当所述数据包为新数据包时，将新数据包作为有效数据，用于交付上层业务逻辑处理；</div>
+<div class="description-paragraph" id="p0028">根据新数据包创建超时滑动窗口的后台记录，所述后台记录包含有新数据的QUIC标识序号和到达时间；</div>
+<div class="description-paragraph" id="p0029">使用计数型布隆过滤器CBF的哈希函数对新数据包的QUIC标识序号进行哈希计算，在计数型布隆过滤器CBF中生成新数据包所对应的哈希位置并对哈希位置上的计数值分别进行加一操作。</div>
+<div class="description-paragraph" id="p0030" num="0010">可选的，当所接收数据包为疑似冗余数据包时，利用超时滑动窗口对疑似冗余数据包进行再次查询，得出查询结果，包括：</div>
+<div class="description-paragraph" id="p0031">利用超时滑动窗口对疑似冗余数据包进行查询，若超时滑动窗口的后台中存在相同的QUIC标识序号记录，则疑似冗余数据包确定为冗余数据包；</div>
+<div class="description-paragraph" id="p0032">若超时滑动窗口的后台中不存在相同的QUIC标识序号记录，则疑似冗余数据包确定为新数据包。</div>
+<div class="description-paragraph" id="p0033" num="0011">可选的，根据查询结果，丢弃数据包和修改滑动窗口后台记录，包括：</div>
+<div class="description-paragraph" id="p0034">在疑似冗余数据包确定为冗余数据包后，提取冗余数据包的到达时间并直接丢弃当前数据包；</div>
+<div class="description-paragraph" id="p0035">根据超时滑动窗口的后台已记录QUIC标识序号所对应的到达时间与冗余数据包的到达时间进行差值计算，得出此次冗余数据包的冗余时延差；</div>
+<div class="description-paragraph" id="p0036">将此次冗余时延差作为样本对超时滑动窗口的移动平均值进行计算，得出更新后的超时滑动窗口的移动平均值；</div>
+<div class="description-paragraph" id="p0037">根据更新后的超时滑动窗口的移动平均值进行超时滑动窗口尺寸计算，得到超时滑动窗口的调整尺寸；</div>
+<div class="description-paragraph" id="p0038">超时滑动窗口的尺寸更新后，在超时滑动窗口的后台，删除此冗余数据包的所对应的QUIC标识序号记录，并同步对计数型布隆过滤器CBF中此QUIC标识序号所对应的哈希位置上的计数值分别进行减一操作；</div>
+<div class="description-paragraph" id="p0039">在疑似冗余数据包确定为新数据包后，将查询出新数据包的过程统计为无效查询事件，并将新数据包作为有效数据。</div>
+<div class="description-paragraph" id="p0040" num="0012">可选的，采用多维网络状态决策引擎对冗余成功率、消冗超时率、无效查询率进行处理，得到当前网络状态的诊断结果并输出最优对应决策，包括：</div>
+<div class="description-paragraph" id="p0041">利用多维网络状态决策矩阵分别对冗余成功率、消冗超时率、无效查询率进行特征提取，得到冗余成功率、消冗超时率、无效查询率的特征；</div>
+<div class="description-paragraph" id="p0042">对冗余成功率、消冗超时率、无效查询率的特征融合，得出当前网络状态的输入特征向量；</div>
+<div class="description-paragraph" id="p0043">对当前网络状态的输入特征向量进行特征模糊处理，使每个特征与预定义的多个模糊集合建立映射关系；</div>
+<div class="description-paragraph" id="p0044">根据预定义的隶属函数对多个模糊集合进行计算，得出多个模糊集合的隶属度；</div>
+<div class="description-paragraph" id="p0045">利用预先构建的模糊决策规则库对实时输入特征向量进行模糊推理，得出每一条规则的触发强度，并将所有规则的触发强度进行聚合得出最终模糊决策结果；</div>
+<div class="description-paragraph" id="p0046">采用重心法对最终模糊决策结果进行计算，得出当前网络状态量化的诊断结果；</div>
+<div class="description-paragraph" id="p0047">根据当前网络状态的诊断结果，输出下一周期超时滑动窗口调整的最优对应决策。</div>
+<div class="description-paragraph" id="p0048" num="0013">可选的，所述超时滑动窗口后台记录还包括通过周期性清理进程对超时滑动窗口后台记录进行定期维护；</div>
+<div class="description-paragraph" id="p0049">在清理后台记录时，先遍历超时滑动窗口后台的所有记录并提取每条记录的存活时间；</div>
+<div class="description-paragraph" id="p0050">当任一记录的存活时间超出当前超时滑动窗口的容忍时间，则判定该记录为超时记录，其记录所对应的冗余数据包已超时；</div>
+<div class="description-paragraph" id="p0051">对已判定的超时记录进行定期清理，得到超时记录被定期移除的超时滑动窗口后台。</div>
+<div class="description-paragraph" id="p0052" num="0014">第二方面，本发明提供一种低空飞行器通信决策装置，包括：</div>
+<div class="description-paragraph" id="p0053">数据接收模块、自适应消冗模块、网络状态参数计算模块、消冗决策模块；</div>
+<div class="description-paragraph" id="p0054">所述数据接收模块用于接收数据包并对接收的数据包进行标识提取，获得每个数据包的标识序号；</div>
+<div class="description-paragraph" id="p0055">所述自适应消冗模块用于使用计数型布隆过滤器CBF对标识序号进行查询，得到标识查询结果并判断所接收数据包是否为疑似冗余数据包；当所接收数据包为疑似冗余数据包时，利用超时滑动窗口对疑似冗余数据包进行再次查询，得出查询结果；根据查询结果，丢弃数据包和修改滑动窗口后台记录；</div>
+<div class="description-paragraph" id="p0056">所述网络状态参数计算模块用于对超时滑动窗口后台记录进行计算，得出本周期内的冗余成功率、消冗超时率、无效查询率；</div>
+<div class="description-paragraph" id="p0057">所述消冗决策模块用于采用多维网络状态决策引擎对冗余成功率、消冗超时率、无效查询率进行处理，得到当前网络状态的诊断结果并输出最优对应决策；基于最优对应决策调整下一周期超时滑动窗口的参数，动态控制下周期超时滑动窗口常规优化、收缩或容忍。</div>
+<div class="description-paragraph" id="p0058" num="0015">第三方面，本发明提供一种计算机可读存储介质，其上存储有计算机程序/指令，该计算机程序/指令被处理器执行时，实现第一方面所述方法的步骤。</div>
+<div class="description-paragraph" id="p0059" num="0016">与现有技术相比，本发明所达到的有益效果：</div>
+<div class="description-paragraph" id="p0060">（1）本发明通过计数型布隆过滤器和超时滑动窗口组合成具有快筛和精校功能的两级过滤架构，有效甄别冗余数据包和新数据包，避免了将计算和内存资源浪费在无效数据的后续处理上，显著提升了系统的有效吞吐量；再结合多维决策引擎对本周期内的网络状态参数进行计算和网络诊断，获得下一周期的最优决策，以提高下一周期消冗的网络自适应能力，实现了在各种网络条件下，都能智能地感知网络状态并高效地以最优策略完成消冗任务。</div>
+<div class="description-paragraph" id="p0061" num="0017">（2）本发明多维决策引擎实时感知和精确计算网络在冗余度、延迟、丢包等维度的状态变化，并动态调整核心算法参数，以适应后续通信在各种复杂的网络环境下都能实现最优的消冗策略。</div>
+<div class="description-paragraph" id="p0062" num="0018">（3）本发明通过后台清理进程对超时滑动窗口的后台记录进行定期超时记录清理，使得超时滑动窗口能够在动态异构网络的动态变化下进行自适应调整窗口大小和超时逻辑，通过定期清理超时冗余包还能提高对假阳性数据包的识别精度，避免历史数据干扰当前决策，同时减少内存占用。</div>
+<div class="description-paragraph" id="p0063" num="0019">（4）本发明保障了业务的实时性与确定性，通过多维决策引擎诊断网络状态，进而控制超时滑动窗口容忍策略和边界，既能最大程度地保障数据传输的可靠性，又能通过超时机制避免因链路问题导致的无限等待，保证了上层业务的时序稳定。</div>
+<div class="description-paragraph" id="p0064" num="0020">（5）超时滑动窗口后台记录更改后，同步修改计数型布隆过滤器所对应的所有哈希位置，实现计数型布隆过滤器CBF与滑动窗口的状态同步增减，保证长期运行性能。</div>
+<div class="description-paragraph" id="p0065" num="0021">（6）通过超时滑动窗口记录和存储冗余成功事件、无效查询事件、消冗超时事件，计算任一周期内的冗余成功率、消冗超时率、无效查询率，能够可量化网络诊断的准确性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0066">附图说明</div>
+<div class="description-paragraph" id="p0067" num="0022">图1所示为本发明低空飞行器通信决策方法的流程图；</div>
+<div class="description-paragraph" id="p0068">图2所示为本发明低空飞行器两级过滤架构的流程图；</div>
+<div class="description-paragraph" id="p0069">图3所示为本发明多维决策引擎网络诊断的实施例图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0070">具体实施方式</div>
+<div class="description-paragraph" id="p0071" num="0023">下面结合附图对本发明作进一步描述。以下实施例仅用于更加清楚地说明本发明的技术方案，而不能以此来限制本发明的保护范围。</div>
+<div class="description-paragraph" id="p0072">实施例</div>
+<div class="description-paragraph" id="p0073" num="0024">本实施例提供一种低空飞行器通信决策方法，如图1所示包括：</div>
+<div class="description-paragraph" id="p0074">低空飞行器接收数据包；</div>
+<div class="description-paragraph" id="p0075">对接收的数据包进行标识提取，获得每个数据包的标识序号；</div>
+<div class="description-paragraph" id="p0076">使用计数型布隆过滤器CBF对标识序号进行查询，得到标识查询结果并判断所接收数据包是否为疑似冗余数据包；</div>
+<div class="description-paragraph" id="p0077">当所接收数据包为疑似冗余数据包时，利用超时滑动窗口对疑似冗余数据包进行再次查询，得出查询结果；</div>
+<div class="description-paragraph" id="p0078">根据查询结果，丢弃数据包和修改滑动窗口后台记录；</div>
+<div class="description-paragraph" id="p0079">对超时滑动窗口后台记录进行计算，得出本周期内的冗余成功率、消冗超时率、无效查询率；</div>
+<div class="description-paragraph" id="p0080">采用多维网络状态决策引擎对冗余成功率、消冗超时率、无效查询率进行处理，得到当前网络状态的诊断结果并输出最优对应决策；</div>
+<div class="description-paragraph" id="p0081">基于最优对应决策调整下一周期超时滑动窗口的参数，动态控制下周期超时滑动窗口常规优化、收缩或容忍，根据不同网络的动态变化自适应减少后续数据包传输的延迟、冗余和丢包现象。</div>
+<div class="description-paragraph" id="p0082" num="0025">本实施例基于智能感知与状态同步的自适应消冗引擎。该引擎为每一条多路冗余的QUIC连接而创建，并包含了三个核心组件：计数型布隆过滤器、超时滑动窗口以及多维决策引擎，从而利用过滤器作为“状态同步的协作者”和“网络状态的感知器”，它向“多维决策引擎”提供关于冗余、超时、假阳性的实时数据。决策引擎根据这些数据诊断网络状态，并动态调整“超时滑动窗口”的核心参数（W_timeout），从而在各种网络条件下，都能以最优策略完成消冗任务。</div>
+<div class="description-paragraph" id="p0083" num="0026">可选的，所述低空飞行器接收数据包还包括：</div>
+<div class="description-paragraph" id="p0084">通过QUIC协议与多个频段型号的网络建立通信并构建出多路QUIC通信链路；</div>
+<div class="description-paragraph" id="p0085">基于多路QUIC通信链路同步接收数据包；</div>
+<div class="description-paragraph" id="p0086">使用数据接口对接收的每个数据包嵌入QUIC标识序号，用于后续计数型布隆过滤器CBF的查询和滑动窗口的验证。</div>
+<div class="description-paragraph" id="p0087" num="0027">本实施例每个 QUIC 连接在建立后，均创建独立的两级过滤架构，并定义统一数据格式和接口，用于将来自不同链路（LEO、5G、自组网）的数据汇聚到两级过滤架构进行快筛和精校，确保多链路所接收的数据格式一致。</div>
+<div class="description-paragraph" id="p0088" num="0028">可选的，使用计数型布隆过滤器CBF对标识序号进行查询，得到标识查询结果并判断所接收数据包是否为疑似冗余数据包，包括：</div>
+<div class="description-paragraph" id="p0089">若计数型布隆过滤器CBF中查询出所述标识序号，则初步判断所述数据包为疑似冗余数据；</div>
+<div class="description-paragraph" id="p0090">若计数型布隆过滤器CBF中未查询出所述标识序号，则初步判断所述数据包为新数据包。</div>
+<div class="description-paragraph" id="p0091" num="0029">本实施例为快筛流程，采用计数型布隆过滤器，并赋予其超越传统过滤器的双重核心角色，CBF作为“超时滑动窗口”的低成本、高性能的“快照”。它与滑动窗口的状态保持严格同步。</div>
+<div class="description-paragraph" id="p0092" num="0030">可选的，若计数型布隆过滤器CBF中未查询出所述标识序号，则初步判断所述数据包为新数据包，还包括：</div>
+<div class="description-paragraph" id="p0093">当所述数据包为新数据包时，将新数据包作为有效数据，用于交付上层业务逻辑处理；</div>
+<div class="description-paragraph" id="p0094">根据新数据包创建超时滑动窗口的后台记录，所述后台记录包含有新数据的QUIC标识序号和到达时间（关键标识S，当前到达时间T_arrival）；</div>
+<div class="description-paragraph" id="p0095">使用计数型布隆过滤器CBF的哈希函数对新数据包的QUIC标识序号进行哈希计算，在计数型布隆过滤器CBF中生成新数据包所对应的哈希位置并对哈希位置上的计数值分别进行加一操作。</div>
+<div class="description-paragraph" id="p0096" num="0031">由此当一个数据包的标识被记录到滑动窗口时，CBF中对应位置的计数值会加一；当该记录从滑动窗口中因任何原因（成功消冗或超时）被移除时，CBF中对应位置的计数值会相应地减一。这种同步机制确保了CBF不会因累积历史数据而性能退化，长期保持极低的“假阳性率”。</div>
+<div class="description-paragraph" id="p0097" num="0032">同时CBF的“假阳性”（即无效查询）被用作一个关键的诊断信号。其出现的频率（即“无效查询率”）能够非常灵敏地反映出网络中是否存在单向丢包或严重的链路不对称问题，从而为“多维决策引擎”提供非基于延迟的判断维度。</div>
+<div class="description-paragraph" id="p0098" num="0033">可选的，当所接收数据包为疑似冗余数据包时，利用超时滑动窗口对疑似冗余数据包进行再次查询，得出查询结果，包括：</div>
+<div class="description-paragraph" id="p0099">利用超时滑动窗口对疑似冗余数据包进行查询，若超时滑动窗口的后台中存在相同的QUIC标识序号记录，则疑似冗余数据包确定为冗余数据包；</div>
+<div class="description-paragraph" id="p0100">若超时滑动窗口的后台中不存在相同的QUIC标识序号记录，则疑似冗余数据包确定为新数据包。</div>
+<div class="description-paragraph" id="p0101" num="0034">如图2所示，本实施例超时滑动窗口对初次判断的疑似数据包进行最终精确验证，与传统固定大小或固定时间的窗口不同，本发明的滑动窗口具有动态的生命周期，其核心参数为消冗超时窗口（W_timeout），所使用的窗口大小可根据实际网络延迟和乱序情况预设，并支持动态调整。滑动窗口大小设置为100k（10万），设定初始窗口有效时间（例如 T秒），并确定窗口滑动和清理的策略。超时滑动窗口后台记录有近期已到达的、尚未完成消冗任务的数据包的唯一标识（如序列号）及其首次到达时间戳。窗口中每一条记录的有效存活时间，都由“多维决策引擎”根据实时网络状态动态计算出的W_timeout决定。这使得窗口能够根据网络延迟的变化而智能地“扩大”或“收缩”，在保障消冗成功率和节约系统资源之间达到最佳平衡。</div>
+<div class="description-paragraph" id="p0102" num="0035">若疑似冗余数据包在超时滑动窗口中并未找到S的记录，则确认为新包（CBF假阳性）。并同样统计事件，将“无效查询”事件的次数加一。最后将新数据包转交处理，执行新数据包处理流程。</div>
+<div class="description-paragraph" id="p0103" num="0036">可选的，根据查询结果，丢弃数据包和修改滑动窗口后台记录，如图2所示包括：</div>
+<div class="description-paragraph" id="p0104">在疑似冗余数据包确定为冗余数据包后，提取冗余数据包的到达时间并直接丢弃当前数据包；</div>
+<div class="description-paragraph" id="p0105">根据超时滑动窗口的后台已记录QUIC标识序号所对应的到达时间与冗余数据包的到达时间进行差值计算，得出此次冗余数据包的冗余时延差；</div>
+<div class="description-paragraph" id="p0106">将此次冗余时延差作为样本对超时滑动窗口的移动平均值进行计算，得出更新后的超时滑动窗口的移动平均值；</div>
+<div class="description-paragraph" id="p0107">根据更新后的超时滑动窗口的移动平均值进行超时滑动窗口尺寸计算，得到超时滑动窗口的调整尺寸；</div>
+<div class="description-paragraph" id="p0108">超时滑动窗口的尺寸更新后，在超时滑动窗口的后台，删除此冗余数据包的所对应的QUIC标识序号记录，并同步对计数型布隆过滤器CBF中此QUIC标识序号所对应的哈希位置上的计数值分别进行减一操作；</div>
+<div class="description-paragraph" id="p0109">在疑似冗余数据包确定为新数据包后，将查询出新数据包的过程统计为无效查询事件，并将新数据包作为有效数据。</div>
+<div class="description-paragraph" id="p0110" num="0037">本实施例精确验证过程为：使用关键标识S，在“超时滑动窗口”中进行精确查找。</div>
+<div class="description-paragraph" id="p0111" num="0038">如果在窗口中找到了S的记录，说明其“孪生包”已经先于它到达，确认为冗余包，并执行冗余数据包处理流程丢弃当前冗余数据包。</div>
+<div class="description-paragraph" id="p0112" num="0039">同时还能通过冗余数据包诊断网络延迟，基于冗余数据包取出窗口中记录的首次到达时间T_first_arrival，计算出本次的冗余时延差Delta_T = T_current - T_first_arrival。将Delta_T作为样本，更新用于计算W_timeout的移动平均值（Avg_Delta_T），从而更精准地控制超时窗口的通信超时策略。</div>
+<div class="description-paragraph" id="p0113" num="0040">得出Delta_T后移除记录：从滑动窗口中彻底移除关于S的记录，因为其消冗任务已完成。</div>
+<div class="description-paragraph" id="p0114" num="0041">同步CBF状态：在CBF中，找到S所对应的所有哈希位置，并将这些位置的计数值分别减一；</div>
+<div class="description-paragraph" id="p0115">最后统计事件，将“冗余成功”事件的次数加一，通过上述将两级过滤架构同步，确保跨节点数据同步。</div>
+<div class="description-paragraph" id="p0116" num="0042">可选的，采用多维网络状态决策引擎对冗余成功率、消冗超时率、无效查询率进行处理，得到当前网络状态的调整权重值并作为最优通信决策结果，包括：</div>
+<div class="description-paragraph" id="p0117">利用多维网络状态决策矩阵分别对冗余成功率、消冗超时率、无效查询率进行特征提取，得到冗余成功率、消冗超时率、无效查询率的特征；</div>
+<div class="description-paragraph" id="p0118">对冗余成功率、消冗超时率、无效查询率的特征融合，得出当前网络状态的输入特征向量；</div>
+<div class="description-paragraph" id="p0119">对当前网络状态的输入特征向量进行特征模糊处理，使每个特征与预定义的多个模糊集合建立映射关系；</div>
+<div class="description-paragraph" id="p0120">根据预定义的隶属函数对多个模糊集合进行计算，得出多个模糊集合的隶属度；</div>
+<div class="description-paragraph" id="p0121">利用预先构建的模糊决策规则库对实时输入特征向量进行模糊推理，得出每一条规则的触发强度，并将所有规则的触发强度进行聚合得出最终模糊决策结果；</div>
+<div class="description-paragraph" id="p0122">采用重心法对最终模糊决策结果进行计算，得出当前网络状态量化的诊断结果；</div>
+<div class="description-paragraph" id="p0123">根据当前网络状态的诊断结果，输出下一周期超时滑动窗口调整的最优对应决策。</div>
+<div class="description-paragraph" id="p0124" num="0043">本实施例多维决策引擎网络诊断-信号检测-宏观决策分析过程如图3所示，本实施例根据不同的网络状态组合，制定了不同的通信决策，并能够在实际应用中可以根据不同的网络状态组合或网络状态的动态变化，采取最优的应对决策。</div>
+<div class="description-paragraph" id="p0125" num="0044">为了将图3中的宏观应对决策转化为精确、可执行的控制指令，多维决策引擎的内部实现采用了模糊逻辑控制器。该模糊逻辑控制器擅长处理像网络状态这样存在不确定性和模糊性的问题，具体如下：</div>
+<div class="description-paragraph" id="p0126">第一步：特征提取与输入向量构建，引擎首先对后台任务周期性统计的原始事件数据进行处理，提取出三个关键的性能度量指标作为特征。</div>
+<div class="description-paragraph" id="p0127" num="0045">特征包括冗余成功率（RSR）、消冗超时率（TR）、无效查询率（WCR）；其中，冗余成功率（RSR）：单位时间内的'冗余成功'次数 / 单位时间内到达的总包数；消冗超时率（TR）：单位时间内的'消冗超时'次数 / 单位时间内进入滑动窗口的新包数；无效查询率（WCR）：单位时间内的'无效查询'次数 / 单位时间内CBF报告“可能存在”的总次数；这三个特征构成了一个实时反映当前网络状态的输入特征向量 V_in = [RSR, TR, WCR]。</div>
+<div class="description-paragraph" id="p0128" num="0046">第二步模糊化处理，此步骤是将精确的数字特征（如TR = 35%）转化为模糊的语言描述（如“超时率偏高”）。引擎对输入特征向量中的每一个特征，都使用预定义的隶属函数进行处理，将其映射到多个模糊集合上。</div>
+<div class="description-paragraph" id="p0129" num="0047">对于特征“消冗超时率（TR）”，可以定义三个模糊集合：{低, 中, 高}。一个具体的TR值，例如35%，可能根据隶属函数计算出它对这三个集合的隶属度分别为：{低: 0.0, 中:0.7, 高: 0.3}。这意味着，当前系统的超时率状态是“70%的程度上属于中等，30%的程度上属于高等”。</div>
+<div class="description-paragraph" id="p0130" num="0048">第三步模糊推理，此步骤是引擎的核心，它使用一个模糊规则库对模糊化后的输入进行逻辑推理。这个规则库正是我们之前决策矩阵的精确化、形式化表达。规则示例如下：</div>
+<div class="description-paragraph" id="p0131">规则1：IF (RSR is 高) AND (TR is 低) AND (WCR is 低) THEN (决策输出 is常规优化)</div>
+<div class="description-paragraph" id="p0132">规则2：IF (RSR is 低) AND (TR is 高) AND (WCR is 低) THEN (决策输出 is容忍增大)</div>
+<div class="description-paragraph" id="p0133">规则3：IF (RSR is 低) AND (TR is 高) AND (WCR is 高) THEN (决策输出 is果断收缩)</div>
+<div class="description-paragraph" id="p0134">模糊推理器根据输入特征对各模糊集合的隶属度，计算每一条规则的触发强度，并得出最终的模糊决策结果。</div>
+<div class="description-paragraph" id="p0135" num="0049">第四步去模糊化与决策输出，此步骤是将模糊的决策结果，转化为一个精确的、可执行的数值。在本发明中，这个输出值是一个决策调整权重，本实施例采用重心法计算权重值，限于采用其它方法；调整权重值直接反映了当前网络状态所对应的最优调整倾向：</div>
+<div class="description-paragraph" id="p0136">当网络状态健康时（对应规则1），计算出的调整权重值 ≈ 1.0。</div>
+<div class="description-paragraph" id="p0137" num="0050">当慢路延迟剧增时（对应规则2），计算出的调整权重值&gt;1.0（例如，设调整权重值为γ，γ的值在1.0到2.0之间浮动，TR越高，γ值越大）。</div>
+<div class="description-paragraph" id="p0138" num="0051">当链路不对称/丢包时（对应规则3），计算出的调整权重值&lt;1.0（例如，γ的值在0.3到1.0之间浮动，WCR越高，γ值越小）。</div>
+<div class="description-paragraph" id="p0139" num="0052">最终，这个调整权重值γ被用于计算下一周期的W_timeout值：</div>
+<div class="description-paragraph" id="p0140">W_timeout_new = (Avg_Delta_T * k) * γ</div>
+<div class="description-paragraph" id="p0141">式中，W_timeout_new为下一周期的超时滑动窗口的尺寸，Avg_Delta_T为超时滑动窗口的移动平均值，k为超时滑动窗口的调节参数。</div>
+<div class="description-paragraph" id="p0142" num="0053">本发明根据最近一个周期内统计到的“冗余成功”、“消冗超时”、“无效查询”的总次数，计算出冗余成功率、消冗超时率、无效查询率。将这三个比率输入到“多维决策引擎”。引擎根据内置的决策矩阵，输出对W_timeout的调整决策，包括：常规优化、增大或收缩。更新W_timeout的值，以供下一个周期的超时清理和数据处理流程使用。本发明通过引入模糊逻辑控制器，不再是简单的“IF-THEN”判断，而是建立了一套完整、平滑过渡和量化的通信动态决策机制。</div>
+<div class="description-paragraph" id="p0143" num="0054">可选的，所述超时滑动窗口后台记录还包括通过周期性清理进程对超时滑动窗口后台记录进行定期维护；</div>
+<div class="description-paragraph" id="p0144">在清理后台记录时，先遍历超时滑动窗口后台的所有记录并提取每条记录的存活时间；</div>
+<div class="description-paragraph" id="p0145">当任一记录的存活时间超出当前超时滑动窗口的容忍时间，则判定该记录为超时记录，其记录所对应的冗余数据包已超时；</div>
+<div class="description-paragraph" id="p0146">对已判定的超时记录进行定期清理，得到超时记录被定期移除的超时滑动窗口后台。</div>
+<div class="description-paragraph" id="p0147" num="0055">本实施例实际应用时遍历超时滑动窗口后台的所有记录，检查每一条记录，如果其存活时间（当前时间 - T_arrival）已经超过了当前动态的W_timeout值，则判定该记录对应的冗余包已超时，对于每一个超时记录S，从滑动窗口中将其移除，并在CBF中对其计数值执行减一操作，以及将“消冗超时”事件的次数加一。</div>
+<div class="description-paragraph" id="p0148">实施例</div>
+<div class="description-paragraph" id="p0149" num="0056">本实施例提供一种低空飞行器通信决策装置，包括：</div>
+<div class="description-paragraph" id="p0150">数据接收模块、自适应消冗模块、网络状态参数计算模块、消冗决策模块；</div>
+<div class="description-paragraph" id="p0151">所述数据接收模块用于接收数据包并对接收的数据包进行标识提取，获得每个数据包的标识序号；</div>
+<div class="description-paragraph" id="p0152">所述自适应消冗模块用于使用计数型布隆过滤器CBF对标识序号进行查询，得到标识查询结果并判断所接收数据包是否为疑似冗余数据包；当所接收数据包为疑似冗余数据包时，利用超时滑动窗口对疑似冗余数据包进行再次查询，得出查询结果；根据查询结果，丢弃数据包和修改滑动窗口后台记录；</div>
+<div class="description-paragraph" id="p0153">所述网络状态参数计算模块用于对超时滑动窗口后台记录进行计算，得出本周期内的冗余成功率、消冗超时率、无效查询率；</div>
+<div class="description-paragraph" id="p0154">所述消冗决策模块用于采用多维网络状态决策引擎对冗余成功率、消冗超时率、无效查询率进行处理，得到当前网络状态的诊断结果并输出最优对应决策；基于最优对应决策调整下一周期超时滑动窗口的参数，动态控制下周期超时滑动窗口常规优化、收缩或容忍，减少后续数据包传输的延迟、冗余和丢包现象。</div>
+<div class="description-paragraph" id="p0155">实施例</div>
+<div class="description-paragraph" id="p0156" num="0057">本实施例提供一种计算机可读存储介质，其上存储有计算机程序/指令，该计算机程序/指令被处理器执行时，实现实施例1所述方法的步骤：</div>
+<div class="description-paragraph" id="p0157">低空飞行器接收数据包；</div>
+<div class="description-paragraph" id="p0158">对接收的数据包进行标识提取，获得每个数据包的标识序号；</div>
+<div class="description-paragraph" id="p0159">使用计数型布隆过滤器CBF对标识序号进行查询，得到标识查询结果并判断所接收数据包是否为疑似冗余数据包；</div>
+<div class="description-paragraph" id="p0160">当所接收数据包为疑似冗余数据包时，利用超时滑动窗口对疑似冗余数据包进行再次查询，得出查询结果；</div>
+<div class="description-paragraph" id="p0161">根据查询结果，丢弃数据包和修改滑动窗口后台记录；</div>
+<div class="description-paragraph" id="p0162">对超时滑动窗口后台记录进行计算，得出本周期内的冗余成功率、消冗超时率、无效查询率；</div>
+<div class="description-paragraph" id="p0163">采用多维网络状态决策引擎对冗余成功率、消冗超时率、无效查询率进行处理，得到当前网络状态的诊断结果并输出最优对应决策；</div>
+<div class="description-paragraph" id="p0164">基于最优对应决策调整下一周期超时滑动窗口的参数，动态控制下周期超时滑动窗口常规优化、收缩或容忍。</div>
+<div class="description-paragraph" id="p0165" num="0058">综上所述，本发明通过计数型布隆过滤器和超时滑动窗口组合成具有快筛和精校功能的两级过滤架构，有效甄别冗余数据包和新数据包，避免了将计算和内存资源浪费在无效数据的后续处理上，显著提升了系统的有效吞吐量；再结合多维决策引擎对本周期内的网络状态参数进行计算和网络诊断，获得下一周期的最优决策，以提高下一周期消冗的网络自适应能力，实现了在各种网络条件下，都能智能地感知网络状态并高效地以最优策略完成消冗任务。通过多维决策引擎实时感知和精确计算网络在冗余度、延迟、丢包等维度的状态变化，并动态调整核心算法参数，以适应后续通信在各种复杂的网络环境下都能实现最优的消冗策略。通过后台清理进程对超时滑动窗口的后台记录进行定期超时记录清理，使得超时滑动窗口能够在动态异构网络的动态变化下进行自适应调整窗口大小和超时逻辑，通过定期清理超时冗余包还能提高对假阳性数据包的识别精度，避免历史数据干扰当前决策，同时减少内存占用。通过多维决策引擎诊断网络状态，进而控制超时滑动窗口容忍策略和边界，既能最大程度地保障数据传输的可靠性，又能通过超时机制避免因链路问题导致的无限等待，保证了上层业务的时序稳定。超时滑动窗口后台记录更改后，同步修改计数型布隆过滤器所对应的所有哈希位置，实现计数型布隆过滤器CBF与滑动窗口的状态同步增减，保证长期运行性能。通过超时滑动窗口还记录和存储冗余成功事件、无效查询事件、消冗超时事件，计算任一周期内的冗余成功率、消冗超时率、无效查询率，能够可量化网络诊断的准确性。</div>
+<div class="description-paragraph" id="p0166" num="0059">本领域内的技术人员应明白，本发明的实施例可提供为方法、系统、或计算机程序产品。因此，本发明可采用完全硬件实施例、完全软件实施例、或结合软件和硬件方面的实施例的形式。而且，本发明可采用在一个或多个其中包含有计算机可用程序代码的计算机可用存储介质（包括但不限于磁盘存储器、CD-ROM、光学存储器等）上实施的计算机程序产品的形式。</div>
+<div class="description-paragraph" id="p0167" num="0060">本发明是参照根据本发明实施例的方法、设备（系统）、和计算机程序产品的流程图和／或方框图来描述的。应理解可由计算机程序指令实现流程图和／或方框图中的每一流程和／或方框、以及流程图和／或方框图中的流程和／或方框的结合。可提供这些计算机程序指令到通用计算机、专用计算机、嵌入式处理机或其他可编程数据处理设备的处理器以产生一个机器，使得通过计算机或其他可编程数据处理设备的处理器执行的指令产生用于实现在流程图一个流程或多个流程和／或方框图一个方框或多个方框中指定的功能的装置。</div>
+<div class="description-paragraph" id="p0168" num="0061">这些计算机程序指令也可存储在能引导计算机或其他可编程数据处理设备以特定方式工作的计算机可读存储器中，使得存储在该计算机可读存储器中的指令产生包括指令装置的制造品，该指令装置实现在流程图一个流程或多个流程和／或方框图一个方框或多个方框中指定的功能。</div>
+<div class="description-paragraph" id="p0169" num="0062">这些计算机程序指令也可装载到计算机或其他可编程数据处理设备上，使得在计算机或其他可编程设备上执行一系列操作步骤以产生计算机实现的处理，从而在计算机或其他可编程设备上执行的指令提供用于实现在流程图一个流程或多个流程和／或方框图一个方框或多个方框中指定的功能的步骤。</div>
+<div class="description-paragraph" id="p0170" num="0063">以上结合附图对本发明的实施例进行了描述，但是本发明并不局限于上述的具体实施方式，上述的具体实施方式仅仅是示意性的，而不是限制性的，本领域的普通技术人员在本发明的启示下，在不脱离本发明宗旨和权利要求所保护的范围情况下，还可做出很多形式，这些均属于本发明的保护之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

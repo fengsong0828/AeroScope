@@ -1,0 +1,85 @@
+{
+    "patent_id": "CN120106396A",
+    "title": "CN120106396A - 基于机器学习的低空飞行器风险管理方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Jiangsu Xinjiang Digital Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120106396A/zh",
+    "citations": [
+        {
+            "Publication Number": "US20200105147A1 (en) *",
+            "Priority Date": "2018-10-02",
+            "Publication Date": "2020-04-02",
+            "Assignee": "The Boeing Company",
+            "Title": "Vertical flightpath optimization",
+            "Link": "https://patents.google.com/patent/US20200105147A1/en"
+        },
+        {
+            "Publication Number": "WO2021135630A1 (zh) *",
+            "Priority Date": "2019-12-31",
+            "Publication Date": "2021-07-08",
+            "Assignee": "福州大学",
+            "Title": "基于grcmse与流形学习的滚动轴承故障诊断方法",
+            "Link": "https://patents.google.com/patent/WO2021135630A1/zh"
+        },
+        {
+            "Publication Number": "CN112506076A (zh) *",
+            "Priority Date": "2020-12-04",
+            "Publication Date": "2021-03-16",
+            "Assignee": "杭州电子科技大学",
+            "Title": "基于飞行任务的无人机集群三维空间仿真器构建方法",
+            "Link": "https://patents.google.com/patent/CN112506076A/zh"
+        },
+        {
+            "Publication Number": "CN117314161A (zh) *",
+            "Priority Date": "2023-09-25",
+            "Publication Date": "2023-12-29",
+            "Assignee": "云南大学",
+            "Title": "低空智联网中低空飞行器全生命周期安全风险评估方法",
+            "Link": "https://patents.google.com/patent/CN117314161A/zh"
+        },
+        {
+            "Publication Number": "CN118469098A (zh) *",
+            "Priority Date": "2024-07-10",
+            "Publication Date": "2024-08-09",
+            "Assignee": "江苏信江数字科技有限公司",
+            "Title": "基于一网统管的物联感知超融合ai服务系统及方法",
+            "Link": "https://patents.google.com/patent/CN118469098A/zh"
+        },
+        {
+            "Publication Number": "CN118658342A (zh) *",
+            "Priority Date": "2024-08-16",
+            "Publication Date": "2024-09-17",
+            "Assignee": "国科星图(深圳)数字技术产业研发中心有限公司",
+            "Title": "低空空域管控方法及系统",
+            "Link": "https://patents.google.com/patent/CN118658342A/zh"
+        },
+        {
+            "Publication Number": "CN119209407A (zh) *",
+            "Priority Date": "2024-09-27",
+            "Publication Date": "2024-12-27",
+            "Assignee": "深圳市瑞精创实业有限公司",
+            "Title": "用于充电桩的高压储能连接器防电弧方法及装置",
+            "Link": "https://patents.google.com/patent/CN119209407A/zh"
+        },
+        {
+            "Publication Number": "CN119905020A (zh) *",
+            "Priority Date": "2025-01-15",
+            "Publication Date": "2025-04-29",
+            "Assignee": "江西省自然资源事业发展中心",
+            "Title": "一种低空飞行安全保障智能传感器",
+            "Link": "https://patents.google.com/patent/CN119905020A/zh"
+        },
+        {
+            "Publication Number": "CN119782831A (zh) *",
+            "Priority Date": "2025-03-13",
+            "Publication Date": "2025-04-08",
+            "Assignee": "上海斗象信息科技有限公司",
+            "Title": "模型训练方法及装置、数据清洗方法及电子设备",
+            "Link": "https://patents.google.com/patent/CN119782831A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:58:14"
+}

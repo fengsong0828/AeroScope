@@ -1,0 +1,177 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120257470A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES498626540">
+<invention-title id="title1" lang="ZH">面向低空典型场景的飞行器驾驶舱模拟方法及设备</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及飞行模拟技术领域，具体地说，涉及一种面向低空典型场景的飞行器驾驶舱模拟方法、系统、设备及存储介质。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空经济快速发展(无人机物流、城市空中交通、应急救援等)，飞行员在复杂低空场景(建筑密集区、山地峡谷、恶劣气象)下的态势感知与应急处置能力面临更高要求。传统飞行模拟系统多基于固定场景与预设脚本，难以动态重构低空障碍物分布、实时气象扰动等要素，导致训练环境与真实工况存在显著差异。现有技术中，数字孪生技术虽已应用于飞行仿真，但在虚实交互实时性(延迟＞50ms)、多模态人机协同(手势识别率＜80％)及自适应控制(静态参数无法适配个体差异)方面存在瓶颈。此外，低空飞行特有的突发风险(如飞鸟群撞击、微型无人机避让)对模拟系统的环境感知精度(现有激光雷达误差≥5cm)与决策响应速度(避障延迟≥1s)提出更高挑战。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0005">发明内容</div>
+<div class="description-paragraph" id="p0006" num="0003">本发明的目的在于提供一种面向低空典型场景的飞行器驾驶舱模拟方法、系统、设备及存储介质，旨在解决目前面临的低空飞行技能训练的技术壁垒，融合数字孪生、混合现实(MR)、多模态传感与自适应控制技术，进行飞行员低空飞行技能训练、人机工效评估及智能航空器控制系统验证，能够扩展至城市空中交通(UAM)操作员培训与无人驾驶航空器仿真测试。</div>
+<div class="description-paragraph" id="p0007" num="0004">本发明公开了一种面向低空典型场景的飞行器驾驶舱模拟方法，包括：</div>
+<div class="description-paragraph" id="p0008" num="0005">收集低空场景多源数据，构建数字孪生混合现实的飞行器仿真模型；</div>
+<div class="description-paragraph" id="p0009" num="0006">建立飞行器仿真模型和飞行员之间的人机在环多模交互；</div>
+<div class="description-paragraph" id="p0010" num="0007">获取人机在环多模交互过程中产生的人机交互数据，输入飞行器智能优化控制模型，通过模型输出结果进行飞行器的智能优化控制。</div>
+<div class="description-paragraph" id="p0011" num="0008">其中，收集低空场景多源数据，构建数字孪生混合现实的飞行器仿真模型，包括：</div>
+<div class="description-paragraph" id="p0012" num="0009">收集低空场景多源数据，建立飞行器动力学模拟器和基于不同飞行器机型的定制化座舱；</div>
+<div class="description-paragraph" id="p0013" num="0010">为飞行器动力学模拟器安装多模态人机交互传感器阵列；</div>
+<div class="description-paragraph" id="p0014" num="0011">为飞行器动力学模拟器提供飞行辅助和飞行参数优化；</div>
+<div class="description-paragraph" id="p0015" num="0012">为飞行器动力学模拟器构建虚实融合可视化显示界面。</div>
+<div class="description-paragraph" id="p0016" num="0013">其中，收集低空场景多源数据，建立飞行器动力学模拟器和基于不同飞行器机型的定制化座舱，包括：</div>
+<div class="description-paragraph" id="p0017" num="0014">收集低空场景多源数据，建立飞行器动力学模拟器和基于不同飞行器机型的定制化座舱，基于BIM与GIS融合技术生成城市场景，作为数字孪生混合现实的飞行器仿真模型；</div>
+<div class="description-paragraph" id="p0018" num="0015">定义飞行员操作指令与飞行控制逻辑的映射关系；</div>
+<div class="description-paragraph" id="p0019" num="0016">采用Unreal Engine 5Nanite虚拟化微多边形几何技术，对飞行器仿真模型进行动态全局光照(Lumen系统)和实时流体模拟(Chaos物理引擎)，完成虚拟仿真引擎的渲染；</div>
+<div class="description-paragraph" id="p0020" num="0017">构建时空多模态数据库，用于存储历史飞行轨迹、传感器标定参数及环境扰动模式。</div>
+<div class="description-paragraph" id="p0021" num="0018">其中，为飞行器动力学模拟器安装多模态人机交互传感器阵列，包括：</div>
+<div class="description-paragraph" id="p0022" num="0019">通过状态感知设备，采集飞行器动力学模拟器的陀螺仪零偏值和飞行员手指弯曲度；</div>
+<div class="description-paragraph" id="p0023" num="0020">通过CAN总线，采集飞行器动力学模拟器的液压执行器压力值；</div>
+<div class="description-paragraph" id="p0024" num="0021">通过内嵌眼动追踪单元的增强现实头显设备，记录飞行员注意力分布热点。</div>
+<div class="description-paragraph" id="p0025" num="0022">其中，为飞行器动力学模拟器提供飞行辅助和飞行参数优化，包括：</div>
+<div class="description-paragraph" id="p0026" num="0023">通过机器视觉耦合UWB超宽带定位技术(精度±10cm)实现飞行员头部与手部实时追踪；</div>
+<div class="description-paragraph" id="p0027" num="0024">结合AI视觉行为特征提取算法动态修正MR场景空间坐标偏移；</div>
+<div class="description-paragraph" id="p0028" num="0025">基于数字孪生模型的仿真结果，采用强化学习算法生成飞行参数优化方案。</div>
+<div class="description-paragraph" id="p0029" num="0026">其中，建立飞行器仿真模型和飞行员之间的人机在环多模交互，包括：</div>
+<div class="description-paragraph" id="p0030" num="0027">多模态输入，包括手势识别、眼动控制和语音交互；</div>
+<div class="description-paragraph" id="p0031" num="0028">触觉反馈，包括振动反馈和力反馈；</div>
+<div class="description-paragraph" id="p0032" num="0029">多源数据融合，采用时间戳对齐算法同步传感器数据，通过注意力机制加权融合手势、眼动和语音指令优先级。</div>
+<div class="description-paragraph" id="p0033" num="0030">其中，获取人机在环多模交互过程中产生的人机交互数据，输入飞行器智能优化控制模型，通过模型输出结果进行飞行器的智能优化控制，包括：</div>
+<div class="description-paragraph" id="p0034" num="0031">构建基于LSTM+卡尔曼滤波的新型网络架构预测飞行员操作意图，当检测到持续航向偏离时，自动补偿舵面偏转量；</div>
+<div class="description-paragraph" id="p0035" num="0032">开发数字孪生对比引擎，计算实际与虚拟飞行轨迹的Hausdorff距离，超限时触发触觉告警；</div>
+<div class="description-paragraph" id="p0036" num="0033">预设故障模式，并设计故障恢复策略；</div>
+<div class="description-paragraph" id="p0037" num="0034">基于Q-learning算法动态调整训练难度，采用模型剪枝技术压缩神经网络参数量。</div>
+<div class="description-paragraph" id="p0038" num="0035">本发明公开了一种面向低空典型场景的飞行器驾驶舱模拟系统，包括：</div>
+<div class="description-paragraph" id="p0039" num="0036">数字孪生混合现实模块，用于收集低空场景多源数据，构建数字孪生混合现实的飞行器仿真模型；</div>
+<div class="description-paragraph" id="p0040" num="0037">人机在环多模交互模块，用于建立飞行器仿真模型和飞行员之间的人机在环多模交互；</div>
+<div class="description-paragraph" id="p0041" num="0038">飞行智能优化控制模块，用于获取人机在环多模交互过程中产生的人机交互数据，输入飞行器智能优化控制模型，通过模型输出结果进行飞行器的智能优化控制。</div>
+<div class="description-paragraph" id="p0042" num="0039">本发明公开了一种计算机设备，包括输入输出单元、存储器和处理器，存储器中存储有计算机可读指令，计算机可读指令被处理器执行时，使得处理器执行如前述实施方式方法中的步骤。</div>
+<div class="description-paragraph" id="p0043" num="0040">本发明公开了一种存储有计算机可读指令的存储介质，计算机可读指令被一个或多个处理器执行时，使得一个或多个处理器执行如前述实施方式方法中的步骤。</div>
+<div class="description-paragraph" id="p0044" num="0041">区别于现有技术，本发明的一种面向低空典型场景的飞行器驾驶舱模拟方法，通过融合混合现实(MR)与高精度数字孪生模型，构建动态可扩展的低空场景库；结合人机在环多模交互技术(眼动-手势-语音协同)，提升操作自然度；引入强化学习驱动的智能优化算法，实现飞行控制参数的自适应调整，最终形成“感知-决策-评估”闭环训练体系。本发明融合数字孪生、混合现实(MR)、多模态传感与自适应控制技术，进行飞行员低空飞行技能训练、人机工效评估及智能航空器控制系统验证，能够扩展至城市空中交通(UAM)操作员培训与无人驾驶航空器仿真测试，解决目前面临的低空飞行技能训练的技术壁垒，填补低空动态场景模拟的技术空白。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0045">附图说明</div>
+<div class="description-paragraph" id="p0046" num="0042">下面将结合附图及实施例对本发明作进一步说明，附图中：</div>
+<div class="description-paragraph" id="p0047" num="0043">图1是本发明的一种面向低空典型场景的飞行器驾驶舱模拟方法的流程示意图。</div>
+<div class="description-paragraph" id="p0048" num="0044">图2是本发明的一种面向低空典型场景的飞行器驾驶舱模拟系统的结构示意图。</div>
+<div class="description-paragraph" id="p0049" num="0045">图3是本发明提供的一种存储有计算机指令的非瞬时计算机可读存储介质的结构示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0050">具体实施方式</div>
+<div class="description-paragraph" id="p0051" num="0046">为了对本发明的技术特征、目的和效果有更加清楚的理解，现对照附图详细说明本发明的具体实施方式。</div>
+<div class="description-paragraph" id="p0052" num="0047">请参考图1，本发明公开了一种面向低空典型场景的飞行器驾驶舱模拟方法，包括：</div>
+<div class="description-paragraph" id="p0053" num="0048">S110：收集低空场景多源数据，构建数字孪生混合现实的飞行器仿真模型。</div>
+<div class="description-paragraph" id="p0054" num="0049">步骤S110具体包括：</div>
+<div class="description-paragraph" id="p0055" num="0050">S111：收集低空场景多源数据，建立飞行器动力学模拟器和基于不同飞行器机型的定制化座舱。</div>
+<div class="description-paragraph" id="p0056" num="0051">本发明中，低空多场景多源数据至少包括空域4D信息、卫星遥感影像及气象动态数据。构建的飞行器动力学模拟器为7自由度多伺服液压机构。</div>
+<div class="description-paragraph" id="p0057" num="0052">基于BIM与GIS融合技术生成城市场景，本发明采用提出了一种耦合生成高完整度和高占用率的纹理贴图的多层金字塔自适应树结构的LOD生成方法实现，具体包括：</div>
+<div class="description-paragraph" id="p0058" num="0053">设纹理贴图的完整度为C，占用率为U。完整度C可以通过纹理块的完整性和排列的紧密程度来衡量，占用率U则通过纹理块的面积和总纹理面积的比例来计算：</div>
+<div class="description-paragraph" id="p0059" num="0054">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0060" num="0055">其中，T<sub>i</sub>表示第i个纹理贴图，n为纹理贴图总数。</div>
+<div class="description-paragraph" id="p0061" num="0056">设多层金字塔共有L层，每层的分辨率依次递减。第l层的分辨率可以表示为：</div>
+<div class="description-paragraph" id="p0062" num="0057">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0063" num="0058">其中，Rmax表示最高分辨率，l为层索引，且0≤l＜L。</div>
+<div class="description-paragraph" id="p0064" num="0059">设视距为D，模型的重要性为I。根据视距和重要性，选择合适的细节层次l进行渲染：</div>
+<div class="description-paragraph" id="p0065" num="0060">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0066" num="0061">其中，Dmin为最小视距，<span class="patent-image-not-available"></span>表示向下取整。</div>
+<div class="description-paragraph" id="p0067" num="0062">定义飞行员操作指令与飞行控制逻辑的映射关系，其公式如下：</div>
+<div class="description-paragraph" id="p0068" num="0063">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0069" num="0064">其中，输入变量包括：</div>
+<div class="description-paragraph" id="p0070" num="0065">飞行员操作指令，表示为u＝[δ<sub>elevator</sub>，δ<sub>throttle</sub>，δ<sub>rudder</sub>]<sup>T</sup>；</div>
+<div class="description-paragraph" id="p0071" num="0066">飞行器当前飞行状态，表示为x＝[V，h，θ，φ，ψ]<sup>T</sup>；</div>
+<div class="description-paragraph" id="p0072" num="0067">输出变量包括：</div>
+<div class="description-paragraph" id="p0073" num="0068">飞行器的控制面位置：表示为y<sub>control</sub>＝[δ<sub>elevator_out</sub>，δ<sub>aileron</sub>，δ<sub>rudder_out</sub>]<sup>T</sup>；</div>
+<div class="description-paragraph" id="p0074" num="0069">发动机的推力设置：T；</div>
+<div class="description-paragraph" id="p0075" num="0070">K<sub>elevator</sub>：驾驶杆位置的增益系数。</div>
+<div class="description-paragraph" id="p0076" num="0071">K<sub>speed</sub>：速度反馈的增益系数。</div>
+<div class="description-paragraph" id="p0077" num="0072">K<sub>height</sub>：高度反馈的增益系数。</div>
+<div class="description-paragraph" id="p0078" num="0073">K<sub>aileron</sub>：副翼输入的增益系数。</div>
+<div class="description-paragraph" id="p0079" num="0074">K<sub>roll</sub>：横滚角反馈的增益系数。</div>
+<div class="description-paragraph" id="p0080" num="0075">K<sub>rudder</sub>：踏板位置的增益系数。</div>
+<div class="description-paragraph" id="p0081" num="0076">K<sub>yaw</sub>：偏航角反馈的增益系数。</div>
+<div class="description-paragraph" id="p0082" num="0077">K<sub>throttle</sub>：油门位置的增益系数。</div>
+<div class="description-paragraph" id="p0083" num="0078">此外，飞行员的操作指令包括：</div>
+<div class="description-paragraph" id="p0084" num="0079">驾驶杆位置(俯仰角指令)：δ<sub>elevator</sub>；</div>
+<div class="description-paragraph" id="p0085" num="0080">油门位置(推力指令)：δ<sub>throttle</sub>；</div>
+<div class="description-paragraph" id="p0086" num="0081">踏板位置(偏航指令)：δ<sub>rudder</sub>；</div>
+<div class="description-paragraph" id="p0087" num="0082">飞机当前的飞行状态：</div>
+<div class="description-paragraph" id="p0088" num="0083">速度：V；</div>
+<div class="description-paragraph" id="p0089" num="0084">高度：h；</div>
+<div class="description-paragraph" id="p0090" num="0085">姿态(俯仰角、横滚角、偏航角)：θ，φ，ψ。</div>
+<div class="description-paragraph" id="p0091" num="0086">进一步，本发明采用Unreal Engine 5 Nanite虚拟化微多边形几何技术，实现动态全局光照(Lumen系统)与实时流体模拟(Chaos物理引擎)，其创新在于在此基础上封装一个专门用于飞机客舱仿真引擎，采用飞机动力学优化了流体模型准确性。</div>
+<div class="description-paragraph" id="p0092" num="0087">同时构建时空多模态数据库，用于存储历史飞行轨迹、传感器标定参数及环境扰动模式。</div>
+<div class="description-paragraph" id="p0093" num="0088">S112：为飞行器动力学模拟器安装多模态人机交互传感器阵列。</div>
+<div class="description-paragraph" id="p0094" num="0089">具体的，包括：</div>
+<div class="description-paragraph" id="p0095" num="0090">通过状态感知设备，采集飞行器动力学模拟器的陀螺仪零偏值和飞行员手指弯曲度。</div>
+<div class="description-paragraph" id="p0096" num="0091">其中，状态感知设备包括九轴MEMS惯性单元和柔性应变传感器，九轴MEMS惯性单元用于控制使陀螺仪零偏稳定性≤0.5°/h，柔性应变传感器用于控制手指弯曲度检测精度达到±1°。</div>
+<div class="description-paragraph" id="p0097" num="0092">通过CAN总线，采集飞行器动力学模拟器的液压执行器压力值，液压执行器压力值范围0-20MPa，采样率1kHz；</div>
+<div class="description-paragraph" id="p0098" num="0093">通过内嵌眼动追踪单元的增强现实头显设备，记录飞行员注意力分布热点。</div>
+<div class="description-paragraph" id="p0099" num="0094">S113：为飞行器动力学模拟器提供飞行辅助和飞行参数优化。</div>
+<div class="description-paragraph" id="p0100" num="0095">具体的，通过机器视觉耦合UWB超宽带定位技术(精度±10cm)实现飞行员头部与手部实时追踪，结合AI视觉行为特征提取算法动态修正MR场景空间坐标偏移；基于数字孪生模型的仿真结果，采用强化学习算法(PPO策略)生成飞行参数优化方案(如迎角调整量Δα＝当前值×0.2)，并自动更新至控制系统。</div>
+<div class="description-paragraph" id="p0101" num="0096">S114：为飞行器动力学模拟器构建虚实融合可视化显示界面。</div>
+<div class="description-paragraph" id="p0102" num="0097">具体包括：</div>
+<div class="description-paragraph" id="p0103" num="0098">构建实验过程三维热力图，以颜色梯度显示飞行员操作压力分布，其中可以红色表示高频误触区域。</div>
+<div class="description-paragraph" id="p0104" num="0099">设置实时性能监控面板，用于显示动态展示帧率(≥90fps)、端到端延迟(≤20ms)、GPU显存占用率(阈值≤80％)。</div>
+<div class="description-paragraph" id="p0105" num="0100">设置MR辅助标注系统，通过增强现实头显设备叠加虚拟航路点与禁飞区边界，虚拟航路点与禁飞区边界可通过设置半透明红色立方体进行警示。</div>
+<div class="description-paragraph" id="p0106" num="0101">S120：建立飞行器仿真模型和飞行员之间的人机在环多模交互。</div>
+<div class="description-paragraph" id="p0107" num="0102">人机在环多模交互，包括：</div>
+<div class="description-paragraph" id="p0108" num="0103">多模态输入通道：</div>
+<div class="description-paragraph" id="p0109" num="0104">数据手套：集成16个弯曲传感器与9轴IMU，支持27种标准手势识别，如三指捏合映射油门微调，识别延迟≤30ms。</div>
+<div class="description-paragraph" id="p0110" num="0105">眼动控制：定义凝视焦点持续1s触发虚拟按钮选择，瞳孔直径变化率＞15％时判定为应激状态。</div>
+<div class="description-paragraph" id="p0111" num="0106">语音交互：采用端到端语音识别模型(Conformer架构)，支持中英文混合指令解析，噪声≥70dB时准确率≥85％。</div>
+<div class="description-paragraph" id="p0112" num="0107">触觉反馈机制：</div>
+<div class="description-paragraph" id="p0113" num="0108">振动反馈：根据飞行状态分级提示，具体分级包括：轻度湍流：50Hz间歇振动；严重颠簸：120Hz连续振动。</div>
+<div class="description-paragraph" id="p0114" num="0109">力反馈：通过腱绳驱动装置模拟操纵杆阻力，其中，最大输出力20N，分辨率0.1N，失速预警时阻力突增300％。</div>
+<div class="description-paragraph" id="p0115" num="0110">多源数据融合：采用时间戳对齐算法(PTP精密时钟协议)同步传感器数据，通过注意力机制加权融合手势、眼动、语音指令优先级。权重比设置为3:2:1。</div>
+<div class="description-paragraph" id="p0116" num="0111">S130：获取人机在环多模交互过程中产生的人机交互数据，输入飞行器智能优化控制模型，通过模型输出结果进行飞行器的智能优化控制。</div>
+<div class="description-paragraph" id="p0117" num="0112">构建基于LSTM神经网络数据驱动的自适应控制算法。具体包括：</div>
+<div class="description-paragraph" id="p0118" num="0113">构建基于LSTM+卡尔曼滤波的新型网络架构预测飞行员操作意图，当检测到持续航向偏离，如＞5°超过3s时，自动补偿舵面偏转量，比如将补偿率随训练时长从100％线性降至30％。</div>
+<div class="description-paragraph" id="p0119" num="0114">开发数字孪生对比引擎，计算实际与虚拟飞行轨迹的Hausdorff距离，阈值设定为≤2m，超限时触发触觉告警。</div>
+<div class="description-paragraph" id="p0120" num="0115">预设故障模式，并设计故障恢复策略。</div>
+<div class="description-paragraph" id="p0121" num="0116">具体的，预设了包括引擎推力损失、空速管结冰在内的12种故障模式，故障注入延迟小于等于100ms。</div>
+<div class="description-paragraph" id="p0122" num="0117">故障恢复策略设计为双层恢复策略，初级自动修改，如重启航电系统，失败后启动备用导航链路。</div>
+<div class="description-paragraph" id="p0123" num="0118">基于Q-learning算法动态调整训练难度，障碍物密度随成功率提升而增加，增幅公式：D<sub>_new</sub>＝D<sub>_old</sub>×(1+√(成功率/100)。</div>
+<div class="description-paragraph" id="p0124" num="0119">采用模型剪枝技术压缩神经网络参数量，GPU功耗降低45％，实现能耗优化。</div>
+<div class="description-paragraph" id="p0125" num="0120">此外，本发明还包括构建多屏协同显示的步骤，具体包括：</div>
+<div class="description-paragraph" id="p0126" num="0121">主屏(55英寸4K OLED)显示合成视景(SVG)，融合雷达点云与摄像头影像。</div>
+<div class="description-paragraph" id="p0127" num="0122">侧屏(2块27英寸LCD)分屏显示虚拟仪表(仿Garmin G5000布局)与任务进度看板。</div>
+<div class="description-paragraph" id="p0128" num="0123">刷新率同步技术：通过G-Sync消除画面撕裂，保障关键帧渲染优先级，其中航向标尺更新周期设置为≤10ms。</div>
+<div class="description-paragraph" id="p0129" num="0124">设置光环境模拟单元，包括：</div>
+<div class="description-paragraph" id="p0130" num="0125">采用可调光谱LED阵列，色温2500-6500K可调，模拟昼夜交替光照变化，照度梯度0.1-1000lux。</div>
+<div class="description-paragraph" id="p0131" num="0126">强光抑制：当HMD检测到阳光直射时，自动降低屏幕亮度并增加对比度。</div>
+<div class="description-paragraph" id="p0132" num="0127">同时本发明的方案中设置了数据安全与追溯功能，包括：</div>
+<div class="description-paragraph" id="p0133" num="0128">操作记录区块链存证：每10秒生成Merkle树哈希值，通过智能合约实现审计追溯；</div>
+<div class="description-paragraph" id="p0134" num="0129">敏感数据脱敏处理：采用同态加密技术保护生理指标数据，如心率、瞳孔直径，解密延迟≤5ms。</div>
+<div class="description-paragraph" id="p0135" num="0130">在本发明的其他实施例中，还设置界面动态优化功能，包括：</div>
+<div class="description-paragraph" id="p0136" num="0131">基于眼动热力图自动调整控件布局，高频操作按钮向凝视焦点区域偏移，其中，设定最大偏移距离≤屏幕宽度15％；</div>
+<div class="description-paragraph" id="p0137" num="0132">色彩自适应：通过校准测试检测到用户色弱特征，自动切换高对比度配色方案，如蓝黄替代红绿。</div>
+<div class="description-paragraph" id="p0138" num="0133">如图2所示，本发明提出一种面向低空典型场景的飞行器驾驶舱模拟系统200，包括：</div>
+<div class="description-paragraph" id="p0139" num="0134">数字孪生混合现实模块210，用于收集低空场景多源数据，构建数字孪生混合现实的飞行器仿真模型；</div>
+<div class="description-paragraph" id="p0140" num="0135">人机在环多模交互模块220，用于建立飞行器仿真模型和飞行员之间的人机在环多模交互；</div>
+<div class="description-paragraph" id="p0141" num="0136">飞行智能优化控制模块230，用于获取人机在环多模交互过程中产生的人机交互数据，输入飞行器智能优化控制模型，通过模型输出结果进行飞行器的智能优化控制。</div>
+<div class="description-paragraph" id="p0142" num="0137">为了实现实施例，本发明还提出一种电子设备，包括：至少一个处理器；以及与至少一个处理器通信连接的存储器；其中，存储器存储有可被至少一个处理器执行的指令，指令被至少一个处理器执行，以使至少一个处理器能够执行前述技术方案的方法中的各步骤。</div>
+<div class="description-paragraph" id="p0143" num="0138">如图3所示，非临时性计算机可读存储介质包括指令的存储器810，接口830，指令可由根据用于处理器820执行以完成方法。可选地，存储介质可以是非临时性计算机可读存储介质，例如，非临时性计算机可读存储介质可以是ROM、随机存取存储器(RAM)、CD-ROM、磁带、软盘和光数据存储设备等。</div>
+<div class="description-paragraph" id="p0144" num="0139">为了实现实施例，本发明还提出一种非临时性计算机可读存储介质，其上存储有计算机程序，计算机程序被处理器执行时实现如本发明实施例的方法。</div>
+<div class="description-paragraph" id="p0145" num="0140">在本说明书的描述中，参考术语“一个实施例”、“一些实施例”、“示例”、“具体示例”、或“一些示例”等的描述意指结合该实施例或示例描述的具体特征、结构、材料或者特点包含于本发明的至少一个实施例或示例中。在本说明书中，对所述术语的示意性表述不必须针对的是相同的实施例或示例。而且，描述的具体特征、结构、材料或者特点可以在任一个或多个实施例或示例中以合适的方式结合。此外，在不相互矛盾的情况下，本领域的技术人员可以将本说明书中描述的不同实施例或示例以及不同实施例或示例的特征进行结合和组合。</div>
+<div class="description-paragraph" id="p0146" num="0141">此外，术语“第一”、“第二”仅用于描述目的，而不能理解为指示或暗示相对重要性或者隐含指明所指示的技术特征的数量。由此，限定有“第一”、“第二”的特征可以明示或者隐含地包括至少一个该特征。在本发明的描述中，“多个”的含义是至少两个，例如两个，三个等，除非另有明确具体的限定。</div>
+<div class="description-paragraph" id="p0147" num="0142">流程图中或在此以其它方式描述的任何过程或方法描述可以被理解为，表示包括一个或更多个用于实现定制逻辑功能或过程的步骤的可执行指令的代码的模块、片段或部分，并且本发明的优选实施方式的范围包括另外的实现，其中可以不按所示出或讨论的顺序，包括根据所涉及的功能按基本同时的方式或按相反的顺序，来执行功能，这应被本发明的实施例所属技术领域的技术人员所理解。</div>
+<div class="description-paragraph" id="p0148" num="0143">在流程图中表示或在此以其它方式描述的逻辑和/或步骤，例如，可以被认为是用于实现逻辑功能的可执行指令的定序列表，可以具体实现在任何计算机可读介质中，以供指令执行系统、装置或设备(如基于计算机的系统、包括处理器的系统或其它可以从指令执行系统、装置或设备取指令并执行指令的系统)使用，或结合这些指令执行系统、装置或设备而使用。就本说明书而言，"计算机可读介质"可以是任何可以包含、存储、通信、传播或传输程序以供指令执行系统、装置或设备或结合这些指令执行系统、装置或设备而使用的装置。计算机可读介质的更具体的示例(非穷尽性列表)包括以下：具有一个或多个布线的电连接部(电子装置)，便携式计算机盘盒(磁装置)，随机存取存储器(RAM)，只读存储器(ROM)，可擦除可编辑只读存储器(EPROM或闪速存储器)，光纤装置，以及便携式光盘只读存储器(CDROM)。另外，计算机可读介质甚至可以是可在其上打印所述程序的纸或其它合适的介质，因为可以例如通过对纸或其它介质进行光学扫描，接着进行编辑、解译或必要时以其它合适方式进行处理来以电子方式获得所述程序，然后将其存储在计算机存储器中。</div>
+<div class="description-paragraph" id="p0149" num="0144">应当理解，本发明的各部分可以用硬件、软件、固件或它们的组合来实现。在所述实施方式中，多个步骤或方法可以用存储在存储器中且由合适的指令执行系统执行的软件或固件来实现。如，如果用硬件来实现和在另一实施方式中一样，可用本领域公知的下列技术中的任一项或他们的组合来实现：具有用于对数据信号实现逻辑功能的逻辑门电路的离散逻辑电路，具有合适的组合逻辑门电路的专用集成电路，可编程门阵列(PGA)，现场可编程门阵列(FPGA)等。</div>
+<div class="description-paragraph" id="p0150" num="0145">本技术领域的普通技术人员可以理解实现所述实施例方法携带的全部或部分步骤是可以通过程序来指令相关的硬件完成，所述的程序可以存储于一种计算机可读存储介质中，该程序在执行时，包括方法实施例的步骤之一或其组合。</div>
+<div class="description-paragraph" id="p0151" num="0146">此外，在本发明各个实施例中的各功能单元可以集成在一个处理模块中，也可以是各个单元单独物理存在，也可以两个或两个以上单元集成在一个模块中。所述集成的模块既可以采用硬件的形式实现，也可以采用软件功能模块的形式实现。所述集成的模块如果以软件功能模块的形式实现并作为独立的产品销售或使用时，也可以存储在一个计算机可读取存储介质中。</div>
+<div class="description-paragraph" id="p0152" num="0147">所述提到的存储介质可以是只读存储器，磁盘或光盘等。尽管上面已经示出和描述了本发明的实施例，可以理解的是，所述实施例是示例性的，不能理解为对本发明的限制，本领域的普通技术人员在本发明的范围内可以对所述实施例进行变化、修改、替换和变型。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

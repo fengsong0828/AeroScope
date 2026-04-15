@@ -1,0 +1,53 @@
+{
+    "patent_id": "CN119274090A",
+    "title": "CN119274090A - 低空飞行器基于海上建筑飞行环境识别监测方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Qingdao Hengdetai Intelligent Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119274090A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN111222579A (zh) *",
+            "Priority Date": "2020-01-09",
+            "Publication Date": "2020-06-02",
+            "Assignee": "北京百度网讯科技有限公司",
+            "Title": "跨相机的障碍物关联方法、装置、设备、电子系统及介质",
+            "Link": "https://patents.google.com/patent/CN111222579A/zh"
+        },
+        {
+            "Publication Number": "US20230042820A1 (en) *",
+            "Priority Date": "2021-08-03",
+            "Publication Date": "2023-02-09",
+            "Assignee": "Honeywell International Inc.",
+            "Title": "Systems and methods for providing obstacle information to aircraft operator displays",
+            "Link": "https://patents.google.com/patent/US20230042820A1/en"
+        },
+        {
+            "Publication Number": "CN117472081A (zh) *",
+            "Priority Date": "2023-12-25",
+            "Publication Date": "2024-01-30",
+            "Assignee": "西安辰航卓越科技有限公司",
+            "Title": "一种基于感知约束的无人机避障方法",
+            "Link": "https://patents.google.com/patent/CN117472081A/zh"
+        },
+        {
+            "Publication Number": "CN117850452A (zh) *",
+            "Priority Date": "2024-01-05",
+            "Publication Date": "2024-04-09",
+            "Assignee": "南京苏逸实业有限公司",
+            "Title": "应用于无人机巡检过程中的障碍物检测避障方法及系统",
+            "Link": "https://patents.google.com/patent/CN117850452A/zh"
+        },
+        {
+            "Publication Number": "CN118625831A (zh) *",
+            "Priority Date": "2024-06-25",
+            "Publication Date": "2024-09-10",
+            "Assignee": "苏州捷锐鲲动智能科技有限公司",
+            "Title": "一种三维空间障碍物识别和动态避障方法",
+            "Link": "https://patents.google.com/patent/CN118625831A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:12:59"
+}

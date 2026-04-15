@@ -1,0 +1,266 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120544382A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES503859017">
+<invention-title id="title1" lang="ZH">低空飞行器与智慧高速路侧单元信息交互的方法与系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及信息交互领域，具体来说，特别涉及低空飞行器与智慧高速路侧单元信息交互的方法与系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着经济社会的快速发展和低空经济政策的持续发布，低空经济作为战略性新兴产业，将迎来蓬勃发展。低空经济涵盖了无人机配送、航空旅游、空中出租车、农业航空作业等多个领域，未来这一产业将成为全球经济的重要组成部分。随着技术的不断进步，低空飞行器也逐渐成为支撑低空经济发展的重要支柱，预计将在交通、物流、农业等行业发挥越来越关键的作用。</div>
+<div class="description-paragraph" id="p0005" num="0003">尽管低空飞行器在促进低空经济发展方面具有巨大潜力，但在安全监管方面仍然面临巨大挑战。传统的航空器通常配备完整的通信系统、导航系统以及数据处理平台，能够实时监控飞行状态，确保飞行安全。而低空飞行器作为新兴的飞行工具，通常缺乏完善的通信系统和数据分析能力。许多低空飞行器依赖于驾驶人员或操控人员的主观判断，缺乏对飞行器实时状态、周围环境以及可能出现的飞行风险进行全面的数据监控和预警。这种依赖人工判断的飞行模式使得低空飞行器的安全性难以保障，特别是在多飞行器密集运营或复杂天气条件下，容易发生碰撞或误操作，导致安全隐患。</div>
+<div class="description-paragraph" id="p0006" num="0004">针对相关技术中的问题，目前尚未提出有效的解决方案。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">有鉴于此，本发明提供低空飞行器与智慧高速路侧单元信息交互的方法与系统，以解决上述提及的问题。</div>
+<div class="description-paragraph" id="p0009" num="0006">为了解决上述问题，本发明采用的具体技术方案如下：</div>
+<div class="description-paragraph" id="p0010" num="0007">根据本发明的一方面，提供了低空飞行器与智慧高速路侧单元信息交互的方法，包括：</div>
+<div class="description-paragraph" id="p0011" num="0008">S1、通过密度划分算法对预先获取低空飞行器的飞行信息进行数据分块处理，利用端到端加密方法对每个数据分块进行加密处理，并将加密后的信息传输至智慧高速路侧单元；</div>
+<div class="description-paragraph" id="p0012" num="0009">S2、智慧高速路侧单元将加密后的信息进行解密处理，并结合多边测量法确定低空飞行器的实时飞行轨迹，将实时飞行轨迹传送至中控平台；</div>
+<div class="description-paragraph" id="p0013" num="0010">S3、将实时飞行轨迹与预设的飞行轨迹进行对比研判，并根据研判结果，利用改进的人工势场法对低空飞行器飞行轨迹进行优化，生成飞行优化指令，低空飞行器根据飞行优化指令执行飞行调整。</div>
+<div class="description-paragraph" id="p0014" num="0011">优选的，所述通过密度划分算法对预先获取低空飞行器的飞行信息进行数据分块处理，利用端到端加密方法对每个数据分块进行加密处理，并将加密后的信息传输至智慧高速路侧单元包括：</div>
+<div class="description-paragraph" id="p0015" num="0012">S11、收集低空飞行器的飞行信息；</div>
+<div class="description-paragraph" id="p0016" num="0013">S12、根据飞行信息的信息类别建立信息类别集合，并基于密度划分算法将收集的飞行信息进行数据分块处理，将每个分块数据映射到的对应信息类别集合中；</div>
+<div class="description-paragraph" id="p0017" num="0014">S13、对于每个信息类别集合中的数据，利用多线程优化加密算法对每个分块数据进行前向加密处理，得到加密信息；</div>
+<div class="description-paragraph" id="p0018" num="0015">S14、通过无线传输技术，将加密后的信息传输至智慧高速路侧单元中。</div>
+<div class="description-paragraph" id="p0019" num="0016">优选的，所述根据飞行信息的信息类别建立信息类别集合，并基于密度划分算法将收集的飞行信息进行数据分块处理，将每个分块数据映射到的对应信息类别集合中包括：</div>
+<div class="description-paragraph" id="p0020" num="0017">S121、根据飞行信息的不同类型、格式及采集来源预先构建初步的飞行信息数据集合；</div>
+<div class="description-paragraph" id="p0021" num="0018">S122、对收集飞行信息进行数据清洗处理，并利用欧几里得距离计算每对飞行信息之间的距离，根据距离构建距离矩阵；</div>
+<div class="description-paragraph" id="p0022" num="0019">S123、根据距离矩阵，通过计算飞行信息中每个数据点的局部密度构建全局邻域图，并利用全局邻域图计算类别相似度；</div>
+<div class="description-paragraph" id="p0023" num="0020">S124、利用类别相似度，对飞行信息进行聚类处理，并将每个聚类结果映射到对应的信息类别集合中。</div>
+<div class="description-paragraph" id="p0024" num="0021">优选的，所述根据距离矩阵，通过计算飞行信息中每个数据点的局部密度构建全局邻域图，并利用全局邻域图计算类别相似度包括：</div>
+<div class="description-paragraph" id="p0025" num="0022">S1231、遍历飞行信息中的每个数据点，基于距离矩阵，利用预设的搜索范围，找到每个数据点的近邻和逆近邻，并统计每个飞行数据点的近邻数量和逆近邻数量；</div>
+<div class="description-paragraph" id="p0026" num="0023">S1232、根据每个飞行数据点的近邻数量和逆近邻数量，计算每个数据点的局部密度值，并选取局部密度值最大的数据点作为局部核；</div>
+<div class="description-paragraph" id="p0027" num="0024">所述根据每个飞行数据点的近邻数量和逆近邻数量，计算每个数据点的局部密度值的计算公式为：</div>
+<div class="description-paragraph" id="p0028" num="0025">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0029" num="0026">式中，ρ(p)表示数据点p的局部密度值，d(p,x)表示数据点p与其第u个近邻数据点x之间的距离，n表示近邻数据集的数量，N<sub>u(p)</sub>表示数据点p的u近邻数据集；</div>
+<div class="description-paragraph" id="p0030" num="0027">S1233、以局部核为中心，结合局部核与近邻数据点的关系，利用变邻域搜索算法构建全局邻域图，并根据该全局邻域图计算类别相似度。</div>
+<div class="description-paragraph" id="p0031" num="0028">优选的，所述以局部核为中心，结合局部核与近邻数据点的关系，利用变邻域搜索算法构建全局邻域图，并根据该全局邻域图计算类别相似度包括：</div>
+<div class="description-paragraph" id="p0032" num="0029">S12331、基于局部核为中心，并利用局部核与近邻数据点的关系构建初始全局邻域图；</div>
+<div class="description-paragraph" id="p0033" num="0030">S12332、基于初始全局邻域图，配置邻域动作，并通过变邻域搜索算法，迭代地优化邻域结构，通过局部搜索得到局部最优解，得到优化的局部最优邻域结构；</div>
+<div class="description-paragraph" id="p0034" num="0031">S12333、根据局部最优邻域结构，更新全局邻域图的连接关系，得到最终的全局邻域图；</div>
+<div class="description-paragraph" id="p0035" num="0032">S12334、基于最终的全局邻域图，利用相似度度量法计算各类别之间的相似度，得到类别相似度；</div>
+<div class="description-paragraph" id="p0036" num="0033">其中，所述基于最终的全局邻域图，利用相似度度量法计算各类别之间的相似度，得到类别相似度的计算公式为：</div>
+<div class="description-paragraph" id="p0037" num="0034">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0038" num="0035">式中，sim(S<sub>i</sub>,S<sub>j</sub>)表示类别S<sub>i</sub>和类别S<sub>j</sub>之间的类别相似度，<span class="patent-image-not-available"></span>表示全局邻域图中边(h,f)的偏导数，CE(S<sub>i</sub>,S<sub>j</sub>)表示类别S<sub>i</sub>和类别S<sub>j</sub>之间的联合密度，w(h,f)表示全局邻域图中边(h,f)的权重，m表示全局邻域图中边的数量。</div>
+<div class="description-paragraph" id="p0039" num="0036">优选的，所述智慧高速路侧单元将加密后的信息进行解密处理，并结合多边测量法确定低空飞行器的实时飞行轨迹，将实时飞行轨迹传送至中控平台包括：</div>
+<div class="description-paragraph" id="p0040" num="0037">S21、智慧高速路侧单元根据预先共享的密钥加密后的信息进行解密，得到解密后的飞行信息；</div>
+<div class="description-paragraph" id="p0041" num="0038">S22、对解密后的飞行信息进行预处理，并根据预处理的飞行信息确定飞行信息的到达时间、到达时间差及到达角度，所述预处理包括数据校验、格式转换及错误纠正；</div>
+<div class="description-paragraph" id="p0042" num="0039">S23、根据飞行信息的到达时间、到达时间差及到达角度，利用多边测量法，结合预先设定的参考点坐标和低空飞行器与参考点之间的距离信息，建立飞行器位置求解的非线性方程组；</div>
+<div class="description-paragraph" id="p0043" num="0040">S24、通过最小二乘法和神经计算方法对非线性方程组进行求解，得到低空飞行器的实时位置坐标，并根据实时位置坐标确定飞行轨迹；</div>
+<div class="description-paragraph" id="p0044" num="0041">S25、将确定的实时飞行轨迹数据通过通信网络传送至中控平台。</div>
+<div class="description-paragraph" id="p0045" num="0042">优选的，所述通过最小二乘法和神经计算方法对非线性方程组进行求解，得到低空飞行器的实时位置坐标，并根据实时位置坐标确定飞行轨迹包括：</div>
+<div class="description-paragraph" id="p0046" num="0043">S241、通过泰勒展开将非线性方程线性化为矩阵形式，最小二乘法原理，构造误差平方和函数，并求解误差平方和函数的最小值，得到低空飞行器位置坐标的估计值；</div>
+<div class="description-paragraph" id="p0047" num="0044">S242、利用神经计算方法对位置坐标估计值进行优化处理，得到低空飞行器的实时位置坐标；</div>
+<div class="description-paragraph" id="p0048" num="0045">S243、根据低空飞行器的实时位置坐标，计算飞行器的速度和高度，并通过逐时刻连接形成飞行轨迹。</div>
+<div class="description-paragraph" id="p0049" num="0046">优选的，所述利用神经计算方法对位置坐标估计值进行优化处理，得到低空飞行器的实时位置坐标包括：</div>
+<div class="description-paragraph" id="p0050" num="0047">S2421、收集低空飞行器的多次定位数据，包括初步估计的坐标、到达时间、到达时间差、到达角度及实际位置；</div>
+<div class="description-paragraph" id="p0051" num="0048">S2422、基于前馈神经网络结构，构建位置坐标优化模型；</div>
+<div class="description-paragraph" id="p0052" num="0049">S2423、配置误差函数和损失函数，根据低空飞行器的多次定位数据，并结合反向传播算法训练位置坐标优化模型；</div>
+<div class="description-paragraph" id="p0053" num="0050">S2424、利用训练完成的位置坐标优化模型对位置坐标估计值进行优化处理，得到低空飞行器的实时位置坐标。</div>
+<div class="description-paragraph" id="p0054" num="0051">优选的，所述将实时飞行轨迹与预设的飞行轨迹进行对比研判，并根据研判结果，利用改进的人工势场法对低空飞行器飞行轨迹进行优化，生成飞行优化指令，低空飞行器根据飞行优化指令执行飞行调整包括：</div>
+<div class="description-paragraph" id="p0055" num="0052">S31、将实时飞行轨迹与预设的飞行轨迹进行偏差比对，若偏差超过预设偏差阈值，则中控平台发出报警提示指令，并利用改进的人工势场法对低空飞行器飞行轨迹进行优化，生成飞行优化指令，否则，则中控平台无需发出报警提示指令；</div>
+<div class="description-paragraph" id="p0056" num="0053">S32、中控平台飞行优化指令通过智慧高速路侧单元传输至低空飞行器中，低空飞行器根据飞行优化指令执行飞行调整；</div>
+<div class="description-paragraph" id="p0057" num="0054">S33、中控平台将低空飞行器的实时飞行轨迹进行可视化展示；</div>
+<div class="description-paragraph" id="p0058" num="0055">其中，所述利用改进的人工势场法对低空飞行器飞行轨迹进行优化包括：</div>
+<div class="description-paragraph" id="p0059" num="0056">S311、基于低空飞行器的实时飞行轨迹，构建低空飞行器的势场，所述势场包括目标引力场和阻碍物斥力场；</div>
+<div class="description-paragraph" id="p0060" num="0057">S312、根据低空飞行器的势场，利用人工势场法生成初始避障方向；</div>
+<div class="description-paragraph" id="p0061" num="0058">S313、将初始避障方向作为模型预测控制的参考轨迹，在滚动时域内求解最优控制序列，生成优化后的飞行轨迹。</div>
+<div class="description-paragraph" id="p0062" num="0059">根据本发明的另一方面，提供了低空飞行器与智慧高速路侧单元信息交互的系统，包括：</div>
+<div class="description-paragraph" id="p0063" num="0060">信息传输模块，用于通过密度划分算法对预先获取低空飞行器的飞行信息进行数据分块处理，利用端到端加密方法对每个数据分块进行加密处理，并将加密后的信息传输至智慧高速路侧单元；</div>
+<div class="description-paragraph" id="p0064" num="0061">飞行轨迹确定模块，用于智慧高速路侧单元将加密后的信息进行解密处理，并结合多边测量法确定低空飞行器的实时飞行轨迹，将实时飞行轨迹传送至中控平台；</div>
+<div class="description-paragraph" id="p0065" num="0062">飞行调整模块，用于将实时飞行轨迹与预设的飞行轨迹进行对比研判，并根据研判结果，利用改进的人工势场法对低空飞行器飞行轨迹进行优化，生成飞行优化指令，低空飞行器根据飞行优化指令执行飞行调整。</div>
+<div class="description-paragraph" id="p0066" num="0063">本发明的有益效果为：</div>
+<div class="description-paragraph" id="p0067" num="0064">1、本发明以智慧高速路侧单元这种具有强大边缘计算能力的硬件设施和软件系统相统一的设备，作为低空飞行器信息交互的媒介，在此基础上提出的一种低空飞行器与智慧高速路侧单元信息交互的方法和系统具有很强的前瞻性、创新性和市场性。</div>
+<div class="description-paragraph" id="p0068" num="0065">2、本发明采用智慧高速路侧单元和中控平台对低空飞行器飞行轨迹和状态进行独立计算并对比分析，保证结果的可靠性，智慧高速路侧单元采用一套低空飞行器飞行轨迹和状态的分析方法，中控平台采用另外一种低空飞行器飞行轨迹和状态的分析方法，将二者的结果对比分析，结果一致，低空飞行器正常飞行，则继续保持现有飞行轨迹和状态，若结果不一致，或结果均表明低空飞行器偏航，则需要发布纠偏指令。</div>
+<div class="description-paragraph" id="p0069" num="0066">3、本发明实现了低空飞行器与智慧高速路侧单元的信息交互，充分利用了智慧高速路侧单元设备，节省了需对低空飞行器建立信息连接的基础设施建设费用，降低了低空飞行器大规模应用的投资，从经济性角度大大助推了低空飞行器规模化应用进程，采用独立监测分析低空飞行器运行轨迹与状态的方法，避免了低空飞行器飞行异常情况的误判，减少了错误报警信息的发布，提高了系统运行效率。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0070">附图说明</div>
+<div class="description-paragraph" id="p0071" num="0067">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。在附图中：</div>
+<div class="description-paragraph" id="p0072" num="0068">图1是根据本发明实施例的低空飞行器与智慧高速路侧单元信息交互的方法的流程图；</div>
+<div class="description-paragraph" id="p0073" num="0069">图2是根据本发明实施例的低空飞行器与智慧高速路侧单元信息交互的系统的原理框图。</div>
+<div class="description-paragraph" id="p0074" num="0070">图中：</div>
+<div class="description-paragraph" id="p0075" num="0071">1、信息传输模块；2、飞行轨迹确定模块；3、飞行调整模块。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0076">具体实施方式</div>
+<div class="description-paragraph" id="p0077" num="0072">为了使本技术领域的人员更好地理解本申请中的技术方案，下面将结合本申请实施方式中的附图，对本申请实施方式中的技术方案进行清楚、完整地描述，显然，所描述的实施方式仅仅是本申请一部分实施方式，而不是全部的实施方式。基于本申请中的实施方式，本领域普通技术人员在没有作出创造性劳动前提下所获得的所有其他实施方式，都应当属于本申请保护的范围。</div>
+<div class="description-paragraph" id="p0078" num="0073">根据本发明的实施例，提供了低空飞行器与智慧高速路侧单元信息交互的方法与系统。</div>
+<div class="description-paragraph" id="p0079" num="0074">现结合附图和具体实施方式对本发明进一步说明，如图1所示，根据本发明的一个实施例，提供了低空飞行器与智慧高速路侧单元信息交互的方法，包括：</div>
+<div class="description-paragraph" id="p0080" num="0075">S1、通过密度划分算法对预先获取低空飞行器的飞行信息进行数据分块处理，利用端到端加密方法对每个数据分块进行加密处理，并将加密后的信息传输至智慧高速路侧单元；</div>
+<div class="description-paragraph" id="p0081" num="0076">需要说明的是，低空飞行器是指无人机、低速无人驾驶飞机、直升机，智慧高速路侧单元实现低空飞行器的信息收集、处理和传输以及中控平台指令的传输。低空飞行器搭载能够与智慧高速路侧单元信息交互的机载信息传输设备，低空飞行器的飞行始发地、目的地、飞行过程中的飞行高度、飞行速度、飞行轨迹、风速风向、空气湿度、天气情况等信息能够实时传输至智慧高速路侧单元。低空飞行器可同时向2000米范围内的路侧单元发射信号，可同时保证与5个以上路侧单元保持信息交互。</div>
+<div class="description-paragraph" id="p0082" num="0077">作为优选实施方式，所述通过密度划分算法对预先获取低空飞行器的飞行信息进行数据分块处理，利用端到端加密方法对每个数据分块进行加密处理，并将加密后的信息传输至智慧高速路侧单元包括：</div>
+<div class="description-paragraph" id="p0083" num="0078">S11、收集低空飞行器的飞行信息；所述飞行信息包括飞行始发地、飞行目的地、飞行位置、飞行高度、飞行速度、飞行轨迹及气象信息；</div>
+<div class="description-paragraph" id="p0084" num="0079">S12、根据飞行信息的信息类别建立信息类别集合，并基于密度划分算法将收集的飞行信息进行数据分块处理，将每个分块数据映射到的对应信息类别集合中；</div>
+<div class="description-paragraph" id="p0085" num="0080">作为优选实施方式，所述根据飞行信息的信息类别建立信息类别集合，并基于密度划分算法将收集的飞行信息进行数据分块处理，将每个分块数据映射到的对应信息类别集合中包括：</div>
+<div class="description-paragraph" id="p0086" num="0081">S121、根据飞行信息的不同类型、格式及采集来源预先构建初步的飞行信息数据集合；</div>
+<div class="description-paragraph" id="p0087" num="0082">具体来说，原始数据集合为D，将数据集合D按照不同信息类别进行分块。数据分块信息类别集合为C，C＝{c<sub>1</sub>,c<sub>2</sub>,…c<sub>n</sub>}，其中，c<sub>i</sub>代表不同数据分块，例如，c<sub>1</sub>表示飞行高度类别，c<sub>2</sub>表示飞行速度类别，c<sub>3</sub>表示气象信息类别等。</div>
+<div class="description-paragraph" id="p0088" num="0083">S122、对收集飞行信息进行数据清洗处理，并利用欧几里得距离计算每对飞行信息之间的距离，根据距离构建距离矩阵；</div>
+<div class="description-paragraph" id="p0089" num="0084">需要说明的是，数据清洗是确保数据质量和一致性的关键步骤。对于飞行信息来说，清洗处理包括以下几个方面：</div>
+<div class="description-paragraph" id="p0090" num="0085">检查缺失值：检查飞行信息中的每一项是否有缺失(例如，飞行器的某个位置、速度、气象数据等)。</div>
+<div class="description-paragraph" id="p0091" num="0086">标准化单位：确保所有飞行信息的单位一致，例如，将所有的高度单位统一为米(m)，速度统一为米每秒(m/s)，距离统一为千米(km)或米(m)。</div>
+<div class="description-paragraph" id="p0092" num="0087">检查异常值：通过统计学方法(如箱型图)或基于预设规则的方式，检查飞行信息中的异常值。例如，飞行高度不可能为负数，飞行速度不可能超过某个最大值。</div>
+<div class="description-paragraph" id="p0093" num="0088">归一化：对不同量纲的数据进行归一化处理，尤其是在进行距离计算时，确保所有数据维度对计算的贡献是平等的。</div>
+<div class="description-paragraph" id="p0094" num="0089">S123、根据距离矩阵，通过计算飞行信息中每个数据点的局部密度构建全局邻域图，并利用全局邻域图计算类别相似度；</div>
+<div class="description-paragraph" id="p0095" num="0090">作为优选实施方式，所述根据距离矩阵，通过计算飞行信息中每个数据点的局部密度构建全局邻域图，并利用全局邻域图计算类别相似度包括：</div>
+<div class="description-paragraph" id="p0096" num="0091">S1231、遍历飞行信息中的每个数据点，基于距离矩阵，利用预设的搜索范围，找到每个数据点的近邻和逆近邻，并统计每个飞行数据点的近邻数量和逆近邻数量；</div>
+<div class="description-paragraph" id="p0097" num="0092">具体来说，对于每个飞行数据点，通过距离矩阵找到它的近邻。近邻是指与该点距离较近的其他点，通常通过预设的搜索范围来确定。</div>
+<div class="description-paragraph" id="p0098" num="0093">例如，设定一个距离阈值或近邻数k，从每个数据点出发，选取距离该点最近的k个数据点作为其近邻。如果预设的是搜索范围R，则选择所有与数据点之间的距离小于R的数据点作为近邻。</div>
+<div class="description-paragraph" id="p0099" num="0094">逆近邻是指对其他数据点来说，当前数据点是其近邻。即，若数据点p<sub>j</sub>将数据点p<sub>i</sub>视为自己的近邻，则p<sub>i</sub>是p<sub>j</sub>的逆近邻。</div>
+<div class="description-paragraph" id="p0100" num="0095">对于每个数据点p<sub>i</sub>，遍历所有其他数据点，检查它们是否将p<sub>i</sub>视为近邻。如果是，则将p<sub>i</sub>添加到该数据点的逆近邻集合中。</div>
+<div class="description-paragraph" id="p0101" num="0096">S1232、根据每个飞行数据点的近邻数量和逆近邻数量，计算每个数据点的局部密度值，并选取局部密度值最大的数据点作为局部核；</div>
+<div class="description-paragraph" id="p0102" num="0097">所述根据每个飞行数据点的近邻数量和逆近邻数量，计算每个数据点的局部密度值的计算公式为：</div>
+<div class="description-paragraph" id="p0103" num="0098">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0104" num="0099">式中，ρ(p)表示数据点p的局部密度值，d(p,x)表示数据点p与其第u个近邻数据点x之间的距离，n表示近邻数据集的数量，N<sub>u(p)</sub>表示数据点p的u近邻数据集，u通常是根据数据集的特性(例如，近邻数、数据密度等)动态确定的，可以通过统计逆近邻数量来选择一个合适的；</div>
+<div class="description-paragraph" id="p0105" num="0100">S1233、以局部核为中心，结合局部核与近邻数据点的关系，利用变邻域搜索算法构建全局邻域图，并根据该全局邻域图计算类别相似度。</div>
+<div class="description-paragraph" id="p0106" num="0101">作为优选实施方式，所述以局部核为中心，结合局部核与近邻数据点的关系，利用变邻域搜索算法构建全局邻域图，并根据该全局邻域图计算类别相似度包括：</div>
+<div class="description-paragraph" id="p0107" num="0102">S12331、基于局部核为中心，并利用局部核与近邻数据点的关系构建初始全局邻域图；</div>
+<div class="description-paragraph" id="p0108" num="0103">需要说明的是，局部核是基于每个数据点的局部密度选取的。在前面的步骤中，已经根据每个数据点的近邻和逆近邻数量计算出局部密度，选择了局部密度最大的点作为局部核，局部核的作用是作为聚类的中心或核心，它周围的近邻数据点在距离上相对接近，并且具有较高的相似性。</div>
+<div class="description-paragraph" id="p0109" num="0104">S12332、基于初始全局邻域图，配置邻域动作，并通过变邻域搜索算法，迭代地优化邻域结构，通过局部搜索得到局部最优解，得到优化的局部最优邻域结构；</div>
+<div class="description-paragraph" id="p0110" num="0105">需要说明的是，配置邻域动作(neighborhood move)，即定义如何调整邻域结构。这些操作可以包括：</div>
+<div class="description-paragraph" id="p0111" num="0106">增加边(邻接关系)：如果两个数据点之间的相似度超过某个阈值，可以连接它们并建立边。</div>
+<div class="description-paragraph" id="p0112" num="0107">删除边：如果两个数据点之间的相似度较低，则删除它们之间的边。</div>
+<div class="description-paragraph" id="p0113" num="0108">合并邻域：如果两个邻域的连接关系过于松散，可能需要将这两个邻域合并成一个更大的邻域。</div>
+<div class="description-paragraph" id="p0114" num="0109">分裂邻域：如果一个邻域内部的相似度太低，可能需要将其分裂成多个更小的邻域。</div>
+<div class="description-paragraph" id="p0115" num="0110">S12333、根据局部最优邻域结构，更新全局邻域图的连接关系，得到最终的全局邻域图；</div>
+<div class="description-paragraph" id="p0116" num="0111">需要说明的是，全局邻域图的节点是数据集中的所有数据点，每个节点之间的边表示它们之间的相似度。将每个数据点的局部最优邻域关系整合到全局邻域图中。如果数据点p<sub>i</sub>和p<sub>j</sub>是局部最优邻域中的一对点，则在全局邻域图中建立一条连接边(p<sub>i</sub>,p<sub>j</sub>)。</div>
+<div class="description-paragraph" id="p0117" num="0112">边的权重更新：每条边的权重可以根据数据点之间的相似度或距离重新计算。常用的方法包括：</div>
+<div class="description-paragraph" id="p0118" num="0113">欧几里得距离：直接用数据点之间的距离计算边权重。</div>
+<div class="description-paragraph" id="p0119" num="0114">相似度度量：使用其他相似度度量方法，如余弦相似度、Jaccard相似度等，来计算数据点间的相似度。</div>
+<div class="description-paragraph" id="p0120" num="0115">局部密度：根据局部密度或相对密度来调整边的权重。</div>
+<div class="description-paragraph" id="p0121" num="0116">S12334、基于最终的全局邻域图，利用相似度度量法计算各类别之间的相似度，得到类别相似度；</div>
+<div class="description-paragraph" id="p0122" num="0117">其中，所述基于最终的全局邻域图，利用相似度度量法计算各类别之间的相似度，得到类别相似度的计算公式为：</div>
+<div class="description-paragraph" id="p0123" num="0118">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0124" num="0119">式中，sim(S<sub>i</sub>,S<sub>j</sub>)表示类别S<sub>i</sub>和类别S<sub>j</sub>之间的类别相似度，<span class="patent-image-not-available"></span>表示全局邻域图中边(h,f)的偏导数，CE(S<sub>i</sub>,S<sub>j</sub>)表示类别S<sub>i</sub>和类别S<sub>j</sub>之间的联合密度，w(h,f)表示全局邻域图中边(h,f)的权重，m表示全局邻域图中边的数量。</div>
+<div class="description-paragraph" id="p0125" num="0120">S124、利用类别相似度，对飞行信息进行聚类处理，并将每个聚类结果映射到对应的信息类别集合中。</div>
+<div class="description-paragraph" id="p0126" num="0121">需要说明的是，通过聚类算法来对飞行信息进行聚类处理，常用的聚类算法有：</div>
+<div class="description-paragraph" id="p0127" num="0122">基于图的聚类(如谱聚类)，谱聚类是一种基于图论的方法，它利用图的拉普拉斯矩阵进行聚类。通过计算数据点之间的相似度(如类别相似度)，构建邻接矩阵，然后通过特征值分解来划分数据点。包括以下步骤：</div>
+<div class="description-paragraph" id="p0128" num="0123">构建相似度矩阵：根据类别相似度，构建飞行信息的相似度矩阵S，其中每个元素S(i,j)表示数据点i和j之间的相似度。</div>
+<div class="description-paragraph" id="p0129" num="0124">构建拉普拉斯矩阵：基于相似度矩阵，构建图的拉普拉斯矩阵L，并计算其特征值和特征向量。</div>
+<div class="description-paragraph" id="p0130" num="0125">特征分解与聚类：选择前几个最小的特征值对应的特征向量，基于这些特征向量进行聚类分析(如使用K-means聚类算法)。</div>
+<div class="description-paragraph" id="p0131" num="0126">此外，将每个聚类结果映射到对应的信息类别集合中包括：</div>
+<div class="description-paragraph" id="p0132" num="0127">定义函数f，将原始数据集合D中的单个数据元素d<sub>i</sub>∈D映射到对应的信息类别c<sub>j</sub>∈C中。根据函数f的映射结果，将数据元素划分到不同的分块集合中。设分块后的数据集合为B，B＝{B<sub>1</sub>,B<sub>2</sub>,…,B<sub>n</sub>}，其中，B<sub>j</sub>表示属于类别c<sub>j</sub>的数据分块。对于每个c<sub>j</sub>∈C，有B<sub>j</sub>＝{d<sub>i</sub>∈D|f(d<sub>i</sub>)＝c<sub>j</sub>}。</div>
+<div class="description-paragraph" id="p0133" num="0128">S13、对于每个信息类别集合中的数据，利用多线程优化加密算法对每个分块数据进行前向加密处理，得到加密信息；</div>
+<div class="description-paragraph" id="p0134" num="0129">具体来说，优化加密算法为采用前向保密，即每次会话使用新密钥，提高数据安全性。具体流程包括：</div>
+<div class="description-paragraph" id="p0135" num="0130">1.初始化并计算公钥：端到端加密通信设为A端到B端，A和B两端共同确定公开参数P和G，对于A端，确定私钥a，对于B端，确定私钥b，a应满足1&lt;a&lt;P-1，b也应满足1&lt;b&lt;P-1，则A、B端公钥可按照下式计算：</div>
+<div class="description-paragraph" id="p0136" num="0131">A＝G<sup>a</sup>\bmodP；</div>
+<div class="description-paragraph" id="p0137" num="0132">B＝G<sup>b</sup>\bmodP；</div>
+<div class="description-paragraph" id="p0138" num="0133">其中，P为素数，G为整数，G是P的原根，P和G可公开。a和b为一个随机的非公开整数。</div>
+<div class="description-paragraph" id="p0139" num="0134">2.公钥交换与共享：A端将计算得到的公钥A发送到B端，B端将计算得到的公钥B发送到A端，完成公钥交换。A端基于公钥B和私钥a计算共享密钥K-{A}。B端基于公钥A和私钥b计算共享密钥K-{B}。</div>
+<div class="description-paragraph" id="p0140" num="0135">K-{A}＝B<sup>a</sup>\bmodP＝(G<sup>b</sup>)<sup>a</sup>\bmodP＝G<sup>ab</sup>\bmodP；</div>
+<div class="description-paragraph" id="p0141" num="0136">K-{B}＝A<sup>b</sup>\bmodP＝(G<sup>a</sup>)<sup>b</sup>\bmodP＝G<sup>ab</sup>\bmod<sup>P</sup>；</div>
+<div class="description-paragraph" id="p0142" num="0137">K-{A}＝K-{B}＝G<sup>ab</sup>\bmodP；</div>
+<div class="description-paragraph" id="p0143" num="0138">K-{A}等于K-{B}，A端与B端获得共享密钥K，利用共享密钥K可对端到端的通信数据进行加密和解密操作。由于每次会话A端和B端都会重新生成私钥，所以，即使之前的会话密钥被泄露，也不会影响到其他会话的安全性，实现了前向保密。</div>
+<div class="description-paragraph" id="p0144" num="0139">S14、通过无线传输技术，将加密后的信息传输至智慧高速路侧单元中。</div>
+<div class="description-paragraph" id="p0145" num="0140">其中，数据的传输还可以包括无线网络、有线网络、北斗卫星等等。</div>
+<div class="description-paragraph" id="p0146" num="0141">S2、智慧高速路侧单元将加密后的信息进行解密处理，并结合多边测量法确定低空飞行器的实时飞行轨迹，将实时飞行轨迹传送至中控平台；</div>
+<div class="description-paragraph" id="p0147" num="0142">作为优选实施方式，所述智慧高速路侧单元将加密后的信息进行解密处理，并结合多边测量法确定低空飞行器的实时飞行轨迹，将实时飞行轨迹传送至中控平台包括：</div>
+<div class="description-paragraph" id="p0148" num="0143">S21、智慧高速路侧单元根据预先共享的密钥加密后的信息进行解密，得到解密后的飞行信息；</div>
+<div class="description-paragraph" id="p0149" num="0144">需要说明的是，解密是加密过程的逆过程，它通过相同的密钥或相关密钥将密文转回原始数据(明文)。在这个过程中，飞行信息的密文会通过与预共享密钥相同的解密算法，恢复成明文数据，供后续分析和处理。</div>
+<div class="description-paragraph" id="p0150" num="0145">S22、对解密后的飞行信息进行预处理，并根据预处理的飞行信息确定飞行信息的到达时间、到达时间差及到达角度，所述预处理包括数据校验、格式转换及错误纠正；</div>
+<div class="description-paragraph" id="p0151" num="0146">S23、根据飞行信息的到达时间、到达时间差及到达角度，利用多边测量法，结合预先设定的参考点坐标和低空飞行器与参考点之间的距离信息，建立飞行器位置求解的非线性方程组；</div>
+<div class="description-paragraph" id="p0152" num="0147">具体来说，多边测量法(Multilateration)是一种通过测量多个已知参考点到目标对象(飞行器)之间的距离和/或角度，来确定目标对象位置的方法。与三角测量法不同，三边测量法依赖于已知参考点之间的距离，通过不同角度来计算目标位置。</div>
+<div class="description-paragraph" id="p0153" num="0148">在多边测量法中，根据飞行信息的到达时间、到达时间差和到达角度来建立方程。具体过程如下：</div>
+<div class="description-paragraph" id="p0154" num="0149">步骤1：已知的量；</div>
+<div class="description-paragraph" id="p0155" num="0150">飞行信息的到达时间：假设有多个参考点P<sub>1</sub>,P<sub>2</sub>,...,P<sub>n</sub>(至少需要三个参考点)来接收飞行器发出的信号，每个参考点接收到信号的到达时间为ti。</div>
+<div class="description-paragraph" id="p0156" num="0151">飞行器和参考点之间的距离d<sub>i</sub>可以通过信号传播时间和信号传播速度(如光速)来计算：d<sub>i</sub>＝o×t<sub>i</sub>其中，o为信号传播速度，t<sub>i</sub>为信号从飞行器到参考点P<sub>i</sub>的传播时间。</div>
+<div class="description-paragraph" id="p0157" num="0152">到达时间差：参考点之间的到达时间差Δt<sub>ij</sub>可以用来帮助我们推算飞行器的位置。通过比较不同参考点之间的信号传播时间差，我们能够推算飞行器的精确位置。</div>
+<div class="description-paragraph" id="p0158" num="0153">到达角度：在有角度测量的情况下，参考点还可以提供信号的到达角度θ<sub>i</sub>。这个角度通常是基于某个方向的相对角度，用于辅助定位。</div>
+<div class="description-paragraph" id="p0159" num="0154">步骤2：飞行器位置的几何关系；</div>
+<div class="description-paragraph" id="p0160" num="0155">假设飞行器的真实位置为(x,y,z),有多个参考点的已知位置(x<sub>i</sub>,y<sub>i</sub>,z<sub>i</sub>)。基于几何学原理，飞行器到每个参考点的距离d<sub>i</sub>可以表示为：</div>
+<div class="description-paragraph" id="p0161" num="0156">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0162" num="0157">步骤3：多边测量法的非线性方程组；</div>
+<div class="description-paragraph" id="p0163" num="0158">结合飞行器的到达时间差、到达角度及预设的参考点坐标，可以得到一组非线性方程。对于每对参考点，可以利用它们的到达时间差(或到达角度)来建立方程。假设已知参考点之间的时间差Δt<sub>ij</sub>，可以推导出以下方程：d<sub>i</sub>-d<sub>j</sub>＝o×Δt<sub>ij</sub>，其中,d<sub>i</sub>和d<sub>j</sub>是飞行器到参考点P<sub>i</sub>和P<sub>j</sub>的距离。</div>
+<div class="description-paragraph" id="p0164" num="0159">将每对参考点之间的距离差带入，得到一个非线性方程组：</div>
+<div class="description-paragraph" id="p0165" num="0160">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0166" num="0161">这个方程组可以通过解非线性方程来求解飞行器的三维位置(x,y,z)。</div>
+<div class="description-paragraph" id="p0167" num="0162">S24、通过最小二乘法和神经计算方法对非线性方程组进行求解，得到低空飞行器的实时位置坐标，并根据实时位置坐标确定飞行轨迹；</div>
+<div class="description-paragraph" id="p0168" num="0163">作为优选实施方式，所述通过最小二乘法和神经计算方法对非线性方程组进行求解，得到低空飞行器的实时位置坐标，并根据实时位置坐标确定飞行轨迹包括：</div>
+<div class="description-paragraph" id="p0169" num="0164">S241、通过泰勒展开将非线性方程线性化为矩阵形式，最小二乘法原理，构造误差平方和函数，并求解误差平方和函数的最小值，得到低空飞行器位置坐标的估计值；</div>
+<div class="description-paragraph" id="p0170" num="0165">具体而言，泰勒展开是一种将非线性方程近似为线性方程的方法。通过对目标函数在某一点进行线性化，可以获得更简单的形式：</div>
+<div class="description-paragraph" id="p0171" num="0166">f(x)≈f(x<sub>0</sub>)+J(x<sub>0</sub>)(x-x<sub>0</sub>)；</div>
+<div class="description-paragraph" id="p0172" num="0167">其中，f(x)为非线性方程，x<sub>0</sub>为某个初始点，J(x<sub>0</sub>)为该点的雅可比矩阵。通过这种线性化，原本复杂的非线性问题可以转化为线性问题，从而可以通过最小二乘法等优化方法进行求解。</div>
+<div class="description-paragraph" id="p0173" num="0168">最小二乘法通过最小化误差平方和(ResidualSum of Squares,RSS)来逼近解。误差平方和函数的构造如下：</div>
+<div class="description-paragraph" id="p0174" num="0169">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0175" num="0170">其中，d<sub>i</sub>是观测到的值，f<sub>i</sub>(x)是通过模型计算得到的值，x是需要优化的参数(在这个问题中是飞行器的位置坐标)，t是用于计算误差平方和的样本数量。通过最小化S(x)，可以求得最优的飞行器位置坐标估计值。</div>
+<div class="description-paragraph" id="p0176" num="0171">S242、利用神经计算方法对位置坐标估计值进行优化处理，得到低空飞行器的实时位置坐标；</div>
+<div class="description-paragraph" id="p0177" num="0172">作为优选实施方式，所述利用神经计算方法对位置坐标估计值进行优化处理，得到低空飞行器的实时位置坐标包括：</div>
+<div class="description-paragraph" id="p0178" num="0173">S2421、收集低空飞行器的多次定位数据，包括初步估计的坐标、到达时间、到达时间差、到达角度及实际位置；</div>
+<div class="description-paragraph" id="p0179" num="0174">S2422、基于前馈神经网络结构，构建位置坐标优化模型；</div>
+<div class="description-paragraph" id="p0180" num="0175">其中，前馈神经网络(Feedforward Neural Network,FNN)是一种常见的神经网络架构，适用于回归问题。在这里，我们将它用于飞行器位置坐标的优化。前馈神经网络包括：</div>
+<div class="description-paragraph" id="p0181" num="0176">输入：网络的输入层将接收初步估计坐标、到达时间、到达时间差、到达角度等信息。</div>
+<div class="description-paragraph" id="p0182" num="0177">隐藏层：通过一个或多个隐藏层，网络将学习这些输入数据和飞行器位置之间的映射关系。</div>
+<div class="description-paragraph" id="p0183" num="0178">输出：神经网络的输出是飞行器的实时位置坐标。</div>
+<div class="description-paragraph" id="p0184" num="0179">S2423、配置误差函数和损失函数，根据低空飞行器的多次定位数据，并结合反向传播算法训练位置坐标优化模型；</div>
+<div class="description-paragraph" id="p0185" num="0180">神经网络的训练过程是通过误差函数(通常是均方误差，MSE)来衡量预测值与实际值之间的差距，然后通过损失函数来优化网络的权重参数。</div>
+<div class="description-paragraph" id="p0186" num="0181">误差函数(MSE)是计算预测值与实际值之间的误差平方和；</div>
+<div class="description-paragraph" id="p0187" num="0182">损失函数定义了神经网络的训练目标，通常选择MSE作为损失函数，目的是最小化位置估计的误差。</div>
+<div class="description-paragraph" id="p0188" num="0183">反向传播算法是神经网络训练的核心，通过梯度下降法来优化网络权重。通过计算误差对网络权重的梯度，并更新权重，网络逐步提高对位置坐标的预测精度。</div>
+<div class="description-paragraph" id="p0189" num="0184">S2424、利用训练完成的位置坐标优化模型对位置坐标估计值进行优化处理，得到低空飞行器的实时位置坐标。</div>
+<div class="description-paragraph" id="p0190" num="0185">经过训练后的神经网络模型能够根据新的输入数据(例如新的定位信息、到达时间、到达角度等)，对飞行器位置坐标进行实时优化处理，得到更加精确的实时位置。利用训练完成的神经网络优化模型，通过对新的输入数据的推理，得到飞行器的实时位置坐标。</div>
+<div class="description-paragraph" id="p0191" num="0186">S243、根据低空飞行器的实时位置坐标，计算飞行器的速度和高度，并通过逐时刻连接形成飞行轨迹。</div>
+<div class="description-paragraph" id="p0192" num="0187">S25、将确定的实时飞行轨迹数据通过通信网络传送至中控平台。</div>
+<div class="description-paragraph" id="p0193" num="0188">S3、将实时飞行轨迹与预设的飞行轨迹进行对比研判，并根据研判结果，利用改进的人工势场法对低空飞行器飞行轨迹进行优化，生成飞行优化指令，低空飞行器根据飞行优化指令执行飞行调整。</div>
+<div class="description-paragraph" id="p0194" num="0189">作为优选实施方式，所述将实时飞行轨迹与预设的飞行轨迹进行对比研判，并根据研判结果，利用改进的人工势场法对低空飞行器飞行轨迹进行优化，生成飞行优化指令，低空飞行器根据飞行优化指令执行飞行调整包括：</div>
+<div class="description-paragraph" id="p0195" num="0190">S31、将实时飞行轨迹与预设的飞行轨迹进行偏差比对，若偏差超过预设偏差阈值(例如15％)，则中控平台发出报警提示指令，并利用改进的人工势场法对低空飞行器飞行轨迹进行优化，生成飞行优化指令，否则，则中控平台无需发出报警提示指令；</div>
+<div class="description-paragraph" id="p0196" num="0191">需要说明的是，计算飞行器实时轨迹与预设轨迹之间的偏差，通常通过位置误差或时间误差来衡量。偏差阈值是一个设定的最大容忍误差，当实时轨迹的偏差超过此阈值时，会认为飞行轨迹出现异常。中控平台发出报警提示指令，管理人员核查确认是否误报，如为误报，则取消报警提示，如低空飞行器确实发生飞行轨迹或飞行高度偏离，则通过中控平台对低空飞行器发布调整飞行角度和飞行高度指令。通过飞行角度和高度的调整使低空飞行器回归预设飞行状态。</div>
+<div class="description-paragraph" id="p0197" num="0192">S32、中控平台飞行优化指令通过智慧高速路侧单元传输至低空飞行器中，低空飞行器根据飞行优化指令执行飞行调整；</div>
+<div class="description-paragraph" id="p0198" num="0193">S33、中控平台将低空飞行器的实时飞行轨迹进行可视化展示；</div>
+<div class="description-paragraph" id="p0199" num="0194">此外，中控平台能够实时可视化展现低空飞行器的航行轨迹和运行状态，中控平台发布调整指令信息后，持续接收到路侧单元传输信息后，对低空飞行器的预设信息与实时状态信息进行二次分析研判，确认低空飞行器运行状态是否正常，即，若二者误差在逐渐减小，误差值趋于平稳，则确认低空飞行器状态正常，可继续飞行，若二者误差保持不变或增大，则飞行状态判定为异常，中控平台发布停飞指令。</div>
+<div class="description-paragraph" id="p0200" num="0195">智慧高速路侧单元接收到中控平台二次研判分析指令后，将指令发送给低空飞行器的机载信息传输设备，低空飞行器根据指令保证预定飞行轨迹持续飞行或停止飞行。整个飞行过程中，低空飞行器与智慧高速路侧单元始终保持实时信息交互，保持对低空飞行器飞行轨迹及运行状态的实时监测。</div>
+<div class="description-paragraph" id="p0201" num="0196">其中，所述利用改进的人工势场法对低空飞行器飞行轨迹进行优化包括：</div>
+<div class="description-paragraph" id="p0202" num="0197">S311、基于低空飞行器的实时飞行轨迹，构建低空飞行器的势场，所述势场包括目标引力场和阻碍物斥力场；</div>
+<div class="description-paragraph" id="p0203" num="0198">S312、根据低空飞行器的势场，利用人工势场法生成初始避障方向；</div>
+<div class="description-paragraph" id="p0204" num="0199">S313、将初始避障方向作为模型预测控制的参考轨迹，在滚动时域内求解最优控制序列，生成优化后的飞行轨迹。</div>
+<div class="description-paragraph" id="p0205" num="0200">具体而言，飞行轨迹的动态优化基于改进的人工势场法(APF)与模型预测控制(MPC)的混合轨迹优化。主要步骤包括：</div>
+<div class="description-paragraph" id="p0206" num="0201">1.势场构建；</div>
+<div class="description-paragraph" id="p0207" num="0202">建立目标引力场：</div>
+<div class="description-paragraph" id="p0208" num="0203">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0209" num="0204">建立阻碍物斥力场：</div>
+<div class="description-paragraph" id="p0210" num="0205">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0211" num="0206">其中，U<sub>att</sub>为引力场，K<sub>att</sub>为引力系数，q为当前坐标，q<sub>goal</sub>为目标点坐标，U<sub>rep</sub>为斥力场，d(q)为当前点到障碍物的距离，d<sub>0</sub>为斥力影响半径，K<sub>rep</sub>随障碍物速度自适应调整。</div>
+<div class="description-paragraph" id="p0212" num="0207">通过上述人工势场法(APE)生成初始避障方向，作为模型预测控制(MPC)的参考轨迹x<sub>ref</sub>。</div>
+<div class="description-paragraph" id="p0213" num="0208">2.MPC动态优化；</div>
+<div class="description-paragraph" id="p0214" num="0209">建立动力学方程预测模型：</div>
+<div class="description-paragraph" id="p0215" num="0210">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0216" num="0211">离散化后建立状态空间模型：</div>
+<div class="description-paragraph" id="p0217" num="0212">x<sub>k+1</sub>＝f(x<sub>k</sub>,μ<sub>k</sub>)；</div>
+<div class="description-paragraph" id="p0218" num="0213">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0219" num="0214">其中，u<sub>k</sub>＝(a,w)，U<sub>total</sub>＝U<sub>att</sub>+U<sub>rep</sub>，λ表示势场权重，<span class="patent-image-not-available"></span>表示x方向速度分量，<span class="patent-image-not-available"></span>表示y方向速度分量，<span class="patent-image-not-available"></span>表示θ的变化率，即角速度，<span class="patent-image-not-available"></span>表示速度的变化率，即加速度，v表示飞行器线速度，θ表示飞行器偏航角，ω表示低空飞行器角速度，x<sub>k+1</sub>表示低空飞行器k+1时刻的状态，f(x<sub>k</sub>,u<sub>k</sub>)表示低空飞行器k时刻的状态，u<sub>k</sub>表示第k时刻的控制输入参数，J表示目标函数，n表示预测时域的总步数，i表示预测时域的步数，x<sub>i</sub>表示第i时刻低空飞行器的状态，x<sub>ref,i</sub>表示第i时刻低空飞行器的参考状态，Q表示状态误差权重矩阵，u<sub>i</sub>表示第i时刻的控制输入参数，R表示控制输入权重矩阵，q<sub>i</sub>表示势场参数。</div>
+<div class="description-paragraph" id="p0220" num="0215">模型预测控制(MPC)在滚动时域内求解最优控制序列，实时检测局部极小值，触发随机扰动策略，避开障碍物。</div>
+<div class="description-paragraph" id="p0221" num="0216">如图2所示，根据本发明的一个实施例，提供了低空飞行器与智慧高速路侧单元信息交互的系统，包括：</div>
+<div class="description-paragraph" id="p0222" num="0217">信息传输模块1，用于通过密度划分算法对预先获取低空飞行器的飞行信息进行数据分块处理，利用端到端加密方法对每个数据分块进行加密处理，并将加密后的信息传输至智慧高速路侧单元；</div>
+<div class="description-paragraph" id="p0223" num="0218">飞行轨迹确定模块2，用于智慧高速路侧单元将加密后的信息进行解密处理，并结合多边测量法确定低空飞行器的实时飞行轨迹，将实时飞行轨迹传送至中控平台；</div>
+<div class="description-paragraph" id="p0224" num="0219">飞行调整模块3，用于将实时飞行轨迹与预设的飞行轨迹进行对比研判，并根据研判结果，利用改进的人工势场法对低空飞行器飞行轨迹进行优化，生成飞行优化指令，低空飞行器根据飞行优化指令执行飞行调整。</div>
+<div class="description-paragraph" id="p0225" num="0220">综上所述，借助于本发明的上述技术方案，本发明以智慧高速路侧单元这种具有强大边缘计算能力的硬件设施和软件系统相统一的设备，作为低空飞行器信息交互的媒介，在此基础上提出的一种低空飞行器与智慧高速路侧单元信息交互的方法和系统具有很强的前瞻性、创新性和市场性。本发明采用智慧高速路侧单元和中控平台对低空飞行器飞行轨迹和状态进行独立计算并对比分析，保证结果的可靠性，智慧高速路侧单元采用一套低空飞行器飞行轨迹和状态的分析方法，中控平台采用另外一种低空飞行器飞行轨迹和状态的分析方法，将二者的结果对比分析，结果一致，低空飞行器正常飞行，则继续保持现有飞行轨迹和状态，若结果不一致，或结果均表明低空飞行器偏航，则需要发布纠偏指令。本发明实现了低空飞行器与智慧高速路侧单元的信息交互，充分利用了智慧高速路侧单元设备，节省了需对低空飞行器建立信息连接的基础设施建设费用，降低了低空飞行器大规模应用的投资，从经济性角度大大助推了低空飞行器规模化应用进程，采用独立监测分析低空飞行器运行轨迹与状态的方法，避免了低空飞行器飞行异常情况的误判，减少了错误报警信息的发布，提高了系统运行效率。</div>
+<div class="description-paragraph" id="p0226" num="0221">本领域内的技术人员应明白，本发明的实施例可提供为方法、系统或计算机程序产品。因此，本发明可采用完全硬件实施例、完全软件实施例或结合软件和硬件方面的实施例的形式。而且，本发明可采用在一个或多个其中包含有计算机可用程序代码的计算机可用存储介质(包括但不限于磁盘存储器、光学存储器等)上实施的计算机程序产品的形式。</div>
+<div class="description-paragraph" id="p0227" num="0222">以上所述的具体实施例，对本发明的目的、技术方案和有益效果进行了进一步详细说明，所应理解的是，以上所述仅为本发明的具体实施例而已，并不用于限定本发明的保护范围，凡在本发明的精神和原则之内，所做的任何修改、等同替换、改进等，均应包含在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

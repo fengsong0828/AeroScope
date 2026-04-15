@@ -1,0 +1,52 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN103049764A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES393483821">
+<invention-title id="tilte1" lang="ZH">一种低空飞行器目标识别方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001" num="0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0002">本发明涉及视频图像识别技术领域，特别是涉及一种低空飞行器目标识别方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003" num="0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0004">在现代国防和战争中，低空飞行器的实时跟踪识别，对低空防御、掌握战场主动权和正确打击目标以及显著地提高未来指挥作战系统的性能，具有重大意义。</div>
+<div class="description-paragraph" id="p0005" num="0005">低空监测是传统雷达系统的死角，随着计算机视觉技术的迅速发展，智能视频监测系统能完全承担起监测任务，在交通管理、公共安全等方面应用成熟，在低空监测应用已经逐渐开展来。</div>
+<div class="description-paragraph" id="p0006" num="0006">低空目标识别的目标就是识别出不同的机种，如直升机、无人飞机、三角翼等。目前图像目标识别的方法有多种，如模板匹配法、统计决策法、句法模式识别法、模糊模式识别法、神经网络法、支持向量机，以及近年来提出的仿生识别方法、混沌神经网络法等。当然对于具体的识别物体，所需要运用的识别方法不一定相同，主要看其实用性，精确性和快速性，并不是越新的识别方法，就能很好地解决一些识别问题，当然是识别的方法越简单越好。</div>
+<div class="description-paragraph" id="p0007" num="0007">模板匹配法就是对每个待识别的类别绘出典型标准模板作为识别标准，此种方法的缺点就是对识别系统存储要求高，识别时计算量大，另外对噪声敏感。模糊模式识别就是系统根据模式的特点确定隶属度，然后用隶属度将模糊集合分成若干子集，相应于各个分类，最后根据隶属原则实现分类。模糊模式识别允许待识别事物有相当程度的干扰，但要准确合理的建立隶属函数往往很难。神经网络可以处理一些环境信息十分复杂，背景知识不清楚，推理规则不明确的问题，但是神经网络训练结果不稳定，训练时需要大量样本。支持向量机避免了神经网络训练结果不稳定的情况，所需训练样本量相比其他算法来说较少，同时，支持向量机方法训练结果为一些文本文件，对存储几乎没有什么要求。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0008" num="0008">发明内容</div>
+<div class="description-paragraph" id="p0009" num="0009">本发明所要解决的技术问题是提供一种低空飞行器目标识别方法，能够对单目标和多目标进行识别，可为其他智能视频监控系统应用场合的目标识别提供参考。</div>
+<div class="description-paragraph" id="p0010" num="0010">本发明解决其技术问题所采用的技术方案是：提供一种低空飞行器目标识别方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0011" num="0011">（1）选取飞行器样本，提取样本的特征，训练支持向量机；</div>
+<div class="description-paragraph" id="p0012" num="0012">（2）在检测和跟踪的基础上，采用支持向量机进行飞行器目标识别。</div>
+<div class="description-paragraph" id="p0013" num="0013">所述步骤（1）还包括以下子步骤：</div>
+<div class="description-paragraph" id="p0014" num="0014">（11）选取飞行器样本，每个飞行器样本均选取多种不同姿态的图片，经过截取、缩放，把图片进行归一化处理；</div>
+<div class="description-paragraph" id="p0015" num="0015">（12）对所有进行归一化处理后的样本采用梯度特征描述子提取特征；</div>
+<div class="description-paragraph" id="p0016" num="0016">（13）采用一类对多余的方法进行训练。</div>
+<div class="description-paragraph" id="p0017" num="0017">所述步骤（11）中还包括选取鸟类样本图片并进行归一化处理的步骤。</div>
+<div class="description-paragraph" id="p0018" num="0018">所述步骤（12）具体包括将图片平均分为若干块，对图片每次进行单块的梯度特征提取，获取每个像素点的梯度值，每块平均分为若干个胞元，在每个胞元内统计9个方向的梯度直方图，依次完成所有胞元的处理，最终把图片处理完毕。</div>
+<div class="description-paragraph" id="p0019" num="0019">所述步骤（13）具体包括先将一种飞行器作为正样本，其它都为负样本，进行训练，得到一个训练结果文本文件，之后换一种飞行器作为正样本进行同样的处理，直到所有飞行器处理完毕。</div>
+<div class="description-paragraph" id="p0020" num="0020">所述步骤（13）后还包括对训练结果文本进行测试的步骤，如果训练结果较差，添加新的样本，再次训练，直到获得良好的效果。</div>
+<div class="description-paragraph" id="p0021" num="0021">所述步骤（2）包括以下子步骤：</div>
+<div class="description-paragraph" id="p0022" num="0022">（21）根据检测和跟踪的结果，将跟踪目标所在区域稍微进行放大，并对此区域进行识别；</div>
+<div class="description-paragraph" id="p0023" num="0023">（22）对所选区域每次进行特定大小的区域识别，对每个区域提取梯度特征描述子特征来处理；所述特定大小为图片归一化处理后的大小；</div>
+<div class="description-paragraph" id="p0024" num="0024">（23）先采用一个训练结果文本对目标进行识别，如果发现是所属飞行器则识别结束，如果不是，就采用第二个训练结果文本进行识别，直到所有训练结果文本都识别完成之后，都没有发现目标，则认为是鸟类。</div>
+<div class="description-paragraph" id="p0025" num="0025">所述步骤（22）中对所选区域进行缩放处理，以使不同大小的目标都能进行识别。</div>
+<div class="description-paragraph" id="p0026" num="0026">有益效果</div>
+<div class="description-paragraph" id="p0027" num="0027">由于采用了上述的技术方案，本发明与现有技术相比，具有以下的优点和积极效果：本发明能够对单目标和多目标进行识别，并且具有耗时少，实时性高，识别精度高的优点。具体实施方式</div>
+<div class="description-paragraph" id="p0028" num="0028">下面结合具体实施例，进一步阐述本发明。应理解，这些实施例仅用于说明本发明而不用于限制本发明的范围。此外应理解，在阅读了本发明讲授的内容之后，本领域技术人员可以对本发明作各种改动或修改，这些等价形式同样落于本申请所附权利要求书所限定的范围。</div>
+<div class="description-paragraph" id="p0029" num="0029">本发明的实施方式涉及一种低空飞行器目标识别方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0030" num="0030">步骤一，选取样本，提取特征，训练支持向量机，其详细实现过程为：</div>
+<div class="description-paragraph" id="p0031" num="0031">（1）取飞行器样本，每个机种选取取不同姿态和大小的三千张样本图片，经过截取、缩放，把图片都归一化到96*64的尺寸，为了区别鸟类，同时也取三千张鸟类的样本图片统一归一化到96*64的尺寸。例如，从图像或视频中选择三个机种(直升机、无人飞机、三角翼)和可能出现的鸟类图片作为训练样本，经过截取，最后归一化到96*64尺寸大小的图片。</div>
+<div class="description-paragraph" id="p0032" num="0032">（2）对所有训练样本采用梯度特征描述子(HOG)提取特征，对96*64尺度的图片每次进行16*16的块进行梯度特征提取，获取每个像素点的梯度值，在每个8*8胞元内统计9个方向的梯度直方图，处理完之后步进8*8的大小，同样处理，完成一次行方向的处理后，就下移16行，继续进行处理，最终把图片处理完毕，得到一个2772维的列向量。</div>
+<div class="description-paragraph" id="p0033" num="0033">（3）为了加快目标识别速度，采用一类对多余的方法进行训练，先让一个机种作为正样本，其它都为负样本，进行训练，得到一个训练结果文本文件，再让另一个机种作为正样本进行同样的处理，直到所有机种处理完毕。例如：第一次选取直升机为正样本，其它都为负样本，得到第一个训练结果文本；第二次选取无人飞机为正样本，其它都为负样本，得到第二个训练结果文本；第三次选取三角翼为正样本，其它都为负样本，得到第三个训练结果文本。</div>
+<div class="description-paragraph" id="p0034" num="0034">（4）对训练结果文本进行测试，如果训练结果较差，添加新的样本，再次训练，如此反复几次，直到获得良好的效果。</div>
+<div class="description-paragraph" id="p0035" num="0035">步骤二，在检测和跟踪的基础上，采用支持向量机进行飞行器目标识别，其详细实现过程为：</div>
+<div class="description-paragraph" id="p0036" num="0036">（5）根据检测和跟踪的结果，将跟踪目标所在区域稍微放大，只对此区域进行识别，而不需要对全图进行识别，节约了大量时间，提高了识别的实时性；</div>
+<div class="description-paragraph" id="p0037" num="0037">（6）对所选区域每次进行96*64的区域识别，对每个96*64区域提取HOG特征来处理。同时对所选区域进缩放处理，达到不同大小的目标都能识别。</div>
+<div class="description-paragraph" id="p0038" num="0038">（7）先采用一个训练结果文本对目标进行识别，如果发现是所属机种，就识别结束，如果不是，就接着采用第二个训练结果文本，如果直到所有训练结果文本都识别完成之后，都没有发现目标，则认为是鸟类。</div>
+<div class="description-paragraph" id="p0039" num="0039">不难发现，在识别时利用支持向量机方法和训练结果样本在检测和跟踪的基础上，对指定区域进行目标识别，每次以96*64大小扫描图片。同时指定区域可以进行缩放，先进行缩小处理后，最多缩小四倍，然后在进行放大处理在每个尺度进行目标识别，以达到不同大小的目标都能识别，从而实现了单目标和多目标的识别。在识别过程中不需要对全图进行识别，节约了大量时间，提高了识别的实时性。</div>
+</disclosure>
+</div>
+</div>
+</section></body></html>

@@ -1,0 +1,182 @@
+{
+    "patent_id": "CN108281044A",
+    "title": "CN108281044A - 一种基于网格的社区低空飞行器快速锁定方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Guangzhou Game Testing Service Co Ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN108281044A/zh",
+    "citations": [
+        {
+            "Publication Number": "JP2002373400A (ja) *",
+            "Priority Date": "2001-06-14",
+            "Publication Date": "2002-12-26",
+            "Assignee": "Nec Corp",
+            "Title": "３次元空間における競合判定方法",
+            "Link": "https://patents.google.com/patent/JP2002373400A/ja"
+        },
+        {
+            "Publication Number": "CN103079059A (zh) *",
+            "Priority Date": "2013-01-27",
+            "Publication Date": "2013-05-01",
+            "Assignee": "中国科学技术大学",
+            "Title": "一种基于网格结合插值的单枪机—多球机联动方法",
+            "Link": "https://patents.google.com/patent/CN103079059A/zh"
+        },
+        {
+            "Publication Number": "CN104064057A (zh) *",
+            "Priority Date": "2014-06-13",
+            "Publication Date": "2014-09-24",
+            "Assignee": "沈阳飞机工业（集团）有限公司",
+            "Title": "图像跟踪测量数据与雷达测量数据互补融合的实现方法",
+            "Link": "https://patents.google.com/patent/CN104064057A/zh"
+        },
+        {
+            "Publication Number": "CN104050374A (zh) *",
+            "Priority Date": "2014-06-19",
+            "Publication Date": "2014-09-17",
+            "Assignee": "中国电子科技集团公司第二十八研究所",
+            "Title": "一种空域冲突的快速检测方法",
+            "Link": "https://patents.google.com/patent/CN104050374A/zh"
+        },
+        {
+            "Publication Number": "EP2975598A1 (en) *",
+            "Priority Date": "2014-07-17",
+            "Publication Date": "2016-01-20",
+            "Assignee": "Airbus Group India Private Limited",
+            "Title": "System and method for sending in-flight weather alerts",
+            "Link": "https://patents.google.com/patent/EP2975598A1/en"
+        },
+        {
+            "Publication Number": "CN104183159A (zh) *",
+            "Priority Date": "2014-08-27",
+            "Publication Date": "2014-12-03",
+            "Assignee": "中国民用航空飞行学院",
+            "Title": "一种基于有向元胞自动机空中导航及冲突解脱方法",
+            "Link": "https://patents.google.com/patent/CN104183159A/zh"
+        },
+        {
+            "Publication Number": "CN204244383U (zh) *",
+            "Priority Date": "2014-12-10",
+            "Publication Date": "2015-04-01",
+            "Assignee": "中科融通物联科技无锡有限公司",
+            "Title": "低空目标监测系统",
+            "Link": "https://patents.google.com/patent/CN204244383U/zh"
+        },
+        {
+            "Publication Number": "EP3062302A1 (en) *",
+            "Priority Date": "2015-02-27",
+            "Publication Date": "2016-08-31",
+            "Assignee": "GE Aviation Systems LLC",
+            "Title": "System and methods for providing situational awareness information for a relative navigation system",
+            "Link": "https://patents.google.com/patent/EP3062302A1/en"
+        },
+        {
+            "Publication Number": "CN104786902A (zh) *",
+            "Priority Date": "2015-04-21",
+            "Publication Date": "2015-07-22",
+            "Assignee": "安徽四创电子股份有限公司",
+            "Title": "一种低空预警探测机动车",
+            "Link": "https://patents.google.com/patent/CN104786902A/zh"
+        },
+        {
+            "Publication Number": "CN105070105A (zh) *",
+            "Priority Date": "2015-07-29",
+            "Publication Date": "2015-11-18",
+            "Assignee": "重庆赛乐威航空科技有限公司",
+            "Title": "一种低空飞行器动态监视系统",
+            "Link": "https://patents.google.com/patent/CN105070105A/zh"
+        },
+        {
+            "Publication Number": "CN105549005A (zh) *",
+            "Priority Date": "2015-11-04",
+            "Publication Date": "2016-05-04",
+            "Assignee": "上海大学",
+            "Title": "一种基于网格划分的动态目标波达方向跟踪方法",
+            "Link": "https://patents.google.com/patent/CN105549005A/zh"
+        },
+        {
+            "Publication Number": "CN105575187A (zh) *",
+            "Priority Date": "2016-02-04",
+            "Publication Date": "2016-05-11",
+            "Assignee": "广州极飞电子科技有限公司",
+            "Title": "空中交通网络的描述方法及描述系统",
+            "Link": "https://patents.google.com/patent/CN105575187A/zh"
+        },
+        {
+            "Publication Number": "CN105929392A (zh) *",
+            "Priority Date": "2016-04-18",
+            "Publication Date": "2016-09-07",
+            "Assignee": "中国石油大学(华东)",
+            "Title": "一种雷达与视频等多系统联动的海上平台系统",
+            "Link": "https://patents.google.com/patent/CN105929392A/zh"
+        },
+        {
+            "Publication Number": "CN105953800A (zh) *",
+            "Priority Date": "2016-06-14",
+            "Publication Date": "2016-09-21",
+            "Assignee": "北京航空航天大学",
+            "Title": "一种无人飞行器航迹规划栅格空间划分方法",
+            "Link": "https://patents.google.com/patent/CN105953800A/zh"
+        },
+        {
+            "Publication Number": "CN106197426A (zh) *",
+            "Priority Date": "2016-06-28",
+            "Publication Date": "2016-12-07",
+            "Assignee": "桂林电子科技大学",
+            "Title": "一种无人机应急通信路径规划方法及系统",
+            "Link": "https://patents.google.com/patent/CN106197426A/zh"
+        },
+        {
+            "Publication Number": "CN106291592A (zh) *",
+            "Priority Date": "2016-07-14",
+            "Publication Date": "2017-01-04",
+            "Assignee": "桂林长海发展有限责任公司",
+            "Title": "一种小型无人机的对抗系统",
+            "Link": "https://patents.google.com/patent/CN106291592A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN107943084A (zh) *",
+            "Priority Date": "2017-12-12",
+            "Publication Date": "2018-04-20",
+            "Assignee": "江西理工大学",
+            "Title": "一种针对民用多旋翼无人机的跟随式电磁干扰系统及方法",
+            "Link": "https://patents.google.com/patent/CN107943084A/zh"
+        },
+        {
+            "Publication Number": "CN107943084B (zh) *",
+            "Priority Date": "2017-12-12",
+            "Publication Date": "2020-09-01",
+            "Assignee": "江西理工大学",
+            "Title": "一种针对民用多旋翼无人机的跟随式电磁干扰系统及方法",
+            "Link": "https://patents.google.com/patent/CN107943084B/zh"
+        },
+        {
+            "Publication Number": "CN109887341A (zh) *",
+            "Priority Date": "2019-03-01",
+            "Publication Date": "2019-06-14",
+            "Assignee": "中国民航大学",
+            "Title": "基于相邻网格的飞行冲突快速检测方法",
+            "Link": "https://patents.google.com/patent/CN109887341A/zh"
+        },
+        {
+            "Publication Number": "CN119832087A (zh) *",
+            "Priority Date": "2024-12-23",
+            "Publication Date": "2025-04-15",
+            "Assignee": "甘肃天立恒智电子科技有限公司",
+            "Title": "一种用于低空飞行器的数据感知智能处理方法",
+            "Link": "https://patents.google.com/patent/CN119832087A/zh"
+        },
+        {
+            "Publication Number": "CN119832087B (zh) *",
+            "Priority Date": "2024-12-23",
+            "Publication Date": "2025-07-29",
+            "Assignee": "甘肃天立恒智电子科技有限公司",
+            "Title": "一种用于低空飞行器的数据感知智能处理方法",
+            "Link": "https://patents.google.com/patent/CN119832087B/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:41:12"
+}

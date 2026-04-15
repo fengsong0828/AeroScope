@@ -35,6 +35,7 @@ const TRANSLATION_MAP = {
     'lift+cruise': '复合翼',       // 兼容加号
     'fixed_wing': '固定翼',
     'fixed wing': '固定翼',
+    'fixedwing': '固定翼',
     'flyingcar': '飞行汽车',
     'helicopter': '直升机',
     'uav': '无人机',
@@ -44,8 +45,10 @@ const TRANSLATION_MAP = {
     'electric': '纯电',
     'hybrid': '混动',
     'hydrogen': '氢能',
+    'fuel': '燃油',
     'autonomous': '自动驾驶',
     'piloted': '有人驾驶',
+    'remote': '远程操控',
     
     // 专利类型
     'utility model': '实用新型',
@@ -97,6 +100,11 @@ const TRANSLATION_MAP = {
     'debt': '债务融资',
     'crowdfunding': '众筹',
     'undisclosed': '未披露',
+
+    // 货币单位
+    'usd': '美元',
+    'cny': '人民币',
+    'eur': '欧元',
 
     // 投资方类型
     'vc': '风险投资',

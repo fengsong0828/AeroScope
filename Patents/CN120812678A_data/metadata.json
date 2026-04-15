@@ -1,0 +1,53 @@
+{
+    "patent_id": "CN120812678A",
+    "title": "CN120812678A - 一种面向低空飞行器与地面网络深度融合的多模通信模块及其组网与动态切换方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Chengdu Yuxi Semiconductor Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120812678A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN115699960A (zh) *",
+            "Priority Date": "2020-03-20",
+            "Publication Date": "2023-02-03",
+            "Assignee": "弗劳恩霍夫应用研究促进协会",
+            "Title": "Nr侧链路辅助信息消息",
+            "Link": "https://patents.google.com/patent/CN115699960A/zh"
+        },
+        {
+            "Publication Number": "US20240121696A1 (en) *",
+            "Priority Date": "2021-06-29",
+            "Publication Date": "2024-04-11",
+            "Assignee": "Huawei Technologies Co., Ltd.",
+            "Title": "Cross-link switching between terrestrial and non-terrestrial links in wireless communication networks",
+            "Link": "https://patents.google.com/patent/US20240121696A1/en"
+        },
+        {
+            "Publication Number": "CN117917118A (zh) *",
+            "Priority Date": "2021-08-06",
+            "Publication Date": "2024-04-19",
+            "Assignee": "交互数字专利控股公司",
+            "Title": "用于在层3(l3)用户装备(ue)至ue中继处实现间接到直接路径切换的方法、装置和系统",
+            "Link": "https://patents.google.com/patent/CN117917118A/zh"
+        },
+        {
+            "Publication Number": "CN120302357A (zh) *",
+            "Priority Date": "2025-05-20",
+            "Publication Date": "2025-07-11",
+            "Assignee": "吉太航空科技(苏州)有限公司",
+            "Title": "一种实现低空飞行器多链路切换与冗余传输的方法和介质",
+            "Link": "https://patents.google.com/patent/CN120302357A/zh"
+        },
+        {
+            "Publication Number": "CN120529381A (zh) *",
+            "Priority Date": "2025-07-23",
+            "Publication Date": "2025-08-22",
+            "Assignee": "天宇航空数据科技(合肥)有限责任公司",
+            "Title": "一种融合边缘计算和多种通信接入方式的航空5g通信系统",
+            "Link": "https://patents.google.com/patent/CN120529381A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:57:17"
+}

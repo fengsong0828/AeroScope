@@ -1,0 +1,130 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120875831A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES510075968">
+<invention-title id="title1" lang="ZH">基于人工智能的低空飞行器运维管理系统及方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空飞行器技术领域，具体为基于人工智能的低空飞行器运维管理系统及方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空飞行器是指在垂直高度1000米以下(部分区域延伸至3000米)空域运行的航空器，涵盖有人驾驶和无人驾驶类型，主要用于载人、载货或特殊作业。其核心类型包括电动垂直起降飞行器(eVTOL)、无人机、直升机和轻型固定翼飞机等。eVTOL通过电动推进实现垂直起降，适合城市空中交通；无人机则以体积小、成本低见长，广泛应用于航拍、农业植保等领域；直升机具备悬停能力，适应复杂地形；轻型固定翼飞机速度快、航程远，但需跑道起降。关键技术包括导航避障(激光雷达、视觉传感器)、飞控系统(自动化控制与气象监测)及动力系统(电池续航优化)。低空飞行器在农业、物流、救援等领域发挥重要作用，例如无人机精准喷洒农药、医疗物资快速配送。</div>
+<div class="description-paragraph" id="p0005" num="0003">低空飞行器的电池问题缺陷是影响其安全性和续航能力的关键因素，锂电池作为主要动力源，在高负荷运行或极端温度下易出现电量骤降、过热失控甚至起火爆炸等风险，现有的低空飞行器运维管理系统缺乏对电池的有效管理监测，可能造成因电池故障导致空中失控或坠毁。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">(一)解决的技术问题针对现有技术的不足，本发明提供了基于人工智能的低空飞行器运维管理系统及方法，具备对电池进行全面综合评估监测，实现电池问题的早期发现和预防性维护，避免电池长时间处于高温状态，减少热量对电池的损害，延长电池使用寿命，通过自动化监测和故障诊断，减少人工干预需求，提高运维管理的效率，同时，在故障下帮助系统判断飞行器是否具备安全返航的条件，帮助系统动态调整飞行计划，减少了电池故障情况下可能造成的无人机坠毁的问题等优点。</div>
+<div class="description-paragraph" id="p0008" num="0005">(二)技术方案</div>
+<div class="description-paragraph" id="p0009" num="0006">为实现上述目的，本发明提供如下技术方案：基于人工智能的低空飞行器运维管理系统，包括电池状态监测模块、数据分析管理模块、故障诊断模块模块、规划处理模块；</div>
+<div class="description-paragraph" id="p0010" num="0007">所述电池状态监测模块通过网络连接数据分析管理模块，所述数据分析管理模块通过网络连接故障诊断模块模块，所述故障诊断模块模块通过网络连接规划处理模块；</div>
+<div class="description-paragraph" id="p0011" num="0008">所述电池状态监测模块用于对飞行器进行状态监测，并获取监测数据进行记录保存；</div>
+<div class="description-paragraph" id="p0012" num="0009">所述数据分析管理模块用于根据监测数据进行计算电池散热效率指数和健康状态指数；</div>
+<div class="description-paragraph" id="p0013" num="0010">所述故障诊断模块模块用于根据电池散热效率指数以及健康状态指数对飞行器设备进行故障诊断；</div>
+<div class="description-paragraph" id="p0014" num="0011">所述规划处理模块用于根据故障诊断结果做出应急处理。</div>
+<div class="description-paragraph" id="p0015" num="0012">优选的，所述监测数据包括温度监测数据集、电压监测数据集、电流监测数据集，所述温度监测数据集通过电池状态监测模块连接温度传感器进行获取，所述电压监测数据集通过电池状态监测模块连接电压传感器进行获取，所述电流监测数据集过电池状态监测模块连接电流传感器进行获取。</div>
+<div class="description-paragraph" id="p0016" num="0013">优选的，所述温度监测数据集包括多个电池温度监测数据，所述温度监测数据集的记录保存表达式为：W<sub>1</sub>、W<sub>2</sub>、W<sub>3</sub>、···、W<sub>n</sub>，表达式中，W<sub>1</sub>代表第一个电池温度监测数据，W<sub>n</sub>代表第n个电池温度监测数据，n表示数据集中数据的总数量；</div>
+<div class="description-paragraph" id="p0017" num="0014">所述电压监测数据集包括多个电池电压监测数据，所述电压监测数据集的记录保存表达式为：Y<sub>1</sub>、Y<sub>2</sub>、Y<sub>3</sub>、···、Y<sub>n</sub>，表达式中，Y<sub>1</sub>代表第一个电池电压监测数据，Y<sub>n</sub>代表第n个电池电压监测数据，n表示数据集中数据的总数量；</div>
+<div class="description-paragraph" id="p0018" num="0015">所述电流监测数据集包括多个电池电流监测数据，所述电流监测数据集的记录保存表达式为：L<sub>1</sub>、L<sub>2</sub>、L<sub>3</sub>、···、L<sub>n</sub>，表达式中，L<sub>1</sub>代表第一个电池电流监测数据，L<sub>n</sub>代表第n个电池电流监测数据，n表示数据集中数据的总数量。</div>
+<div class="description-paragraph" id="p0019" num="0016">优选的，所述电池散热效率指数SRzs的计算公式为：</div>
+<div class="description-paragraph" id="p0020" num="0017">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0021" num="0018">计算公式中，SRzs代表电池散热效率指数，W<sub>i</sub>代表第i个电池温度监测数据，<span class="patent-image-not-available"></span>代表第i个环境温度数据，<span class="patent-image-not-available"></span>代表从i＝1开始，到i＝n结束，环境温度数据与电池温度监测数据差值的和；</div>
+<div class="description-paragraph" id="p0022" num="0019">W<sub>b</sub>代表环境温度数据与电池温度监测数据的标准差值，p代表电池发热功率，<span class="patent-image-not-available"></span>代表电池的热阻，表示单位功率下的温升阻力；</div>
+<div class="description-paragraph" id="p0023" num="0020">n代表数据的总数量。</div>
+<div class="description-paragraph" id="p0024" num="0021">优选的，所述健康状态指数JKzs的计算公式为：</div>
+<div class="description-paragraph" id="p0025" num="0022">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0026" num="0023">计算公式中，JKzs代表健康状态指数，W<sub>i</sub>代表第i个电池温度监测数据，W<sub>o</sub>代表电池标准温度，W<sub>i</sub>-W<sub>o</sub>代表电池温度监测数据与标准数据差值，maxW<sub>c</sub>代表电池温度的最大允许差值，α<sub>1</sub>代表电池温度数据的权重；、</div>
+<div class="description-paragraph" id="p0027" num="0024"> <span class="patent-image-not-available"></span>反应电池温度异常；</div>
+<div class="description-paragraph" id="p0028" num="0025">Y<sub>i</sub>代表第i个电池电压监测数据，Y<sub>o</sub>代表电池标准电压，Y<sub>i</sub>-Y<sub>o</sub>代表电池电压监测数据与标准数据差值，maxY<sub>c</sub>代表电池电压的最大允许差值，α<sub>2</sub>代表电池电压数据的权重；</div>
+<div class="description-paragraph" id="p0029" num="0026"> <span class="patent-image-not-available"></span>反应电池电压异常；</div>
+<div class="description-paragraph" id="p0030" num="0027">L<sub>i</sub>代表第i个电池电流监测数据，L<sub>o</sub>代表电池标准电流，L<sub>i</sub>-L<sub>o</sub>代表电池电流监测数据与标准数据差值，maxL<sub>c</sub>代表电池电流的最大允许差值，α<sub>3</sub>代表电池电流数据的权重；</div>
+<div class="description-paragraph" id="p0031" num="0028"> <span class="patent-image-not-available"></span>反映电池电流异常。</div>
+<div class="description-paragraph" id="p0032" num="0029">优选的，当所述电池散热效率指数SRzs的计算值超过电池散热效率指数阈值的情况下，代表当前的电池散热效果不佳，发送散热信号对散热系统进行散热优化，所述故障诊断模块模块在发出散热信号的同时，对电池散热效率指数SRzs持续监测，在预设时间内监控电池散热效率指数SRzs仍旧高于电池散热效率指数SRzs，发送电池故障信号给规划处理模块。</div>
+<div class="description-paragraph" id="p0033" num="0030">优选的，当所述健康状态指数JKzs超过健康状态指数阈值的情况下，代表当前的电池健康状态不佳，发送电池健康状态不佳信号给规划处理模块。</div>
+<div class="description-paragraph" id="p0034" num="0031">优选的，所述规划处理模块在收到电池故障信号、电池健康状态不佳信号任一情况下，对当前的电池返航能力进行计算，并根据电池返航能力做出应急处理，所述电池返航能力FHnl计算公式为：</div>
+<div class="description-paragraph" id="p0035" num="0032">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0036" num="0033">计算式中，FHnl代表电池返航能力，C代表电池标称总容量，JKzs代表电池健康状态指数，X<sub>d</sub>代表当前电池消耗的电量，SRzs代表电池散热效率指数，X<sub>j</sub>代表当前电量消耗对应的飞行距离，F<sub>j</sub>代表返航距离；</div>
+<div class="description-paragraph" id="p0037" num="0034">C*JKzs-X<sub>d</sub>代表实际剩余可用电量，(C*JKzs-X<sub>d</sub>)*SRzs反应散热对放电效率的影响；</div>
+<div class="description-paragraph" id="p0038" num="0035"> <span class="patent-image-not-available"></span>代表单位距离平均电量消耗，<span class="patent-image-not-available"></span>代表返航所需的理论总电量。</div>
+<div class="description-paragraph" id="p0039" num="0036">计算式中，FHnl代表电池返航能力，X<sub>d</sub>代表当前电池消耗的电量，X<sub>j</sub>代表当前电量消耗对应的飞行距离，<span class="patent-image-not-available"></span>代表距离的平均电量消耗。</div>
+<div class="description-paragraph" id="p0040" num="0037">优选的，当所述电池返航能力FHnl≥1，所述规划处理模块发送飞行器返回信号，当所述电池返航能力FHnl&lt;1，所述规划处理模块发送飞行器就近降落信号。</div>
+<div class="description-paragraph" id="p0041" num="0038">基于人工智能的低空飞行器运维管理方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0042" num="0039">步骤一、对飞行器进行状态监测，并获取监测数据组成温度监测数据集、电压监测数据集、电流监测数据集进行记录保存；</div>
+<div class="description-paragraph" id="p0043" num="0040">步骤二、根据温度监测数据集、电压监测数据集、电流监测数据集进行计算电池散热效率指数和健康状态指数；</div>
+<div class="description-paragraph" id="p0044" num="0041">步骤三、根据电池散热效率指数进行判断电池的散热效果，在当前的电池散热效果不佳时，发送散热信号给散热系统进行散热优化；</div>
+<div class="description-paragraph" id="p0045" num="0042">步骤四、在散热优化后对电池散热效率指数持续监测，判断是否发生故障；步骤五、根据健康状态指数对飞行器设备进行判断是否存在电池健康状态不佳的情况；</div>
+<div class="description-paragraph" id="p0046" num="0043">步骤六、在判断电池故障、电池健康状态不佳任一情况下，对当前的电池返航能力进行评估；</div>
+<div class="description-paragraph" id="p0047" num="0044">步骤七、根据电池返航能力做出应急处理。</div>
+<div class="description-paragraph" id="p0048" num="0045">与现有技术相比，本发明提供了基于人工智能的低空飞行器运维管理系统及方法，具备以下有益效果：</div>
+<div class="description-paragraph" id="p0049" num="0046">1、本发明通过温度、电压、电流等多维度数据，对电池进行全面综合评估监测，实现电池问题的早期发现和预防性维护，持续监测电池散热效率指数，能够实时检测散热系统的工作状态。当电池散热效率指数超过阈值时，表明散热效果不佳，系统会立即触发散热优化措施，避免电池因散热不良导致温度过高，进而引发热失控、容量衰减或起火爆炸等严重问题，通过及时散热，避免电池长时间处于高温状态，减少热量对电池的损害，延长电池使用寿命，同时散热优化措施能排除临时性问题，提升系统判断精度，减少对飞行计划的干扰，实时掌握健康状态指数，实现自动化监测和故障诊断，减少人工干预需求，提高运维管理的效率。</div>
+<div class="description-paragraph" id="p0050" num="0047">2、本发明综合考虑了能耗、返航距离、散热效率和健康状态，能够较为全面地反映电池的返航能力，同时体现了散热效率和健康状态对返航能力的负面影响，当系统收到电池故障信号或健康状态不佳信号时，可以快速计算电池的返航能力，帮助系统判断飞行器是否具备安全返航的条件，帮助系统动态调整飞行计划，减少了电池故障情况下可能造成的无人机坠毁的问题。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0051">附图说明</div>
+<div class="description-paragraph" id="p0052" num="0048">图1为本发明方法步骤图；</div>
+<div class="description-paragraph" id="p0053" num="0049">图2为本发明系统流程示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0054">具体实施方式</div>
+<div class="description-paragraph" id="p0055" num="0050">下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0056" num="0051">请参阅图1-2，基于人工智能的低空飞行器运维管理系统，包括电池状态监测模块、数据分析管理模块、故障诊断模块模块、规划处理模块；</div>
+<div class="description-paragraph" id="p0057" num="0052">电池状态监测模块通过网络连接数据分析管理模块，数据分析管理模块通过网络连接故障诊断模块模块，故障诊断模块模块通过网络连接规划处理模块；</div>
+<div class="description-paragraph" id="p0058" num="0053">电池状态监测模块用于对飞行器进行状态监测，并获取监测数据进行记录保存；</div>
+<div class="description-paragraph" id="p0059" num="0054">监测数据包括温度监测数据集、电压监测数据集、电流监测数据集，温度监测数据集通过电池状态监测模块连接温度传感器进行获取，电压监测数据集通过电池状态监测模块连接电压传感器进行获取，电流监测数据集过电池状态监测模块连接电流传感器进行获取；</div>
+<div class="description-paragraph" id="p0060" num="0055">温度监测数据集包括多个电池温度监测数据，温度监测数据集的记录保存表达式为：W<sub>1</sub>、W<sub>2</sub>、W<sub>3</sub>、···、W<sub>n</sub>，表达式中，W<sub>1</sub>代表第一个电池温度监测数据，W<sub>n</sub>代表第n个电池温度监测数据，n表示数据集中数据的总数量；</div>
+<div class="description-paragraph" id="p0061" num="0056">电压监测数据集包括多个电池电压监测数据，电压监测数据集的记录保存表达式为：Y<sub>1</sub>、Y<sub>2</sub>、Y<sub>3</sub>、···、Y<sub>n</sub>，表达式中，Y<sub>1</sub>代表第一个电池电压监测数据，Y<sub>n</sub>代表第n个电池电压监测数据，n表示数据集中数据的总数量；</div>
+<div class="description-paragraph" id="p0062" num="0057">电流监测数据集包括多个电池电流监测数据，电流监测数据集的记录保存表达式为：L<sub>1</sub>、L<sub>2</sub>、L<sub>3</sub>、···、L<sub>n</sub>，表达式中，L<sub>1</sub>代表第一个电池电流监测数据，L<sub>n</sub>代表第n个电池电流监测数据，n表示数据集中数据的总数量；</div>
+<div class="description-paragraph" id="p0063" num="0058">通过温度、电压、电流等多维度数据，对电池进行全面综合评估，实现电池问题的早期发现和预防性维护，减少突发故障和停机时间，为电池散热效率指数和健康状态指数分析提供大量数据基础；</div>
+<div class="description-paragraph" id="p0064" num="0059">数据分析管理模块用于根据监测数据进行计算电池散热效率指数和健康状态指数；</div>
+<div class="description-paragraph" id="p0065" num="0060">电池散热效率指数SRzs的计算公式为：</div>
+<div class="description-paragraph" id="p0066" num="0061">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0067" num="0062">计算公式中，SRzs代表电池散热效率指数，W<sub>i</sub>代表第i个电池温度监测数据，<span class="patent-image-not-available"></span>代表第i个环境温度数据，<span class="patent-image-not-available"></span>代表从i＝1开始，到i＝n结束，环境温度数据与电池温度监测数据差值的和，反映电池的散热需求；</div>
+<div class="description-paragraph" id="p0068" num="0063">W<sub>b</sub>代表环境温度数据与电池温度监测数据的标准差值，p代表电池发热功率，<span class="patent-image-not-available"></span>代表电池的热阻，表示单位功率下的温升阻力；</div>
+<div class="description-paragraph" id="p0069" num="0064">n代表数据的总数量，在分母中用于标准化多测点数据的影响。</div>
+<div class="description-paragraph" id="p0070" num="0065">电池散热效率指数SRzs可以实时评估电池的散热效率，判断电池是否处于安全温度范围内，避免电池过热导致热失控或火灾风险，防止低温环境下电池性能下降，影响飞行器续航和安全性，公式中引入了热阻可以直接反映散热系统的效能；</div>
+<div class="description-paragraph" id="p0071" num="0066">健康状态指数JKzs的计算公式为：</div>
+<div class="description-paragraph" id="p0072" num="0067">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0073" num="0068">计算公式中，JKzs代表健康状态指数，W<sub>i</sub>代表第i个电池温度监测数据，W<sub>o</sub>代表电池标准温度，W<sub>i</sub>-W<sub>o</sub>代表电池温度监测数据与标准数据差值，maxW<sub>c</sub>代表电池温度的最大允许差值，α<sub>1</sub>代表电池温度数据的权重；、</div>
+<div class="description-paragraph" id="p0074" num="0069"> <span class="patent-image-not-available"></span>反应电池温度异常，温度过高可能导致电池过热甚至起火，温度过低可能影响电池性能；</div>
+<div class="description-paragraph" id="p0075" num="0070">Y<sub>i</sub>代表第i个电池电压监测数据，Y<sub>o</sub>代表电池标准电压，Y<sub>i</sub>-Y<sub>o</sub>代表电池电压监测数据与标准数据差值，maxY<sub>c</sub>代表电池电压的最大允许差值，α<sub>2</sub>代表电池电压数据的权重；</div>
+<div class="description-paragraph" id="p0076" num="0071"> <span class="patent-image-not-available"></span>反应电池电压异常，电压过低可能表示电池容量衰减或放电过度，电压过高可能表示充电异常或过充；</div>
+<div class="description-paragraph" id="p0077" num="0072">L<sub>i</sub>代表第i个电池电流监测数据，L<sub>o</sub>代表电池标准电流，L<sub>i</sub>-L<sub>o</sub>代表电池电流监测数据与标准数据差值，maxL<sub>c</sub>代表电池电流的最大允许差值，α<sub>3</sub>代表电池电流数据的权重；</div>
+<div class="description-paragraph" id="p0078" num="0073"> <span class="patent-image-not-available"></span>反映电池电流异常，电流过大可能表示电池过载或短路，电流过小可能表示电池性能下降；</div>
+<div class="description-paragraph" id="p0079" num="0074">综合温度、电压、电流偏差的健康状态指数，反映电池的整体健康状态，便于快速评估和决策，实时反映电池的健康状态，避免因电池故障导致的飞行事故，提高飞行器的安全性和可靠性；</div>
+<div class="description-paragraph" id="p0080" num="0075">故障诊断模块模块用于根据电池散热效率指数以及健康状态指数对飞行器设备进行故障诊断；</div>
+<div class="description-paragraph" id="p0081" num="0076">当电池散热效率指数SRzs的计算值超过电池散热效率指数阈值的情况下，代表当前的电池散热效果不佳，发送散热信号对散热系统进行散热优化，故障诊断模块模块在发出散热信号的同时，对电池散热效率指数SRzs持续监测，在预设时间内监控电池散热效率指数SRzs仍旧高于电池散热效率指数SRzs，发送电池故障信号给规划处理模块；</div>
+<div class="description-paragraph" id="p0082" num="0077">通过持续监测电池散热效率指数，能够实时检测散热系统的工作状态。当电池散热效率指数超过阈值时，表明散热效果不佳，系统会立即触发散热优化措施，避免电池因散热不良导致温度过高，进而引发热失控、容量衰减或起火爆炸等严重问题，通过及时散热，避免电池长时间处于高温状态，减少热量对电池的损害，延长电池使用寿命，同时散热优化措施能排除临时性问题，提升系统判断精度，减少对飞行计划的干扰；</div>
+<div class="description-paragraph" id="p0083" num="0078">当健康状态指数JKzs超过健康状态指数阈值的情况下，代表当前的电池健康状态不佳，发送电池健康状态不佳信号给规划处理模块；</div>
+<div class="description-paragraph" id="p0084" num="0079">实时掌握健康状态指数，实现自动化监测和故障诊断，减少人工干预需求，提高运维管理的效率；</div>
+<div class="description-paragraph" id="p0085" num="0080">规划处理模块用于根据故障诊断结果做出应急处理；</div>
+<div class="description-paragraph" id="p0086" num="0081">规划处理模块在收到电池故障信号、电池健康状态不佳信号任一情况下，对当前的电池返航能力进行计算，并根据电池返航能力做出应急处理，电池返航能力FHnl计算公式为：</div>
+<div class="description-paragraph" id="p0087" num="0082">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0088" num="0083">计算式中，FHnl代表电池返航能力，C代表电池标称总容量，JKzs代表电池健康状态指数，X<sub>d</sub>代表当前电池消耗的电量，SRzs代表电池散热效率指数，X<sub>j</sub>代表当前电量消耗对应的飞行距离，F<sub>j</sub>代表返航距离；</div>
+<div class="description-paragraph" id="p0089" num="0084">C*JKzs-X<sub>d</sub>代表实际剩余可用电量，(C*JKzs-X<sub>d</sub>)*SRzs反应散热对放电效率的影响；</div>
+<div class="description-paragraph" id="p0090" num="0085"> <span class="patent-image-not-available"></span>代表单位距离平均电量消耗，<span class="patent-image-not-available"></span>代表返航所需的理论总电量。</div>
+<div class="description-paragraph" id="p0091" num="0086">计算式中，FHnl代表电池返航能力，X<sub>d</sub>代表当前电池消耗的电量，X<sub>j</sub>代表当前电量消耗对应的飞行距离，<span class="patent-image-not-available"></span>代表距离的平均电量消耗。</div>
+<div class="description-paragraph" id="p0092" num="0087">综合考虑了能耗、返航距离、散热效率和健康状态，能够较为全面地反映电池的返航能力，同时体现了散热效率和健康状态对返航能力的负面影响，当系统收到电池故障信号或健康状态不佳信号时，公式可以快速计算电池的返航能力，帮助系统判断飞行器是否具备安全返航的条件，帮助系统动态调整飞行计划，减少了电池故障情况下可能造成的无人机坠毁的问题；</div>
+<div class="description-paragraph" id="p0093" num="0088">当电池返航能力FHnl≥1，规划处理模块发送飞行器返回信号，当电池返航能力FHnl&lt;1，规划处理模块发送飞行器就近降落信号。</div>
+<div class="description-paragraph" id="p0094" num="0089">上述基于人工智能的低空飞行器运维管理系统具体方法如下：</div>
+<div class="description-paragraph" id="p0095" num="0090">步骤一、对飞行器进行状态监测，并获取监测数据组成温度监测数据集、电压监测数据集、电流监测数据集进行记录保存；</div>
+<div class="description-paragraph" id="p0096" num="0091">步骤二、根据温度监测数据集、电压监测数据集、电流监测数据集进行计算电池散热效率指数和健康状态指数；</div>
+<div class="description-paragraph" id="p0097" num="0092">步骤三、根据电池散热效率指数进行判断电池的散热效果，在当前的电池散热效果不佳时，发送散热信号给散热系统进行散热优化；</div>
+<div class="description-paragraph" id="p0098" num="0093">步骤四、在散热优化后对电池散热效率指数持续监测，判断是否发生故障；步骤五、根据健康状态指数对飞行器设备进行判断是否存在电池健康状态不佳的情况；</div>
+<div class="description-paragraph" id="p0099" num="0094">步骤六、在判断电池故障、电池健康状态不佳任一情况下，对当前的电池返航能力进行评估；</div>
+<div class="description-paragraph" id="p0100" num="0095">步骤七、根据电池返航能力做出应急处理。</div>
+<div class="description-paragraph" id="p0101" num="0096">尽管已经示出和描述了本发明的实施例，对于本领域的普通技术人员而言，可以理解在不脱离本发明的原理和精神的情况下可以对这些实施例进行多种变化、修改、替换和变型，本发明的范围由所附权利要求及其等同物限定。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

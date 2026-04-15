@@ -1,0 +1,45 @@
+{
+    "patent_id": "CN120220475A",
+    "title": "CN120220475A - 一种高速公路与空域协同的低空飞行器航线规划方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Innovation Research Institute Of Shandong Expressway Group Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120220475A/zh",
+    "citations": [],
+    "cited_by": [
+        {
+            "Publication Number": "CN120373915A (zh) *",
+            "Priority Date": "2025-06-26",
+            "Publication Date": "2025-07-25",
+            "Assignee": "山东高速集团有限公司创新研究院",
+            "Title": "一种考虑低空飞行器影响的高速公路选址结果评价方法",
+            "Link": "https://patents.google.com/patent/CN120373915A/zh"
+        },
+        {
+            "Publication Number": "CN120373915B (zh) *",
+            "Priority Date": "2025-06-26",
+            "Publication Date": "2025-11-18",
+            "Assignee": "山东高速集团有限公司创新研究院",
+            "Title": "一种考虑低空飞行器影响的高速公路选址结果评价方法",
+            "Link": "https://patents.google.com/patent/CN120373915B/zh"
+        },
+        {
+            "Publication Number": "CN120808642A (zh) *",
+            "Priority Date": "2025-09-05",
+            "Publication Date": "2025-10-17",
+            "Assignee": "青岛理工大学",
+            "Title": "基于空管数据的飞行路线动态优化方法",
+            "Link": "https://patents.google.com/patent/CN120808642A/zh"
+        },
+        {
+            "Publication Number": "CN120808642B (zh) *",
+            "Priority Date": "2025-09-05",
+            "Publication Date": "2025-12-05",
+            "Assignee": "青岛理工大学",
+            "Title": "基于空管数据的飞行路线动态优化方法",
+            "Link": "https://patents.google.com/patent/CN120808642B/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:32:22"
+}

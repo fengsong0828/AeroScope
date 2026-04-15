@@ -1,0 +1,182 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120161781A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES497428876">
+<invention-title id="title1" lang="ZH">一种面向地效基于自抗扰的旋翼低空飞行器控制方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于飞行器控制技术领域，特别是涉及一种面向地效基于自抗扰的旋翼低空飞行器控制方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空经济的发展和社会各行业的经济需求，飞行任务越来越多，例如无人机物流、空中出租车、农药喷洒、应急救援等。面对诸多飞行任务，飞行器的近地悬停能力尤为重要，需要飞行器应对低空复杂气流时的高稳定性、精准控制性以及高安全性。旋翼低空飞行器（旋翼低空飞行器）飞行器在近地飞行时虽有独特的安全性，但同时也会受到近地气流的影响。</div>
+<div class="description-paragraph" id="p0005" num="0003">旋翼低空飞行器结构和飞行特性独特，它包含多个控制通道，旋翼产生的升力以及舵面控制作用的相互耦合情况使得在建立空气动力学模型时难以精确复刻，存在严重的非线性性和不确定性。传统的PID控制方法在实际飞行中难以实现高精度高稳定控制，传统PID控制系统取误差值时一般直接取成：</div>
+<div class="description-paragraph" id="p0006" num="0004"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0007" num="0005">其中代表系统期望状态值，代表系统的输出值。这种误差的取法导致控制系统的初始误差很大，控制过程中很容易引起“超调”现象。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0008">发明内容</div>
+<div class="description-paragraph" id="p0009" num="0006">本发明目的在于解决旋翼低空飞行器控制过程中存在的非线性、不确定性以及耦合干扰等问题，提高飞行器的控制精度和飞行稳定，提出一种面向地效基于自抗扰的旋翼低空飞行器控制方法。</div>
+<div class="description-paragraph" id="p0010" num="0007">为了实现本发明目的，本发明公开了一种面向地效基于自抗扰的旋翼低空飞行器控制方法，针对带舵面三旋翼飞行器的控制系统，构建了多通道协同控制架构，包含高度保持、偏航稳定、俯仰姿态、滚转姿态四个功能通道；其中高度通道、俯仰通道、滚转通道采用基于扩张状态观测器的自抗扰控制模型，通过非线性状态误差反馈实现扰动抑制；偏航通道采用参数整定优化的PID控制器，利用其周期性扰动抑制特性提升控制精度。</div>
+<div class="description-paragraph" id="p0011" num="0008">进一步地，针对近地悬停工况下地效干扰显著的问题，建立包含气动耦合效应和地面效应模型的近地悬停控制场景，具体步骤包括：</div>
+<div class="description-paragraph" id="p0012" num="0009">步骤1、建立近地飞行的飞行器动力学模型，并基于机体模型添加适配的地效模型；</div>
+<div class="description-paragraph" id="p0013" num="0010">步骤2、根据步骤1所得飞行器动力学模型建立多通道的协同控制框架；</div>
+<div class="description-paragraph" id="p0014" num="0011">步骤3、基于步骤2所得多通道的协同控制框架构造通道之间耦合干扰观测器；</div>
+<div class="description-paragraph" id="p0015" num="0012">步骤4、在各通道的干扰观测器的基础上对控制器加入跟踪信号模块和非线性的状态误差反馈模块，最终形成自抗扰控制的控制量输出值；</div>
+<div class="description-paragraph" id="p0016" num="0013">步骤5、使用离散化的方式整定自抗扰控制参数值；</div>
+<div class="description-paragraph" id="p0017" num="0014">步骤6、基于协同控制中的偏航通道进行参数整定优化的PID控制设计。</div>
+<div class="description-paragraph" id="p0018" num="0015">进一步地，步骤1中，将飞行器的姿态动力学模型设为：</div>
+<div class="description-paragraph" id="p0019" num="0016"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0020" num="0017"> <span class="patent-image-not-available"></span>是姿态角向量，<span class="patent-image-not-available"></span>是姿态角速度向量，<span class="patent-image-not-available"></span>为三涵道飞行器模型的转动惯量，<span class="patent-image-not-available"></span>表示飞行器受到的内部总力矩，其中包括螺旋桨在机体轴上产生的力矩，舵面在机体轴上产生的力矩，飞行器受到气动力矩，飞行器受到的外部干扰；</div>
+<div class="description-paragraph" id="p0021" num="0018">其中：</div>
+<div class="description-paragraph" id="p0022" num="0019"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0023" num="0020">考虑三涵道飞行器近地飞行（1~3米）时姿态变化很小，认为此时飞行器处于小角度的状态，基于此状态有<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0024" num="0021">飞行器受到沿机体系的<span class="patent-image-not-available"></span>轴向的合外力矩为</div>
+<div class="description-paragraph" id="p0025" num="0022"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0026" num="0023">其中<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>轴向建模时被忽略的力矩，<span class="patent-image-not-available"></span>为陀螺力矩在<span class="patent-image-not-available"></span>上产生的影响，<span class="patent-image-not-available"></span>为外部扰动带来的沿<span class="patent-image-not-available"></span>轴向的力矩，<span class="patent-image-not-available"></span>为螺旋桨在机体轴<span class="patent-image-not-available"></span>轴产生的力矩；那么有滚转通道的动态模型为：</div>
+<div class="description-paragraph" id="p0027" num="0024"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0028" num="0025"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0029" num="0026">其中<span class="patent-image-not-available"></span>为涵道飞行器沿<span class="patent-image-not-available"></span>轴的转动惯量，<span class="patent-image-not-available"></span>为系统内部扰动和外部扰动之和；</div>
+<div class="description-paragraph" id="p0030" num="0027">同样有俯仰通道的动态模型：</div>
+<div class="description-paragraph" id="p0031" num="0028"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0032" num="0029"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0033" num="0030">其中<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>轴向建模时被忽略的力矩，<span class="patent-image-not-available"></span>为陀螺力矩在<span class="patent-image-not-available"></span>上产生的影响，<span class="patent-image-not-available"></span>为外部扰动带来的沿<span class="patent-image-not-available"></span>轴向的力矩，<span class="patent-image-not-available"></span>为螺旋桨在机体轴<span class="patent-image-not-available"></span>轴产生的力矩，<span class="patent-image-not-available"></span>为涵道飞行器沿<span class="patent-image-not-available"></span>轴的转动惯量，<span class="patent-image-not-available"></span>为系统内部扰动和外部扰动之和；</div>
+<div class="description-paragraph" id="p0034" num="0031">将飞行器沿竖直方向的运动表示为高度通道的动态模型：</div>
+<div class="description-paragraph" id="p0035" num="0032"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0036" num="0033"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0037" num="0034">其中<span class="patent-image-not-available"></span>为沿<span class="patent-image-not-available"></span>轴力方向的系统内扰动，<span class="patent-image-not-available"></span>为沿<span class="patent-image-not-available"></span>轴力方向的系统外扰动，<span class="patent-image-not-available"></span>为飞行器质量，<span class="patent-image-not-available"></span>为飞行器螺旋桨产生的拉力，<span class="patent-image-not-available"></span>为重力加速度；对上述式子进行变形得：</div>
+<div class="description-paragraph" id="p0038" num="0035"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0039" num="0036"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0040" num="0037">在模型的左右涵道上增加50牛顿的正弦波扰动信号，即<span class="patent-image-not-available"></span>，其中<span class="patent-image-not-available"></span>为去除地效影响后的其他外部扰动，<span class="patent-image-not-available"></span>是飞行器姿态变化下的旋转矩阵。</div>
+<div class="description-paragraph" id="p0041" num="0038">进一步地，步骤2中，根据步骤1所得飞行器动力学模型建立多通道的协同控制框架，给定期望的滚转姿态角<span class="patent-image-not-available"></span>，俯仰姿态角<span class="patent-image-not-available"></span>，偏航姿态角<span class="patent-image-not-available"></span>和期望高度<span class="patent-image-not-available"></span>之后进行仿真；通过自抗扰控制器输出的控制值是：沿机体系<span class="patent-image-not-available"></span>轴产生的期望的力<span class="patent-image-not-available"></span>、沿机体系<span class="patent-image-not-available"></span>轴产生期望力矩<span class="patent-image-not-available"></span>、沿机体系<span class="patent-image-not-available"></span>轴产生期望力矩<span class="patent-image-not-available"></span>，通过PID控制器输出的控制量是沿机体系<span class="patent-image-not-available"></span>轴产生期望力矩<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，其中沿机体系<span class="patent-image-not-available"></span>轴产生期望力矩有两部分组成，其中带有舵面的三涵道飞行器模型左右涵道下方的航向舵提供了飞行器的期望偏航力矩是<span class="patent-image-not-available"></span>，由螺旋桨转速差产生的期望偏航力矩<span class="patent-image-not-available"></span>；将多通道协同控制器输出的控制量<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>通过分配输入到六自由度的飞行器动力学模型中；通过控制量的输入，飞行器模型可输出姿态角状态量<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，姿态角速率状态量<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，位置状态量<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，速度状态量<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>作为飞行器的状态反馈量。</div>
+<div class="description-paragraph" id="p0042" num="0039">进一步地，步骤3中，通道中的干扰观测器建立的核心是构造模型中的需要被观测的扰动量，下面统称为被观测量；将俯仰通道的动态模型、滚转通道的动态模型、高度通道的动态模型这三个二阶系统模型扩张成三阶状态观测模型，并用状态方程表示出来其中状态方程为：</div>
+<div class="description-paragraph" id="p0043" num="0040"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0044" num="0041"> <span class="patent-image-not-available"></span>为扰动被观测量<span class="patent-image-not-available"></span>的微分，分别令：</div>
+<div class="description-paragraph" id="p0045" num="0042"> <span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0046" num="0043"> <span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0047" num="0044"> <span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0048" num="0045">那么俯仰通道的动态模型、滚转通道的动态模型、高度通道的动态模型中的扰动被观测量<span class="patent-image-not-available"></span>分别为<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，将三个通道中的观测器的离散形式表示为：</div>
+<div class="description-paragraph" id="p0049" num="0046"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0050" num="0047"> <span class="patent-image-not-available"></span>值为飞行器动态模型反馈回的状态量，<span class="patent-image-not-available"></span>为非线性函数，具体形式如下：</div>
+<div class="description-paragraph" id="p0051" num="0048"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0052" num="0049">上述函数中的<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为符号函数，<span class="patent-image-not-available"></span>对应系统方程<span class="patent-image-not-available"></span>的状态观测量、<span class="patent-image-not-available"></span>对应系统方程<span class="patent-image-not-available"></span>的状态观测量、<span class="patent-image-not-available"></span>对应系统方程扰动被观测量<span class="patent-image-not-available"></span>。可通过调节参数<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>来优化状态观测模块。</div>
+<div class="description-paragraph" id="p0053" num="0050">进一步地，步骤4中，为使设计的控制器的输出值能够快速的、无超调的跟踪给定的信号值<span class="patent-image-not-available"></span>， <span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，在控制器的初始阶段对跟踪的信号值做低通滤波处理；为了使设计的控制器根据当前的状态量误差实时调整控制输入，加速控制系统的收敛，在控制器的最后加入非线性函数以处理状态量误差值。</div>
+<div class="description-paragraph" id="p0054" num="0051">进一步地，步骤5中，基于输入的期望值<span class="patent-image-not-available"></span>，使用快速离散跟踪微分模块，输出期望值<span class="patent-image-not-available"></span>的过渡信号值<span class="patent-image-not-available"></span>以及<span class="patent-image-not-available"></span>的一个过度微分信号值<span class="patent-image-not-available"></span>，具体算法离散形式介绍如下：</div>
+<div class="description-paragraph" id="p0055" num="0052"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0056" num="0053">其中，<span class="patent-image-not-available"></span>表示期望值<span class="patent-image-not-available"></span>的近似值，在控制框架中<span class="patent-image-not-available"></span>分别为<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>代表<span class="patent-image-not-available"></span>值的变化率，<span class="patent-image-not-available"></span>是模型中设定的采样周期，其中<span class="patent-image-not-available"></span>函数的定义和符号函数<span class="patent-image-not-available"></span>函数有关，<span class="patent-image-not-available"></span>函数根据和0的值比较分别返回值1、0、-1；</div>
+<div class="description-paragraph" id="p0057" num="0054"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0058" num="0055">其中<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>为待调参数；</div>
+<div class="description-paragraph" id="p0059" num="0056">将过渡信号<span class="patent-image-not-available"></span>和步骤三中的观测量<span class="patent-image-not-available"></span>的误差量<span class="patent-image-not-available"></span>以及微分信号<span class="patent-image-not-available"></span>与步骤三<span class="patent-image-not-available"></span>的误差量<span class="patent-image-not-available"></span>在非线性误差反馈模块中进行非线性组合，最终输出为作用在飞行器模型上的控制量<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，其中使用的非线性函数的离散形式为<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为最速综合函数：</div>
+<div class="description-paragraph" id="p0060" num="0057"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0061" num="0058">其中<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>为待调试参数。</div>
+<div class="description-paragraph" id="p0062" num="0059">进一步地，步骤6中，考虑到带有舵面的三涵道飞行器在偏航力矩的复杂性和偏航角受近地飞行时地效的影响性，设计偏航控制为串联二阶PI控制，通过“内环—外环”来实现优化控制，外环待调试参数为<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，通过期望偏航姿态角<span class="patent-image-not-available"></span>和系统反馈的偏航姿态角<span class="patent-image-not-available"></span>的差值的PI控制输出为期望的偏航角速率指令<span class="patent-image-not-available"></span>，对内环中<span class="patent-image-not-available"></span>和反馈的状态量偏航角速率<span class="patent-image-not-available"></span>的差值同样进行PI控制，待调试参数为<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，最终输出期望的偏航力矩是<span class="patent-image-not-available"></span>和期望偏航力矩<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0063" num="0060">与现有技术相比，本发明的显著进步在于：本发明考虑在三涵道构型的控制器中融合自抗扰控制ADRC和PID控制的方法，有效地估计和补偿模型建立不准确带来的耦合干扰量，目的实现对飞行器姿态、高度等状态的精确控制，确保飞行的稳定性。</div>
+<div class="description-paragraph" id="p0064" num="0061">为更清楚说明本发明的功能特性以及结构参数，下面结合附图及具体实施方式进一步说明。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0065">附图说明</div>
+<div class="description-paragraph" id="p0066" num="0062">此处所说明的附图用来提供对本发明的进一步理解，构成本申请的一部分，本发明的示意性实施例及其说明用于解释本发明，并不构成对本发明的不当限定。在附图中：</div>
+<div class="description-paragraph" id="p0067" num="0063">图1是系统控制器和控制分配结构示意图；</div>
+<div class="description-paragraph" id="p0068" num="0064">图2是控制器框图；</div>
+<div class="description-paragraph" id="p0069" num="0065">图3是高度跟踪效果图；</div>
+<div class="description-paragraph" id="p0070" num="0066">图4是ADRC滚转角跟踪效果图；</div>
+<div class="description-paragraph" id="p0071" num="0067">图5是滚转角ADRC_PID控制跟踪效果对比图；</div>
+<div class="description-paragraph" id="p0072" num="0068">图6是俯仰角跟踪效果图；</div>
+<div class="description-paragraph" id="p0073" num="0069">图7是俯仰角ADRC_PID控制器跟踪效果对比图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0074">具体实施方式</div>
+<div class="description-paragraph" id="p0075" num="0070">下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅是本发明一部分实施例，而不是全部的实施例；基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0076" num="0071">一种面向地效基于自抗扰的旋翼低空飞行器控制方法，针对带舵面三旋翼飞行器的控制系统，构建了多通道协同控制架构，包含高度保持、偏航稳定、俯仰姿态、滚转姿态四个功能通道；其中高度通道、俯仰通道、滚转通道采用基于扩张状态观测器的自抗扰控制模型，通过非线性状态误差反馈实现扰动抑制；偏航通道采用参数整定优化的PID控制器，利用其周期性扰动抑制特性提升控制精度。</div>
+<div class="description-paragraph" id="p0077" num="0072">进一步地，针对近地悬停工况下地效干扰显著的问题，建立包含气动耦合效应和地面效应模型的近地悬停控制场景，具体步骤包括：</div>
+<div class="description-paragraph" id="p0078" num="0073">步骤1、建立近地飞行的飞行器动力学模型，并基于机体模型添加适配的地效模型；</div>
+<div class="description-paragraph" id="p0079" num="0074">步骤2、根据步骤1所得飞行器动力学模型建立多通道的协同控制框架；</div>
+<div class="description-paragraph" id="p0080" num="0075">步骤3、基于步骤2所得多通道的协同控制框架构造通道之间耦合干扰观测器；</div>
+<div class="description-paragraph" id="p0081" num="0076">步骤4、在各通道的干扰观测器的基础上对控制器加入跟踪信号模块和非线性的状态误差反馈模块，最终形成自抗扰控制的控制量输出值；</div>
+<div class="description-paragraph" id="p0082" num="0077">步骤5、使用离散化的方式整定自抗扰控制参数值；</div>
+<div class="description-paragraph" id="p0083" num="0078">步骤6、基于协同控制中的偏航通道进行参数整定优化的PID控制设计。</div>
+<div class="description-paragraph" id="p0084" num="0079">进一步地，步骤1中，将飞行器的姿态动力学模型设为：</div>
+<div class="description-paragraph" id="p0085" num="0080">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0086" num="0081"> <span class="patent-image-not-available"></span>是姿态角向量，<span class="patent-image-not-available"></span>是姿态角速度向量，<span class="patent-image-not-available"></span>为三涵道飞行器模型的转动惯量，<span class="patent-image-not-available"></span>表示飞行器受到的内部总力矩，其中包括螺旋桨在机体轴上产生的力矩，舵面在机体轴上产生的力矩，飞行器受到气动力矩，飞行器受到的外部干扰；</div>
+<div class="description-paragraph" id="p0087" num="0082">其中：</div>
+<div class="description-paragraph" id="p0088" num="0083">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0089" num="0084">考虑三涵道飞行器近地飞行时姿态变化很小，认为此时飞行器处于小角度的状态，基于此状态有<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0090" num="0085">飞行器受到沿机体系的<span class="patent-image-not-available"></span>轴向的合外力矩为</div>
+<div class="description-paragraph" id="p0091" num="0086">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0092" num="0087">其中<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>轴向建模时被忽略的力矩，<span class="patent-image-not-available"></span>为陀螺力矩在<span class="patent-image-not-available"></span>上产生的影响，<span class="patent-image-not-available"></span>为外部扰动带来的沿<span class="patent-image-not-available"></span>轴向的力矩，<span class="patent-image-not-available"></span>为螺旋桨在机体轴<span class="patent-image-not-available"></span>轴产生的力矩；那么有滚转通道的动态模型为：</div>
+<div class="description-paragraph" id="p0093" num="0088">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0094" num="0089">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0095" num="0090">其中<span class="patent-image-not-available"></span>为涵道飞行器沿<span class="patent-image-not-available"></span>轴的转动惯量，<span class="patent-image-not-available"></span>为系统内部扰动和外部扰动之和；</div>
+<div class="description-paragraph" id="p0096" num="0091">同样有俯仰通道的动态模型：</div>
+<div class="description-paragraph" id="p0097" num="0092">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0098" num="0093">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0099" num="0094">其中<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>轴向建模时被忽略的力矩，<span class="patent-image-not-available"></span>为陀螺力矩在<span class="patent-image-not-available"></span>上产生的影响，<span class="patent-image-not-available"></span>为外部扰动带来的沿<span class="patent-image-not-available"></span>轴向的力矩，<span class="patent-image-not-available"></span>为螺旋桨在机体轴<span class="patent-image-not-available"></span>轴产生的力矩，<span class="patent-image-not-available"></span>为涵道飞行器沿<span class="patent-image-not-available"></span>轴的转动惯量，<span class="patent-image-not-available"></span>为系统内部扰动和外部扰动之和；</div>
+<div class="description-paragraph" id="p0100" num="0095">将飞行器沿竖直方向的运动表示为高度通道的动态模型（在同样的飞行器小角度假设下）：</div>
+<div class="description-paragraph" id="p0101" num="0096">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0102" num="0097">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0103" num="0098">其中<span class="patent-image-not-available"></span>为沿<span class="patent-image-not-available"></span>轴力方向的系统内扰动，<span class="patent-image-not-available"></span>为沿<span class="patent-image-not-available"></span>轴力方向的系统外扰动，<span class="patent-image-not-available"></span>为飞行器质量，<span class="patent-image-not-available"></span>为飞行器螺旋桨产生的拉力，<span class="patent-image-not-available"></span>为重力加速度；对上述式子进行变形得：</div>
+<div class="description-paragraph" id="p0104" num="0099">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0105" num="0100">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0106" num="0101">为了对飞行器近地地效状态进行仿真验证，飞行器模型上需要添加除了一定的白噪声外还需要添加和飞行器质量相关的低频扰动信号值，因此在模型的左右涵道上增加50牛顿的正弦波扰动信号，即<span class="patent-image-not-available"></span>，其中<span class="patent-image-not-available"></span>为去除地效影响后的其他外部扰动，<span class="patent-image-not-available"></span>是飞行器姿态变化下的旋转矩阵。</div>
+<div class="description-paragraph" id="p0107" num="0102">进一步地，如图1所示，步骤2中，根据步骤1所得飞行器动力学模型建立多通道的协同控制框架，给定期望的滚转姿态角<span class="patent-image-not-available"></span>，俯仰姿态角<span class="patent-image-not-available"></span>，偏航姿态角<span class="patent-image-not-available"></span>和期望高度<span class="patent-image-not-available"></span>之后进行仿真；通过自抗扰控制器输出的控制值是：沿机体系<span class="patent-image-not-available"></span>轴产生的期望的力<span class="patent-image-not-available"></span>、沿机体系<span class="patent-image-not-available"></span>轴产生期望力矩<span class="patent-image-not-available"></span>、沿机体系<span class="patent-image-not-available"></span>轴产生期望力矩<span class="patent-image-not-available"></span>，通过PID控制器输出的控制量是沿机体系<span class="patent-image-not-available"></span>轴产生期望力矩<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，其中沿机体系<span class="patent-image-not-available"></span>轴产生期望力矩有两部分组成，其中带有舵面的三涵道飞行器模型左右涵道下方的航向舵提供了飞行器的期望偏航力矩是<span class="patent-image-not-available"></span>，由螺旋桨转速差产生的期望偏航力矩<span class="patent-image-not-available"></span>；将多通道协同控制器输出的控制量<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>通过分配输入到六自由度的飞行器动力学模型中；通过控制量的输入，飞行器模型可输出姿态角状态量<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，姿态角速率状态量<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，位置状态量<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，速度状态量<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>作为飞行器的状态反馈量。</div>
+<div class="description-paragraph" id="p0108" num="0103">进一步地，步骤3中，通道中的干扰观测器建立的核心是构造模型中的需要被观测的扰动量，下面统称为被观测量；将俯仰通道的动态模型、滚转通道的动态模型、高度通道的动态模型这三个二阶系统模型扩张成三阶状态观测模型，并用状态方程表示出来其中状态方程为：</div>
+<div class="description-paragraph" id="p0109" num="0104">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0110" num="0105"> <span class="patent-image-not-available"></span>为扰动被观测量<span class="patent-image-not-available"></span>的微分，分别令：</div>
+<div class="description-paragraph" id="p0111" num="0106"> <span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0112" num="0107"> <span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0113" num="0108"> <span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0114" num="0109">那么俯仰通道的动态模型、滚转通道的动态模型、高度通道的动态模型中的扰动被观测量<span class="patent-image-not-available"></span>分别为<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，将三个通道中的观测器的离散形式表示为：</div>
+<div class="description-paragraph" id="p0115" num="0110">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0116" num="0111"> <span class="patent-image-not-available"></span>值为飞行器动态模型反馈回的状态量，<span class="patent-image-not-available"></span>为非线性函数，具体形式如下：</div>
+<div class="description-paragraph" id="p0117" num="0112">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0118" num="0113">上述函数中的<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为符号函数，<span class="patent-image-not-available"></span>对应系统方程<span class="patent-image-not-available"></span>的状态观测量、<span class="patent-image-not-available"></span>对应系统方程<span class="patent-image-not-available"></span>的状态观测量、<span class="patent-image-not-available"></span>对应系统方程扰动被观测量<span class="patent-image-not-available"></span>。可通过调节参数<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>来优化状态观测模块。</div>
+<div class="description-paragraph" id="p0119" num="0114">进一步地，步骤4中，为使设计的控制器的输出值能够快速的、无超调的跟踪给定的信号值<span class="patent-image-not-available"></span>， <span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，在控制器的初始阶段对跟踪的信号值做低通滤波处理；为了使设计的控制器根据当前的状态量误差（状态量包含滚转角、俯仰角、滚转角速率、俯仰角速率、高度、垂向速度）实时调整控制输入，加速控制系统的收敛，在控制器的最后加入非线性函数（非线性函数包含<span class="patent-image-not-available"></span>函数以及<span class="patent-image-not-available"></span>函数）处理状态量误差值，具体处理步骤在步骤5以离散方法表示。</div>
+<div class="description-paragraph" id="p0120" num="0115">进一步地，步骤5中，基于输入的期望值<span class="patent-image-not-available"></span>，使用快速离散跟踪微分模块，输出期望值<span class="patent-image-not-available"></span>的过渡信号值<span class="patent-image-not-available"></span>以及<span class="patent-image-not-available"></span>的一个过度微分信号值<span class="patent-image-not-available"></span>，具体算法离散形式介绍如下：</div>
+<div class="description-paragraph" id="p0121" num="0116">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0122" num="0117">其中，<span class="patent-image-not-available"></span>表示期望值<span class="patent-image-not-available"></span>的近似值，如图2所示，在控制框架中<span class="patent-image-not-available"></span>分别为<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>代表<span class="patent-image-not-available"></span>值的变化率，<span class="patent-image-not-available"></span>是模型中设定的采样周期，其中<span class="patent-image-not-available"></span>函数的定义和符号函数<span class="patent-image-not-available"></span>函数有关，<span class="patent-image-not-available"></span>函数根据和0的值比较分别返回值1、0、-1（<span class="patent-image-not-available"></span>函数值大于零返回1,，等于零返回0，小于零返回-1）；</div>
+<div class="description-paragraph" id="p0123" num="0118">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0124" num="0119">其中<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>为待调参数；</div>
+<div class="description-paragraph" id="p0125" num="0120">将过渡信号<span class="patent-image-not-available"></span>和步骤三中的观测量<span class="patent-image-not-available"></span>的误差量<span class="patent-image-not-available"></span>以及微分信号<span class="patent-image-not-available"></span>与步骤三<span class="patent-image-not-available"></span>的误差量<span class="patent-image-not-available"></span>在非线性误差反馈模块中进行非线性组合，最终输出为作用在飞行器模型上的控制量<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，其中使用的非线性函数的离散形式为<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为最速综合函数：</div>
+<div class="description-paragraph" id="p0126" num="0121">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0127" num="0122">其中<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>为待调试参数。</div>
+<div class="description-paragraph" id="p0128" num="0123">进一步地，步骤6中，考虑到带有舵面的三涵道飞行器在偏航力矩的复杂性和偏航角受近地飞行时地效的影响性，设计偏航控制为串联二阶PI控制，通过“内环—外环”来实现优化控制，外环待调试参数为<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，通过期望偏航姿态角<span class="patent-image-not-available"></span>和系统反馈的偏航姿态角<span class="patent-image-not-available"></span>的差值的PI控制输出为期望的偏航角速率指令<span class="patent-image-not-available"></span>，对内环中<span class="patent-image-not-available"></span>和反馈的状态量偏航角速率<span class="patent-image-not-available"></span>的差值同样进行PI控制，待调试参数为<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，最终输出期望的偏航力矩是<span class="patent-image-not-available"></span>和期望偏航力矩<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0129" num="0124">本发明目的是提供一种面向地效基于自抗扰的旋翼低空飞行器控制方法，来解决旋翼低空飞行器控制过程中存在的非线性、不确定性以及耦合干扰等问题，提高飞行器的控制精度和飞行稳定性。根据图3可以看出两种控制模式都可以很好的到达期望高度。根据图4和图6可以看出时间t在15秒的时候扰动增大，但ADRC控制器跟踪效果迅速，稳定性好。根据图5可以看出低空悬停模式下滚转角受到了高频扰动和低频扰动的叠加影响，整个时间周期内角度值浮动相对较大，控制效果弱于ADRC控制器。根据图7可以看出低空悬停模式下的俯仰角同样受到了高频扰动和低频扰动的叠加影响，并且在整个时间周期内PID控制器的跟踪效果出现了静态误差现象，而ADRC很好的弥补了这个缺失。</div>
+<div class="description-paragraph" id="p0130" num="0125">需要说明的是，在本文中，诸如第一和第二等之类的关系术语仅仅用来将一个实体或者操作与另一个实体或操作区分开来，而不一定要求或者暗示这些实体或操作之间存在任何这种实际的关系或者顺序。而且，术语“包括”、“包含”或者其任何其他变体意在涵盖非排他性的包含，从而使得包括一系列要素的过程、方法、物品或者设备不仅包括那些要素，而且还包括没有明确列出的其他要素，或者是还包括为这种过程、方法、物品或者设备所固有的要素。</div>
+<div class="description-paragraph" id="p0131" num="0126">尽管已经示出和描述了本发明的实施例，对于本领域的普通技术人员而言，可以理解在不脱离本发明的原理和精神的情况下可以对这些实施例进行多种变化、修改、替换和变型，本发明的范围由所附权利要求及其等同物限定。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

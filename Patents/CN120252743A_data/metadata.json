@@ -1,0 +1,69 @@
+{
+    "patent_id": "CN120252743A",
+    "title": "CN120252743A - 基于数字孪生的低空飞行器导航误差补偿系统及方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Chongqing Kechuang Water Treatment Equipment Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120252743A/zh",
+    "citations": [
+        {
+            "Publication Number": "KR20190012439A (ko) *",
+            "Priority Date": "2017-07-27",
+            "Publication Date": "2019-02-11",
+            "Assignee": "전남대학교산학협력단",
+            "Title": "드론 위치 정보 보정 장치 및 방법",
+            "Link": "https://patents.google.com/patent/KR20190012439A/ko"
+        },
+        {
+            "Publication Number": "CN109974713A (zh) *",
+            "Priority Date": "2019-04-26",
+            "Publication Date": "2019-07-05",
+            "Assignee": "安阳全丰航空植保科技股份有限公司",
+            "Title": "一种基于地表特征群的导航方法及系统",
+            "Link": "https://patents.google.com/patent/CN109974713A/zh"
+        },
+        {
+            "Publication Number": "CN116753917A (zh) *",
+            "Priority Date": "2023-05-25",
+            "Publication Date": "2023-09-15",
+            "Assignee": "云南电网有限责任公司电力科学研究院",
+            "Title": "定位校正方法、系统、飞行器及计算机可读存储设备",
+            "Link": "https://patents.google.com/patent/CN116753917A/zh"
+        },
+        {
+            "Publication Number": "CN116339389A (zh) *",
+            "Priority Date": "2023-05-30",
+            "Publication Date": "2023-06-27",
+            "Assignee": "北自所(北京)科技发展股份有限公司",
+            "Title": "基于数字孪生的旋翼无人机盘库方法、装置及存储介质",
+            "Link": "https://patents.google.com/patent/CN116339389A/zh"
+        },
+        {
+            "Publication Number": "EP4530994A1 (en) *",
+            "Priority Date": "2023-09-26",
+            "Publication Date": "2025-04-02",
+            "Assignee": "Honeywell International Inc.",
+            "Title": "Systems and methods for extracting surface markers for aircraft navigation",
+            "Link": "https://patents.google.com/patent/EP4530994A1/en"
+        },
+        {
+            "Publication Number": "CN118151675A (zh) *",
+            "Priority Date": "2024-05-09",
+            "Publication Date": "2024-06-07",
+            "Assignee": "南京新航线无人机科技有限公司",
+            "Title": "用于复杂场景巡航的无人机姿态控制方法及系统",
+            "Link": "https://patents.google.com/patent/CN118151675A/zh"
+        },
+        {
+            "Publication Number": "CN119759075A (zh) *",
+            "Priority Date": "2024-12-17",
+            "Publication Date": "2025-04-04",
+            "Assignee": "国网河北省电力有限公司电力科学研究院",
+            "Title": "基于改进yolov5的配网线路无人机巡检辅助拍照方法及装置",
+            "Link": "https://patents.google.com/patent/CN119759075A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:06:24"
+}

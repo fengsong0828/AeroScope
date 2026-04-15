@@ -1,0 +1,156 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120452254A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES501511058">
+<invention-title id="title1" lang="ZH">适用于低空多飞行器混合起降场的红绿灯管控方法及设备</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及起降场管控，具体涉及适用于低空多飞行器混合起降场的红绿灯管控方法及设备。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">近年来，低空领域的航空活动愈发活跃，无人机、载人飞行器等多种飞行器在低空混合起降的场景日益常见。低空空域环境复杂多变，存在诸多影响飞行安全与效率的因素。</div>
+<div class="description-paragraph" id="p0005" num="0003">在空域状态管理方面，传统方式缺乏直观且精细化的表达，难以对空域进行细致划分并清晰标识出适合与不适合飞行的空域，对于载人飞行器经过的特定空域，也缺乏有效的手段明确其禁飞状态及时间段。这使得飞行器操作人员难以准确、及时地掌握空域情况，增加了飞行冲突和安全事故发生的风险。</div>
+<div class="description-paragraph" id="p0006" num="0004">在无人机飞行路径规划方面，随着低空飞行器数量的不断增加，空域呈现出大规模时变的特性，同时动态物体的轨迹预测存在不确定性。现有的路径规划算法在处理这类复杂情况时存在明显不足：一方面，难以高效地检测大规模时变空域中的冲突，无法及时生成空域冲突对集合，导致规划出的路径可能存在潜在的冲突风险；另一方面，在路径规划过程中，未能充分考虑动态物体轨迹预测的不确定性，使得生成的轨迹在面对实际飞行中的动态变化时，无法保证可行性和安全性，难以满足低空多飞行器混合起降场对飞行安全与高效运行的要求。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">针对现有技术所存在的上述缺点，本发明提供了适用于低空多飞行器混合起降场的红绿灯管控方法及设备，能够有效克服现有技术所存在的在空域状态管理方面缺乏直观且精细化的表达，以及在无人机飞行路径规划方面难以满足低空多飞行器混合起降场对飞行安全与高效运行要求的缺陷。</div>
+<div class="description-paragraph" id="p0009" num="0006">为实现以上目的，本发明通过以下技术方案予以实现：</div>
+<div class="description-paragraph" id="p0010">适用于低空多飞行器混合起降场的红绿灯管控方法，将空域划分为多个三维网格单元，对适合飞行的三维网格单元以绿色表示，对不适合飞行的三维网格单元以红色表示，对载人飞行器在一定时间段内经过的三维网格单元以醒目方式提示，明确相应空域在一定时间段内为严格禁飞区，并采用改进快速与自适应感知规划算法为无人机规划飞行路径；</div>
+<div class="description-paragraph" id="p0011">其中，在改进快速与自适应感知规划算法中：</div>
+<div class="description-paragraph" id="p0012">采用空时网格空域冲突检测算法处理大规模时变空域的冲突检测，从计算复杂度高的矢量方法转换为计算复杂度低的网格之间的集合运算，快速生成空域冲突对集合，并根据无人机的当前位置、目标位置，以及空域冲突对集合和动态物体的预测轨迹，直接生成动态可行且安全的轨迹，同时在轨迹生成过程中，引入惩罚项应对动态物体轨迹预测的不确定性，结合不确定性感知的轨迹生成方法生成飞行路径。</div>
+<div class="description-paragraph" id="p0013" num="0007">优选地，所述采用改进快速与自适应感知规划算法为无人机规划飞行路径，包括：</div>
+<div class="description-paragraph" id="p0014">S1、无人机持续采集起降场周边空域的实时环境数据，并对预先划分的三维网格单元进行状态更新；</div>
+<div class="description-paragraph" id="p0015">S2、对采集到的点云数据进行点云分割，以识别静态物体与动态物体，并对动态物体进行轨迹跟踪；</div>
+<div class="description-paragraph" id="p0016">S3、采用空时网格空域冲突检测算法处理大规模时变空域的冲突检测，从计算复杂度高的矢量方法转换为计算复杂度低的网格之间的集合运算，快速生成空域冲突对集合，并对各组空域冲突对进行优先级评估；</div>
+<div class="description-paragraph" id="p0017">S4、根据无人机的当前位置、目标位置，以及空域冲突对集合和动态物体的预测轨迹，直接生成动态可行且安全的轨迹，同时在轨迹生成过程中，引入惩罚项应对动态物体轨迹预测的不确定性，结合不确定性感知的轨迹生成方法生成飞行路径；</div>
+<div class="description-paragraph" id="p0018">S5、根据动态物体的实时预测轨迹评估当前飞行路径是否存在碰撞风险，若存在碰撞风险则进行自适应重新规划，以生成新的飞行路径。</div>
+<div class="description-paragraph" id="p0019" num="0008">优选地，S1中无人机持续采集起降场周边空域的实时环境数据，并对预先划分的三维网格单元进行状态更新，包括：</div>
+<div class="description-paragraph" id="p0020">S11、无人机通过激光雷达、摄像头在内的传感器，持续采集起降场周边空域的包含点云数据、图像数据在内的实时环境数据；</div>
+<div class="description-paragraph" id="p0021">S12、根据预先划分的三维网格单元，结合实时环境数据和空域管理信息，对每个三维网格单元进行状态更新：</div>
+<div class="description-paragraph" id="p0022">适合飞行的三维网格单元以绿色表示，表明相应空域无障碍物或障碍物对飞行无影响；</div>
+<div class="description-paragraph" id="p0023">不适合飞行的三维网格单元以红色表示，表明相应空域存在静态障碍物；</div>
+<div class="description-paragraph" id="p0024">对载人飞行器在一定时间段内经过的三维网格单元以高亮红色/闪烁红色提示，明确相应空域在一定时间段内为严格禁飞区，无人机必须避开，优先确保载人飞行器的飞行安全。</div>
+<div class="description-paragraph" id="p0025" num="0009">优选地，S2中对采集到的点云数据进行点云分割，以识别静态物体与动态物体，并对动态物体进行轨迹跟踪，包括：</div>
+<div class="description-paragraph" id="p0026">S21、分析点云数据的包含距离、密度和曲率在内的几何特征，将点云数据分割为不同的簇，以识别静态物体和动态物体；</div>
+<div class="description-paragraph" id="p0027">S22、对于识别出的动态物体，采用数据关联方法将新检测到的动态簇与现有的跟踪器进行关联，并对动态物体进行轨迹跟踪。</div>
+<div class="description-paragraph" id="p0028" num="0010">优选地，S22中对于识别出的动态物体，采用数据关联方法将新检测到的动态簇与现有的跟踪器进行关联，并对动态物体进行轨迹跟踪，包括：</div>
+<div class="description-paragraph" id="p0029">若动态簇与某个跟踪器的距离相似度和特征相似度满足匹配条件，则将该动态簇分配给该跟踪器，并利用卡尔曼滤波器对动态物体进行轨迹预测。</div>
+<div class="description-paragraph" id="p0030" num="0011">优选地，S3中采用空时网格空域冲突检测算法处理大规模时变空域的冲突检测，从计算复杂度高的矢量方法转换为计算复杂度低的网格之间的集合运算，快速生成空域冲突对集合，并对各组空域冲突对进行优先级评估，包括：</div>
+<div class="description-paragraph" id="p0031">S31、对起降场周边的空域集合进行多尺度网格化剖分，得到各空域的时间编码、高度编码和平面维编码，并按照时间、高度、平面维的顺序对任意两个空域进行交集运算，根据运算结果生成空域冲突对集合；</div>
+<div class="description-paragraph" id="p0032">S32、考虑冲突的包含严重程度、发生时间和动态物体类型在内的因素，确定各组空域冲突对的优先级。</div>
+<div class="description-paragraph" id="p0033" num="0012">优选地，S31中对起降场周边的空域集合进行多尺度网格化剖分，得到各空域的时间编码、高度编码和平面维编码，并按照时间、高度、平面维的顺序对任意两个空域进行交集运算，根据运算结果生成空域冲突对集合，包括：</div>
+<div class="description-paragraph" id="p0034">S311、输入起降场周边的空域集合Airspaces={airspace<sub>1</sub>,airspace<sub>2</sub>,…,airspace<sub>N</sub>}，N为空域集合Airspaces中的空域数量；</div>
+<div class="description-paragraph" id="p0035">S312、对起降场周边的空域集合进行多尺度网格化剖分，得到各空域的时间编码、高度编码和平面维编码；</div>
+<div class="description-paragraph" id="p0036">S313、初始化第一轮空域冲突对集合<span class="patent-image-not-available"></span>，遍历空域集合Airspaces中的所有空域对<span class="patent-image-not-available"></span>，对空域i的时间编码<span class="patent-image-not-available"></span>与空域j的时间编码<span class="patent-image-not-available"></span>进行比较，若<span class="patent-image-not-available"></span>，则将空域i和空域j加入第一轮空域冲突对集合<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0037">S314、初始化第二轮空域冲突对集合<span class="patent-image-not-available"></span>，遍历第一轮空域冲突对集合<span class="patent-image-not-available"></span>中的所有空域对<span class="patent-image-not-available"></span>，N'为第一轮空域冲突对集合<span class="patent-image-not-available"></span>中的空域数量，对空域m的高度编码<span class="patent-image-not-available"></span>与空域n的高度编码<span class="patent-image-not-available"></span>进行比较，若<span class="patent-image-not-available"></span>，则将空域m和空域n加入第二轮空域冲突对集合<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0038">S315、初始化最终空域冲突对集合<span class="patent-image-not-available"></span>，遍历第二轮空域冲突对集合<span class="patent-image-not-available"></span>中的所有空域对<span class="patent-image-not-available"></span>，N''为第二轮空域冲突对集合<span class="patent-image-not-available"></span>中的空域数量，对空域x的平面维编码<span class="patent-image-not-available"></span>与空域y的平面维编码<span class="patent-image-not-available"></span>进行比较，若<span class="patent-image-not-available"></span>，则将空域x和空域y加入最终空域冲突对集合<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0039">S316、输出最终空域冲突对集合Conflict。</div>
+<div class="description-paragraph" id="p0040" num="0013">优选地，S4中根据无人机的当前位置、目标位置，以及空域冲突对集合和动态物体的预测轨迹，直接生成动态可行且安全的轨迹，同时在轨迹生成过程中，引入惩罚项应对动态物体轨迹预测的不确定性，结合不确定性感知的轨迹生成方法生成飞行路径，包括：</div>
+<div class="description-paragraph" id="p0041">在无需使用前端路径搜索和安全走廊生成的情况下，根据无人机的当前位置、目标位置，以及空域冲突对集合和动态物体的预测轨迹，直接生成动态可行且安全的轨迹；</div>
+<div class="description-paragraph" id="p0042">同时，在轨迹生成过程中，引入惩罚项应对动态物体轨迹预测的不确定性，结合不确定性感知的轨迹生成方法生成飞行路径，以增大无人机与动态物体之间的安全距离；</div>
+<div class="description-paragraph" id="p0043">其中，轨迹生成的目标函数F为：</div>
+<div class="description-paragraph" id="p0044"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0045">上式中，f<sub>s</sub>为期望轨迹顺滑的项，f<sub>v</sub>+f<sub>a</sub>为期望轨迹的速度和加速度有上限的代价项，f<sub>c</sub>为期望轨迹无碰撞的惩罚项，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>均为权重系数，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为无人机的轨迹点索引，J为动态物体的预测轨迹点索引，<span class="patent-image-not-available"></span>为无人机的轨迹点I与动态物体的预测轨迹点J之间的距离，<span class="patent-image-not-available"></span>为权重系数。</div>
+<div class="description-paragraph" id="p0046" num="0014">优选地，S5中根据动态物体的实时预测轨迹评估当前飞行路径是否存在碰撞风险，若存在碰撞风险则进行自适应重新规划，以生成新的飞行路径，包括：</div>
+<div class="description-paragraph" id="p0047">S51、根据动态物体的实时预测轨迹计算当前飞行路径与动态物体之间的最近距离，并与安全阈值进行比较，若存在碰撞风险，则进行自适应重新规划；</div>
+<div class="description-paragraph" id="p0048">S52、进行自适应重新规划时，算法根据动态物体的实时预测轨迹计算一个过渡位置，将无人机推向自由空间，并根据无人机的目标位置、过渡位置，以及空域冲突对集合和动态物体的预测轨迹，重新生成新的飞行路径。</div>
+<div class="description-paragraph" id="p0049" num="0015">适用于低空多飞行器混合起降场的红绿灯管控设备，用于执行上述适用于低空多飞行器混合起降场的红绿灯管控方法，包括存储器和处理器，存储器中存储有计算机程序指令，当计算机程序指令被处理器执行时，该设备被配置来执行以下操作：</div>
+<div class="description-paragraph" id="p0050">将空域划分为多个三维网格单元，对适合飞行的三维网格单元以绿色表示，对不适合飞行的三维网格单元以红色表示，对载人飞行器在一定时间段内经过的三维网格单元以醒目方式提示，明确相应空域在一定时间段内为严格禁飞区，并采用改进快速与自适应感知规划算法为无人机规划飞行路径；</div>
+<div class="description-paragraph" id="p0051">其中，在改进快速与自适应感知规划算法中：</div>
+<div class="description-paragraph" id="p0052">采用空时网格空域冲突检测算法处理大规模时变空域的冲突检测，从计算复杂度高的矢量方法转换为计算复杂度低的网格之间的集合运算，快速生成空域冲突对集合，并根据无人机的当前位置、目标位置，以及空域冲突对集合和动态物体的预测轨迹，直接生成动态可行且安全的轨迹，同时在轨迹生成过程中，引入惩罚项应对动态物体轨迹预测的不确定性，结合不确定性感知的轨迹生成方法生成飞行路径。</div>
+<div class="description-paragraph" id="p0053" num="0016">与现有技术相比，本发明所提供的适用于低空多飞行器混合起降场的红绿灯管控方法及设备，具有以下有益效果：</div>
+<div class="description-paragraph" id="p0054">1）空域状态直观清晰：将空域划分为多个三维网格单元，并用绿色、红色分别表示适合、不适合飞行的三维网格单元，同时对载人飞行器在特定时间段内经过的三维网格单元以醒目方式提示，明确其为严格禁飞区，这种直观的空域状态表示方法，使飞行器操作人员能够准确、及时地掌握空域情况，有效降低飞行冲突和安全事故发生的风险，提升低空飞行的安全性；</div>
+<div class="description-paragraph" id="p0055">2）高效路径规划：采用改进快速与自适应感知规划算法为无人机规划飞行路径，该算法利用空时网格空域冲突检测算法处理大规模时变空域的冲突检测，从计算复杂度高的矢量方法转换为计算复杂度低的网格之间的集合运算，快速生成空域冲突对集合，并结合无人机的当前位置、目标位置以及动态物体的预测轨迹，直接生成动态可行且安全的轨迹，这种方式大大提高了路径规划的效率和准确性，确保无人机在复杂低空环境中的飞行安全；</div>
+<div class="description-paragraph" id="p0056">3）有效应对不确定性：在轨迹生成过程中，引入惩罚项来应对动态物体轨迹预测的不确定性，结合不确定性感知的轨迹生成方法，使生成的飞行路径更加稳健，能够在面对实际飞行中的动态变化时，依然保持可行性和安全性，大大增强了无人机在复杂低空环境中的适应性和鲁棒性；</div>
+<div class="description-paragraph" id="p0057">4）提高运行效率：通过直观的空域状态表示和高效的路径规划，本发明有助于优化低空多飞行器混合起降场的运行流程，减少飞行器之间的等待时间和冲突，从而提高整个起降场的运行效率。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0058">附图说明</div>
+<div class="description-paragraph" id="p0059" num="0017">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍。显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0060" num="0018">图1 为本发明的流程示意图；</div>
+<div class="description-paragraph" id="p0061">图2 为本发明中采用改进快速与自适应感知规划算法为无人机规划飞行路径的流程示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0062">具体实施方式</div>
+<div class="description-paragraph" id="p0063" num="0019">为使本发明实施例的目的、技术方案和优点更加清楚，下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述。显然，所描述的实施例是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有作出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0064" num="0020">适用于低空多飞行器混合起降场的红绿灯管控方法，如图1所示，将空域划分为多个三维网格单元，对适合飞行的三维网格单元以绿色表示，对不适合飞行的三维网格单元以红色表示，对载人飞行器在一定时间段内经过的三维网格单元以醒目方式提示，明确相应空域在一定时间段内为严格禁飞区，并采用改进快速与自适应感知规划算法为无人机规划飞行路径；</div>
+<div class="description-paragraph" id="p0065">其中，在改进快速与自适应感知规划算法中：</div>
+<div class="description-paragraph" id="p0066">采用空时网格空域冲突检测算法处理大规模时变空域的冲突检测，从计算复杂度高的矢量方法转换为计算复杂度低的网格之间的集合运算，快速生成空域冲突对集合，并根据无人机的当前位置、目标位置，以及空域冲突对集合和动态物体的预测轨迹，直接生成动态可行且安全的轨迹，同时在轨迹生成过程中，引入惩罚项应对动态物体轨迹预测的不确定性，结合不确定性感知的轨迹生成方法生成飞行路径。</div>
+<div class="description-paragraph" id="p0067" num="0021">采用改进快速与自适应感知规划算法为无人机规划飞行路径，包括：</div>
+<div class="description-paragraph" id="p0068">S1、无人机持续采集起降场周边空域的实时环境数据，并对预先划分的三维网格单元进行状态更新；</div>
+<div class="description-paragraph" id="p0069">S2、对采集到的点云数据进行点云分割，以识别静态物体与动态物体，并对动态物体进行轨迹跟踪；</div>
+<div class="description-paragraph" id="p0070">S3、采用空时网格空域冲突检测算法处理大规模时变空域的冲突检测，从计算复杂度高的矢量方法转换为计算复杂度低的网格之间的集合运算，快速生成空域冲突对集合，并对各组空域冲突对进行优先级评估；</div>
+<div class="description-paragraph" id="p0071">S4、根据无人机的当前位置、目标位置，以及空域冲突对集合和动态物体的预测轨迹，直接生成动态可行且安全的轨迹，同时在轨迹生成过程中，引入惩罚项应对动态物体轨迹预测的不确定性，结合不确定性感知的轨迹生成方法生成飞行路径；</div>
+<div class="description-paragraph" id="p0072">S5、根据动态物体的实时预测轨迹评估当前飞行路径是否存在碰撞风险，若存在碰撞风险则进行自适应重新规划，以生成新的飞行路径。</div>
+<div class="description-paragraph" id="p0073" num="0022">1）S1中无人机持续采集起降场周边空域的实时环境数据，并对预先划分的三维网格单元进行状态更新，包括：</div>
+<div class="description-paragraph" id="p0074">S11、无人机通过激光雷达、摄像头在内的传感器，持续采集起降场周边空域的包含点云数据、图像数据在内的实时环境数据；</div>
+<div class="description-paragraph" id="p0075">S12、根据预先划分的三维网格单元，结合实时环境数据和空域管理信息，对每个三维网格单元进行状态更新：</div>
+<div class="description-paragraph" id="p0076">适合飞行的三维网格单元以绿色表示，表明相应空域无障碍物或障碍物对飞行无影响；</div>
+<div class="description-paragraph" id="p0077">不适合飞行的三维网格单元以红色表示，表明相应空域存在静态障碍物；</div>
+<div class="description-paragraph" id="p0078">对载人飞行器在一定时间段内经过的三维网格单元以高亮红色/闪烁红色提示，明确相应空域在一定时间段内为严格禁飞区，无人机必须避开，优先确保载人飞行器的飞行安全。</div>
+<div class="description-paragraph" id="p0079" num="0023">2）S2中对采集到的点云数据进行点云分割，以识别静态物体与动态物体，并对动态物体进行轨迹跟踪，包括：</div>
+<div class="description-paragraph" id="p0080">S21、分析点云数据的包含距离、密度和曲率在内的几何特征，将点云数据分割为不同的簇，以识别静态物体和动态物体；</div>
+<div class="description-paragraph" id="p0081">S22、对于识别出的动态物体，采用数据关联方法将新检测到的动态簇与现有的跟踪器进行关联，并对动态物体进行轨迹跟踪。</div>
+<div class="description-paragraph" id="p0082" num="0024">具体地，S22中对于识别出的动态物体，采用数据关联方法将新检测到的动态簇与现有的跟踪器进行关联，并对动态物体进行轨迹跟踪，包括：</div>
+<div class="description-paragraph" id="p0083">若动态簇与某个跟踪器的距离相似度和特征相似度满足匹配条件，则将该动态簇分配给该跟踪器，并利用卡尔曼滤波器对动态物体进行轨迹预测。</div>
+<div class="description-paragraph" id="p0084" num="0025">3）S3中采用空时网格空域冲突检测算法处理大规模时变空域的冲突检测，从计算复杂度高的矢量方法转换为计算复杂度低的网格之间的集合运算，快速生成空域冲突对集合，并对各组空域冲突对进行优先级评估，包括：</div>
+<div class="description-paragraph" id="p0085">S31、对起降场周边的空域集合进行多尺度网格化剖分，得到各空域的时间编码、高度编码和平面维编码，并按照时间、高度、平面维的顺序对任意两个空域进行交集运算，根据运算结果生成空域冲突对集合；</div>
+<div class="description-paragraph" id="p0086">S32、考虑冲突的包含严重程度、发生时间和动态物体类型在内的因素，确定各组空域冲突对的优先级。</div>
+<div class="description-paragraph" id="p0087" num="0026">具体地，S31中对起降场周边的空域集合进行多尺度网格化剖分，得到各空域的时间编码、高度编码和平面维编码，并按照时间、高度、平面维的顺序对任意两个空域进行交集运算，根据运算结果生成空域冲突对集合，包括：</div>
+<div class="description-paragraph" id="p0088">S311、输入起降场周边的空域集合Airspaces={airspace<sub>1</sub>,airspace<sub>2</sub>,…,airspace<sub>N</sub>}，N为空域集合Airspaces中的空域数量；</div>
+<div class="description-paragraph" id="p0089">S312、对起降场周边的空域集合进行多尺度网格化剖分，得到各空域的时间编码、高度编码和平面维编码；</div>
+<div class="description-paragraph" id="p0090">S313、初始化第一轮空域冲突对集合<span class="patent-image-not-available"></span>，遍历空域集合Airspaces中的所有空域对<span class="patent-image-not-available"></span>，对空域i的时间编码<span class="patent-image-not-available"></span>与空域j的时间编码<span class="patent-image-not-available"></span>进行比较，若<span class="patent-image-not-available"></span>，则将空域i和空域j加入第一轮空域冲突对集合<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0091">S314、初始化第二轮空域冲突对集合<span class="patent-image-not-available"></span>，遍历第一轮空域冲突对集合<span class="patent-image-not-available"></span>中的所有空域对<span class="patent-image-not-available"></span>，N'为第一轮空域冲突对集合<span class="patent-image-not-available"></span>中的空域数量，对空域m的高度编码<span class="patent-image-not-available"></span>与空域n的高度编码<span class="patent-image-not-available"></span>进行比较，若<span class="patent-image-not-available"></span>，则将空域m和空域n加入第二轮空域冲突对集合<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0092">S315、初始化最终空域冲突对集合<span class="patent-image-not-available"></span>，遍历第二轮空域冲突对集合<span class="patent-image-not-available"></span>中的所有空域对<span class="patent-image-not-available"></span>，N''为第二轮空域冲突对集合<span class="patent-image-not-available"></span>中的空域数量，对空域x的平面维编码<span class="patent-image-not-available"></span>与空域y的平面维编码<span class="patent-image-not-available"></span>进行比较，若<span class="patent-image-not-available"></span>，则将空域x和空域y加入最终空域冲突对集合<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0093">S316、输出最终空域冲突对集合Conflict。</div>
+<div class="description-paragraph" id="p0094" num="0027">4）S4中根据无人机的当前位置、目标位置，以及空域冲突对集合和动态物体的预测轨迹，直接生成动态可行且安全的轨迹，同时在轨迹生成过程中，引入惩罚项应对动态物体轨迹预测的不确定性，结合不确定性感知的轨迹生成方法生成飞行路径，包括：</div>
+<div class="description-paragraph" id="p0095">在无需使用前端路径搜索和安全走廊生成的情况下，根据无人机的当前位置、目标位置，以及空域冲突对集合和动态物体的预测轨迹，直接生成动态可行且安全的轨迹；</div>
+<div class="description-paragraph" id="p0096">同时，在轨迹生成过程中，引入惩罚项应对动态物体轨迹预测的不确定性，结合不确定性感知的轨迹生成方法生成飞行路径，以增大无人机与动态物体之间的安全距离；</div>
+<div class="description-paragraph" id="p0097">其中，轨迹生成的目标函数F为：</div>
+<div class="description-paragraph" id="p0098"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0099">上式中，f<sub>s</sub>为期望轨迹顺滑的项，f<sub>v</sub>+f<sub>a</sub>为期望轨迹的速度和加速度有上限的代价项，f<sub>c</sub>为期望轨迹无碰撞的惩罚项，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>均为权重系数，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为无人机的轨迹点索引，J为动态物体的预测轨迹点索引，<span class="patent-image-not-available"></span>为无人机的轨迹点I与动态物体的预测轨迹点J之间的距离，<span class="patent-image-not-available"></span>为权重系数。</div>
+<div class="description-paragraph" id="p0100" num="0028">5）S5中根据动态物体的实时预测轨迹评估当前飞行路径是否存在碰撞风险，若存在碰撞风险则进行自适应重新规划，以生成新的飞行路径，包括：</div>
+<div class="description-paragraph" id="p0101">S51、根据动态物体的实时预测轨迹计算当前飞行路径与动态物体之间的最近距离，并与安全阈值进行比较，若存在碰撞风险，则进行自适应重新规划；</div>
+<div class="description-paragraph" id="p0102">S52、进行自适应重新规划时，算法根据动态物体的实时预测轨迹计算一个过渡位置，将无人机推向自由空间，并根据无人机的目标位置、过渡位置，以及空域冲突对集合和动态物体的预测轨迹，重新生成新的飞行路径。</div>
+<div class="description-paragraph" id="p0103" num="0029">在上述公开了适用于低空多飞行器混合起降场的红绿灯管控方法的基础上，本申请技术方案中还公开了一种适用于低空多飞行器混合起降场的红绿灯管控设备，用于执行上述适用于低空多飞行器混合起降场的红绿灯管控方法，包括存储器和处理器，存储器中存储有计算机程序指令，当计算机程序指令被处理器执行时，该设备被配置来执行以下操作：</div>
+<div class="description-paragraph" id="p0104">将空域划分为多个三维网格单元，对适合飞行的三维网格单元以绿色表示，对不适合飞行的三维网格单元以红色表示，对载人飞行器在一定时间段内经过的三维网格单元以醒目方式提示，明确相应空域在一定时间段内为严格禁飞区，并采用改进快速与自适应感知规划算法为无人机规划飞行路径；</div>
+<div class="description-paragraph" id="p0105">其中，在改进快速与自适应感知规划算法中：</div>
+<div class="description-paragraph" id="p0106">采用空时网格空域冲突检测算法处理大规模时变空域的冲突检测，从计算复杂度高的矢量方法转换为计算复杂度低的网格之间的集合运算，快速生成空域冲突对集合，并根据无人机的当前位置、目标位置，以及空域冲突对集合和动态物体的预测轨迹，直接生成动态可行且安全的轨迹，同时在轨迹生成过程中，引入惩罚项应对动态物体轨迹预测的不确定性，结合不确定性感知的轨迹生成方法生成飞行路径。</div>
+<div class="description-paragraph" id="p0107" num="0030">为了更好地说明本申请技术方案中采用空时网格空域冲突检测算法处理大规模时变空域的冲突检测的技术效果，下面结合三组对比实验进行详细说明：</div>
+<div class="description-paragraph" id="p0108">1）对比实验一：小规模场景</div>
+<div class="description-paragraph" id="p0109">采用空时网格空域冲突检测算法与现有的矢量检测法对小规模时变空域（包含30个空域）进行冲突检测，实验结果如表1所示：</div>
+<div class="description-paragraph" id="p0110">表1 30个空域的冲突检测结果对比</div>
+<div class="description-paragraph" id="p0111">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0112" num="0031">从表1可以看出，在环境中存在30个空域的情况下，不同方法的检测时间不同，矢量检测法在检测时间方面较长，两种方法都检测出了相同数量的空域冲突对。</div>
+<div class="description-paragraph" id="p0113" num="0032">2）对比实验二：中等规模场景</div>
+<div class="description-paragraph" id="p0114">A、采用空时网格空域冲突检测算法与现有的矢量检测法对中等规模时变空域（包含100个空域）进行冲突检测，实验结果如表2所示：</div>
+<div class="description-paragraph" id="p0115">表2 100个空域的冲突检测结果对比</div>
+<div class="description-paragraph" id="p0116">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0117" num="0033">B、采用空时网格空域冲突检测算法与现有的矢量检测法对中等规模时变空域（包含200个空域）进行冲突检测，实验结果如表3所示：</div>
+<div class="description-paragraph" id="p0118">表3 200个空域的冲突检测结果对比</div>
+<div class="description-paragraph" id="p0119">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0120" num="0034">C、采用空时网格空域冲突检测算法与现有的矢量检测法对中等规模时变空域（包含400个空域）进行冲突检测，实验结果如表4所示：</div>
+<div class="description-paragraph" id="p0121">表4 400个空域的冲突检测结果对比</div>
+<div class="description-paragraph" id="p0122">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0123" num="0035">从表2至表4可以看出，当空域数量为100个时，两种方法的检测时间仍在秒级以下，尚能满足空域冲突的快速检测需求，但是空时网格空域冲突检测算法相较于矢量检测法已经呈现出较为明显的优势；当空域数量增加至200个时，矢量检测法的耗时已经达到秒级，空时网格空域冲突检测算法的耗时仍在毫秒级，这是因为采用空时网格空域冲突检测算法能够从计算复杂度较高的矢量方法转换为计算复杂度较低的网格之间的集合运算，有效解决了因空域数量增加而导致计算复杂度上升的问题。</div>
+<div class="description-paragraph" id="p0124" num="0036">3）对比实验三：大规模场景</div>
+<div class="description-paragraph" id="p0125">采用空时网格空域冲突检测算法与现有的矢量检测法对大规模时变空域（包含1000个空域）进行冲突检测，实验结果如表5所示：</div>
+<div class="description-paragraph" id="p0126">表5 1000个空域的冲突检测结果对比</div>
+<div class="description-paragraph" id="p0127">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0128" num="0037">从表5可以看出，在处理大规模时变空域的冲突检测时，无论是空域冲突对的检出数量，还是耗费的检测时间，空时网格空域冲突检测算法相较于矢量检测法均具有非常明显的优势。</div>
+<div class="description-paragraph" id="p0129" num="0038">以上实施例仅用以说明本发明的技术方案，而非对其限制；尽管参照前述实施例对本发明进行了详细的说明，本领域的普通技术人员应当理解：其依然可以对前述各实施例所记载的技术方案进行修改，或者对其中部分技术特征进行等同替换；而这些修改或者替换，并不会使相应技术方案的本质脱离本发明各实施例技术方案的精神和范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

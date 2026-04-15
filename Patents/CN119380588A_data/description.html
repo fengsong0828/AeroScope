@@ -1,0 +1,188 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119380588A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES486412678">
+<invention-title id="title1" lang="ZH">一种低空飞行器实时监管及冲突预警系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及监管预警技术领域，尤其涉及一种低空飞行器实时监管及冲突预警系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空飞行器在城市空域、农业作业、环境监测等领域的广泛应用，低空空域越发拥堵，低空飞行器在过程中不可避免出现飞行冲突的问题，严重影响飞行安全；此外，低空飞行器在飞行过程中存在飞行路径偏离以及非法飞行等安全隐患，而现有技术对低空飞行器的监管力度不足。</div>
+<div class="description-paragraph" id="p0005" num="0003">因此，本发明提供一种低空飞行器实时监管及冲突预警系统。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本发明提供一种低空飞行器实时监管及冲突预警系统，通过对低空飞行器进行多源数据采集，获取低空飞行器的实时飞行数据；构建低空飞行器监管预警平台，将实时飞行数据传输至低空飞行器监管预警平台中进行数据融合处理，根据数据融合处理结果输出低空飞行器的实时监管数据；当判定低空飞行器存在冲突可能性时，根据低空飞行器的实时监管数据预测低空飞行器的当前飞行路线，结合预设飞行路线以及同一飞行区域的其他低空飞行器的冲突飞行路线，预测飞行冲突点，生成冲突预警数据；根据冲突预警数据动态控制低空飞行器的飞行路线，解除飞行冲突点，对低空飞行器进行冲突控制；既有效实现了对低空飞行器的飞行监管，又确保了低空飞行器的飞行安全。</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明提供一种低空飞行器实时监管及冲突预警系统，包括：</div>
+<div class="description-paragraph" id="p0009">数据采集模块，用于对低空飞行器进行多源数据采集，获取低空飞行器的实时飞行数据；</div>
+<div class="description-paragraph" id="p0010">实时监管模块，用于构建低空飞行器监管预警平台，将实时飞行数据传输至低空飞行器监管预警平台中进行数据融合处理，根据数据融合处理结果输出低空飞行器的实时监管数据；</div>
+<div class="description-paragraph" id="p0011">冲突预警模块，用于当判定低空飞行器存在冲突可能性时，根据低空飞行器的实时监管数据预测低空飞行器的当前飞行路线，结合预设飞行路线以及同一飞行区域的其他低空飞行器的冲突飞行路线，预测飞行冲突点，生成冲突预警数据；</div>
+<div class="description-paragraph" id="p0012">冲突控制模块，用于根据冲突预警数据动态控制低空飞行器的飞行路线，解除飞行冲突点，对低空飞行器进行冲突控制。</div>
+<div class="description-paragraph" id="p0013" num="0006">根据本发明提供的一种低空飞行器实时监管及冲突预警系统，数据采集模块，包括：</div>
+<div class="description-paragraph" id="p0014">多源数据单元，用于获取低空飞行器的多源数据监管源，对低空飞行器进行多源数据采集，其中，多源数据监管源包括：卫星监管源、地面监管源以及无人机自身监管源；</div>
+<div class="description-paragraph" id="p0015">飞行数据单元，用于对多源数据采集结果进行数据处理，统一数据格式，合并相同数据，获取低空飞行器的实时飞行数据。</div>
+<div class="description-paragraph" id="p0016" num="0007">根据本发明提供的一种低空飞行器实时监管及冲突预警系统，实时监管模块，包括：</div>
+<div class="description-paragraph" id="p0017">平台构建单元，用于获取低空飞行器实时监管需求以及冲突预警需求，设定平台架构，构建低空飞行器监管预警平台，其中，平台架构包括：数据传输架构、数据融合架构、实时监管架构以及冲突预警架构；</div>
+<div class="description-paragraph" id="p0018">根据数据传输架构建立低空飞行器监管预警平台与多源数据监管源的数据传输通道；</div>
+<div class="description-paragraph" id="p0019">数据传输单元，用于将实时飞行数据根据数据传输通道传输至低空飞行器监管预警平台中。</div>
+<div class="description-paragraph" id="p0020" num="0008">根据本发明提供的一种低空飞行器实时监管及冲突预警系统，实时监管模块，包括：</div>
+<div class="description-paragraph" id="p0021">数据融合单元，用于根据预设数据融合策略将传输至低空飞行器监管预警平台中的实时飞行数据进行数据融合处理，其中，预设数据融合策略包括：深度学习融合策略以及卡尔曼滤波融合策略；</div>
+<div class="description-paragraph" id="p0022">监管数据单元，用于根据低空飞行器实时监管需求从数据融合处理结果中输出低空飞行器的实时监管数据，其中，低空飞行器实时监管需求包括：飞行位置监管需求、飞行区域监管需求、飞行状态监管需求、飞行数据监管需求以及飞行环境监管需求。</div>
+<div class="description-paragraph" id="p0023" num="0009">根据本发明提供的一种低空飞行器实时监管及冲突预警系统，冲突预警模块，包括：</div>
+<div class="description-paragraph" id="p0024">冲突判定单元，用于根据低空飞行器的实时监管数据获取低空飞行器的当前飞行位置数据以及当前飞行区域，若当前飞行区域的低空飞行器的数量不低于预设飞行数量时，判定低空飞行器存在冲突可能性，标记当前飞行区域为冲突飞行区域；</div>
+<div class="description-paragraph" id="p0025">获取低空飞行器的预设飞行路线，获取低空飞行器的预设飞行路线的预设飞行区域，对预设飞行区域进行逐区域冲突判定，根据逐区域冲突判定结果确定预冲突飞行区域。</div>
+<div class="description-paragraph" id="p0026" num="0010">根据本发明提供的一种低空飞行器实时监管及冲突预警系统，冲突预警模块，包括：</div>
+<div class="description-paragraph" id="p0027">预警启用单元，用于当低空飞行器飞行至预冲突飞行区域或飞行至冲突飞行区域时，启用低空飞行器监管预警平台的冲突预警架构，对低空飞行器进行冲突预警；</div>
+<div class="description-paragraph" id="p0028">飞行预测单元，用于根据低空飞行器的实时监管数据预测低空飞行器的当前飞行路线，记为低空飞行器的预测飞行路线；</div>
+<div class="description-paragraph" id="p0029">冲突范围单元，用于根据低空飞行器的设备参数数据设定低空飞行器的冲突范围并根据历史飞行数据划分冲突范围，其中，碰撞范围包括：低冲突范围、中冲突范围以及高冲突范围；</div>
+<div class="description-paragraph" id="p0030">当其它低空飞行器处于低空飞行器的低冲突范围时，判定低空飞行器与其它低空飞行器无飞行碰撞；</div>
+<div class="description-paragraph" id="p0031">当其它低空飞行器处于低空飞行器的中冲突范围时，判定低空飞行器与其它低空飞行器可能存在飞行碰撞；</div>
+<div class="description-paragraph" id="p0032">当其它低空飞行器处于低空飞行器的高冲突范围时，判定低空飞行器与其它低空飞行器已发生飞行碰撞；</div>
+<div class="description-paragraph" id="p0033">飞行区域分层单元，用于根据冲突飞行区域建立坐标系，根据低空飞行器的低冲突范围对冲突飞行区域坐标系进行高度分层，获取飞行区域高度层；</div>
+<div class="description-paragraph" id="p0034">冲突飞行路线单元，用于获取低空飞行器的当前飞行区域高度层，根据当前飞行区域高度层获取同一飞行区域高度层的其它低空飞行器，并根据低冲突范围设定低空飞行器的冲突时间窗口以及冲突空间窗口，获取所述其它低空飞行器的飞行路线，若所述其它低空飞行器的飞行路线与低空飞行器的预设飞行路线在冲突时间窗口以及冲突空间窗口同时存在，则判定所述其它低空飞行器的飞行路线为冲突飞行路线；</div>
+<div class="description-paragraph" id="p0035">飞行路线选择单元，用于设定路线误差阈值，根据历史预测飞行路线数据获取预测准确度，获取预设飞行路线与预测飞行路线的路线误差，根据预测准确度进行加权处理，若加权处理完成的路线误差低于路线误差阈值，则选择预测飞行路线进行冲突预测；</div>
+<div class="description-paragraph" id="p0036">若加权处理完成的路线误差不低于路线误差阈值，则选择预设飞行路线进行冲突预测；</div>
+<div class="description-paragraph" id="p0037">冲突预测单元，用于根据低空飞行器的实时监管数据确定低空飞行器的飞行速度规律，结合选择进行冲突预测的飞行路线预测低空飞行器与其它低空飞行器的飞行冲突点；</div>
+<div class="description-paragraph" id="p0038">飞行碰撞单元，用于获取低空飞行器与其它飞行器的相对位置数据以及飞行速度数据，当其它飞行器处于低空飞行器的中冲突范围时，计算得到飞行冲突点的飞行碰撞概率；</div>
+<div class="description-paragraph" id="p0039"> <span class="patent-image-not-available"></span>；其中，<span class="patent-image-not-available"></span>表示飞行冲突点的飞行碰撞概率；<span class="patent-image-not-available"></span>表示第<span class="patent-image-not-available"></span>个其它低空飞行器与低空飞行器的初始相对位置数据；<span class="patent-image-not-available"></span>表示第<span class="patent-image-not-available"></span>个其它低空飞行器与低空飞行器的初始相对飞行速度数据；<span class="patent-image-not-available"></span>表示第<span class="patent-image-not-available"></span>个其它低空飞行器与低空飞行器之间达到最小相对位置数据的预测时间点；<span class="patent-image-not-available"></span>表示第<span class="patent-image-not-available"></span>个其它低空飞行器与低空飞行器的预测最小相对位置数据；<span class="patent-image-not-available"></span>表示低空飞行器的低冲突范围下限数据；<span class="patent-image-not-available"></span>表示当最小相对位置数据不高于低冲突范围下限数据时，输出预测最小相对位置数据，否则，输出低冲突范围下限数据；<span class="patent-image-not-available"></span>表示低空飞行器的预测准确度；<span class="patent-image-not-available"></span>表示其它低空飞行器的数量；</div>
+<div class="description-paragraph" id="p0040">当其它低空飞行器处于低空飞行器的低冲突范围时，飞行冲突点的飞行碰撞概率调整为0；</div>
+<div class="description-paragraph" id="p0041">当其它低空飞行器处于低空飞行器的中冲突范围时，飞行冲突点的飞行碰撞概率不变；</div>
+<div class="description-paragraph" id="p0042">当其它低空飞行器处于低空飞行器的高冲突范围时，飞行冲突点的飞行碰撞概率调整为1；</div>
+<div class="description-paragraph" id="p0043">将飞行碰撞概率为0以及飞行碰撞概率为1的飞行冲突点进行剔除；</div>
+<div class="description-paragraph" id="p0044">冲突预警单元，用于根据剔除后的飞行冲突点生成冲突预警数据。</div>
+<div class="description-paragraph" id="p0045" num="0011">根据本发明提供的一种低空飞行器实时监管及冲突预警系统，冲突控制模块，包括：</div>
+<div class="description-paragraph" id="p0046">冲突解除单元，用于当监测到冲突预警数据时，根据预设冲突解除策略结合低空飞行器的实时监管数据确定低空飞行器的实时冲突解除策略，其中，预设冲突解除策略包括：调整飞行速度策略、调整飞行高度策略以及调整飞行方向策略；</div>
+<div class="description-paragraph" id="p0047">冲突控制单元，用于手动或自动执行实时冲突解除策略，解除飞行冲突点，对低空飞行器进行冲突控制。</div>
+<div class="description-paragraph" id="p0048" num="0012">根据本发明提供的一种低空飞行器实时监管及冲突预警系统，还包括：</div>
+<div class="description-paragraph" id="p0049">控制监测单元，用于对执行实时冲突解除策略的低空飞行器进行持续监测；</div>
+<div class="description-paragraph" id="p0050">控制效果单元，用于根据持续监测结果获取执行实时冲突解除策略的低空飞行器的飞行冲突点以及飞行冲突点的飞行碰撞概率，当飞行冲突点数量减少或飞行碰撞概率降低时，判定实时冲突解除策略执行有效；</div>
+<div class="description-paragraph" id="p0051">否则，重新确定实时冲突解除策略。</div>
+<div class="description-paragraph" id="p0052" num="0013">与现有技术相比，本申请的有益效果如下：</div>
+<div class="description-paragraph" id="p0053">通过对低空飞行器进行多源数据采集，获取低空飞行器的实时飞行数据；构建低空飞行器监管预警平台，将实时飞行数据传输至低空飞行器监管预警平台中进行数据融合处理，根据数据融合处理结果输出低空飞行器的实时监管数据；当判定低空飞行器存在冲突可能性时，根据低空飞行器的实时监管数据预测低空飞行器的当前飞行路线，结合预设飞行路线以及同一飞行区域的其他低空飞行器的冲突飞行路线，预测飞行冲突点，生成冲突预警数据；根据冲突预警数据动态控制低空飞行器的飞行路线，解除飞行冲突点，对低空飞行器进行冲突控制；既有效实现了对低空飞行器的飞行监管，又确保了低空飞行器的飞行安全。</div>
+<div class="description-paragraph" id="p0054" num="0014">本发明的其它特征和优点将在随后的说明书中阐述，并且，部分地从说明书中变得显而易见，或者通过实施本发明而了解。本发明的目的和其他优点可通过在所写的说明书以及附图中所特别指出的结构来实现和获得。</div>
+<div class="description-paragraph" id="p0055" num="0015">下面通过附图和实施例，对本发明的技术方案做进一步的详细描述。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0056">附图说明</div>
+<div class="description-paragraph" id="p0057" num="0016">附图用来提供对本发明的进一步理解，并且构成说明书的一部分，与本发明的实施例一起用于解释本发明，并不构成对本发明的限制。在附图中：</div>
+<div class="description-paragraph" id="p0058">图1是本发明实施例提供的一种低空飞行器实时监管及冲突预警系统的结构示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0059">具体实施方式</div>
+<div class="description-paragraph" id="p0060" num="0017">以下结合附图对本发明的优选实施例进行说明，应当理解，此处所描述的优选实施例仅用于说明和解释本发明，并不用于限定本发明。</div>
+<div class="description-paragraph" id="p0061" num="0018">实施例1：</div>
+<div class="description-paragraph" id="p0062">本发明实施例提供一种低空飞行器实时监管及冲突预警系统，如图1所示，包括：</div>
+<div class="description-paragraph" id="p0063">数据采集模块，用于对低空飞行器进行多源数据采集，获取低空飞行器的实时飞行数据；</div>
+<div class="description-paragraph" id="p0064">实时监管模块，用于构建低空飞行器监管预警平台，将实时飞行数据传输至低空飞行器监管预警平台中进行数据融合处理，根据数据融合处理结果输出低空飞行器的实时监管数据；</div>
+<div class="description-paragraph" id="p0065">冲突预警模块，用于当判定低空飞行器存在冲突可能性时，根据低空飞行器的实时监管数据预测低空飞行器的当前飞行路线，结合预设飞行路线以及同一飞行区域的其他低空飞行器的冲突飞行路线，预测飞行冲突点，生成冲突预警数据；</div>
+<div class="description-paragraph" id="p0066">冲突控制模块，用于根据冲突预警数据动态控制低空飞行器的飞行路线，解除飞行冲突点，对低空飞行器进行冲突控制。</div>
+<div class="description-paragraph" id="p0067" num="0019">该实施例中，多源数据采集是指根据多源数据监管源对低空飞行器进行数据采集。</div>
+<div class="description-paragraph" id="p0068" num="0020">该实施例中，实时飞行数据是指根据对多源数据采集结果进行数据处理所确定的用于表示低空飞行器飞行的数据。</div>
+<div class="description-paragraph" id="p0069" num="0021">该实施例中，低空飞行器监管预警平台是指对低空飞行器进行实时监管以及冲突预警的平台。</div>
+<div class="description-paragraph" id="p0070" num="0022">该实施例中，实时监管数据是指根据低空飞行器实时监管需求从数据融合处理结果中输出的低空飞行器的数据。</div>
+<div class="description-paragraph" id="p0071" num="0023">该实施例中，冲突飞行路线是指对低空飞行器飞行存在冲突的其它低空飞行器的飞行路线。</div>
+<div class="description-paragraph" id="p0072" num="0024">该实施例中，飞行冲突点是指预测低空飞行器与其它低空飞行器发生冲突碰撞的飞行点。</div>
+<div class="description-paragraph" id="p0073" num="0025">该实施例中，冲突预警数据是指根据飞行碰撞概率生成的用于确保低空飞行器飞行安全的数据。</div>
+<div class="description-paragraph" id="p0074" num="0026">该实施例中，冲突控制是指根据手动或自动执行实时冲突解除策略解除飞行冲突点进而对低空飞行器所进行的控制。</div>
+<div class="description-paragraph" id="p0075" num="0027">上述技术方案的工作原理及有益效果是：通过对低空飞行器进行多源数据采集，获取低空飞行器的实时飞行数据；构建低空飞行器监管预警平台，将实时飞行数据传输至低空飞行器监管预警平台中进行数据融合处理，根据数据融合处理结果输出低空飞行器的实时监管数据；当判定低空飞行器存在冲突可能性时，根据低空飞行器的实时监管数据预测低空飞行器的当前飞行路线，结合预设飞行路线以及同一飞行区域的其他低空飞行器的冲突飞行路线，预测飞行冲突点，生成冲突预警数据；根据冲突预警数据动态控制低空飞行器的飞行路线，解除飞行冲突点，对低空飞行器进行冲突控制；既有效实现了对低空飞行器的飞行监管，又确保了低空飞行器的飞行安全。</div>
+<div class="description-paragraph" id="p0076" num="0028">实施例2：</div>
+<div class="description-paragraph" id="p0077">本发明实施例提供一种低空飞行器实时监管及冲突预警系统，数据采集模块，包括：</div>
+<div class="description-paragraph" id="p0078">多源数据单元，用于获取低空飞行器的多源数据监管源，对低空飞行器进行多源数据采集，其中，多源数据监管源包括：卫星监管源、地面监管源以及无人机自身监管源；</div>
+<div class="description-paragraph" id="p0079">飞行数据单元，用于对多源数据采集结果进行数据处理，统一数据格式，合并相同数据，获取低空飞行器的实时飞行数据。</div>
+<div class="description-paragraph" id="p0080" num="0029">该实施例中，多源数据监管源是指用于监管低空飞行器的设备源，比如，卫星监管源、地面监管源以及无人机自身监管源。</div>
+<div class="description-paragraph" id="p0081" num="0030">该实施例中，多源数据采集是指根据多源数据监管源对低空飞行器进行数据采集。</div>
+<div class="description-paragraph" id="p0082" num="0031">该实施例中，实时飞行数据是指根据对多源数据采集结果进行数据处理所确定的用于表示低空飞行器飞行的数据。</div>
+<div class="description-paragraph" id="p0083" num="0032">上述技术方案的工作原理及有益效果是：通过对低空飞行器进行多源数据采集，获取低空飞行器的实时飞行数据，为后续对低空飞行器进行实时监管以及冲突预警奠定了飞行数据基础。</div>
+<div class="description-paragraph" id="p0084" num="0033">实施例3：</div>
+<div class="description-paragraph" id="p0085">本发明实施例提供一种低空飞行器实时监管及冲突预警系统，实时监管模块，包括：</div>
+<div class="description-paragraph" id="p0086">平台构建单元，用于获取低空飞行器实时监管需求以及冲突预警需求，设定平台架构，构建低空飞行器监管预警平台，其中，平台架构包括：数据传输架构、数据融合架构、实时监管架构以及冲突预警架构；</div>
+<div class="description-paragraph" id="p0087">根据数据传输架构建立低空飞行器监管预警平台与多源数据监管源的数据传输通道；</div>
+<div class="description-paragraph" id="p0088">数据传输单元，用于将实时飞行数据根据数据传输通道传输至低空飞行器监管预警平台中。</div>
+<div class="description-paragraph" id="p0089" num="0034">该实施例中，实时监管需求是指对低空飞行器飞行的监督管理需求，比如，监测低空飞行器的飞行速度，管理低空飞行器的飞行区域。</div>
+<div class="description-paragraph" id="p0090" num="0035">该实施例中，冲突预警需求是指避免低空飞行器发生冲突碰撞以及预警冲突碰撞的需求，用于确保低空飞行器的飞行安全。</div>
+<div class="description-paragraph" id="p0091" num="0036">该实施例中，平台架构是指平台用于实现相应功能的架构。</div>
+<div class="description-paragraph" id="p0092" num="0037">该实施例中，低空飞行器监管预警平台是指对低空飞行器进行实时监管以及冲突预警的平台。</div>
+<div class="description-paragraph" id="p0093" num="0038">该实施例中，数据传输通道是指用于传输实时飞行数据的通道，用于确保数据传输安全性以及数据传输效率。</div>
+<div class="description-paragraph" id="p0094" num="0039">上述技术方案的工作原理及有益效果是：通过构建低空飞行器监管预警平台，将实时飞行数据传输至低空飞行器监管预警平台中，有利于后续利用实时飞行数据，为后续对低空飞行器进行实时监管以及冲突预警奠定了平台基础。</div>
+<div class="description-paragraph" id="p0095" num="0040">实施例4：</div>
+<div class="description-paragraph" id="p0096">本发明实施例提供一种低空飞行器实时监管及冲突预警系统，实时监管模块，包括：</div>
+<div class="description-paragraph" id="p0097">数据融合单元，用于根据预设数据融合策略将传输至低空飞行器监管预警平台中的实时飞行数据进行数据融合处理，其中，预设数据融合策略包括：深度学习融合策略以及卡尔曼滤波融合策略；</div>
+<div class="description-paragraph" id="p0098">监管数据单元，用于根据低空飞行器实时监管需求从数据融合处理结果中输出低空飞行器的实时监管数据，其中，低空飞行器实时监管需求包括：飞行位置监管需求、飞行区域监管需求、飞行状态监管需求、飞行数据监管需求以及飞行环境监管需求。</div>
+<div class="description-paragraph" id="p0099" num="0041">该实施例中，实时监管数据是指根据低空飞行器实时监管需求从数据融合处理结果中输出的低空飞行器的数据，比如，低空飞行器的飞行位置数据、飞行区域数据、飞行高度数据、飞行状态数据。</div>
+<div class="description-paragraph" id="p0100" num="0042">该实施例中，根据实时监管数据对低空飞行器进行实时监管，比如，控制低空飞行器在设定飞行高度范围内进行飞行。</div>
+<div class="description-paragraph" id="p0101" num="0043">上述技术方案的工作原理及有益效果是：通过将实时飞行数据进行数据融合处理，输出低空飞行器的实时监管数据，有效实现了对低空飞行的实时监管。</div>
+<div class="description-paragraph" id="p0102" num="0044">实施例5：</div>
+<div class="description-paragraph" id="p0103">本发明实施例提供一种低空飞行器实时监管及冲突预警系统，冲突预警模块，包括：</div>
+<div class="description-paragraph" id="p0104">冲突判定单元，用于根据低空飞行器的实时监管数据获取低空飞行器的当前飞行位置数据以及当前飞行区域，若当前飞行区域的低空飞行器的数量不低于预设飞行数量时，判定低空飞行器存在冲突可能性，标记当前飞行区域为冲突飞行区域；</div>
+<div class="description-paragraph" id="p0105">获取低空飞行器的预设飞行路线，获取低空飞行器的预设飞行路线的预设飞行区域，对预设飞行区域进行逐区域冲突判定，根据逐区域冲突判定结果确定预冲突飞行区域。</div>
+<div class="description-paragraph" id="p0106" num="0045">该实施例中，冲突飞行区域是指低空飞行器当前在该飞行区域内存在冲突可能性的区域，需对低空飞行器进行冲突预警。</div>
+<div class="description-paragraph" id="p0107" num="0046">该实施例中，预冲突飞行区域是指根据逐区域冲突判定结果确定的低空飞行器在飞行至该飞行区域时存在冲突可能性的区域。</div>
+<div class="description-paragraph" id="p0108" num="0047">该实施例中，冲突飞行区域是对低空飞行器在当前飞行区域进行冲突可能性判定所确定的区域，用于实时分析冲突可能性；而预冲突飞行区域是对低空飞行器在预设飞行区域进行冲突可能性判定所确定的区域，用于提前分析冲突可能性。</div>
+<div class="description-paragraph" id="p0109" num="0048">上述技术方案的工作原理及有益效果是：通过标记冲突飞行区域以及预冲突飞行区域，有利于后续及时对低空飞行器进行冲突预警，进而确保低空飞行器的飞行安全。</div>
+<div class="description-paragraph" id="p0110" num="0049">实施例6：</div>
+<div class="description-paragraph" id="p0111">本发明实施例提供一种低空飞行器实时监管及冲突预警系统，冲突预警模块，包括：</div>
+<div class="description-paragraph" id="p0112">预警启用单元，用于当低空飞行器飞行至预冲突飞行区域或飞行至冲突飞行区域时，启用低空飞行器监管预警平台的冲突预警架构，对低空飞行器进行冲突预警；</div>
+<div class="description-paragraph" id="p0113">飞行预测单元，用于根据低空飞行器的实时监管数据预测低空飞行器的当前飞行路线，记为低空飞行器的预测飞行路线；</div>
+<div class="description-paragraph" id="p0114">冲突范围单元，用于根据低空飞行器的设备参数数据设定低空飞行器的冲突范围并根据历史飞行数据划分冲突范围，其中，碰撞范围包括：低冲突范围、中冲突范围以及高冲突范围；</div>
+<div class="description-paragraph" id="p0115">当其它低空飞行器处于低空飞行器的低冲突范围时，判定低空飞行器与其它低空飞行器无飞行碰撞；</div>
+<div class="description-paragraph" id="p0116">当其它低空飞行器处于低空飞行器的中冲突范围时，判定低空飞行器与其它低空飞行器可能存在飞行碰撞；</div>
+<div class="description-paragraph" id="p0117">当其它低空飞行器处于低空飞行器的高冲突范围时，判定低空飞行器与其它低空飞行器已发生飞行碰撞；</div>
+<div class="description-paragraph" id="p0118">飞行区域分层单元，用于根据冲突飞行区域建立坐标系，根据低空飞行器的低冲突范围对冲突飞行区域坐标系进行高度分层，获取飞行区域高度层；</div>
+<div class="description-paragraph" id="p0119">冲突飞行路线单元，用于获取低空飞行器的当前飞行区域高度层，根据当前飞行区域高度层获取同一飞行区域高度层的其它低空飞行器，并根据低冲突范围设定低空飞行器的冲突时间窗口以及冲突空间窗口，获取所述其它低空飞行器的飞行路线，若所述其它低空飞行器的飞行路线与低空飞行器的预设飞行路线在冲突时间窗口以及冲突空间窗口同时存在，则判定所述其它低空飞行器的飞行路线为冲突飞行路线；</div>
+<div class="description-paragraph" id="p0120">飞行路线选择单元，用于设定路线误差阈值，根据历史预测飞行路线数据获取预测准确度，获取预设飞行路线与预测飞行路线的路线误差，根据预测准确度进行加权处理，若加权处理完成的路线误差低于路线误差阈值，则选择预测飞行路线进行冲突预测；</div>
+<div class="description-paragraph" id="p0121">若加权处理完成的路线误差不低于路线误差阈值，则选择预设飞行路线进行冲突预测；</div>
+<div class="description-paragraph" id="p0122">冲突预测单元，用于根据低空飞行器的实时监管数据确定低空飞行器的飞行速度规律，结合选择进行冲突预测的飞行路线预测低空飞行器与其它低空飞行器的飞行冲突点；</div>
+<div class="description-paragraph" id="p0123">飞行碰撞单元，用于获取低空飞行器与其它飞行器的相对位置数据以及飞行速度数据，当其它飞行器处于低空飞行器的中冲突范围时，计算得到飞行冲突点的飞行碰撞概率；</div>
+<div class="description-paragraph" id="p0124"> <span class="patent-image-not-available"></span>；其中，<span class="patent-image-not-available"></span>表示飞行冲突点的飞行碰撞概率；<span class="patent-image-not-available"></span>表示第<span class="patent-image-not-available"></span>个其它低空飞行器与低空飞行器的初始相对位置数据；<span class="patent-image-not-available"></span>表示第<span class="patent-image-not-available"></span>个其它低空飞行器与低空飞行器的初始相对飞行速度数据；<span class="patent-image-not-available"></span>表示第<span class="patent-image-not-available"></span>个其它低空飞行器与低空飞行器之间达到最小相对位置数据的预测时间点；<span class="patent-image-not-available"></span>表示第<span class="patent-image-not-available"></span>个其它低空飞行器与低空飞行器的预测最小相对位置数据；<span class="patent-image-not-available"></span>表示低空飞行器的低冲突范围下限数据；<span class="patent-image-not-available"></span>表示当最小相对位置数据不高于低冲突范围下限数据时，输出预测最小相对位置数据，否则，输出低冲突范围下限数据；<span class="patent-image-not-available"></span>表示低空飞行器的预测准确度；<span class="patent-image-not-available"></span>表示其它低空飞行器的数量；</div>
+<div class="description-paragraph" id="p0125">当其它低空飞行器处于低空飞行器的低冲突范围时，飞行冲突点的飞行碰撞概率调整为0；</div>
+<div class="description-paragraph" id="p0126">当其它低空飞行器处于低空飞行器的中冲突范围时，飞行冲突点的飞行碰撞概率不变；</div>
+<div class="description-paragraph" id="p0127">当其它低空飞行器处于低空飞行器的高冲突范围时，飞行冲突点的飞行碰撞概率调整为1；</div>
+<div class="description-paragraph" id="p0128">将飞行碰撞概率为0以及飞行碰撞概率为1的飞行冲突点进行剔除；</div>
+<div class="description-paragraph" id="p0129">冲突预警单元，用于根据剔除后的飞行冲突点生成冲突预警数据。</div>
+<div class="description-paragraph" id="p0130" num="0050">该实施例中，当低空飞行器飞行至预冲突飞行区域或飞行至冲突飞行区域时，启用低空飞行器监管预警平台的冲突预警架构，对低空飞行器进行冲突预警，即确保冲突预警及时有效启用。</div>
+<div class="description-paragraph" id="p0131" num="0051">该实施例中，预测飞行路线是根据低空飞行器的实时监管数据预测低空飞行器的当前飞行路线所确定的飞行路线。</div>
+<div class="description-paragraph" id="p0132" num="0052">该实施例中，设备参数数据根据低空飞行器自身监管源所获取，比如，低空飞行器的体积尺寸参数数据。</div>
+<div class="description-paragraph" id="p0133" num="0053">该实施例中，冲突范围是指低空飞行器在飞行过程中可能发生冲突的范围。</div>
+<div class="description-paragraph" id="p0134" num="0054">该实施例中，根据低空飞行器的设备参数数据设定低空飞行器的冲突范围，比如，低空飞行器的体积尺寸参数数据越大，则冲突范围越大。</div>
+<div class="description-paragraph" id="p0135" num="0055">该实施例中，飞行区域高度层是指根据低空飞行器的低冲突范围对冲突飞行区域坐标系进行高度分层所获取的飞行层，用于简化飞行区域，提高后续冲突预警效率。</div>
+<div class="description-paragraph" id="p0136" num="0056">该实施例中，根据低空飞行器的低冲突范围对冲突飞行区域坐标系进行高度分层，既确保冲突预警精度，又确保冲突预警效率。</div>
+<div class="description-paragraph" id="p0137" num="0057">该实施例中，当前飞行区域高度层是指低空飞行器在当前时段的飞行区域高度层。</div>
+<div class="description-paragraph" id="p0138" num="0058">该实施例中，根据当前飞行区域高度层获取同一飞行区域高度层的其它低空飞行器，即判定其它飞行区域高度层的其它低空飞行器与当前飞行区域高度层的低空飞行器不存在飞行碰撞，用于简化冲突预警分析。</div>
+<div class="description-paragraph" id="p0139" num="0059">该实施例中，冲突时间窗口是指分析冲突碰撞的时间窗口，冲突空间窗口是指分析冲突碰撞的空间窗口。</div>
+<div class="description-paragraph" id="p0140" num="0060">该实施例中，冲突飞行路线是指根据冲突时间窗口以及冲突空间窗口所确定的对低空飞行器飞行存在冲突的其它低空飞行器的飞行路线。</div>
+<div class="description-paragraph" id="p0141" num="0061">该实施例中，路线误差阈值是指预设飞行路线与预测飞行路线可接受的路线误差，当预测飞行路线与预设飞行路线存在路线误差，则认为低空飞行器的飞行出现偏差，当预测飞行路线与预设飞行路线之间的路线误差不高于路线误差阈值，则预测飞行路线可接受，无需对低空飞行器进行飞行路线监管，选择预测飞行路线进行冲突预测。</div>
+<div class="description-paragraph" id="p0142" num="0062">该实施例中，若加权处理完成的路线误差不低于路线误差阈值，则说明低空飞行器的飞行路线出现不可接受偏差，需对低空飞行器根据预设飞行路线进行监管处理，将低空飞行器调整至预设飞行路线，因此，选择预设飞行路线进行冲突预测。</div>
+<div class="description-paragraph" id="p0143" num="0063">该实施例中，预测准确度是指预测低空飞行器的飞行路线的准确度。</div>
+<div class="description-paragraph" id="p0144" num="0064">该实施例中，获取预设飞行路线与预测飞行路线的路线误差，根据预测准确度进行加权处理，用于确保路线误差的准确性。</div>
+<div class="description-paragraph" id="p0145" num="0065">该实施例中，根据低空飞行器的实时监管数据确定低空飞行器的飞行速度规律，比如，飞行速度固定、飞行速度逐渐增加、飞行速度逐渐降低。</div>
+<div class="description-paragraph" id="p0146" num="0066">该实施例中，飞行冲突点是指预测低空飞行器与其它低空飞行器发生冲突碰撞的飞行点。</div>
+<div class="description-paragraph" id="p0147" num="0067">该实施例中，飞行冲突点数量不唯一，同一飞行冲突点可能与多个其它低空飞行器存在飞行冲突。</div>
+<div class="description-paragraph" id="p0148" num="0068">该实施例中，飞行碰撞概率是指低空飞行器在飞行冲突点发生飞行碰撞的概率。</div>
+<div class="description-paragraph" id="p0149" num="0069">该实施例中，预测时间点是指预测低空飞行器与其它低空飞行器达到最小相对位置数据的时间点。</div>
+<div class="description-paragraph" id="p0150" num="0070">该实施例中，预测最小相对位置数据是指预测低空飞行器与其它低空飞行器之间的最小相对位置数据。</div>
+<div class="description-paragraph" id="p0151" num="0071">该实施例中，低冲突范围下限数据是指低空飞行器不发生飞行碰撞的最小距离范围，即最小安全飞行距离。</div>
+<div class="description-paragraph" id="p0152" num="0072">该实施例中，将飞行碰撞概率为0以及飞行碰撞概率为1的飞行冲突点进行剔除，当飞行碰撞概率为0，则飞行安全，无需进行冲突预警；当飞行碰撞概率为1，则应在之前时段对低空飞行器的飞行路线进行调整。</div>
+<div class="description-paragraph" id="p0153" num="0073">该实施例中，冲突预警数据是指根据飞行碰撞概率生成的用于确保低空飞行器飞行安全的数据。</div>
+<div class="description-paragraph" id="p0154" num="0074">上述技术方案的工作原理及有益效果是：当判定低空飞行器存在冲突可能性时，根据低空飞行器的实时监管数据预测低空飞行器的当前飞行路线，结合预设飞行路线以及同一飞行区域的其他低空飞行器的冲突飞行路线，预测飞行冲突点，生成冲突预警数据，有利于后续根据冲突预警数据进行冲突控制，进而确保低空飞行器的飞行安全。</div>
+<div class="description-paragraph" id="p0155" num="0075">实施例7：</div>
+<div class="description-paragraph" id="p0156">本发明实施例提供一种低空飞行器实时监管及冲突预警系统，冲突控制模块，包括：</div>
+<div class="description-paragraph" id="p0157">冲突解除单元，用于当监测到冲突预警数据时，根据预设冲突解除策略结合低空飞行器的实时监管数据确定低空飞行器的实时冲突解除策略，其中，预设冲突解除策略包括：调整飞行速度策略、调整飞行高度策略以及调整飞行方向策略；</div>
+<div class="description-paragraph" id="p0158">冲突控制单元，用于手动或自动执行实时冲突解除策略，解除飞行冲突点，对低空飞行器进行冲突控制。</div>
+<div class="description-paragraph" id="p0159" num="0076">该实施例中，预设冲突解除策略是指用于解除低空飞行器与其它低空飞行器之间的冲突的策略，比如，调整低空飞行器的飞行速度、飞行高度以及飞行方向。</div>
+<div class="description-paragraph" id="p0160" num="0077">该实施例中，实时冲突解除策略是指低空飞行器当前解除冲突的策略。</div>
+<div class="description-paragraph" id="p0161" num="0078">该实施例中，冲突控制是指根据手动或自动执行实时冲突解除策略解除飞行冲突点进而对低空飞行器所进行的控制。</div>
+<div class="description-paragraph" id="p0162" num="0079">该实施例中，手动执行是指根据用于操作进行冲突控制，自动执行是指根据实时冲突解除策略进行冲突控制。</div>
+<div class="description-paragraph" id="p0163" num="0080">上述技术方案的工作原理及有益效果是：通过根据冲突预警数据动态控制低空飞行器的飞行路线，解除飞行冲突点，对低空飞行器进行冲突控制，有效确保了低空飞行器的飞行安全。</div>
+<div class="description-paragraph" id="p0164" num="0081">实施例8：</div>
+<div class="description-paragraph" id="p0165">本发明实施例提供一种低空飞行器实时监管及冲突预警系统，还包括：</div>
+<div class="description-paragraph" id="p0166">控制监测单元，用于对执行实时冲突解除策略的低空飞行器进行持续监测；</div>
+<div class="description-paragraph" id="p0167">控制效果单元，用于根据持续监测结果获取执行实时冲突解除策略的低空飞行器的飞行冲突点以及飞行冲突点的飞行碰撞概率，当飞行冲突点数量减少或飞行碰撞概率降低时，判定实时冲突解除策略执行有效；</div>
+<div class="description-paragraph" id="p0168">否则，重新确定实时冲突解除策略。</div>
+<div class="description-paragraph" id="p0169" num="0082">该实施例中，对执行实时冲突解除策略的低空飞行器进行持续监测，持续监测时段根据低空飞行器的飞行冲突点的飞行碰撞概率所定，飞行碰撞概率越高，则持续监测时段越长。</div>
+<div class="description-paragraph" id="p0170" num="0083">上述技术方案的工作原理及有益效果是：通过对执行实时冲突解除策略的低空飞行器进行持续监测以及控制效果判定，进一步确保了低空飞行器的飞行安全。</div>
+<div class="description-paragraph" id="p0171" num="0084">最后应说明的是：以上实施例仅用以说明本发明的技术方案，而非对其限制；尽管参照前述实施例对本发明进行了详细的说明，本领域的普通技术人员应当理解：其依然可以对前述各实施例所记载的技术方案进行修改，或者对其中部分技术特征进行等同替换；而这些修改或者替换，并不使相应技术方案的本质脱离本发明各实施例技术方案的精神和范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

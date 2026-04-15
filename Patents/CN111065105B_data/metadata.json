@@ -1,0 +1,53 @@
+{
+    "patent_id": "CN111065105B",
+    "title": "CN111065105B - 一种面向无人机网络切片的分布式智能路由方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "University of Electronic Science and Technology of China",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN111065105B/zh",
+    "citations": [
+        {
+            "Publication Number": "KR20150123120A (ko) *",
+            "Priority Date": "2014-04-24",
+            "Publication Date": "2015-11-03",
+            "Assignee": "울산대학교 산학협력단",
+            "Title": "무선 애드혹 네트워크에서의 서비스품질 제어장치",
+            "Link": "https://patents.google.com/patent/KR20150123120A/ko"
+        },
+        {
+            "Publication Number": "CN104168620A (zh) *",
+            "Priority Date": "2014-05-13",
+            "Publication Date": "2014-11-26",
+            "Assignee": "北京邮电大学",
+            "Title": "无线多跳回传网络中的路由建立方法",
+            "Link": "https://patents.google.com/patent/CN104168620A/zh"
+        },
+        {
+            "Publication Number": "CN104581862A (zh) *",
+            "Priority Date": "2014-12-27",
+            "Publication Date": "2015-04-29",
+            "Assignee": "中国人民解放军63655部队",
+            "Title": "一种基于低空无人飞行器自组网的测控通信方法和系统",
+            "Link": "https://patents.google.com/patent/CN104581862A/zh"
+        },
+        {
+            "Publication Number": "CN107517158A (zh) *",
+            "Priority Date": "2017-08-29",
+            "Publication Date": "2017-12-26",
+            "Assignee": "北京航空航天大学",
+            "Title": "无人机通信网络联合路由协议的设计方法",
+            "Link": "https://patents.google.com/patent/CN107517158A/zh"
+        },
+        {
+            "Publication Number": "CN108521375A (zh) *",
+            "Priority Date": "2018-04-17",
+            "Publication Date": "2018-09-11",
+            "Assignee": "中国矿业大学",
+            "Title": "一种基于SDN的网络多业务流量QoS的传输及调度方法",
+            "Link": "https://patents.google.com/patent/CN108521375A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 12:38:50"
+}

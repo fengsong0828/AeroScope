@@ -1,0 +1,54 @@
+{
+    "patent_id": "CN110332855A",
+    "title": "CN110332855A - 一种反低空飞行器抓捕弹 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Nanjing Tech University",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN110332855A/zh",
+    "citations": [
+        {
+            "Publication Number": "US20180245888A1 (en) *",
+            "Priority Date": "2015-08-27",
+            "Publication Date": "2018-08-30",
+            "Assignee": "Airspace Systems Inc.",
+            "Title": "Interdiction system and method of operation",
+            "Link": "https://patents.google.com/patent/US20180245888A1/en"
+        },
+        {
+            "Publication Number": "CN109682257A (zh) *",
+            "Priority Date": "2018-09-13",
+            "Publication Date": "2019-04-26",
+            "Assignee": "西安理工大学",
+            "Title": "一种基于绳网捕获的巡航导弹拦截装置",
+            "Link": "https://patents.google.com/patent/CN109682257A/zh"
+        },
+        {
+            "Publication Number": "RU185949U1 (ru) *",
+            "Priority Date": "2018-10-08",
+            "Publication Date": "2018-12-25",
+            "Assignee": "Федеральное государственное унитарное предприятие \"Российский федеральный ядерный центр - Всероссийский научно-исследовательский институт технической физики имени академика Е.И. Забабахина\"",
+            "Title": "Устройство борьбы с беспилотными летательными аппаратами",
+            "Link": "https://patents.google.com/patent/RU185949U1/ru"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN114153223A (zh) *",
+            "Priority Date": "2021-09-22",
+            "Publication Date": "2022-03-08",
+            "Assignee": "航天科工微电子系统研究院有限公司",
+            "Title": "一种对集群无人机的网式捕捉系统及方法",
+            "Link": "https://patents.google.com/patent/CN114153223A/zh"
+        },
+        {
+            "Publication Number": "CN114234723A (zh) *",
+            "Priority Date": "2022-01-12",
+            "Publication Date": "2022-03-25",
+            "Assignee": "新疆宏开电子系统集成有限公司",
+            "Title": "无人机搭载专用于物理捕捉无人机的装置",
+            "Link": "https://patents.google.com/patent/CN114234723A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:35:31"
+}

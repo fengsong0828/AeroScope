@@ -1,0 +1,46 @@
+{
+    "patent_id": "CN116594418A",
+    "title": "CN116594418A - 一种基于多样环境因素的低空飞行器防御系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shenzhen Xiyue Wisdom Data Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN116594418A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN107608371A (zh) *",
+            "Priority Date": "2016-07-12",
+            "Publication Date": "2018-01-19",
+            "Assignee": "何守印",
+            "Title": "城市社区环境下四旋翼自主避障无人机",
+            "Link": "https://patents.google.com/patent/CN107608371A/zh"
+        },
+        {
+            "Publication Number": "CN108196569A (zh) *",
+            "Priority Date": "2017-12-20",
+            "Publication Date": "2018-06-22",
+            "Assignee": "中国航天空气动力技术研究院",
+            "Title": "一种通用无人机地面站",
+            "Link": "https://patents.google.com/patent/CN108196569A/zh"
+        },
+        {
+            "Publication Number": "CN113371180A (zh) *",
+            "Priority Date": "2021-07-06",
+            "Publication Date": "2021-09-10",
+            "Assignee": "季华实验室",
+            "Title": "作业型飞行机器人系统、降落控制方法、装置及电子设备",
+            "Link": "https://patents.google.com/patent/CN113371180A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN119905020A (zh) *",
+            "Priority Date": "2025-01-15",
+            "Publication Date": "2025-04-29",
+            "Assignee": "江西省自然资源事业发展中心",
+            "Title": "一种低空飞行安全保障智能传感器",
+            "Link": "https://patents.google.com/patent/CN119905020A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:50:02"
+}

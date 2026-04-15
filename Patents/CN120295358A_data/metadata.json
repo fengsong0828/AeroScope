@@ -1,0 +1,85 @@
+{
+    "patent_id": "CN120295358A",
+    "title": "CN120295358A - 一种基于气象条件的低空飞行器飞行能耗优化方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Guangdong Ocean University",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120295358A/zh",
+    "citations": [
+        {
+            "Publication Number": "JP2017161315A (ja) *",
+            "Priority Date": "2016-03-08",
+            "Publication Date": "2017-09-14",
+            "Assignee": "国立大学法人京都大学",
+            "Title": "最適飛行網の生成方法及びシステム",
+            "Link": "https://patents.google.com/patent/JP2017161315A/ja"
+        },
+        {
+            "Publication Number": "CN108871371A (zh) *",
+            "Priority Date": "2018-04-08",
+            "Publication Date": "2018-11-23",
+            "Assignee": "广东容祺智能科技有限公司",
+            "Title": "一种无人机导航系统",
+            "Link": "https://patents.google.com/patent/CN108871371A/zh"
+        },
+        {
+            "Publication Number": "CN115202384A (zh) *",
+            "Priority Date": "2021-04-08",
+            "Publication Date": "2022-10-18",
+            "Assignee": "顺丰科技有限公司",
+            "Title": "无人机飞行控制方法、装置、无人机系统和存储介质",
+            "Link": "https://patents.google.com/patent/CN115202384A/zh"
+        },
+        {
+            "Publication Number": "CN115060263A (zh) *",
+            "Priority Date": "2022-05-19",
+            "Publication Date": "2022-09-16",
+            "Assignee": "南京航空航天大学",
+            "Title": "一种考虑低空风和无人机能耗的航迹规划方法",
+            "Link": "https://patents.google.com/patent/CN115060263A/zh"
+        },
+        {
+            "Publication Number": "CN116301014A (zh) *",
+            "Priority Date": "2022-11-10",
+            "Publication Date": "2023-06-23",
+            "Assignee": "南京航空航天大学",
+            "Title": "一种无人直升机贴地飞行轨迹优化方法",
+            "Link": "https://patents.google.com/patent/CN116301014A/zh"
+        },
+        {
+            "Publication Number": "CN118410967A (zh) *",
+            "Priority Date": "2024-04-11",
+            "Publication Date": "2024-07-30",
+            "Assignee": "南京禄口国际机场空港科技有限公司",
+            "Title": "一种基于气象判断的飞行管理方法及系统",
+            "Link": "https://patents.google.com/patent/CN118410967A/zh"
+        },
+        {
+            "Publication Number": "CN118642515A (zh) *",
+            "Priority Date": "2024-08-16",
+            "Publication Date": "2024-09-13",
+            "Assignee": "粤港澳大湾区数字经济研究院(福田)",
+            "Title": "低空飞行调整方法、装置、设备、介质和产品",
+            "Link": "https://patents.google.com/patent/CN118642515A/zh"
+        },
+        {
+            "Publication Number": "CN119148741A (zh) *",
+            "Priority Date": "2024-09-23",
+            "Publication Date": "2024-12-17",
+            "Assignee": "南京航空航天大学",
+            "Title": "一种融合天气状况和耗电预测的无人机巡查航线优化方法",
+            "Link": "https://patents.google.com/patent/CN119148741A/zh"
+        },
+        {
+            "Publication Number": "CN119312698A (zh) *",
+            "Priority Date": "2024-12-12",
+            "Publication Date": "2025-01-14",
+            "Assignee": "中国民用航空飞行学院",
+            "Title": "飞机巡航阶段燃油消耗优化方法",
+            "Link": "https://patents.google.com/patent/CN119312698A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:09:12"
+}

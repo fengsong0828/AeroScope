@@ -1,0 +1,317 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN109541584B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES331830916">
+<invention-title id="title1" lang="ZH">一种基于智能终端的低空飞行器侦察预警系统及方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="n0001">本发明涉及飞行器侦察预警领域，具体涉及一种基于智能终端的低空飞行器侦察预警方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="n0002">近年来，随着国内外无人飞行器井喷式发展，以及我国低空开放步伐加快，低空飞行器探测预警领域也随之进入快速发展阶段，尤其是在低空无人飞行器探测和敏感目标/区域安全防卫的方面，对高中低搭配、主被动结合、点线面补充的低空综合探测预警网络提出了迫切需求；同时，在军事应用方面，在强电磁干扰环境下，面对低空、超低空突击突防的作战飞机或导弹，低空情报预警系统也面临着极大的挑战。目前，在低空飞行器侦察预警领域，主要还是由低空雷达、光电复合探测设备等技术复杂的高端产品主导，此类产品价格昂贵、技术复杂、抗扰性弱、使用推广受限等问题突出，明显制约低空探测感知体系的建设发展。因此，寻找既适应国土防空军事需要，又满足航空管制、智能安防等民用市场现实需求的新技术和新产品，成为当前国内低空预警探测领域重点关注的问题。</div>
+<div class="description-paragraph" id="p0005" num="n0003">目前，国内对低空目标预警探测领域主要分低端、高端产品两类，其中低端产品集中在传统光学观瞄器材，高端产品多集中在光电复合的自动探测跟踪设备。两类产品各有特点：普通光学望远镜和红外望远镜因简便易用、价格适中、操作灵活等特点，成为普通大众理想的、不可或缺的常规对空观瞄器材，也一直是低空飞行目标空情预警的保底手段，长期在军民两个市场大量使用，但该方法信息化程度低、人工操作误差大、数据很难集成、共享，人工肉眼观察到的情况只能口头传递播报空情概要，无法准确转化为空中目标的位置等信息，也无法与现行的空管监视系统、空防信息系统自动对接，这种功能缺失严重制约此类产品实际使用；光电复合探测跟踪设备采取被动方式接收目标自身辐射的红外特性信号获取目标所在空间位置信息，并将信息经有无线通信链路传送至指控系统，从而形成空中目标的空情态势，该方法无论从精度、效率和使用性等方面都比传统望远镜功能更强，但也存在结构较为复杂、体积重量大、价格昂贵、维保要求高、通信距离近、抗光电干扰能力弱等问题，导致无法进行市场大规模推广运用，尤其是在地形复杂的野外山地环境中使用受限。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="n0004">针对现有技术存在的问题，本发明提供一种基于智能终端的低空飞行器侦察预警系统，包括智能终端、情报后台、云服务转发模块、安全隔离模块、用户订阅显示模块，其中：</div>
+<div class="description-paragraph" id="p0008" num="n0005">智能终端，用于采集低空目标的方位角、高低角、估算距离，收集目标架数、机型等参数信息，执行数据上报发送等操作，以及从后台接收站点编号等初始化数据和后台提醒信息；智能终端的采集模块采用安卓系统的原生应用App或基于超文本标记语言HTML5的网页；</div>
+<div class="description-paragraph" id="p0009" num="n0006">云服务转发模块，一般部署在民用公共网络上，可以是阿里云、腾讯云等服务器上，为各智能终端网页提供宿主运行环境，供智能终端浏览器访问接入，用来收集、转发智能终端上报的目标情报；</div>
+<div class="description-paragraph" id="p0010" num="n0007">安全隔离模块，用于实现不同密级系统之间隔离，实现信息的单向可控传输，确保信息安全；安全隔离模块将民网的云端空情数据转化为二维码信息或进行加密处理，发送至情报后台；</div>
+<div class="description-paragraph" id="p0011" num="n0008">情报后台，其部署在与互联网独立的内部业务网上，用于对智能终端上报的数据进行数据筛选、甄别、相关性处理、融合操作，过程中用户通过方向席位实现目标融合人为干预；通过融合或推演，生成连续的目标航迹；</div>
+<div class="description-paragraph" id="p0012" num="n0009">用户订阅显示模块，其为情报订阅终端提供基于地理信息系统的低空目标航迹显示功能，将经由情报后台处理过的空情信息进行可视化显示。</div>
+<div class="description-paragraph" id="p0013" num="n0010">还提供一种基于智能终端的低空飞行器侦察预警方法，包括下列步骤：</div>
+<div class="description-paragraph" id="p0014" num="n0011">1.智能终端空情获取；</div>
+<div class="description-paragraph" id="p0015" num="n0012">2.云服务转发；</div>
+<div class="description-paragraph" id="p0016" num="n0013">3.安全隔离传输；</div>
+<div class="description-paragraph" id="p0017" num="n0014">4.后台情报处理；</div>
+<div class="description-paragraph" id="p0018" num="n0015">5.用户订阅显示。</div>
+<div class="description-paragraph" id="p0019" num="n0016">在本发明的一个实施例中，智能终端空情获取包括下列步骤：</div>
+<div class="description-paragraph" id="p0020" num="n0017">当智能终端浏览器访问对应网址时，后台推送终端站点编号、当地天气能见度信息，使用终端的观测人员手动校准真北信息，完成终端初始化；当观测人员视场中或通过望远镜发现低空目标，通过智能终端内置的磁传感器、重力感应器获取望远镜当前相对低空目标的高低角与水平方位角，通过智能终端内置的北斗/GPS模块获取精准地理坐标，并按照指定报文格式对空情综合数据进行加密，通过民用网络传送至云服务转发模块；智能终端工作流程包括；</div>
+<div class="description-paragraph" id="p0021" num="n0018">(1)系统站点初始化</div>
+<div class="description-paragraph" id="p0022" num="n0019">智能终端接入网络，智能终端从云服务器转发模块自动获取民网基站的站点编号，用于网络通信时识别站点身份；从云服务器转发模块获得该位置的能见度信息，该信息来自于气象台站观测值；从云服务器转发模块获得服务器时间，作为网络通信时的时间戳；或者，以上所有数值提供手动设置方法；系统初始化过程的观测点的经纬度坐标值，通过智能终端自带的北斗/GPS模块自动设定或通过手动方式填报；当智能终端固定在某种光学观测设备时，智能终端测量的方位角、高低角与真实之间有一定偏差，需要手动校准；智能终端还提供智能终端操作人员身份及联系电话等信息记录上报；另外，考虑到地磁的南极在地理北极并不是完全重合，智能终端传感器测量的方向需要用地磁偏角进行校准，智能终端在接入时从云服务器转发模块得到对应的校准值；</div>
+<div class="description-paragraph" id="p0023" num="n0020">(2)目标参数设置</div>
+<div class="description-paragraph" id="p0024" num="n0021">当发现目标时，操作人员手动装订的目标参数主要有：目标编号、目视估算距离、目标类型、架数、后续有无目标，以及航向；装订完毕后通过发送按钮将数据发送至云服务转发模块；具体数据格式如表1：</div>
+<div class="description-paragraph" id="p0025" num="n0022">表1通信数据格式表</div>
+<div class="description-paragraph" id="p0026" num="n0023">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/d3/a6/13/445d0e66183d07/BSA0000177441580000031.png"><img alt="Figure BSA0000177441580000031" class="patent-full-image" file="BSA0000177441580000031.GIF" he="816" height="3264" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_0.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0027" num="n0024">(3)终端数据测报</div>
+<div class="description-paragraph" id="p0028" num="n0025">通过世界坐标系和智能终端自然坐标系的换算得出目标高低角和方位角；世界坐标系中，Y轴为与地球表面正切、并指向磁北极方向，Z轴为与地球表面垂直、并指向地球的中心方向，X轴为与Y、Z轴垂直、并指向磁东方向；智能终端自然坐标系中，终端立着放置条件下，X轴是水平指向右的，Y轴是垂直向上的，Z轴是指向屏幕正面之外的，智能终端分别绕X、Y、Z轴转动生成垂直偏角Pitch、水平偏角Roll、倾斜偏角Azimuth；当智能终端对准目标时，首先计算地球坐标系和手机坐标系之间的旋转角度，然后根据智能终端获取到的相对于智能终端自然坐标系的加速度值经过旋转矩阵计算获取到智能终端在地球坐标系中的参数值，以此换算得到目标方位角、高低角参数；</div>
+<div class="description-paragraph" id="p0029" num="n0026">智能终端将测得的目标方位角、高低角参数，加上时间戳，与位置数据，以及已装订的目标距离、架数、批号等属性信息进行格式化生成目标情报消息，通过WebSocket通信协议，传送至云服务转发模块；当站点一定时间内没有发现目标时，智能终端定时发送相关提示信息；</div>
+<div class="description-paragraph" id="p0030" num="n0027">为提高目标方位角、高低角测量精度，以及实现目标距离准确、连续、自动化的测量，使用基于图像处理的目标信息测量方法：操作人员发现目标时，智能终端使用摄像头对准目标，智能终端采集磁传感器、重力传感数据，以此计算目标的方位角、高低角概略值；利用图像边沿检测技术，检测目标与图片中心角度偏差，修正得到更加精确的目标方位与高低信息；自动检测目标边缘轮廓并测量目标成像像素大小，得到目标视场宽度，根据目标类型，估算目标物理尺寸，应用相似三角形原理，计算得到目标距离；</div>
+<div class="description-paragraph" id="p0031" num="n0028">(4)人机交互操作</div>
+<div class="description-paragraph" id="p0032" num="n0029">为提高情报采录效率，减少用户操作智能终端屏幕输入的次数和时间，利用智能终端加装速度计、陀螺仪、磁力计，订制目标参数装订动作，对这些动作进行检测和识别，获得相关参数；</div>
+<div class="description-paragraph" id="p0033" num="n0030">除手动设置目标诸元功能外，还提供一种目标诸元快速设置方法，既利用屏幕上手势识别功能，借助开源库，在屏幕中触摸实现非可视条件下目标诸元快速设置；用户眼睛不用看屏幕，手指按事先约定的方向水平移动，移动位移代表目标目视距离，手指数目代表目标数量；手指在屏幕上绘制三角形、圆形、方形等形状设置目标机型，通过数字识别方法识别目标批号；</div>
+<div class="description-paragraph" id="p0034" num="n0031">通过安卓系统的原生应用App或基于超文本标记语言HTML5的网页实现数据离线保存、语音播报、图形动画效果。</div>
+<div class="description-paragraph" id="p0035" num="n0032">在本发明的一个实施例中，云服务转发具体如下：</div>
+<div class="description-paragraph" id="p0036" num="n0033">内网、外网服务后台实现均采用互联网特别的技术解决方案，以Node.js为后台服务运行环境，使用国产开源框架ThinkJS作为网站框架，快速实现轻量、高效，适于分布式部署的服务后台，为智能终端访问网页提供宿主环境和数据交互服务；在外网云服务过程中，终端登录时数据交互过程如下：</div>
+<div class="description-paragraph" id="p0037" num="n0034">第一步：云服务的初始化过程，根据终端IP地址、登录用户名、授权码或时间戳自动生成网络通信站点身份识别号，从气象网站得到对应地理位置能见度信息，在数据库中插值得到地磁偏角，以及服务器系统时间，相关参数作为变量在网页生成过程中赋值给终端；</div>
+<div class="description-paragraph" id="p0038" num="n0035">第二步，传感器数据采集、终端人机交互操作在网页前端实现之后，对其进行显示；</div>
+<div class="description-paragraph" id="p0039" num="n0036">第三步，当终端发现并上报目标时，系统通过Websocket协议向服务器端提交数据实现消息转发。</div>
+<div class="description-paragraph" id="p0040" num="n0037">在本发明的一个实施例中，安全隔离传输具体采用改进的基于二维码的数据单向传输的方法；该方法具体如下：</div>
+<div class="description-paragraph" id="p0041" num="n0038">基于ZXING开源库对数据进行QR编码，通过视频接收并进行QR解码实现数据进行传输的方法，从而实现内外网隔离的情况下进行数据的安全、可控传输；</div>
+<div class="description-paragraph" id="p0042" num="n0039">终端报送目标数据过来后，首先云服务后台将数据转发至指定网页，并在前端动态生成二维码图片，投影在屏幕上，然后内网某个终端电脑用摄像头连续识别二维码，实现目标信息单向传输；</div>
+<div class="description-paragraph" id="p0043" num="n0040">为提高该方法传输数据的完整性，在内网“读取”外网数据时，加入数据反馈机制，其具体流程为：</div>
+<div class="description-paragraph" id="p0044" num="n0041">第一步，外网数据推送到发送端，数据加入到传输队列，并在数据前添加索引序号形成新的消息，该消息生成QR二维码，内网在接收端通过摄像头识别QR消息，并解析消息得到消息索引序号和数据体；</div>
+<div class="description-paragraph" id="p0045" num="n0042">第二步，判断消息索引号是否按指定规律排列，如果索引序号有缺失，则由前后序号推算缺失序号，生成序号数据QR二维码，外网识别缺失的序号，在传输数据历史中查找得到对应数据；</div>
+<div class="description-paragraph" id="p0046" num="n0043">第三步，将缺失数据重新加入传输队列，再次进行传送，确定数据传送完整后，数据体向后台进行推送。</div>
+<div class="description-paragraph" id="p0047" num="n0044">在本发明的一个实施例中，后台情报处理包括下列步骤：</div>
+<div class="description-paragraph" id="p0048" num="n0045">(1)站点布设优化</div>
+<div class="description-paragraph" id="p0049" num="n0046">在指定区域内，计算已定雷达部署方案对应的雷达探测盲区，在盲区范围内根据合适的数学模型给出观测哨点部署位置，部署方案生成过程中，人工实时调整修正，方案生成后自动对应的综合探测效率，即探测范围率、重点方向探测拦截次数、重叠探测率等等指标，为方案量化评估提供标准依据；</div>
+<div class="description-paragraph" id="p0050" num="n0047">第一步：推算雷达探测范围；</div>
+<div class="description-paragraph" id="p0051" num="n0048">通过分析雷达探测范围的影响因素，推算雷达探测范围：一是地物反射干扰，即地表强杂波干扰，飞机低空飞行时，其回波多淹没在地表的强杂波背景中，导致发现目标发败；二是受地球曲率限制，地球近似球体，对于较高频率雷达的发现距离为：</div>
+<div class="description-paragraph" id="p0052" num="n0049">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/2e/40/11/9a3fcd4c3c4c2b/BSA0000177441580000061.png"><img alt="Figure BSA0000177441580000061" class="patent-full-image" file="BSA0000177441580000061.GIF" he="58" height="232" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_1.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0053" num="n0050">其中，D<sub>视距</sub>为雷达的最大发现距离，单位km，H<sub>r</sub>为雷达天线架设的高度，单位m，H<sub>t</sub>为目标飞行高度，单位m；三是受地形地物遮蔽，地形起伏有效阻挡了雷达的探测波；</div>
+<div class="description-paragraph" id="p0054" num="n0051">第二步：确定布站原则；</div>
+<div class="description-paragraph" id="p0055" num="n0052">在观测站点布设中，具有第一雷达和第二雷达，假设第一雷达为重点保卫目标，以第一雷达为圆心，存在第一圆形区域为低空目标探测范围；由于受地形、地物遮蔽，以第二雷达为圆心的第二圆形区域是一块不规则的探测区域，有盲区；假设存在第一至第七观测站点布设位置，每个观测站点布设位置具有以该位置为圆心的一个圆形观测区域，圆形观测区域的半径为对应观测站点的观测距离，由于能见度、站点性质等因素影响，各观测点的观测距离不尽相同；由于受地形影响，圆形观测区域有可能出现局部被遮挡的情况；站点数量一定的条件下，布站原则如下：</div>
+<div class="description-paragraph" id="p0056" num="n0053">a.在雷达盲区内，观测哨可观测覆盖区域尽可能大；</div>
+<div class="description-paragraph" id="p0057" num="n0054">b.保障重点区域或重要方向低空情报时，应适当冗余布置，以增加探测拦截次数，提高目标发现概率；</div>
+<div class="description-paragraph" id="p0058" num="n0055">c.站点之间间距尽可能均匀，既防止因站点布设过远漏掉目标，也尽可能减少资源浪费；</div>
+<div class="description-paragraph" id="p0059" num="n0056">d.为扩大站点观测视野，一般将站点布置在海拔相对较高处；</div>
+<div class="description-paragraph" id="p0060" num="n0057">e.实际情况中，需要提高探测精度时，存在要求两个站点的观测区域重叠的情况；</div>
+<div class="description-paragraph" id="p0061" num="n0058">第三步：建立数学模型并求解；</div>
+<div class="description-paragraph" id="p0062" num="n0059">以第二步中的布站原则为目标函数，地形高程数据、雷达站点的探测范围及部署位置、各观测站点的发现距离为数学模型的约束条件，建立改进量子粒子群算法模型；</div>
+<div class="description-paragraph" id="p0063" num="n0060">对于多目标优化模型，采用分步优化的方法求解，即先以其中某一目标函数，求解单目标模型得到该目标函数的值；然后，以该值为约束条件求下一目标的优化解；目标函数的求解顺序依据实际情况确定；由于涉及地形高程数据插值，以及图形的合并等操作，单目标模型求解计算量也比较大，采用粒子群算法；具体计算前，能够使用先验知识为算法人工赋初值，以提高运算速度；</div>
+<div class="description-paragraph" id="p0064" num="n0061">(2)目标关联融合</div>
+<div class="description-paragraph" id="p0065" num="n0062">智能终端测报的数据较多，并且精度不一致，其中目标距离、机型、架数、航向等信息为人眼观察得到，误差较大，目标发现时刻、方位、高低角等信息误差相对较小，观测人员所处位置信息更加准确，用于推算目标航迹的信息还包括附近站点是否目视发现或听到轰鸣声的状态信息、雷达暂消点的提示信息；目标关联融合方法如下：</div>
+<div class="description-paragraph" id="p0066" num="n0063">第一步，利用效用函数对目标的机型、架数、航向等信息综合评估，初步分类目标航迹；</div>
+<div class="description-paragraph" id="p0067" num="n0064">第二步，利用相对准确的角度数据，根据几何关系计算出目标位置；</div>
+<div class="description-paragraph" id="p0068" num="n0065">目标距离信息精度较差，使用方位和高低信息进行定位，在两点观测值推算过程中，受目视距离限制，同时观察到同一目标的两观测点相距不会太远，此时将地理坐标上两点转化为平面坐标系数值，误差较少；以其中一观测点A为基点建立坐标系，计算另一观测点B的相对位置D<sub>AB</sub>、方位角β；</div>
+<div class="description-paragraph" id="p0069" num="n0066">根据几何关系计算三角形各角度的值，根据正弦定理，推导得出D<sub>A</sub>的计算式(5)，计算得到目标相对于观测点A距离信息；</div>
+<div class="description-paragraph" id="p0070" num="n0067">D<sub>A</sub>＝D<sub>AB</sub>·sin(a<sub>B</sub>-β)/sin(a<sub>A</sub>-a<sub>B</sub>)  (5)</div>
+<div class="description-paragraph" id="p0071" num="n0068">其中，a<sub>A</sub>、a<sub>B</sub>分别为观测站点A、B观测目标的方位角；当测量的数据较少时，使用基于几何关系目标定位方法进行目标融合，否则使用基于扩展卡尔曼滤波的多传感器融合方法处理情报数据，如下所述；</div>
+<div class="description-paragraph" id="p0072" num="n0069">第三步，利用扩展卡尔曼滤波算法，得到目标航迹；</div>
+<div class="description-paragraph" id="p0073" num="n0070">智能终端测量的信息是基于球面坐标系的角度和距离信息，转换到平面坐标要经过非线性转换，因此采用扩展卡尔曼滤波算法；</div>
+<div class="description-paragraph" id="p0074" num="n0071">以某一观测站点为原点，建立北-天-东局部坐标系统，设目标信息的状态变量X＝(p<sub>x</sub>，p<sub>y</sub>，p<sub>z</sub>，v<sub>x</sub>，v<sub>y</sub>，v<sub>z</sub>)，其中，p<sub>x</sub>、p<sub>y</sub>、p<sub>x</sub>分别为x、y、z轴方向的位置值、v<sub>x</sub>、v<sub>y</sub>、v<sub>z</sub>分别x、y、z轴方向的位置值；观测值Z＝(ρ，α，β)，其中，ρ为观测到的目标距离，α为观测到的目标方位角，β为观测到的目标高低角信息；</div>
+<div class="description-paragraph" id="p0075" num="n0072">用矩阵F表示系统的状态如何改变，这里仅考虑线性系统，则系统状态转移过程</div>
+<div class="description-paragraph" id="p0076" num="n0073">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/63/6d/3d/9350140c35afad/BSA0000177441580000081.png"><img alt="Figure BSA0000177441580000081" class="patent-full-image" file="BSA0000177441580000081.GIF" he="299" height="1196" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_2.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0077" num="n0074">用P表示系统状态的不确定性程度，表示状态变量X的协方差。</div>
+<div class="description-paragraph" id="p0078" num="n0075">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/c1/ac/4e/4a823a9d60b6c2/BSA0000177441580000082.png"><img alt="Figure BSA0000177441580000082" class="patent-full-image" file="BSA0000177441580000082.GIF" he="334" height="1336" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_3.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0079" num="n0076">用Q表示系统状态转移过程X′＝FX未能刻画的其他外界干扰。本实施例使用线性模型，因此加速度变成了干扰项。X′＝FX中未衡量的额外项v为：</div>
+<div class="description-paragraph" id="p0080" num="n0077">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/51/69/62/bf29c7d358e76a/BSA0000177441580000083.png"><img alt="Figure BSA0000177441580000083" class="patent-full-image" file="BSA0000177441580000083.GIF" he="505" height="2020" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_4.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0081" num="n0078">式中，a<sub>x</sub>、a<sub>y</sub>、a<sub>z</sub>分别为x、y、z轴方向速度的扰动量，即加速度，G表示与时间相关的系统矩阵。设v服从高斯分布N(0，Q)。</div>
+<div class="description-paragraph" id="p0082" num="n0079">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/45/43/cd/b729d9dd3e4c67/BSA0000177441580000084.png"><img alt="Figure BSA0000177441580000084" class="patent-full-image" file="BSA0000177441580000084.GIF" he="145" height="580" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_5.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0083" num="n0080">式中，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/80/3b/07/d5859e202056bb/BSA0000177441580000085.png"><img alt="Figure BSA0000177441580000085" class="patent-full-image" file="BSA0000177441580000085.GIF" he="69" height="276" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_6.png" wi="317" width="1268"/></a></div>分别为x、y、z轴方向加速度变化值的方差，E表示单位矩阵。该值一般由目标的类型、当前时刻目标飞行动作，以及观测点上报过来的目标飞行姿态等情况确定。</div>
+<div class="description-paragraph" id="p0084" num="n0081">状态空间到测量空间的非线性映射f(x)为</div>
+<div class="description-paragraph" id="p0085" num="n0082">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/1e/c4/0b/cb2c42fcbef0d6/BSA0000177441580000091.png"><img alt="Figure BSA0000177441580000091" class="patent-full-image" file="BSA0000177441580000091.GIF" he="348" height="1392" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_7.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0086" num="n0083">非线性映射线性化后的雅克比(Jacob)矩阵H<sub>j</sub> </div>
+<div class="description-paragraph" id="p0087" num="n0084">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/e0/a5/da/e87e963272f36e/BSA0000177441580000092.png"><img alt="Figure BSA0000177441580000092" class="patent-full-image" file="BSA0000177441580000092.GIF" he="318" height="1272" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_8.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0088" num="n0085">用R表示了测量值的不确定度，与观测者操作熟练程度相关，假设距离观测误差为5km，角度观测误差中1°，则：</div>
+<div class="description-paragraph" id="p0089" num="n0086">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/e8/4a/eb/2f0dcedd526b47/BSA0000177441580000093.png"><img alt="Figure BSA0000177441580000093" class="patent-full-image" file="BSA0000177441580000093.GIF" he="191" height="764" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_9.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0090" num="n0087">式中，G表示与时间相关的系统矩阵。</div>
+<div class="description-paragraph" id="p0091" num="n0088">对应的扩展卡尔曼滤波方程组如下：</div>
+<div class="description-paragraph" id="p0092" num="n0089">首先，计算噪声协方差矩阵，其更新方程为</div>
+<div class="description-paragraph" id="p0093" num="n0090">P′＝(I-KH<sub>j</sub>)P</div>
+<div class="description-paragraph" id="p0094" num="n0091">式中K为卡尔曼系数，P表示系统状态的不确定性程度。</div>
+<div class="description-paragraph" id="p0095" num="n0092">然后，计算卡尔曼系数K，其计算式为</div>
+<div class="description-paragraph" id="p0096" num="n0093">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/a6/7f/5f/cb372ec37d534d/BSA0000177441580000094.png"><img alt="Figure BSA0000177441580000094" class="patent-full-image" file="BSA0000177441580000094.GIF" he="69" height="276" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_10.png" wi="253" width="1012"/></a></div>
+</div>
+<div class="description-paragraph" id="p0097" num="n0094">上式中，S是简化表达的矩阵，展开如下</div>
+<div class="description-paragraph" id="p0098" num="n0095">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/d5/83/f2/da6c1f6d5ce563/BSA0000177441580000095.png"><img alt="Figure BSA0000177441580000095" class="patent-full-image" file="BSA0000177441580000095.GIF" he="70" height="280" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_11.png" wi="323" width="1292"/></a></div>
+</div>
+<div class="description-paragraph" id="p0099" num="n0096">最后，计算得出状态变量X的更新值X’</div>
+<div class="description-paragraph" id="p0100" num="n0097">X′＝X+KY</div>
+<div class="description-paragraph" id="p0101" num="n0098">上式中，</div>
+<div class="description-paragraph" id="p0102" num="n0099">Y＝Z-f(x)</div>
+<div class="description-paragraph" id="p0103" num="n0100">上述5个计算式为卡尔曼滤波方程组经典方程，得出修正后的目标信息状态变量X’，以满足改进航迹显示的需要。</div>
+<div class="description-paragraph" id="p0104" num="n0101">在本发明的一个实施例中，用户订阅显示包括下列步骤：</div>
+<div class="description-paragraph" id="p0105" num="n0102">该步骤用于向订阅用户推送已融合好的情报信息，主要包括情报显示子流程、地理信息子流程；</div>
+<div class="description-paragraph" id="p0106" num="n0103">(1)情报显示子流程</div>
+<div class="description-paragraph" id="p0107" num="n0104">以图、表和标牌形式，显示融合后的综合空情信息，或根据需要显示观察哨探测器上报的原始空情信息，及观察哨采集上报的目标图像；</div>
+<div class="description-paragraph" id="p0108" num="n0105">(2)地理信息子流程</div>
+<div class="description-paragraph" id="p0109" num="n0106">为用户提供某一地域的高清卫星图像、数字高程以及道路、河流、桥梁、居民区的要素信息，具有人机交互功能设计，用户能够对地理信息系统中的视角、比例尺、图层、显示要素进行显示操作。</div>
+<div class="description-paragraph" id="p0110" num="n0107">本发明是将高端探测设备的核心功能，与普通大众用品(如智能手机)巧妙、低价的融合集成，提出一种既具备高端产品重要功能、又具有推广成本低、操作简便的软件平台，能够较好弥补高、低端产品各自缺陷。本发明属于传统低空飞行器侦察预警手段的信息化改进升级，主要解决传统光学探测低空目标效率较低、稳定性和精度不高等问题，通过对智能终端传感器数据系统参数采集转换、对人工观测信息、雷达情报数据等有机融合集成，输出具有较高精度、航线连续的低空飞行器目标位置情报，实现对低空空域侦察预警，进而为构建高中低合理搭配、自动与人工相互补充的军民融合低空预警监视体系，推出一种使用简便易于推广的技术和产品。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0111">附图说明</div>
+<div class="description-paragraph" id="p0112" num="n0108">图1示出基于智能终端的低空飞行侦察预警系统网络架构图；</div>
+<div class="description-paragraph" id="p0113" num="n0109">图2示出世界坐标系示意图；</div>
+<div class="description-paragraph" id="p0114" num="n0110">图3示出终端自然坐标系示意图；</div>
+<div class="description-paragraph" id="p0115" num="n0111">图4示出基于二维码的数据单向传输示意图；</div>
+<div class="description-paragraph" id="p0116" num="n0112">图5示出带反馈的QR码数据安全传输方法；</div>
+<div class="description-paragraph" id="p0117" num="n0113">图6示出观测站点布设示意图；</div>
+<div class="description-paragraph" id="p0118" num="n0114">图7示出根据两点观测值进行目标定位几何关系图；</div>
+<div class="description-paragraph" id="p0119" num="n0115">图8示出用户使用终端测报低空目标情报示意图；</div>
+<div class="description-paragraph" id="p0120" num="n0116">图9示出智能终端测报目标情报流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0121">具体实施方式</div>
+<div class="description-paragraph" id="p0122" num="n0117">下面结合具体实例来详细介绍本发明的技术方案和实施过程。</div>
+<div class="description-paragraph" id="p0123" num="n0118">(一)基于智能终端的低空飞行器侦察预警系统组成</div>
+<div class="description-paragraph" id="p0124" num="n0119">如图1所示，本发明主要由智能终端、情报后台、云服务转发模块、安全隔离模块、用户订阅显示模块等部分组成。</div>
+<div class="description-paragraph" id="p0125" num="n0120">智能终端，用于采集低空目标的方位角、高低角、估算距离，收集目标架数、机型等参数信息，执行数据上报发送等操作，以及从后台接收站点编号等初始化数据和后台提醒信息。智能终端的采集模块的实现主要有基于安卓系统的原生App(应用)和基于HTML5(超文本标记语言)的网页2种具体形式，其中基于HTML5网页形式具有开发周期短、推广成本低等特点，本发明实施将采用该种形式，后面以此形式实例进行说明；</div>
+<div class="description-paragraph" id="p0126" num="n0121">云服务转发模块，一般部署在民用公共网络上，可以是阿里云、腾讯云等服务器上，为各智能终端网页提供宿主运行环境，供智能终端浏览器访问接入，用来收集、转发智能终端上报的目标情报；</div>
+<div class="description-paragraph" id="p0127" num="n0122">安全隔离模块，主要是使用软、硬件方法，实现不同密级系统之间隔离，实现信息的单向可控传输，从而确保信息安全；在本发明中，安全隔离模块将民网的云端空情数据转化为二维码信息或进行加密处理，发送至情报后台；</div>
+<div class="description-paragraph" id="p0128" num="n0123">情报后台，一般部署在与互联网独立的内部业务网上，用来对智能终端上报的数据进行数据筛选、甄别、相关性处理、融合等操作，过程中用户通过图1所示的方向席位实现目标融合人为干预，干预内容包括控制人工合批、手动输入雷达情报网消失点的目标信息等等。通过融合或推演，生成连续的目标航迹；</div>
+<div class="description-paragraph" id="p0129" num="n0124">用户订阅显示模块，主要为情报订阅终端提供基于地理信息系统的低空目标航迹显示功能，显示的信息包括目标经纬度、高度位置，以及目标类型、飞行动作等属性信息；在本发明中，用户订阅模块，将经由情报后台处理过的空情信息进行可视化显示。</div>
+<div class="description-paragraph" id="p0130" num="n0125">(二)基于智能终端的低空飞行器侦察预警方法</div>
+<div class="description-paragraph" id="p0131" num="n0126">基于智能终端的低空飞行器侦察预警方法主要分为5个步骤，分别是智能终端空情获取、云服务转发、安全隔离传输、后台情报处理和用户订阅显示。</div>
+<div class="description-paragraph" id="p0132" num="n0127">1.智能终端空情获取</div>
+<div class="description-paragraph" id="p0133" num="n0128">当智能终端浏览器访问对应网址，后台推送终端站点编号、当地天气能见度等信息，使用终端的观测人员也可手动校准真北等信息，即可完成终端初始化；当观测人员视场中(或通过望远镜)发现低空目标，通过智能终端内置的磁传感器、重力感应器获取望远镜当前相对低空目标的高低角与水平方位角，通过智能终端内置的北斗/GPS模块获取精准地理坐标，相关数据按照指定报文格式将空情综合数据进行加密，通过民用网络传送至云服务转发模块。智能终端工作流程主要包括系统站点初始化、设置目标参数、目标数据测报、人机交互操作等4个子流程。</div>
+<div class="description-paragraph" id="p0134" num="n0129">(1)系统站点初始化</div>
+<div class="description-paragraph" id="p0135" num="n0130">智能终端接入网络，智能终端从云服务器转发模块自动获取民网基站的站点编号，用于网络通信时识别站点身份；从云服务器转发模块获得该位置的能见度信息，该信息可以来自于气象台站观测值；从云服务器转发模块获得服务器时间，作为网络通信时的时间戳。以上所有数值也提供手动设置方法。系统初始化过程的观测点的经纬度坐标值，既可以通过智能终端自带的北斗/GPS模块自动设定，也可以通过手动方式填报；当智能终端固定在某种光学观测设备时(例如望远镜)，智能终端测量的方位角、高低角与真实之间可以有一定偏差，软件提供手动校准功能；智能终端还提供智能终端操作人员身份及联系电话等信息记录上报功能。另外，考虑到地磁的南极在地理北极并不是完全重合，智能终端传感器测量的方向需要用地磁偏角进行校准，智能终端在接入时从云服务器转发模块得到对应的校准值。</div>
+<div class="description-paragraph" id="p0136" num="n0131">(2)目标参数设置</div>
+<div class="description-paragraph" id="p0137" num="n0132">当发现目标时，操作人员手动装订的目标参数主要有：目标编号、目视估算距离、目标类型、架数、后续有无目标，以及航向等备注信息。装订完毕后通过发送按钮将数据发送至云服务。具体数据格式如表1：</div>
+<div class="description-paragraph" id="p0138" num="n0133">表1通信数据格式表</div>
+<div class="description-paragraph" id="p0139" num="n0134">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/1b/b9/0e/e3e50a54d6dd36/BSA0000177441580000121.png"><img alt="Figure BSA0000177441580000121" class="patent-full-image" file="BSA0000177441580000121.GIF" he="392" height="1568" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_12.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0140" num="n0135">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/2f/4b/c0/2254718b848032/BSA0000177441580000131.png"><img alt="Figure BSA0000177441580000131" class="patent-full-image" file="BSA0000177441580000131.GIF" he="431" height="1724" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_13.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0141" num="n0136">(3)终端数据测报</div>
+<div class="description-paragraph" id="p0142" num="n0137">通过世界坐标系和智能终端自然坐标系的换算得出目标高低角和方位角。图2所示，世界坐标系中，Y轴为与地球表面正切、并指向磁北极方向，Z轴为与地球表面垂直、并指向地球的中心方向，X轴为与Y、Z轴垂直、并指向磁东方向。图3所示，终端自然坐标系中，终端立着放置条件下，X轴是水平指向右的，Y轴是垂直向上的，Z轴是指向屏幕正面之外的，终端分别绕X、Y、Z轴转动生成Pitch(垂直偏角)、Roll(水平偏角)、Azimuth(倾斜偏角)。当终端对准目标时，首先计算地球坐标系和手机坐标系之间的旋转角度(getRotationMatrix和getOrientation)，然后根据手机获取到的相对于手机坐标系的加速度值经过旋转矩阵计算获取到终端在地球坐标系中的参数值，以此换算得到目标方位角、高低角参数。</div>
+<div class="description-paragraph" id="p0143" num="n0138">智能终端将测得的目标方位角、高低角参数，加上时间戳，与位置数据，以及已装订的目标距离、架数、批号等属性信息进行格式化生成目标情报消息，通过WebSocket通信协议，传送至云服务转发模块。当站点一定时间内没有发现目标时，智能终端定时发送相关提示信息。</div>
+<div class="description-paragraph" id="p0144" num="n0139">为提高目标方位角、高低角测量精度，以及实现目标距离准确、连续、自动化的测量，发明中使用基于图像处理的目标信息测量方法。操作人员发现目标时，智能终端使用摄像头对准目标，智能终端采集磁传感器、重力传感数据，以此计算目标的方位角、高低角概略值。利用目标图像定位技术(于明，冀中，目标定位图像中心新方法，计算机应用研究，2016.1)，检测目标与图片中心角度偏差，修正得到更加精确的目标方位与高低信息；自动检测目标边缘轮廓并测量目标成像像素大小，得到目标视场宽度，根据目标类型，大体估算目标物理尺寸，利用相似三角形原理，计算得到目标距离。</div>
+<div class="description-paragraph" id="p0145" num="n0140">(4)人机交互操作</div>
+<div class="description-paragraph" id="p0146" num="n0141">为提高情报采录效率，减少用户操作智能终端屏幕输入的次数和时间，利用智能终端加速度计、陀螺仪、磁力计等传感器，订制目标参数装订动作，例如，智能终端上下摇动次数设置目标架数，左右摇动控制目标批号，绕Y轴转动幅度表示目标距离，绕Y轴正向转表示后续无目标，反向为有后续目标，手机通过手臂带动在空中绘制三角、圆形等不同的形状代表不同的机型，等等。这些动作可以通过TensorFlow进行检测和识别。</div>
+<div class="description-paragraph" id="p0147" num="n0142">同时，利用屏幕上手势识别功能，借助“MagicTouch.js”等开源库，提供另一种在屏幕中触摸实现非可视条件下目标诸元快速设置方法。用户眼睛不用看见屏幕，手指从后往前水平移动(由前往后浏览器一般默认为刷新网页)，移动位移代表目标目视距离，手指数目代表目标数量。手指在屏幕上绘制三角形、圆形、方形等形状设置目标机型，目标批号可以通过数字识别方法实现。</div>
+<div class="description-paragraph" id="p0148" num="n0143">本发明利用HTML5实现数据离线保存、语音播报、图形动画等效果，具体过程如下：网页意外退出后再次进入时，除从服务器获得部分数据外，大部分数据从终端本地存储中读取得到，如通过“localStorage.getItem(″personInfo″)”语句，可以得到用户网页退出前装订的目标参数；利用HTML5多媒体特性中AUDIO标签，可实现页面按键声音反馈，后台发出的什么方位、多少公里、什么类型目标暂消的情报支援等等语音提醒，提高终端在人机交互操作效果：利用HTML5图形SVG标签，通过“polyline”“circle”“text”等命令绘制指南针表盘、刻度、指针、水平仪基准线等图形，通过设置图形“style.transform”中“rotate”的系列值，实现对应动画效果。</div>
+<div class="description-paragraph" id="p0149" num="n0144">2.云服务转发</div>
+<div class="description-paragraph" id="p0150" num="n0145">云服务转发模块提供智能终端访问站点的宿主环境，为情报消息提供高效、稳定的转发服务。</div>
+<div class="description-paragraph" id="p0151" num="n0146">本发明内网、外网服务后台实现均采用互联网特别的技术解决方案，以Node.js为后台服务运行环境，使用国产开源框架ThinkJS作为网站框架，快速实现轻量、高效，适于分布式部署的服务后台，为智能终端访问网页提供宿主环境和数据交互服务。以外网云服务为例，说明我们做的工作，终端登录时数据交互过程如下：</div>
+<div class="description-paragraph" id="p0152" num="n0147">第一步：云服务的初始化过程，根据终端IP地址、登录用户名、授权码或时间戳自动生成网络通信站点身份识别号，从气象网站得到对应地理位置能见度信息，在数据库中插值得到地磁偏角，以及服务器系统时间，相关参数作为变量在网页生成过程中赋值给终端；</div>
+<div class="description-paragraph" id="p0153" num="n0148">第二步，传感器数据采集、终端人机交互操作在网页前端实现之后，显示在ThinkJS框架下的一个View视图页面中；</div>
+<div class="description-paragraph" id="p0154" num="n0149">第三步，当终端发现并上报目标时，系统通过Websocket协议向服务器端提交数据实现消息转发。</div>
+<div class="description-paragraph" id="p0155" num="n0150">3.安全隔离传输</div>
+<div class="description-paragraph" id="p0156" num="n0151">由于行业的特殊性，需要重点考虑对系统传输、处理存储等过程及数据的安全防范，特别是要处理好内、外网络之间的隔离防护，以及智能终端的身份认证和数据加密等问题。本发明采用的安全隔离方法主要有3种：第一种，基于二维码的数据单向传输(康建华，基于二维条码编解码技术的单向数据传输系统研究，南开大学硕士论文，2010.5)；第二种，改进的基于二维码的数据单向传输的方法，是在第一种方法的基础上进行的改进和创新。</div>
+<div class="description-paragraph" id="p0157" num="n0152">(1)基于二维码的数据单向传输</div>
+<div class="description-paragraph" id="p0158" num="n0153">基于ZXING开源库对数据进行QR编码，通过视频接收并进行QR解码实现数据进行传输的方法，从而实现内外网隔离的情况下进行数据的安全、可控传输，相对于网络安全隔离网闸方案，该方法操作简单，成本低廉。</div>
+<div class="description-paragraph" id="p0159" num="n0154">如图4所示，终端报送目标数据过来后，首先云服务后台将数据转发至指定网页，并在前端动态生成二维码图片，投影在屏幕上，然后内网某个终端电脑用摄像头连续识别二维码，实现目标信息单向传输。理论上，当输入设备、摄像头读取达到30fps的速度、且二维码的识别速度小于33ms时，单向传输速度为30次/s，终端上报信息太多、单向传输速度不能满足要求时，可以动态添加传输装置数量。内网部分经安全审核的目标暂消提醒信息、后台通知信息，也可以通过这种方法实现内网信息安全可控向外网传递。</div>
+<div class="description-paragraph" id="p0160" num="n0155">(2)具有反馈功能的二维码单向传输数据</div>
+<div class="description-paragraph" id="p0161" num="n0156">为提高该方法传输数据的完整性，在内网“读取”外网数据时，加入数据反馈机制，其流程如图5所示：</div>
+<div class="description-paragraph" id="p0162" num="n0157">第一步，外网数据推送到发送端，数据加入到传输队列，并在数据前添加索引序号形成新的消息，该消息生成QR二维码，内网在接收端通过摄像头识别QR消息，并解析消息得到消息索引序号和数据体；</div>
+<div class="description-paragraph" id="p0163" num="n0158">第二步，判断消息索引号是否按指定规律排列，如果索引序号有缺失，则由前后序号推算缺失序号，生成序号数据QR二维码，外网识别缺失的序号，在传输数据历史中查找得到对应数据；</div>
+<div class="description-paragraph" id="p0164" num="n0159">第三步，将缺失数据重新加入传输队列，再次进行传送，确定数据传送完整后，数据体向后台进行推送。</div>
+<div class="description-paragraph" id="p0165" num="n0160">4.后台情报处理</div>
+<div class="description-paragraph" id="p0166" num="n0161">情报后台是情报处理的中心，也是观测站管理的平台，后台情报处理主要包括站点布设优化、目标关联融合等2个主要功能子流程。</div>
+<div class="description-paragraph" id="p0167" num="n0162">(1)站点布设优化</div>
+<div class="description-paragraph" id="p0168" num="n0163">合理布设观测站点位置，是观测站点信息组网的关键一环，是系统是否能连续发现目标、准确提供目标信息的前提条件，往往决定着情报网的最终性能。在给定任务的情况下，在指定的作战区域中(主要包括地形问题，平原还是山地等)，与雷达站点合理协同，优化资源配置，实现情报网整体性能达到最优。该功能能够在指空区域内，计算已定雷达部署方案对应的雷达探测盲区，在盲区范围内根据合适的数学模型给出观测哨点部署位置，部署方案生成过程中，人工可以实时调整修正，方案生成后自动对应的综合探测效率，即探测范围率、重点方向探测拦截次数、重叠探测率等等指标，为方案量化评估提供标准依据。</div>
+<div class="description-paragraph" id="p0169" num="n0164">第一步：推算雷达探测范围。</div>
+<div class="description-paragraph" id="p0170" num="n0165">根据观测站点的能力，界定本发明功能，即定位于雷达情报网的低空目标补盲，并对重点目标进行低空目标情报支援保障。通过分析雷达探测范围的影响因素，推算雷达探测范围：一是地物反射干扰，即地表强杂波干扰，飞机低空飞行时，其回波多淹没在地表的强杂波背景中，导致发现目标发败。二是受地球曲率限制，地球近似球体，对于较高频率雷达的发现距离为：</div>
+<div class="description-paragraph" id="p0171" num="n0166">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/33/55/0c/b72cc0e34d4ed6/BSA0000177441580000161.png"><img alt="Figure BSA0000177441580000161" class="patent-full-image" file="BSA0000177441580000161.GIF" he="58" height="232" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_14.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0172" num="n0167">其中，D<sub>视距</sub>为雷达的最大发现距离，单位km，H<sub>r</sub>为雷达天线架设的高度，单位m，H<sub>t</sub>为目标飞行高度，单位m。三是受地形地物遮蔽，地形起伏有效阻挡了雷达的探测波。</div>
+<div class="description-paragraph" id="p0173" num="n0168">第二步：确定布站原则。</div>
+<div class="description-paragraph" id="p0174" num="n0169">图6所示为观测站点布设示意图，I、II为第一雷达和第二雷达，并且假设第一雷达为重点保卫目标，圆形阴影区为低空(例如1千米以下)目标探测范围。由于受地形、地物遮蔽，第二雷达探测区域不规则，有盲区。图中①至⑦为观测站点布设位置，对应阴影区域为观测区域，①中r表示站点①的观测距离，由于能见度、站点性质等因素影响，各观测点的观测距离也不尽相同。由于受地形影响，观测区域可能出现站点④被遮挡的情况。站点数量一定的条件下，通常布站一般考虑以下几个原则：</div>
+<div class="description-paragraph" id="p0175" num="n0170">a.在雷达盲区内，观测哨可观测覆盖区域尽可能大；</div>
+<div class="description-paragraph" id="p0176" num="n0171">b.保障重点区域或重要方向低空情报时，应适当冗余布置，以增加探测拦截次数，提高目标发现概率；</div>
+<div class="description-paragraph" id="p0177" num="n0172">c.站点之间间距尽可能均匀，既防止因站点布设过远漏掉目标，也尽可能减少资源浪费；</div>
+<div class="description-paragraph" id="p0178" num="n0173">d.为扩大站点观测视野，一般将站点布置在海拔相对较高处。</div>
+<div class="description-paragraph" id="p0179" num="n0174">e.实际情况中，可能还会要求两个站点的观测区域重叠，从而提高探测精度，这些也可以按照类似方法转化为目标函数。</div>
+<div class="description-paragraph" id="p0180" num="n0175">第三步：建立数学模型并求解。</div>
+<div class="description-paragraph" id="p0181" num="n0176">以第二步中的原则为目标函数，地形高程数据、雷达站点的探测范围及部署位置、各观测站点的发现距离为数学模型的约束条件，根据论文《基于改进量子粒子群算法的雷达布站优化研究》(廖玉忠，张自林.航天电子对抗，27卷第2期，2011.6)，建立改进量子粒子群算法模型。</div>
+<div class="description-paragraph" id="p0182" num="n0177">对于多目标优化模型，采用分步优化的方法求解，即先以其中某一目标函数(如重点目标探测概率)，求解单目标模型得到该目标函数的值。然后，以该值为约束条件求下一目标的优化解。目标函数的求解顺序依据实际情况确定。由于涉及地形高程数据插值，以及图形的合并等操作，单目标模型求解计算量也比较大，一般采用粒子群算法(基于改进量子粒子群算法的雷达布站优化研究，廖玉忠，张自林，航天电子对抗，27卷第2期，2011.6)。具体计算前，可以使用先验知识为算法人工赋初值，提高运算速度。</div>
+<div class="description-paragraph" id="p0183" num="n0178">(2)目标关联融合</div>
+<div class="description-paragraph" id="p0184" num="n0179">智能终端测报的数据较多，并且精度不一致，其中目标距离、机型、架数、航向等信息为人眼观察得到，误差较大，目标发现时刻、方位、高低角等信息误差相对较小，观测人员所处位置信息更加准确，用于推算目标航迹的信息还包括附近站点是否目视发现或听到轰鸣声的状态信息、雷达暂消点的提示信息，等等。本发明处理这些数据的思路：</div>
+<div class="description-paragraph" id="p0185" num="n0180">第一步，利用效用函数对目标的机型、架数、航向等信息综合评估，初步分类目标航迹，(汪学斌，王涛，防空地监哨情报融合研究，指挥控制与仿真，2007.4)。</div>
+<div class="description-paragraph" id="p0186" num="n0181">第二步，利用相对准确的角度数据，根据几何关系计算出目标位置。</div>
+<div class="description-paragraph" id="p0187" num="n0182">目标距离信息精度较差，使用方位和高低信息进行定位，这里以两点观测值推算过程为例。受目视距离限制，同时观察到同一目标的两观测点相距不会太远，一般在30km以内，否则就超出了目视距离范围。此时将地理坐标上两点转化为平面坐标系数值，误差较少。如图7所示，以其中一观测点A为基点建立坐标系，计算另一观测点B的相对位置D<sub>AB</sub>、方位角β。</div>
+<div class="description-paragraph" id="p0188" num="n0183">如图7所示，根据几何关系计算三角形各角度的值，根据正弦定理，推导得出D<sub>A</sub>的计算式(5)，计算得到目标相对于观测点A距离信息。</div>
+<div class="description-paragraph" id="p0189" num="n0184">D<sub>A</sub>＝D<sub>AB</sub>·sin(a<sub>B</sub>-β)/sin(a<sub>A</sub>-a<sub>B</sub>)  (5)</div>
+<div class="description-paragraph" id="p0190" num="n0185">其中，a<sub>A</sub>、a<sub>B</sub>分别为观测站点A、B观测目标的方位角。当测量的数据较少时，使用基于几何关系目标定位方法进行目标融合，否则使用基于扩展卡尔曼滤波的多传感器融合方法处理情报数据。</div>
+<div class="description-paragraph" id="p0191" num="n0186">第三步，利用扩展卡尔曼滤波算法，得到目标航迹。</div>
+<div class="description-paragraph" id="p0192" num="n0187">卡尔曼滤波(Kalman Filter)是一种利用线性系统状态方程，通过输入输出观测数据，对系统状态进行最优估计的算法。智能终端测量的信息是基于球面坐标系的角度和距离信息，转换到平面坐标要经过非线性转换，此时需要对卡尔曼滤波算法进行的非线性改进，即扩展卡尔曼滤波(Extended Kalman Filter)。</div>
+<div class="description-paragraph" id="p0193" num="n0188">以某一观测站点为原点，建立北-天-东局部坐标系统，设目标信息的状态变量X＝(p<sub>x</sub>，p<sub>y</sub>，p<sub>z</sub>，v<sub>x</sub>，v<sub>y</sub>，v<sub>z</sub>)，其中，p<sub>x</sub>、p<sub>y</sub>、p<sub>z</sub>分别为x、y、z轴方向的位置值、v<sub>x</sub>、v<sub>y</sub>、v<sub>z</sub>分别x、y、z轴方向的位置值。观测值Z＝(ρ，α，β)，其中，ρ为观测到的目标距离，α为观测到的目标方位角，β为观测到的目标高低角信息。</div>
+<div class="description-paragraph" id="p0194" num="n0189">用矩阵F表示系统的状态如何改变，这里仅考虑线性系统，则系统状态转移过程</div>
+<div class="description-paragraph" id="p0195" num="n0190">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/fb/12/6a/f37e7d6c6c856d/BSA0000177441580000181.png"><img alt="Figure BSA0000177441580000181" class="patent-full-image" file="BSA0000177441580000181.GIF" he="298" height="1192" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_15.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0196" num="n0191">用P表示系统状态的不确定性程度，表示状态变量X的协方差。</div>
+<div class="description-paragraph" id="p0197" num="n0192">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/ff/72/66/7f1463531c823d/BSA0000177441580000182.png"><img alt="Figure BSA0000177441580000182" class="patent-full-image" file="BSA0000177441580000182.GIF" he="333" height="1332" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_16.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0198" num="n0193">用Q表示系统状态转移过程X′＝FX未能刻画的其他外界干扰。本实施例使用线性模型，因此加速度变成了干扰项。X′＝FX中未衡量的额外项v为：</div>
+<div class="description-paragraph" id="p0199" num="n0194">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/2f/13/83/0bae62a8307798/BSA0000177441580000191.png"><img alt="Figure BSA0000177441580000191" class="patent-full-image" file="BSA0000177441580000191.GIF" he="464" height="1856" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_17.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0200" num="n0195">式中，a<sub>x</sub>、a<sub>y</sub>、a<sub>z</sub>分别为x、y、z轴方向速度的扰动量，即加速度，G表示与时间相关的系统矩阵。设v服从高斯分布N(0，Q)。</div>
+<div class="description-paragraph" id="p0201" num="n0196">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/72/5f/5d/15dca1885ec0ad/BSA0000177441580000192.png"><img alt="Figure BSA0000177441580000192" class="patent-full-image" file="BSA0000177441580000192.GIF" he="147" height="588" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_18.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0202" num="n0197">式中，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/53/aa/5c/533971e318b1a9/BSA0000177441580000193.png"><img alt="Figure BSA0000177441580000193" class="patent-full-image" file="BSA0000177441580000193.GIF" he="68" height="272" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_19.png" wi="318" width="1272"/></a></div>分别为x、y、z轴方向加速度变化值的方差，E表示单位矩阵。该值一般由目标的类型、当前时刻目标飞行动作，以及观测点上报过来的目标飞行姿态等情况确定。</div>
+<div class="description-paragraph" id="p0203" num="n0198">状态空间到测量空间的非线性映射f(x)为</div>
+<div class="description-paragraph" id="p0204" num="n0199">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/54/f7/b5/25f0c72aea9ef5/BSA0000177441580000194.png"><img alt="Figure BSA0000177441580000194" class="patent-full-image" file="BSA0000177441580000194.GIF" he="348" height="1392" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_20.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0205" num="n0200">非线性映射线性化后的雅克比(Jacob)矩阵H<sub>j</sub> </div>
+<div class="description-paragraph" id="p0206" num="n0201">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/ad/6c/f5/86520ad72727a2/BSA0000177441580000195.png"><img alt="Figure BSA0000177441580000195" class="patent-full-image" file="BSA0000177441580000195.GIF" he="319" height="1276" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_21.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0207" num="n0202">用R表示了测量值的不确定度，与观测者操作熟练程度相关，假设距离观测误差为5km，角度观测误差中1°，则：</div>
+<div class="description-paragraph" id="p0208" num="n0203">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/f0/00/51/92a07e257eefdd/BSA0000177441580000201.png"><img alt="Figure BSA0000177441580000201" class="patent-full-image" file="BSA0000177441580000201.GIF" he="192" height="768" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_22.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0209" num="n0204">式中，G表示与时间相关的系统矩阵。</div>
+<div class="description-paragraph" id="p0210" num="n0205">对应的扩展卡尔曼滤波方程组如下：</div>
+<div class="description-paragraph" id="p0211" num="n0206">首先，计算噪声协方差矩阵，其更新方程为</div>
+<div class="description-paragraph" id="p0212" num="n0207">P′＝(I-KH<sub>j</sub>)P</div>
+<div class="description-paragraph" id="p0213" num="n0208">式中K为卡尔曼系数，P表示系统状态的不确定性程度。</div>
+<div class="description-paragraph" id="p0214" num="n0209">然后，计算卡尔曼系数K，其计算式为</div>
+<div class="description-paragraph" id="p0215" num="n0210">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/94/94/33/e692feccc53abc/BSA0000177441580000202.png"><img alt="Figure BSA0000177441580000202" class="patent-full-image" file="BSA0000177441580000202.GIF" he="71" height="284" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_23.png" wi="253" width="1012"/></a></div>
+</div>
+<div class="description-paragraph" id="p0216" num="n0211">上式中，S是简化表达的矩阵，展开如下</div>
+<div class="description-paragraph" id="p0217" num="n0212">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/0c/26/55/49c0740c1ef3a0/BSA0000177441580000203.png"><img alt="Figure BSA0000177441580000203" class="patent-full-image" file="BSA0000177441580000203.GIF" he="71" height="284" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_24.png" wi="324" width="1296"/></a></div>
+</div>
+<div class="description-paragraph" id="p0218" num="n0213">最后，计算得出状态变量X的更新值X’</div>
+<div class="description-paragraph" id="p0219" num="n0214">X′＝X+KY</div>
+<div class="description-paragraph" id="p0220" num="n0215">上式中，</div>
+<div class="description-paragraph" id="p0221" num="n0216">Y＝Z-f(x)</div>
+<div class="description-paragraph" id="p0222" num="n0217">上述5个计算式为卡尔曼滤波方程组经典方程，得出修正后的目标信息状态变量X’，以满足改进航迹显示的需要。</div>
+<div class="description-paragraph" id="p0223" num="n0218">5.用户订阅显示</div>
+<div class="description-paragraph" id="p0224" num="n0219">该步骤用于向订阅用户推送已融合好的情报信息，主要包括情报显示子流程、地理信息子流程。</div>
+<div class="description-paragraph" id="p0225" num="n0220">(1)情报显示子流程</div>
+<div class="description-paragraph" id="p0226" num="n0221">系统以图、表和标牌形式，显示融合后的综合空情信息，也可以根据需要显示观察哨探测器上报的原始空情信息，甚至观察哨采集上报的目标图像。系统提供二维/三维地理信息上显示空情态势，用户可以在二维空情态势和三维空情态势间进行切换，系统根据目标航迹自动解算目标速度及姿态信息，并以图标或三维模型旋转方式显示目标姿态。系统提供综合空情航迹的图显样式自定义配置功能，能够配置综合空情标牌的显示要素。</div>
+<div class="description-paragraph" id="p0227" num="n0222">(2)地理信息子流程</div>
+<div class="description-paragraph" id="p0228" num="n0223">该子流程为目标情报、战场要素等的空间位置、姿态等信息展示提供平台载体，为用户提供某一地域的高清卫星图像、数字高程以及道路、河流、桥梁、居民区等要素信息，具有良好人机交互功能设计，用户能够对地理信息系统中的视角、比例尺、图层、显示要素进行显示操作。</div>
+<div class="description-paragraph" id="p0229" num="n0224">系统具备对上交链功能，可对接现阶段使用的雷达情报网或相关业务信息系统。</div>
+<div class="description-paragraph" id="p0230" num="n0225">实例测试</div>
+<div class="description-paragraph" id="p0231" num="n0226">为了验证本发明在测报低空飞行目标的可行性，按照上文所述方法步骤，搭建原型系统，将云服务转发模块部署在腾讯云(1GHz，单核，1G内存1Gbps)上，情报后台内网部在Intel(R)Xeon(R)CPU E5-2630 v2@ 2.60GHz 8.00GB内存的服务器上，观察和测报目标，以此说明发明对应产品的使用方法。</div>
+<div class="description-paragraph" id="p0232" num="n0227">1.智能终端实例效果</div>
+<div class="description-paragraph" id="p0233" num="n0228">网站部署后，当智能终端访问对应网页，填写站点信息，即完成初始化。终端界面主要包含4个部分，站点状态区、角度图形区、目标参数区、功能操作区。</div>
+<div class="description-paragraph" id="p0234" num="n0229">(1)站点状态区</div>
+<div class="description-paragraph" id="p0235" num="n0230">包括终端方位、高低校准状态、日期时间信息，以及与后台自定义信息交互文本框。终端角度校准方法：在终端放置水平、基准线对准正北，点选“校准”复选框，此时目标参数区内方位角为0、高低状态为“水平”，该操作只有在智能终端绑定在望远镜等光学观测设备时校准设备使用。本发明为日期时间提供“本机”“手动”“服务器”“北斗”“GPS”等日期时间模式。后台自定义信息交互文本框用来接收后台发送的提醒信息，也可以作为终端上报目标备注信息、及终端与后台进行自定义文本通信的信息输入口。</div>
+<div class="description-paragraph" id="p0236" num="n0231">(2)角度图形区</div>
+<div class="description-paragraph" id="p0237" num="n0232">该区域以图形方式显示终端基准线朝向、高低状态信息，当终端朝向改变时，方位刻度会随之转动，当终端姿态改变时，水平仪会随之变化。同时，该部分也是用户在屏幕上操作如点击、划动等动作的识别区域。</div>
+<div class="description-paragraph" id="p0238" num="n0233">(3)目标参数区</div>
+<div class="description-paragraph" id="p0239" num="n0234">该部分显示目标参数：经纬度、站点海拔、站点编号、当前目标编号、已上报目标数量、目标架数、机型、距离、后续有无目标、目标观测的方位角、高低角等信息。点击功能操作区中“诸元”按钮，终端出现对话框，便于用户设置目标参数。</div>
+<div class="description-paragraph" id="p0240" num="n0235">(4)功能操作区</div>
+<div class="description-paragraph" id="p0241" num="n0236">该部分包括3个功能按钮，即“锁屏”、设置“诸元”、“发送”按键。其中，“锁屏”是让用户在需设置目标参数前，用来临时保存当前智能终端的朝向和姿态信息；设置“诸元”为用户提供手动设置目标参数功能；“发送”即为目标情报连续上报的触发和终止功能键。</div>
+<div class="description-paragraph" id="p0242" num="n0237">2.智能终端操作流程</div>
+<div class="description-paragraph" id="p0243" num="n0238">图8所示为利用智能终端测报低空情报操作示意图。图9所示为智能终端测报目标参数的主要流程。</div>
+<div class="description-paragraph" id="p0244" num="n0239">智能终端测报目标情报流程：</div>
+<div class="description-paragraph" id="p0245" num="n0240">第一步，用户首先打开智能终端，输入对应网址，访问网页界面。</div>
+<div class="description-paragraph" id="p0246" num="n0241">第二步，用户观察周边目标情况，并判断是够出现目标，如未出现目标，终端会定时上报站点未发现目标，并可随时结束任务，退出终端；如出现目标，进入下一步。</div>
+<div class="description-paragraph" id="p0247" num="n0242">第三步，用户发现目标后，如确定是新目标，填写目标距离、架数、机型等信息；如确定不是新目标，以终端基线对准目标，并持续上报目标信息。</div>
+<div class="description-paragraph" id="p0248" num="n0243">第四步，信息填写完毕后，用户按下“发送”键，然后将图示中终端基线对准目标，智能终端就能定时(默认为3秒)向后台发送情报。</div>
+<div class="description-paragraph" id="p0249" num="n0244">3.后台操作示意效果</div>
+<div class="description-paragraph" id="p0250" num="n0245">每个席位对应一定区域内的观测点，主要对所辖观测点测报数据进行人工筛选、剔除、合批，与站点信息交互进行情报核对等操作，以及发出目标暂消位置信息等提醒。</div>
+<div class="description-paragraph" id="p0251" num="n0246">方向席位提供与站点通信、地图操作，以及目标航迹编辑相关功能，在地图菜单中，用户点击“提醒目标消失”，智能终端立即收到“XX方向、多少公里，注意发现”的语音提醒。</div>
+<div class="description-paragraph" id="p0252" num="n0247">用户订阅界面与方向席位界面基本一致，主要用来显示人工融合之后的目标航迹信息，具体使用方式与业务功能相关，这里不作具体介绍。</div>
+<div class="description-paragraph" id="p0253" num="n0248">本发明方法独特，将普通智能手机磁传感器芯片、重力感应器、GPS模块的测量信息以及电子时钟计时等信息，按照低空探测跟踪的数据格式标准进行格式化，将目标时空特征属性与防空/安防需求进行匹配整合，最终生成低空防御所需要的数据信息，发送给后端进行融合，生成相对连续、可靠的目标航迹，弥补了雷达低目标探测的不足。</div>
+<div class="description-paragraph" id="p0254" num="n0249">本发明因采用普通智能手机终端传感器集成的创新思路，整合低空探测监视及防空作战的权威标准与做法，从而创新改进传统常规的对空情报采报方法，能够较好弥补了低空预警监视领域高低端设备的功能缺失，是一个利用现代软件信息技术低成本升级改进传统方法、降费增效的典范，实现利用极低成本达到较高现实需求的目的，从费效比、推广价值、使用前景等方面，同目前现有各类本发明相比具有明显的技术与市场优势，具有极大的军事价值与经济效益。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

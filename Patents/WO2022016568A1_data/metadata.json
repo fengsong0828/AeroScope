@@ -1,0 +1,86 @@
+{
+    "patent_id": "WO2022016568A1",
+    "title": "WO2022016568A1 - 一种基于飞行器的低空扫描病虫害识别系统及其方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Nanjing Corewell Cloud Computing Information Technology Co Ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/WO2022016568A1/zh",
+    "citations": [
+        {
+            "Publication Number": "CN106915462A (zh) *",
+            "Priority Date": "2017-02-14",
+            "Publication Date": "2017-07-04",
+            "Assignee": "福建兴宇信息科技有限公司",
+            "Title": "基于多源影像信息的林业病虫害智能识别系统",
+            "Link": "https://patents.google.com/patent/CN106915462A/zh"
+        },
+        {
+            "Publication Number": "CN106951447A (zh) *",
+            "Priority Date": "2017-02-18",
+            "Publication Date": "2017-07-14",
+            "Assignee": "赣南师范大学",
+            "Title": "一种智慧农业病虫害远程自动诊断系统",
+            "Link": "https://patents.google.com/patent/CN106951447A/zh"
+        },
+        {
+            "Publication Number": "US20190220964A1 (en) *",
+            "Priority Date": "2018-01-15",
+            "Publication Date": "2019-07-18",
+            "Assignee": "The Boeing Company",
+            "Title": "System and method for monitoring crops",
+            "Link": "https://patents.google.com/patent/US20190220964A1/en"
+        },
+        {
+            "Publication Number": "CN108279678A (zh) *",
+            "Priority Date": "2018-02-24",
+            "Publication Date": "2018-07-13",
+            "Assignee": "浙江大学",
+            "Title": "一种用于检测植株生长状况的田间自动行走装置及其行走控制方法",
+            "Link": "https://patents.google.com/patent/CN108279678A/zh"
+        },
+        {
+            "Publication Number": "CN108622412A (zh) *",
+            "Priority Date": "2018-05-08",
+            "Publication Date": "2018-10-09",
+            "Assignee": "苏州农业职业技术学院",
+            "Title": "一种植保无人机系统",
+            "Link": "https://patents.google.com/patent/CN108622412A/zh"
+        },
+        {
+            "Publication Number": "CN109387516A (zh) *",
+            "Priority Date": "2018-11-19",
+            "Publication Date": "2019-02-26",
+            "Assignee": "宁夏农林科学院农业经济与信息技术研究所（宁夏农业科技图书馆）",
+            "Title": "枸杞种植田间虫害自动监测预警站",
+            "Link": "https://patents.google.com/patent/CN109387516A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN115562867A (zh) *",
+            "Priority Date": "2022-10-18",
+            "Publication Date": "2023-01-03",
+            "Assignee": "厦门四信通信科技有限公司",
+            "Title": "一种人脸识别设备及其内存清理方法",
+            "Link": "https://patents.google.com/patent/CN115562867A/zh"
+        },
+        {
+            "Publication Number": "CN115656743A (zh) *",
+            "Priority Date": "2022-11-08",
+            "Publication Date": "2023-01-31",
+            "Assignee": "云南电网有限责任公司红河供电局",
+            "Title": "一种电缆芯线不停电对线及绝缘测零装置",
+            "Link": "https://patents.google.com/patent/CN115656743A/zh"
+        },
+        {
+            "Publication Number": "CN120259685A (zh) *",
+            "Priority Date": "2025-03-21",
+            "Publication Date": "2025-07-04",
+            "Assignee": "云南省烟草公司曲靖市公司",
+            "Title": "烟叶病虫害识别方法和系统",
+            "Link": "https://patents.google.com/patent/CN120259685A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:26:14"
+}

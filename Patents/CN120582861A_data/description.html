@@ -1,0 +1,137 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120582861A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES504403343">
+<invention-title id="title1" lang="ZH">一种面向低空飞行器的安全数据存储方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于数据安全存储技术领域，具体是一种面向低空飞行器的安全数据存储方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空经济的蓬勃发展，低空飞行器(如无人机、电动垂直起降飞行器eVTOL等)在物流配送、环境监测、应急救援、航空摄影等领域的应用日益广泛。这些飞行器在执行任务过程中，会产生海量飞行数据，包括飞行轨迹、设备状态、环境感知信息等，数据量呈指数级增长。因此，研发一种面向低空飞行器的安全数据存储方法及系统，对于提升低空飞行器的飞行控制和数据采集的可靠性具有重要意义。</div>
+<div class="description-paragraph" id="p0005" num="0003">现有技术通过采用加密算法在对低空飞行器的传输数据进行加密，并将加密后的数据发送至远程服务器进行备份，在一定程度上提高了数据存储的可靠性。然而，在实际情况中，由于距离、天气等因素的影响，低空飞行器与后台服务器在通信过程中会出现网络不稳定的现象，现有方案难以在网络不稳定时将关键数据进行传输至后台服务器，从而导致低空飞行器在数据存储过程中可靠性不高。</div>
+<div class="description-paragraph" id="p0006" num="0004">本发明提供了一种面向低空飞行器的安全数据存储方法及系统，以解决上述技术问题。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明旨在至少解决现有技术中存在的技术问题之一；为此，本发明提出了一种面向低空飞行器的安全数据存储方法及系统，用于解决现有方案难以在网络不稳定时将关键数据进行传输至后台服务器，从而导致低空飞行器在数据存储过程中可靠性不高的技术问题。</div>
+<div class="description-paragraph" id="p0009" num="0006">为实现上述目的，本发明的第一方面提供了一种面向低空飞行器的安全数据存储方法，包括：</div>
+<div class="description-paragraph" id="p0010" num="0007">获取低空飞行器与后台服务器之间的通信状态信息，以及低空飞行器的实时位置信息；</div>
+<div class="description-paragraph" id="p0011" num="0008">对低空飞行器的待传输数据进行等级划分，得到对应的传输优先级；</div>
+<div class="description-paragraph" id="p0012" num="0009">基于通信状态信息确定低空飞行器与后台服务器之间的通信网络状态；</div>
+<div class="description-paragraph" id="p0013" num="0010">基于低空飞行器的实时位置信息生成加密密码；</div>
+<div class="description-paragraph" id="p0014" num="0011">基于加密密码、通信网络状态和传输优先级对待传输数据进行加密，得到加密数据；</div>
+<div class="description-paragraph" id="p0015" num="0012">将加密数据发送至后台服务器进行存储。</div>
+<div class="description-paragraph" id="p0016" num="0013">优选的，所述对低空飞行器的待传输数据进行等级划分，包括：</div>
+<div class="description-paragraph" id="p0017" num="0014">提取低空飞行器的待传输数据的数据类型；其中，数据类型包括飞行控制数据和传感器探测数据；</div>
+<div class="description-paragraph" id="p0018" num="0015">将飞行控制数据的传输优先级设置为第一优先级，将传感器探测数据设置为第二优先级；其中，传输优先级包括第一优先级和第二优先级，并且第一优先级大于第二优先级。</div>
+<div class="description-paragraph" id="p0019" num="0016">优选的，所述基于通信状态信息确定低空飞行器与后台服务器之间的通信网络状态，包括：</div>
+<div class="description-paragraph" id="p0020" num="0017">提取通信状态信息；其中，通信状态信息包括信号强度、丢包率和通信速率；</div>
+<div class="description-paragraph" id="p0021" num="0018">判断信号强度是否大于预设的强度阈值；是，则将第一状态标签标记为0；否，则将第一状态标签标记为1；</div>
+<div class="description-paragraph" id="p0022" num="0019">判断丢包率是否大于预设的丢包率阈值；是，则将第二状态标签标记为0；否，则将第二状态标签标记为1；</div>
+<div class="description-paragraph" id="p0023" num="0020">判断通信速率是否大于预设的速率阈值；是，则将第三状态标签标记为0；否，则将第三状态标签标记为1；</div>
+<div class="description-paragraph" id="p0024" num="0021">判断第一状态标签、第二状态标签和第三状态标签之和是否等于0；是，则将通信网络状态标记为网络正常；否，则将通信网络状态标记为网络异常；其中，通信网络状态包括网络正常和网络异常。</div>
+<div class="description-paragraph" id="p0025" num="0022">优选的，所述基于低空飞行器的实时位置信息生成加密密码，包括：</div>
+<div class="description-paragraph" id="p0026" num="0023">提取低空飞行器的实时位置信息；其中，实时位置信息包括经纬度和海拔高度；</div>
+<div class="description-paragraph" id="p0027" num="0024">将实时位置信息和当前时间戳拼接为加密标签，采用非对称加密算法对加密标签进行加密得到加密密码；其中，非对称加密算法包括RSA和ECC算法。</div>
+<div class="description-paragraph" id="p0028" num="0025">优选的，所述基于加密密码、通信网络状态和传输优先级对待传输数据进行加密，包括：</div>
+<div class="description-paragraph" id="p0029" num="0026">提取加密密码、通信网络状态，以及待传输数据的传输优先级；</div>
+<div class="description-paragraph" id="p0030" num="0027">判断通信网络状态是否为网络正常；是，则根据加密密码对传输优先级为第一优先级和第二优先级的待传输数据均进行加密，得到加密数据；否，则根据加密密码对传输优先级为第一优先级的待传输数据进行加密，得到加密数据。</div>
+<div class="description-paragraph" id="p0031" num="0028">优选的，所述将加密数据发送至后台服务器进行存储，包括：</div>
+<div class="description-paragraph" id="p0032" num="0029">后台服务器对低空飞行器发送的加密数据进行解析，得到待存储数据；其中，待存储数据包括若干个数据段、数据段编号序列；</div>
+<div class="description-paragraph" id="p0033" num="0030">判断待存储数据中若干个数据段的数量是否等于数据段编号序列的长度；是，则将若干数据段按照数据段编号序列中的编号顺序关系进行重新排序，得到实际存储数据；否，则基于数据段编号序列确定丢失编号序列，并将丢失编号序列对应的若干数据段暂存至临时数据集合；其中，丢失编号序列包括数据段编号序列中存在但后台服务器未接收到的若干数据段对应的编号；</div>
+<div class="description-paragraph" id="p0034" num="0031">基于丢失编号序列重新获取对应的数据段并进行重排序，得到补充存储数据；</div>
+<div class="description-paragraph" id="p0035" num="0032">将补充存储数据或实际存储数据保存至后台服务器的数据库。</div>
+<div class="description-paragraph" id="p0036" num="0033">优选的，所述基于数据段编号序列确定丢失编号序列，包括：</div>
+<div class="description-paragraph" id="p0037" num="0034">提取待存储数据中数据段编号序列、若干数据段；将若干数据段对应的编号整合为第一编号序列；计算第一编号序列与数据段编号序列的差集，得到丢失编号序列。</div>
+<div class="description-paragraph" id="p0038" num="0035">优选的，所述基于丢失编号序列重新获取对应的数据段并进行重排序，包括：</div>
+<div class="description-paragraph" id="p0039" num="0036">提取丢失编号序列和数据段编号序列；</div>
+<div class="description-paragraph" id="p0040" num="0037">通过后台服务器控制低空飞行器重新发送丢失编号序列对应的若干数据段，并将重新发送的若干数据段标记为待补充数据段；</div>
+<div class="description-paragraph" id="p0041" num="0038">对待补充数据段进行数据校验，得到校验结果；其中，校验结果包括校验成功和校验失败；</div>
+<div class="description-paragraph" id="p0042" num="0039">判断校验结果是否为校验成功；是，则将待补充数据段加入临时数据集合；否，则继续将丢失编号序列发送至低空飞行器；</div>
+<div class="description-paragraph" id="p0043" num="0040">对临时数据集合中的若干数据段按照数据段编号序列的编号顺序关系进行重新排序，得到补充存储数据。</div>
+<div class="description-paragraph" id="p0044" num="0041">优选的，所述对待补充数据段进行数据校验，包括：</div>
+<div class="description-paragraph" id="p0045" num="0042">提取待补充数据段和数据段编号序列；</div>
+<div class="description-paragraph" id="p0046" num="0043">将待补充数据段对应的编号整合为第二编号序列；</div>
+<div class="description-paragraph" id="p0047" num="0044">计算第二编号序列与丢失编号序列的差集，得到待校验编号序列；</div>
+<div class="description-paragraph" id="p0048" num="0045">判断待校验编号序列是否为空集；是，则将校验结果标记为校验成功；否，则将校验结果标记为校验失败。</div>
+<div class="description-paragraph" id="p0049" num="0046">本发明的第二方面提供了一种面向低空飞行器的安全数据存储系统，包括：数据处理模块，以及与之相连的数据采集模块和数据存储模块；</div>
+<div class="description-paragraph" id="p0050" num="0047">所述数据采集模块：用于获取低空飞行器与后台服务器之间的通信状态信息，以及低空飞行器的实时位置信息；</div>
+<div class="description-paragraph" id="p0051" num="0048">所述数据处理模块：用于对低空飞行器的待传输数据进行等级划分，得到对应的传输优先级；基于通信状态信息确定低空飞行器与后台服务器之间的通信网络状态；基于低空飞行器的实时位置信息生成加密密码；基于加密密码、通信网络状态和传输优先级对待传输数据进行加密，得到加密数据；</div>
+<div class="description-paragraph" id="p0052" num="0049">所述数据存储模块：用于将加密数据发送至后台服务器进行存储。</div>
+<div class="description-paragraph" id="p0053" num="0050">与现有技术相比，本发明的有益效果是：</div>
+<div class="description-paragraph" id="p0054" num="0051">1、本发明通过实时获取通信状态和飞行器位置信息，实现对传输数据的动态等级划分与优先级管理，并结合网络状态与加密机制优化数据传输过程。基于实时位置生成加密密码，增强了数据在传输过程中抵御非法截获的能力；结合通信网络状态与数据优先级进行差异化加密处理，既提升了安全性，又保障了关键数据的传输效率。该方法有效提高了低空飞行器与后台服务器之间数据交互的安全性、可靠性与灵活性，从而确保飞行数据在复杂通信环境下的存储可靠性。</div>
+<div class="description-paragraph" id="p0055" num="0052">2、本发明通过将加密数据发送至后台服务器进行存储时，通过对数据段数量与编号序列长度的一致性判断，能够及时识别数据丢失情况，并据此生成丢失编号序列，从而实现对缺失数据的精准定位与重传请求；结合临时数据集合的暂存机制和后续重排序处理，确保了数据在接收端的完整性与顺序一致性；进一步地，基于丢失编号序列重新获取对应数据段并进行补充排序，使得系统能够在复杂通信环境下仍保持高效、可靠的数据存储能力。该方法有效提升了数据接收的完整性与存储效率，从而有利于提高低空飞行器在数据存储过程中的可靠性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0056">附图说明</div>
+<div class="description-paragraph" id="p0057" num="0053">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0058" num="0054">图1为本发明的面向低空飞行器的安全数据存储方法的整体流程图；</div>
+<div class="description-paragraph" id="p0059" num="0055">图2为本发明的面向低空飞行器的安全数据存储系统的原理示意图；</div>
+<div class="description-paragraph" id="p0060" num="0056">图3为本发明中根据丢失编号序列获取补充存储数据的流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0061">具体实施方式</div>
+<div class="description-paragraph" id="p0062" num="0057">下面将结合实施例对本发明的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其它实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0063" num="0058">请参阅图1-图3，本发明第一方面实施例提供了一种面向低空飞行器的安全数据存储方法，包括：</div>
+<div class="description-paragraph" id="p0064" num="0059">S1：获取低空飞行器与后台服务器之间的通信状态信息，以及低空飞行器的实时位置信息；</div>
+<div class="description-paragraph" id="p0065" num="0060">S2：对低空飞行器的待传输数据进行等级划分，得到对应的传输优先级；</div>
+<div class="description-paragraph" id="p0066" num="0061">S3：基于通信状态信息确定低空飞行器与后台服务器之间的通信网络状态；</div>
+<div class="description-paragraph" id="p0067" num="0062">S4：基于低空飞行器的实时位置信息生成加密密码；</div>
+<div class="description-paragraph" id="p0068" num="0063">S5：基于加密密码、通信网络状态和传输优先级对待传输数据进行加密，得到加密数据；</div>
+<div class="description-paragraph" id="p0069" num="0064">S6：将加密数据发送至后台服务器进行存储。</div>
+<div class="description-paragraph" id="p0070" num="0065">本实施例中，对低空飞行器的待传输数据进行等级划分，包括：</div>
+<div class="description-paragraph" id="p0071" num="0066">提取低空飞行器的待传输数据的数据类型；其中，数据类型包括飞行控制数据和传感器探测数据；</div>
+<div class="description-paragraph" id="p0072" num="0067">将飞行控制数据的传输优先级设置为第一优先级，将传感器探测数据设置为第二优先级；其中，传输优先级包括第一优先级和第二优先级，并且第一优先级大于第二优先级。</div>
+<div class="description-paragraph" id="p0073" num="0068">本实施例中，基于通信状态信息确定低空飞行器与后台服务器之间的通信网络状态，包括：</div>
+<div class="description-paragraph" id="p0074" num="0069">提取通信状态信息；其中，通信状态信息包括信号强度、丢包率和通信速率；</div>
+<div class="description-paragraph" id="p0075" num="0070">判断信号强度是否大于预设的强度阈值；是，则将第一状态标签标记为0；否，则将第一状态标签标记为1；</div>
+<div class="description-paragraph" id="p0076" num="0071">判断丢包率是否大于预设的丢包率阈值；是，则将第二状态标签标记为0；否，则将第二状态标签标记为1；</div>
+<div class="description-paragraph" id="p0077" num="0072">判断通信速率是否大于预设的速率阈值；是，则将第三状态标签标记为0；否，则将第三状态标签标记为1；</div>
+<div class="description-paragraph" id="p0078" num="0073">判断第一状态标签、第二状态标签和第三状态标签之和是否等于0；是，则将通信网络状态标记为网络正常；否，则将通信网络状态标记为网络异常；其中，通信网络状态包括网络正常和网络异常。</div>
+<div class="description-paragraph" id="p0079" num="0074">本实施例中，基于低空飞行器的实时位置信息生成加密密码，包括：</div>
+<div class="description-paragraph" id="p0080" num="0075">提取低空飞行器的实时位置信息；其中，实时位置信息包括经纬度和海拔高度；</div>
+<div class="description-paragraph" id="p0081" num="0076">将实时位置信息和当前时间戳拼接为加密标签，采用非对称加密算法对加密标签进行加密得到加密密码；其中，非对称加密算法包括RSA和ECC算法。</div>
+<div class="description-paragraph" id="p0082" num="0077">需要说明的是，设置低空飞行器的经纬度通过GPS定位系统获取，海拔高度由气压传感器获取。</div>
+<div class="description-paragraph" id="p0083" num="0078">本实施例中，基于加密密码、通信网络状态和传输优先级对待传输数据进行加密，包括：</div>
+<div class="description-paragraph" id="p0084" num="0079">提取加密密码、通信网络状态，以及待传输数据的传输优先级；</div>
+<div class="description-paragraph" id="p0085" num="0080">判断通信网络状态是否为网络正常；是，则根据加密密码对传输优先级为第一优先级和第二优先级的待传输数据均进行加密，得到加密数据；否，则根据加密密码对传输优先级为第一优先级的待传输数据进行加密，得到加密数据。</div>
+<div class="description-paragraph" id="p0086" num="0081">示例性的，设置通信网络状态为网络异常，则根据加密密码对传输优先级为第一优先级的待传输数据进行加密，得到加密数据。</div>
+<div class="description-paragraph" id="p0087" num="0082">本实施例中，将加密数据发送至后台服务器进行存储，包括：</div>
+<div class="description-paragraph" id="p0088" num="0083">后台服务器对低空飞行器发送的加密数据进行解析，得到待存储数据；其中，待存储数据包括若干个数据段、数据段编号序列；</div>
+<div class="description-paragraph" id="p0089" num="0084">判断待存储数据中若干个数据段的数量是否等于数据段编号序列的长度；是，则将若干数据段按照数据段编号序列中的编号顺序关系进行重新排序，得到实际存储数据；否，则基于数据段编号序列确定丢失编号序列，并将丢失编号序列对应的若干数据段暂存至临时数据集合；其中，丢失编号序列包括数据段编号序列中存在但后台服务器未接收到的若干数据段对应的编号；</div>
+<div class="description-paragraph" id="p0090" num="0085">基于丢失编号序列重新获取对应的数据段并进行重排序，得到补充存储数据；</div>
+<div class="description-paragraph" id="p0091" num="0086">将补充存储数据或实际存储数据保存至后台服务器的数据库，并将丢失编号序列发送至低空飞行器。</div>
+<div class="description-paragraph" id="p0092" num="0087">示例性的，设置待存储数据中若干个数据段的数量为3，数据段编号序列为[3,1,4,5,2]；由于待存储数据中若干个数据段的数量小于数据段编号序列的长度5，因此基于数据段编号序列确定丢失编号序列，并将丢失编号序列对应的若干数据段暂存至临时数据集合。</div>
+<div class="description-paragraph" id="p0093" num="0088">本发明通过将加密数据发送至后台服务器进行存储时，通过对数据段数量与编号序列长度的一致性判断，能够及时识别数据丢失情况，并据此生成丢失编号序列，从而实现对缺失数据的精准定位与重传请求；结合临时数据集合的暂存机制和后续重排序处理，确保了数据在接收端的完整性与顺序一致性；进一步地，基于丢失编号序列重新获取对应数据段并进行补充排序，使得系统能够在复杂通信环境下仍保持高效、可靠的数据存储能力。该方法有效提升了数据接收的完整性与存储效率，增强了低空飞行器与后台服务器之间数据交互的稳定性和容错能力。</div>
+<div class="description-paragraph" id="p0094" num="0089">本实施例中，基于数据段编号序列确定丢失编号序列，包括：</div>
+<div class="description-paragraph" id="p0095" num="0090">提取待存储数据中数据段编号序列、若干数据段；将若干数据段对应的编号整合为第一编号序列；计算第一编号序列与数据段编号序列的差集，得到丢失编号序列。</div>
+<div class="description-paragraph" id="p0096" num="0091">示例性的，设置第一编号序列为[1,4,3]，数据段编号序列为[3,1,4,5,2]；计算第一编号序列与数据段编号序列的差集，得到丢失编号序列为[2,5]。</div>
+<div class="description-paragraph" id="p0097" num="0092">本实施例中，基于丢失编号序列重新获取对应的数据段并进行重排序，包括：</div>
+<div class="description-paragraph" id="p0098" num="0093">提取丢失编号序列和数据段编号序列；</div>
+<div class="description-paragraph" id="p0099" num="0094">通过后台服务器控制低空飞行器重新发送丢失编号序列对应的若干数据段，并将重新发送的若干数据段标记为待补充数据段；</div>
+<div class="description-paragraph" id="p0100" num="0095">对待补充数据段进行数据校验，得到校验结果；其中，校验结果包括校验成功和校验失败；</div>
+<div class="description-paragraph" id="p0101" num="0096">判断校验结果是否为校验成功；是，则将待补充数据段加入临时数据集合；否，则继续将丢失编号序列发送至低空飞行器；</div>
+<div class="description-paragraph" id="p0102" num="0097">对临时数据集合中的若干数据段按照数据段编号序列的编号顺序关系进行重新排序，得到补充存储数据。</div>
+<div class="description-paragraph" id="p0103" num="0098">示例性的，通过后台服务器控制低空飞行器重新发送丢失编号序列对应的若干数据段，并将重新发送的若干数据段标记为待补充数据段；</div>
+<div class="description-paragraph" id="p0104" num="0099">设置校验结果为校验成功，将待补充数据段加入临时数据集合；</div>
+<div class="description-paragraph" id="p0105" num="0100">对临时数据集合中的若干数据段按照数据段编号序列的编号顺序关系进行重新排序，得到补充存储数据。</div>
+<div class="description-paragraph" id="p0106" num="0101">本发明通过提取丢失编号序列与数据段编号序列，实现对缺失数据的精准识别与重传控制；后台服务器指挥低空飞行器针对性地重发丢失数据段，并通过数据校验机制确保重传数据的完整性；若校验成功，则将数据加入临时集合，否则继续请求重传，从而保障数据的完整接收；最后按照原始编号顺序对临时数据集合进行重排序，形成完整的补充存储数据。该方法有效提升了数据传输的可靠性与准确性，增强了系统在复杂通信环境下对数据丢失的容错能力，进而提高了整体数据存储的完整性与稳定性。</div>
+<div class="description-paragraph" id="p0107" num="0102">本实施例中，对待补充数据段进行数据校验，包括：</div>
+<div class="description-paragraph" id="p0108" num="0103">提取待补充数据段和数据段编号序列；</div>
+<div class="description-paragraph" id="p0109" num="0104">将待补充数据段对应的编号整合为第二编号序列；</div>
+<div class="description-paragraph" id="p0110" num="0105">计算第二编号序列与丢失编号序列的差集，得到待校验编号序列；</div>
+<div class="description-paragraph" id="p0111" num="0106">判断待校验编号序列是否为空集；是，则将校验结果标记为校验成功；否，则将校验结果标记为校验失败。</div>
+<div class="description-paragraph" id="p0112" num="0107">示例性的，设置第二编号序列为[2,5],丢失编号序列为[2,5]；算第二编号序列与丢失编号序列的差集，得到待校验编号序列为空集；由于待校验编号序列为空集，因此将校验结果标记为校验成功。</div>
+<div class="description-paragraph" id="p0113" num="0108">本发明第二方面实施例提供了一种面向低空飞行器的安全数据存储系统，包括：数据处理模块，以及与之相连的数据采集模块和数据存储模块；</div>
+<div class="description-paragraph" id="p0114" num="0109">数据采集模块：用于获取低空飞行器与后台服务器之间的通信状态信息，以及低空飞行器的实时位置信息；</div>
+<div class="description-paragraph" id="p0115" num="0110">数据处理模块：用于对低空飞行器的待传输数据进行等级划分，得到对应的传输优先级；基于通信状态信息确定低空飞行器与后台服务器之间的通信网络状态；基于低空飞行器的实时位置信息生成加密密码；基于加密密码、通信网络状态和传输优先级对待传输数据进行加密，得到加密数据；</div>
+<div class="description-paragraph" id="p0116" num="0111">数据存储模块：用于将加密数据发送至后台服务器进行存储。</div>
+<div class="description-paragraph" id="p0117" num="0112">上述公式中的部分数据是去除量纲取其数值计算，公式是由采集的大量数据经过软件模拟得到最接近真实情况的一个公式；公式中的预设参数和预设阈值由本领域的技术人员根据实际情况设定或者通过大量数据模拟获得。</div>
+<div class="description-paragraph" id="p0118" num="0113">本发明的工作原理：</div>
+<div class="description-paragraph" id="p0119" num="0114">本发明通过获取低空飞行器与后台服务器之间的通信状态信息，以及低空飞行器的实时位置信息；对低空飞行器的待传输数据进行等级划分，得到对应的传输优先级；基于通信状态信息确定低空飞行器与后台服务器之间的通信网络状态；基于低空飞行器的实时位置信息生成加密密码；基于加密密码、通信网络状态和传输优先级对待传输数据进行加密，得到加密数据；将加密数据发送至后台服务器进行存储。</div>
+<div class="description-paragraph" id="p0120" num="0115">以上实施例仅用以说明本发明的技术方法而非限制，尽管参照较佳实施例对本发明进行了详细说明，本领域的普通技术人员应当理解，可以对本发明的技术方法进行修改或等同替换，而不脱离本发明技术方法的精神和范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

@@ -1,0 +1,225 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN204856925U</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES379174045">
+<invention-title id="tilte1" lang="ZH">一种低空飞行器动态监视系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001" num="0001">技术领域
+	</div>
+<div class="description-paragraph" id="p0002" num="0002">本实用新型涉及监控领域，尤其涉及一种低空飞行器动态监视系统。
+	</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003" num="0003">背景技术
+	</div>
+<div class="description-paragraph" id="p0004" num="0004">随着技术的发展，通用航空的应用也越来也广泛，而发展通用航空，空域开放是关键。空域不开放，通用飞机就无法顺利升空飞行，通用航空的各项工作也就无法推进。目前低空空域管理改革面临的主要困难是：空防安全与低空开放的矛盾、空域资源规划对低空空域开放的影响、法律责任界定存在缺失、运行管理体系不健全、飞行服务保障条件不完善。与国外通用航空运行监视模式不同，我国是高度设防的国家，周边环境复杂，部分地区又有众多的重要限制区域，空防安全的压力很大，通用航空的低、慢、小飞行目标的监控对航空安全至关重要。总体而言，空中交通管制手段还比较落后，因此，探索构建适合的科学有效的通航监管模式，通过建立完善法规标准，推行通用航空飞机及机载设备准入机制，并建立自动化实时监控机制，建立有效的空防安全和飞行安全的监管机制，是非常必要的。
+	</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0005" num="0005">实用新型内容
+	</div>
+<div class="description-paragraph" id="p0006" num="0006">有鉴于此，本实用新型公开了一种低空飞行器动态监视系统，提高空域利用效率，提高了通航飞行安全性。
+	</div>
+<div class="description-paragraph" id="p0007" num="0007">本实用新型公开了一种低空飞行器动态监视系统，包括：
+	</div>
+<div class="description-paragraph" id="p0008" num="0008">定位装置，用于向飞行器发送定位数据；
+	</div>
+<div class="description-paragraph" id="p0009" num="0009">机载终端，用于利用定位装置确定其精确位置，通过无线通信网向地面设备广播飞行器的飞行信息，并接收地面设备发送的其他飞行器的数据，对接收的数据进行解析；
+	</div>
+<div class="description-paragraph" id="p0010" num="0010">地面设备，用于接收各飞行器的机载终端发送的信息，对飞行器进行实时态势监控，分析可能的飞行风险，上行广播发布并提供防相撞报警信息；
+	</div>
+<div class="description-paragraph" id="p0011" num="0011">机载交互设备，用于和机载终端连接，将各个飞行器的实时态势数据及报警信息进行显示。
+	</div>
+<div class="description-paragraph" id="p0012" num="0012">可选的，所述机载终端周期性发送询问消息，用以查询临近飞机的位置、方位、相对高度和距离，并根据临近飞机的位置、方位、相对高度和距离计算临近飞机的临近值；
+	</div>
+<div class="description-paragraph" id="p0013" num="0013">当所述临近值小于预设阈值时，所述机载终端发出报警信号。
+	</div>
+<div class="description-paragraph" id="p0014" num="0014">可选的，所述定位装置为北斗卫星定位系统或GPS卫星定位系统。
+	</div>
+<div class="description-paragraph" id="p0015" num="0015">可选的，所述机载终端为ADS-B设备，所述ADS-B设备接收北斗/GPS信号后，确定其在空中/地面的准确位置，结合其它数据后把位置信息通过航空无线专网发送给运行保障与服务中心。
+	</div>
+<div class="description-paragraph" id="p0016" num="0016">可选的，所述飞行器的飞行信息包括：飞行器的位置、飞行器的飞行速度、飞行器的高度、飞行器的飞行趋势、飞行器的飞行轨迹。
+	</div>
+<div class="description-paragraph" id="p0017" num="0017">可选的，所述地面设备包括云计算中心，所述云计算中心能够进行实时的多维空间数据计算，数据计算的结果用于为各阶段运动的飞行器提供即时调整依据。
+	</div>
+<div class="description-paragraph" id="p0018" num="0018">可选的，所述数据计算的结果用于为各阶段运动的飞行器提供即时调整依据，包括：
+	</div>
+<div class="description-paragraph" id="p0019" num="0019">为飞行器在恶劣气象条件下的起降提供安全的计算依据；以及
+	</div>
+<div class="description-paragraph" id="p0020" num="0020">为多山多雾地区飞行器计算优化的航迹以及备份航迹。
+	</div>
+<div class="description-paragraph" id="p0021" num="0021">可选的，所述系统还包括低空综合监视单元，所述低空综合监视单元由一个或多个子滤波器及一个融合中心组成；
+	</div>
+<div class="description-paragraph" id="p0022" num="0022">所述子滤波器接收各类监视数据，并采用卡尔曼滤波对每类监视数据进行滤波处理，形成局部航迹；
+	</div>
+<div class="description-paragraph" id="p0023" num="0023">所述融合中心接收各子滤波器处理之后的局部航迹，并采用无重置联邦融合算法，形成系统航迹。
+	</div>
+<div class="description-paragraph" id="p0024" num="0024">可选的，所述系统还包括ADS-B地面站，所述ADS-B地面站由ADS-B接收机硬件模块、信号处理软件模块和网管系统三部分组成；
+	</div>
+<div class="description-paragraph" id="p0025" num="0025">所述ADS-B地面站为全IP的网络架构，利用模块化设计、双接收通道、热备份的方式提高系统稳定度，采用远程网管实现ADS-B地面站的远程射频自检、远程控制，以实现ADS-B地面站无人值守。
+	</div>
+<div class="description-paragraph" id="p0026" num="0026">可选的，所述机载交互设备通过无线或有线方式与机载无线通信终端连接，用于通用航空移动互联、信息交互；
+	</div>
+<div class="description-paragraph" id="p0027" num="0027">所述机载交互设备具有监视导航、综合信息服务、飞行计划服务、气象信息、增值服务功能。
+	</div>
+<div class="description-paragraph" id="p0028" num="0028">通过本实用新型的低空飞行器动态监视系统，机载终端可以将航空器的标识号、位置、趋势、航迹等信息实时发送至运行保障与服务中心。相比传统雷达监视，本实用新型中的通用航空无线专网可以对监视目标提供更快的报告刷新速率，更准确的位置/速度信息的航迹，有利于较大提升航迹计算精确度，提供给管制员更准确轨迹显示，为管制员的决策提供了有力的支持，保障了低空领域的安全性。
+	</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0029" num="0029">附图说明
+	</div>
+<div class="description-paragraph" id="p0030" num="0030">为了更清楚地说明本实用新型实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本实用新型的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其它的附图。
+	</div>
+<div class="description-paragraph" id="p0031" num="0031">图1为本实用新型实施例提供的一种低空飞行器动态监视系统的结构图；
+	</div>
+<div class="description-paragraph" id="p0032" num="0032">图2为本实用新型实施例提供的通用航空专网功能及结构示意图；
+	</div>
+<div class="description-paragraph" id="p0033" num="0033">图3为本实用新型实施例提供的机载系统的结构图；
+	</div>
+<div class="description-paragraph" id="p0034" num="0034">图4为本实用新型实施例提供的低空综合监视单元数据处理流程图。
+	</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0035" num="0035">具体实施方式
+	</div>
+<div class="description-paragraph" id="p0036" num="0036">下面结合附图对本实用新型实施例进行详细描述。
+	</div>
+<div class="description-paragraph" id="p0037" num="0037">应当明确，所描述的实施例仅仅是本实用新型一部分实施例，而不是全部的实施例。基于本实用新型中的实施例，本领域普通技术人员在没有作出创造性劳动前提下所获得的所有其它实施例，都属于本实用新型保护的范围。
+	</div>
+<div class="description-paragraph" id="p0038" num="0038">图1为本实用新型实施例提供的一种低空飞行器动态监视系统的结构图。该动态监视系统包括定位装置、机载终端、地面设备以及机载交互设备。
+	</div>
+<div class="description-paragraph" id="p0039" num="0039">定位装置，用于向飞行器发送定位数据，定位系统可以保证在任意时刻，地球上任意一点都可以同时观测到卫星，以保证卫星可以采集到该观测点的经纬度和高度，以便实现导航、定位、授时等功能。这可以用来引导飞机安全、准确地沿着选定的路线，准时到达目的地。
+	</div>
+<div class="description-paragraph" id="p0040" num="0040">定位装置能够提供如下信息：（1）坐标（Coordinate)，有二维和三维两种表示方式；（2）路标（Landmarkorwaypoint)，这是GPS内存的一个坐标值；(3)路线（Route)，路线是GPS内存中存储的一组数据，包括一个起点和一个终点的坐标，还可以包括若干中间点的坐标，每两个坐标之间的线段叫一条腿；（4）前进方向（Heading)，GPS没有指北针的功能，静止不动时是不知道方向的；（5）导向（Bearing）；（6）日出日落时间(Sunset/raisetime)；（7）足迹线(Plottrail)。飞行器能够接收上述信息，并基于上述信息完成定位、导航等功能。
+	</div>
+<div class="description-paragraph" id="p0041" num="0041">定位装置包括并不限于：全球定位系统（GPS）、格洛纳斯系统、伽利略系统、北斗系统。
+	</div>
+<div class="description-paragraph" id="p0042" num="0042">机载终端，用于利用定位装置确定其精确位置，通过无线通信网向地面设备广播飞行器的飞行信息，并接收地面设备发送的其他飞行器的数据，对接收的数据进行解析。
+	</div>
+<div class="description-paragraph" id="p0043" num="0043">机载终端主要由宽带无线通信单元、北斗/GPS导航单元等部分组成，支持外置音频输出和显示设备。机载终端基本组成框图如图2所示。
+	</div>
+<div class="description-paragraph" id="p0044" num="0044">作为一个实施例，机载终端具有如下特性：
+	</div>
+<div class="description-paragraph" id="p0045" num="0045">(1)环境适应性、可靠性、电磁兼容性等遵循DO160G标准，需通过相关检测机构的测试；
+	</div>
+<div class="description-paragraph" id="p0046" num="0046">(2)内部整合1个1800M5M终端，最大业务吞吐量10bps；
+	</div>
+<div class="description-paragraph" id="p0047" num="0047">(3)终端使用40dBm大功率发射模块，满足空地远距离覆盖需求；
+	</div>
+<div class="description-paragraph" id="p0048" num="0048">(4)终端可利用北斗/GPS提供的位置、速度信息进行多普勒频移估算、辅助切换；
+	</div>
+<div class="description-paragraph" id="p0049" num="0049">(5)终端利用北斗/GPS提供的秒脉冲信号对本地晶振频率漂移进行校准；
+	</div>
+<div class="description-paragraph" id="p0050" num="0050">(6)使用前后隔离比较高的两幅天线分别指向前后两个方向，可通过天线切换减小非直射径能量、改善同频干扰、改善切换性能等。
+	</div>
+<div class="description-paragraph" id="p0051" num="0051">地面设备，用于接收各飞行器的机载终端发送的信息，对飞行器进行实时态势监控，分析可能的飞行风险，上行广播发布并提供防相撞报警信息；
+	</div>
+<div class="description-paragraph" id="p0052" num="0052">地面设备通过接收到的机载定位信息，并与飞行计划进行模糊匹配，准确掌握全部飞行器态势，对通航飞行器进行实时态势监视,满足监控方对于通用航空飞行器的实时飞行态势进行监视以保障空防安全的需要。
+	</div>
+<div class="description-paragraph" id="p0053" num="0053">机载交互设备，用于和机载终端连接，将各个飞行器的实时态势数据及报警信息进行显示。
+	</div>
+<div class="description-paragraph" id="p0054" num="0054">机载交互设备是机载终端的显示和交互设备，可以通过无线和有线两种方式与机载终端连接。设备基于智能操作系统平台，可以满足通用航空移动互联、信息交互需求,是监视导航、综合信息服务、飞行计划服务、气象信息、增值服务等应用平台的综合载体。
+	</div>
+<div class="description-paragraph" id="p0055" num="0055">作为一个实施例，机载交互设备包括如下特性：具有双核处理器，4G内存，4个外部USB，4个输入和2个输出429总线（可选高、低速），大容量固态硬盘，以太网端口，28伏直流输入，机上电源，镍氢备用电池，避免FAA对锂元素的顾虑，通过DO-160F标准，无线WiFi支持。
+	</div>
+<div class="description-paragraph" id="p0056" num="0056">作为一个实施例，基于ADS-B和北斗技术，通过无线通信技术与ADS-B地面站的整合，可以实现对其他航空器发送的ADS-BOUT信息的接收，同时结合北斗提供的自身位置信息，从而实现在机载交互设备上实时显示空中交通信息，满足飞机交通导航的要求。系统具备主动询问功能，能够针对临近飞机的位置、方位、相对高度和距离等参数给出告警
+	</div>
+<div class="description-paragraph" id="p0057" num="0057">所述机载终端为ADS-B设备，所述ADS-B设备接收北斗/GPS信号后，确定其在空中/地面的准确位置，结合其它数据后把位置信息通过航空无线专网发送给运行保障与服务中心。
+	</div>
+<div class="description-paragraph" id="p0058" num="0058">针对通用航空气象数据、航行通告信息的种类和业务特点，通过对通用航空飞行情报信息涉及的数据种类、特点、来源和更新机制的深入研究，结合ADS-B、数据链、航空通信网等技术设计适合我国通航飞行数据管理特点的空空、空地数据搜集、集成和管理的运行保障与服务中心，实现多源航空飞行数据高效的信息融合与集成处理。相关关键信息如下：
+	</div>
+<div class="description-paragraph" id="p0059" num="0059">对飞行器：GNSS位置信息、高度、速度、飞行态势、机型、识别码等。
+	</div>
+<div class="description-paragraph" id="p0060" num="0060">对机组人员：空域需求、飞行计划等。
+	</div>
+<div class="description-paragraph" id="p0061" num="0061">对地面空管：空域情况、空域划设、计划批复、飞行前资料公告、航图信息、气象情报、航行情报等。
+	</div>
+<div class="description-paragraph" id="p0062" num="0062">实时的信息（语音/数据）交互对提升空域利用效率和交通管理效率至关重要。通过基于无线通信技术的航空专网，运行保障与服务中心可以对飞行器提供实时的飞行服务支持，飞行器也能够将自身飞行数据实时发送至运行保障与服务中心，最终实现空地信息的实时交互，支撑无人值守情况下快速自动完成通用航空飞行情报的发布和飞行信息交互等服务。
+	</div>
+<div class="description-paragraph" id="p0063" num="0063">运行保障与服务中心是一个统一的网络平台，监视、通信、导航以及交通管理信息应都汇聚至一个统一的网络平台，进行统一的数据处理和需求响应。
+	</div>
+<div class="description-paragraph" id="p0064" num="0064">根据对通用航空目标实施可靠监视的需求，实现多种信息源（多源监视数据、空管雷达、飞行计划、实时气象信息等）的异类数据融合、通用航空目标的航迹跟踪与预测、综合告警（低高度告警、冲突告警、重码、非许可区域侵入告警），开发分布式的通用航空信息服务与飞行计划综合处理软件平台，具备异类数据融合、飞行数据处理、系统运行状态的记录与回放、系统综合航迹输出、综合信息发布、飞行计划管理与自动审批等功能。
+	</div>
+<div class="description-paragraph" id="p0065" num="0065">统一平台将为众多用户和应用提供高质量和及时的数据。通过减少界面和系统数量及类型，统一平台将减少不必要的信息冗余，更好地促成多机构信息共享。
+	</div>
+<div class="description-paragraph" id="p0066" num="0066">飞行器的飞行信息包括：飞行器的位置、飞行器的飞行速度、飞行器的高度、飞行器的飞行趋势、飞行器的飞行轨迹。
+	</div>
+<div class="description-paragraph" id="p0067" num="0067">地面设备包括云计算中心，所述云计算中心能够进行实时的多维空间数据计算，数据计算的结果用于为各阶段运动的飞行器提供即时调整依据。
+	</div>
+<div class="description-paragraph" id="p0068" num="0068">空域的管理在很大程度上依靠了广域的协同决策支持协同技术，随着飞机自主导航性能的提高以及地空数据链的发展，以及与云计算等信息技术的结合，实现空防监视、飞行安全管理的协同化、信息化，将成为一个业务和技术高度融合与交叉的应用领域，在深入进行业务流程研究和运行概念设计的基础上，空域管理与云计算技术的结合，可以显著提高系统处理复杂事物的能力，用户从中可以获得很大价值，具有广阔的推广前景。
+	</div>
+<div class="description-paragraph" id="p0069" num="0069">云计算中心可以为地面监管系统提供强大的实时计算通航信息化运行管理能力，可以允许各种复杂的算法在多维空间（包括空域，飞行器位置，飞行器性能，飞行器意愿，多飞行器相互关系）进行计算，以期为在各阶段运动的飞行器提供实时监视与即时调整；为恶劣气象条件下的起降提供安全的计算依据，为多山多雾地区飞行器计算优化的航迹以及备份航迹。
+	</div>
+<div class="description-paragraph" id="p0070" num="0070">所述系统还包括低空综合监视单元，低空综合监视处理系统设置在各飞行服务终端，也可称为低空综合监视服务终端。综合监视系统是通用航空飞行服务站的一个基础性支撑系统。该系统由不同功能单元模块组成，根据不同的区域监视要求等级或系统集成度，针对具体通航区域交通密度、能见度和基础设施条件，监视通航飞机安全、有序地移动，从而提高管理效率。由于不同机场的规模、运行级别、飞机流量、布局、及现有运行支撑系统的完善程度各不相同，因此，对于不同的目标监视区域，监视系统的组成、功能、系统集成方式也将存在差异。目前，由于空飞行活动的高度较低，一、二次雷达无法达到完全覆盖，并且低空监视还受地形和障碍物的影响较大，同时受气象因素影响也较为严重。所以低空综合监视单元应根据通航情况而设计为低成本全覆盖综合监视系统（ADS-B、MLAT等），该综合监视系统具有异类多源传感器数据融合的功能。该系统能够为通航机场提供智能化的、无人值守的、成本低廉、可视化的远程塔台系统，能够监视通航机场以及低空空域的所有活动目标，也能够为低空综合监视单元提供精确的、实时性强的、更新率高的低空空域活动目标的位置及相关信息。
+	</div>
+<div class="description-paragraph" id="p0071" num="0071">低空综合监视单元能够接收并解析ADS-B数据，数据格式遵照ASTERIXCAT021的规定；低空综合监视单元能接收并解析MLAT数据，数据格式遵照ASTERIXCAT020的规定；低空综合监视单元对ADS-B、MLAT等多元监视数据进行融合处理，并且能够提供系统航迹综合显示和单通道监视数据显示。
+	</div>
+<div class="description-paragraph" id="p0072" num="0072">低空综合监视单元采用无重置联邦融合算法，由若干子滤波器和一个融合中心组成。子滤波器接收ADS-BMLAT等各类监视数据，并采用卡尔曼滤波对每类监视数据进行滤波处理，形成局部航迹。融合中心接收各子滤波器处理之后的局部航迹，并采用无重置联邦融合算法，形成系统航迹，如图4所示。
+	</div>
+<div class="description-paragraph" id="p0073" num="0073">系统还包括ADS-B地面站，所述ADS-B地面站由ADS-B接收机硬件模块、信号处理软件模块和网管系统三部分组成。
+	</div>
+<div class="description-paragraph" id="p0074" num="0074">所述ADS-B地面站为全IP的网络架构，利用模块化设计、双接收通道、热备份的方式提高系统稳定度，采用远程网管实现ADS-B地面站的远程射频自检、远程控制，以实现ADS-B地面站无人值守。
+	</div>
+<div class="description-paragraph" id="p0075" num="0075">ADS-B地面站采用模块化设计，同时考虑开放性、扩展性、智能性；根据产品的使用场景，在满足用户功能需求的同时还考虑产品的屏蔽和电磁兼容性、便携坚固性和美观以及使用方便智能性和便于维护。
+	</div>
+<div class="description-paragraph" id="p0076" num="0076">ADS-B地面站支持RTCADO260系列标准，提供标准的以太接口与空管系统连接，采用双天线双通道热备份来保证产品的可靠性；支持GPS信号，为用户提供时标信息；采用ADS-B地面站设备管理中心管理一个或多个ADS-B地面站。
+	</div>
+<div class="description-paragraph" id="p0077" num="0077">ADS-B地面站主要指标如下：
+	</div>
+<div class="description-paragraph" id="p0078" num="0078">接收频率：1090±1MHz；
+	</div>
+<div class="description-paragraph" id="p0079" num="0079">灵敏度：-85dBm；
+	</div>
+<div class="description-paragraph" id="p0080" num="0080">动态范围：&gt;65dB；
+	</div>
+<div class="description-paragraph" id="p0081" num="0081">可靠性：MTBF&gt;20000小时；
+	</div>
+<div class="description-paragraph" id="p0082" num="0082">可维护性：MTTR不超过30分钟；
+	</div>
+<div class="description-paragraph" id="p0083" num="0083">环境适应性要求：符合RTCADO-160D规定；
+	</div>
+<div class="description-paragraph" id="p0084" num="0084">雷电防护：等级达到20kA(8/20us)；
+	</div>
+<div class="description-paragraph" id="p0085" num="0085">电磁兼容：符合RTCADO-160D规定；
+	</div>
+<div class="description-paragraph" id="p0086" num="0086">使用温度：-35°C到+65°C；
+	</div>
+<div class="description-paragraph" id="p0087" num="0087">接口：base-T100；
+	</div>
+<div class="description-paragraph" id="p0088" num="0088">与空管系统接口协议：ASTERIXCategory21；
+	</div>
+<div class="description-paragraph" id="p0089" num="0089">射频接口：N型；
+	</div>
+<div class="description-paragraph" id="p0090" num="0090">覆盖半径：不小于200海里；
+	</div>
+<div class="description-paragraph" id="p0091" num="0091">轨迹跟踪容量：500；
+	</div>
+<div class="description-paragraph" id="p0092" num="0092">电源：交、直流供电支持
+	</div>
+<div class="description-paragraph" id="p0093" num="0093">地面基站采用1800MHz光纤拉远基站，主要特点如下：
+	</div>
+<div class="description-paragraph" id="p0094" num="0094">(1)采用先进的CS-OFDMA、自适应调制、动态信道分配、快速联合检测等4G关键技术，频谱利用率高，数据传输速率高，覆盖范围广；
+	</div>
+<div class="description-paragraph" id="p0095" num="0095">(2)采用先进的增强型智能天线技术，抗干扰能力强，支持同频组网；
+	</div>
+<div class="description-paragraph" id="p0096" num="0096">(3)基站最大发射功率40dbm，满足空地远距离覆盖需求；
+	</div>
+<div class="description-paragraph" id="p0097" num="0097">(4)支持终端高速移动，支持跨基站的业务切换；
+	</div>
+<div class="description-paragraph" id="p0098" num="0098">(5)支持业务融合，实现点对点语音、集群语音、宽带数据、视频监控、视频调度和视频会议等业务；
+	</div>
+<div class="description-paragraph" id="p0099" num="0099">(6)支持设备鉴权、用户鉴权、业务认证等接入控制措施，安全性高；
+	</div>
+<div class="description-paragraph" id="p0100" num="0100">(7)实现全IP组网，网络架构简单；
+	</div>
+<div class="description-paragraph" id="p0101" num="0101">(8)处理能力强，业务并发数高。
+	</div>
+<div class="description-paragraph" id="p0102" num="0102">所述机载交互设备通过无线或有线方式与机载无线通信终端连接，用于通用航空移动互联、信息交互；所述机载交互设备具有监视导航、综合信息服务、飞行计划服务、气象信息、增值服务功能。
+	</div>
+<div class="description-paragraph" id="p0103" num="0103">本领域普通技术人员可以理解实现上述实施例方法中的全部或部分流程，是可以通过计算机程序来指令相关的硬件来完成，所述的程序可存储于一计算机可读取存储介质中，该程序在执行时，可包括如上述各方法的实施例的流程。其中，所述的存储介质可为磁碟、光盘、只读存储记忆体（Read-OnlyMemory，ROM）或随机存储记忆体（RandomAccessMemory，RAM）等。
+	</div>
+<div class="description-paragraph" id="p0104" num="0104">以上所述，仅为本实用新型的具体实施方式，但本实用新型的保护范围并不局限于此，任何熟悉本技术领域的技术人员在本实用新型揭露的技术范围内，可轻易想到的变化或替换，都应涵盖在本实用新型的保护范围之内。因此，本实用新型的保护范围应以权利要求的保护范围为准。
+	</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

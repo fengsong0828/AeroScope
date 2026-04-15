@@ -1,0 +1,285 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119806179A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES492217177">
+<invention-title id="title1" lang="ZH">一种适用于低空经济的飞行器飞行时间控制方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于飞行器控制技术领域，特别是涉及一种适用于低空经济的飞行器飞行时间控制方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着国家推动低空经济发展的不断深入，各种无人飞行器开始被大量的应用于生产和生活中。随着飞行器数量的不断提升，如何保证飞行器安全飞行的同时，提高飞行的效率是当前面临的新课题。其中，多架飞行器共用航路的场景时有发生。比如两架飞行器要降落在同一个机场，它们要使用相同的路径汇入降落航线。为了避免飞行器在空中相遇，必然要让它们一先一后的驶入降落航线。也即两架飞行器要有顺序的抵达降落航线的起点。这时就可能要其中的一架或两架飞行器调整飞行时间来彼此配合。</div>
+<div class="description-paragraph" id="p0005" num="0003">在目前的技术手段下，要完成这一操作需要飞行器驾驶员根据经验手动调整飞行航线和飞行速度，并在飞行过程中不断的检查和修正，来满足飞行时间上的要求，由于是手动调整飞行时间，其调整的精度、合理性和安全性都无法得到保证，存在着很多的局限性，不能满足安全、高效飞行的需求，故针对以上问题，提出下列方案。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本发明的目的在于提供一种适用于低空经济的飞行器飞行时间控制方法，通过计算机可自动计算出最佳的调整方案，使飞行航路满足调整的要求，解决了现有飞行器驾驶员手动调整飞行时间，其调整的精度、合理性和安全性都无法得到保证的问题。</div>
+<div class="description-paragraph" id="p0008" num="0005">为解决上述技术问题，本发明是通过以下技术方案实现的：</div>
+<div class="description-paragraph" id="p0009" num="0006">本发明为一种适用于低空经济的飞行器飞行时间控制方法，所述控制方法包括以下步骤；</div>
+<div class="description-paragraph" id="p0010" num="0007">步骤S1、获取数据：获取当前飞行器飞行航路、位置、速度、气象以及要调整飞行时间的数据；</div>
+<div class="description-paragraph" id="p0011" num="0008">步骤S2、大气环境预测与地速计算：预测大气环境参数，结合校正空速计算飞行器地速；</div>
+<div class="description-paragraph" id="p0012" num="0009">步骤S3、飞行时间与方案判断：根据获取数据计算原航路飞行时间，对比实际需求判断是否调整飞行时间；</div>
+<div class="description-paragraph" id="p0013" num="0010">步骤S4、飞行时间的调整方案计算：根据方案判断的结果按照减少或增加飞行时间的算法计算新的调整方案；</div>
+<div class="description-paragraph" id="p0014" num="0011">步骤S5、飞行过程监测与调整：实时监控飞行速度，根据实际地速与理论地速偏差决定是否重新计算转弯点，在末段飞行时监测汇合点坐标和剩余飞行时间，真实地速与理论地速的偏差超阈值则报警提醒调整速度。</div>
+<div class="description-paragraph" id="p0015" num="0012">优选的，所述步骤S4、飞行时间的调整方案计算分为减少飞行时间的调整方案计算和增加飞行时间的调整方案计算两种情况；</div>
+<div class="description-paragraph" id="p0016" num="0013">所述减少飞行时间的调整方案计算方法为：</div>
+<div class="description-paragraph" id="p0017" num="0014">飞行速度计算：以当前飞行速度为默认速度，考虑大气环境影响转换为地速后计算从当前点到目标点直线距离<span class="patent-image-not-available"></span>的最小飞行时间<span class="patent-image-not-available"></span>，当<span class="patent-image-not-available"></span>大于需要的时间<span class="patent-image-not-available"></span>，增加飞行速度，重新计算<span class="patent-image-not-available"></span>，直到<span class="patent-image-not-available"></span>小于等于<span class="patent-image-not-available"></span>，或速度达到飞行器安全飞行允许的最大速度<span class="patent-image-not-available"></span>，当达到最大速度仍不满足，算法退出；</div>
+<div class="description-paragraph" id="p0018" num="0015">飞行距离计算：确定从当前点到目标点的最小距离<span class="patent-image-not-available"></span>和最大距离<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>为当前位置到目标点的直线距离<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为当前航路剩余部分的距离之和；</div>
+<div class="description-paragraph" id="p0019" num="0016">计算<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>的算术平均值作为新飞行距离<span class="patent-image-not-available"></span>，根据具体飞行要求计算<span class="patent-image-not-available"></span>对应的飞行时间<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0020" num="0017">计算偏差度<span class="patent-image-not-available"></span>，当<span class="patent-image-not-available"></span>小于阈值时，则确定新的飞行距离，算法结束；否则，根据<span class="patent-image-not-available"></span>与<span class="patent-image-not-available"></span>的大小关系更新<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，返回继续计算<span class="patent-image-not-available"></span>，通过迭代使<span class="patent-image-not-available"></span>达到符合值；</div>
+<div class="description-paragraph" id="p0021" num="0018">转弯点计算：从飞行器当前所处航段开始计算转弯点，假设在当前航段上，飞行器再飞行距离<span class="patent-image-not-available"></span>到达转折点，再转向直线飞向目标点，经过距离<span class="patent-image-not-available"></span>后到达目标点，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>和当前位置到目标点的直线距离<span class="patent-image-not-available"></span>构成三角形，根据三角形余弦定理计算出<span class="patent-image-not-available"></span>，公式为：</div>
+<div class="description-paragraph" id="p0022" num="0019"> <span class="patent-image-not-available"></span>，式中，<span class="patent-image-not-available"></span>为当前位置与目标点连线和当前位置与转弯点连线之间的夹角；</div>
+<div class="description-paragraph" id="p0023" num="0020">当求得的<span class="patent-image-not-available"></span>不大于当前航段的长度时，转弯点就在当前航段上；反之，则令飞行器沿原来航段飞行到下一个航段，在下一个航段计算转弯点，直到倒数第二个航段。</div>
+<div class="description-paragraph" id="p0024" num="0021">优选的，所述增加飞行时间的调整方案计算具体包括：</div>
+<div class="description-paragraph" id="p0025" num="0022">将飞行器速度设置为最小速度，计算以最小速度沿原来航线到达目标地点的时间<span class="patent-image-not-available"></span>是否满足最晚时间<span class="patent-image-not-available"></span>，以及沿直线飞到目标地点的时间<span class="patent-image-not-available"></span>是否短于需求的飞行时间<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0026" num="0023">当两个条件都满足时，使用减少飞行时间时计算转弯点的方法计算转弯点，并让飞行器沿新航路飞行；两个条件不满足时，将速度增加继续计算，直到找到目标速度或速度增加到当前实际速度仍无法满足要求时，算法退出。</div>
+<div class="description-paragraph" id="p0027" num="0024">优选的，所述步骤S2、大气环境预测与地速计算中大气环境预测具体计算方法为：</div>
+<div class="description-paragraph" id="p0028" num="0025">温度估算：低空飞行器在对流层内飞行，使用公式<span class="patent-image-not-available"></span>计算温度，式中，<span class="patent-image-not-available"></span>为飞行高度，<span class="patent-image-not-available"></span>为国际标准大气海平面温度，<span class="patent-image-not-available"></span>为修正温度；</div>
+<div class="description-paragraph" id="p0029" num="0026">空气密度估算：在对流层内，根据公式<span class="patent-image-not-available"></span>计算空气密度，式中，<span class="patent-image-not-available"></span>由温度估算算法得到，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为重力加速度，<span class="patent-image-not-available"></span>为标准大气温度随高度变化率，R为空气的真实气体常数，<span class="patent-image-not-available"></span>为海平面空气密度；</div>
+<div class="description-paragraph" id="p0030" num="0027">气压估算：对流层内气压随高度变化关系由公式<span class="patent-image-not-available"></span>表示，式中，<span class="patent-image-not-available"></span>为标准大气海平面压力，<span class="patent-image-not-available"></span>由温度估算算法得到，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为重力加速度，<span class="patent-image-not-available"></span>为标准大气温度随高度变化率，<span class="patent-image-not-available"></span>为空气的真实气体常数；</div>
+<div class="description-paragraph" id="p0031" num="0028">风速估算：采用样条拟合算法，使用五个不同高度<span class="patent-image-not-available"></span>下的真实风速值作为节点，其中，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别为风速下限和上限高度，在大地坐标系下将风速分解为<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>两个方向，各节点风速记为<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，将任意时刻飞机所处位置<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>两个方向上的风速分别用<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>表示，计算与飞机飞行轨迹平行方向的风速<span class="patent-image-not-available"></span>和垂直方向的风速<span class="patent-image-not-available"></span>，定义三次多项式：</div>
+<div class="description-paragraph" id="p0032" num="0029"> <span class="patent-image-not-available"></span>,</div>
+<div class="description-paragraph" id="p0033" num="0030">式中，<span class="patent-image-not-available"></span>为各高度上风速的样条函数系数，<span class="patent-image-not-available"></span>为飞行高度，<span class="patent-image-not-available"></span>，当<span class="patent-image-not-available"></span>时，<span class="patent-image-not-available"></span>，根据<span class="patent-image-not-available"></span>所在区间确定<span class="patent-image-not-available"></span>，令多项式系数满足在节点处风速值等于真实风速、多项式在<span class="patent-image-not-available"></span>内连续、多项式一阶导数在<span class="patent-image-not-available"></span>内连续、多项式二阶导数在<span class="patent-image-not-available"></span>内连续，边条件使用自然样条边条件，通过解线性方程组得到风速二阶导数在节点处的值<span class="patent-image-not-available"></span>，进而求得各高度上风速的样条函数系数：</div>
+<div class="description-paragraph" id="p0034" num="0031"> <span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0035" num="0032">式中，<span class="patent-image-not-available"></span>表示风速的二阶导数在节点<span class="patent-image-not-available"></span>处的值，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>表示风速的二阶导数在节点<span class="patent-image-not-available"></span>处的值，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别表示用于计算风速的不同高度节点和相邻节点，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别表示在节点<span class="patent-image-not-available"></span>和节点<span class="patent-image-not-available"></span>处的风速值；风速需分别在<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>方向求解。</div>
+<div class="description-paragraph" id="p0036" num="0033">优选的，所述步骤S2、大气环境预测与地速计算中地速计算方法为：</div>
+<div class="description-paragraph" id="p0037" num="0034">飞行器真空速<span class="patent-image-not-available"></span>通过校正空速<span class="patent-image-not-available"></span>由公式：</div>
+<div class="description-paragraph" id="p0038" num="0035"> <span class="patent-image-not-available"></span>计算，</div>
+<div class="description-paragraph" id="p0039" num="0036">式中，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为空气的等熵膨胀系数，<span class="patent-image-not-available"></span>为海平面空气密度，<span class="patent-image-not-available"></span>为标准大气海平面压力，<span class="patent-image-not-available"></span>为标准大气海平面空气密度，P为飞行器当前位置理论计算出的气压值；</div>
+<div class="description-paragraph" id="p0040" num="0037">得到真空速后，用地速公式<span class="patent-image-not-available"></span>计算地速，式中，<span class="patent-image-not-available"></span>为飞行器的俯仰角，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别表示飞机飞行轨迹平行方向的风速和垂直方向的风速。</div>
+<div class="description-paragraph" id="p0041" num="0038">优选的，所述步骤S5、飞行过程监测与调整中监控飞行速度的具体方法为：</div>
+<div class="description-paragraph" id="p0042" num="0039">接收飞行器实时空速和实时气象信息，用真实气象信息更新算法数据，计算真实地速，判断真实地速<span class="patent-image-not-available"></span>与理论地速<span class="patent-image-not-available"></span>的偏差，重新计算转弯点。</div>
+<div class="description-paragraph" id="p0043" num="0040">优选的，所述步骤S5、飞行过程监测与调整中汇合点坐标的具体计算方法为：</div>
+<div class="description-paragraph" id="p0044" num="0041">当飞行器到达转弯点并转弯后进入末段航路，因速度偏差不直接到达目标点而是汇入目标点后航路时，设偏差航路的航向角是<span class="patent-image-not-available"></span>，到达目标点后航路的航向角是<span class="patent-image-not-available"></span>，取目标点坐标为<span class="patent-image-not-available"></span>，取当前位置坐标点为<span class="patent-image-not-available"></span>，到达目标点后航路所在的直线方程为<span class="patent-image-not-available"></span>，偏差航线的直线方程为<span class="patent-image-not-available"></span>，联立两直线方程，设<span class="patent-image-not-available"></span>，解得汇入点处坐标<span class="patent-image-not-available"></span>为：</div>
+<div class="description-paragraph" id="p0045" num="0042"> <span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0046" num="0043">优选的，所述步骤S5、飞行过程监测与调整中剩余飞行时间的具体计算方法为：</div>
+<div class="description-paragraph" id="p0047" num="0044">计算汇合点到目标点的距离<span class="patent-image-not-available"></span>，当<span class="patent-image-not-available"></span>小于阈值时，则飞行器航向在可接受范围内，再计算剩余航程<span class="patent-image-not-available"></span>，按当前实际地速计算剩余飞行时间<span class="patent-image-not-available"></span>,当<span class="patent-image-not-available"></span>与要求的到达时间偏差小于阈值，飞行器当前飞行速度在可接受范围内，当偏差大于阈值，则算法报警提醒飞行员将飞行器速度调整为算法计算出的理论值。</div>
+<div class="description-paragraph" id="p0048" num="0045">本发明具有以下有益效果：</div>
+<div class="description-paragraph" id="p0049" num="0046">1、本发明通过计算机自动规划调整飞行器航路，取代了传统靠驾驶员手动调整的方式，计算机通过本方法能够在要求的精度内自动计算出最佳的调整方案，使飞行航路满足调整的要求，减少了人为因素造成的不准确和不稳定等问题，同时，在多架飞行器共用航路的场景下，能够更精准地控制每架飞行器的飞行时间，避免在空中相遇等安全隐患，提高了飞行的整体效率。</div>
+<div class="description-paragraph" id="p0050" num="0047">2、本发明在飞行过程中可通过计算机实时监测相关数据，通过本方法对大气环境进行预测，使飞行器能更好地适应大气环境变化，确保飞行轨迹符合预期，并实时比较实际地速与理论地速，当偏差超过阈值时可重新计算转弯点，在末段飞行路线监测中，可计算汇合点坐标和剩余飞行时间，对偏差进行判断和处理，进而能够及时发现并纠正飞行过程中的异常情况，保障飞行器安全抵达目标点。</div>
+<div class="description-paragraph" id="p0051" num="0048">当然，实施本发明的任一产品并不一定需要同时达到以上所述的所有优点。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0052">附图说明</div>
+<div class="description-paragraph" id="p0053" num="0049">为了更清楚地说明本发明实施例的技术方案，下面将对实施例描述所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0054" num="0050">图1为本发明的步骤示意图；</div>
+<div class="description-paragraph" id="p0055" num="0051">图2为本发明的流程图；</div>
+<div class="description-paragraph" id="p0056" num="0052">图3为本发明的飞行器飞行航路示意图；</div>
+<div class="description-paragraph" id="p0057" num="0053">图4为本发明的减少飞行时间算法的流程图；</div>
+<div class="description-paragraph" id="p0058" num="0054">图5为本发明的飞行速度计算的流程图；</div>
+<div class="description-paragraph" id="p0059" num="0055">图6为本发明的飞行距离计算的流程图；</div>
+<div class="description-paragraph" id="p0060" num="0056">图7为本发明的转弯点计算流程中飞行器的飞行航路示意图；</div>
+<div class="description-paragraph" id="p0061" num="0057">图8为本发明的转弯点计算流程中飞行器的第二段飞行航路示意图；</div>
+<div class="description-paragraph" id="p0062" num="0058">图9为本发明的增加飞行时间算法的流程图；</div>
+<div class="description-paragraph" id="p0063" num="0059">图10为本发明的飞行速度监控的流程图；</div>
+<div class="description-paragraph" id="p0064" num="0060">图11为本发明的计算汇合点坐标中飞行器的飞行航路示意图；</div>
+<div class="description-paragraph" id="p0065" num="0061">图12为本发明的计算汇合点坐标中飞行器的飞行航路角度示意图；</div>
+<div class="description-paragraph" id="p0066" num="0062">图13为本发明的计算剩余飞行时间的流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0067">具体实施方式</div>
+<div class="description-paragraph" id="p0068" num="0063">下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有作出创造性劳动前提下所获得的所有其它实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0069" num="0064">请参阅图1-13所示，本发明为一种适用于低空经济的飞行器飞行时间控制方法，控制方法包括以下步骤；</div>
+<div class="description-paragraph" id="p0070" num="0065">步骤S1、获取数据：获取当前飞行器飞行航路、位置、速度、气象以及要调整飞行时间的数据；</div>
+<div class="description-paragraph" id="p0071" num="0066">步骤S2、大气环境预测与地速计算：预测大气环境参数，结合校正空速计算飞行器地速；</div>
+<div class="description-paragraph" id="p0072" num="0067">步骤S3、飞行时间与方案判断：根据获取数据计算原航路飞行时间，对比实际需求判断是否调整飞行时间；</div>
+<div class="description-paragraph" id="p0073" num="0068">步骤S4、飞行时间的调整方案计算：根据方案判断的结果按照减少或增加飞行时间的算法计算新的调整方案；</div>
+<div class="description-paragraph" id="p0074" num="0069">步骤S5、飞行过程监测与调整：实时监控飞行速度，根据实际地速与理论地速偏差决定是否重新计算转弯点，在末段飞行时监测汇合点坐标和剩余飞行时间，真实地速与理论地速的偏差超阈值则报警提醒调整速度。</div>
+<div class="description-paragraph" id="p0075" num="0070">步骤S4、飞行时间的调整方案计算分为减少飞行时间的调整方案计算和增加飞行时间的调整方案计算两种情况；</div>
+<div class="description-paragraph" id="p0076" num="0071">减少飞行时间的调整方案计算方法为：</div>
+<div class="description-paragraph" id="p0077" num="0072">飞行速度计算：以当前飞行速度为默认速度，考虑大气环境影响转换为地速后计算从当前点到目标点直线距离<span class="patent-image-not-available"></span>的最小飞行时间<span class="patent-image-not-available"></span>，当<span class="patent-image-not-available"></span>大于需要的时间<span class="patent-image-not-available"></span>，增加飞行速度，重新计算<span class="patent-image-not-available"></span>，直到<span class="patent-image-not-available"></span>小于等于<span class="patent-image-not-available"></span>，或速度达到飞行器安全飞行允许的最大速度<span class="patent-image-not-available"></span>，当达到最大速度仍不满足，算法退出；</div>
+<div class="description-paragraph" id="p0078" num="0073">飞行距离计算：确定从当前点到目标点的最小距离<span class="patent-image-not-available"></span>和最大距离<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>为当前位置到目标点的直线距离<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为当前航路剩余部分的距离之和；</div>
+<div class="description-paragraph" id="p0079" num="0074">计算<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>的算术平均值作为新飞行距离<span class="patent-image-not-available"></span>，根据具体飞行要求计算<span class="patent-image-not-available"></span>对应的飞行时间<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0080" num="0075">计算偏差度<span class="patent-image-not-available"></span>，当<span class="patent-image-not-available"></span>小于阈值时，则确定新的飞行距离，算法结束；否则，根据<span class="patent-image-not-available"></span>与<span class="patent-image-not-available"></span>的大小关系更新<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，返回继续计算<span class="patent-image-not-available"></span>，通过迭代使<span class="patent-image-not-available"></span>达到符合值；</div>
+<div class="description-paragraph" id="p0081" num="0076">转弯点计算：从飞行器当前所处航段开始计算转弯点，假设在当前航段上，飞行器再飞行距离<span class="patent-image-not-available"></span>到达转折点，再转向直线飞向目标点，经过距离<span class="patent-image-not-available"></span>后到达目标点，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>和当前位置到目标点的直线距离<span class="patent-image-not-available"></span>构成三角形，根据三角形余弦定理计算出<span class="patent-image-not-available"></span>，公式为：</div>
+<div class="description-paragraph" id="p0082" num="0077"> <span class="patent-image-not-available"></span>，式中，<span class="patent-image-not-available"></span>为当前位置与目标点连线和当前位置与转弯点连线之间的夹角；</div>
+<div class="description-paragraph" id="p0083" num="0078">当求得的<span class="patent-image-not-available"></span>不大于当前航段的长度时，转弯点就在当前航段上；反之，则令飞行器沿原来航段飞行到下一个航段，在下一个航段计算转弯点，直到倒数第二个航段。</div>
+<div class="description-paragraph" id="p0084" num="0079">增加飞行时间的调整方案计算具体包括：</div>
+<div class="description-paragraph" id="p0085" num="0080">将飞行器速度设置为最小速度，计算以最小速度沿原来航线到达目标地点的时间<span class="patent-image-not-available"></span>是否满足最晚时间<span class="patent-image-not-available"></span>，以及沿直线飞到目标地点的时间<span class="patent-image-not-available"></span>是否短于需求的飞行时间<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0086" num="0081">当两个条件都满足时，使用减少飞行时间时计算转弯点的方法计算转弯点，并让飞行器沿新航路飞行；两个条件不满足时，将速度增加继续计算，直到找到目标速度或速度增加到当前实际速度仍无法满足要求时，算法退出。</div>
+<div class="description-paragraph" id="p0087" num="0082">步骤S2、大气环境预测与地速计算中大气环境预测具体计算方法为：</div>
+<div class="description-paragraph" id="p0088" num="0083">温度估算：低空飞行器在对流层内飞行，使用公式<span class="patent-image-not-available"></span>计算温度，式中，<span class="patent-image-not-available"></span>为飞行高度，<span class="patent-image-not-available"></span>为国际标准大气海平面温度，<span class="patent-image-not-available"></span>为修正温度；</div>
+<div class="description-paragraph" id="p0089" num="0084">空气密度估算：在对流层内，根据公式<span class="patent-image-not-available"></span>计算空气密度，式中，<span class="patent-image-not-available"></span>由温度估算算法得到，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为重力加速度，<span class="patent-image-not-available"></span>为标准大气温度随高度变化率，<span class="patent-image-not-available"></span>为空气的真实气体常数，<span class="patent-image-not-available"></span>为海平面空气密度；</div>
+<div class="description-paragraph" id="p0090" num="0085">气压估算：对流层内气压随高度变化关系由公式<span class="patent-image-not-available"></span>表示，式中，<span class="patent-image-not-available"></span>为标准大气海平面压力，<span class="patent-image-not-available"></span>由温度估算算法得到，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为重力加速度，<span class="patent-image-not-available"></span>为标准大气温度随高度变化率，<span class="patent-image-not-available"></span>为空气的真实气体常数；</div>
+<div class="description-paragraph" id="p0091" num="0086">风速估算：采用样条拟合算法，使用五个不同高度<span class="patent-image-not-available"></span>下的真实风速值作为节点，其中，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别为风速下限和上限高度，在大地坐标系下将风速分解为<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>两个方向，各节点风速记为<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，将任意时刻飞机所处位置<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>两个方向上的风速分别用<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>表示，计算与飞机飞行轨迹平行方向的风速<span class="patent-image-not-available"></span>和垂直方向的风速<span class="patent-image-not-available"></span>，定义三次多项式：</div>
+<div class="description-paragraph" id="p0092" num="0087"> <span class="patent-image-not-available"></span>,式中，<span class="patent-image-not-available"></span>为各高度上风速的样条函数系数，<span class="patent-image-not-available"></span>为飞行高度，<span class="patent-image-not-available"></span>，当<span class="patent-image-not-available"></span>时，<span class="patent-image-not-available"></span>，根据<span class="patent-image-not-available"></span>所在区间确定<span class="patent-image-not-available"></span>，令多项式系数满足在节点处风速值等于真实风速、多项式在<span class="patent-image-not-available"></span>内连续、多项式一阶导数在<span class="patent-image-not-available"></span>内连续、多项式二阶导数在<span class="patent-image-not-available"></span>内连续，边条件使用自然样条边条件，通过解线性方程组得到风速二阶导数在节点处的值<span class="patent-image-not-available"></span>，进而求得各高度上风速的样条函数系数：</div>
+<div class="description-paragraph" id="p0093" num="0088"> <span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0094" num="0089">式中，<span class="patent-image-not-available"></span>表示风速的二阶导数在节点<span class="patent-image-not-available"></span>处的值，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>表示风速的二阶导数在节点<span class="patent-image-not-available"></span>处的值，<span class="patent-image-not-available"></span>分别表示用于计算风速的不同高度节点和相邻节点，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别表示在节点<span class="patent-image-not-available"></span>和节点<span class="patent-image-not-available"></span>处的风速值；风速需分别在<span class="patent-image-not-available"></span>方向求解。</div>
+<div class="description-paragraph" id="p0095" num="0090">步骤S2、大气环境预测与地速计算中地速计算方法为：</div>
+<div class="description-paragraph" id="p0096" num="0091">飞行器真空速<span class="patent-image-not-available"></span>通过校正空速<span class="patent-image-not-available"></span>由公式：<span class="patent-image-not-available"></span>计算，</div>
+<div class="description-paragraph" id="p0097" num="0092">式中，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为空气的等熵膨胀系数，<span class="patent-image-not-available"></span>为海平面空气密度，<span class="patent-image-not-available"></span>为标准大气海平面压力，<span class="patent-image-not-available"></span>为标准大气海平面空气密度，<span class="patent-image-not-available"></span>为飞行器当前位置理论计算出的气压值；</div>
+<div class="description-paragraph" id="p0098" num="0093">得到真空速后，用地速公式<span class="patent-image-not-available"></span>计算地速，式中，<span class="patent-image-not-available"></span>为飞行器的俯仰角，<span class="patent-image-not-available"></span>分别表示飞机飞行轨迹平行方向的风速和垂直方向的风速。</div>
+<div class="description-paragraph" id="p0099" num="0094">步骤S5、飞行过程监测与调整中监控飞行速度的具体方法为：</div>
+<div class="description-paragraph" id="p0100" num="0095">接收飞行器实时空速和实时气象信息，用真实气象信息更新算法数据，计算真实地速，判断真实地速<span class="patent-image-not-available"></span>与理论地速<span class="patent-image-not-available"></span>的偏差，重新计算转弯点。</div>
+<div class="description-paragraph" id="p0101" num="0096">步骤S5、飞行过程监测与调整中汇合点坐标的具体计算方法为：</div>
+<div class="description-paragraph" id="p0102" num="0097">当飞行器到达转弯点并转弯后进入末段航路，因速度偏差不直接到达目标点而是汇入目标点后航路时，设偏差航路的航向角是<span class="patent-image-not-available"></span>，到达目标点后航路的航向角是<span class="patent-image-not-available"></span>，取目标点坐标为<span class="patent-image-not-available"></span>，取当前位置坐标点为<span class="patent-image-not-available"></span>，到达目标点后航路所在的直线方程为<span class="patent-image-not-available"></span>，偏差航线的直线方程为<span class="patent-image-not-available"></span>，联立两直线方程，设<span class="patent-image-not-available"></span>，解得汇入点处坐标<span class="patent-image-not-available"></span>为：</div>
+<div class="description-paragraph" id="p0103" num="0098"> <span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0104" num="0099">步骤S5、飞行过程监测与调整中剩余飞行时间的具体计算方法为：</div>
+<div class="description-paragraph" id="p0105" num="0100">计算汇合点到目标点的距离<span class="patent-image-not-available"></span>，当<span class="patent-image-not-available"></span>小于阈值时，则飞行器航向在可接受范围内，再计算剩余航程<span class="patent-image-not-available"></span>，按当前实际地速计算剩余飞行时间<span class="patent-image-not-available"></span>,当<span class="patent-image-not-available"></span>与要求的到达时间偏差小于阈值，飞行器当前飞行速度在可接受范围内，当偏差大于阈值，则算法报警提醒飞行员将飞行器速度调整为算法计算出的理论值。</div>
+<div class="description-paragraph" id="p0106" num="0101">本实施例的一个具体应用为：</div>
+<div class="description-paragraph" id="p0107">飞行器在沿预定航路飞行的过程中，会遇到需要按时间要求到达航路中某个点的情况，这时需要对航路进行调整，本发明提供了一种使用计算机自动规划调整方案并实时监测方案执行情况，使飞行器按时抵达目标点的方法；</div>
+<div class="description-paragraph" id="p0108" num="0102">参考图3，图3是某飞行器的飞行航路示意图，飞行器目前处于航路的A点，并计划沿B、C、D点飞行到目标点E，如果在这时需要调整飞到E点的时间，则本方法会在航路上计算出一个转弯点T，当飞行器飞行到T点后终止原飞行计划，接着直接飞往E点，就可以按照要求的时间到达目标点；</div>
+<div class="description-paragraph" id="p0109">并且当计算出最佳方案后，计算机会通过飞行器获取的实时飞行信息自动监测飞行过程，当由于大气环境的变化（如风力、风向的改变）导致飞机的真实飞行参数偏离计算值过多时，算法会重新按真实情况计算合适的转弯点，另外，在飞行器转弯后直飞目标点的过程中算法会实时计算飞行速度、方位等数据是否满足要求，如果不满足要求会报警提醒；</div>
+<div class="description-paragraph" id="p0110" num="0103">本方法将调整飞行器飞行时间的操作分为减少飞行时间和增加飞行时间两种情况，当需要减少飞行时间时，会直接计算出调整方案，当需要增加飞行时间时，本方法会先通过降低飞行器飞行速度的方法将增加飞行时间的需求转化为减少飞行时间的需求，然后再计算出调整方案，具体步骤如下：</div>
+<div class="description-paragraph" id="p0111">步骤S1、获取数据：明确飞行器飞行航路，确定飞行器当前处于航路中的位置（如图3中的A点），以及计划沿B、C、D点飞行到目标点E的路径规划，获取飞行器当前飞行速度（校正空速<span class="patent-image-not-available"></span>）、气象数据（包括风速、温度、气压等信息）以及需要调整的飞行时间等数据；</div>
+<div class="description-paragraph" id="p0112" num="0104">步骤S2、大气环境预测与地速计算：</div>
+<div class="description-paragraph" id="p0113" num="0105">大气环境预测：在计算飞行器飞行时间时，需要使用飞行器的地面速度，而飞行器的地速除了受飞行器空中速度的影响外，风速、温度等环境因素都会影响到地速，因此，在计算飞行器地速时，需要对风速、温度等参数进行预测估算；</div>
+<div class="description-paragraph" id="p0114" num="0106">温度估算：</div>
+<div class="description-paragraph" id="p0115" num="0107">本发明针对的是低空飞行器，飞行在对流层内，因此其温度使用如下公式计算：</div>
+<div class="description-paragraph" id="p0116" num="0108">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0117" num="0109">其中：</div>
+<div class="description-paragraph" id="p0118" num="0110"> <span class="patent-image-not-available"></span>是飞行器飞行的高度；</div>
+<div class="description-paragraph" id="p0119" num="0111"> <span class="patent-image-not-available"></span>是国际标准大气海平面温度，<span class="patent-image-not-available"></span>;</div>
+<div class="description-paragraph" id="p0120" num="0112"> <span class="patent-image-not-available"></span>是修正温度，其值通过测量当地某高度下的温度后计算得到；</div>
+<div class="description-paragraph" id="p0121" num="0113">空气密度估算：</div>
+<div class="description-paragraph" id="p0122" num="0114">在对流层内，空气密度与高度的关系用如下公式表示：</div>
+<div class="description-paragraph" id="p0123" num="0115">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0124" num="0116">其中：</div>
+<div class="description-paragraph" id="p0125" num="0117"> <span class="patent-image-not-available"></span>是高度的函数，由上节给出的算法得到，</div>
+<div class="description-paragraph" id="p0126" num="0118"> <span class="patent-image-not-available"></span>是海平面温度，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0127" num="0119"> <span class="patent-image-not-available"></span>是重力加速度，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0128" num="0120"> <span class="patent-image-not-available"></span>是标准大气温度随高度变化率，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0129" num="0121"> <span class="patent-image-not-available"></span>是空气的真实气体常数，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0130" num="0122"> <span class="patent-image-not-available"></span>是海平面空气密度，其计算公式是：<span class="patent-image-not-available"></span>，式中的<span class="patent-image-not-available"></span>是标准大气海平面空气密度，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0131" num="0123">气压估算：</div>
+<div class="description-paragraph" id="p0132" num="0124">对流层内气压随高度变化的关系由下式表示：</div>
+<div class="description-paragraph" id="p0133" num="0125"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0134" num="0126">式中，<span class="patent-image-not-available"></span> 是标准大气海平面压力，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0135" num="0127">风速估算：</div>
+<div class="description-paragraph" id="p0136" num="0128">在对流层内不同的高度，风速（包括大小和方向）会有很大的不同，不能简单的使用线性公式计算，这里给出一种样条拟合算法来估算不同高度下的风速；</div>
+<div class="description-paragraph" id="p0137" num="0129">该算法使用五个不同高度<span class="patent-image-not-available"></span>下的真实风速值作为计算样条函数的节点，其中<span class="patent-image-not-available"></span>分别是要计算的风速的下限高度和上限高度，因为风速是矢量，因此在大地坐标系下将风速分解为<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>两个方向，这样，各节点的风速记作：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0138" num="0130">将任意时刻飞机所处位置的风速用<span class="patent-image-not-available"></span>表示，则与飞机飞行轨迹平行方向的风速<span class="patent-image-not-available"></span>和与飞机飞行轨迹垂直方向的风速<span class="patent-image-not-available"></span>分别是：</div>
+<div class="description-paragraph" id="p0139" num="0131"> <span class="patent-image-not-available"></span>、</div>
+<div class="description-paragraph" id="p0140" num="0132"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0141" num="0133">然后，定义一个三次多项式来拟合任意高度为<span class="patent-image-not-available"></span>时的风速（在<span class="patent-image-not-available"></span>方向上公式一致）：</div>
+<div class="description-paragraph" id="p0142" num="0134"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0143" num="0135">式中，<span class="patent-image-not-available"></span>，且：</div>
+<div class="description-paragraph" id="p0144" num="0136">当<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0145" num="0137">当<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0146" num="0138">当<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0147" num="0139">当<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0148" num="0140">令多项式的系数满足如下条件：</div>
+<div class="description-paragraph" id="p0149" num="0141">当<span class="patent-image-not-available"></span>时，<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0150" num="0142">多项式的值在内连<span class="patent-image-not-available"></span>续；</div>
+<div class="description-paragraph" id="p0151" num="0143">多项式一阶导数在<span class="patent-image-not-available"></span>内连续；</div>
+<div class="description-paragraph" id="p0152" num="0144">多项式二阶导数在<span class="patent-image-not-available"></span>内连续；</div>
+<div class="description-paragraph" id="p0153" num="0145">设风速的二阶导数在节点处的值为<span class="patent-image-not-available"></span>，即：</div>
+<div class="description-paragraph" id="p0154" num="0146">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0155" num="0147">边条件使用自然样条边条件，令：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0156" num="0148">由多项式的连续性和边条件约束，可得<span class="patent-image-not-available"></span>需满足线性方程组：</div>
+<div class="description-paragraph" id="p0157" num="0149">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0158" num="0150">该方程组中的所有<span class="patent-image-not-available"></span>都是已知数值，通过计算机可以解出<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0159" num="0151">需要注意的是风速有<span class="patent-image-not-available"></span>两个方向，需要分别求解；</div>
+<div class="description-paragraph" id="p0160" num="0152">解得<span class="patent-image-not-available"></span>后，代入下边的系数公式就可以求得各高度上风速的样条函数系数：</div>
+<div class="description-paragraph" id="p0161" num="0153"> <span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0162" num="0154">飞行器的地速计算：</div>
+<div class="description-paragraph" id="p0163" num="0155">飞行器的地速由飞行器的真空速和风速等信息计算得到，而飞行器的真空速<span class="patent-image-not-available"></span>通过飞行器给出的校正空速<span class="patent-image-not-available"></span>由下式得到：</div>
+<div class="description-paragraph" id="p0164" num="0156">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0165" num="0157">式中，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0166" num="0158">而<span class="patent-image-not-available"></span>是空气的等熵膨胀系数，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0167" num="0159">得到真空速后，用下式计算地速<span class="patent-image-not-available"></span>：</div>
+<div class="description-paragraph" id="p0168" num="0160"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0169" num="0161">式中，<span class="patent-image-not-available"></span>是飞行器的俯仰角，用来计算空速的水平分量；</div>
+<div class="description-paragraph" id="p0170" num="0162">步骤S3、飞行时间与方案判断：根据获取的飞行航路和速度等数据，计算沿原航路飞行到目标点E的飞行时间，判断是否需要调整飞行时间，若需要调整，进一步判断是减少飞行时间还是增加飞行时间；</div>
+<div class="description-paragraph" id="p0171" num="0163">步骤S4、飞行时间的调整方案计算：</div>
+<div class="description-paragraph" id="p0172" num="0164">当调整飞行器飞行时间的操作为减少飞行时间时，具体计算方法为：</div>
+<div class="description-paragraph" id="p0173" num="0165">减少飞行时间算法由三部分组成，分别是：飞行速度计算、飞行距离计算和转弯点计算；</div>
+<div class="description-paragraph" id="p0174" num="0166">飞行速度计算负责计算出飞行器合理的飞行速度，飞行距离计算负责计算出在合理速度下使飞行时间符合要求的飞行距离，转弯点计算负责在航路上计算出一个点，确保飞行器在该点飞向目标点后到达目标点的时间满足要求，三部分顺序执行，完成工作，如图4；</div>
+<div class="description-paragraph" id="p0175" num="0167">飞行速度计算：</div>
+<div class="description-paragraph" id="p0176" num="0168">默认的飞行速度采用当前飞行速度，但飞行器从当前点飞到目标点是有最短距离的，即两个点之间的直线距离<span class="patent-image-not-available"></span>，如果飞行器使用默认速度飞行距离<span class="patent-image-not-available"></span>所用时间<span class="patent-image-not-available"></span>仍然大于需要的时间<span class="patent-image-not-available"></span>，则说明按照默认速度飞行是无法满足时间要求的，这时需要将飞行速度增加一个单位（默认1米/秒），然后再计算<span class="patent-image-not-available"></span>是否符合要求，如果不符合就继续计算，直到找出合适的速度，如果速度增加到飞行器安全飞行允许的最大速度<span class="patent-image-not-available"></span>仍然未找到合适速度，则说明需求的时间无法达到，算法退出；</div>
+<div class="description-paragraph" id="p0177" num="0169">这里的当前速度是飞行器的校正空速<span class="patent-image-not-available"></span>，而算法使用地速计算飞行时间，从校正空速到地速的转换需要考虑大气环境条件的影响，本方法在上述步骤中给出了大气环境的预测算法；</div>
+<div class="description-paragraph" id="p0178" num="0170">飞行速度计算的流程可参考图5，需要说明的是飞行器的飞行速度并不是不变的，而是会根据各种限制条件（如地形、气象等）进行调整，算法中提到的飞行速度是飞行过程中可以达到的最大速度，而且飞行时间的计算方法也需要根据具体的飞行要求（匀速飞行还是加速或减速飞行等）进行调整，而不是一个固定的计算方法；</div>
+<div class="description-paragraph" id="p0179" num="0171">飞行距离计算：</div>
+<div class="description-paragraph" id="p0180" num="0172">因为在计算新的飞行距离时并未确定飞行路线，所以无法使用闭合形式的公式计算飞行距离。本方法采用迭代法计算飞行距离。</div>
+<div class="description-paragraph" id="p0181" num="0173">首先确定从当前点到目标点的最小距离<span class="patent-image-not-available"></span>和最大距离<span class="patent-image-not-available"></span>，因为要求的是新飞行时间短于原飞行时间，因此<span class="patent-image-not-available"></span>是当前航路剩余部分的距离之和，<span class="patent-image-not-available"></span>是从飞行器当前位置到目标点的直线距离<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0182" num="0174">当确定了初始的<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>后开始计算新航线的距离<span class="patent-image-not-available"></span>，具体算法流程如图6；</div>
+<div class="description-paragraph" id="p0183" num="0175">其中，新距离的计算方法是求<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>的算术平均值，即：</div>
+<div class="description-paragraph" id="p0184" num="0176">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0185" num="0177">飞行时间<span class="patent-image-not-available"></span>的计算方法不固定，也需要根据具体的飞行要求来确定；</div>
+<div class="description-paragraph" id="p0186" num="0178">由于通过仪表、雷达等手段获得的飞行器飞行参数是存在误差的，而且真实飞行器的飞行过程无法高精度的控制，因此在判断<span class="patent-image-not-available"></span>是否符合<span class="patent-image-not-available"></span>时，不能简单用二者是否相等来衡量，而是要有一个允许的误差范围，这里使用一个偏差度<span class="patent-image-not-available"></span>来表示计算结果和需求值间的偏差，其计算公式是：</div>
+<div class="description-paragraph" id="p0187" num="0179">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0188" num="0180">当<span class="patent-image-not-available"></span>小于一个阈值时，认为<span class="patent-image-not-available"></span>符合要求，这里选择0.025作为阈值，即当<span class="patent-image-not-available"></span>时，认为<span class="patent-image-not-available"></span>符合要求，也就是找到了合适的新飞行距离，算法结束，</div>
+<div class="description-paragraph" id="p0189" num="0181">当<span class="patent-image-not-available"></span>不符合要求时，程序会更新飞行距离<span class="patent-image-not-available"></span>，然后继续迭代，更新的逻辑是：</div>
+<div class="description-paragraph" id="p0190" num="0182">如果<span class="patent-image-not-available"></span>则：</div>
+<div class="description-paragraph" id="p0191" num="0183">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0192" num="0184">如果<span class="patent-image-not-available"></span>则：</div>
+<div class="description-paragraph" id="p0193" num="0185">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0194" num="0186">更新完成后，程序会返回继续计算<span class="patent-image-not-available"></span>，这样，通过不断的迭代，让<span class="patent-image-not-available"></span>从两边不断趋近于要求的值，从而使<span class="patent-image-not-available"></span>越来越接近合适的长度，最后达到<span class="patent-image-not-available"></span>的精度要求；</div>
+<div class="description-paragraph" id="p0195" num="0187">转弯点计算：</div>
+<div class="description-paragraph" id="p0196" num="0188">当获得了飞行器需要飞行的距离之后，就可以计算转弯点，让飞行器的飞行距离与计算距离一致，转弯点的计算从飞行器当前所处的航段开始计算，假设在当前航段上，飞行器再飞行距离<span class="patent-image-not-available"></span>到达转折点，然后转向直线飞向目标点，经过距离<span class="patent-image-not-available"></span>后到达目标点，则<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>和飞行器当前位置到目标点的直线距离<span class="patent-image-not-available"></span>构成一个三角形<span class="patent-image-not-available"></span>，其中角<span class="patent-image-not-available"></span>的夹角，如图7中三角形所示；</div>
+<div class="description-paragraph" id="p0197" num="0189">则根据三角形余弦定理有：</div>
+<div class="description-paragraph" id="p0198" num="0190">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0199" num="0191">且又有：</div>
+<div class="description-paragraph" id="p0200" num="0192">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0201" num="0193">可以得到：</div>
+<div class="description-paragraph" id="p0202" num="0194">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0203" num="0195">如果求得的<span class="patent-image-not-available"></span>不大于当前航段AB的长度L，则转弯点T就在当前航段上，反之，则令飞行器沿原来的航段飞行到下一个航段BC，在下一个航段计算转弯点，如图8中三角形所示；</div>
+<div class="description-paragraph" id="p0204" num="0196">计算原理不变，但距离和角度需要更新：</div>
+<div class="description-paragraph" id="p0205" num="0197">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0206" num="0198">那么，求新转弯点距离<span class="patent-image-not-available"></span>的公式是：</div>
+<div class="description-paragraph" id="p0207" num="0199">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0208" num="0200">同理，如果转弯点不在这个航段上，则继续在下一个航段上计算，以此类推，直到倒数第二个航段；</div>
+<div class="description-paragraph" id="p0209" num="0201">转弯点不会出现在最后一个航段，因为如果在最后一个航段出现，则说明在最后一个航段上会有一条折线连接航段的两个端点，且折线长度短于航段的长度，这违背了两点之间直线最短的公理，因此不可能存在；</div>
+<div class="description-paragraph" id="p0210" num="0202">当调整飞行器飞行时间的操作为增加飞行时间时，具体算法为：</div>
+<div class="description-paragraph" id="p0211" num="0203">前面给出的是需要减少飞行时间时转折点的计算方法，相反如果飞行时间需要增加则可以先将这种情况转化为减少飞行时间的情况，再进行计算，方法如下：</div>
+<div class="description-paragraph" id="p0212" num="0204">如果飞行时间需要减少，说明本机飞行器的当前速度快于需要的速度，则可以将本机的速度设置为允许的最小速度（一般高于飞行器能飞行的最小速度），然后计算以此速度沿原来航线到达目标地点的时间<span class="patent-image-not-available"></span>是否满足允许的最晚时间<span class="patent-image-not-available"></span>（因为本机后边可能有其他飞行器也需要飞到该点，因此对本机到达目标点的时间有下限的要求，不能随意延后），同时，如果使用此速度沿直线飞到目标地点，其所用时间是否短于需求的飞<span class="patent-image-not-available"></span>行时间<span class="patent-image-not-available"></span>，如果上述两个条件都满足，则在此速度下，使用上节描述的方法计算转弯点，并让飞行器沿新航路飞行就可以在需要的时间点到达目的地，</div>
+<div class="description-paragraph" id="p0213" num="0205">如果设置的速度无法满足上述要求，则将速度增加一个单位（默认1米/秒）继续计算，直至找到合适的速度，如果速度增加到当前的实际速度仍无法找到合适的速度，则给出的到达时间不合理，算法直接退出，具体流程参考图9；</div>
+<div class="description-paragraph" id="p0214" num="0206">步骤S5、飞行过程监测与调整：</div>
+<div class="description-paragraph" id="p0215" num="0207">因为飞行器飞行时的地面速度受环境影响而真实环境经常发生变化，所以它的实际飞行速度可能和估算的速度有偏差，需要不停的检测，当偏差较大时，需要按照实际的速度重新计算飞行器的转弯点；</div>
+<div class="description-paragraph" id="p0216" num="0208">当飞行器使用算法计算出转弯点后，在飞行的过程中，算法会不断的用飞行器的实时速度值与计算中使用的理论值进行比较，当发现实际地速 <span class="patent-image-not-available"></span> 与理论地速 <span class="patent-image-not-available"></span> 的差大于阈值（这里设为<span class="patent-image-not-available"></span>），即<span class="patent-image-not-available"></span>时，认为地速误差过大，需要重新计算转弯点，其具体流程如图10所示；</div>
+<div class="description-paragraph" id="p0217" num="0209">末段飞行路线监测：当飞行器到达转弯点并转弯后，飞行器就进入了新规划的航路，同时也是到达目标点前的最后一段航路，在这段航路上，算法会实时计算剩余的路程和到达时间，如果发现现有的速度或航路与原定航路的偏差超过阈值，则会发出警告；</div>
+<div class="description-paragraph" id="p0218" num="0210">计算汇合点坐标：因为飞行器飞行速度的偏差，它可能不直接到达目标点，而是在目标点前或后汇入到目标点之后的航路上，参考图11所示；</div>
+<div class="description-paragraph" id="p0219" num="0211">T是目标点，TB是飞行器到达T点后要飞行的航路，按照计算，飞行器应该沿航路AT到达目标点，但由于飞行的偏差，飞行器会在C点汇入TB的反向延长线，在这种情况下，本方法会实时计算出汇合点C的坐标，并计算出剩余的航路长度和飞行时间，如果与原计划时间的偏差在允许的范围内，则保持现有状态继续飞行，而不改变飞行速度，因为有各种因素的影响飞行器的速度不容易精确的控制，所以只要在允许的范围内保持原飞行状态是合理的选择，</div>
+<div class="description-paragraph" id="p0220" num="0212">如图12计算点C的坐标：</div>
+<div class="description-paragraph" id="p0221" num="0213">首先设直线AC的航向角是<span class="patent-image-not-available"></span>，直线BT的航向角是<span class="patent-image-not-available"></span>,然后，在BT上取T点坐标为<span class="patent-image-not-available"></span>，那么直线BT的方程是：</div>
+<div class="description-paragraph" id="p0222" num="0214"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0223" num="0215">在AC上取A点坐标为<span class="patent-image-not-available"></span>，那么直线AC的方程是：</div>
+<div class="description-paragraph" id="p0224" num="0216"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0225" num="0217">将两直线方程联立，并设：<span class="patent-image-not-available"></span>，解得汇合点C处坐标<span class="patent-image-not-available"></span>为：</div>
+<div class="description-paragraph" id="p0226" num="0218"> <span class="patent-image-not-available"></span>;</div>
+<div class="description-paragraph" id="p0227" num="0219">计算剩余飞行时间：</div>
+<div class="description-paragraph" id="p0228" num="0220">获得了汇合点坐标后，计算汇合点到目标点的距离<span class="patent-image-not-available"></span>：</div>
+<div class="description-paragraph" id="p0229" num="0221">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0230" num="0222">如果<span class="patent-image-not-available"></span>小于一个阈值（这里设为<span class="patent-image-not-available"></span>），则说明飞行器的航向在可接受的范围内，</div>
+<div class="description-paragraph" id="p0231" num="0223">接着计算剩余航程<span class="patent-image-not-available"></span>：</div>
+<div class="description-paragraph" id="p0232" num="0224"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0233" num="0225">有了航程后，按当前实际地速计算剩余飞行时间：</div>
+<div class="description-paragraph" id="p0234" num="0226"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0235" num="0227">如果<span class="patent-image-not-available"></span>与要求的到达时间之间的偏差小于阈值（这里设为<span class="patent-image-not-available"></span>）则飞行器的当前飞行速度在可接受的范围内；</div>
+<div class="description-paragraph" id="p0236" num="0228">如果飞行器按照当前速度飞行，出现的偏差大于阈值，则算法报警提醒飞行员将飞行器速度调整为算法计算出的理论值，检测算法具体流程如图13所示。</div>
+<div class="description-paragraph" id="p0237" num="0229">在本说明书的描述中，参考术语“一个实施例”、“示例”、“具体示例”等的描述意指结合该实施例或示例描述的具体特征、结构、材料或者特点包含于本发明的至少一个实施例或示例中。在本说明书中，对上述术语的示意性表述不一定指的是相同的实施例或示例。而且，描述的具体特征、结构、材料或者特点可以在任何的一个或多个实施例或示例中以合适的方式结合。</div>
+<div class="description-paragraph" id="p0238" num="0230">以上公开的本发明优选实施例只是用于帮助阐述本发明。优选实施例并没有详尽叙述所有的细节，也不限制该发明仅为所述的具体实施方式。显然，根据本说明书的内容，可作很多的修改和变化。本说明书选取并具体描述这些实施例，是为了更好地解释本发明的原理和实际应用，从而使所属技术领域技术人员能很好地理解和利用本发明。本发明仅受权利要求书及其全部范围和等效物的限制。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

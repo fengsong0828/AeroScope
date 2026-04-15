@@ -1,0 +1,107 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120560236A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES504192020">
+<invention-title id="title1" lang="ZH">一种低空飞行器环境感知系统及其方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空飞行器控制技术领域，特别涉及一种基于多模态数据融合与时空对齐算法的低空飞行器环境感知系统及其方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">由于城市楼宇密集区需要无人机具备亚米级定位与动态避障能力，传统的BDS信号容易受到遮挡，导致导航失效。桥梁、输电线路等场景需高精度三维建模与隐蔽缺陷检测，单一传感器（如难以兼顾几何精度与材质穿透能力。废墟环境中卫星信号丢失，依赖视觉或惯性导航易因误差累积导致定位漂移，且多模态数据融合效率低下。</div>
+<div class="description-paragraph" id="p0006" num="0004">因此，融合多传感器，兼顾多种应用能力，增强BDS信号的强度或减少对BDS信号的依赖，避免因卫星信号丢失而导致定位偏移，成了目前有待解决的问题。</div>
+<div class="description-paragraph" id="p0007" num="0005">专利202210559839 .3提出了一种“基于拍摄设备的雷达外参标定方法、装置及计算机设备”，该设备通过引入拍摄设备为中介，利用其与待标定雷达的视场重叠区域，结合目标检测技术和坐标变换关系实现标定；首先获取拍摄设备的采集图像及雷达的点云数据，分别对第一雷达和第二雷达的点云进行目标检测，提取目标对象点云；基于拍摄图像确定目标对象的位置后，通过投影匹配和迭代优化，计算雷达与拍摄设备之间的外参变换关系，并最终推导出雷达间的外参标定结果。相比于传统的设备，该设备提升了标定精度和通用性，但其依赖相机与雷达的投影迭代优化方法，可能导致设备在动态场景因时空对齐机制缺乏动态适应性而标定精度低等问题。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0008">发明内容</div>
+<div class="description-paragraph" id="p0009" num="0006">本发明的主要目的在于提供一种低空飞行器环境感知系统及其方法，可以有效解决背景技术中提到的问题。</div>
+<div class="description-paragraph" id="p0010" num="0007">为实现上述目的，本发明采取的技术方案为：</div>
+<div class="description-paragraph" id="p0011">一种低空飞行器环境感知系统，包括依次执行的四大核心模块：多模态数据采集、时空对齐算法、多模态数据融合、无源增强定位，具体为：</div>
+<div class="description-paragraph" id="p0012">多模态数据采集模块：集成多类型传感器采集多环境原始数据并预处理；</div>
+<div class="description-paragraph" id="p0013">时空对齐算法模块：消除多传感器数据的时空不一致性，实现时间基准统一与空间坐标系映射；</div>
+<div class="description-paragraph" id="p0014">多模态数据融合模块：提取跨模态互补特征，建模模态间依赖关系；</div>
+<div class="description-paragraph" id="p0015">无源增强定位模块：基于无线信号实现高精度定位，弥补卫星信号受限缺陷。</div>
+<div class="description-paragraph" id="p0016" num="0008">一种上述低空飞行器环境感知系统的感知方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0017">S01、多模态数据采集：通过集成多传感器阵列采集多环境原始数据，包括毫米波雷达、LiDAR、超声波传感器、红外摄像头、电磁涡流传感器、多光谱摄像头、微波生命探测雷达、气体传感器；</div>
+<div class="description-paragraph" id="p0018">S02、时空对齐算法：利用硬件同步与软件补偿结合的时空对齐算法，统一时间基准并映射至全局坐标系；利用华大北斗HD9300模块统一所有传感器的时间基准，确保数据采集时刻对齐，卡尔曼滤波动态插值动态补偿微小时间偏差，以确保时间同步，将所有的传感器数据映射到同一全局坐标系中，IMU动态修正，通过SLAM同步定位与建图以确保空间对齐；</div>
+<div class="description-paragraph" id="p0019">S03、多模态数据融合：基于特征级融合与多头自注意力机制，实现跨模态数据的语义关联与权重动态分配；使用统一的神经网络ViT生成高维特征向量，将不同模态地特征向量映射到同一语义空间中消除尺度与维度差异，各模态独立生成独立检测概率并将不同模态地语义标签进行逻辑关联，多头自注意力机制和跨模态注意力机制动态加权建立依赖；</div>
+<div class="description-paragraph" id="p0020">S04、无源增强定位：利用环境中已有的无线信号，融合TDOA算法与信号指纹匹配技术，在卫星拒止环境中实现亚米级定位。</div>
+<div class="description-paragraph" id="p0021" num="0009">优选的，所述S01中多传感器阵列的采集原理如下：</div>
+<div class="description-paragraph" id="p0022">毫米波雷达通过发射频率为24GHz至77GHz的电磁波，接受目标反射的回波信号，利用时间差和多普勒效应计算目标的距离、速度，其公式计算公式为：</div>
+<div class="description-paragraph" id="p0023"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0024">其中R为目标距离，c为光速，<span class="patent-image-not-available"></span>为发射和接收时间差，v为目标速度，<span class="patent-image-not-available"></span>为多普勒频移，<span class="patent-image-not-available"></span>为波长；</div>
+<div class="description-paragraph" id="p0025">LiDAR通过发射激光脉冲并测量其反射时间，根据反射时间计算目标距离；通过机械旋转覆盖视场角，生成三维点云数据，其点云分辨率公式为：</div>
+<div class="description-paragraph" id="p0026"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0027">其中R为探测距离，激光发散角通常为0.1°至0.5°，探测距离可达300米；</div>
+<div class="description-paragraph" id="p0028">超声波传感器发射频率为20KHz至50KHz的超声波脉冲，接收障碍物反射的回波，通过回波时间计算距离，其公式为：</div>
+<div class="description-paragraph" id="p0029"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0030">红外摄像头捕获目标发射的红外辐射转换为电信号，通过热敏元件生成热图像，显示温度分布；</div>
+<div class="description-paragraph" id="p0031">电磁涡流传感器中的传感器线圈通高频交流电，产生交变磁场，当靠近金属表面时，磁场在金属中感应涡流，涡流产生反向磁场，通过检测线圈阻抗变化进行判断；</div>
+<div class="description-paragraph" id="p0032">微波生命探测雷达发射频率1GHz至10GHz的微波信号，穿透障碍物，接收反射信号中的微多普勒频移，分析生命体征；</div>
+<div class="description-paragraph" id="p0033">气体传感器将气体分子吸附到传感器表面，与半导体材料发生化学反应，改变半导体电阻值，输出与气体浓度成正比的电信号。</div>
+<div class="description-paragraph" id="p0034" num="0010">优选的，所述S02中时空对齐算法包括：</div>
+<div class="description-paragraph" id="p0035">时间同步：利用华大北斗HD9300模块输出的PPS信号作为全局时间基准，触发所有传感器同步采集数据，再结合卡尔曼滤波动态插值消除时间偏差，预测时间偏差的动态变化的状态方程为：</div>
+<div class="description-paragraph" id="p0036"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0037">A为状态转移矩阵，<span class="patent-image-not-available"></span>为过程噪声；</div>
+<div class="description-paragraph" id="p0038">利用BDS或其他参考时间源校准偏差的观测方程为：</div>
+<div class="description-paragraph" id="p0039"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0040">H为观测矩阵，<span class="patent-image-not-available"></span>为观测噪声；</div>
+<div class="description-paragraph" id="p0041">结合预测和观测值修正时间偏差，其公式为：</div>
+<div class="description-paragraph" id="p0042"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0043">K为卡尔曼增益，<span class="patent-image-not-available"></span>为预测偏差；</div>
+<div class="description-paragraph" id="p0044">空间对齐：在空间上将不同传感器的数据映射到统一的全局坐标系，消除因安装位置或视角差异导致的空间偏移，先通过已知尺寸的标定板计算传感器间的相对位姿，其公式为：</div>
+<div class="description-paragraph" id="p0045"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0046">R为旋转矩阵，t为平移向量；</div>
+<div class="description-paragraph" id="p0047">然后在有BDS时将输出的CGCS2000坐标系转换成WGS-84地理坐标系，</div>
+<div class="description-paragraph" id="p0048"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0049">无BDS时通过SLAM构建局部地图并与无线信号指纹库对齐；再利用IMU惯性测量单元实时估计无人飞行器位置变换，以修正传感器数据的空间偏移，其公式为：</div>
+<div class="description-paragraph" id="p0050"> <span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0051" num="0011">优选的，所述S03中多模态融合整合来自不同传感器的异构数据，提取互补特征和建模跨模态依赖关系；包括：</div>
+<div class="description-paragraph" id="p0052">特征级融合：基于 ViT 神经网络对多模态数据统一编码，生成高维特征向量并映射至同一语义空间；</div>
+<div class="description-paragraph" id="p0053">跨模态依赖建模：利用多头自注意力机制动态分配模态权重，公式为</div>
+<div class="description-paragraph" id="p0054"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0055">结合跨模态注意力机制消除语义歧义。</div>
+<div class="description-paragraph" id="p0056" num="0012">优选的，所述S04中无源增强定位在BDS拒止或信号受限环境中，通过环境无线信号实现高精度定位用以弥补传统卫星定位的不足，包括：</div>
+<div class="description-paragraph" id="p0057">TDOA定位：TDOA定位技术测量信号从目标设备到多个基站的传播时间差，计算目标位置，其公式为：</div>
+<div class="description-paragraph" id="p0058"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0059">其中x为目标位置，<span class="patent-image-not-available"></span>为基站坐标，c为光速；</div>
+<div class="description-paragraph" id="p0060">信号指纹匹配：依据信号指纹匹配确定目标位置，在定位区域内采集各点的信号特征，通过K近邻算法与预存的指纹库匹配，其公式为：</div>
+<div class="description-paragraph" id="p0061"> <span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0062" num="0013">与现有技术相比，本发明具有如下有益效果：</div>
+<div class="description-paragraph" id="p0063">本发明通过集成毫米波雷达、LiDAR等八类异构传感器实现多环境数据协同采集，采用北斗PPS硬件同步与卡尔曼滤波动态校准实现高精度时空对齐，结合ViT神经网络统一编码与多头自注意力机制动态融合跨模态特征，并创新性融合TDOA定位和信号指纹匹配技术，在卫星拒止环境下实现亚米级无源定位，显著提升城市密集区域无人机的实时避障精度与复杂场景适应性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0064">附图说明</div>
+<div class="description-paragraph" id="p0065" num="0014">图1为本发明的感知系方法流程示意图；</div>
+<div class="description-paragraph" id="p0066">图2为本发明的各模块功能示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0067">具体实施方式</div>
+<div class="description-paragraph" id="p0068" num="0015">为使本发明实现的技术手段、创作特征、达成目的与功效易于明白了解，下面结合结合附图1、图2对本发明地实施例作进一步详细说明。</div>
+<div class="description-paragraph" id="p0069" num="0016">一种基于多模态数据融合与时空对齐算法的低空飞行器环境感知方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0070">S01.通过集成多传感器采集环境下的原始数据；</div>
+<div class="description-paragraph" id="p0071">S02.利用华大北斗HD9300模块输出的PPS信号作为全局时间基准，所有传感器通过硬件触发，在PPS信号的上升沿同步开始采集数据，采用卡尔曼滤波动态插值动态补偿传感器间的微小时间差，通过已知尺寸的标定板计算传感器间的相对位姿，将传感器数据转换成WGS-84同一全局坐标系，IMU实时测量无人机的加速度和角速度，SLAM实时构建环境地图，并同时估计自身位置。</div>
+<div class="description-paragraph" id="p0072" num="0017">S03.使用统一的神经网络ViT对多模态数据进行编码，生成高维特征向量，将不同模态的特征向量映射到同一语义空间，消除尺度与维度差异，各模态独立生成目标检测概率，通过加权平均推断整合结果，将不同模态的语义标签进行逻辑关联，消除歧义，利用多头自注意力机制捕获不同模态间地依赖关系，跨模态注意力机制建模跨模态依赖。</div>
+<div class="description-paragraph" id="p0073" num="0018">S04.利用环境中已有的无线信号，TDOA定位算法计算目标位置，将环境中无线信号地特征与预存指纹库匹配确定目标位置，实现高精度定位。</div>
+<div class="description-paragraph" id="p0074" num="0019">所述S01中，多传感器在不同场景下相互配合。在物流配送中，毫米波雷达用于动态目标检测，LiDAR用于三维建模，超声波传感器用于近地避障，红外摄像头用于夜间感知。在基础设施巡检中，LiDAR用于主建模，电磁涡流传感器用于金属缺陷检测，多光谱摄像头用于图层分析。在灾害救援中，LiDAR用于结构扫描，微波生命探测雷达用于穿透检查，气体传感器用于危险气体检测。</div>
+<div class="description-paragraph" id="p0075" num="0020">各传感器独立运行，按照预设频率输出原始数据，每个数据帧附加全局时间戳，便于后续时空对齐。借助边缘计算设备暂存原始数据，避免传输延迟导致丢包。根据实际场景需要启动或关闭传感器以降低功耗。</div>
+<div class="description-paragraph" id="p0076" num="0021">所述S02中，时空对齐算法分类两个部分，分别为时间同步和空间同步。</div>
+<div class="description-paragraph" id="p0077" num="0022">时间同步具体步骤为：在有BDS信号时，使用华大北斗HD9300模块输出的PPS信号作为全局时间基准，所有传感器通过硬件触发，在PPS信号的上升沿同步开始数据采集；无BDS信号时，利用5G基站的高精度时钟信号NR定位协议作为时间基准；同时采用卡尔曼滤波插值算法进行预测和校准，动态地补偿传感器间的微小偏差。</div>
+<div class="description-paragraph" id="p0078" num="0023">空间同步具体步骤为：在有BDS信号时，使用已知尺寸的AprilTag标定板采集多组传感器数据，计算传感器间的相对位姿，将BDS信号输出的CGCS2000坐标系转换成WGS-84坐标系；借助IMU实时测量低空飞行器的姿态变化，动态调整传感器坐标系偏移；在无BDS信号时使用SLAM实时构建局部地图，并与无线信号指纹库对齐，辅助空间对齐。</div>
+<div class="description-paragraph" id="p0079" num="0024">所述S03中，多模态数据融合的具体步骤包括：首先就是对数据进行特征提取，LiDAR点云使用PointNet提取几何特征，生成128维特征向量；雷达信号提取目标距离、速度特征，标准化为64维向量；视觉数据通过轻量化CNN提取纹理与语义特征，输出256维向量。然后将各模态特征映射至统一语义空间，消除维度和尺度差异。</div>
+<div class="description-paragraph" id="p0080" num="0025">基于多头自注意力机制动态分配权重，其具体操作步骤为：将联合特征拆分为h个注意力头，分别计算Q、K、V矩阵，然后计算注意力权重并加权融合：</div>
+<div class="description-paragraph" id="p0081"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0082">沿通道维度拼接对齐后的特征向量，生成多模态联合特征，其公式为：</div>
+<div class="description-paragraph" id="p0083"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0084">针对各模态数据独立训练检测模型，输出目标框与类别概率，再结合跨模态注意力机制建模跨模态依赖，构建关联语义，关联目标属性，融合目标检测概率生成指令。</div>
+<div class="description-paragraph" id="p0085" num="0026">所述S04中，无源定位技术整合TDOA和信号指纹匹配技术再无BDS信号下实现高精度定位，具体步骤为：</div>
+<div class="description-paragraph" id="p0086">目标区域内部署至少3个参考基站，如5G基站、UWB基站或WiFi热点，确保覆盖无人机飞行路径，基站间距根据定位精度需求设定。再进行时间同步，分为有线同步和无线同步，有线同步是通过光纤或电缆连接基站，利用IEEE 1588协议实现纳秒级时间同步。无线同步则在无BDS场景下，使用主基站广播同步信号，辅以卡尔曼滤波补偿时钟漂移。计算各基站信号传播时间差进行位置建模解算，其距离差方程为：</div>
+<div class="description-paragraph" id="p0087"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0088">再进行离线指纹库构建，具体步骤为：首先进行数据采集，在定位区域内按照网格分化，采集各点的信号特征，再对信号强度进行归一化处理，消除设备差异的影响，构建指纹向量，关联地理位置(x,y)。</div>
+<div class="description-paragraph" id="p0089" num="0027">接着进行在线实时匹配确定定位，具体步骤为：无人机实时采集环境信号，生成当前指纹向量，再利用K近邻技术，计算当前指纹向量与指纹库的欧式距离，选择距离最小的K个点，加权平均输出位置，并使用CNN卷积神经网络建模指纹-位置映射关系，提升复杂环境下的匹配鲁棒性。</div>
+<div class="description-paragraph" id="p0090" num="0028">TDOA和指纹匹配库相结合，TDOA提供米级初始定位，在TDOA结果附近进行指纹匹配，实现最终的亚米级定位。</div>
+<div class="description-paragraph" id="p0091" num="0029">以上显示和描述了本发明的基本原理和主要特征和本发明的优点。本行业的技术人员应该了解，本发明不受上述实施例的限制，上述实施例和说明书中描述的只是说明本发明的原理，在不脱离本发明精神和范围的前提下，本发明还会有各种变化和改进，这些变化和改进都落入要求保护的本发明范围内。本发明要求保护范围由所附的权利要求书及其等效物界定。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

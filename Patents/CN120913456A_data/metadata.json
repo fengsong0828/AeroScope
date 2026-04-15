@@ -1,0 +1,69 @@
+{
+    "patent_id": "CN120913456A",
+    "title": "CN120913456A - 面向低空多飞行器混合起降场的交通全景态势可视化系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Beidou Fuxi Information Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120913456A/zh",
+    "citations": [
+        {
+            "Publication Number": "US20190147622A1 (en) *",
+            "Priority Date": "2016-12-09",
+            "Publication Date": "2019-05-16",
+            "Assignee": "Sun Yat-Sen University",
+            "Title": "Unmanned aerial vehicle calibration method and system based on colour 3d calibration object",
+            "Link": "https://patents.google.com/patent/US20190147622A1/en"
+        },
+        {
+            "Publication Number": "CN108470491A (zh) *",
+            "Priority Date": "2017-02-23",
+            "Publication Date": "2018-08-31",
+            "Assignee": "中国人民解放军63891部队",
+            "Title": "雷达探测飞行器颜色演示方法",
+            "Link": "https://patents.google.com/patent/CN108470491A/zh"
+        },
+        {
+            "Publication Number": "CN116665490A (zh) *",
+            "Priority Date": "2023-07-28",
+            "Publication Date": "2023-08-29",
+            "Assignee": "中国民航管理干部学院",
+            "Title": "一种基于数字孪生的城市空中交通管理数据处理系统",
+            "Link": "https://patents.google.com/patent/CN116665490A/zh"
+        },
+        {
+            "Publication Number": "CN119645014A (zh) *",
+            "Priority Date": "2024-12-26",
+            "Publication Date": "2025-03-18",
+            "Assignee": "苏州空中跳动信息科技有限公司",
+            "Title": "一种便携应急救援无人机协同指挥装备",
+            "Link": "https://patents.google.com/patent/CN119645014A/zh"
+        },
+        {
+            "Publication Number": "CN120726852A (zh) *",
+            "Priority Date": "2025-05-08",
+            "Publication Date": "2025-09-30",
+            "Assignee": "山东睿航地理信息工程有限公司",
+            "Title": "基于网格数字孪生模型及智能算法的低空综合管理系统",
+            "Link": "https://patents.google.com/patent/CN120726852A/zh"
+        },
+        {
+            "Publication Number": "CN120220481A (zh) *",
+            "Priority Date": "2025-05-28",
+            "Publication Date": "2025-06-27",
+            "Assignee": "杭州中汇通航航空科技有限公司",
+            "Title": "一种低空无人机飞行统计系统",
+            "Link": "https://patents.google.com/patent/CN120220481A/zh"
+        },
+        {
+            "Publication Number": "CN120496367A (zh) *",
+            "Priority Date": "2025-07-16",
+            "Publication Date": "2025-08-15",
+            "Assignee": "湖南力翔智能科技有限公司",
+            "Title": "无人机低空智能交通动态空域管控方法及系统",
+            "Link": "https://patents.google.com/patent/CN120496367A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:40:45"
+}

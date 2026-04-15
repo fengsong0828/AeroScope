@@ -1,0 +1,112 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN117423259A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES448188020">
+<invention-title id="title1" lang="ZH">一种低空飞行器空中交通管理方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于低空飞行器技术领域，特别涉及低空飞行器空中交通管理方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空飞行器(如飞行汽车等)的不断发展和普及，越来越多的低空飞行器开始出现在城市和人口密集区域。然而，低空飞行器的数量的增加也带来了空中交通管理的挑战，包括碰撞风险、空中拥堵等问题。传统的空中交通管理系统难以应对复杂的低空飞行器交通状况。</div>
+<div class="description-paragraph" id="p0005" num="0003">现有的一些低空飞行器空中交通管理系统尝试利用卫星导航和无线通信技术，以实现位置定位和通信，但在实际应用中仍然存在一些问题。例如，由于通信延迟和数据处理能力的限制，这些系统可能无法及时检测到飞行器之间的碰撞风险，从而导致安全隐患。此外，传统的空中交通管理系统通常依赖于地面基础设施，可能受到地形限制，难以适应复杂多变的低空飞行环境。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">针对上述问题，本发明提供一种低空飞行器空中交通管理方法，所述方法包括：</div>
+<div class="description-paragraph" id="p0008" num="0005">收集飞行器的飞行数据；</div>
+<div class="description-paragraph" id="p0009" num="0006">以飞行数据为依据规划最优航线并将最优航线发送至飞行器；</div>
+<div class="description-paragraph" id="p0010" num="0007">飞行器按照对应的最优航线航行，航行中实时检测是否存在碰撞风险；</div>
+<div class="description-paragraph" id="p0011" num="0008">存在碰撞风险时，规划避让航线并让飞行器按照避让航线航行。</div>
+<div class="description-paragraph" id="p0012" num="0009">优选地，所述飞行数据包括自身数据和环境数据；</div>
+<div class="description-paragraph" id="p0013" num="0010">其中，所述自身数据包括飞行器的位置、速度、姿态、高度和航行意图；</div>
+<div class="description-paragraph" id="p0014" num="0011">环境数据为飞行器周围环境的感知数据；</div>
+<div class="description-paragraph" id="p0015" num="0012">所述自身数据通过5G通信和低轨道卫星通信传输。</div>
+<div class="description-paragraph" id="p0016" num="0013">优选地，所述以飞行数据为依据规划最优航线之前还需要递交航线申请并判断申请是否通过，在航线申请通过时，再执行最优航线的规划。</div>
+<div class="description-paragraph" id="p0017" num="0014">优选地，所述以飞行数据为依据规划最优航线，包括：</div>
+<div class="description-paragraph" id="p0018" num="0015">接收飞行器的飞行数据；</div>
+<div class="description-paragraph" id="p0019" num="0016">将飞行数据与系统预设的航线规则和空中交通流量情况相结合，规划飞行器的航线和速度。</div>
+<div class="description-paragraph" id="p0020" num="0017">优选地，所述飞行器按照对应的最优航线航行时，向飞行器发布空中交通限制区的警告和限制信息。</div>
+<div class="description-paragraph" id="p0021" num="0018">优选地，所述方法还包括：</div>
+<div class="description-paragraph" id="p0022" num="0019">实时记录和存储飞行器的飞行数据。</div>
+<div class="description-paragraph" id="p0023" num="0020">本发明还提出一种低空飞行器空中交通管理系统，所述系统包括收集模块、规划模块、检测模块和避让模块；</div>
+<div class="description-paragraph" id="p0024" num="0021">收集模块用于收集飞行器的飞行数据；</div>
+<div class="description-paragraph" id="p0025" num="0022">规划模块用于以飞行数据为依据规划最优航线并将最优航线发送至飞行器；</div>
+<div class="description-paragraph" id="p0026" num="0023">检测模块用于实时检测航行中是否存在碰撞风险；</div>
+<div class="description-paragraph" id="p0027" num="0024">避让模块用于规划避让航线并让飞行器按照避让航线航行</div>
+<div class="description-paragraph" id="p0028" num="0025">优选地，所述系统还包括记录存储模块；</div>
+<div class="description-paragraph" id="p0029" num="0026">记录存储模块用于实时记录和存储飞行器的飞行数据。</div>
+<div class="description-paragraph" id="p0030" num="0027">本发明还提出一种电子设备，包括：</div>
+<div class="description-paragraph" id="p0031" num="0028">处理器以及存储器；</div>
+<div class="description-paragraph" id="p0032" num="0029">所述处理器调用所述存储器存储的计算机程序，以执行根据上述任意一项所述的低空飞行器空中交通管理方法。</div>
+<div class="description-paragraph" id="p0033" num="0030">本发明还提出一种计算机可读存储介质，</div>
+<div class="description-paragraph" id="p0034" num="0031">所述计算机可读存储介质中存储有计算机程序，当所述计算机程序被处理器执行时，使得所述处理器能够执行上述任一项所述的低空飞行器空中交通管理方法。</div>
+<div class="description-paragraph" id="p0035" num="0032">本发明具有以下有益效果：</div>
+<div class="description-paragraph" id="p0036" num="0033">(1)本发明利用5G通信技术和低轨道卫星通信技术，实现低空飞行器之间的高效通信，实时传输位置和速度等数据，有效避免碰撞风险，提高低空飞行器的空中交通安全性；</div>
+<div class="description-paragraph" id="p0037" num="0034">(2)本发明中的飞行汽车配备了自动航线申请和规划功能，减轻驾驶员的负担，使飞行汽车的操作更加简单和智能化；</div>
+<div class="description-paragraph" id="p0038" num="0035">(3)本发明采用低轨道卫星通信技术，实现对低空飞行器的全球范围内的空中交通管理，适用于复杂多变的飞行环境，飞行器在全球各地都能够稳定通信，不受地形限制；</div>
+<div class="description-paragraph" id="p0039" num="0036">(4)本发明适用于各类低空飞行器，包括飞行汽车、个人无人机等，为未来低空飞行器的发展和商业化应用提供了重要支持。</div>
+<div class="description-paragraph" id="p0040" num="0037">本发明的其它特征和优点将在随后的说明书中阐述，并且，部分地从说明书中变得显而易见，或者通过实施本发明而了解。本发明的目的和其他优点可通过在说明书以及附图中所指出的结构来实现和获得。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0041">附图说明</div>
+<div class="description-paragraph" id="p0042" num="0038">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作一简单地介绍，显而易见地，下面描述中的附图是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0043" num="0039">图1示出本发明实施例中一种低空飞行器空中交通管理方法图；</div>
+<div class="description-paragraph" id="p0044" num="0040">图2示出本发明实施例中一种低空飞行器空中交通管理系统图；</div>
+<div class="description-paragraph" id="p0045" num="0041">图3示出本发明实施例中电子设备图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0046">具体实施方式</div>
+<div class="description-paragraph" id="p0047" num="0042">现在将参考附图更全面地描述示例实施方式。然而，示例实施方式能够以多种形式实施，且不应被理解为限于在此阐述的范例；相反，提供这些实施方式使得本公开将更加全面和完整，并将示例实施方式的构思全面地传达给本领域的技术人员。所描述的特征、结构或特性可以以任何合适的方式结合在一个或更多实施方式中。在下面的描述中，提供许多具体细节从而给出对本公开的实施方式的充分理解。然而，本领域技术人员将意识到，可以实践本公开的技术方案而省略所述特定细节中的一个或更多，或者可以采用其它的方法、组元、装置、步骤等。在其它情况下，不详细示出或描述公知技术方案以避免喧宾夺主而使得本公开的各方面变得模糊。</div>
+<div class="description-paragraph" id="p0048" num="0043">此外，附图仅为本公开的示意性图解，并非一定是按比例绘制。图中相同的附图标记表示相同或类似的部分，因而将省略对它们的重复描述。附图中所示的一些方框图是功能实体，不一定必须与物理或逻辑上独立的实体相对应。可以采用软件形式来实现这些功能实体，或在一个或多个硬件单元或集成电路中实现这些功能实体，或在不同网络和/或处理器装置和/或微控制器装置中实现这些功能实体。</div>
+<div class="description-paragraph" id="p0049" num="0044">附图中所示的流程图仅是示例性说明，不是必须包括所有的步骤。例如，有的步骤还可以分解，而有的步骤可以合并或部分合并，因此实际执行的顺序有可能根据实际情况改变。</div>
+<div class="description-paragraph" id="p0050" num="0045">本申请的说明书和权利要求书及上述附图中的术语“第一”、“第二”等是用于区别类似的对象，而不必用于描述特定的顺序或先后次序。应该理解这样使用的数据在适当情况下可以互换，以便这里描述的本申请的实施例例如能够以除了在这里图示或描述的那些以外的顺序实施。</div>
+<div class="description-paragraph" id="p0051" num="0046">此外，术语“包括”和“具有”以及他们的任何变形，意图在于覆盖不排他的包含，例如，包含了一系列步骤或子模块的过程、方法、系统、产品或设备不必限于清楚地列出的那些步骤或子模块，而是可包括没有清楚地列出的或对于这些过程、方法、产品或设备固有的其它步骤或子模块。</div>
+<div class="description-paragraph" id="p0052" num="0047">如图1所示，本发明提出一种低空飞行器空中交通管理方法，所述方法包括以下步骤：</div>
+<div class="description-paragraph" id="p0053" num="0048">S1收集飞行器的飞行数据；</div>
+<div class="description-paragraph" id="p0054" num="0049">飞行数据包括自身数据和环境数据；其中，所述自身数据包括飞行器的位置、速度、姿态、高度和航行意图；环境数据为飞行器周围环境的感知数据。</div>
+<div class="description-paragraph" id="p0055" num="0050">具体地，本发明中，每辆飞行汽车配备5G通信模块和低轨道卫星通信设备，以实现高速、低延迟的数据传输，以及全球范围内的通信覆盖。通过5G通信技术，飞行汽车之间能够实时交换位置和飞行意图信息，有效避免碰撞风险，确保飞行器之间的安全距离。同时，低轨道卫星通信技术保证了飞行器在全球各地都能够稳定通信，不受地形限制。</div>
+<div class="description-paragraph" id="p0056" num="0051">S2以飞行数据为依据规划最优航线并将最优航线发送至飞行器；</div>
+<div class="description-paragraph" id="p0057" num="0052">以飞行数据为依据规划最优航线之前还需要递交航线申请并判断申请是否通过，在航线申请通过时，再执行最优航线的规划。</div>
+<div class="description-paragraph" id="p0058" num="0053">以飞行数据为依据规划最优航线，包括：接收飞行器的飞行数据；将飞行数据与系统预设的航线规则和空中交通流量情况相结合，规划飞行器的航线和速度。</div>
+<div class="description-paragraph" id="p0059" num="0054">具体地，本发明搭建一个中央云端调度系统，集成了高性能的数据处理单元和智能算法。云端调度系统接收来自飞行汽车的实时数据，包括位置、速度等信息，并根据系统预设的航线规则和空中交通流量情况，智能规划合适的航线和速度。通过云端调度系统的智能化规划和调度，避免飞行汽车之间的碰撞和拥堵，优化航线规划，提高空中交通的效率。</div>
+<div class="description-paragraph" id="p0060" num="0055">S3飞行器按照对应的最优航线航行，航行中实时检测是否存在碰撞风险；</div>
+<div class="description-paragraph" id="p0061" num="0056">飞行器按照对应的最优航线航行时，向飞行器发布空中交通限制区的警告和限制信息。</div>
+<div class="description-paragraph" id="p0062" num="0057">具体地，飞行汽车配备了自动航线申请和规划功能，驾驶员可以通过系统向云端调度系统申请航线。云端调度系统根据飞行汽车的位置、目的地和交通流量，智能规划最优航线，并通过5G通信技术将航线发送给飞行汽车。这一自动化的航线申请和规划功能减轻了驾驶员的负担，使飞行汽车更易于操作和控制。</div>
+<div class="description-paragraph" id="p0063" num="0058">S4存在碰撞风险时，规划避让航线并让飞行器按照避让航线航行。</div>
+<div class="description-paragraph" id="p0064" num="0059">具体地，云端调度系统利用5G通信技术实现飞行汽车之间的实时通信，飞行汽车可以交换位置和飞行意图信息。当系统检测到碰撞风险时，将触发预警并通过云端调度系统智能规划避让航线，确保飞行汽车之间的安全距离。通过智能防碰撞预警和碰撞规避功能，及时发现并应对飞行器之间的碰撞风险，确保低空飞行器的安全飞行。</div>
+<div class="description-paragraph" id="p0065" num="0060">所述方法还包括：实时记录和存储飞行器的飞行数据。</div>
+<div class="description-paragraph" id="p0066" num="0061">如图2所示，本发明提出一种低空飞行器空中交通管理系统，所述系统包括收集模块10、规划模块20、检测模块30和避让模块40；</div>
+<div class="description-paragraph" id="p0067" num="0062">收集模块10用于收集飞行器的飞行数据；</div>
+<div class="description-paragraph" id="p0068" num="0063">规划模块20用于以飞行数据为依据规划最优航线并将最优航线发送至飞行器；</div>
+<div class="description-paragraph" id="p0069" num="0064">检测模块30用于实时检测航行中是否存在碰撞风险；</div>
+<div class="description-paragraph" id="p0070" num="0065">避让模块40用于规划避让航线并让飞行器按照避让航线航行。</div>
+<div class="description-paragraph" id="p0071" num="0066">所述系统还包括记录存储模块；记录存储模块用于实时记录和存储飞行器的飞行数据。</div>
+<div class="description-paragraph" id="p0072" num="0067">具体地，低空飞行器空中交通管理系统的工作流程如下：</div>
+<div class="description-paragraph" id="p0073" num="0068">1.数据收集和传输阶段：</div>
+<div class="description-paragraph" id="p0074" num="0069">低空飞行器配备5G通信模块和低轨道卫星通信设备，实时收集飞行器的位置、速度、高度、航行意图等飞行数据。</div>
+<div class="description-paragraph" id="p0075" num="0070">飞行器通过5G通信模块与其他飞行器和地面调度系统进行实时数据通信，同时通过低轨道卫星通信设备与地面通信基站保持稳定通信。</div>
+<div class="description-paragraph" id="p0076" num="0071">2.数据处理和航线规划阶段：</div>
+<div class="description-paragraph" id="p0077" num="0072">飞行器将实时采集的数据传输到云端调度系统，云端数据处理单元利用高性能处理器和智能算法对数据进行实时处理和分析。</div>
+<div class="description-paragraph" id="p0078" num="0073">航线规划和调度模块根据飞行器的位置、目的地、预定航线和交通流量等信息，智能规划最优航线。</div>
+<div class="description-paragraph" id="p0079" num="0074">3.碰撞避免和预警阶段：</div>
+<div class="description-paragraph" id="p0080" num="0075">云端调度系统中的碰撞避免和预警系统负责监测飞行器之间的距离、相对速度等信息，并预测潜在的碰撞风险。</div>
+<div class="description-paragraph" id="p0081" num="0076">如果系统检测到潜在碰撞风险，将立即发出预警信号，通知相关飞行器进行航线调整或速度变更，避免碰撞事故的发生。</div>
+<div class="description-paragraph" id="p0082" num="0077">4.空中交通限制阶段：</div>
+<div class="description-paragraph" id="p0083" num="0078">云端调度系统中的空中交通限制模块监测特定空域的交通流量，并发布相应的空中交通限制区。</div>
+<div class="description-paragraph" id="p0084" num="0079">飞行器通过5G通信模块或低轨道卫星通信设备接收空中交通限制区的信息，并根据指示遵守相应的飞行规定。</div>
+<div class="description-paragraph" id="p0085" num="0080">5.自动化控制阶段：</div>
+<div class="description-paragraph" id="p0086" num="0081">飞行器配备自动化飞行控制系统，根据云端调度系统的航线规划和碰撞避免预警的指示，自主进行航线调整和避让操作。</div>
+<div class="description-paragraph" id="p0087" num="0082">驾驶员在需要时可以进行手动干预，但系统优先考虑自动化航行，以确保飞行的高效和安全。</div>
+<div class="description-paragraph" id="p0088" num="0083">6.数据记录和分析阶段：</div>
+<div class="description-paragraph" id="p0089" num="0084">云端调度系统对飞行器的飞行数据进行实时记录和存储，包括航线信息、碰撞预警记录等。</div>
+<div class="description-paragraph" id="p0090" num="0085">飞行数据用于日志记录、事故调查和交通流量分析等方面，以进一步提高低空飞行器空中交通管理的安全性和效率。</div>
+<div class="description-paragraph" id="p0091" num="0086">如图3所示，与上述提供的低空飞行器空中交通管理方法相对应，本发明还提供一种电子设备。由于该设备的实施例相似于上述方法实施例，所以描述得比较简单，相关之处请参见上述方法实施例部分的说明即可，下面描述的设备仅是示意性的。该设备可以包括：处理器(processor)1、存储器(memory)2和通信总线(即上述装置总线)以及查找引擎，其中，处理器1和存储器2通过通信总线完成相互间的通信，通过通信接口与外部进行通信。处理器1可以调用存储器2中的逻辑指令，以执行低空飞行器空中交通管理方法。</div>
+<div class="description-paragraph" id="p0092" num="0087">此外，上述的存储器2中的逻辑指令可以通过软件功能单元的形式实现并作为独立的产品销售或使用时，可以存储在一个计算机可读取存储介质中。基于这样的理解，本发明的技术方案本质上或者说对现有技术做出贡献的部分或者该技术方案的部分可以以软件产品的形式体现出来，该计算机软件产品存储在一个存储介质中，包括若干指令用以使得一台计算机设备(可以是个人计算机，服务器，或者网络设备等)执行本发明各个实施例所述方法的全部或部分步骤。而前述的存储介质包括：存储芯片、U盘、移动硬盘、只读存储器(ROM，Read-Only Memory)、随机存取存储器(RAM，Random Access Memory)、磁碟或者光盘等各种可以存储程序代码的介质。</div>
+<div class="description-paragraph" id="p0093" num="0088">另一方面，本发明实施例还提供一种处理器可读存储介质，所述处理器可读存储介质上存储有计算机程序3，该计算机程序3被处理器1执行时实现以执行上述各实施例提供的低空飞行器空中交通管理方法。</div>
+<div class="description-paragraph" id="p0094" num="0089">所述处理器可读存储介质可以是处理器1能够存取的任何可用介质或数据存储设备，包括但不限于磁性存储器(例如软盘、硬盘、磁带、磁光盘(MO)等)、光学存储器(例如CD、DVD、BD、HVD等)、以及半导体存储器(例如ROM、EPROM、EEPROM、非易失性存储器(NANDFLASH)、固态硬盘(SSD))等。</div>
+<div class="description-paragraph" id="p0095" num="0090">本领域的普通技术人员应当理解：尽管参考前述实施例对本发明进行的详细说明，其依然可以对前述各实施例所记载的技术方案进行修改，或者对其中部分技术特征进行等同替换；而这些修改或者替换，并不使相应技术方案的本质脱离本发明各实施例技术方案的精神和范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

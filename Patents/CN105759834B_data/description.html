@@ -1,0 +1,158 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN105759834B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES354928999">
+<invention-title id="title1" lang="ZH">一种主动捕获低空小型无人飞行器的系统及方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001" num="0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0002">本发明涉及低空小型无人飞行器捕获技术领域，特别是涉及一种主动捕获低空小型无人飞行器的系统及方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003" num="0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0004">随着无线电遥控设备、机械设备等技术的不断成熟，小型低空飞行器的技术也逐渐成熟，其成本正在逐步的下降，越来越多的小型低空飞行器开始进入摄像摄影、工农业生产、测量测试等领域。随着越来越多的用户涌入该领域，其应用的范围也越来越大。然而随着小型低空飞行器的应用无限制式的爆炸增长，越来越多的公共安全隐患也随之突显出来。国内外的政府部门对小型低空飞行器的安全问题越来越重视，相关的法律法规正在逐步的完善，相应的飞行禁区也正在逐步的制定。但是一些低空小型飞行器的不规范操作、飞行器的失控、基于飞行器的情报探测、恐怖分子的特定袭击等安全隐患造成飞行器入侵飞行禁区的事件时有发生，所以需要加强对特定区域的低空小型飞行器的监管，并根据现场情况进行有目的的拦截、捕捉，降低因为非法入侵带来的安全隐患。然而由于低空小型无人机具有体积小、可低空飞行、具备自主飞行能力、空中轨迹可变、飞行区域有时人群较密集等特性，所以不能采用一般的军事措施进行拦截，设计低成本、具备自主捕捉小型低空飞行器的设备显得尤为重要。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0005" num="0005">发明内容</div>
+<div class="description-paragraph" id="p0006" num="0006">本发明所要解决的技术问题是提供一种主动捕获低空小型无人飞行器的系统及方法，能自主捕捉非法入侵的小型低空飞行器，减少了传统方法依靠用户手工操作带来的大量作业量。</div>
+<div class="description-paragraph" id="p0007" num="0007">本发明解决其技术问题所采用的技术方案是：提供一种主动捕获低空小型无人飞行器的系统，包括无人机平台、双目视觉图像采集单元、弹射捕捉单元、信息处理决策单元、多信息采集单元和电源管理单元，所述无人机平台用于实现低空飞行，并搭载有所述双目视觉图像采集单元和弹射捕捉单元；所述双目视觉图像采集单元用于对监测空间拍摄双目视频图像信息；所述多信息采集单元用于获取所述无人机平台的倾角信息、高度信息和/或地理位置信息；所述信息处理决策单元用于融合所述双目视频图像信息和所述倾角信息、高度信息和/或地理位置信息，并计算分析实现飞行器探测识别、深度信息的获取、飞行器追踪、飞行器的捕捉指挥；所述弹射捕捉单元根据所述飞行器的捕捉指挥命令捕捉飞行器；所述电源管理单元用于实现各单元的电源供应。</div>
+<div class="description-paragraph" id="p0008" num="0008">所述信息处理决策单元根据预先机器学习的算法获得飞行器的识别模型，然后对监测空间拍摄到的双目视频图像信息进行分析识别，检测是否存在可疑的低空飞行器。</div>
+<div class="description-paragraph" id="p0009" num="0009">所述信息处理决策单元根据获得双目视频图像信息以及可疑的低空飞行器的活动空间，采用快速立体匹配的算法计算获得该低空飞行器所在空间的三维深度信息，结合倾角信息、高度信息和地理位置信息，确定可疑低空飞行器的活动位置和空间方位。</div>
+<div class="description-paragraph" id="p0010" num="0010">所述信息处理决策单元根据双目视频图像信息和深度信息快速计算并获得最佳追踪轨迹，根据最佳追踪轨迹控制所述无人机平台对可疑的低空飞行器进行快速逼近。</div>
+<div class="description-paragraph" id="p0011" num="0011">当可疑的低空飞行器确定为非法入侵飞行器时，如果可疑的低空飞行器在有效捕捉范围和角度内，所述信息处理决策单元将指挥弹射捕捉器单元实施捕捉作业；如果不在捕捉范围或有效角度内，信息处理决策单元将根据双方的空间位置信息，调整所述无人机平台，直至可疑的低空飞行器在捕捉空间内。</div>
+<div class="description-paragraph" id="p0012" num="0012">所述信息处理决策单元还连接有无线发射单元，所述无线发射单元用于将采集到的双目视频图像信息、倾角信息、高度信息和/或地理位置信息，以及所述信息处理决策单元的处理信息传输到地面监控中心；所述地面监控中心可以通过所述无线单元对无人机平台进行实施指挥操作。</div>
+<div class="description-paragraph" id="p0013" num="0013">本发明解决其技术问题所采用的技术方案是：还提供一种主动捕获低空小型无人飞行器的方法，使用上述的主动捕获低空小型无人飞行器的系统，包括以下步骤：</div>
+<div class="description-paragraph" id="p0014" num="0014">(1)所述无人机平台飞入到工作区域，对监控区域进行视觉监控，分析监控区域出现的可疑的低空飞行器；</div>
+<div class="description-paragraph" id="p0015" num="0015">(2)如果监控区域出现疑似可疑的低空飞行器，无人机平台前往特定区域进行监测捕捉；</div>
+<div class="description-paragraph" id="p0016" num="0016">(3)无人机平台到达指定位置后，将融合双目视频图像信息、倾角信息、高度信息和地理位置信息，确认可疑的低空飞行器的空间位置和状态，计算获得追踪轨迹，然后开始快速逼近追踪可疑的低空飞行器；</div>
+<div class="description-paragraph" id="p0017" num="0017">(4)在确认可疑的低空飞行器为非法入侵飞行器之后，对非法入侵飞行器进行逼近跟踪，伺机实施捕捉；</div>
+<div class="description-paragraph" id="p0018" num="0018">(5)当非法入侵飞行器进入系统的有效捕捉范围，信息处理决策单元发送捕捉命令进行捕捉；如果捕捉失败，则抛弃捕捉网，重新调整姿势进行追踪，再次捕捉；如果捕捉成功，则将捕捉的非法入侵飞行器送往指定的地点进行处理。</div>
+<div class="description-paragraph" id="p0019" num="0019">所述步骤(1)包括以下子步骤：</div>
+<div class="description-paragraph" id="p0020" num="0020">(11)双目视觉图像采集单元获取监控区域的监控图像；</div>
+<div class="description-paragraph" id="p0021" num="0021">(12)对监控图像进行多尺度滤波处理；</div>
+<div class="description-paragraph" id="p0022" num="0022">(13)对滤波处理后的图像提取高维的多尺度特征；</div>
+<div class="description-paragraph" id="p0023" num="0023">(14)提取多尺度特征构造稀疏测量矩阵；</div>
+<div class="description-paragraph" id="p0024" num="0024">(15)根据稀疏测量矩阵生成低维压缩特征向量；</div>
+<div class="description-paragraph" id="p0025" num="0025">(16)根据该特征向量，结合预先机器学习的算法计算出来的分类模型参数，对结果进行分类；</div>
+<div class="description-paragraph" id="p0026" num="0026">(17)根据分类的结果，判断监测区域是否有入侵物。</div>
+<div class="description-paragraph" id="p0027" num="0027">所述步骤(3)包括以下子步骤：</div>
+<div class="description-paragraph" id="p0028" num="0028">(31)根据可疑的低空飞行器的空间位置，在双目视频图像信息中划分最近有效区域；</div>
+<div class="description-paragraph" id="p0029" num="0029">(32)采用双目立体匹配算法对最近有效区域计算深度信息；</div>
+<div class="description-paragraph" id="p0030" num="0030">(33)结合计算出来的深度信息和原始的RGB图像，进一步确定可疑的低空飞行器的空间位置，再一次优化最近有效区域，缩小并优化搜索范围；</div>
+<div class="description-paragraph" id="p0031" num="0031">(34)采集倾角信息、高度信息和地理位置信息，结合计算出来的深度信息和优化后的搜索空间，分析可疑的低空飞行器的空间位置，锁定可疑的低空飞行器的空间位置，计算逼近轨迹；</div>
+<div class="description-paragraph" id="p0032" num="0032">(35)根据计算出来的轨迹，无人机平台开始快速逼近入侵物。</div>
+<div class="description-paragraph" id="p0033" num="0033">所述步骤(33)包括以下步骤：</div>
+<div class="description-paragraph" id="p0034" num="0034">采用校正算法对双目视频图像进行校正，获得极线平行的双目图像；</div>
+<div class="description-paragraph" id="p0035" num="0035">对双目视觉图像计算梯度图，然后计算基于梯度信息的匹配代价；</div>
+<div class="description-paragraph" id="p0036" num="0036">计算基于原始图像的匹配代价；</div>
+<div class="description-paragraph" id="p0037" num="0037">计算基于Census变换信息的匹配代价；</div>
+<div class="description-paragraph" id="p0038" num="0038">对计算出来的匹配代价进行聚合；</div>
+<div class="description-paragraph" id="p0039" num="0039">根据赢者通吃的方法计算初始匹配代价；</div>
+<div class="description-paragraph" id="p0040" num="0040">采用左右一致性检测检测错误匹配点；</div>
+<div class="description-paragraph" id="p0041" num="0041">对错误匹配点采用上下左右四方向搜索最优值填充；</div>
+<div class="description-paragraph" id="p0042" num="0042">采用聚合函数进行聚合；</div>
+<div class="description-paragraph" id="p0043" num="0043">深度信息转化。</div>
+<div class="description-paragraph" id="p0044" num="0044">有益效果</div>
+<div class="description-paragraph" id="p0045" num="0045">由于采用了上述的技术方案，本发明与现有技术相比，具有以下的优点和积极效果：</div>
+<div class="description-paragraph" id="p0046" num="0046">本发明装置简单，移动方便，可以根据需要随时进行部署，可广泛用于紧急处理入侵的小型低空飞行器，保障特定区域的空域安全。</div>
+<div class="description-paragraph" id="p0047" num="0047">本发明的装置可以自主对低空的入侵的小型飞行器进行捕捉，减少了人工参与的作业量，可以广泛为非专业人士使用，有效扩展了居民对空域入侵飞行器的防范方式。</div>
+<div class="description-paragraph" id="p0048" num="0048">本发明采用了双目立体视觉、图像模式识别、机器学习、图像跟踪以及多传感器的信息融合技术，可以确保自主监测特定空域、自主跟踪入侵的多种低空飞行器、自主捕捉入侵飞行器，实现了对低空空域的自动化安全监测，减少了传统方法采用人工监测的巨额工作量，提高了监控的有效性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0049" num="0049">附图说明</div>
+<div class="description-paragraph" id="p0050" num="0050">图1是为本发明的装置原理图；</div>
+<div class="description-paragraph" id="p0051" num="0051">图2为本发明的内部单元接口关系图；</div>
+<div class="description-paragraph" id="p0052" num="0052">图3为本发明的工作流程图；</div>
+<div class="description-paragraph" id="p0053" num="0053">图4为本发明的双目立体视觉深度信息计算流程图；</div>
+<div class="description-paragraph" id="p0054" num="0054">图5为本发明的飞行器识别模型训练流程图；</div>
+<div class="description-paragraph" id="p0055" num="0055">图6为本发明的飞行器识别过程流程图；</div>
+<div class="description-paragraph" id="p0056" num="0056">图7为本发明的飞行器追踪过程流程图；</div>
+<div class="description-paragraph" id="p0057" num="0057">图8为本发明的有效探测范围示意图；</div>
+<div class="description-paragraph" id="p0058" num="0058">图9为本发明的有效捕捉范围示意图；</div>
+<div class="description-paragraph" id="p0059" num="0059">图10为本发明的网枪捕捉飞行器过程示意图；</div>
+<div class="description-paragraph" id="p0060" num="0060">图11为本发明的代价聚合函数的聚合过程示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0061" num="0061">具体实施方式</div>
+<div class="description-paragraph" id="p0062" num="0062">下面结合具体实施例，进一步阐述本发明。应理解，这些实施例仅用于说明本发明而不用于限制本发明的范围。此外应理解，在阅读了本发明讲授的内容之后，本领域技术人员可以对本发明作各种改动或修改，这些等价形式同样落于本申请所附权利要求书所限定的范围。</div>
+<div class="description-paragraph" id="p0063" num="0063">本发明的实施方式涉及一种基于无人机平台和双目视觉的自主捕获低空小型无人飞行器的系统，包括以下部分：</div>
+<div class="description-paragraph" id="p0064" num="0064">如图一所示，本装置包括无人机平台1、双目视觉图像采集单元2、弹射捕捉单元3、信息处理决策单元4、扩展接口单元5、运动惯量、GPS/北斗定位传感器、高度传感器等多信息采集单元6、电源管理单元7、无线发射单元8、地面监控单元9。</div>
+<div class="description-paragraph" id="p0065" num="0065">部件一：无人机平台1：本装备基于四翼无人机平台，该平台可以实现低空自主飞行，具备空中悬浮能力，飞行轨迹可控，飞行速度较快，可搭载一定重量的捕捉网枪设备和双目相机设备等。</div>
+<div class="description-paragraph" id="p0066" num="0066">部件二：双目视觉的图像采集单元2：本装备搭载双目摄像机，可以对监测空间拍摄双目视频信号，同时，基于该单元采集的图像信号，信息处理决策单元4内嵌双目视觉处理算法，可以根据拍摄的双目视频进行以下的处理内容：</div>
+<div class="description-paragraph" id="p0067" num="0067">飞行器探测识别：根据搭载的摄像机获取监测空间的图像信息，根据预先机器学习的算法获得飞行器的识别模型，然后对监测空间的图像进行分析识别，检测是否存在可疑的低空飞行器。如图8所示的检测空间示意图；</div>
+<div class="description-paragraph" id="p0068" num="0068">深度信息获取：根据获得双目图像以及可疑的低空飞行器的有效活动范围，采用快速立体匹配的算法(如图4所示)计算获得该飞行器所在空间的三维深度信息，结合GPS/北斗定位信息、惯量信息和高程信息等信息，确定可疑的低空飞行器的初始空间方位；</div>
+<div class="description-paragraph" id="p0069" num="0069">飞行器追踪：根据图像识别的结果以及初始空间的定位结果，信息处理决策单元4快速计算获得最佳追踪轨迹，根据计算结果，无人机平台1搭载双目追踪设备实施对可疑飞行器进行快速逼近，进一步确认入侵的飞行器情况。内嵌的图像跟踪算法将结合空间深度信息、GPS/北斗定位信息、惯量信息和高程信息，指导无人机平台1进行空间飞行，快速接近飞行器，并实现对可疑飞行器的锁定，然后实施跟踪；</div>
+<div class="description-paragraph" id="p0070" num="0070">飞行器捕捉指挥：无人机平台1探测确定可疑飞行器为非法入侵飞行器，接下来会融合空间深度信息、GPS/北斗定位信息、惯量信息和高程信息等信息再次确认该飞行器的空间位置信息，进一步锁定，再次飞行逼近。如果在非法入侵飞行器在有效捕捉范围和角度内，如图9所示，信息处理决策单元4将指挥弹射捕捉器单元3实施捕捉作业；如果不在捕捉范围或有效角度内，信息处理决策单元4将根据双方的空间位置信息，调整无人机平台，直至入侵飞行器在捕捉空间内，如图9所示，然后指挥弹射捕捉单元3实施捕捉作业。</div>
+<div class="description-paragraph" id="p0071" num="0071">部件三：弹射捕捉单元3：该单元包含了用于捕捉飞行器的发射机构和捕捉机构。发射机构采用弹射枪来实现发射捕捉机构，捕捉机构采用分弹头和捕捉网。当弹射捕捉单元3收到信息处理决策单元4的捕捉命令时，发射机构采用弹射枪将分弹头和捕捉网发射出去，用于捕捉飞行器。如图10所示的发射示意图。</div>
+<div class="description-paragraph" id="p0072" num="0072">部件四：信息处理决策单元4：该单元主要由嵌入式系统构成，该单元能够融合采集的图像信息、GPS/北斗定位信息、惯量信息和高程信息等信息计算分析实现飞行器探测和识别、基于双目视觉的空间深度信息计算、飞行器锁定和追踪、飞行器的捕捉指挥等功能；同时该单元可以将以上作业的过程信息通过无线发射单元8发送到地面监控中心9，同时还可以接受来自地面监控中心的实时指挥操作。</div>
+<div class="description-paragraph" id="p0073" num="0073">部件五：扩展接口单元5：扩展接口系统可以外接多种接口设备，为设备的进一步开发、调试、未来扩展预留，比如增加超声波探测设备、激光探测设备、红外探测设备等，进一步提升对障碍物的探测和躲避能力，以及提升对入侵飞行器的距离探测精度。该部分可以根据具体的应用场景需求进行选择。</div>
+<div class="description-paragraph" id="p0074" num="0074">部件六：运动惯量、GPS/北斗定位传感器、高度传感器等信息采集单元6：主要提供系统的倾角信息、高度信息、地理信息等，控制无人机捕捉平台平稳飞行，同时提供给信息处理单元4决策捕捉实施方案。</div>
+<div class="description-paragraph" id="p0075" num="0075">部件七：电源管理单元7：主要用于管理系统的电源能量消耗，实现系统各单元的电源稳定供应。</div>
+<div class="description-paragraph" id="p0076" num="0076">部件八：无线发射单元8：主要提供采集的图像、深度信息、过程判断信息的无线收发功能，也可以通过无线发射单元，实现人工远程干预捕捉过程，可以采用wifi、2G/3G/4G联网模块等实现。</div>
+<div class="description-paragraph" id="p0077" num="0077">部件九：地面监控中心9：该单元主要实现：一是接受各个无人机平台的健康状况报告，进行调度安排；二是接受无人机拍摄的入侵低空飞行器的图像等信息，进行存档；三是根据突发情况，指挥无人机进入特定作业区域；四是在根据作业要求，适时指挥更改无人机的作业内容。</div>
+<div class="description-paragraph" id="p0078" num="0078">本发明可以实现设备对非法入侵的小型低空飞行器进行自动捕捉，也可以根据计算获得的深度信息，实现无人机捕捉平台的自主避障，最大限度的提高了捕捉系统的可靠性。</div>
+<div class="description-paragraph" id="p0079" num="0079">为了对小型低空飞行器进行空中拦截，结合双目视觉来实现自动监测识别、自主跟踪，进而自动捕捉非法入侵的小型低空飞行器，如图3所示，其详细实现过程为：</div>
+<div class="description-paragraph" id="p0080" num="0080">(1)采集小型低空飞行器的图像，通过离线学习的方式，获取小型低空飞行器的空中图像模型参数，载入到信息处理决策单元4。实现过程如图5所示。主要的实现过程如下：</div>
+<div class="description-paragraph" id="p0081" num="0081">a)采集不同的小型低空飞行器的图片数据库；</div>
+<div class="description-paragraph" id="p0082" num="0082">b)对数据库中的图片进行取样，然后进行正负样本标记；</div>
+<div class="description-paragraph" id="p0083" num="0083">c)对获得的正负样本进行多尺度滤波处理，获得不同尺度下的特征信息；</div>
+<div class="description-paragraph" id="p0084" num="0084">d)提取高维的多尺度特征向量；</div>
+<div class="description-paragraph" id="p0085" num="0085">e)根据提取的高维多尺度特征构造稀疏测量矩阵；</div>
+<div class="description-paragraph" id="p0086" num="0086">f)根据稀疏测量矩阵生成低维压缩特征向量；</div>
+<div class="description-paragraph" id="p0087" num="0087">g)采用低维压缩特征向量训练分类器，从而获得分类模型的参数。</div>
+<div class="description-paragraph" id="p0088" num="0088">(2)对双目视觉采集单元2的双目摄像头进行定标，获得精确的相机内外参数，载入到信息处理决策单元4；</div>
+<div class="description-paragraph" id="p0089" num="0089">(3)启动装置，由电源管理单元对系统电源健康状况进行自检，如果系统电源过低，则向控制中心报告，请求充电；</div>
+<div class="description-paragraph" id="p0090" num="0090">(4)根据作业需要，为扩展接口选择超声波探测设备、激光探测设备、红外探测设备等扩展设备，也可以不选择；</div>
+<div class="description-paragraph" id="p0091" num="0091">(5)系统正常启动后，对系统的各个单元部件进行自检，检测弹射捕捉单元的状态、双目相机设备的状态、GPS/北斗定位传感器状态、高度传感器状态、惯量单元的状态、无线发射单元状态、扩展口设备状态等；</div>
+<div class="description-paragraph" id="p0092" num="0092">(6)自检完毕后，载入低空飞行器模型参数、双目摄像头定标参数等；自检完毕后进入工作状态，无人机平台1将飞入到特定的工作区域，可以是建筑物的制高点停留巡视或者特定巡逻轨迹进行飞行巡视等；</div>
+<div class="description-paragraph" id="p0093" num="0093">(7)进入工作状态后打开摄像头，对监控区域进行视觉监控，分析监控区域出现的入侵物，分析识别的过程如图6所示。详细的过程为：</div>
+<div class="description-paragraph" id="p0094" num="0094">a)摄像头获取监控区域的监控图像；</div>
+<div class="description-paragraph" id="p0095" num="0095">b)对监控图像进行多尺度滤波处理；</div>
+<div class="description-paragraph" id="p0096" num="0096">c)对滤波处理后的图像提取高维的多尺度特征；</div>
+<div class="description-paragraph" id="p0097" num="0097">d)提取多尺度特征构造稀疏测量矩阵；</div>
+<div class="description-paragraph" id="p0098" num="0098">e)根据稀疏测量矩阵生成低维压缩特征向量；</div>
+<div class="description-paragraph" id="p0099" num="0099">f)根据该特征向量，结合步骤(1)中计算出来的分类模型参数，对结果进行分类；</div>
+<div class="description-paragraph" id="p0100" num="0100">g)根据分类的结果，判断监测区域是否有入侵物。</div>
+<div class="description-paragraph" id="p0101" num="0101">本发明基于机器学习训练方法获得小型低空飞行器的空中图像模型参数，并在训练过程使用了构造稀疏测量矩阵，从而获得压缩后的低维特征向量进行快速的模式分类训练。对监控区域的入侵物进行识别的过程中使用了构造稀疏测量矩阵，从而获得压缩后的低维特征向量进行快速识别。</div>
+<div class="description-paragraph" id="p0102" num="0102">(8)如果监控区域出现疑似入侵飞行器，无人机平台1向地面控制单元发出警戒信</div>
+<div class="description-paragraph" id="p0103" num="0103">息；或者地面监控中心根据其他探测方式获得飞行器入侵信息，指挥无人机平台1前往特定区域进行监测捕捉；</div>
+<div class="description-paragraph" id="p0104" num="0104">(9)无人机平台1到达指定位置后，将融合图像识别结果、双目摄像头计算获得的深度信息、高程信息、惯量信息、定位信息、扩展设备信息等信息，确认入侵无人机的空间位置和状态，计算获得追踪轨迹，然后开始快速逼近追踪入侵飞行器，并将追踪过程的图像信息通过无线发射单元8传输往地面控制中心9。追踪过程流程如图7所示，其具体实现过程为：</div>
+<div class="description-paragraph" id="p0105" num="0105">a)当判断监控区域内出现入侵物时，那么后续算法开始启动，并向地面控制中心9发送入侵警报；</div>
+<div class="description-paragraph" id="p0106" num="0106">b)首先根据入侵物的空间位置，在左右摄像机拍摄的图像中划分最近有效区域；</div>
+<div class="description-paragraph" id="p0107" num="0107">c)采用双目立体匹配算法对左右摄像机的最近有效区域计算深度信息，具体的计算算法如图4所示；</div>
+<div class="description-paragraph" id="p0108" num="0108">i.首先根据双摄像头获得双目图像，然后采用校正算法对双目图像进行校正，获得极线平行的双目图像；</div>
+<div class="description-paragraph" id="p0109" num="0109">ii.先对双目视觉图像计算梯度图，然后计算基于梯度信息的匹配代价：</div>
+<div class="description-paragraph" id="p0110" num="0110">1.对于左梯度图像中的每一点P(x,y)，在搜索范围d∈[0,D]内，计算右梯度图像上的点Q(x,y+d)与P点之间的梯度信息的绝对差作为像素点P的匹配代价集，从而获得基于梯度的匹配代价Cost_Grad(x,y,d)；</div>
+<div class="description-paragraph" id="p0111" num="0111">2.即计算过程为：Cost_Grad(x,y,d)＝abs(P(x,y)-Q(x,y+d)),d∈[0,D]</div>
+<div class="description-paragraph" id="p0112" num="0112">iii.计算基于原始图像的匹配代价：</div>
+<div class="description-paragraph" id="p0113" num="0113">1.对于左原始图像中的每一点P(x,y)，在搜索范围d∈[0,D]内，计算右原始图像上的点Q(x,y+d)与P点之间的绝对差作为像素点P的匹配代价集，从而获得基于原始图像的匹配代价Cost_Color(x,y,d)；</div>
+<div class="description-paragraph" id="p0114" num="0114">2.即计算过程为：Cost_Color(x,y,d)＝abs(P(x,y)-Q(x,y+d)),d∈[0,D]</div>
+<div class="description-paragraph" id="p0115" num="0115">iv.计算基于census transform信息的匹配代价</div>
+<div class="description-paragraph" id="p0116" num="0116">1.对于左原始图像中的每一点P(x,y)，先采用census编码，即在m*n的窗内，与中心点相比，其值大于中心点的值，则置1，其他情况置0，从而获得P点的census的1和0的数值编码cen(P)，同理右图像上每点也同样计算；</div>
+<div class="description-paragraph" id="p0117" num="0117">2.对于左原始图像中的每一点P(x,y)，在搜索范围d∈[0,D]内，计算右原始图像上的点Q(x,y+d)与P点之间的census编码的绝对差作为像素点P的匹配代价集，从而获得基于原始图像的匹配代价Cost_Census(x,y,d)；</div>
+<div class="description-paragraph" id="p0118" num="0118">3.即计算过程为：Cost_Census(x,y,d)＝abs(cen(P(x,y))-cen(Q(x,y+d))),d∈[0,D]</div>
+<div class="description-paragraph" id="p0119" num="0119">v.对计算出来的匹配代价进行聚合</div>
+<div class="description-paragraph" id="p0120" num="0120">1.先采用最优聚合法对以上计算出来的初始匹配代价进行加权求和(函数为f(.))获得初始匹配代价cost(x,y,d)＝f(Cost_Grad(x,y,d),Cost_Color(x,y,d),Cost_Census(x,y,d))；</div>
+<div class="description-paragraph" id="p0121" num="0121">2.对初始匹配代价进行聚合：如图11(a)和(b)所示，算法将先按照行方向聚合，再按照列方向进行聚合。在选定的方向上聚合时(逐行或者逐列聚合)，每次对当前像素点p(x,y)在视差d上聚合Cost(x,y,d)时只涉及3个像素点的匹配代价，如图11(c)所示，包括中心像素点的Cost(x,y,d)以及两端的2个像素点的(Cost(x-N,y,d)和Cost(x+N,y,d)，N是间隔步长)，聚合的像素间隔差N的大小按照迭代次数变化为N(i)＝2*N(i-1)+1,其中i为迭代的次数。假设迭代次数为4，那么每次迭代跨越的像素点个数为1,3,7,15。</div>
+<div class="description-paragraph" id="p0122" num="0122">3.聚合的权重：聚合的权重考虑的是聚合中心点和两端端点之间的权重，本方法选择的是自适应权重，主要考虑颜色相似性和空间距离，采用的是欧几里得距离的负指数次幂进行度量，则颜色的距离为Δcpq，空间距离的大小为Δgpq，于是可以获得w(p,q)＝exp(-Δcpq/a-Δgpq/b),其中颜色阈值权重为a,空间距离权重为b。</div>
+<div class="description-paragraph" id="p0123" num="0123">4.聚合迭代过程按照先逐行聚合，再逐列聚合展开：对于每一次聚合，以水平方向聚合为例，中心点为p(x,y),两侧的端点为q1(x-N(i),y)和q2(x+N(i),y),对应的权重为w(p,q1)和w(p,q2)，则一次聚合的计算为：C<sub>agg</sub>(x,y,d)＝Cost(x,y,d)+w(p,q<sub>1</sub>)Cost(x-N(i),y,d)+w(p,q<sub>2</sub>)Cost(x+N(i),y,d)之后在垂直方向的聚合也类似进行，只不过聚合的端点选择垂直方向上的点。完成一次水平聚合和一次垂直聚合为一次聚合过程，可以根据需要，设置不同的迭代次数，迭代的步骤变化为N(i)＝1,3,7,15…</div>
+<div class="description-paragraph" id="p0124" num="0124">vi.根据赢者通吃的方法计算初始匹配代价:对聚合之后的匹配代价C<sub>agg</sub>采取赢者通吃的方法计算求得每一点的视差图：即对每一点的C<sub>agg</sub>(x,y,d),d∈[0,D]，在视差搜索范围内[0,D]选择一个匹配代价最小min(C<sub>agg</sub>(x,y,d))的点对应的搜索距离d*当做当前点的最优视差值.每一点都按照该方法计算出来视差，那么得到左图像的初始视差图dispL，同理右图像也可以同样得到disp<sub>R</sub>。</div>
+<div class="description-paragraph" id="p0125" num="0125">vii.采用左右一致性检测检测错误匹配点:由于实际计算中存在各种误差，所以以上方法计算得到的视差还存在噪声。而如果是正确匹配的点，那么则存在一个验证方法：即左图像对应的右图像上的最佳匹配点和这个最佳匹配的左图像对应的点应该是同一个。按照这个假设进行验证，满足以上条件的点则是正确匹配的点。而不满足这样条件的点为错误匹配的点，进行剔除。最后得到视差图dispLRC。</div>
+<div class="description-paragraph" id="p0126" num="0126">viii.对错误匹配点采用上下左右四方向搜索最优值填充：对于错误匹配的点，则在错误匹配点的上下左右四个方向搜索正确匹配的点，然后选择颜色最相似、空间距离最近的点进行填充。每一个匹配点都采取以上的方法进行搜索填充，可以得到填充后的视差图为disp<sub>Lnew</sub>。</div>
+<div class="description-paragraph" id="p0127" num="0127">ix.采用聚合函数进行聚合：对于上述方法填充的点可能存在一定的误差，所以需要对填充的点进行滤波优化，这里采用的是先将视差图转化成新的匹配代价空间，即C<sub>new</sub>(x,y,d)＝min(μd<sub>max</sub>,|d-disp<sub>Lnew</sub>(x,y)|),然后再采用步骤(v)和(vi)的方法重新聚合、视差计算得到滤波后的视差图dispLnew1,最终的视差图D<sub>L</sub>先用dispLRC中的正确点填充，然后用disp<sub>Lnew1</sub>填充剩下错误匹配的点而得到。</div>
+<div class="description-paragraph" id="p0128" num="0128">x.深度信息转化：视差图上的像素点D(X,Y)对应的坐标为(X,Y)，转化成相机坐标系中目标点的位置为(x,y,z)，其中B为双目相机基线宽度，f为相机的焦距：</div>
+<div class="description-paragraph" id="p0129" num="0129">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0130" num="0130">d)结合计算出来的空间深度信息(x,y,z)和原始的RGB图像，进一步确定入侵物的空间位置，再一次优化最近有效区域，缩小并优化搜索范围；</div>
+<div class="description-paragraph" id="p0131" num="0131">e)采集惯量信息、高度信息和GPS/北斗定位信息，分析入侵物的空间位置，锁</div>
+<div class="description-paragraph" id="p0132" num="0132">定入侵物的空间位置，计算逼近轨迹；</div>
+<div class="description-paragraph" id="p0133" num="0133">f)根据计算出来的轨迹，无人机平台1开始快速逼近入侵物。在逼近的过程中，实时捕捉入侵物的运动图像，实时计算更新最近有效区域和入侵物空间位置，缩小并优化搜索范围；如果跟踪突然大幅度变换轨迹，那么算法将实时扩大最近有效区域；如果入侵物突然异常丢失，将重新开启全图空间快速搜索，采用步骤(6)的搜索方法；</div>
+<div class="description-paragraph" id="p0134" num="0134">g)快速逼近入侵物时，进一步确认入侵物是否为非法入侵飞行器。</div>
+<div class="description-paragraph" id="p0135" num="0135">本发明采用根据监控识别结果启用双目立体匹配算法计算空间深度信息，在初步识别的结果进行了最近有效区域的划分，缩小了双目立体匹配算法计算的空间，减少了计算量；还使用了双目立体匹配算法计算获得目标空间区域的深度信息，可以更方便对入侵物进行空间定位，快速追踪。</div>
+<div class="description-paragraph" id="p0136" num="0136">(10)在确认入侵物为入侵飞行器之后，算法将融合双目摄像头的深度信息对飞行器进行空间测距，采用扩展设备的测量数据对空间信息进行修正，最后并根据系统的高程、倾角、定位等信息，进一步计算获得追踪捕捉轨迹，然后对入侵飞行器进行逼近跟踪，伺机实施捕捉；</div>
+<div class="description-paragraph" id="p0137" num="0137">(11)当入侵飞行器进入系统的有效捕捉范围，信息处理决策单元4发送捕捉命令进行捕捉；如果捕捉失败，则抛弃捕捉网，重新调整姿势进行追踪，再次捕捉，重复(9)和(10)过程；如果捕捉成功，则通知地面监控中心9，并将捕捉的飞行器送往指定的地点进行处理；</div>
+<div class="description-paragraph" id="p0138" num="0138">(12)在捕捉过程中，地面控制中心9可以实时通过无线发射单元8对无人机平台1进行人工干预，以便确定更优化的捕捉方案，或者随时终止作业；</div>
+<div class="description-paragraph" id="p0139" num="0139">处理完毕之后，无人机平台1重新执行(4)-(12)的工作过程。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

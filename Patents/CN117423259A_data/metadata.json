@@ -1,0 +1,29 @@
+{
+    "patent_id": "CN117423259A",
+    "title": "CN117423259A - 一种低空飞行器空中交通管理方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Chery Automobile Co Ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN117423259A/zh",
+    "citations": [],
+    "cited_by": [
+        {
+            "Publication Number": "CN119252081A (zh) *",
+            "Priority Date": "2024-09-09",
+            "Publication Date": "2025-01-03",
+            "Assignee": "深圳技术大学",
+            "Title": "一种电动飞行控制系统",
+            "Link": "https://patents.google.com/patent/CN119252081A/zh"
+        },
+        {
+            "Publication Number": "CN120894945A (zh) *",
+            "Priority Date": "2025-09-30",
+            "Publication Date": "2025-11-04",
+            "Assignee": "商飞软件有限公司",
+            "Title": "基于云端-边缘协同的飞行管理系统及其航路规划方法",
+            "Link": "https://patents.google.com/patent/CN120894945A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:49:42"
+}

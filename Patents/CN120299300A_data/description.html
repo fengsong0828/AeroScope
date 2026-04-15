@@ -1,0 +1,165 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120299300A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES499333463">
+<invention-title id="title1" lang="ZH">低空飞行器运行轨迹管理方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及通用航空技术领域，尤其涉及一种低空飞行器运行轨迹管理方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">目前通航领域中的低空飞行器指的是能够在地面以下至一定高度范围内（通常是几米到几千米）进行飞行的航空器，包括轻型运动飞机、无人机等，可应用于农业、物流、监测、救援等领域。</div>
+<div class="description-paragraph" id="p0005" num="0003">低空飞行器的运行轨迹可通过全球定位系统GPS、惯性导航系统、视觉导航、地面控制站等技术获取，然而，若低空飞行器的应用场景比较复杂，目标运行轨迹复杂多变，以目标运行轨迹为标准对低空飞行器的实时运行轨迹进行管控必然会存在一定误差，难以确保低空飞行器的可靠飞行和安全保障。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本发明提供一种低空飞行器运行轨迹管理方法及系统，有效保障低空飞行器运行轨迹的正确性并提升运行控制精度。</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明提供一种低空飞行器运行轨迹管理方法，包括：</div>
+<div class="description-paragraph" id="p0009">获取低空飞行器在预设场景的目标运行轨迹；</div>
+<div class="description-paragraph" id="p0010">基于即时定位与地图构建技术以及所述目标运行轨迹的形状特性，将所述目标运行轨迹转换为具有规则特征的轨迹地图，规则特征基于形状特性确定；</div>
+<div class="description-paragraph" id="p0011">基于预设的检测精度需求，对所述轨迹地图进行采样，得到至少一目标轨迹点；</div>
+<div class="description-paragraph" id="p0012">获取实时运行轨迹点，基于所述目标运行轨迹的形状特性对应的指标对比所述目标轨迹点和所述实时轨迹点，判断所述低空飞行器的实时运行轨迹是否偏移所述目标运行轨迹，得到运行轨迹检测结果。</div>
+<div class="description-paragraph" id="p0013" num="0006">作为一个实施例，所述基于即时定位与地图构建技术以及所述目标运行轨迹的形状特性，将所述目标运行轨迹转换为具有规则特征的轨迹地图，包括：</div>
+<div class="description-paragraph" id="p0014">基于所述目标运行轨迹的形状特性，确定所述目标运行轨迹对应的运行轨迹单元以及所述运行轨迹单元之间的排列关系；</div>
+<div class="description-paragraph" id="p0015">基于所述即时定位与地图构建技术对所述运行轨迹单元进行缩放并按照所述排列关系生成所述轨迹地图。</div>
+<div class="description-paragraph" id="p0016" num="0007">作为一个实施例，所述目标运行轨迹的形状特性对应的指标包括轨迹半径和轨迹位移，对应的，所述获取实时运行轨迹点，基于所述目标运行轨迹的形状特性对应的指标对比所述目标轨迹点和所述实时轨迹点，包括：</div>
+<div class="description-paragraph" id="p0017">获取实时轨迹点，根据所述实时轨迹点，确定实时轨迹半径和实时轨迹位移，根据所述目标轨迹点，确定目标轨迹半径和目标轨迹位移；</div>
+<div class="description-paragraph" id="p0018">分别对比目标轨迹半径与实时轨迹半径以及目标轨迹位移与实时轨迹位移。</div>
+<div class="description-paragraph" id="p0019" num="0008">作为一个实施例，所述分别对比目标轨迹半径与实时轨迹半径以及目标轨迹位移与实时轨迹位移，包括：</div>
+<div class="description-paragraph" id="p0020">判断目标轨迹半径与实时轨迹半径的差值是否满足第一阈值；</div>
+<div class="description-paragraph" id="p0021">若目标轨迹半径与实时轨迹半径的差值不满足第一阈值，判定所述低空飞行器的实时运行轨迹偏移所述目标运行轨迹；</div>
+<div class="description-paragraph" id="p0022">若目标轨迹半径与实时轨迹半径的差值满足第一阈值，依次判断实时轨迹位移的位移方向和位移值是否与目标轨迹位移的位移方向和位移值一致，若位移方向和位移值均一致，判定所述低空飞行器的实时运行轨迹未偏移所述目标运行轨迹，否则，判定所述低空飞行器的实时运行轨迹偏移所述目标运行轨迹。</div>
+<div class="description-paragraph" id="p0023" num="0009">作为一个实施例，还包括：</div>
+<div class="description-paragraph" id="p0024">若所述运行轨迹检测结果表征所述低空飞行器的实时运行轨迹偏移所述目标运行轨迹，生成轨迹修正指令并将所述轨迹修正指令发送至所述低空飞行器。</div>
+<div class="description-paragraph" id="p0025" num="0010">作为一个实施例，若所述运行轨迹检测结果表征所述低空飞行器的实时运行轨迹偏移所述目标运行轨迹，则生成轨迹修正指令，包括：</div>
+<div class="description-paragraph" id="p0026">若所述运行轨迹检测结果表征所述低空飞行器的实时运行轨迹偏移所述目标运行轨迹，提升所述检测精度需求；</div>
+<div class="description-paragraph" id="p0027">基于提升后的检测精度需求，分别对所述目标运行轨迹和所述实时运行轨迹进行采样和对比，确定导致轨迹偏移的异常轨迹点；</div>
+<div class="description-paragraph" id="p0028">根据所述异常轨迹点，生成轨迹修正指令。</div>
+<div class="description-paragraph" id="p0029" num="0011">本发明还提供一种低空飞行器运行轨迹管理系统，包括：</div>
+<div class="description-paragraph" id="p0030">获取模块，用于获取低空飞行器在预设场景的目标运行轨迹；</div>
+<div class="description-paragraph" id="p0031">地图确定模块，用于基于即时定位与地图构建技术以及所述目标运行轨迹的形状特性，将所述目标运行轨迹转换为具有规则特征的轨迹地图，规则特征基于形状特性确定；</div>
+<div class="description-paragraph" id="p0032">采样模块，用于基于预设的检测精度需求，对所述轨迹地图进行采样，得到至少一目标轨迹点；</div>
+<div class="description-paragraph" id="p0033">检测模块，用于获取实时运行轨迹点，基于所述目标运行轨迹的形状特性对应的指标对比所述目标轨迹点和所述实时轨迹点，判断所述低空飞行器的实时运行轨迹是否偏移所述目标运行轨迹，得到运行轨迹检测结果。</div>
+<div class="description-paragraph" id="p0034" num="0012">本发明还提供一种电子设备，包括存储器、处理器及存储在存储器上并可在处理器上运行的计算机程序，所述处理器执行所述计算机程序时实现如上述任一种所述低空飞行器运行轨迹管理方法。</div>
+<div class="description-paragraph" id="p0035" num="0013">本发明还提供一种非暂态计算机可读存储介质，其上存储有计算机程序，该计算机程序被处理器执行时实现如上述任一种所述低空飞行器运行轨迹管理方法。</div>
+<div class="description-paragraph" id="p0036" num="0014">本发明还提供一种计算机程序产品，包括计算机程序，所述计算机程序被处理器执行时实现如上述任一种所述低空飞行器运行轨迹管理方法。</div>
+<div class="description-paragraph" id="p0037" num="0015">本发明提供的低空飞行器运行轨迹管理方法及系统，通过即时定位与地图构建技术以及目标运行轨迹的形状特性，将目标运行轨迹转换为具有规则特征的轨迹地图，再从轨迹地图上采集目标轨迹点与低空飞行器的实时运行轨迹进行对比，能够避免因目标运行轨迹复杂多变的形状特性导致的误差，提高了运行轨迹管控精度和准确性，保障低空飞行器运行轨迹的正确性并提升运行控制精度。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0038">附图说明</div>
+<div class="description-paragraph" id="p0039" num="0016">为了更清楚地说明本发明或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作一简单的介绍，显而易见地，下面描述中的附图是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0040" num="0017">图1是本发明提供的低空飞行器运行轨迹管理方法的流程示意图之一。</div>
+<div class="description-paragraph" id="p0041" num="0018">图2是本发明提供的目标运行轨迹的示意图之一。</div>
+<div class="description-paragraph" id="p0042" num="0019">图3a-图3c是本发明提供的运行轨迹单元的关键参数的定义示意图。</div>
+<div class="description-paragraph" id="p0043" num="0020">图4是本发明提供的目标轨迹点的示意图。</div>
+<div class="description-paragraph" id="p0044" num="0021">图5是本发明提供的目标运行轨迹的示意图之二。</div>
+<div class="description-paragraph" id="p0045" num="0022">图6是本发明提供的低空飞行器运行轨迹管理系统的结构示意。</div>
+<div class="description-paragraph" id="p0046" num="0023">图7是本发明提供的低空飞行器运行轨迹管理方法的流程示意图之二。</div>
+<div class="description-paragraph" id="p0047" num="0024">图8是本发明提供的电子设备的结构示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0048">具体实施方式</div>
+<div class="description-paragraph" id="p0049" num="0025">为使本发明的目的、技术方案和优点更加清楚，下面将结合本发明中的附图，对本发明中的技术方案进行清楚、完整的描述，显然，所描述的实施例是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有作出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0050" num="0026">图1是本发明提供的低空飞行器运行轨迹管理方法的流程示意图之一，如图1所示，本发明提供一种低空飞行器运行轨迹管理方法，包括如下步骤。</div>
+<div class="description-paragraph" id="p0051" num="0027">步骤S100，获取低空飞行器在预设场景的目标运行轨迹。预设场景指的是低空飞行器的实际运行轨迹与目标运行轨迹的吻合度要求比较高的场景，比如飞行表演、应急救援等。</div>
+<div class="description-paragraph" id="p0052" num="0028">步骤S200，基于即时定位与地图构建技术以及所述目标运行轨迹的形状特性，将所述目标运行轨迹转换为具有规则特征的轨迹地图，规则基于形状特性确定。以预设场景为飞行表演为例进行说明，低空飞行器用于多机开花、俯冲、翻滚等特技表演，其目标运行轨迹具有不规则性和多变性等特点，通过对目标运行轨迹进行拆分和量化，转换为具有规则特征的轨迹地图。</div>
+<div class="description-paragraph" id="p0053" num="0029">步骤S300，基于预设的检测精度需求，对所述轨迹地图进行采样，得到至少一目标轨迹点。检测精度需求高，对轨迹地图采样的频率越高，得到的目标轨迹点越多，采样周期越短。</div>
+<div class="description-paragraph" id="p0054" num="0030">步骤S400，获取实时运行轨迹点，基于所述目标运行轨迹的形状特性对应的指标对比所述目标轨迹点和所述实时轨迹点，判断所述低空飞行器的实时运行轨迹是否偏移所述目标运行轨迹，得到运行轨迹检测结果。</div>
+<div class="description-paragraph" id="p0055" num="0031">可以理解的是，本发明通过即时定位与地图构建技术以及目标运行轨迹的形状特性，将目标运行轨迹转换为具有规则特征的轨迹地图，再从轨迹地图上采集目标轨迹点与低空飞行器的实时运行轨迹进行对比，能够避免因目标运行轨迹复杂多变的形状特性导致的误差，提高了运行轨迹管控精度和准确性，保障低空飞行器运行轨迹的正确性并提升运行控制精度。</div>
+<div class="description-paragraph" id="p0056" num="0032">在上述实施例的基础上，作为一个可选的实施例，所述基于即时定位与地图构建技术以及所述目标运行轨迹的形状特性，将所述目标运行轨迹转换为具有规则特征的轨迹地图，包括步骤S210-步骤S220。</div>
+<div class="description-paragraph" id="p0057" num="0033">步骤S210，基于所述目标运行轨迹的形状特性，确定所述目标运行轨迹对应的运行轨迹单元以及所述运行轨迹单元之间的排列关系。</div>
+<div class="description-paragraph" id="p0058" num="0034">通过对目标运行轨迹的研究，将目标运行轨迹中出现数量最多至少一个规则形状作为运行轨迹单元，比如用于多机开花、俯冲、翻滚等特技表演的低空飞行器的目标运行轨迹，具体包含弧形、圆形、八字形等规则形状。</div>
+<div class="description-paragraph" id="p0059" num="0035">步骤S220，基于所述即时定位与地图构建技术对所述运行轨迹单元进行缩放并按照所述排列关系生成所述轨迹地图。</div>
+<div class="description-paragraph" id="p0060" num="0036">如图2所示，本发明实施例以低空飞行器的目标运行轨迹为八字形为例，将目标运行轨迹拆分为两个圆形的运行轨迹单元，两个圆形左右排列，圆心在同一条水平线上，以左侧圆形的一点作为轨迹起始点和轨迹结束点，圆形周边的箭头为轨迹运行方向。</div>
+<div class="description-paragraph" id="p0061" num="0037">如图3a-图3c所示，圆形运行轨迹单元的关键参数包括参考圆心O、轨迹半径R、轨迹角度θ和轨迹位移S，在其他实施例中，圆形运行轨迹单元的轨迹半径大小、圆心位置、轨迹角度大小以及轨迹距离长短等参数可根据实际需求进行设置。</div>
+<div class="description-paragraph" id="p0062" num="0038">即时定位与地图构建技术（Simultaneous Localization And Mapping，SLAM）是一种允许机器人或其他自主体在未知环境中同时构建地图和定位自身的技术。</div>
+<div class="description-paragraph" id="p0063" num="0039">本发明实施例可调用SLAM技术的API接口，利用SLAM技术将运行轨迹单元进行缩放。设定轨迹地图的缩放比为k，则k＜1，即图3b所示轨迹半径为实际运行轨迹半径的k倍，轨迹角度θ因不受k的影响，缩放前后均保持一致，轨迹位移S则结合R和θ共同计算得出，如图2所示，运行轨迹沿顺时针方向开始，设定顺时针方向的参数为正值，逆时针方向则为负值，即与运行轨迹方向相同的参数为正值，与运行轨迹方向相反的参数为负值。</div>
+<div class="description-paragraph" id="p0064" num="0040">理想情况下，低空飞行器应按照目标运行轨迹即图2中的两个圆周轨迹进行匀速飞行，为确保低空飞行器运行轨迹的正确性，在固定周期内定时从轨迹地图中采样得到目标轨迹点，每隔一个固定时间进行一次采样。</div>
+<div class="description-paragraph" id="p0065" num="0041">设C<sub>圆</sub>为单个圆形运行轨迹的实际周长，也即完成一个圆周全程飞行的轨迹位移，其计算公式如下：</div>
+<div class="description-paragraph" id="p0066">C<sub>圆</sub>=2πR/k  （1）</div>
+<div class="description-paragraph" id="p0067">其中，k为轨迹地图的缩放比，R为轨迹地图的圆周半径，与低空飞行器目标运行轨迹半径相差1/k倍。</div>
+<div class="description-paragraph" id="p0068" num="0042">轨迹角度的计算公式如下：</div>
+<div class="description-paragraph" id="p0069">θ=360°/n  （2）</div>
+<div class="description-paragraph" id="p0070">其中，n为采样次数，将圆形运行轨迹平分为n等份。</div>
+<div class="description-paragraph" id="p0071" num="0043">轨迹位移的计算公式如下：</div>
+<div class="description-paragraph" id="p0072">S=θ·πR/180  （3）</div>
+<div class="description-paragraph" id="p0073">其中，S为轨迹地图上两个相邻目标轨迹点之间的轨迹位移，与低空飞行器的目标轨迹位移相差k倍。</div>
+<div class="description-paragraph" id="p0074" num="0044">综合上式可知，得到如下公式：</div>
+<div class="description-paragraph" id="p0075">S<sub>目标</sub>=2πR/n  （4）</div>
+<div class="description-paragraph" id="p0076">S<sub>实际</sub>=1/k·2πR/n  （5）</div>
+<div class="description-paragraph" id="p0077">其中，S<sub>目标</sub>为轨迹地图上低空飞行器的目标轨迹位移，S<sub>实际</sub>为低空飞行器在理想情况下的实际轨迹位移。</div>
+<div class="description-paragraph" id="p0078" num="0045">如图4所示，将圆周运行轨迹平分为n等份，从轨迹起始点开始，目标轨迹位移依次为S<sub>0</sub>、S<sub>1</sub>、S<sub>2</sub>、S<sub>3</sub>……Sn，取前4个目标轨迹点S<sub>0</sub>-S<sub>3</sub>为应用实例，理论上，S<sub>0</sub>=S<sub>1</sub>=S<sub>2</sub>=S<sub>3</sub>=S<sub>目标</sub>=2πR/n。</div>
+<div class="description-paragraph" id="p0079" num="0046">当低空飞行器沿目标轨迹匀速飞行时，即以固定的半径、恒定的速度进行飞行，则相邻两段轨迹位移的差值应完全相等，基于此判定，可依据轨迹半径R、轨迹位移差值△S两大指标来制定对低空飞行器的管控方法，即通过判定R和△S的变化情况来进一步推算低空飞行器实际运行轨迹与目标运行轨迹之间的符合度。</div>
+<div class="description-paragraph" id="p0080" num="0047">可以理解的是，本发明根据所述目标运行轨迹的形状特性，将所述目标运行轨迹拆分为若干运行轨迹单元，降低目标运行轨迹的复杂度，提升低空飞行器运行轨迹的检测和异常判定的准确性。</div>
+<div class="description-paragraph" id="p0081" num="0048">在上述实施例的基础上，作为一个可选的实施例，所述目标运行轨迹的形状特性对应的指标包括轨迹半径和轨迹位移，对应的，所述获取实时运行轨迹点，基于所述目标运行轨迹的形状特性对应的指标对比所述目标轨迹点和所述实时轨迹点，包括步骤S410-步骤S420。</div>
+<div class="description-paragraph" id="p0082" num="0049">步骤S410，获取实时轨迹点，根据所述实时轨迹点，确定实时轨迹半径和实时轨迹位移，根据所述目标轨迹点，确定目标轨迹半径和目标轨迹位移。</div>
+<div class="description-paragraph" id="p0083" num="0050">步骤S420，分别对比目标轨迹半径与实时轨迹半径以及目标轨迹位移与实时轨迹位移。</div>
+<div class="description-paragraph" id="p0084" num="0051">可选的，所述分别对比目标轨迹半径与实时轨迹半径以及目标轨迹位移与实时轨迹位移，包括如下步骤：</div>
+<div class="description-paragraph" id="p0085">步骤S421，判断目标轨迹半径与实时轨迹半径的差值是否满足第一阈值；</div>
+<div class="description-paragraph" id="p0086">步骤S422，若目标轨迹半径与实时轨迹半径的差值不满足第一阈值，判定所述低空飞行器的实时运行轨迹偏移所述目标运行轨迹；</div>
+<div class="description-paragraph" id="p0087">步骤S423，若目标轨迹半径与实时轨迹半径的差值满足第一阈值，依次判断实时轨迹位移的位移方向和位移值是否与目标轨迹位移的位移方向和位移值一致，若位移方向和位移值均一致，判定所述低空飞行器的实时运行轨迹未偏移所述目标运行轨迹，否则，判定所述低空飞行器的实时运行轨迹偏移所述目标运行轨迹。</div>
+<div class="description-paragraph" id="p0088" num="0052">在步骤S410中，实时轨迹点可通过全球定位系统GPS、惯性导航系统、视觉导航、地面控制站等技术获取，不再赘述。</div>
+<div class="description-paragraph" id="p0089" num="0053">如图5所示，假设将圆形运行轨迹划分为8份，为方便查看，图中只展示了上半圆周，分别对应（S0-S3）区域的4段目标轨迹位移。以S<sub>0</sub>段轨迹位移为例，A区域所对应的实线轨迹为预设轨迹，通过镜像可得出，B区域所对应的虚线轨迹与实线轨迹相同，即低空飞行器以恒定速度沿虚线轨迹飞行，其对应的实时轨迹位移与目标轨迹位移相等，而且所对应的轨迹角度也一致，由此可知，若只关注轨迹位移的大小，则肯定会存在误判风险。同理，同一圆周的其他区域段也存在同样的误判隐患。实际管控过程则依据采样精度的要求进行采样点的划分与设定，即采样精度要求越高，则对应的采样区域越多，同理采样点也会越多，如此一来对运行轨迹的管控也会更精准。</div>
+<div class="description-paragraph" id="p0090" num="0054">基于上述情况，为进一步提升检测准确率，在步骤S420中，在判定轨迹位移的基础上，必须同步结合轨迹半径进行综合判定，进一步的将轨迹半径的判定应放在第一步，其次才是轨迹位移的检测，最后则结合前两步的检测结果判定实时运行轨迹是否偏移所述目标运行轨迹。</div>
+<div class="description-paragraph" id="p0091" num="0055">R<sub>0</sub>-R<sub>4</sub>为轨迹地图上的目标轨迹半径，因轨迹地图缩放比为k，低空飞行器在理想情况下的实际轨迹半径为R<sub>实际</sub>=R/k，将R<sub>0</sub>-R<sub>4</sub>代入上式，将实际轨迹半径与实时轨迹半径进行对比。若实际轨迹半径和实时轨迹半径的差值小于或等于第一阈值，表示低空飞行器当前并未偏离目标运行轨迹，若大于第一阈值，可将实际轨迹点记录为异常轨迹点，便于后续对实时运行轨迹进行实时修正与调控。</div>
+<div class="description-paragraph" id="p0092" num="0056">图5为便于轨迹地图的观测仅划分了4个采样区域，基于对图5所示实线轨迹和镜像得到的虚线轨迹，即A区域镜像对应B区域，C区域对应D区域，E区域对应F区域，G区域对应H区域，在不判定轨迹半径的基础上，此4组区域对应的轨迹位移均相等，包括轨迹角度也相等，由此对轨迹运行符合度的判定将带来一定的误判风险。为规避此潜在风险，同步结合轨迹半径的判定，即在判定轨迹半径符合要求的基础上，再次对轨迹位移进行判定。</div>
+<div class="description-paragraph" id="p0093" num="0057">首先基于采集的低空飞行器的实时轨迹半径来计算对应的实时轨迹位移，即（R<sub>0</sub>-R<sub>4</sub>）所对应5个点之间的位移。以R<sub>0</sub>、R<sub>1</sub>和R<sub>2</sub>之间的轨迹位移为例，结合已采集的3个点位的轨迹半径，同步结合式（3-4），计算得出相邻两个采样点对应的实际轨迹位移，其中起始点R<sub>0</sub>对应的轨迹位移S<sub>R0</sub>为0。</div>
+<div class="description-paragraph" id="p0094" num="0058">S<sub>实1</sub>=1/k·θ<sub>1</sub>·πR<sub>1</sub>/180…………（6）</div>
+<div class="description-paragraph" id="p0095">S<sub>实2</sub>=1/k·θ<sub>2</sub>·πR<sub>2</sub>/180…………（7）</div>
+<div class="description-paragraph" id="p0096">式（6-7）中轨迹角度θ<sub>1</sub>和θ<sub>2</sub>为采样周期内实时轨迹位移所对应的轨迹角度，即将圆周轨迹划分为n等份，在固定采样周期内，即便低空飞行器匀速运行，当任意时刻偏离轨迹位移时，当前采样周期所对应的实时轨迹半径和实时轨迹位移均会产生偏移，其中轨迹角度与n等份划分后所得的360°/n之间也将存在偏差。</div>
+<div class="description-paragraph" id="p0097" num="0059">在明确定义顺时针为轨迹运行方向的基础上，当计算所得的实时轨迹位移S＜0时，则首先判定此轨迹不符合要求。结合图5所知，A、C、E及G区域对应的轨迹位移均为正，B、D、F及H区域轨迹位移则为负，由此判定重点集中在正值的A、C、E及G区域的位移，仍以R<sub>0</sub>、R<sub>1</sub>和R<sub>2</sub>轨迹位移为例。</div>
+<div class="description-paragraph" id="p0098" num="0060">基于匀速运行、采样周期固定的设定条件，同步结合式（4-5）计算轨迹位移的理论值。</div>
+<div class="description-paragraph" id="p0099" num="0061">S<sub>实理论</sub>=1/k·2πR/n…………（8）</div>
+<div class="description-paragraph" id="p0100">此时：</div>
+<div class="description-paragraph" id="p0101">△S<sub>1</sub>=S<sub>实1</sub>-S<sub>实理论</sub>…………（9）</div>
+<div class="description-paragraph" id="p0102">结合式（6）、（8）及（9）得：</div>
+<div class="description-paragraph" id="p0103">△S<sub>1</sub>=1/k·θ<sub>1</sub>·πR<sub>1</sub>/180-1/k·2πR/n=π/k（θ<sub>1</sub>R<sub>1</sub>/180-2R/n）……（10）</div>
+<div class="description-paragraph" id="p0104">同理：</div>
+<div class="description-paragraph" id="p0105">△S<sub>2</sub>=π/k（θ<sub>2</sub>R<sub>2</sub>/180-2R/n）…………（11）</div>
+<div class="description-paragraph" id="p0106">依此类推，逐步得出△S<sub>3</sub>、△S<sub>4</sub>等整个运行轨迹所有采样周期内的实时轨迹位移偏差，当△S满足判定要求时，则低空飞行器的实时运行轨迹符合预设轨迹要求。当检测到采样周期内低空飞行器的实时轨迹位移差值异常时，在对当前采样周期进行异常标注的同时，基于位移采样检测原理和检测步骤，将当前采样周期段的实时运行轨迹做进一步的细分，并逐步复核和计算每一细分周期内的轨迹半径和位移，直至锁定具体异常点为止，便于对低空飞行器的实时运行轨迹做实时修正和有效管控。</div>
+<div class="description-paragraph" id="p0107" num="0062">在上述实施例的基础上，作为一个可选的实施例，本发明提供的一种低空飞行器运行轨迹管理方法还包括如下步骤：</div>
+<div class="description-paragraph" id="p0108">步骤S500，若所述运行轨迹检测结果表征所述低空飞行器的实时运行轨迹偏移所述目标运行轨迹，生成轨迹修正指令并将所述轨迹修正指令发送至所述低空飞行器。</div>
+<div class="description-paragraph" id="p0109" num="0063">可选的，若所述运行轨迹检测结果表征所述低空飞行器的实时运行轨迹偏移所述目标运行轨迹，则生成轨迹修正指令，包括：</div>
+<div class="description-paragraph" id="p0110">步骤S510，若所述运行轨迹检测结果表征所述低空飞行器的实时运行轨迹偏移所述目标运行轨迹，提升所述检测精度需求；</div>
+<div class="description-paragraph" id="p0111">步骤S520，基于提升后的检测精度需求，分别对所述目标运行轨迹和所述实时运行轨迹进行采样和对比，确定导致轨迹偏移的异常轨迹点；</div>
+<div class="description-paragraph" id="p0112">步骤S530，根据所述异常轨迹点，生成轨迹修正指令。</div>
+<div class="description-paragraph" id="p0113" num="0064">可以理解的是，本发明结合管控精度要求对异常段做进一步的检测周期细分，同理结合检测原理和控制流程对当前区域细分检测段所对应的位移进行逐一检测，同时对异常点位进行实时修正，有效保障低空飞行器运行轨迹的正确性并提升运行控制精度。</div>
+<div class="description-paragraph" id="p0114" num="0065">下面对本发明提供的低空飞行器运行轨迹管理系统进行描述，下文描述的低空飞行器运行轨迹管理系统与上文描述的低空飞行器运行轨迹管理方法可相互对应参照。</div>
+<div class="description-paragraph" id="p0115" num="0066">图6是本发明提供的低空飞行器运行轨迹管理系统的结构示意图，如图6所示，本发明还提供一种低空飞行器运行轨迹管理系统，包括以下模块。</div>
+<div class="description-paragraph" id="p0116" num="0067">获取模块610，用于获取低空飞行器在预设场景的目标运行轨迹；</div>
+<div class="description-paragraph" id="p0117">地图确定模块620，用于基于即时定位与地图构建技术以及所述目标运行轨迹的形状特性，将所述目标运行轨迹转换为具有规则特征的轨迹地图，规则特征基于形状特性确定；</div>
+<div class="description-paragraph" id="p0118">采样模块630，用于基于预设的检测精度需求，对所述轨迹地图进行采样，得到至少一目标轨迹点；</div>
+<div class="description-paragraph" id="p0119">检测模块640，用于获取实时运行轨迹点，基于所述目标运行轨迹的形状特性对应的指标对比所述目标轨迹点和所述实时轨迹点，判断所述低空飞行器的实时运行轨迹是否偏移所述目标运行轨迹，得到运行轨迹检测结果。</div>
+<div class="description-paragraph" id="p0120" num="0068">作为一个实施例，所述地图确定模块620还用于：</div>
+<div class="description-paragraph" id="p0121">基于所述目标运行轨迹的形状特性，确定所述目标运行轨迹对应的运行轨迹单元以及所述运行轨迹单元之间的排列关系；</div>
+<div class="description-paragraph" id="p0122">基于所述即时定位与地图构建技术对所述运行轨迹单元进行缩放并按照所述排列关系生成所述轨迹地图。</div>
+<div class="description-paragraph" id="p0123" num="0069">作为一个实施例，所述目标运行轨迹的形状特性对应的指标包括轨迹半径和轨迹位移，对应的，所述检测模块640还用于：</div>
+<div class="description-paragraph" id="p0124">获取实时轨迹点，根据所述实时轨迹点，确定实时轨迹半径和实时轨迹位移，根据所述目标轨迹点，确定目标轨迹半径和目标轨迹位移；</div>
+<div class="description-paragraph" id="p0125">分别对比目标轨迹半径与实时轨迹半径以及目标轨迹位移与实时轨迹位移。</div>
+<div class="description-paragraph" id="p0126" num="0070">作为一个实施例，所述检测模块640还用于：</div>
+<div class="description-paragraph" id="p0127">判断目标轨迹半径与实时轨迹半径的差值是否满足第一阈值；</div>
+<div class="description-paragraph" id="p0128">若目标轨迹半径与实时轨迹半径的差值不满足第一阈值，判定所述低空飞行器的实时运行轨迹偏移所述目标运行轨迹；</div>
+<div class="description-paragraph" id="p0129">若目标轨迹半径与实时轨迹半径的差值满足第一阈值，依次判断实时轨迹位移的位移方向和位移值是否与目标轨迹位移的位移方向和位移值一致，若位移方向和位移值均一致，判定所述低空飞行器的实时运行轨迹未偏移所述目标运行轨迹，否则，判定所述低空飞行器的实时运行轨迹偏移所述目标运行轨迹。</div>
+<div class="description-paragraph" id="p0130" num="0071">作为一个实施例，还包括修正模块，所述修正模块还用于：</div>
+<div class="description-paragraph" id="p0131">若所述运行轨迹检测结果表征所述低空飞行器的实时运行轨迹偏移所述目标运行轨迹，生成轨迹修正指令并将所述轨迹修正指令发送至所述低空飞行器。</div>
+<div class="description-paragraph" id="p0132" num="0072">作为一个实施例，所述修正模块还用于：</div>
+<div class="description-paragraph" id="p0133">若所述运行轨迹检测结果表征所述低空飞行器的实时运行轨迹偏移所述目标运行轨迹，提升所述检测精度需求；</div>
+<div class="description-paragraph" id="p0134">基于提升后的检测精度需求，分别对所述目标运行轨迹和所述实时运行轨迹进行采样和对比，确定导致轨迹偏移的异常轨迹点；</div>
+<div class="description-paragraph" id="p0135">根据所述异常轨迹点，生成轨迹修正指令。</div>
+<div class="description-paragraph" id="p0136" num="0073">图7公开了基于低空飞行器运行轨迹管理系统实现管理方法的流程示意图，为确保运行轨迹的检测精度和准确判定，主要包含轨迹半径检测和轨迹位移检测。</div>
+<div class="description-paragraph" id="p0137" num="0074">低空飞行器运行轨迹管理系统控制程序初始化后将进入运行轨迹检测环节，结合预设的目标运行轨迹及对应的指标参数，调用SLAM功能生成轨迹地图。</div>
+<div class="description-paragraph" id="p0138" num="0075">进入轨迹检测环节，首先进行轨迹半径检测，对比分析每个采样周期的实际轨迹半径（由目标轨迹半径放大得到）与实时轨迹半径的差值，若差值满足检测要求，则正常进入下一流程，不满足则结合检测结果及时修正运行轨迹，同时记录检测数据与检测结果（含正常、异常两种情况），为运行轨迹的可追溯性和轨迹修复奠定基础，进一步提升低空飞行器的运行可靠性与安全性。</div>
+<div class="description-paragraph" id="p0139" num="0076">轨迹位移检测包含位移方向判定和位移大小判定两大方面，首先基于目标运行轨迹及运行方向判定轨迹位移方向的正确性，判定结果正常则执行流向位移大小判定流程，异常则结合检测数据及时修正运行方向。</div>
+<div class="description-paragraph" id="p0140" num="0077">位移大小判定流程指的是，根据运行轨迹的等份划分及采样周期设定，逐一进行分段检测，当检测结果正常时，则判定实时运行轨迹满足目标运行轨迹的运行要求，反之则结合管控精度要求对异常段做进一步的检测周期细分，结合检测原理和控制流程对当前区域细分检测段所对应的位移进行逐一检测，同时对异常点位进行实时修正，有效保障低空飞行器运行轨迹的正确性并提升运行控制精度。</div>
+<div class="description-paragraph" id="p0141" num="0078">本发明提供的低空飞行器运行轨迹管理系统，用于执行上述任一实施例所述的低空飞行器运行轨迹管理方法，具有与低空飞行器运行轨迹管理方法相对应的技术效果，不再赘述。</div>
+<div class="description-paragraph" id="p0142" num="0079">图8示例了一种电子设备的实体结构示意图，如图8所示，该电子设备可以包括：处理器（processor）810、通信接口（Communications Interface）820、存储器（memory）830和通信总线840，其中，处理器810，通信接口820，存储器830通过通信总线840完成相互间的通信。处理器810可以调用存储器830中的逻辑指令，以执行所述低空飞行器运行轨迹管理方法，方法包括：获取低空飞行器在预设场景的目标运行轨迹；基于即时定位与地图构建技术以及所述目标运行轨迹的形状特性，将所述目标运行轨迹转换为具有规则特征的轨迹地图，规则特征基于形状特性确定；基于预设的检测精度需求，对所述轨迹地图进行采样，得到至少一目标轨迹点；获取实时运行轨迹点，基于所述目标运行轨迹的形状特性对应的指标对比所述目标轨迹点和所述实时轨迹点，判断所述低空飞行器的实时运行轨迹是否偏移所述目标运行轨迹，得到运行轨迹检测结果。</div>
+<div class="description-paragraph" id="p0143" num="0080">此外，上述的存储器830中的逻辑指令可以通过软件功能单元的形式实现并作为独立的产品销售或使用时，可以存储在一个计算机可读取存储介质中。基于这样的理解，本发明的技术方案本质上或者说对现有技术做出贡献的部分或者该技术方案的部分可以以软件产品的形式体现出来，该计算机软件产品存储在一个存储介质中，包括若干指令用以使得一台计算机设备（可以是个人计算机，服务器，或者网络设备等）执行本发明各个实施例所述方法的全部或部分步骤。而前述的存储介质包括：U盘、移动硬盘、只读存储器（ROM，Read-Only Memory）、随机存取存储器（RAM，Random Access Memory）、磁碟或者光盘等各种可以存储程序代码的介质。</div>
+<div class="description-paragraph" id="p0144" num="0081">另一方面，本发明还提供一种计算机程序产品，所述计算机程序产品包括计算机程序，计算机程序可存储在非暂态计算机可读存储介质上，所述计算机程序被处理器执行时，计算机能够执行上述各方法所提供的所述低空飞行器运行轨迹管理方法，方法包括：获取低空飞行器在预设场景的目标运行轨迹；基于即时定位与地图构建技术以及所述目标运行轨迹的形状特性，将所述目标运行轨迹转换为具有规则特征的轨迹地图，规则特征基于形状特性确定；基于预设的检测精度需求，对所述轨迹地图进行采样，得到至少一目标轨迹点；获取实时运行轨迹点，基于所述目标运行轨迹的形状特性对应的指标对比所述目标轨迹点和所述实时轨迹点，判断所述低空飞行器的实时运行轨迹是否偏移所述目标运行轨迹，得到运行轨迹检测结果。</div>
+<div class="description-paragraph" id="p0145" num="0082">又一方面，本发明还提供一种非暂态计算机可读存储介质，其上存储有计算机程序，该计算机程序被处理器执行时，实现以执行上述各方法提供的所述低空飞行器运行轨迹管理方法，方法包括：获取低空飞行器在预设场景的目标运行轨迹；基于即时定位与地图构建技术以及所述目标运行轨迹的形状特性，将所述目标运行轨迹转换为具有规则特征的轨迹地图，规则特征基于形状特性确定；基于预设的检测精度需求，对所述轨迹地图进行采样，得到至少一目标轨迹点；获取实时运行轨迹点，基于所述目标运行轨迹的形状特性对应的指标对比所述目标轨迹点和所述实时轨迹点，判断所述低空飞行器的实时运行轨迹是否偏移所述目标运行轨迹，得到运行轨迹检测结果。</div>
+<div class="description-paragraph" id="p0146" num="0083">以上所描述的装置实施例仅仅是示意性的，其中所述作为分离部件说明的单元可以是或者也可以不是物理上分开的，作为单元显示的部件可以是或者也可以不是物理单元，即可以位于一个地方，或者也可以分布到多个网络单元上。可以根据实际的需要选择其中的部分或者全部模块来实现本实施例方案的目的。本领域普通技术人员在不付出创造性的劳动的情况下，即可以理解并实施。</div>
+<div class="description-paragraph" id="p0147" num="0084">通过以上的实施方式的描述，本领域的技术人员可以清楚地了解到各实施方式可借助软件加必需的通用硬件平台的方式来实现，当然也可以通过硬件。基于这样的理解，上述技术方案本质上或者说对现有技术做出贡献的部分可以以软件产品的形式体现出来，该计算机软件产品可以存储在计算机可读存储介质中，如ROM/RAM、磁碟、光盘等，包括若干指令用以使得一台计算机设备（可以是个人计算机，服务器，或者网络设备等）执行各个实施例或者实施例的某些部分所述的方法。</div>
+<div class="description-paragraph" id="p0148" num="0085">最后应说明的是：以上实施例仅用以说明本发明的技术方案，而非对其限制；尽管参照前述实施例对本发明进行了详细的说明，本领域的普通技术人员应当理解：其依然可以对前述各实施例所记载的技术方案进行修改，或者对其中部分技术特征进行等同替换；而这些修改或者替换，并不使相应技术方案的本质脱离本发明各实施例技术方案的精神和范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

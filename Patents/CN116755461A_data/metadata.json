@@ -1,0 +1,118 @@
+{
+    "patent_id": "CN116755461A",
+    "title": "CN116755461A - 一种低空飞行器的飞行环境识别监测方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shenzhen Xiyue Wisdom Data Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN116755461A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN102856827A (zh) *",
+            "Priority Date": "2012-08-28",
+            "Publication Date": "2013-01-02",
+            "Assignee": "华北电力大学",
+            "Title": "地空异构式变电站全方位巡检系统",
+            "Link": "https://patents.google.com/patent/CN102856827A/zh"
+        },
+        {
+            "Publication Number": "CN105480417A (zh) *",
+            "Priority Date": "2015-12-10",
+            "Publication Date": "2016-04-13",
+            "Assignee": "天津艾思科尔科技有限公司",
+            "Title": "一种智能无人飞行器",
+            "Link": "https://patents.google.com/patent/CN105480417A/zh"
+        },
+        {
+            "Publication Number": "CN108319285A (zh) *",
+            "Priority Date": "2018-02-26",
+            "Publication Date": "2018-07-24",
+            "Assignee": "厦门大学嘉庚学院",
+            "Title": "一种基于摄像头的四旋翼飞行器跟踪控制系统及方法",
+            "Link": "https://patents.google.com/patent/CN108319285A/zh"
+        },
+        {
+            "Publication Number": "CN208077009U (zh) *",
+            "Priority Date": "2018-03-29",
+            "Publication Date": "2018-11-09",
+            "Assignee": "陕西新华安电力工程有限公司",
+            "Title": "一种用于电力安全监护的无人机",
+            "Link": "https://patents.google.com/patent/CN208077009U/zh"
+        },
+        {
+            "Publication Number": "KR20210007366A (ko) *",
+            "Priority Date": "2019-07-11",
+            "Publication Date": "2021-01-20",
+            "Assignee": "주식회사 아소아",
+            "Title": "무인 비행체와 그의 기상변화 및 장애물 감지 및 회피 방법",
+            "Link": "https://patents.google.com/patent/KR20210007366A/ko"
+        },
+        {
+            "Publication Number": "CN110543186A (zh) *",
+            "Priority Date": "2019-08-02",
+            "Publication Date": "2019-12-06",
+            "Assignee": "佛山科学技术学院",
+            "Title": "基于无人机的森林火灾监测系统、方法及存储介质",
+            "Link": "https://patents.google.com/patent/CN110543186A/zh"
+        },
+        {
+            "Publication Number": "KR20210065459A (ko) *",
+            "Priority Date": "2019-11-27",
+            "Publication Date": "2021-06-04",
+            "Assignee": "김민호",
+            "Title": "드론용 비행 장애물 회피기동 제어 방법",
+            "Link": "https://patents.google.com/patent/KR20210065459A/ko"
+        },
+        {
+            "Publication Number": "KR102187654B1 (ko) *",
+            "Priority Date": "2020-07-09",
+            "Publication Date": "2020-12-07",
+            "Assignee": "주식회사 이노드",
+            "Title": "저고도 무인 비행체 및 이를 포함하는 작물 재배 정보 획득 시스템",
+            "Link": "https://patents.google.com/patent/KR102187654B1/ko"
+        },
+        {
+            "Publication Number": "CN112068601A (zh) *",
+            "Priority Date": "2020-10-20",
+            "Publication Date": "2020-12-11",
+            "Assignee": "北京卫通新科测控技术有限公司",
+            "Title": "一种用于固定翼无人机的导航控制系统",
+            "Link": "https://patents.google.com/patent/CN112068601A/zh"
+        },
+        {
+            "Publication Number": "CN214429635U (zh) *",
+            "Priority Date": "2021-02-08",
+            "Publication Date": "2021-10-19",
+            "Assignee": "江苏派尔高智能科技有限公司",
+            "Title": "一种基于无人机平台的电力线路巡检系统",
+            "Link": "https://patents.google.com/patent/CN214429635U/zh"
+        },
+        {
+            "Publication Number": "CN215641077U (zh) *",
+            "Priority Date": "2021-03-29",
+            "Publication Date": "2022-01-25",
+            "Assignee": "合肥工业大学",
+            "Title": "一种气体质量监测装置",
+            "Link": "https://patents.google.com/patent/CN215641077U/zh"
+        },
+        {
+            "Publication Number": "CN115145302A (zh) *",
+            "Priority Date": "2021-06-21",
+            "Publication Date": "2022-10-04",
+            "Assignee": "中移(成都)信息通信科技有限公司",
+            "Title": "一种飞行控制方法及装置、云平台、存储介质",
+            "Link": "https://patents.google.com/patent/CN115145302A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN117784769A (zh) *",
+            "Priority Date": "2024-02-23",
+            "Publication Date": "2024-03-29",
+            "Assignee": "西安亚龙航空机电股份有限公司",
+            "Title": "一种靶机控制方法及其结构",
+            "Link": "https://patents.google.com/patent/CN117784769A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:50:08"
+}

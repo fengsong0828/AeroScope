@@ -1,0 +1,74 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN113885308B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES435777739">
+<invention-title id="title1" lang="ZH">一种载人逃逸飞行器低空风场检测控制系统及控制方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于航天发射技术领域，具体涉及一种载人逃逸飞行器低空风场检测控制系统及控制方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">逃逸飞行器是运载火箭上为航天员逃逸而专门研制的逃逸系统，构成包括五种固体发动机、整流罩、支撑机构、栅格翼等，当运载火箭在发射前和飞行中发生重大危险，威胁到航天员的生命安全时，负责使航天员脱离危险区，并为航天员的返回着陆提供必要的条件。</div>
+<div class="description-paragraph" id="p0005" num="0003">传统载人逃逸飞行器的逃逸控制发动机点火策略是固定的，在极端风场天气下，存在无法快速脱离危险区的风险。为保证航天发射过程中航天员的安全，需要在发射前针对发射场的低空风场情况，决策采取不同的逃逸控制发动机点火策略，以有效提高载人飞行器在发射台逃逸时对于低空风场的适应性，确保快速逃离危险区，保障航天员飞行安全。</div>
+<div class="description-paragraph" id="p0006" num="0004">现有载人逃逸飞行器不能在发射前针对发射场的低空风场情况进行调整，若遭遇极端天气，存在逃逸失败的隐患，需要进行改进。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明提供一种载人逃逸飞行器低空风场检测控制系统及控制方法，目的是解决现有技术中载人逃逸飞行器不能在发射前针对低空风场情况进行调整的问题。</div>
+<div class="description-paragraph" id="p0009" num="0006">本发明的目的是通过如下技术方案实现的：</div>
+<div class="description-paragraph" id="p0010" num="0007">一种载人逃逸飞行器低空风场检测控制系统，包括地面测试发控设备、故障检测处理子系统、逃逸控制子系统和逃逸系统火工品，地面测试发控设备和故障检测处理子系统与逃逸控制子系统之间通过脱插连接，脱插内包括T供电信号、箭地RS422通讯数据线和B供电信号，T供电信号连接到逃逸控制子系统，箭地RS422通讯数据线同时连接到故障检测处理子系统和逃逸控制子系统，B供电信号连接到故障检测处理子系统，故障检测处理子系统和逃逸控制子系统之间传递指令信号和RS422逃逸参数，逃逸控制子系统通过火工品信号控制逃逸系统火工品；故障检测处理子系统位于仪器舱，负责采集判断火箭飞行状态参数，将采集到的信息进行处理，按故障判据要求进行诊断，并实时将逃逸参数信息传送给位于逃逸飞行器的逃逸控制子系统，将诊断信息及结果通知航天员和地面；逃逸控制子系统位于逃逸飞行器，在火箭故障时，根据逃逸参数计算不同的控制发动机点火策略，根据逃逸指令发出火工品点火指令，启动逃逸固体发动机，并与飞船系统协调完成航天员逃逸救生。</div>
+<div class="description-paragraph" id="p0011" num="0008">进一步地，故障检测处理子系统包括故障检测处理器、指令控制器和第一控制电池，第一控制电池为故障检测处理器和指令控制器供电，通过B供电信号控制。</div>
+<div class="description-paragraph" id="p0012" num="0009">进一步地，逃逸控制子系统包括逃逸程序控制器、第二控制电池、火工品配电器和功率电池，第二控制电池为逃逸程序控制器供电，通过T供电信号控制，火工品配电器通过火工品信号控制逃逸系统火工品。</div>
+<div class="description-paragraph" id="p0013" num="0010">进一步地，逃逸控制子系统包括两套火工品配电器和两套功率电池，独立供电，独立控制逃逸系统火工品。</div>
+<div class="description-paragraph" id="p0014" num="0011">进一步地，箭地RS422通讯数据线分别连接到故障检测处理子系统的故障检测处理器和逃逸控制子系统的逃逸程序控制器。</div>
+<div class="description-paragraph" id="p0015" num="0012">本发明同时还提供一种载人逃逸飞行器低空风场检测控制方法，采用上述载人逃逸飞行器低空风场检测控制系统，包括如下步骤：</div>
+<div class="description-paragraph" id="p0016" num="0013">S1、通过仿真生成不同的逃逸点火策略及逃逸参数；</div>
+<div class="description-paragraph" id="p0017" num="0014">S2、发射前在仪器舱更改参数、选定策略，并实时传送给逃逸飞行器；</div>
+<div class="description-paragraph" id="p0018" num="0015">S3、逃逸飞行器接收逃逸参数，更改数据区；</div>
+<div class="description-paragraph" id="p0019" num="0016">S4、逃逸程序控制器按指令控制逃逸系统火工品。</div>
+<div class="description-paragraph" id="p0020" num="0017">进一步地，逃逸参数包括计算逃逸参数、标准逃逸参数和预置逃逸参数；</div>
+<div class="description-paragraph" id="p0021" num="0018">计算逃逸参数根据火箭实时状态和低空风场实时计算得到，用于火箭起飞之后；</div>
+<div class="description-paragraph" id="p0022" num="0019">标准逃逸参数仅根据低空风场实时计算得到，用于火箭起飞之前；</div>
+<div class="description-paragraph" id="p0023" num="0020">预置逃逸参数用于软件间逃逸参数传送失败时，作为备保逃逸参数，能够适应绝大多数风场情况。</div>
+<div class="description-paragraph" id="p0024" num="0021">进一步地，载人逃逸飞行器低空风场检测控制方法中的软件间通信采用高可靠冗余设计，故障检测处理设备和逃逸程序控制设备均为三个处理器冗余高可靠设备，每个处理器独立进行计算与通信，对计算结果进行三取二表决执行。</div>
+<div class="description-paragraph" id="p0025" num="0022">进一步地，载人逃逸飞行器低空风场检测控制方法中每组处理器间通信采用三遍重复发送防误措施，接收方对三遍传输内容进行比较，三遍完全一致才为有效数据。</div>
+<div class="description-paragraph" id="p0026" num="0023">进一步地，载人逃逸飞行器低空风场检测控制方法中增加信息通信纠错标识校验和，在发送前对通信内容进行计算，与通信内容一起传输给接收方，接收方收到信息帧后进行相同计算并与校验字节进行比较。</div>
+<div class="description-paragraph" id="p0027" num="0024">本发明所取得的有益技术效果是：</div>
+<div class="description-paragraph" id="p0028" num="0025">针对载人逃逸飞行的逃逸设计方法，提出针对发射场风载荷的载人逃逸飞行器低空风场检测控制系统及控制方法，提高了载人逃逸飞行时面对不同风载荷的适应性与安全性，通过设计可适应低空风场的逃逸控制发动机点火策略，以及快速准确适应现场射前修改策略的实现方法，可实现针对不同风场下载人逃逸飞行的安全性。</div>
+<div class="description-paragraph" id="p0029" num="0026">通过对于发射场低空风场的实时测量与决策，改变逃逸飞行器上逃逸控制发动机点火策略的思路，实现载人逃逸飞行器在低空风作用下快速远离危险区功能，更加有效保障航天员安全，解决了现有技术中载人逃逸飞行器不能在发射前针对低空风场情况进行调整的问题，具有突出的实质性特点和显著的进步。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0030">附图说明</div>
+<div class="description-paragraph" id="p0031" num="0027">图1是本发明其中一种具体实施例的检测控制系统原理框图；</div>
+<div class="description-paragraph" id="p0032" num="0028">图2是本发明其中一种具体实施例的控制方法流程框图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0033">具体实施方式</div>
+<div class="description-paragraph" id="p0034" num="0029">下面结合附图和具体实施方式对本发明的技术方案做进一步详细说明。显然，所描述的实施例仅是本发明的一部分实施例，而不是全部的实施例。基于本发明的实施例，本领域技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本发明要求保护的范围。</div>
+<div class="description-paragraph" id="p0035" num="0030">载人逃逸飞行器是为适应载人航天的要求，确保载人运载火箭在待发段和上升段飞行过程中航天员的安全而设计的，采用固体发动机加结构/机构方案，主要包括逃逸系统总体、固体发动机、整流罩、支撑机构、栅格翼及其释放机构等。逃逸控制发动机作用是当发射台逃逸时，使逃逸飞行器能够偏出一定的水平距离(为返回舱着陆提供条件)，其它情况逃逸时使逃逸飞行器偏出故障火箭的飞行管道。</div>
+<div class="description-paragraph" id="p0036" num="0031">如图1所示，一种载人逃逸飞行器低空风场检测控制系统的具体实施例，包括地面测试发控设备、故障检测处理子系统、逃逸控制子系统和逃逸系统火工品。地面测试发控设备和故障检测处理子系统与逃逸控制子系统之间通过脱插连接，脱插内包括T供电信号、箭地RS422通讯数据线和B供电信号，T供电信号连接到逃逸控制子系统，箭地RS422通讯数据线同时连接到故障检测处理子系统和逃逸控制子系统，B供电信号连接到故障检测处理子系统，故障检测处理子系统和逃逸控制子系统之间传递指令信号和RS422逃逸参数，逃逸控制子系统通过火工品信号控制逃逸系统火工品。</div>
+<div class="description-paragraph" id="p0037" num="0032">位于仪器舱的故障检测处理子系统是运载火箭故障诊断的关键设备，它负责采集判断火箭飞行状态参数，将采集到的信息进行处理，按故障判据要求进行诊断，并实时将逃逸参数信息传送给位于逃逸飞行器的逃逸控制子系统，将诊断信息及结果通知航天员和地面。</div>
+<div class="description-paragraph" id="p0038" num="0033">本具体实施例中的故障检测处理子系统包括故障检测处理器8GJ01A-2F、指令控制器8GJ02A-2F和第一控制电池，第一控制电池为故障检测处理器和指令控制器供电，通过B供电信号控制。</div>
+<div class="description-paragraph" id="p0039" num="0034">位于逃逸飞行器的逃逸控制子系统，在火箭故障时，根据逃逸参数计算不同的控制发动机点火策略，根据逃逸指令发出火工品点火指令，启动逃逸固体发动机，并与飞船系统协调完成航天员逃逸救生。</div>
+<div class="description-paragraph" id="p0040" num="0035">本具体实施例中的逃逸控制子系统包括逃逸程序控制器8GJ03A-2F、第二控制电池、两套火工品配电器8GJ04A-2F及相应的功率电池，火工品配电器的数量和型号根据实际需求可以进行调整，功率电池也进行相应改动，与本具体实施例并无实质性的区别。第二控制电池为逃逸程序控制器供电，通过T供电信号控制。</div>
+<div class="description-paragraph" id="p0041" num="0036">箭地RS422通讯数据线分别连接到故障检测处理子系统的故障检测处理器和逃逸控制子系统的逃逸程序控制器。</div>
+<div class="description-paragraph" id="p0042" num="0037">如图2所示，采用上述载人逃逸飞行器低空风场检测控制系统的控制方法包括如下步骤：</div>
+<div class="description-paragraph" id="p0043" num="0038">S1、通过仿真生成不同的逃逸点火策略及逃逸参数</div>
+<div class="description-paragraph" id="p0044" num="0039">通过对逃逸飞行过程进行仿真，由开始逃逸到返回舱落地进行全飞行过程仿真，生成不同的逃逸点火策略及逃逸参数。</div>
+<div class="description-paragraph" id="p0045" num="0040">S2、发射前在仪器舱更改参数、选定策略，并实时传送给逃逸飞行器</div>
+<div class="description-paragraph" id="p0046" num="0041">故障检测处理飞行软件安装于载人运载火箭仪器舱的故障检测处理器内，通过标识逃逸点火策略和逃逸参数配置，在射前通过更改软件中逃逸参数，选择不同的控制发动机点火策略，并通过通信接口将逃逸参数情况实时传送给逃逸程序控制软件。</div>
+<div class="description-paragraph" id="p0047" num="0042">S3、逃逸飞行器接收逃逸参数，更改数据区</div>
+<div class="description-paragraph" id="p0048" num="0043">逃逸程序控制软件安装于逃逸飞行器的逃逸程序控制器内，通过接收逃逸参数，更改预置逃逸参数的数据区，实现不同的逃逸控制发动机点火策略。</div>
+<div class="description-paragraph" id="p0049" num="0044">本具体实施例中逃逸飞行器设计有四个逃逸控制发动机，位于逃逸飞行器上部的四个不同方位，当发射台逃逸时，使逃逸飞行器能够偏出一定的水平距离(为返回舱着陆提供条件)，逃逸控制发动机点火策略由四个逃逸控制发动机的工作次序与点火时刻组成，根据发射场低空风实测风场计算结果(风速与风向)，选择不同点火策略以避免逃逸飞行器落入危险区。</div>
+<div class="description-paragraph" id="p0050" num="0045">本具体实施例中逃逸参数划分为计算逃逸参数、标准逃逸参数和预置逃逸参数。计算逃逸参数是根据火箭实时状态和低空风场实时计算得到的，用于火箭起飞之后；标准逃逸参数是仅根据低空风场实时计算得到的，用于火箭起飞之前；预置逃逸参数是用于软件间逃逸参数传送失败时，作为备保逃逸参数，能够适应绝大多数风场情况。</div>
+<div class="description-paragraph" id="p0051" num="0046">本具体实施例中软件间通信采用高可靠冗余设计，故障检测处理设备和逃逸程序控制设备均为三个处理器冗余高可靠设备，每个处理器独立进行计算与通信，对计算结果进行三取二表决执行；每组处理器间通信采用三遍重复发送防误措施，接收方对三遍传输内容进行比较，三遍完全一致才为有效数据，增加信息通信纠错标识校验和，在发送前对通信内容进行计算，与通信内容一起传输给接收方，接收方收到信息帧后进行相同计算并与校验字节进行比较。</div>
+<div class="description-paragraph" id="p0052" num="0047">S4、逃逸程序控制器按指令控制逃逸系统火工品</div>
+<div class="description-paragraph" id="p0053" num="0048">根据逃逸控制子系统接收到的指令信号和逃逸参数，逃逸程序控制器控制逃逸系统火工品按逃逸时序执行相应操作。</div>
+<div class="description-paragraph" id="p0054" num="0049">至此，完成了采用载人逃逸飞行器低空风场检测控制系统的控制方法。</div>
+<div class="description-paragraph" id="p0055" num="0050">本具体实施例所取得的有益技术效果是：</div>
+<div class="description-paragraph" id="p0056" num="0051">针对载人逃逸飞行的逃逸设计方法，提出针对发射场风载荷的载人逃逸飞行器低空风场检测控制系统及控制方法，提高了载人逃逸飞行时面对不同风载荷的适应性与安全性，通过设计可适应低空风场的逃逸控制发动机点火策略，以及快速准确适应现场射前修改策略的实现方法，可实现针对不同风场下载人逃逸飞行的安全性。</div>
+<div class="description-paragraph" id="p0057" num="0052">通过对于发射场低空风场的实时测量与决策，改变逃逸飞行器上逃逸控制发动机点火策略的思路，实现载人逃逸飞行器在低空风作用下快速远离危险区功能，更加有效保障航天员安全，解决了现有技术中载人逃逸飞行器不能在发射前针对低空风场情况进行调整的问题，具有突出的实质性特点和显著的进步。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

@@ -1,0 +1,203 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120972991A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES512089647">
+<invention-title id="title1" lang="ZH">一种低空空域飞行器飞行路线规划系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及路线规划技术领域，尤其涉及一种低空空域飞行器飞行路线规划系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">路线规划技术领域主要涉及在特定约束条件下，为移动目标生成最优或可行移动路径的理论与方法。该领域包括但不限于路径生成算法、路径平滑与优化、障碍规避、动态环境适应、能耗约束、时间窗口调度等内容。路线规划广泛应用于自动驾驶、机器人导航、交通管理、无人机调度、船舶航迹规划等场景中，重点关注目标从起点到终点过程中如何在空间中移动以达到效率、成本、安全性等指标最优。</div>
+<div class="description-paragraph" id="p0005" num="0003">其中，低空空域飞行器飞行路线规划系统是用于为在低空空域内飞行的飞行器生成飞行路径的系统。其用途在于根据飞行任务要求、飞行器性能参数、空域限制、地形信息、气象条件等要素，生成满足航线安全、效率和合规性的飞行路径。该系统能够提升飞行器在复杂低空环境下的飞行自主性与运行协调能力，广泛适用于城市空中交通、物流配送、巡查监控等应用场景。</div>
+<div class="description-paragraph" id="p0006" num="0004">传统规划系统仅依赖任务要求与常规空域、气象、地形等静态信息进行路径生成，难以识别调度任务中标签化表达所隐含的空域排斥特性，导致部分任务中对特定禁入区域或视距保持要求无法明确量化处理，在路径选取过程中缺乏对空域排斥等级的差异化判定机制，在空域段提取时亦未对低空障碍密集度与风剪角变化进行路径级别的联合约束，造成路径规划结果存在穿越局部扰动强区域的可能，若遇高密度建筑环境或多变气流条件，将导致飞行器路径不稳定、飞控指令频繁调整，降低路径执行一致性与飞行安全水平。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明的目的是解决现有技术中存在的缺点，而提出的一种低空空域飞行器飞行路线规划系统。</div>
+<div class="description-paragraph" id="p0009" num="0006">为了实现上述目的，本发明采用了如下技术方案：一种低空空域飞行器飞行路线规划系统，所述系统包括：</div>
+<div class="description-paragraph" id="p0010">任务解析模块获取低空飞行器调度任务数据，判断标签项是否为具有空域排斥特性的限制项，将空域划设等级表中的空域段进行编号比对，生成空域排斥标志信息；</div>
+<div class="description-paragraph" id="p0011">空域建模模块基于所述空域排斥标志信息，判断排斥标志对应空域段是否为强制排斥标记，若为强制排斥则设为无效区域，提取剩余空域段中边界封闭完整、视距飞行规则等级大于基本VFR等级基准值的空域段，生成低空飞行路径候选空域集合；</div>
+<div class="description-paragraph" id="p0012">路径生成模块基于所述低空飞行路径候选空域集合，采集每个路径段对应的低空层高度、风剪角分布与建筑物投影密度，对低空障碍投影数量与空域段宽度比值执行风险分布筛选，生成低空飞行风险引导初始路径信息；</div>
+<div class="description-paragraph" id="p0013">可行性验证模块调用所述低空飞行风险引导初始路径信息，判断每段路径高度是否处于风压变化剧烈区段，剔除高风险标签路径段，将剩余路径段中连续稳定片段进行组合处理，生成低空飞行可行路径序列。</div>
+<div class="description-paragraph" id="p0014" num="0007">本发明改进有，所述空域排斥标志信息包括空域识别编码、任务限制映射表、排斥等级索引、空域适应标记和冲突判断值，所述低空飞行路径候选空域集合包括可通行空域段编号、边界坐标组、通视规则标签、最小飞行高度组和区域通行优先级，所述低空飞行风险引导初始路径信息包括路径节点编号图、风剪角偏移值图层、路径障碍密度评分集、方向差角参考集和路径段风险权重集，所述低空飞行可行路径序列具体为节点高度集合、路径段风压敏感等级、路径连续性映射序列和风压剔除路径标识集。</div>
+<div class="description-paragraph" id="p0015" num="0008">本发明改进有，所述任务解析模块包括：</div>
+<div class="description-paragraph" id="p0016">任务信息提取子模块获取低空飞行器调度任务数据，任务数据包括任务类型、飞行起止点对、视距保持时长与禁入区域等级，提取任务标签中标记为路径规划强相关属性的字段项，对提取字段中的字段值进行编号归类，并以编号归类结果为基础建立任务标签索引列表，生成任务标签索引序列；</div>
+<div class="description-paragraph" id="p0017">限制标签筛选子模块基于所述任务标签索引序列，根本标记为路径强制限制属性的标签项，调用标签项对应的属性等级与排斥等级标准值，判断属性等级是否大于排斥等级标准值，并对满足条件的标签项执行筛选处理，生成空域排斥限制编号集；</div>
+<div class="description-paragraph" id="p0018">空域标志生成子模块根据所述空域排斥限制编号集，调用空域划设等级表中空域段的空域编号与划设等级值，比较空域段等级值与排斥限制编号集中每一编号对应的标签等级值大小关系，并将大于关系成立的空域段设置为空域排斥标志段，建立空域段编号与排斥标志的对应结构表，生成空域排斥标志信息。</div>
+<div class="description-paragraph" id="p0019" num="0009">本发明改进有，所述空域建模模块包括：</div>
+<div class="description-paragraph" id="p0020">边界数据提取子模块基于所述空域排斥标志信息，根据每条空域段对应编号，调用低空空域层级下编号对应空域段的空间边界坐标、最低飞行高度限制与视距飞行规则等级三项参数，提取有效数据结构中的数值型参数项，生成空域段结构参数值集；</div>
+<div class="description-paragraph" id="p0021">排斥标志判断子模块基于所述空域段结构参数值集，根据每个空域段的编号信息与对应排斥标志值，获取空域段标识等级与排斥等级阈值，执行空域标识等级与排斥等级阈值的差值计算，并将差值结果与设定可行区间范围进行比较判断，运算获取可判别段的排斥相对强度值，将排斥相对强度值大于排斥判断基准值的空域段标记为强制排斥区段，生成排斥等级筛分结果；</div>
+<div class="description-paragraph" id="p0022">可行区域筛选子模块调用所述排斥等级筛分结果，根据标记为非强制排斥区段的空域编号，提取对应空域段的边界坐标点组并进行封闭性检验，同时比较视距飞行规则等级是否大于基本VFR等级基准值，若满足封闭性成立且等级大于基准值，则纳入路径规划候选区域列表，生成低空飞行路径候选空域集合。</div>
+<div class="description-paragraph" id="p0023" num="0010">本发明改进有，所述路径生成模块包括：</div>
+<div class="description-paragraph" id="p0024">连接图构建子模块基于所述低空飞行路径候选空域集合，根据每个空域段的边界顶点坐标点集，对坐标点按照空间连接边界规则生成区域拓扑边连接关系，建立节点邻接序列和对应边界方向关系矩阵，生成空域段连接图结构信息；</div>
+<div class="description-paragraph" id="p0025">节点映射识别子模块根据所述空域段连接图结构信息，采集飞行器任务调度表中的任务起点坐标与终点坐标，执行坐标点与图结构中节点的距离比较，判断其最短距离对应的节点编号，并记录为映射起点与映射终点，生成任务节点映射索引对；</div>
+<div class="description-paragraph" id="p0026">路径风险筛选子模块调用所述任务节点映射索引对，遍历连接图结构中每个路径段节点序列，对路径段中每个单元段采集风剪角变化值、路径朝向夹角、障碍物投影数量与空域段有效宽度，计算障碍分布比值并与风剪扰动值进行联合判别，运算获取每个路径段的综合风险值，根据路径段的综合风险值小于路径风险筛选阈值的路径段集合，构建连续路径图段，生成低空飞行风险引导初始路径信息。</div>
+<div class="description-paragraph" id="p0027" num="0011">本发明改进有，所述可行性验证模块包括：</div>
+<div class="description-paragraph" id="p0028">高度风压判断子模块调用所述低空飞行风险引导初始路径信息，根据路径段的节点高度值与对应路径段的风压梯度值，调用飞行器平台技术规范中定义的升限高度，对每个路径段节点的高度值与风压梯度变化区间范围进行交叉判断，筛除处于边界模糊区段的数据并标识剩余区段所属稳定或剧烈类别，生成风压区段判断分类信息；</div>
+<div class="description-paragraph" id="p0029">风险强度计算子模块基于所述风压区段判断分类信息，根据被标记为风压扰动剧烈类别的路径段，采集每段路径的风压变化幅度、节点平均高度、路径坡度变化量、飞行器升限高度，执行风压与高度相对风险系数计算，运算获取剧烈路径段的风险强度值，将风险强度值大于风压风险基准值的路径段标注为高风险类别，生成高风险路径标记结果；</div>
+<div class="description-paragraph" id="p0030">稳定路径组合子模块调用所述高风险路径标记结果，根据未被标识为高风险的路径段，按路径编号顺序对相邻路径段执行连续性判断，排除断裂段并组合为可连续路径段组，建立结构映射关系并重新生成任务对应路径索引集，得到低空飞行可行路径序列。</div>
+<div class="description-paragraph" id="p0031" num="0012">本发明改进有，所述系统还包括：</div>
+<div class="description-paragraph" id="p0032">路径输出模块基于所述低空飞行可行路径序列，根据每段路径的节点坐标，获取飞行器航向控制数据结构模板，构建连续指令控制点组，将路径段首尾节点按飞行指令序列顺序排列，组装形成路径执行集，生成低空航线控制结构序列；</div>
+<div class="description-paragraph" id="p0033">所述低空航线控制结构序列包括路径段控制指令集、航向控制点编号、速度控制配置表、飞行转向角度序列和路径段执行时间轴。</div>
+<div class="description-paragraph" id="p0034" num="0013">本发明改进有，所述路径输出模块包括：</div>
+<div class="description-paragraph" id="p0035">航向模板生成子模块基于所述低空飞行可行路径序列，根据每段路径段的全部节点坐标，对节点坐标进行编号排序，并调用飞行器配置库中的航向控制模板结构，依据路径方向向量与节点密度区间匹配表进行模板结构索引定位，获取对应模板匹配关系表，生成控制模板结构索引信息；</div>
+<div class="description-paragraph" id="p0036">节点指令构建子模块基于所述控制模板结构索引信息，根据对应模板结构的字段属性，提取每段路径段的首尾节点坐标点作为路径段执行起点与终点，对路径段方向向量与模板参考航向进行夹角判断，结合飞行器任务编号的速度参数设定范围，匹配每段路径段速度常量与航向调整区间边界值，建立路径段编号与指令字段的绑定关系，生成路径节点执行指令信息；</div>
+<div class="description-paragraph" id="p0037">指令集组装子模块基于所述路径节点执行指令信息，根据路径段顺序，按节点编号构建连续路径指令集列表，将每段路径段的方向编码、速度值、转向控制角度阈值进行参数嵌套，实施路径段航行控制数据字段整合，生成低空航线控制结构序列。</div>
+<div class="description-paragraph" id="p0038" num="0014">与现有技术相比，本发明的优点和积极效果在于：</div>
+<div class="description-paragraph" id="p0039">本发明中，通过对飞行任务中视距保持时长与禁入等级的结构化剥离，可针对具有空域排斥特性的标签信息执行精度化筛选，通过编号映射空域等级表，生成可判定强制性排斥关系的标志信息，在空域边界提取中引入视距飞行规则等级判断以剔除不满足最低视距基准要求的空域段，构建连接图并执行风剪角与建筑物投影密度联合计算，对路径段角度差与障碍密度比值进行动态加权，生成带有风剪差引导的初始路径信息，通过路径段高度与风压变化梯度之比的量化分析，对处于不稳定气流区的路径执行强度风险标注，实现路径连续性与稳定性判别，在路径组合阶段基于稳定片段序列构建连续指令点组并设置速度与转向调整阈值，增强路径执行序列对飞行控制的适应性与执行鲁棒性，提升在复杂低空环境下的航线可行性与规避风险能力。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0040">附图说明</div>
+<div class="description-paragraph" id="p0041" num="0015">图1为本发明的系统流程图；</div>
+<div class="description-paragraph" id="p0042">图2为本发明任务解析模块的流程图；</div>
+<div class="description-paragraph" id="p0043">图3为本发明空域建模模块的流程图；</div>
+<div class="description-paragraph" id="p0044">图4为本发明路径生成模块的流程图；</div>
+<div class="description-paragraph" id="p0045">图5为本发明可行性验证模块的流程图；</div>
+<div class="description-paragraph" id="p0046">图6为本发明路径输出模块的流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0047">具体实施方式</div>
+<div class="description-paragraph" id="p0048" num="0016">为了使本发明的目的、技术方案及优点更加清楚明白，以下结合附图及实施例，对本发明进行进一步详细说明。应当理解，此处所描述的具体实施例仅仅用以解释本发明，并不用于限定本发明。</div>
+<div class="description-paragraph" id="p0049" num="0017">在本发明的描述中，需要理解的是，术语“长度”“宽度”“上”“下”“前”“后”“左”“右”“竖直”“水平”“顶”“底”“内”“外”等指示的方位或位置关系为基于附图所示的方位或位置关系，仅是为了便于描述本发明和简化描述，而不是指示或暗示所指的装置或元件必须具有特定的方位、以特定的方位构造和操作，因此不能理解为对本发明的限制。此外，在本发明的描述中，“多个”的含义是两个或两个以上，除非另有明确具体的限定。</div>
+<div class="description-paragraph" id="p0050" num="0018">请参阅图1，本发明提供一种技术方案：一种低空空域飞行器飞行路线规划系统，系统包括任务解析模块、空域建模模块、路径生成模块、可行性验证模块和路径输出模块；</div>
+<div class="description-paragraph" id="p0051">任务解析模块获取低空飞行器调度任务数据，任务数据包括任务类型、飞行起止点对、视距保持时长与禁入区域等级，对任务标签中的三项内容执行优先剥离，判断标签项是否为具有空域排斥特性的限制项，并以限制项编号与等级为基准生成排斥标志，将空域划设等级表中的空域段进行编号比对，生成空域排斥标志信息；</div>
+<div class="description-paragraph" id="p0052">空域建模模块基于空域排斥标志信息，调用每个空域段在低空空域层级下的空间边界坐标、最低飞行高度限制、视距飞行规则等级，判断排斥标志对应空域段是否为强制排斥标记，若为强制排斥则设为无效区域，若为非强制排斥则设为优先级较低区域，提取剩余空域段中边界封闭完整、视距飞行规则等级大于基本VFR等级基准值的空域段，生成低空飞行路径候选空域集合；</div>
+<div class="description-paragraph" id="p0053">路径生成模块基于低空飞行路径候选空域集合，根据每个空域段的边界顶点集，生成空域段连接图，获取飞行器任务起止坐标点，标识起止点在空域连接图中的映射节点，采集每个路径段对应的低空层高度、风剪角分布与建筑物投影密度，对路径段风剪角变化值与路径朝向差值执行角度差判断，对低空障碍投影数量与空域段宽度比值执行风险分布筛选，对筛选后路径段中的节点依据风剪差与障碍风险得分执行加权偏移值运算，生成低空飞行风险引导初始路径信息；</div>
+<div class="description-paragraph" id="p0054">可行性验证模块调用低空飞行风险引导初始路径信息，根据路径段节点的高度信息、风压梯度、飞行器升限高度，判断每段路径高度是否处于风压变化剧烈区段，计算风压变化幅度与升限高度间的比值，对路径段进行风险强度标签标注，剔除高风险标签路径段，将剩余路径段中连续稳定片段进行组合处理，生成低空飞行可行路径序列；</div>
+<div class="description-paragraph" id="p0055">路径输出模块基于低空飞行可行路径序列，根据每段路径的节点坐标，获取飞行器航向控制数据结构模板，构建连续指令控制点组，将路径段首尾节点按飞行指令序列顺序排列，设定每段路径的飞行速度常量与转向角调整阈值，组装形成路径执行集，生成低空航线控制结构序列；</div>
+<div class="description-paragraph" id="p0056">最低飞行高度限制指依据航空法规对飞行器在特定空域或地形条件下最低可安全飞行的高度限制，通常依据飞行规则和地形图设定；视距飞行规则等级指空域分类中对飞行器能否以目视规则飞行的限制；风剪角定义为飞行器在短距离内遇到的风速/风向变化所形成的角度差，是风剪效应的衡量指标；建筑物投影密度表示在特定网格单元内出现的高于最低通航高度的障碍物数量，用于评估空域中飞行障碍的复杂度；风压梯度代表单位距离内风压的变化率，是影响飞行路径扰动的关键气象参数，常通过高空气象数据或LIDAR回波获得；转向角调整阈值为飞行器在连续航向调整中能够承受或有效控制的最大方向变化速率，用于限定路径中转弯段控制精度；</div>
+<div class="description-paragraph" id="p0057">空域排斥标志信息包括空域识别编码、任务限制映射表、排斥等级索引、空域适应标记和冲突判断值，低空飞行路径候选空域集合包括可通行空域段编号、边界坐标组、通视规则标签、最小飞行高度组和区域通行优先级，低空飞行风险引导初始路径信息包括路径节点编号图、风剪角偏移值图层、路径障碍密度评分集、方向差角参考集和路径段风险权重集，低空飞行可行路径序列具体为节点高度集合、路径段风压敏感等级、路径连续性映射序列和风压剔除路径标识集，低空航线控制结构序列包括路径段控制指令集、航向控制点编号、速度控制配置表、飞行转向角度序列和路径段执行时间轴。</div>
+<div class="description-paragraph" id="p0058" num="0019">请参阅图2，任务解析模块包括：</div>
+<div class="description-paragraph" id="p0059">任务信息提取子模块获取低空飞行器调度任务数据，任务数据包括任务类型、飞行起止点对、视距保持时长与禁入区域等级，提取任务标签中标记为路径规划强相关属性的字段项，对提取字段中的字段值进行编号归类，并以编号归类结果为基础建立任务标签索引列表，生成任务标签索引序列；</div>
+<div class="description-paragraph" id="p0060">任务信息提取子模块基于调度任务中各飞行器的任务类型、起止点坐标、视距保持时长与禁入区域等级等字段展开处理，首先对每一条任务记录提取其原始数据字段，并进行结构化编号处理，例如任务类型“监测任务”设为T1、“物流配送”设为T2、“地理测绘”设为T3，飞行起止点对采用经纬度坐标形式记录后统一转换为二维索引对，在本实施例中，UAV001的起止点为(116.30,39.90)-(116.40,39.95)，编号为N1-N5，随后视距保持时长采用区间标准划分，设定视距保持时长被划分为三个区间：[0,90]、(90,150]、(150,180]，分别设定区间等级值为V1=1、V2=2、V3=3，该设置依据为飞行器地面控制系统通视保持能力经验值，例如大多数小型无人机在控制距离内通视维持能力约为90秒，因此以90秒为一级分界线，150秒为最大连续飞行时间设定上限，UAV002对应90秒划入V1，UAV001的120秒划入V2，禁入区域等级以国家空域划设标准等级（1–5级）为参考，依托任务数据库设定的路径规划标签体系，将等级3以上视为限制属性标签，任务中字段项依此进行编号标注，如禁入等级4标记为F4，对各项已编号字段设定编号映射函数，组合编号构成初始任务标签元组，对每一任务提取结果以元组形式归入标签序列中，例如UAV003标签组合为T3、N3-N6、V3、F4，最后对全任务表中的标签元组进行序列集合归并并去重，生成任务标签索引序列；</div>
+<div class="description-paragraph" id="p0061">表1任务字段提取示例表</div>
+<div class="description-paragraph" id="p0062">
+<tables>
+<patent-tables>
+<table class="description-table" cols="6" width="100%">
+<tbody><tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">飞行器编号</td>
+<td class="description-td" morerows="1" rowspan="2">任务类型</td>
+<td class="description-td" morerows="1" rowspan="2">起点坐标</td>
+<td class="description-td" morerows="1" rowspan="2">终点坐标</td>
+<td class="description-td" morerows="1" rowspan="2">视距保持时长/s</td>
+<td class="description-td" morerows="1" rowspan="2">禁入区域等级</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">UAV001</td>
+<td class="description-td" morerows="1" rowspan="2">监测任务</td>
+<td class="description-td" morerows="1" rowspan="2">(116.30,39.90)</td>
+<td class="description-td" morerows="1" rowspan="2">(116.40,39.95)</td>
+<td class="description-td" morerows="1" rowspan="2">120</td>
+<td class="description-td" morerows="1" rowspan="2">3</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">UAV002</td>
+<td class="description-td" morerows="1" rowspan="2">物流配送</td>
+<td class="description-td" morerows="1" rowspan="2">(116.35,39.88)</td>
+<td class="description-td" morerows="1" rowspan="2">(116.45,39.92)</td>
+<td class="description-td" morerows="1" rowspan="2">90</td>
+<td class="description-td" morerows="1" rowspan="2">2</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">UAV003</td>
+<td class="description-td" morerows="1" rowspan="2">地理测绘</td>
+<td class="description-td" morerows="1" rowspan="2">(116.28,39.92)</td>
+<td class="description-td" morerows="1" rowspan="2">(116.38,39.97)</td>
+<td class="description-td" morerows="1" rowspan="2">150</td>
+<td class="description-td" morerows="1" rowspan="2">4</td>
+</tr>
+</tbody></table>
+</patent-tables>
+</tables>
+</div>
+<div class="description-paragraph" id="p0063">如表1所示，展示了典型飞行器任务调度表中字段值的提取与归类情况，可为任务标签索引结构构建提供输入依据。</div>
+<div class="description-paragraph" id="p0064" num="0020">限制标签筛选子模块基于任务标签索引序列，根本标记为路径强制限制属性的标签项，调用标签项对应的属性等级与排斥等级标准值，判断属性等级是否大于排斥等级标准值，并对满足条件的标签项执行筛选处理，生成空域排斥限制编号集；</div>
+<div class="description-paragraph" id="p0065">限制标签筛选子模块依据任务标签索引序列中标记为路径强制限制属性的标签项开展判断处理，首先调用排斥等级标准值参照表，其中将禁入等级大于等于3的标签视为具备强制性，本实施中设定排斥等级标准值R_base=3，该数值参考国家民用空域管理细则对飞行高度在150米以下区域所规定的空域分级，对任务中禁入区域等级与R_base进行大小关系判断，属性等级值大于R_base即视为应筛除限制项，例如F4所对应等级值为4，而当前排斥等级标准值为3，则满足条件保留F4，此外，对于视距保持时长的辅助限制基准值，设定最小通视约束等级V_min=2，依据多数机型的控制连续性时长定义，其来源于表1中样本平均保持时长大于105秒所划分等级为V2，因此设定V_min=2为筛选门槛，对任务中设定保持等级低于V_min的标签视为无稳定控制保障条件，如V1对应任务字段将被标记为排斥任务，最终形成的编号集示例为{F3,F4,V1}，以构建路径段筛选依据，生成空域排斥限制编号集。</div>
+<div class="description-paragraph" id="p0066" num="0021">空域标志生成子模块根据空域排斥限制编号集，调用空域划设等级表中空域段的空域编号与划设等级值，比较空域段等级值与排斥限制编号集中每一编号对应的标签等级值大小关系，并将大于关系成立的空域段设置为空域排斥标志段，建立空域段编号与排斥标志的对应结构表，生成空域排斥标志信息；</div>
+<div class="description-paragraph" id="p0067">空域标志生成子模块根据空域排斥限制编号集，对空域划设等级表中所有空域段执行等级比对操作，在具体实施中，首先获取每个空域段的编号与其设定等级值，例如编号S12的空域段等级值为4，编号S7等级为2，对照排斥编号集中F4对应值为4，执行比较，将空域段等级值与排斥等级值进行判别时，设定大于等于判断基准为“是否满足空域等级值≥标签等级值”，若关系成立则该空域被标记排斥，此外对于复合限制判断，如F4与V1联合，需对空域段的航迹可通性指数进行辅助约束判断，若该段平均通视覆盖时长低于V_min=2，则联合作为排斥条件成立，设定排斥标签组权重判别权重W=1.0，当两个标签均满足时排斥权重乘积为W^2=1.0，则直接判定剔除，若仅满足一项则记为W=1，仍列入待比对序列，最后生成编号-排斥布尔对构成的结构化列表，例如{S12:True,S7:False,S19:True}，据此建立空域标识结构表，形成空域排斥标志信息。</div>
+<div class="description-paragraph" id="p0068" num="0022">请参阅图3，空域建模模块包括：</div>
+<div class="description-paragraph" id="p0069">边界数据提取子模块基于空域排斥标志信息，根据每条空域段对应编号，调用低空空域层级下编号对应空域段的空间边界坐标、最低飞行高度限制与视距飞行规则等级三项参数，提取有效数据结构中的数值型参数项，生成空域段结构参数值集；</div>
+<div class="description-paragraph" id="p0070">边界数据提取子模块获取空域排斥标志信息中每条空域段对应编号，并在本实施例中选定编号为S01至S10的十条空域段进行样本提取处理，首先通过低空空域层级数据库接口调取各编号对应空域段的边界坐标集合，每组边界点均由不小于4个二维坐标点组成，构成闭合多边形轮廓，随后读取该段设定的最低飞行高度值，例如S03最低飞行高度为160m，任务最大允许飞行高度设定为400m，则归一化值为<span class="patent-image-not-available"></span>，再读取空域段设定的视距飞行规则等级值，本实施中规则等级取值为1至6级，若S03等级为3，则归一化值为<span class="patent-image-not-available"></span>，接着测定边界点集构成的封闭多边形的周边长度，若该边界长度为2400m，而全局最大空域边界长度为6000m，则归一化后<span class="patent-image-not-available"></span>，将所有归一化数值及原编号存入结构化矩阵表，并与排斥标志布尔值绑定，形成输入值集。</div>
+<div class="description-paragraph" id="p0071" num="0023">表2空域段结构参数归一化值示例表</div>
+<div class="description-paragraph" id="p0072">如表2所示，每条空域段的结构参数经归一化后形成统一量纲输入，便于后续排斥值计算处理。</div>
+<div class="description-paragraph" id="p0073" num="0024">排斥标志判断子模块基于空域段结构参数值集，根据每个空域段的编号信息与对应排斥标志值，获取空域段标识等级与排斥等级阈值，执行空域标识等级与排斥等级阈值的差值计算，并将差值结果与设定可行区间范围进行比较判断，采用公式：</div>
+<div class="description-paragraph" id="p0074"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0075">运算获取可判别段的排斥相对强度值，将排斥相对强度值大于排斥判断基准值的空域段标记为强制排斥区段，生成排斥等级筛分结果；</div>
+<div class="description-paragraph" id="p0076">其中，<span class="patent-image-not-available"></span>为空域段的排斥相对强度值，数值越大表示排斥等级越强，<span class="patent-image-not-available"></span>为空域段的标识等级值，<span class="patent-image-not-available"></span>为排斥等级阈值，<span class="patent-image-not-available"></span>为最低飞行高度限制的归一化值，为原高度与任务最大允许飞行高度比值所得，<span class="patent-image-not-available"></span>为视距飞行规则等级的归一化值，为原等级与最大等级区间比值所得，<span class="patent-image-not-available"></span>为空域边界封闭长度的归一化值，为边界长度与空域全局最大边界长度比值所得，<span class="patent-image-not-available"></span>为风剪扰动系数，为该空域段内风向标准差与风速标准差的乘积，衡量该段风扰动波动性程度；</div>
+<div class="description-paragraph" id="p0077">排斥标志判断子模块根据空域段结构参数值集中的编号与布尔标志进行筛分，对编号S01–S10中标记为True的条目执行排斥强度值判别，设定排斥等级阈值<span class="patent-image-not-available"></span>，空域段标识等级值<span class="patent-image-not-available"></span>由结构库中查询获取，例如S02设定为4，则有<span class="patent-image-not-available"></span>，调用表2中归一化值进行运算，S02对应<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，扰动系数<span class="patent-image-not-available"></span>由风向标准差<span class="patent-image-not-available"></span>和风速标准差<span class="patent-image-not-available"></span>相乘计算，若分别为1.2与0.8，则<span class="patent-image-not-available"></span>，代入公式：</div>
+<div class="description-paragraph" id="p0078"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0079">公式中第一项<span class="patent-image-not-available"></span>表示空域段的标识等级与设定排斥等级之间的差异程度，用以衡量该空域本身在等级标准上与排斥准则的偏离幅度，差值越大代表越接近排斥边界；第二项为对空域环境扰动与飞行复杂度的联合度量，其中平方根项<span class="patent-image-not-available"></span>衡量空域在最低飞行高度限制与视距飞行规则等级两个方面的综合要求强度，再通过分母<span class="patent-image-not-available"></span>对空域封闭边界长度归一值进行折算，边界越长则表明空域越复杂，该分母因子越大使整体扰动权重被稀释，最后乘以<span class="patent-image-not-available"></span>表示对风剪扰动剧烈程度的非线性放大处理，该对数函数项在扰动越强时增长幅度更快，对排斥程度影响增强，整体结构可视作对空域复杂性与扰动性的风险叠加表达。</div>
+<div class="description-paragraph" id="p0080" num="0025">代入数值具体计算如下：</div>
+<div class="description-paragraph" id="p0081"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0082">该结果<span class="patent-image-not-available"></span>表明编号S02空域段的排斥强度已超过设定排斥判断基准值<span class="patent-image-not-available"></span>，表示该段空域在排斥等级上不仅已具备明显差异，同时其结构复杂性、飞行高度约束与扰动幅度形成叠加影响，具有更高综合排斥风险，因此S02被标记为强制排斥区段，并纳入强制排斥编号列表作为排斥等级筛分结果的组成项。该结果在后续筛选路径候选区域时将被用于排除飞行器不可通行空域范围，具有路径规划中空域过滤作用。</div>
+<div class="description-paragraph" id="p0083" num="0026">可行区域筛选子模块调用排斥等级筛分结果，根据标记为非强制排斥区段的空域编号，提取对应空域段的边界坐标点组并进行封闭性检验，同时比较视距飞行规则等级是否大于基本VFR等级基准值，若满足封闭性成立且等级大于基准值，则纳入路径规划候选区域列表，生成低空飞行路径候选空域集合；</div>
+<div class="description-paragraph" id="p0084">可行区域筛选子模块调用排斥等级筛分结果中的非强制排斥段编号，例如编号S01、S03未超出基准排斥强度值，提取其边界坐标点集并进行封闭性判别，采用节点逆时针有向环构造校验方法进行多边形闭合判断，S01和S03均通过封闭性检验，随后读取其视距飞行规则等级并对照VFR等级基准值，本实施中VFR等级基准值设定为3，源自中国民航空域使用规范中规定的A–G类空域中G类允许视觉飞行需视距等级不少于3级，若S01等级为2则不满足，S03等级为3则满足，最终仅将同时满足封闭与等级基准的空域段保留，纳入候选路径区域列表，生成低空飞行路径候选空域集合。</div>
+<div class="description-paragraph" id="p0085" num="0027">请参阅图4，路径生成模块包括：</div>
+<div class="description-paragraph" id="p0086">连接图构建子模块基于低空飞行路径候选空域集合，根据每个空域段的边界顶点坐标点集，对坐标点按照空间连接边界规则生成区域拓扑边连接关系，建立节点邻接序列和对应边界方向关系矩阵，生成空域段连接图结构信息；</div>
+<div class="description-paragraph" id="p0087">获取低空飞行路径候选空域集合中每个空域段的边界顶点坐标点集，将每组空域段对应的顶点按照顺时针方向排序，在排序后按照空间连接边界规则进行逐对判断，若两个顶点间欧几里得距离小于路径构建基准阈值<span class="patent-image-not-available"></span>，则判定为存在边界连通关系，并在点对之间添加连接边结构，在获取所有连接边后，遍历全局点集，对每个点建立与其存在连接关系的相邻点编号并记录邻接关系为序列结构，同时针对每个连接边，依据顶点坐标差值计算边的方向夹角<span class="patent-image-not-available"></span>，构建每个节点的连接边方向，最终生成空域段连接图结构信息，其中边界连接判断以<span class="patent-image-not-available"></span>为基准阈值，是基于无人机在低空区域所允许路径弯折最大半径为<span class="patent-image-not-available"></span>所设置，若连接点之间的欧几里得距离超过<span class="patent-image-not-available"></span>，则路径构建时飞行器无法精确控制飞行路径误差在<span class="patent-image-not-available"></span>以内，将产生航迹偏移风险，因而不构建边，点间方向夹角<span class="patent-image-not-available"></span>计算采用坐标向量差值进行反正切运算获得方向值，如起点坐标为<span class="patent-image-not-available"></span>，终点为<span class="patent-image-not-available"></span>，方向角计算为<span class="patent-image-not-available"></span>，最终获取的连接图结构值用于后续路径图段构建的拓扑基础；</div>
+<div class="description-paragraph" id="p0088">节点映射识别子模块根据空域段连接图结构信息，采集飞行器任务调度表中的任务起点坐标与终点坐标，执行坐标点与图结构中节点的距离比较，判断其最短距离对应的节点编号，并记录为映射起点与映射终点，生成任务节点映射索引对；</div>
+<div class="description-paragraph" id="p0089">根据空域段连接图结构信息，采集飞行器任务调度表中的任务起点坐标与终点坐标，任务编号<span class="patent-image-not-available"></span>对应的起点坐标为<span class="patent-image-not-available"></span>，终点为<span class="patent-image-not-available"></span>，对起点坐标与所有图结构中的节点坐标计算欧几里得距离，选择距离最短者作为映射起点，如距离最小值为<span class="patent-image-not-available"></span>时，其对应节点编号为<span class="patent-image-not-available"></span>，则<span class="patent-image-not-available"></span>为映射起点，同理，终点对应映射节点编号<span class="patent-image-not-available"></span>，最终形成任务节点映射索引对<span class="patent-image-not-available"></span>，其中欧几里得距离采用标准公式：</div>
+<div class="description-paragraph" id="p0090"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0091">以起点<span class="patent-image-not-available"></span>与候选节点<span class="patent-image-not-available"></span>为例，距离计算为：</div>
+<div class="description-paragraph" id="p0092"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0093">如表3所示为部分节点与起点之间的欧几里得距离值，距离最小的节点编号即为最终索引结果：</div>
+<div class="description-paragraph" id="p0094">表3任务起点至部分节点的欧几里得距离表</div>
+<div class="description-paragraph" id="p0095">参见表3，节点<span class="patent-image-not-available"></span>距离起点最近，最终生成的任务节点映射索引对为<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0096">路径风险筛选子模块调用任务节点映射索引对，遍历连接图结构中每个路径段节点序列，对路径段中每个单元段采集风剪角变化值、路径朝向夹角、障碍物投影数量与空域段有效宽度，计算障碍分布比值并与风剪扰动值进行联合判别，采用公式：</div>
+<div class="description-paragraph" id="p0097"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0098">运算获取每个路径段的综合风险值，根据路径段的综合风险值小于路径风险筛选阈值的路径段集合，构建连续路径图段，生成低空飞行风险引导初始路径信息；</div>
+<div class="description-paragraph" id="p0099">其中，<span class="patent-image-not-available"></span>表示路径段的综合风险值，<span class="patent-image-not-available"></span>表示路径段方向与风剪方向夹角，<span class="patent-image-not-available"></span>为风剪角变化值归一化，<span class="patent-image-not-available"></span>为障碍物投影密度归一化，<span class="patent-image-not-available"></span>为空域段宽度归一化，<span class="patent-image-not-available"></span>为风剪响应权重常数，<span class="patent-image-not-available"></span>表示该段扰动分布离散因子，计算为局部扰动标准差与路径段均值之比；</div>
+<div class="description-paragraph" id="p0100">调用任务节点映射索引对中的起止节点编号<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，在连接图结构中以深度优先策略遍历所有起点至终点的路径段集合，对每段路径段内的单元段采集风剪角变化值<span class="patent-image-not-available"></span>、路径朝向夹角<span class="patent-image-not-available"></span>、障碍物投影数量<span class="patent-image-not-available"></span>与空域段有效宽度<span class="patent-image-not-available"></span>，计算障碍物投影密度归一化值<span class="patent-image-not-available"></span>，宽度归一化为<span class="patent-image-not-available"></span>，路径夹角<span class="patent-image-not-available"></span>归一化为<span class="patent-image-not-available"></span>，风剪角<span class="patent-image-not-available"></span>归一化为<span class="patent-image-not-available"></span>，扰动分布离散因子<span class="patent-image-not-available"></span>为风剪标准差与平均值之比。采用如下公式：</div>
+<div class="description-paragraph" id="p0101"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0102">公式逻辑说明如下：</div>
+<div class="description-paragraph" id="p0103">第一项<span class="patent-image-not-available"></span>表示路径与风剪方向差异在风险中的权重占比，<span class="patent-image-not-available"></span>越大方向偏差越大，<span class="patent-image-not-available"></span>越大表示风剪效应影响越敏感；</div>
+<div class="description-paragraph" id="p0104">第二项<span class="patent-image-not-available"></span>表示风剪扰动与障碍密度的风险叠加效应，两者越大整体风险越高；</div>
+<div class="description-paragraph" id="p0105">分母<span class="patent-image-not-available"></span>用于表示风险在宽度较小区域内的加权压缩效应，B越大表示通行宽裕程度高，风险低；</div>
+<div class="description-paragraph" id="p0106">最后一项<span class="patent-image-not-available"></span>表征扰动波动性对整体风险的调节力度，<span class="patent-image-not-available"></span>越大，表示扰动越不稳定，<span class="patent-image-not-available"></span>值越大；</div>
+<div class="description-paragraph" id="p0107">参数设定为：<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0108">代入计算如下：</div>
+<div class="description-paragraph" id="p0109"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0110">若路径风险筛选阈值为<span class="patent-image-not-available"></span>，则该路径段综合风险值小于阈值，判定为可行路径段。该结果表明路径段综合风险值处于可行区间，适用于低空路径执行阶段，最终构建出的低空飞行风险引导初始路径信息由多个此类段连续拼接获得。</div>
+<div class="description-paragraph" id="p0111" num="0028">请参阅图5，可行性验证模块包括：</div>
+<div class="description-paragraph" id="p0112">高度风压判断子模块调用低空飞行风险引导初始路径信息，根据路径段的节点高度值与对应路径段的风压梯度值，调用飞行器平台技术规范中定义的升限高度，对每个路径段节点的高度值与风压梯度变化区间范围进行交叉判断，筛除处于边界模糊区段的数据并标识剩余区段所属稳定或剧烈类别，生成风压区段判断分类信息；</div>
+<div class="description-paragraph" id="p0113">获取低空飞行风险引导初始路径信息中所有路径段的节点高度值与对应路径段的风压梯度值，将每段路径的节点高度值从原始任务结构中调取，并对每条路径段遍历其节点序列，对节点高度数据按飞行器升限高度<span class="patent-image-not-available"></span>进行比例归一化操作，调用飞行器平台技术规范中定义的<span class="patent-image-not-available"></span>，判断节点高度<span class="patent-image-not-available"></span>与当前路径段风压梯度变化区间<span class="patent-image-not-available"></span>的交叉关系，其中设定<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，若节点高度所对应的风压梯度处于<span class="patent-image-not-available"></span>与<span class="patent-image-not-available"></span>之间，则判定为稳定区段，否则为剧烈区段，筛除处于交界模糊带内且节点密度不足<span class="patent-image-not-available"></span>个的边界段，并将剩余区段依据梯度强弱进行分类打标签，得到风压区段判断分类信息，该分类用于后续计算。</div>
+<div class="description-paragraph" id="p0114" num="0029">风险强度计算子模块基于风压区段判断分类信息，根据被标记为风压扰动剧烈类别的路径段，采集每段路径的风压变化幅度、节点平均高度、路径坡度变化量、飞行器升限高度，执行风压与高度相对风险系数计算，采用公式：</div>
+<div class="description-paragraph" id="p0115"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0116">运算获取剧烈路径段的风险强度值，将风险强度值大于风压风险基准值的路径段标注为高风险类别，生成高风险路径标记结果；</div>
+<div class="description-paragraph" id="p0117">其中，<span class="patent-image-not-available"></span>表示路径段的风险强度值，<span class="patent-image-not-available"></span>为风压变化幅度的归一化值，计算方式为风压变化量除以飞行区域内最大风压变化值，<span class="patent-image-not-available"></span>为路径段平均高度的归一化值，计算方式为平均高度除以飞行器升限高度，<span class="patent-image-not-available"></span>为飞行器升限高度的归一化形式，固定设为1以规避量纲，<span class="patent-image-not-available"></span>为路径坡度变化量的归一化值，按当前路径段内坡度变化量与任务全局最大坡度差比值定义，<span class="patent-image-not-available"></span>为路径段内节点高度标准差的归一化值，取标准差与最大高度变化区间比值，<span class="patent-image-not-available"></span>为路径段扰动离散系数，计算为风压扰动序列方差与对应节点平均风压的比值；</div>
+<div class="description-paragraph" id="p0118">根据风压区段判断分类信息中被标记为风压扰动剧烈类别的路径段，采集每段路径的风压变化幅度<span class="patent-image-not-available"></span>、节点平均高度<span class="patent-image-not-available"></span>、路径坡度变化量<span class="patent-image-not-available"></span>、飞行器升限高度<span class="patent-image-not-available"></span>，执行风压与高度相对风险系数计算，采用公式：</div>
+<div class="description-paragraph" id="p0119"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0120">公式计算逻辑说明：第一项<span class="patent-image-not-available"></span>表示风压扰动强度对飞行器飞行高度安全裕度的相对影响，其中<span class="patent-image-not-available"></span>为风压变化归一化值，平方后提升其影响权重，分母项表达升限与当前飞行高度之间的差值，即飞行余量，加入常数1避免分母为零；第二项<span class="patent-image-not-available"></span>衡量路径几何变化与风压离散度之间的影响匹配程度，若坡度与高度波动标准差存在偏差且风压离散度大，风险值增大，<span class="patent-image-not-available"></span>作为扰动稳定性抑制项，避免离散度剧烈放大影响。最终计算所得的<span class="patent-image-not-available"></span>反映了路径段的风险强度值。若某路径段在风扰动大、飞行余量小、地形起伏剧烈的情况下，综合风险会迅速上升，其对应的风险强度值<span class="patent-image-not-available"></span>显著大于风压风险基准值，应判定为不可行段，从而影响路径的整体可行性筛选。</div>
+<div class="description-paragraph" id="p0121" num="0030">设定样本路径段参数如下：</div>
+<div class="description-paragraph" id="p0122"> <span class="patent-image-not-available"></span>，即该路径段的风压变化幅度为区域内最大风压变化值的85%，源自对该路径段风压变化为<span class="patent-image-not-available"></span>，最大变化值设定为<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0123"> <span class="patent-image-not-available"></span>，表示平均高度为飞行器升限高度的90%，原始高度为<span class="patent-image-not-available"></span>，升限高度<span class="patent-image-not-available"></span>固定设定为<span class="patent-image-not-available"></span>，该固定值取自平台说明书性能指标边界参数，不参与数值波动；</div>
+<div class="description-paragraph" id="p0124"> <span class="patent-image-not-available"></span>，坡度变化归一化结果源于该段坡度差<span class="patent-image-not-available"></span>，任务全局最大坡度差设定为<span class="patent-image-not-available"></span>，归一化值计算为<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0125"> <span class="patent-image-not-available"></span>，节点高度标准差与最大节点高度差比值，节点标准差为<span class="patent-image-not-available"></span>，最大高度区间为<span class="patent-image-not-available"></span>，故归一化值为<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0126"> <span class="patent-image-not-available"></span>，风扰动方差<span class="patent-image-not-available"></span>，平均风压<span class="patent-image-not-available"></span>，故扰动离散系数为<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0127" num="0031">代入公式进行具体运算如下：</div>
+<div class="description-paragraph" id="p0128"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0129">根据计算结果可得该路径段的风险强度值为<span class="patent-image-not-available"></span>。为判定该值是否属于高风险类别，需设定风险基准值<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0130" num="0032">风压风险基准值<span class="patent-image-not-available"></span>设定为<span class="patent-image-not-available"></span>，该值设定基于统计区域平均风压扰动剧烈段计算出的80%分位值，经过去除异常值后的归一设定为分界标准，具体参考30条剧烈段样本的<span class="patent-image-not-available"></span>均值为0.6，标准差为0.1，经推算80%置信下限为<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0131" num="0033">该结果表明：由于路径段风险强度值<span class="patent-image-not-available"></span>大于设定的风压风险基准值<span class="patent-image-not-available"></span>，因此该路径段被标记为高风险路径段，并输入至高风险路径标记结果集中。</div>
+<div class="description-paragraph" id="p0132" num="0034">稳定路径组合子模块调用高风险路径标记结果，根据未被标识为高风险的路径段，按路径编号顺序对相邻路径段执行连续性判断，排除断裂段并组合为可连续路径段组，建立结构映射关系并重新生成任务对应路径索引集，得到低空飞行可行路径序列；</div>
+<div class="description-paragraph" id="p0133">调用高风险路径标记结果中未被标识为高风险的路径段，按路径编号顺序对相邻路径段执行连续性判断，对节点序列中断点进行索引标注，设断裂阈值为连续节点距离大于<span class="patent-image-not-available"></span>，若路径段对满足编号连续性且节点间距离不超过断裂阈值，则归入连续段组合，并整合段内的所有节点与边界信息构建段组拓扑表，筛除孤立段组后对有效段组按任务编号排序，建立映射表重新生成任务路径索引集，最终生成低空飞行可行路径序列。其中连续性判断操作调用前述高风险路径标记结果，各段落间的断裂判断依据节点坐标欧氏距离进行直接计算，满足段结构稳定性要求的段组可作为候选航段。路径编号示例：如路径段B2、B3、B4满足连续性条件，组合为段组B234，对其建立索引并输出编号表，供后续路径控制结构生成模块调用。</div>
+<div class="description-paragraph" id="p0134" num="0035">请参阅图6，路径输出模块包括：</div>
+<div class="description-paragraph" id="p0135">航向模板生成子模块基于低空飞行可行路径序列，根据每段路径段的全部节点坐标，对节点坐标进行编号排序，并调用飞行器配置库中的航向控制模板结构，依据路径方向向量与节点密度区间匹配表进行模板结构索引定位，获取对应模板匹配关系表，生成控制模板结构索引信息；</div>
+<div class="description-paragraph" id="p0136">获取低空飞行可行路径序列中每段路径段的所有节点坐标，首先对每段路径的所有节点坐标点进行编号处理，例如路径段S1包含节点A1、A2、A3，其三维坐标依次为(10,20,100)、(20,30,110)、(30,35,120)，按编号顺序依次记录为A1至A3，同时计算节点之间的密度区间，在本例中节点间平均间距为15m，根据路径段方向向量为(20,15,20)，求得路径方向向量模长为约32.4，对应方向角为45°，查表调用飞行器配置库中定义的航向控制模板结构，方向区间匹配条件为30°至60°，节点密度匹配区间为12m至18m，此时符合模板编号为T01的所有条件，从模板结构中读取其模板字段属性，对当前路径段建立节点编号与模板字段的映射索引，最终生成控制模板结构索引信息，其中方向区间匹配的上下限分别作为方向角偏差匹配的“阈值”上下限，设置依据为飞行器航向偏移误差在15°范围内时具备稳定控制能力，节点密度匹配区间的上下限则作为节点密度设定的“基准值”，该值取自任务类型为城市复杂空域环境下，路径分段控制要求中推荐的密度范围。</div>
+<div class="description-paragraph" id="p0137" num="0036">节点指令构建子模块基于控制模板结构索引信息，根据对应模板结构的字段属性，提取每段路径段的首尾节点坐标点作为路径段执行起点与终点，对路径段方向向量与模板参考航向进行夹角判断，结合飞行器任务编号的速度参数设定范围，匹配每段路径段速度常量与航向调整区间边界值，建立路径段编号与指令字段的绑定关系，生成路径节点执行指令信息；</div>
+<div class="description-paragraph" id="p0138">基于控制模板结构索引信息中所确定的模板编号，对每段路径段选取其首尾节点作为路径段起点与终点，以路径段S1为例，A1坐标为(10,20,100)，A3坐标为(30,35,120)，方向向量为(20,15,20)，模板T01中参考航向向量设为(21,15,19)，采用三维夹角公式：</div>
+<div class="description-paragraph" id="p0139"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0140">夹角值与模板T01中设定的最大偏差角15°进行比较，小于该阈值，满足匹配条件，该“航向调整区间边界值”设定为15°为系统定义的固定“阈值”，其来源为飞控模块容许的最大横向修正角限制，该值会因飞控稳定程度变化而波动，范围一般设定为12°至18°，本任务中设定为15°是因任务速度常量设定为12m/s，系统仿真验证在该速度下的稳定航向偏差容忍角度最大为15°，此外任务编号M001设定飞行速度范围为[10,15]m/s，通过任务配置文件读取其配置速度为12m/s，结合该速度值与夹角结果，构建路径段S1的参数绑定结果：[方向向量(20,15,20)、速度12m/s、航向调整阈值15°]，最终生成路径节点执行指令信息。</div>
+<div class="description-paragraph" id="p0141" num="0037">指令集组装子模块基于路径节点执行指令信息，根据路径段顺序，按节点编号构建连续路径指令集列表，将每段路径段的方向编码、速度值、转向控制角度阈值进行参数嵌套，实施路径段航行控制数据字段整合，生成低空航线控制结构序列；</div>
+<div class="description-paragraph" id="p0142">根据路径节点执行指令信息中的路径段顺序，依次读取路径段S1、S2、S3的执行参数，S1方向向量为(20,15,20)，方向编码设为101，速度值12m/s，转向角阈值为15°，S2方向向量为(18,0,10)，编码为100，速度值10m/s，转向角阈值10°，S3方向向量(28,10,8)，编码为110，速度值14m/s，阈值18°，将上述字段进行封装，形成连续路径指令集并嵌入路径段控制结构中：</div>
+<div class="description-paragraph" id="p0143">S1：[101,12,15]；</div>
+<div class="description-paragraph" id="p0144">S2：[100,10,10]；</div>
+<div class="description-paragraph" id="p0145">S3：[110,14,18]；</div>
+<div class="description-paragraph" id="p0146">其中各路径段的“转向控制角度阈值”为由路径密度对应航向调整灵敏度所决定的调节上限，其设定标准为：当节点间平均间距小于12m时，角度阈值设为10°，当间距大于20m时，设为20°，以保障航向调整动作在控制时序内完成，路径段S1、S2、S3分别落在中低高三个密度区间，故其对应阈值分别设定为15°、10°和18°，此设定来源于飞行器航向控制时间窗与最小转弯半径匹配标准。完成控制指令集数据整合并建立与路径段编号的结构映射表，最终生成低空航线控制结构序列。</div>
+<div class="description-paragraph" id="p0147" num="0038">以上，仅是本发明的较佳实施例而已，并非对本发明作其他形式的限制，任何熟悉本专业的技术人员可能利用上述揭示的技术内容加以变更或改型为等同变化的等效实施例应用于其他领域，但是凡是未脱离本发明技术方案内容，依据本发明的技术实质对以上实施例所做的任何简单修改、等同变化与改型，仍属于本发明技术方案的保护范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

@@ -1,0 +1,37 @@
+{
+    "patent_id": "CN119296389B",
+    "title": "CN119296389B - 一种机场低空飞行器监视方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Northern General Aviation Inner Mongolia Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119296389B/zh",
+    "citations": [
+        {
+            "Publication Number": "CN209913833U (zh) *",
+            "Priority Date": "2019-07-17",
+            "Publication Date": "2020-01-07",
+            "Assignee": "苏剑",
+            "Title": "低空飞行器防御系统",
+            "Link": "https://patents.google.com/patent/CN209913833U/zh"
+        },
+        {
+            "Publication Number": "CN112068111A (zh) *",
+            "Priority Date": "2020-08-13",
+            "Publication Date": "2020-12-11",
+            "Assignee": "中国人民解放军海军工程大学",
+            "Title": "一种基于多传感器信息融合的无人机目标侦测方法",
+            "Link": "https://patents.google.com/patent/CN112068111A/zh"
+        },
+        {
+            "Publication Number": "CN118393527A (zh) *",
+            "Priority Date": "2024-04-25",
+            "Publication Date": "2024-07-26",
+            "Assignee": "成都数航科技有限公司",
+            "Title": "一种基于空地协同的高可靠无人机探测系统及其工作方法",
+            "Link": "https://patents.google.com/patent/CN118393527A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:03:15"
+}

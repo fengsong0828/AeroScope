@@ -1,0 +1,122 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120954271A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES511591837">
+<invention-title id="title1" lang="ZH">基于气象数据的低空飞行器混合起降场的红绿灯调整方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空空域管理，具体涉及基于气象数据的低空飞行器混合起降场的红绿灯调整方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空空域开放的不断推进和无人机、通用航空器等低空飞行器数量的快速增长，低空飞行活动的密度与复杂性显著提升，对混合起降场的运行效率与安全管控提出了更高的要求。传统低空交通管理主要依赖人工调度与固定信号配时，难以适应动态空域负荷环境下的实时需求，尤其在复杂气象条件下（如低能见度、强对流、风切变等），飞行器起降冲突、空域资源分配不均等问题频发，导致航班延误、运行风险上升甚至出现事故。</div>
+<div class="description-paragraph" id="p0005" num="0003">现有技术中，低空飞行器混合起降场的信号控制主要存在以下局限性：</div>
+<div class="description-paragraph" id="p0006">1）数据孤岛与感知滞后：空域状态监测通常独立依赖ADS-B（广播式自动相关监视）、雷达或气象站等单一数据源，缺乏对多源异构数据的融合分析，导致空域繁忙度评估片面，无法实时捕捉冲突热点与流量突变；</div>
+<div class="description-paragraph" id="p0007">2）可视化与溯源能力不足：空域繁忙度通常以二维平面热力图呈现，缺乏三维网格空间下的多尺度动态映射，难以支持复杂地形（如山区、城市峡谷等）或立体交叉空域的历史流量回溯与机型占比分析，限制了调度策略的精细化制定；</div>
+<div class="description-paragraph" id="p0008">3）决策链断裂与资源调配粗放：现有系统缺乏“感知—预判—调配”的闭环决策机制，气象数据仅用于事后风险警示，未能通过趋势预判提前优化红绿灯配时与跑道资源分配，导致管控措施滞后于风险演化；</div>
+<div class="description-paragraph" id="p0009">4）静态配时与动态需求失配：现有红绿灯配时方案主要依赖人工调度与固定信号配时，未考虑气象风险变化（如突风导致起降间隔调整需求等）和历史流量周期性波动，难以适应动态空域负荷。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0010">发明内容</div>
+<div class="description-paragraph" id="p0011" num="0004">（一）解决的技术问题</div>
+<div class="description-paragraph" id="p0012">针对现有技术所存在的上述缺点，本发明提供了基于气象数据的低空飞行器混合起降场的红绿灯调整方法，能够有效克服现有技术所存在的难以在动态空域负荷环境下进行准确、实时的红绿灯配时的缺陷。</div>
+<div class="description-paragraph" id="p0013" num="0005">（二）技术方案</div>
+<div class="description-paragraph" id="p0014">为实现以上目的，本发明通过以下技术方案予以实现：</div>
+<div class="description-paragraph" id="p0015">基于气象数据的低空飞行器混合起降场的红绿灯调整方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0016">S1、融合ADS-B轨迹数据、雷达数据、气象数据和空域状态信息，构建空域繁忙度计算模型，实时输出飞行器密度、冲突热点和服务负荷指数；</div>
+<div class="description-paragraph" id="p0017">S2、将空域繁忙度计算结果映射至北斗三维网格空间，生成多尺度动态热力图，并支持任意空域剖面的历史流量回溯与机型占比分析；</div>
+<div class="description-paragraph" id="p0018">S3、基于热力图关联气象数据和空域状态信息，建立“实时感知—趋势预判—资源调配”的闭环决策链优化机制；</div>
+<div class="description-paragraph" id="p0019">S4、根据决策链指令，实时调整红绿灯配时。</div>
+<div class="description-paragraph" id="p0020" num="0006">优选地，S1中融合ADS-B轨迹数据、雷达数据、气象数据和空域状态信息，构建空域繁忙度计算模型，实时输出飞行器密度、冲突热点和服务负荷指数，包括：</div>
+<div class="description-paragraph" id="p0021">1）计算飞行器密度：引入网格半径和指示函数，将飞行器分布从连续空间离散化为三维网格单元内的统计量，解决雷达数据因扫描间隔导致的密度计算误差；</div>
+<div class="description-paragraph" id="p0022">2）检测冲突热点：引入Sigmoid函数将飞行器间距映射为冲突概率，避免传统阈值法的突变性，更符合实际飞行安全边界的模糊性；引入机型对权重量化不同机型组合的冲突风险差异，解决因起降场中机型动态特性不一致导致的冲突评估偏差；</div>
+<div class="description-paragraph" id="p0023">3）计算服务负荷指数：将飞行器密度、冲突概率和气象风险进行加权聚合，突破传统流量统计仅依赖密度或冲突的单维度局限；</div>
+<div class="description-paragraph" id="p0024">其中，ADS-B轨迹数据包括经度、纬度、高度和速度，雷达数据包括位置和速度，气象数据包括风速、能见度和降水强度，空域状态信息包括管制指令和起降计划；</div>
+<div class="description-paragraph" id="p0025">对ADS-B轨迹数据和雷达数据进行时空对齐，剔除异常值，并将气象数据按照三维网格单元插值至空域中。</div>
+<div class="description-paragraph" id="p0026" num="0007">优选地，采用下式计算飞行器密度：</div>
+<div class="description-paragraph" id="p0027"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0028">其中，<span class="patent-image-not-available"></span>为三维网格单元j内单位体积内的飞行器数量，<span class="patent-image-not-available"></span>为指示函数，条件满足时为1，否则为0，d<sub>i,j</sub>为飞行器i与三维网格单元j之间的距离，r<sub>j</sub>为三维网格单元j的半径，n为飞行器总数，V<sub>j</sub>为三维网格单元j的体积。</div>
+<div class="description-paragraph" id="p0029" num="0008">优选地，采用下式检测冲突热点：</div>
+<div class="description-paragraph" id="p0030"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0031">其中，P<sub>j</sub>为三维网格单元j的冲突概率，<span class="patent-image-not-available"></span>为Sigmoid函数，<span class="patent-image-not-available"></span>为飞行器k与飞行器<span class="patent-image-not-available"></span>之间的最小安全距离，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>均为安全距离阈值参数，<span class="patent-image-not-available"></span>为飞行器k的机型m<sub>k</sub>与飞行器<span class="patent-image-not-available"></span>的机型<span class="patent-image-not-available"></span>之间的机型对权重，固定翼与固定翼的机型对权重为1.5，旋翼机与旋翼机的机型对权重为0.8，混合机型的机型对权重为1。</div>
+<div class="description-paragraph" id="p0032" num="0009">优选地，采用下式计算服务负荷指数：</div>
+<div class="description-paragraph" id="p0033"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0034">其中，L<sub>j</sub>为三维网格单元j的服务负荷指数，R<sub>j</sub>为三维网格单元j的气象风险值，通过风速、能见度和降水强度加权求和计算得到，R<sub>max</sub>为历史极端气象风险值，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>均为权重系数。</div>
+<div class="description-paragraph" id="p0035" num="0010">优选地，S2中将空域繁忙度计算结果映射至北斗三维网格空间，生成多尺度动态热力图，并支持任意空域剖面的历史流量回溯与机型占比分析，包括：</div>
+<div class="description-paragraph" id="p0036">S21、以北斗坐标系为基准，将空域划分为多个三维网格单元，形成北斗三维网格空间，并将空域繁忙度计算结果映射至对应的三维网格单元；</div>
+<div class="description-paragraph" id="p0037">S22、计算热力值：引入高度层衰减参数量化高层空域对地面起降场的影响减弱效应，解决传统二维热力图因忽略高度导致的高空流量虚假密集问题；引入时间权重参数区分不同时间级别的热力图，平衡实时性与计算效率，满足不同场景需求；</div>
+<div class="description-paragraph" id="p0038">S23、每分钟更新分钟级热力图，每小时聚合生成小时级热力图，并存储热力图时间序列，支持任意空域剖面的历史流量回溯与机型占比分析。</div>
+<div class="description-paragraph" id="p0039" num="0011">优选地，采用下式计算热力值：</div>
+<div class="description-paragraph" id="p0040"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0041">其中，<span class="patent-image-not-available"></span>为三维网格单元j在时刻t的热力值，<span class="patent-image-not-available"></span>为三维网格单元j在时刻t的服务负荷指数，<span class="patent-image-not-available"></span>为所有三维网格单元在时刻t的最大服务负荷指数，<span class="patent-image-not-available"></span>为高度层衰减参数，<span class="patent-image-not-available"></span>为时间权重参数。</div>
+<div class="description-paragraph" id="p0042" num="0012">优选地，S3中基于热力图关联气象数据和空域状态信息，建立“实时感知—趋势预判—资源调配”的闭环决策链优化机制，包括：</div>
+<div class="description-paragraph" id="p0043">S31、计算预测服务负荷指数：通过气象风险值变化率量化气象恶化速度对空域负荷的放大效应，解决传统预测模型忽略气象动态变化的问题；引入傅里叶级数项拟合历史流量周期性波动，提升趋势预判的动态适应性；最终构建趋势预判模型计算预测服务负荷指数：</div>
+<div class="description-paragraph" id="p0044"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0045">其中，<span class="patent-image-not-available"></span>为三维网格单元j在时刻<span class="patent-image-not-available"></span>的预测服务负荷指数，<span class="patent-image-not-available"></span>为三维网格单元j在时刻t的气象风险值变化率，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>分别为三维网格单元j在时刻t、<span class="patent-image-not-available"></span>的气象风险值，<span class="patent-image-not-available"></span>为傅里叶级数项，A<sub>m</sub>、f<sub>m</sub>、<span class="patent-image-not-available"></span>均为周期性流量波动参数，通过历史流量数据拟合得到，m为周期性流量波动分量的序号，M为周期性流量波动分量总数，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>均为调节参数；</div>
+<div class="description-paragraph" id="p0046">S32、若计算得到的预测服务负荷指数大于预设阈值，则触发红绿灯配时调整。</div>
+<div class="description-paragraph" id="p0047" num="0013">优选地，S4中根据决策链指令，实时调整红绿灯配时，包括：</div>
+<div class="description-paragraph" id="p0048">S41、计算调整后的绿灯时长：通过优先方向与非优先方向的预测服务负荷指数调整绿灯时长，避免传统固定配时的僵化性，实现资源分配与实际需求的精准匹配；引入调整系数限制单次配时的变化幅度，防止因负荷突变导致红绿灯频繁切换而引发飞行器调度混乱；</div>
+<div class="description-paragraph" id="p0049">S42、根据调整后的绿灯时长实时更新红绿灯配时；</div>
+<div class="description-paragraph" id="p0050">S43、收集实际调整效果，反馈至趋势预判模型进行参数优化。</div>
+<div class="description-paragraph" id="p0051" num="0014">优选地，采用下式计算调整后的绿灯时长：</div>
+<div class="description-paragraph" id="p0052"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0053">其中，T<sub>green</sub>为调整后的绿灯时长，T<sub>0</sub>为基础绿灯时长，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>分别为优先方向、非优先方向的预测服务负荷指数，<span class="patent-image-not-available"></span>为调整系数。</div>
+<div class="description-paragraph" id="p0054" num="0015">（三）有益效果</div>
+<div class="description-paragraph" id="p0055">与现有技术相比，本发明所提供的基于气象数据的低空飞行器混合起降场的红绿灯调整方法，具有以下有益效果：</div>
+<div class="description-paragraph" id="p0056">1）精准掌握空域态势，助力科学决策</div>
+<div class="description-paragraph" id="p0057">融合多种数据构建空域繁忙度计算模型，实时输出关键指标，并将结果映射生成多尺度动态热力图，支持历史流量回溯与机型占比分析，使管理者能够精准、全面、动态地掌握空域实时状态和历史规律，打破传统信息局限，为制定科学合理的低空空域管理策略和红绿灯配时调整方案提供有力依据，提升决策的科学性和精准性；</div>
+<div class="description-paragraph" id="p0058">2）智能预判与调配，提升运行效能</div>
+<div class="description-paragraph" id="p0059">基于热力图关联气象数据和空域状态信息，建立“实时感知—趋势预判—资源调配”的闭环决策链优化机制，该机制不仅能实时感知空域情况，还能预判未来趋势，提前调整红绿灯配时，优化飞行器起降顺序和节奏，实现空域资源的高效利用，减少飞行器等待时间，提高低空飞行器混合起降场的整体运行效能；</div>
+<div class="description-paragraph" id="p0060">3）灵活适应动态变化，保障运行安全</div>
+<div class="description-paragraph" id="p0061">充分考虑气象数据、空域状态等多因素动态变化，以及历史流量周期性波动的基础上，实时调整红绿灯配时，在面对复杂多变的天气条件和空域突发状况时，能够迅速做出反应，灵活调整飞行器起降规则，避免因环境变化导致的冲突和危险情况，有效保障低空飞行器混合起降场的安全运行，降低安全风险。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0062">附图说明</div>
+<div class="description-paragraph" id="p0063" num="0016">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍。显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0064" num="0017">图1 为本发明的流程示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0065">具体实施方式</div>
+<div class="description-paragraph" id="p0066" num="0018">为使本发明实施例的目的、技术方案和优点更加清楚，下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述。显然，所描述的实施例是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有作出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0067" num="0019">下面结合具体示例介绍本发明提供的基于气象数据的低空飞行器混合起降场的红绿灯调整方法的具体流程（如图1所示）。</div>
+<div class="description-paragraph" id="p0068" num="0020">一、融合ADS-B轨迹数据、雷达数据、气象数据和空域状态信息，构建空域繁忙度计算模型，实时输出飞行器密度、冲突热点和服务负荷指数，具体包括：</div>
+<div class="description-paragraph" id="p0069">1）计算飞行器密度：引入网格半径和指示函数，将飞行器分布从连续空间离散化为三维网格单元内的统计量，解决雷达数据因扫描间隔导致的密度计算误差；</div>
+<div class="description-paragraph" id="p0070">采用下式计算飞行器密度：</div>
+<div class="description-paragraph" id="p0071"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0072">其中，<span class="patent-image-not-available"></span>为三维网格单元j内单位体积内的飞行器数量，<span class="patent-image-not-available"></span>为指示函数，条件满足时为1，否则为0，d<sub>i,j</sub>为飞行器i与三维网格单元j之间的距离，r<sub>j</sub>为三维网格单元j的半径，n为飞行器总数，V<sub>j</sub>为三维网格单元j的体积；</div>
+<div class="description-paragraph" id="p0073">2）检测冲突热点：引入Sigmoid函数将飞行器间距映射为冲突概率，避免传统阈值法的突变性，更符合实际飞行安全边界的模糊性；引入机型对权重量化不同机型组合的冲突风险差异，解决因起降场中机型动态特性不一致导致的冲突评估偏差；</div>
+<div class="description-paragraph" id="p0074">采用下式检测冲突热点：</div>
+<div class="description-paragraph" id="p0075"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0076">其中，P<sub>j</sub>为三维网格单元j的冲突概率，<span class="patent-image-not-available"></span>为Sigmoid函数，<span class="patent-image-not-available"></span>为飞行器k与飞行器<span class="patent-image-not-available"></span>之间的最小安全距离，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>均为安全距离阈值参数，<span class="patent-image-not-available"></span>为飞行器k的机型m<sub>k</sub>与飞行器<span class="patent-image-not-available"></span>的机型<span class="patent-image-not-available"></span>之间的机型对权重，固定翼与固定翼的机型对权重为1.5，旋翼机与旋翼机的机型对权重为0.8，混合机型的机型对权重为1；</div>
+<div class="description-paragraph" id="p0077">3）计算服务负荷指数：将飞行器密度、冲突概率和气象风险进行加权聚合，突破传统流量统计仅依赖密度或冲突的单维度局限；</div>
+<div class="description-paragraph" id="p0078">采用下式计算服务负荷指数：</div>
+<div class="description-paragraph" id="p0079"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0080">其中，L<sub>j</sub>为三维网格单元j的服务负荷指数，R<sub>j</sub>为三维网格单元j的气象风险值，通过风速、能见度和降水强度加权求和计算得到，R<sub>max</sub>为历史极端气象风险值，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>均为权重系数；</div>
+<div class="description-paragraph" id="p0081">其中，ADS-B轨迹数据包括经度、纬度、高度和速度，雷达数据包括位置和速度，气象数据包括风速、能见度和降水强度，空域状态信息包括管制指令和起降计划；</div>
+<div class="description-paragraph" id="p0082">对ADS-B轨迹数据和雷达数据进行时空对齐，剔除异常值，并将气象数据按照三维网格单元插值至空域中。</div>
+<div class="description-paragraph" id="p0083" num="0021">二、将空域繁忙度计算结果映射至北斗三维网格空间，生成多尺度动态热力图，并支持任意空域剖面的历史流量回溯与机型占比分析，具体包括：</div>
+<div class="description-paragraph" id="p0084">1）以北斗坐标系为基准，将空域划分为多个三维网格单元，形成北斗三维网格空间，并将空域繁忙度计算结果映射至对应的三维网格单元；</div>
+<div class="description-paragraph" id="p0085">2）计算热力值：引入高度层衰减参数量化高层空域对地面起降场的影响减弱效应，解决传统二维热力图因忽略高度导致的高空流量虚假密集问题；引入时间权重参数区分不同时间级别的热力图，平衡实时性与计算效率，满足不同场景需求；</div>
+<div class="description-paragraph" id="p0086">采用下式计算热力值：</div>
+<div class="description-paragraph" id="p0087"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0088">其中，<span class="patent-image-not-available"></span>为三维网格单元j在时刻t的热力值，<span class="patent-image-not-available"></span>为三维网格单元j在时刻t的服务负荷指数，<span class="patent-image-not-available"></span>为所有三维网格单元在时刻t的最大服务负荷指数，<span class="patent-image-not-available"></span>为高度层衰减参数，<span class="patent-image-not-available"></span>为时间权重参数；</div>
+<div class="description-paragraph" id="p0089">3）每分钟更新分钟级热力图，每小时聚合生成小时级热力图，并存储热力图时间序列，支持任意空域剖面的历史流量回溯与机型占比分析。</div>
+<div class="description-paragraph" id="p0090" num="0022">上述技术方案，融合多种数据构建空域繁忙度计算模型，实时输出关键指标，并将结果映射生成多尺度动态热力图，支持历史流量回溯与机型占比分析，使管理者能够精准、全面、动态地掌握空域实时状态和历史规律，打破传统信息局限，为制定科学合理的低空空域管理策略和红绿灯配时调整方案提供有力依据，提升决策的科学性和精准性。</div>
+<div class="description-paragraph" id="p0091" num="0023">三、基于热力图关联气象数据和空域状态信息，建立“实时感知—趋势预判—资源调配”的闭环决策链优化机制，具体包括：</div>
+<div class="description-paragraph" id="p0092">1）计算预测服务负荷指数：通过气象风险值变化率量化气象恶化速度对空域负荷的放大效应，解决传统预测模型忽略气象动态变化的问题；引入傅里叶级数项拟合历史流量周期性波动，提升趋势预判的动态适应性；最终构建趋势预判模型计算预测服务负荷指数：</div>
+<div class="description-paragraph" id="p0093"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0094">其中，<span class="patent-image-not-available"></span>为三维网格单元j在时刻<span class="patent-image-not-available"></span>的预测服务负荷指数，<span class="patent-image-not-available"></span>为三维网格单元j在时刻t的气象风险值变化率，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>分别为三维网格单元j在时刻t、<span class="patent-image-not-available"></span>的气象风险值，<span class="patent-image-not-available"></span>为傅里叶级数项，A<sub>m</sub>、f<sub>m</sub>、<span class="patent-image-not-available"></span>均为周期性流量波动参数，通过历史流量数据拟合得到，m为周期性流量波动分量的序号，M为周期性流量波动分量总数，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>均为调节参数；</div>
+<div class="description-paragraph" id="p0095">2）若计算得到的预测服务负荷指数大于预设阈值，则触发红绿灯配时调整。</div>
+<div class="description-paragraph" id="p0096" num="0024">四、根据决策链指令，实时调整红绿灯配时，具体包括：</div>
+<div class="description-paragraph" id="p0097">1）计算调整后的绿灯时长：通过优先方向与非优先方向的预测服务负荷指数调整绿灯时长，避免传统固定配时的僵化性，实现资源分配与实际需求的精准匹配；引入调整系数限制单次配时的变化幅度，防止因负荷突变导致红绿灯频繁切换而引发飞行器调度混乱；</div>
+<div class="description-paragraph" id="p0098">采用下式计算调整后的绿灯时长：</div>
+<div class="description-paragraph" id="p0099"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0100">其中，T<sub>green</sub>为调整后的绿灯时长，T<sub>0</sub>为基础绿灯时长，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>分别为优先方向、非优先方向的预测服务负荷指数，<span class="patent-image-not-available"></span>为调整系数；</div>
+<div class="description-paragraph" id="p0101">2）根据调整后的绿灯时长实时更新红绿灯配时；</div>
+<div class="description-paragraph" id="p0102">3）收集实际调整效果，反馈至趋势预判模型进行参数优化。</div>
+<div class="description-paragraph" id="p0103" num="0025">上述技术方案，基于热力图关联气象数据和空域状态信息，建立“实时感知—趋势预判—资源调配”的闭环决策链优化机制，该机制不仅能实时感知空域情况，还能预判未来趋势，提前调整红绿灯配时，优化飞行器起降顺序和节奏，实现空域资源的高效利用，减少飞行器等待时间，提高低空飞行器混合起降场的整体运行效能。</div>
+<div class="description-paragraph" id="p0104" num="0026">此外，上述技术方案充分考虑气象数据、空域状态等多因素动态变化，以及历史流量周期性波动的基础上，实时调整红绿灯配时，在面对复杂多变的天气条件和空域突发状况时，能够迅速做出反应，灵活调整飞行器起降规则，避免因环境变化导致的冲突和危险情况，有效保障低空飞行器混合起降场的安全运行，降低安全风险。</div>
+<div class="description-paragraph" id="p0105" num="0027">以上实施例仅用以说明本发明的技术方案，而非对其限制；尽管参照前述实施例对本发明进行了详细的说明，本领域的普通技术人员应当理解：其依然可以对前述各实施例所记载的技术方案进行修改，或者对其中部分技术特征进行等同替换；而这些修改或者替换，并不会使相应技术方案的本质脱离本发明各实施例技术方案的精神和范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

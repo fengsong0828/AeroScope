@@ -1,0 +1,110 @@
+{
+    "patent_id": "CN119360682A",
+    "title": "CN119360682A - 低空飞行器防撞控制方法、装置、设备及存储介质 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Sichuan Tianlian Xingtong Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119360682A/zh",
+    "citations": [
+        {
+            "Publication Number": "EP1517281A2 (en) *",
+            "Priority Date": "2003-09-16",
+            "Publication Date": "2005-03-23",
+            "Assignee": "COMSOFT GmbH",
+            "Title": "Safety nets for alerting of hazardous situations in air traffic",
+            "Link": "https://patents.google.com/patent/EP1517281A2/en"
+        },
+        {
+            "Publication Number": "US20070150127A1 (en) *",
+            "Priority Date": "2005-12-14",
+            "Publication Date": "2007-06-28",
+            "Assignee": "The Boeing Company",
+            "Title": "Systems and methods for representation of a flight vehicle in a controlled environment",
+            "Link": "https://patents.google.com/patent/US20070150127A1/en"
+        },
+        {
+            "Publication Number": "CN106340208A (zh) *",
+            "Priority Date": "2015-01-07",
+            "Publication Date": "2017-01-18",
+            "Assignee": "江苏理工学院",
+            "Title": "基于4d航迹运行的空中交通管制系统的工作方法",
+            "Link": "https://patents.google.com/patent/CN106340208A/zh"
+        },
+        {
+            "Publication Number": "CN109981192A (zh) *",
+            "Priority Date": "2019-04-08",
+            "Publication Date": "2019-07-05",
+            "Assignee": "南京航空航天大学",
+            "Title": "一种空域反黑飞无人机的频谱监测系统及方法",
+            "Link": "https://patents.google.com/patent/CN109981192A/zh"
+        },
+        {
+            "Publication Number": "CN114120715A (zh) *",
+            "Priority Date": "2020-08-31",
+            "Publication Date": "2022-03-01",
+            "Assignee": "中移(成都)信息通信科技有限公司",
+            "Title": "低空飞行器防碰撞的方法、装置、设备及计算机存储介质",
+            "Link": "https://patents.google.com/patent/CN114120715A/zh"
+        },
+        {
+            "Publication Number": "US20240395154A1 (en) *",
+            "Priority Date": "2020-12-24",
+            "Publication Date": "2024-11-28",
+            "Assignee": "Alauda Aeronautics Pty Ltd",
+            "Title": "Collision avoidance for manned vertical take-off and landing aerial vehicles",
+            "Link": "https://patents.google.com/patent/US20240395154A1/en"
+        },
+        {
+            "Publication Number": "CN114664122A (zh) *",
+            "Priority Date": "2022-03-25",
+            "Publication Date": "2022-06-24",
+            "Assignee": "南京航空航天大学",
+            "Title": "一种考虑高空风不确定性的冲突最小化航迹规划方法",
+            "Link": "https://patents.google.com/patent/CN114664122A/zh"
+        },
+        {
+            "Publication Number": "CN115856948A (zh) *",
+            "Priority Date": "2022-11-22",
+            "Publication Date": "2023-03-28",
+            "Assignee": "四川省天链星通科技有限公司",
+            "Title": "一种基于多路gps/北斗信号的检测系统和方法",
+            "Link": "https://patents.google.com/patent/CN115856948A/zh"
+        },
+        {
+            "Publication Number": "CN117639891A (zh) *",
+            "Priority Date": "2023-11-26",
+            "Publication Date": "2024-03-01",
+            "Assignee": "成都中科比智科技有限公司",
+            "Title": "机载通导一体化信号处理终端",
+            "Link": "https://patents.google.com/patent/CN117639891A/zh"
+        },
+        {
+            "Publication Number": "CN117891263A (zh) *",
+            "Priority Date": "2023-11-28",
+            "Publication Date": "2024-04-16",
+            "Assignee": "四川大学",
+            "Title": "卫星协同下基于pso—mpc算法的多飞行器路径规划方法",
+            "Link": "https://patents.google.com/patent/CN117891263A/zh"
+        },
+        {
+            "Publication Number": "CN118824068A (zh) *",
+            "Priority Date": "2024-09-18",
+            "Publication Date": "2024-10-22",
+            "Assignee": "华航信航空科技(浙江)有限公司",
+            "Title": "航空器的碰撞预测方法、装置、设备、介质及程序产品",
+            "Link": "https://patents.google.com/patent/CN118824068A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN120143862A (zh) *",
+            "Priority Date": "2025-03-10",
+            "Publication Date": "2025-06-13",
+            "Assignee": "中山市视能智装科技有限公司",
+            "Title": "一种低空无人机预警方法",
+            "Link": "https://patents.google.com/patent/CN120143862A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:55:32"
+}

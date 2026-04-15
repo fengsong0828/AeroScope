@@ -1,0 +1,104 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119937602B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES496227772">
+<invention-title id="title1" lang="ZH">一种基于穿戴式低空飞行器的悬浮动态穿戴方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于多旋翼航空飞行器技术领域，特别是涉及一种基于穿戴式低空飞行器的悬浮动态穿戴方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空经济的兴起，涌现出了众多面向载人用途的低空飞行器。其中，存在一类载人用途的穿戴式低空载人飞行器。</div>
+<div class="description-paragraph" id="p0005" num="0003">相比开放式座舱和封闭式座舱的低空载人飞行器，穿戴式低空载人飞行器需要乘客将飞行器与身体通过某些装置进行绑定，再开展载人飞行。这种飞行器可看作衣服或者穿戴式装备，因此称为穿戴式载人飞行器。穿戴式载人飞行器具有灵活穿戴，快速机动的特点。</div>
+<div class="description-paragraph" id="p0006" num="0004">穿戴式飞行器普遍需要飞行器在未启动状态下，完成乘客对其的穿戴。然而，由于不同的乘客身高可能相差悬殊，固定高度的穿戴式飞行器，难以在穿戴环节适应不同的乘客身高，为了适应不同乘客的身高，穿戴式飞行器需要设计高度调节机构，这就增加了结构复杂度，也增加了整机质量，进而影响续航时间。不论穿戴式飞行器在未启动时是固定高度还是可调高度，都会影响穿戴式飞行器的易用性和灵活性，降低使用体验。同时，穿戴式载人飞行器普遍较重，穿戴过程对乘客的体力也有一定要求。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明目的在于提供一种基于穿戴式低空飞行器的悬浮动态穿戴方法，提高了飞行器的穿戴适应性，降低了对操作员体能的要求。</div>
+<div class="description-paragraph" id="p0009" num="0006">为了实现本发明目的，本发明提供了一种基于穿戴式低空飞行器的悬浮动态穿戴方法，包括</div>
+<div class="description-paragraph" id="p0010" num="0007">所述飞行器设有一键起降开关，用于完成飞行器的一键起飞、一键降落；</div>
+<div class="description-paragraph" id="p0011" num="0008">所述飞行器设有操纵手柄，且所述操纵手柄设置回弹式按钮用于牵拉随动模式与定点飞行模式之间的切换；</div>
+<div class="description-paragraph" id="p0012" num="0009">所述飞行器设有飞控模块，用以稳定控制单人飞行器飞行；</div>
+<div class="description-paragraph" id="p0013" num="0010">所述飞控模块内嵌牵拉随动模式：当所述飞行器检测到外力牵拉，所述飞行器进入0速度控制模式，此时所述飞行器随外力牵引而改变悬停位置，进入牵拉随动模式；</div>
+<div class="description-paragraph" id="p0014" num="0011">所述悬浮动态穿戴方法基于牵拉随动模式包括在以下过程中的穿戴：</div>
+<div class="description-paragraph" id="p0015" num="0012">起飞过程穿戴：当所述飞行器位于地面静止状态，具备定点起飞的条件时，进入起飞过程穿戴；</div>
+<div class="description-paragraph" id="p0016" num="0013">降落或复飞过程穿戴：所述飞行器的操作员在空中执行飞行任务，当要进行降落时所述飞行器进入降落或复飞过程穿戴。</div>
+<div class="description-paragraph" id="p0017" num="0014">所述飞行器的牵拉随动模式内部指令具体包括以下步骤：</div>
+<div class="description-paragraph" id="p0018" num="0015">步骤1、所述飞控模块自行判断所述飞行器进入定点模式；</div>
+<div class="description-paragraph" id="p0019" num="0016">步骤2、所述飞控模块判断牵拉随动模式开关是否关闭；当牵拉随动模式开关关闭则退出牵拉随动模式，转到步骤六；当牵拉随动模式开关打开则继续牵拉随动模式，转到步骤三；</div>
+<div class="description-paragraph" id="p0020" num="0017">步骤3、所述飞控模块实时检测当前是否存在大于等于阈值<span class="patent-image-not-available"></span>的外部拉力；当所述外部拉力大于等于阈值<span class="patent-image-not-available"></span>时，则转到步骤四；当所述外部拉力小于阈值<span class="patent-image-not-available"></span>时，转到步骤一；</div>
+<div class="description-paragraph" id="p0021" num="0018">步骤4、当所述飞行器进入0速度模式，在所述0速度模式下飞行器在三维空间中默认期望保持0速度飞行，但通过操纵杆能够改变其状态，此时外力牵引所述飞行器，所述飞行器能够随动，转到步骤五；</div>
+<div class="description-paragraph" id="p0022" num="0019">步骤5、所述飞控模块实时检测外部拉力是否小于阈值<span class="patent-image-not-available"></span>；当检测到外部拉力小于阈值<span class="patent-image-not-available"></span>时，转到步骤一；当检测到外部拉力大于等于阈值<span class="patent-image-not-available"></span>时，转到步骤四；</div>
+<div class="description-paragraph" id="p0023" num="0020">步骤6、退出牵拉随动模式。</div>
+<div class="description-paragraph" id="p0024" num="0021">所述起飞过程穿戴包括以下步骤：</div>
+<div class="description-paragraph" id="p0025" num="0022">步骤1、所述飞行器具备一键起飞功能，当所述飞行器以定点飞行模式起飞时，转到步骤二；</div>
+<div class="description-paragraph" id="p0026" num="0023">步骤2、所述飞行器从空中飞至距离地面指定高度<span class="patent-image-not-available"></span>时，转到步骤三；</div>
+<div class="description-paragraph" id="p0027" num="0024">步骤3、所述飞行器进入所述牵拉随动模式；此时操作员根据自身身高牵拉飞行器使其适合自身身高，并完成飞行器穿戴，转到步骤四；</div>
+<div class="description-paragraph" id="p0028" num="0025">步骤4、所述操作员操作退出所述牵拉随动模式，并推动油门开始飞行任务，同时起飞过程穿戴结束。</div>
+<div class="description-paragraph" id="p0029" num="0026">所述降落或复飞过程穿戴包括以下步骤：</div>
+<div class="description-paragraph" id="p0030" num="0027">步骤1、所述飞行器降落至距离地面小于<span class="patent-image-not-available"></span>米的高度；</div>
+<div class="description-paragraph" id="p0031" num="0028">步骤2、操作员降落至双脚着地站稳后，切换到所述牵拉随动模式，完成飞行操作员与飞行器的脱离；</div>
+<div class="description-paragraph" id="p0032" num="0029">步骤3、所述飞行器进入所述牵拉随动模式；</div>
+<div class="description-paragraph" id="p0033" num="0030">步骤4、所述操作员根据是否降落选择下一个步骤，当选择降落时，则转到步骤五；当选择复飞时，转到步骤六；</div>
+<div class="description-paragraph" id="p0034" num="0031">步骤5、所述操作员与飞行器分开后，控制飞行器降落，则降落过程穿戴结束；</div>
+<div class="description-paragraph" id="p0035" num="0032">步骤6、所述操作员根据自身身高牵拉飞行器使其适合自身身高，并完成复飞过程穿戴；</div>
+<div class="description-paragraph" id="p0036" num="0033">步骤7、所述操作员操作退出所述牵拉随动模式，推动油门开始飞行任务，则复飞过程穿戴结束。</div>
+<div class="description-paragraph" id="p0037" num="0034">本发明还包括一种基于穿戴式低空飞行器的悬浮动态穿戴方法的飞行器操作方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0038" num="0035">在起飞阶段，设置所述飞行器起飞至距离地面1米高度，随后所述飞行器进入所述牵拉随动模式，所述操作员拉扯所述飞行器适应自身身高，并完成穿戴操作，后按下手柄上的回弹按钮以换到定点模式，完成飞行任务；</div>
+<div class="description-paragraph" id="p0039" num="0036">在降落阶段，所述操作员在所述飞行器降落至1.5米高度，并双脚着地后，松开操纵手柄同时也松开回弹式按钮，所述飞行器进入所述牵拉随动模式，所述操作员解除与所述飞行器的连接，结束飞行任务或更换另一名操作员重复穿戴操作，并使用操纵手柄继续执行飞行任务，在当前操作员解除与飞行器连接后按下一键起降开关完成飞行器降落。</div>
+<div class="description-paragraph" id="p0040" num="0037">与现有技术相比，本发明的显著进步在于：本发明所提出的动态穿戴方法可以适应不同身高人员的穿戴要求。飞行操作人员可在飞行器起飞后手动调节飞行器的高度适合自身身高，快速完成对飞行器的穿戴动作。</div>
+<div class="description-paragraph" id="p0041" num="0038">为更清楚说明本发明的功能特性以及结构参数，下面结合附图及具体实施方式进一步说明。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0042">附图说明</div>
+<div class="description-paragraph" id="p0043" num="0039">此处所说明的附图用来提供对本发明的进一步理解，构成本申请的一部分，本发明的示意性实施例及其说明用于解释本发明，并不构成对本发明的不当限定。在附图中：</div>
+<div class="description-paragraph" id="p0044" num="0040">图1是本发明的牵拉随动模式流程图；</div>
+<div class="description-paragraph" id="p0045" num="0041">图2是本发明的起飞过程穿戴流程图；</div>
+<div class="description-paragraph" id="p0046" num="0042">图3是本发明的降落或复飞过程流程图；</div>
+<div class="description-paragraph" id="p0047" num="0043">图4为本发明的基于的三涵道单人垂直起降飞行器系统组成图；</div>
+<div class="description-paragraph" id="p0048" num="0044">图5为本发明的基于的三涵道单人垂直起降飞行器航电系统图。</div>
+<div class="description-paragraph" id="p0049" num="0045">附图标记说明：1-动力单元A，2-动力单元B，3-动力单元C，4-航电系统，5-人机交互系统，6-安全救生系统，7-穿戴式机身，17-飞控模块。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0050">具体实施方式</div>
+<div class="description-paragraph" id="p0051" num="0046">下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅是本发明一部分实施例，而不是全部的实施例；基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0052" num="0047">本发明的一种基于穿戴式低空飞行器的悬浮动态穿戴方法，</div>
+<div class="description-paragraph" id="p0053" num="0048">结合图4，所述飞行器包括动力单元A1，动力单元B2，动力单元C3、航电系统4、人机交互系统5、安全救生系统6、穿戴式机身7，可以实现单人垂直起降和空中各向机动飞行；</div>
+<div class="description-paragraph" id="p0054" num="0049">所述飞行器还设有一键起降开关，用于完成飞行器的一键起飞、一键降落；</div>
+<div class="description-paragraph" id="p0055" num="0050">所述人机交互系统5为操纵手柄，且所述操纵手柄设置回弹式按钮用于牵拉随动模式与定点飞行模式之间的切换；</div>
+<div class="description-paragraph" id="p0056" num="0051">结合图5，所述飞行器的航电系统4包括飞控模块17，用以稳定控制单人飞行器飞行；</div>
+<div class="description-paragraph" id="p0057" num="0052">所述飞控模块内嵌牵拉随动模式：当所述飞行器检测到外力牵拉，所述飞行器进入0速度控制模式，此时所述飞行器随外力牵引而改变悬停位置，进入牵拉随动模式；</div>
+<div class="description-paragraph" id="p0058" num="0053">所述悬浮动态穿戴方法基于牵拉随动模式包括在以下过程中的穿戴：</div>
+<div class="description-paragraph" id="p0059" num="0054">起飞过程穿戴：当所述飞行器位于地面静止状态，具备定点起飞的条件时，进入起飞过程穿戴；</div>
+<div class="description-paragraph" id="p0060" num="0055">降落或复飞过程穿戴：所述飞行器的操作员在空中执行飞行任务，当要进行降落时所述飞行器进入降落或复飞过程穿戴。</div>
+<div class="description-paragraph" id="p0061" num="0056">结合图1，所述飞行器的牵拉随动模式内部指令具体包括以下步骤：</div>
+<div class="description-paragraph" id="p0062" num="0057">步骤1、所述飞控模块自行判断所述飞行器进入定点模式；</div>
+<div class="description-paragraph" id="p0063" num="0058">步骤2、所述飞控模块判断牵拉随动模式开关是否关闭；当牵拉随动模式开关关闭则退出牵拉随动模式，转到步骤六；当牵拉随动模式开关打开则继续牵拉随动模式，转到步骤三；</div>
+<div class="description-paragraph" id="p0064" num="0059">步骤3、所述飞控模块实时检测当前是否存在大于等于阈值<span class="patent-image-not-available"></span>的外部拉力；当所述外部拉力大于等于阈值<span class="patent-image-not-available"></span>时，则转到步骤四；当所述外部拉力小于阈值<span class="patent-image-not-available"></span>时，转到步骤一；阈值<span class="patent-image-not-available"></span>需要操作员根据实际情况调试确定；</div>
+<div class="description-paragraph" id="p0065" num="0060">步骤4、当所述飞行器进入0速度模式，在所述0速度模式下飞行器在三维空间中默认期望保持0速度飞行，但通过操纵杆能够改变其状态，此时外力牵引所述飞行器，所述飞行器能够随动，转到步骤五；</div>
+<div class="description-paragraph" id="p0066" num="0061">步骤5、所述飞控模块实时检测外部拉力是否小于阈值<span class="patent-image-not-available"></span>；当检测到外部拉力小于阈值<span class="patent-image-not-available"></span>时，转到步骤一；当检测到外部拉力大于等于阈值<span class="patent-image-not-available"></span>时，转到步骤四；</div>
+<div class="description-paragraph" id="p0067" num="0062">步骤6、退出牵拉随动模式。</div>
+<div class="description-paragraph" id="p0068" num="0063">结合图2，所述起飞过程穿戴包括以下步骤：</div>
+<div class="description-paragraph" id="p0069" num="0064">步骤1、所述飞行器具备一键起飞功能，当所述飞行器以定点飞行模式起飞时，转到步骤二；</div>
+<div class="description-paragraph" id="p0070" num="0065">步骤2、所述飞行器从空中飞至距离地面指定高度<span class="patent-image-not-available"></span>时，转到步骤三；</div>
+<div class="description-paragraph" id="p0071" num="0066">步骤3、所述飞行器进入所述牵拉随动模式；此时操作员根据自身身高牵拉飞行器使其适合自身身高，并完成飞行器穿戴，转到步骤四；</div>
+<div class="description-paragraph" id="p0072" num="0067">步骤4、所述操作员操作退出所述牵拉随动模式，并推动油门开始飞行任务，同时起飞过程穿戴结束。</div>
+<div class="description-paragraph" id="p0073" num="0068">结合图3，所述降落或复飞过程穿戴包括以下步骤：</div>
+<div class="description-paragraph" id="p0074" num="0069">步骤1、所述飞行器降落至距离地面小于<span class="patent-image-not-available"></span>米的高度；</div>
+<div class="description-paragraph" id="p0075" num="0070">步骤2、操作员降落至双脚着地站稳后，切换到所述牵拉随动模式，完成飞行操作员与飞行器的脱离；</div>
+<div class="description-paragraph" id="p0076" num="0071">步骤3、所述飞行器进入所述牵拉随动模式；</div>
+<div class="description-paragraph" id="p0077" num="0072">步骤4、所述操作员根据是否降落选择下一个步骤，当选择降落时，则转到步骤五；当选择复飞时，转到步骤六；</div>
+<div class="description-paragraph" id="p0078" num="0073">步骤5、所述操作员与飞行器分开后，控制飞行器降落，则降落过程穿戴结束；</div>
+<div class="description-paragraph" id="p0079" num="0074">步骤6、所述操作员根据自身身高牵拉飞行器使其适合自身身高，并完成复飞过程穿戴；</div>
+<div class="description-paragraph" id="p0080" num="0075">步骤7、所述操作员操作退出所述牵拉随动模式，推动油门开始飞行任务，则复飞过程穿戴结束。</div>
+<div class="description-paragraph" id="p0081" num="0076">所述起飞过程穿戴的步骤2的指定高度<span class="patent-image-not-available"></span>米。</div>
+<div class="description-paragraph" id="p0082" num="0077">所述降落或复飞过程穿戴的步骤1的降落高度为1.5米。</div>
+<div class="description-paragraph" id="p0083" num="0078">本发明还包括一种基于穿戴式低空飞行器的悬浮动态穿戴方法的飞行器操作方法，具体有以下步骤：</div>
+<div class="description-paragraph" id="p0084" num="0079">在起飞阶段，设置所述飞行器起飞至距离地面1米高度，随后所述飞行器进入所述牵拉随动模式，所述操作员拉扯所述飞行器适应自身身高，并完成穿戴操作，后按下手柄上的回弹按钮以换到定点模式，完成飞行任务；</div>
+<div class="description-paragraph" id="p0085" num="0080">在降落阶段，所述操作员在所述飞行器降落至1.5米高度，并双脚着地后，松开操纵手柄同时也松开回弹式按钮，所述飞行器进入所述牵拉随动模式，所述操作员解除与所述飞行器的连接，结束飞行任务或更换另一名操作员重复穿戴操作，并使用操纵手柄继续执行飞行任务，也可在当前操作员解除与飞行器连接后按下一键起降开关完成飞行器降落。</div>
+<div class="description-paragraph" id="p0086" num="0081">需要说明的是，在本文中，诸如第一和第二等之类的关系术语仅仅用来将一个实体或者操作与另一个实体或操作区分开来，而不一定要求或者暗示这些实体或操作之间存在任何这种实际的关系或者顺序。而且，术语“包括”、“包含”或者其任何其他变体意在涵盖非排他性的包含，从而使得包括一系列要素的过程、方法、物品或者设备不仅包括那些要素，而且还包括没有明确列出的其他要素，或者是还包括为这种过程、方法、物品或者设备所固有的要素。</div>
+<div class="description-paragraph" id="p0087" num="0082">尽管已经示出和描述了本发明的实施例，对于本领域的普通技术人员而言，可以理解在不脱离本发明的原理和精神的情况下可以对这些实施例进行多种变化、修改、替换和变型，本发明的范围由所附权利要求及其等同物限定。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

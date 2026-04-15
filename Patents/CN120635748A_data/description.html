@@ -1,0 +1,101 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120635748A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES505371322">
+<invention-title id="title1" lang="ZH">一种基于深度学习的轻量化低空飞行器检测方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及无人机与飞行器技术领域，特别是涉及一种基于深度学习的轻量化低空飞行器检测方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">近年来，随着低空飞行器技术的不断成熟与广泛应用，低空经济正经历高速发展。据中国民航局统计数据，截至2024年6月份，我国民用无人机注册数量已突破187.5万架。低空经济的蓬勃发展在带来机遇的同时，也为低空飞行安全带来了新的挑战。为确保低空飞行环境的安全与整洁，进行低空飞行器的黑飞监测显得尤为重要。</div>
+<div class="description-paragraph" id="p0005" num="0003">目前，现有的低空飞行器黑飞检测方案中，可以利用深度学习进行低空飞行器目标检测。传统的目标检测框架中，模型架构建立较为复杂，需要花费足量时间成本调整训练参数。在处理多尺度物体时不够灵活，难以平衡不同尺度物体的检测精度。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">为了解决以上技术问题，本发明提供一种基于深度学习的轻量化低空飞行器检测方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0008" num="0005">S1、采集低空飞行器视觉图像，建立低空飞行器图像数据集；</div>
+<div class="description-paragraph" id="p0009" num="0006">S2、筛选裁剪数据图像，利用标注工具对数据集进行特征标注；</div>
+<div class="description-paragraph" id="p0010" num="0007">S3、将数据集转换为COCO格式，并划分为训练集和验证集；</div>
+<div class="description-paragraph" id="p0011" num="0008">S4、搭建基于深度学习的低空飞行器目标检测模型，目标检测模型基于RTMdet目标检测框架进行改进，利用卡片化和分组卷积策略优化模型的特征提取，在目标检测模型中增加多尺度特征融合模块；</div>
+<div class="description-paragraph" id="p0012" num="0009">S5、设置训练超参数，训练目标检测模型，并对目标检测模型进行评估，得到最优目标检测模型；</div>
+<div class="description-paragraph" id="p0013" num="0010">S6、将待测低空飞行器图像输入最优目标检测模型，得到检测结果。</div>
+<div class="description-paragraph" id="p0014" num="0011">本发明进一步限定的技术方案是：</div>
+<div class="description-paragraph" id="p0015" num="0012">进一步的，步骤S1中，采集低空飞行器在不同俯仰角的视觉图像，建立低空飞行器图像数据集。</div>
+<div class="description-paragraph" id="p0016" num="0013">如前所述的一种基于深度学习的轻量化低空飞行器检测方法，步骤S2中，对低空飞行器图像数据集进行统一编号裁剪，定格数据图像分辨率大小为1024*1024。</div>
+<div class="description-paragraph" id="p0017" num="0014">如前所述的一种基于深度学习的轻量化低空飞行器检测方法，步骤S3中，按照8：2的比例随机划分训练集和验证集；将标注文件转换至COCO数据集，COCO数据集包含模型训练集图像文件、验证集图像文件、训练集json文件以及验证集json文件。</div>
+<div class="description-paragraph" id="p0018" num="0015">如前所述的一种基于深度学习的轻量化低空飞行器检测方法，步骤S4中，基于深度学习的低空飞行器目标检测模型包括Backbone骨干部分、Neck颈部部分以及Head头部部分，模型的输入为低空飞行器视觉图像，输出为带有检测结果及标注信息的低空飞行器图像；利用卡片化和分组卷积策略在目标检测模型的Backbone部分进行特征提取，分组卷积将输入层的不同特征图进行分组，然后采用不同的卷积核对每个组进行卷积。</div>
+<div class="description-paragraph" id="p0019" num="0016">如前所述的一种基于深度学习的轻量化低空飞行器检测方法，步骤S4中，分组卷积将输入通道和输出通道划分为多个组，每组进行卷积计算，每个组的卷积操作公式如下：</div>
+<div class="description-paragraph" id="p0020" num="0017">y<sub>g</sub>＝W<sub>g</sub>*x<sub>g</sub>+b<sub>g</sub>，g＝1，2，...，G</div>
+<div class="description-paragraph" id="p0021" num="0018">其中，W<sub>g</sub>是第g组的卷积核，x<sub>g</sub>是第g组的输入特征图，y<sub>g</sub>是第g组的输出特征图，b<sub>g</sub>是第g组的偏置；</div>
+<div class="description-paragraph" id="p0022" num="0019">将每层的卷积结果进行加权求和，得到最终的输出特征图为：</div>
+<div class="description-paragraph" id="p0023" num="0020">y＝concat(y<sub>1</sub>，y<sub>2</sub>，...，y<sub>G</sub>)</div>
+<div class="description-paragraph" id="p0024" num="0021">其中，y<sub>1</sub>，y<sub>2</sub>，...，y<sub>G</sub>表示每组卷积的特征结果。</div>
+<div class="description-paragraph" id="p0025" num="0022">如前所述的一种基于深度学习的轻量化低空飞行器检测方法，步骤S4中，在分组卷积时，引进参数C改变分组卷积的策略，C表示每个组的卷积操作数量，大于标准的1*1卷积和3*3卷积的通道数，每个组的卷积输出大小为：</div>
+<div class="description-paragraph" id="p0026" num="0023">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0027" num="0024">其中，C<sub>out</sub>是最终输出特征图的通道数，G是分组数。</div>
+<div class="description-paragraph" id="p0028" num="0025">如前所述的一种基于深度学习的轻量化低空飞行器检测方法，步骤S4中，在目标检测模型的Neck颈部部分增加多尺度特征融合模块，在不同尺度下观察特征采样，多尺度特征融合模块包括自底向上的特征提取模块、自顶向下的特征融合模块以及横向链接模块，多尺度特征融合模块的处理过程如下所示：</div>
+<div class="description-paragraph" id="p0029" num="0026">C<sub>1</sub>＝Conv<sub>1×1</sub>(P<sub>i</sub>)</div>
+<div class="description-paragraph" id="p0030" num="0027">其中，P<sub>i</sub>是自底向上的特征图，C<sub>1</sub>表示经过1*1卷积后的特征图；</div>
+<div class="description-paragraph" id="p0031" num="0028">自顶向下的特征融合模块中，首先使用双线性插值方式对高层特征进行采样，使其尺寸更接近底层特征图：</div>
+<div class="description-paragraph" id="p0032" num="0029">P′<sub>l</sub>＝Upsample(P<sub>l+1</sub>)</div>
+<div class="description-paragraph" id="p0033" num="0030">其中，P<sub>l+1</sub>是高层特征图，经过采样后得到P′<sub>l</sub>；</div>
+<div class="description-paragraph" id="p0034" num="0031">接着将采样后的高层特征图P′<sub>l</sub>与底层特征图C<sub>l</sub>经过1*1卷积后的特征图进行融合，融合方式选择拼接操作：</div>
+<div class="description-paragraph" id="p0035" num="0032">F<sub>l</sub>＝Concat(P<sub>l</sub>′，C<sub>l</sub>)</div>
+<div class="description-paragraph" id="p0036" num="0033">最终输出多尺度特征图F<sub>l</sub>。</div>
+<div class="description-paragraph" id="p0037" num="0034">如前所述的一种基于深度学习的轻量化低空飞行器检测方法，步骤S5中，在对目标检测模型进行训练时，设置迭代次数b＝300，训练批次尺寸n＝4，学习率随模型训练调整，初始学习率为0.004，最小学习率为0.0125。</div>
+<div class="description-paragraph" id="p0038" num="0035">如前所述的一种基于深度学习的轻量化低空飞行器检测方法，步骤S5中，使用ONNX框架对训练好的模型优化加速，并将目标检测模型部署至Jetson Xavier NX平台。</div>
+<div class="description-paragraph" id="p0039" num="0036">本发明的有益效果是：</div>
+<div class="description-paragraph" id="p0040" num="0037">(1)本发明中，在改进传统RTMdet目标检测框架前提下，提出一种新的轻量化低空飞行器检测方法，从而减少训练和调整模型的运算成本，确保不同尺度物体检测精度平衡性；</div>
+<div class="description-paragraph" id="p0041" num="0038">(2)本发明中，与现有的低空飞行器目标检测方法相比，本发明在拥有目标检测算法的检测精度和推理速度的同时，还适用于低空飞行器在低空环境下的实时监测，解决了低空环境下的黑飞检测算法计算能力低的难题；</div>
+<div class="description-paragraph" id="p0042" num="0039">(3)本发明中，在深度学习的基础上，克服传统的人工检测中耗时长、检测精度低的缺点的同时，还具有成本低、易于实现、实时性能好的优势。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0043">附图说明</div>
+<div class="description-paragraph" id="p0044" num="0040">图1为本发明的整体流程示意图；</div>
+<div class="description-paragraph" id="p0045" num="0041">图2为本发明实施例中改进后的基于深度学习的低空飞行器目标检测模型结构示意图；</div>
+<div class="description-paragraph" id="p0046" num="0042">图3为本发明实施例中卡片化和分组卷积思想的示意图；</div>
+<div class="description-paragraph" id="p0047" num="0043">图4为本发明实施例中多尺度特征融合模块的结构示意图；</div>
+<div class="description-paragraph" id="p0048" num="0044">图5为本发明实施例中模型验证时对不同地点的低空飞行器的检测结果示意图，其中(a)图为模型验证时对位于无锡市红沙湾的低空飞行器的检测结果示意图；(b)图为模型验证时对位于哈尔滨市团结镇的低空飞行器的检测结果示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0049">具体实施方式</div>
+<div class="description-paragraph" id="p0050" num="0045">本实施例提供的一种基于深度学习的轻量化低空飞行器检测方法，如图1所示，包括以下步骤：</div>
+<div class="description-paragraph" id="p0051" num="0046">S1、利用无人机航拍技术，分别采集低空飞行器和低空环境黑飞的视觉图像，建立低空飞行器图像数据集，由于低空飞行器种类繁多，机动性强，需要采集低空飞行器在不同俯仰角的视觉图像。</div>
+<div class="description-paragraph" id="p0052" num="0047">S2、对低空飞行器图像数据集进行统一编号裁剪；为了提高低空飞行器目标检测模型的精度和减少训练所需空间成本，定格数据图像分辨率大小为1024*1024；利用标注工具对数据集进行特征标注。</div>
+<div class="description-paragraph" id="p0053" num="0048">S3、按照8：2的比例随机划分训练集和验证集；将标注文件转换至COCO数据集，COCO数据集包含模型训练集图像文件、验证集图像文件、训练集json文件以及验证集json文件。</div>
+<div class="description-paragraph" id="p0054" num="0049">S4、搭建基于深度学习的低空飞行器目标检测模型，为了提升模型的检测性能，在搭建目标检测模型时选择改进传统的RTMdet目标检测框架，利用卡片化和分组卷积策略优化模型的特征提取，在目标检测模型中增加多尺度特征融合模块FPN。</div>
+<div class="description-paragraph" id="p0055" num="0050">如图2所示，基于深度学习的低空飞行器目标检测模型包括Backbone骨干部分、Neck颈部部分以及Head头部部分，模型的输入为低空飞行器视觉图像，输出为带有检测结果及标注信息的低空飞行器图像。</div>
+<div class="description-paragraph" id="p0056" num="0051">选择卡片化和分组卷积的思想在目标检测模型的Backbone部分进行特征提取，如图3所示，分组卷积将输入层的不同特征图进行分组，然后采用不同的卷积核对每个组进行卷积；分组卷积将输入通道和输出通道划分为多个组，每组进行卷积计算，每个组的卷积操作公式如下：</div>
+<div class="description-paragraph" id="p0057" num="0052">y<sub>g</sub>＝W<sub>g</sub>*x<sub>g</sub>+b<sub>g</sub>，g＝1，2，...，G</div>
+<div class="description-paragraph" id="p0058" num="0053">其中，W<sub>g</sub>是第g组的卷积核，x<sub>g</sub>是第g组的输入特征图，y<sub>g</sub>是第g组的输出特征图，b<sub>g</sub>是第g组的偏置。</div>
+<div class="description-paragraph" id="p0059" num="0054">将每层的卷积结果进行加权求和，得到最终的输出特征图为：</div>
+<div class="description-paragraph" id="p0060" num="0055">y＝concat(y<sub>1</sub>，y<sub>2</sub>，...，y<sub>G</sub>)</div>
+<div class="description-paragraph" id="p0061" num="0056">其中，y<sub>1</sub>，y<sub>2</sub>，...，y<sub>G</sub>表示每组卷积的特征结果。</div>
+<div class="description-paragraph" id="p0062" num="0057">同时，在分组卷积的时候，引进参数C改变分组卷积的策略，C表示每个组的卷积操作数量，通常会比标准的1*1卷积和3*3卷积的通道数要大，每个组的卷积输出大小为：</div>
+<div class="description-paragraph" id="p0063" num="0058">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0064" num="0059">其中，C<sub>out</sub>是最终输出特征图的通道数，G是分组数。</div>
+<div class="description-paragraph" id="p0065" num="0060">在搭建目标检测网络模型时，在目标检测模型的Neck颈部部分增加多尺度特征融合模块，在不同尺度下观察特征采样，帮助模型更好地处理不同尺度的目标，提升检测精度；如图4所示，多尺度特征融合模块由三部分组成，包括自底向上的特征提取、自顶向下的特征融合以及横向链接。</div>
+<div class="description-paragraph" id="p0066" num="0061">多尺度特征融合模块的整个处理过程如下所示：</div>
+<div class="description-paragraph" id="p0067" num="0062">C<sub>1</sub>＝Conv<sub>1×1</sub>(P<sub>i</sub>)</div>
+<div class="description-paragraph" id="p0068" num="0063">其中，P<sub>i</sub>是自底向上的特征图，C<sub>1</sub>表示经过1*1卷积后的特征图。</div>
+<div class="description-paragraph" id="p0069" num="0064">自顶向下的特征融合过程，首先需要使用双线性插值方式对高层特征进行采样，使其尺寸更接近底层特征图：</div>
+<div class="description-paragraph" id="p0070" num="0065">P′<sub>l</sub>＝Upsample(P<sub>l+1</sub>)</div>
+<div class="description-paragraph" id="p0071" num="0066">其中，P<sub>l+1</sub>是高层特征图，经过采样后得到P′<sub>l</sub>。</div>
+<div class="description-paragraph" id="p0072" num="0067">接着将采样后的高层特征图P′<sub>l</sub>与底层特征图C<sub>l</sub>经过1*1卷积后的特征图进行融合，融合方式选择拼接操作：</div>
+<div class="description-paragraph" id="p0073" num="0068">F<sub>l</sub>＝Concat(P<sub>l</sub>′，C<sub>l</sub>)</div>
+<div class="description-paragraph" id="p0074" num="0069">最终输出多尺度特征图F<sub>l</sub>。</div>
+<div class="description-paragraph" id="p0075" num="0070">S5、设置训练超参数，训练目标检测模型，并对目标检测模型进行评估，得到最优目标检测模型；在对目标检测模型进行训练时，设置迭代次数b＝300，训练批次尺寸n＝4，学习率随模型训练调整，初始学习率为0.004，最小学习率为0.0125，输入低空飞行器数据集。</div>
+<div class="description-paragraph" id="p0076" num="0071">得到训练好的权重模型后，对模型验证评估，如图5所示，采集了两个不同地点的低空飞行器数据图像，其中图5中的(a)图位于无锡市红沙湾，展示了民用小型无人机试飞图像检测结果；图5中的(b)图位于哈尔滨市团结镇，展示了低空物流无人机图像检测结果。</div>
+<div class="description-paragraph" id="p0077" num="0072">使用ONNX框架对训练好的模型优化加速，将Pytorch的训练模型转换为ONNX模型，将模型中的浮点数值转换为较低精度的int8数据类型；并将目标检测模型部署至JetsonXavier NX平台，提升模型处理速度。</div>
+<div class="description-paragraph" id="p0078" num="0073">S6、将待测低空飞行器图像输入最优目标检测模型，得到检测结果。</div>
+<div class="description-paragraph" id="p0079" num="0074">与现有的低空飞行器目标检测方法相比，本实施例方法在拥有目标检测算法的检测精度和推理速度的同时，还适用于低空飞行器在低空环境下的实时监测，解决了低空环境下的黑飞检测算法计算能力低的难题；本发明在深度学习的基础上，克服传统的人工检测中耗时长、检测精度低的缺点的同时，还具有成本低、易于实现、实时性能好的优势。</div>
+<div class="description-paragraph" id="p0080" num="0075">除上述实施例外，本发明还可以有其他实施方式。凡采用等同替换或等效变换形成的技术方案，均落在本发明要求的保护范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

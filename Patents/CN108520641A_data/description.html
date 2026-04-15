@@ -1,0 +1,110 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN108520641A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES353851372">
+<invention-title id="title1" lang="ZH">低空飞行器军警民一体化运营管控系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001" num="0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0002">本发明是对低空民用飞行器使用实名化、飞行计划和航线申报程序化，飞行航迹监控无缝隙，语音通信实时畅通，状态信息分级共享等军警民一体化运营管控的系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003" num="0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0004">民用无人机作为通用航空的一部分，已经可以完成大量过去通用航空的传统业务，而且具有更好的经济性、便捷性和安全性。</div>
+<div class="description-paragraph" id="p0005" num="0005">民用无人机的应用领域和飞行特点与通航飞行器非常相似，具有飞行高度低、体积小、速度慢等特点。在现代城市环境下，建筑物林立，人口众多，各类活动密集，确保通航飞行器和无人机等低空飞行器的全程飞行可控，防范和处置各类“黑飞”和“肇事”事件，单凭公安部门现有的监控与反制手段，面临探测距离近，发现识别难、航迹跟踪难、协同处置难、责任认定难等难题。</div>
+<div class="description-paragraph" id="p0006" num="0006">用好、管好和控制好民用低空飞行器，一直是困扰军航、民航飞行管制部门、地方政府和公安执法部门的一个难题。本系统的建立，将为民用低空飞行器的有效管控，探索出一条军警民融合一体化管控的思路和方法。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007" num="0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0008">本发明为了既用好又管好各类通航飞行器和民用无人机，建设有人机/无人机一体化的城市而设计的低空飞行器军警民管控系统。</div>
+<div class="description-paragraph" id="p0009" num="0009">为了达到本发明的目的所采用的的技术方案是：(图1所示)</div>
+<div class="description-paragraph" id="p0010" num="0010">低空飞行器运行管控体系是一个系统工程，分为用户层、支撑层、服务层和管理层四个层次。</div>
+<div class="description-paragraph" id="p0011" num="0011">用户层</div>
+<div class="description-paragraph" id="p0012" num="0012">指民用无人机用户和通航用户，他们既从事飞行，又需要了解飞行态势和飞行服务信息，是本系统的直接参与者和最大受益者。</div>
+<div class="description-paragraph" id="p0013" num="0013">参与系统运行的其他相关群体见图2</div>
+<div class="description-paragraph" id="p0014" num="0014">支撑层</div>
+<div class="description-paragraph" id="p0015" num="0015">指支持系统运行的主要设备和网络。包括：机载多模航管终端、航管电台、ADS-B接收机、地面移动通信服务商的公网VPN、政企专网、大S卫星信关站、RTK差分基准站、无人机航管接入设备、军航航管中心接入终端和无人机侦测/反制系统。利用城市现有移动公网VPN和政企专网资源，通过优化无线通信基站天线覆盖范围，新编制无人机测控与传输协议，增加精确导航定位功能，以满足无人机载城市环境下低空飞行的测控与航管应用要求。</div>
+<div class="description-paragraph" id="p0016" num="0016">机载多模航管终端</div>
+<div class="description-paragraph" id="p0017" num="0017">配置在民用无人机和通航飞行器上。利用现有有人机机载航管设备相关成果和产品，利用地方民企的现有成果，研制适用于无人机的多模航管设备，实现卫星导航定位、卫星通信、移动专网通信、移动公网通信功能“四合一”。并根据低空飞行器的种类不同，适配在不同类型的飞行器。</div>
+<div class="description-paragraph" id="p0018" num="0018">微型机载航管终端，实现北斗+专网+公网+大S功能“四合一”，适用个人消费级无人机。</div>
+<div class="description-paragraph" id="p0019" num="0019">小型机载航管终端，实现北斗+专网+公网+北斗短信+大S功能“五合一”，适用工业级无人机。</div>
+<div class="description-paragraph" id="p0020" num="0020">中型机载航管终端，实现北斗+ADS-B+航管应答+航管语音+大S“五合一”，适用于货运无人机、通航有人机。(图3所示)</div>
+<div class="description-paragraph" id="p0021" num="0021">航管电台</div>
+<div class="description-paragraph" id="p0022" num="0022">用于有人机与地面飞行塔台或通航飞行服务站进行空地对话。</div>
+<div class="description-paragraph" id="p0023" num="0023">ADS-B接收机</div>
+<div class="description-paragraph" id="p0024" num="0024">部署在低空飞行器运行管控中心和通航飞行服务站。是一种能够接收1090ES广播式自动相关监视信息的地面端设备，接收1090ES机载端广播的ADS-B报文后，从中提取出飞机的识别信息(ID)、经纬度、高度、速度、航向等信息，组装成符合ASTERIX标准的报告，通过地面网络分发与信息处理系统传输到管制中心，向管制员提供飞行航迹显示以进行空中交通管理。1090ESADS-B地面站在应用时，可以采用双机热备份的方式工作，以提高系统的可靠性。(图4所示)</div>
+<div class="description-paragraph" id="p0025" num="0025">地面移动通信服务商的公网VPN</div>
+<div class="description-paragraph" id="p0026" num="0026">提供无人机机载多模航管终端物联网加密数据的接入、临时布设的无人机侦测/反制设备信号的接入和RTK动态载波差分数据的发送能力。</div>
+<div class="description-paragraph" id="p0027" num="0027">无人机机载多模航管终端，内置了卫星定位功能和物联网通信功能，可将飞行中的无人机编号、位置、速度、高度等信息发送到地面的移动通信基站，是实施无人机低空飞行管控的重要技术手段。</div>
+<div class="description-paragraph" id="p0028" num="0028">RTK动态载波差分信息，将为通航机场周边区域提供厘米级的精确卫星定位数据，对提高飞行安全，扩展飞行业务具有重要意义。</div>
+<div class="description-paragraph" id="p0029" num="0029">政企专网</div>
+<div class="description-paragraph" id="p0030" num="0030">布设面向无人机应用的视距测控与数传通信基站，构建专用移动通信网络，改善PLMN公网对空应用效果不好和信息安全缺乏保障的不足。利用此网的保密性，可发布北斗/GPS差分数据、接收和传输飞行器目标信息、并对接公安的监管系统和民航的空管体系。</div>
+<div class="description-paragraph" id="p0031" num="0031">大S卫星信关站</div>
+<div class="description-paragraph" id="p0032" num="0032">利用天通一号(大S)卫星移动通信系统与地面现有的移动通信系统共同构成星地一体的移动通信网络。弥补地面移动通信网在覆盖区域上的空白，构成全区域的移动通信网络。提供全区域、无盲区的远程通信手段。适合在无移动通信网络信号或以较高高度、较大速度飞行的飞行器使用。</div>
+<div class="description-paragraph" id="p0033" num="0033">天通一号卫星支持100万个用户同时使用。通过信关站进行PSTN公共交换电话网业务和INTERNET互联网业务，与地面公网移动终端互联互通。</div>
+<div class="description-paragraph" id="p0034" num="0034">RTK差分基准站</div>
+<div class="description-paragraph" id="p0035" num="0035">部署在移动通信基站或政企专网基站附件。接收北斗/GPS卫星定位信号并进行差分处理，生成差分数据，将差分数据通过内置的GSM/GPRS选件发送给移动服务商的VPN或政企专网，以无线广播的形式发送差分数据，向北斗/GPS终端用户提供厘米级的精确定位服务。</div>
+<div class="description-paragraph" id="p0036" num="0036">无人机航管接入设备</div>
+<div class="description-paragraph" id="p0037" num="0037">实现将无人机地面控制站与航管中心既有航管系统互联互通，实现将无人机的飞行管控纳入到航空管制体系内，接受航空管制部门的管理和服务。(图5所示)</div>
+<div class="description-paragraph" id="p0038" num="0038">军航航管中心接入终端</div>
+<div class="description-paragraph" id="p0039" num="0039">直接利用军用无人机地面站配套研制的航管中心便携式终端设备，通过光缆与地面站方舱车相连。使地面站与指挥中心之间具备情报、计划和语音的通信能力。(图6所示)</div>
+<div class="description-paragraph" id="p0040" num="0040">无人机侦测/反制系统</div>
+<div class="description-paragraph" id="p0041" num="0041">分为常态固定部署和临时机动部署两种方式。</div>
+<div class="description-paragraph" id="p0042" num="0042">常态固定部署，主要在机场、监狱、看守所、戒毒所、政府机关、保密机构等周边；临时机动部署，主要在大型群众活动场所、重大赛事、演唱会、重要会议、反恐领域等地。</div>
+<div class="description-paragraph" id="p0043" num="0043">通过无线电测向系统对非法入侵无人机进行自动搜索；</div>
+<div class="description-paragraph" id="p0044" num="0044">侦测设备采集到无人机MAC地址，建立无人机黑白名单机制，实现对进入管控区的无人机进行有效的“敌我”识别；</div>
+<div class="description-paragraph" id="p0045" num="0045">启动无线电干扰系统对无人机测控和导航信号进行强电干扰阻断，进行无人机迫降或返航。(图7所示)</div>
+<div class="description-paragraph" id="p0046" num="0046">服务层</div>
+<div class="description-paragraph" id="p0047" num="0047">指低空飞行器运行管控中心和飞行服务站两个服务机构，它们分别针对无人机和通航飞行器提供飞行计划受理、空情态势监视、航空情报、气象情报和应急救援信息服务。</div>
+<div class="description-paragraph" id="p0048" num="0048">因为低空飞行涉及公共安全，低空飞行器运行管控中心可以部署在地区公安局，主要用于低空无人机的飞行服务和管控；而飞行服务站通常部署在通航机场，主要用于通航飞行器的飞行服务和管控。</div>
+<div class="description-paragraph" id="p0049" num="0049">低空飞行器运行管控中心</div>
+<div class="description-paragraph" id="p0050" num="0050">拟建在航天城开发区的公安局内，主要为当地公安部门提供低空飞行目标的管控能力，用于无人机飞行计划的审批、低空飞行目标的监视、指定空域的安全监视、通航飞行器的应急救援、无人机飞行的应急处置和反制‘黑飞’的无人机。</div>
+<div class="description-paragraph" id="p0051" num="0051">由1个LED大显示屏和4个飞行管控席位(任务规划、计划申报、状态管控、数据管理)组成，与通航飞行服务站共享数据。(图8所示)</div>
+<div class="description-paragraph" id="p0052" num="0052">通航飞行服务站</div>
+<div class="description-paragraph" id="p0053" num="0053">飞行服务站是一个综合化的飞行信息终端，可为通用航空飞行提供飞行计划服务、飞行动态监视、航空情报服务、气象情报服务、告警和应急救援服务。建在航天机场。</div>
+<div class="description-paragraph" id="p0054" num="0054">主要设备包括1个LED综合显示屏和4个终端操作席位。运行《综合空情监视软件》，《通航飞行服务站后台服务软件》及其Web客户端。</div>
+<div class="description-paragraph" id="p0055" num="0055">LED显示屏，主要作为《综合空情监视软件》的显示屏，提供区域内飞行目标的监视、区域协调管理、综合告警、公共安全及应急救援等协调监管功能。</div>
+<div class="description-paragraph" id="p0056" num="0056">4个终端操作席位，使用《通航飞行服务站后台服务软件》的Web端，通过不同的登录身份，为4个席位提供不同的功能。(图10所示)</div>
+<div class="description-paragraph" id="p0057" num="0057">管理层</div>
+<div class="description-paragraph" id="p0058" num="0058">指战区空军、地区民航管理/空管和地方公安局等管理单位。</div>
+<div class="description-paragraph" id="p0059" num="0059">战区空军，负责审批飞行空域和飞行计划，对空监视。</div>
+<div class="description-paragraph" id="p0060" num="0060">地区民航管理和空管：对地区内的飞行单位和机构进行行业指导和监督管理，审批飞行空域和飞行计划，对空监视。</div>
+<div class="description-paragraph" id="p0061" num="0061">地方公安：维护本地公共安全，知情管辖区内的无人机飞行计划，对相关区域进行无人机侦测，对违规无人机进行执法。</div>
+<div class="description-paragraph" id="p0062" num="0062">系统软件</div>
+<div class="description-paragraph" id="p0063" num="0063">系统由3个主要的软件构成。</div>
+<div class="description-paragraph" id="p0064" num="0064">《通航飞行服务站后台服务软件》，运行在航天机场飞行服务站的后台服务器上。</div>
+<div class="description-paragraph" id="p0065" num="0065">《综合空情监视软件》，运行在航天机场飞行服务站的监控席计算机上；运行在航天产业基地低空飞行管控中心的计算机上。</div>
+<div class="description-paragraph" id="p0066" num="0066">《远卓云APP客户端软件》，运行在飞行用户的手机上和公安警察的手机上。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0067" num="0067">附图说明</div>
+<div class="description-paragraph" id="p0068" num="0068">图1是本发明的系统构架</div>
+<div class="description-paragraph" id="p0069" num="0069">图2是低空飞行器运行管控系统相关干系群体</div>
+<div class="description-paragraph" id="p0070" num="0070">图3是机载多模航管终端</div>
+<div class="description-paragraph" id="p0071" num="0071">图4是ADS-B接收机</div>
+<div class="description-paragraph" id="p0072" num="0072">图5是无人机航管接入设备</div>
+<div class="description-paragraph" id="p0073" num="0073">图6是军航航管中心接入终端</div>
+<div class="description-paragraph" id="p0074" num="0074">图7是无人机反制系统</div>
+<div class="description-paragraph" id="p0075" num="0075">图8是低空飞行器运行管控中心效果图</div>
+<div class="description-paragraph" id="p0076" num="0076">图9是飞行服务站布局效果图</div>
+<div class="description-paragraph" id="p0077" num="0077">图10是用户服务层的飞行服务站网站登录界面图</div>
+<div class="description-paragraph" id="p0078" num="0078">图11是用户服务层的手机APP界面</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0079" num="0079">具体实施方式</div>
+<div class="description-paragraph" id="p0080" num="0080">下面是结合附图对本发明的较佳实施进行详细阐述，以使本发明的优点和特征更易于被本领域技术人员理解，从而对本发明的保护范围做出更为清楚明确的界定。</div>
+<div class="description-paragraph" id="p0081" num="0081">飞行前</div>
+<div class="description-paragraph" id="p0082" num="0082">飞行用户通过手机APP客户端或从PC机(图10、11)上登录运行管控系统网站制作飞行计划。飞行用户只能从系统数据库中提取其所拥有的通航飞行员信息、无人机驾驶员信息、飞行器信息和机载多模航管终端信息(图3)，可以查看本地区的空域信息，最终生成标准化的飞行计划。</div>
+<div class="description-paragraph" id="p0083" num="0083">制作好的飞行计划通过网络发送给运行管控系统。</div>
+<div class="description-paragraph" id="p0084" num="0084">运行管控系统中的飞行计划受理席(图8)收到飞行计划后，先进行预审，符合基本条件的飞行计划，按照计划中飞行区域的大小被逐级上报给最近的民航机场、民航地区空管分局、民航地区空管局和空军场站航管中心、空军师级和战区级指挥所。对于无人机飞行计划，也要报告给当地公安局，使公安局知情无人机飞行计划，公安局有权拒批无人机飞行计划。批复后的飞行计划也是逐级返回到运行管控系统的计划受理席(图8)，保存、并将批复结果告知飞行用户。飞行用户得到飞行计划获批准后，可以通过手机APP客户端或在PC机登录(图10、11)运行管控系统网站，了解飞行区域的航空情报和气象情报信息。</div>
+<div class="description-paragraph" id="p0085" num="0085">在实际飞行前，飞行用户还要向运行管控系统报告起飞开始时间，获得批准后才能飞行。</div>
+<div class="description-paragraph" id="p0086" num="0086">飞行中</div>
+<div class="description-paragraph" id="p0087" num="0087">通航飞行器或无人机起飞后，地面人员通知运行管控系统计划席(图8)，飞行器已进入飞行状态。运行管控系统将对飞行器的飞行态势进行监控。</div>
+<div class="description-paragraph" id="p0088" num="0088">通航飞行器可通过航管电台与地面保持联系，报告自己的位置等状态，也可通过机载ADS-B或机载多模航管终端(图3)将飞行动态信息发送到地面ADS-B接收机(图4)或移动通信网络中；无人机则通过机载多模航管终端(图3)将自身的飞行动态信息发送到地面移动通信网络中。地面移动通信网络将飞行目标的态势信息发送到运行管控系统的综合空情监视软件和手机APP客户端，综合空情监视软件的显示屏和手机可以查看到飞行器的空中飞行态势。</div>
+<div class="description-paragraph" id="p0089" num="0089">飞行器的空中飞行态势信息，还可通过布设在运行管控中心和飞行服务站的航管接入设备(图5、6)，发送给当地的民航空管部门和军航航管中心，实现飞行动态信息共享。</div>
+<div class="description-paragraph" id="p0090" num="0090">如果飞行器在空中出现相互冲突、飞临飞行计划的边界、飞临禁飞区或出现特情，综合空情监视软件和APP客户端将自动发出告警提示，并提醒飞行用户采取相应措施。</div>
+<div class="description-paragraph" id="p0091" num="0091">综合空情监视软件和APP客户端还可以接入无人机侦测设备的信息。无人机侦测设备可以对无人机信号进行自动、快速的侦测、发现、识别和测向定位；依靠系统数据库的查询对比，建立无人机黑白名单，对无人机进行有效的‘敌我’识别；对‘黑飞’无人机自动跟踪取证，并通知当地公安部门，采取相应的无人机反制措施(图7)。无人机侦测设备还可建立一定空域的电子围栏，阻止所防御区域内的无人机起飞或从外界侵入。</div>
+<div class="description-paragraph" id="p0092" num="0092">飞行后</div>
+<div class="description-paragraph" id="p0093" num="0093">飞行用户通过电话向运行管控中心(图8)或飞行服务站(图9)报告本次飞行结束，或通过手机APP客户端和运行管控系统网站(图10、11)，确定本次飞行计划结束。运行管控系统收到飞行器落地报告后，会确定相应的飞行计划已完成，释放相关空域的使用权，并根据飞行计划的执行情况进行飞行活动的统计。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

@@ -1,0 +1,239 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN121115849A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES514458999">
+<invention-title id="title1" lang="ZH">电动垂直起降飞行器的低空避障系统及方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及电动垂直起降飞行器技术领域，尤其是涉及电动垂直起降飞行器的低空避障系统及方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">在电动垂直起降飞行器（eVTOL）低空飞行阶段，特别是进场降落和离场起飞过程中，三维环境感知与避障能力直接关系到飞行安全。</div>
+<div class="description-paragraph" id="p0005" num="0003">当前主流避障系统主要依赖单一类型的传感器，如激光雷达或毫米波雷达，这些方案存在明显的局限性：激光雷达虽然精度高但视场角有限，难以实现全方位覆盖；毫米波雷达在复杂低空环境中易受多径效应干扰，对小型障碍物的检测能力不足。</div>
+<div class="description-paragraph" id="p0006" num="0004">光学相机系统虽然具有高分辨率和成本优势，但在实际应用中面临三大挑战：动态范围受限导致高对比度场景下细节丢失，低光环境下信噪比急剧下降，以及多相机协同工作时视场覆盖难以优化。</div>
+<div class="description-paragraph" id="p0007" num="0005">特别是在城市峡谷等复杂低空环境中，飞行器需要同时应对前向飞行路径和下方降落区域的多维度障碍物，现有单一传感器方案无法满足全方位、高精度的三维避障需求。</div>
+<div class="description-paragraph" id="p0008" num="0006">这些技术瓶颈严重制约了电动垂直起降飞行器在复杂环境下的安全运行能力。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0009">发明内容</div>
+<div class="description-paragraph" id="p0010" num="0007">本发明的目的在于提供电动垂直起降飞行器的低空避障系统及方法，以解决现有技术中存在的至少一项技术问题。</div>
+<div class="description-paragraph" id="p0011" num="0008">为解决上述技术问题，本发明提供电动垂直起降飞行器的低空避障系统，包括电动垂直起降飞行器的低空避障系统，所述电动垂直起降飞行器包括机身、动力系统以及机翼/升力系统，所述低空避障系统包括传感器组件和光学组件；所述传感器组件用于进行图像信息的采集，包括：</div>
+<div class="description-paragraph" id="p0012" num="0009">前向相机，设置于所述电动垂直起降飞行器的机身的机头前部中心；</div>
+<div class="description-paragraph" id="p0013" num="0010">下向相机，设置于所述电动垂直起降飞行器的机身的底部中心；</div>
+<div class="description-paragraph" id="p0014" num="0011">复用相机，所述复用相机成对设置，且成对设置的两个所述复用相机分别设置在所述电动垂直起降飞行器的机身的两侧；</div>
+<div class="description-paragraph" id="p0015" num="0012">其中，所述复用相机倾斜设置于所述机身两侧的交界线上，使得所述前向相机和成对设置的所述复用相机的视场至少部分重叠；所述下向相机和成对设置的所述复用相机的视场至少部分重叠。</div>
+<div class="description-paragraph" id="p0016" num="0013">进一步地，所述复用相机通过机械支架可调安装在所述交界线上；所述复用相机在俯仰方向上前倾25°±3°、下倾20°±3°的复合角度；在水平方向上保持5°±2°的内倾角。</div>
+<div class="description-paragraph" id="p0017" num="0014">进一步地，所述前向相机为第一人称视角相机，采用90°×60°广角镜头；所述下向相机为鸟瞰视角相机，采用80°×50°的镜头；述复用相机采用110°×70°超广角镜头。</div>
+<div class="description-paragraph" id="p0018" num="0015">进一步地，所述光学组件用于为所述传感器组件的信息采集提供照明，包括：前向补光模块和下向补光模块；</div>
+<div class="description-paragraph" id="p0019" num="0016">所述前向补光模块设置于所述机身的两侧，所述前向补光模块的前向中心轴与所述前向相机的前向成像中心轴成第一夹角，且所述前向补光模块与所述前向相机相距第一距离；</div>
+<div class="description-paragraph" id="p0020" num="0017">所述下向补光模块设置于所述机身的底部，所述下向补光模块的下向光学中心轴与所述下向相机的下向成像中心轴成第二夹角，且所述下向补光模块与所述下向相机相距第二距离。</div>
+<div class="description-paragraph" id="p0021" num="0018">进一步地，所述光学组件为采用850nm红外LED制成的LED补光模块；所述LED补光模块与所述传感器组件的光谱匹配度<span class="patent-image-not-available"></span>满足：</div>
+<div class="description-paragraph" id="p0022" num="0019">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0023" num="0020">其中，<span class="patent-image-not-available"></span>为所述LED补光模块光谱功率分布，<span class="patent-image-not-available"></span>为所述传感器组件的量子效率。</div>
+<div class="description-paragraph" id="p0024" num="0021">进一步地，所述光学组件还包括非球面透镜组件，所述非球面透镜组件包括三级光学处理单元；所述三级光学处理单元包括：</div>
+<div class="description-paragraph" id="p0025" num="0022">初级光学单元：所述初级光学单元为与所述LED补光模块中的每个所述LED对应设置的独立的全内反射透镜；</div>
+<div class="description-paragraph" id="p0026" num="0023">次级光学单元：所述次级光学单元为蜂窝式匀光器，以将所述LED补光模块放入光强分布标准差控制在15%以内；</div>
+<div class="description-paragraph" id="p0027" num="0024">三级光学单元：所述三级光学单元为菲涅尔透镜阵列，以形成60°×40°的矩形照射场。</div>
+<div class="description-paragraph" id="p0028" num="0025">为解决上述技术问题，本发明提供电动垂直起降飞行器的低空避障方法，所述电动垂直起降飞行器包括用于执行所述低空避障方法的低空避障系统；所述低空避障系统为前述的电动垂直起降飞行器的低空避障系统，所述低空避障系统包括传感器组件和光学组件；</div>
+<div class="description-paragraph" id="p0029" num="0026">所述低空避障方法包括：</div>
+<div class="description-paragraph" id="p0030" num="0027">曝光与发光时序同步控制：基于现场可编程门阵列同步控制所述传感器组件和所述光学组件，使得所述光学组件工作于脉冲模式，并设置所述传感器组件的全局快门曝光起始时间；</div>
+<div class="description-paragraph" id="p0031" num="0028">传感器数据融合处理：建立自适应加权融合机制，动态分配各相机置信度权重，输出实时三维避障地图；</div>
+<div class="description-paragraph" id="p0032" num="0029">系统工作流程控制：分时激活所述传感器组件中的各传感器进行障碍物检测和地形扫描，并在设定时间内完成数据融合处理；并根据环境光照条件自动调整所述光学组件的补光强度和所述传感器组件的曝光参数。</div>
+<div class="description-paragraph" id="p0033" num="0030">进一步地，所述曝光与发光时序同步控制包括：</div>
+<div class="description-paragraph" id="p0034" num="0031">时钟基准生成：采用低抖动的恒温晶振产生主时钟，通过所述现场可编程门阵列的锁相环进行频率倍增；</div>
+<div class="description-paragraph" id="p0035" num="0032">脉冲调制控制：采用三阶段脉冲驱动所述光学组件；</div>
+<div class="description-paragraph" id="p0036" num="0033">曝光时序编排：采用交错式触发策略对所述传感器组件进行触发；</div>
+<div class="description-paragraph" id="p0037" num="0034">抗干扰设计：采用自适应延迟补偿算法消除信号传输差异。</div>
+<div class="description-paragraph" id="p0038" num="0035">进一步地，所述脉冲调制控制包括：</div>
+<div class="description-paragraph" id="p0039" num="0036">预充电阶段：将所述光学组件充电至工作电压；</div>
+<div class="description-paragraph" id="p0040" num="0037">恒流阶段：恒流驱动，控制所述光学组件光强上升时间；</div>
+<div class="description-paragraph" id="p0041" num="0038">泄放阶段：快速放电电路确保脉冲后沿陡峭。</div>
+<div class="description-paragraph" id="p0042" num="0039">进一步地，所述传感器数据融合处理包括：</div>
+<div class="description-paragraph" id="p0043" num="0040">前向障碍物检测：对所述传感器组件采集的图像信息进行特征的提取与匹配；</div>
+<div class="description-paragraph" id="p0044" num="0041">下方地形重建：采用半全局立体匹配算法，结合Census变换与梯度信息进行代价计算；</div>
+<div class="description-paragraph" id="p0045" num="0042">自适应加权融合：构建置信度评估模型，动态分配所述传感器组件中各传感器的权重；</div>
+<div class="description-paragraph" id="p0046" num="0043">三维避障地图生成：采用截断符号距离函数融合获取所述三维避障地图。</div>
+<div class="description-paragraph" id="p0047" num="0044">采用上述技术方案，本发明具有如下有益效果：通过设置传感器组件和光学组件，通过传感器组件中的多传感器布局架构，使传感器之间形成视场重叠区，继而实现无盲区的环境感知；同时，通过控制传感器组件和光学组件的精确同步控制，解决了低光条件下成像质量下降的痛点；突破了现有技术中单视角感知的局限，以在在各种光照条件下实现厘米级精度的三维避障，为电动垂直起降飞行器安全起降提供可靠的技术保障。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0048">附图说明</div>
+<div class="description-paragraph" id="p0049" num="0045">为了更清楚地说明本发明具体实施方式或现有技术中的技术方案，下面将对具体实施方式或现有技术描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图是本发明的一些实施方式，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0050" num="0046">图1为本发明低空避障系统的结构框图；</div>
+<div class="description-paragraph" id="p0051" num="0047">图2为本发明低空避障方法的流程示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0052">具体实施方式</div>
+<div class="description-paragraph" id="p0053" num="0048">下面将结合附图对本发明的技术方案进行清楚、完整地描述，显然，所描述的实施例是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0054" num="0049">在本发明的描述中，需要说明的是，术语“中心”、“上”、“下”、“左”、“右”、“竖直”、“水平”、“内”、“外”等指示的方位或位置关系为基于附图所示的方位或位置关系，仅是为了便于描述本发明和简化描述，而不是指示或暗示所指的装置或元件必须具有特定的方位、以特定的方位构造和操作，因此不能理解为对本发明的限制。此外，术语“第一”、“第二”、“第三”仅用于描述目的，而不能理解为指示或暗示相对重要性。</div>
+<div class="description-paragraph" id="p0055" num="0050">本领域技术人员应当知晓，下述具体实施例或具体实施方式，是本发明为进一步解释具体的发明内容而列举的一系列优化的设置方式，而该些设置方式之间均是可以相互结合或者相互关联使用的，除非在本发明明确提出了其中某些或某一具体实施例或实施方式无法与其他的实施例或实施方式进行关联设置或共同使用。同时，下述的具体实施例或实施方式仅作为最优化的设置方式，而不作为限定本发明的保护范围的理解。</div>
+<div class="description-paragraph" id="p0056" num="0051">请参阅图1所示为本发明提供的电动垂直起降飞行器的低空避障系统，电动垂直起降飞行器包括机身（未标号）、动力系统以及机翼/升力系统以及低空避障系统1；低空避障系统1包括传感器组件11和光学组件12；传感器组件11用于进行图像信息的采集，包括：</div>
+<div class="description-paragraph" id="p0057" num="0052">前向相机111，设置于电动垂直起降飞行器的机身的机头前部中心；</div>
+<div class="description-paragraph" id="p0058" num="0053">下向相机112，设置于电动垂直起降飞行器的机身的底部中心；</div>
+<div class="description-paragraph" id="p0059" num="0054">复用相机113，复用相机113成对设置，且成对设置的两个复用相机113分别设置在电动垂直起降飞行器的机身的两侧；</div>
+<div class="description-paragraph" id="p0060" num="0055">其中，复用相机113倾斜设置于机身两侧的交界线上，使得前向相机111和成对设置的复用相机113的视场至少部分重叠；下向相机112和成对设置的复用相机113的视场至少部分重叠。</div>
+<div class="description-paragraph" id="p0061" num="0056">在本申请一较佳实施例中，前向相机111为第一人称视角相机，采用90°×60°广角镜头，以用于对电动垂直起降飞行器前向飞行路径的主视场进行覆盖；下向相机112为鸟瞰视角相机，采用80°×50°的镜头；用于对电动垂直起降飞行器的降落区域进行监测。</div>
+<div class="description-paragraph" id="p0062" num="0057">在本实施例中复用相机113设置有一对，均采用110°×70°超广角镜头。进一步的，复用相机113通过机械支架可调安装在机身两侧的交界线上；复用相机113在俯仰方向上前倾25°±3°、下倾20°±3°的复合角度；在水平方向上保持5°±2°的内倾角。</div>
+<div class="description-paragraph" id="p0063" num="0058">如此设置，可使得每个复用相机113能够同时覆盖前向和下方两个关键区域。具体而言，位于机身左侧的复用相机113的前向视场与前向相机111形成30%的重叠区，下方视场与下向相机112形成25%的重叠区；位于机身右侧的复用相机113采用对称布局实现相同覆盖效果。</div>
+<div class="description-paragraph" id="p0064" num="0059">进一步的，前向相机111、下向相机112以及两个复用相机113的安装位置均通过齐次坐标变换矩阵进行精确标定，确保各视场在三维空间中的无缝衔接。</div>
+<div class="description-paragraph" id="p0065" num="0060">在实际安装时，首先使用激光跟踪仪测量确定机身的基准坐标系，然后根据预设的安装参数（前向相机111距机头尖端50cm，下向相机112距机身底部30cm，复用相机113距机身两侧各40cm）进行机械定位。</div>
+<div class="description-paragraph" id="p0066" num="0061">安装完成后，通过棋盘格标定板进行联合标定，验证前向相机111、下向相机112以及两个复用相机113的视场重叠区域的实际覆盖情况。最终形成的感知系统在前向和下方形成前向相机111、和两个复用相机113、下向相机112和两个复用相机113的视场重叠，其中前向区域由前向相机111和两个复用相机113的前向视场共同覆盖，下方区域由下向相机112和两个复用相机113的下方视场共同覆盖，实现真正的无盲区环境感知。</div>
+<div class="description-paragraph" id="p0067" num="0062">具体实施时，首先在计算机辅助设计软件中建立电动垂直起降飞行器的三维模型，根据机身尺寸确定前向相机111、下向相机112以及两个复用相机113的理论安装位置。</div>
+<div class="description-paragraph" id="p0068" num="0063">然后使用空间解析几何方法计算视场覆盖：假设前向相机111视场为90°×60°的锥形空间，复用相机113前倾25°后，复用相机113的复用成像中心轴与前向相机111的前向成像中心轴形成55°夹角，通过立体几何计算可得复用相机113和前向相机111在15m距离处形成4.5m×3m的重叠区域。</div>
+<div class="description-paragraph" id="p0069" num="0064">安装完成后，在地面测试中放置已知尺寸的标定物阵列，通过图像处理算法实测重叠区域的实际尺寸与理论值偏差小于5%，验证了布局方案的有效性。</div>
+<div class="description-paragraph" id="p0070" num="0065">光学组件12用于为传感器组件11的图像信息采集提供照明。在本申请中，光学组件12包括：前向补光模块121和下向补光模块122。</div>
+<div class="description-paragraph" id="p0071" num="0066">前向补光模块121设置于机身的两侧，前向补光模块121的前向中心轴与前向相机111的前向成像中心轴成第一夹角，且前向补光模块121与前向相机111相距第一距离；下向补光模块122设置于机身的底部，下向补光模块122的下向光学中心轴与下向相机112的下向成像中心轴成第二夹角，且下向补光模块122与下向相机112相距第二距离。</div>
+<div class="description-paragraph" id="p0072" num="0067">在本申请中，光学组件12为采用850nm红外LED制成的LED补光模块，以使得光源选型与光谱匹配。进一步的，每个LED补光模块均包含16颗高功率LED芯片（单颗峰值功率0.625W），以使每个LED补光模块的总功率为10W。</div>
+<div class="description-paragraph" id="p0073" num="0068">在本申请中，LED补光模块与所述传感器组件的光谱匹配度<span class="patent-image-not-available"></span>满足：</div>
+<div class="description-paragraph" id="p0074" num="0069">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0075" num="0070">其中，<span class="patent-image-not-available"></span>为所述LED补光模块光谱功率分布，<span class="patent-image-not-available"></span>为所述传感器组件的量子效率；优选的，<span class="patent-image-not-available"></span>≥0.85。</div>
+<div class="description-paragraph" id="p0076" num="0071">具体地，当LED的光谱半高宽为±15nm时，与传感器组件11的量子效率曲线在800-900nm波段实现最优匹配。</div>
+<div class="description-paragraph" id="p0077" num="0072">在本申请中，光学组件12还包括非球面透镜组件123，非球面透镜组件123包括三级光学处理单元；三级光学处理单元包括：初级光学单元、次级光学单元以及三级光学单元。</div>
+<div class="description-paragraph" id="p0078" num="0073">初级光学单元为与LED补光模块中的每个LED对应设置的独立的全内反射透镜；以实现实现80°×60°的初始光束控制。</div>
+<div class="description-paragraph" id="p0079" num="0074">次级光学单元为蜂窝式匀光器，以将LED补光模块放入光强分布标准差控制在15%以内。</div>
+<div class="description-paragraph" id="p0080" num="0075">三级光学单元为菲涅尔透镜阵列，以形成60°×40°的矩形照射场。</div>
+<div class="description-paragraph" id="p0081" num="0076">在一较佳实施例中，前向补光模块121的照射角度为30°下倾，且前向补光模块121与前向相机111之间的第一距离为30cm；使得前向补光模块121的光照覆盖范围为：50m@10lux。</div>
+<div class="description-paragraph" id="p0082" num="0077">下向补光模块122的照射角度为45°下倾，且下向补光模块122与下向相机112之间的第二距离为40cm；使得下向补光模块122的光照覆盖范围为：30m×30m。</div>
+<div class="description-paragraph" id="p0083" num="0078">请参阅图2所示为本发明提供的电动垂直起降飞行器的低空避障方法。低空避障方法包括：</div>
+<div class="description-paragraph" id="p0084" num="0079">曝光与发光时序同步控制：基于现场可编程门阵列同步控制传感器组件和光学组件，使得光学组件工作于脉冲模式，并设置传感器组件的全局快门曝光起始时间；</div>
+<div class="description-paragraph" id="p0085" num="0080">传感器数据融合处理：建立自适应加权融合机制，动态分配各相机置信度权重，输出实时三维避障地图；</div>
+<div class="description-paragraph" id="p0086" num="0081">系统工作流程控制：分时激活传感器组件中的各传感器进行障碍物检测和地形扫描，并在设定时间内完成数据融合处理；并根据环境光照条件自动调整光学组件的补光强度和传感器组件的曝光参数。</div>
+<div class="description-paragraph" id="p0087" num="0082">具体的，曝光与发光时序同步控制包括：</div>
+<div class="description-paragraph" id="p0088" num="0083">时钟基准生成：采用低抖动的恒温晶振产生主时钟，通过现场可编程门阵列的锁相环进行频率倍增；</div>
+<div class="description-paragraph" id="p0089" num="0084">脉冲调制控制：采用三阶段脉冲驱动光学组件；</div>
+<div class="description-paragraph" id="p0090" num="0085">曝光时序编排：采用交错式触发策略对传感器组件进行触发；</div>
+<div class="description-paragraph" id="p0091" num="0086">抗干扰设计：采用自适应延迟补偿算法消除信号传输差异。</div>
+<div class="description-paragraph" id="p0092" num="0087">具体地，时钟基准生成采用低抖动（&lt;50ps）的OCXO恒温晶振产生200MHz主时钟，通过FPGA（现场可编程门阵列）内部PLL（锁相环）倍频至800MHz，为同步控制提供时间基准。</div>
+<div class="description-paragraph" id="p0093" num="0088">在本实施例中，时钟信号通过以下公式进行抖动抑制：</div>
+<div class="description-paragraph" id="p0094" num="0089">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0095" num="0090">其中，PN为相位噪声(-110dBc/Hz@1kHz)，f<sub>0</sub>为载波频率(200MHz)，BW为带宽(1MHz)。计算得<span class="patent-image-not-available"></span>=0.8ps，满足ns级同步要求。</div>
+<div class="description-paragraph" id="p0096" num="0091">脉冲调制控制包括：预充电阶段、恒流阶段以及泄放阶段。</div>
+<div class="description-paragraph" id="p0097" num="0092">具体地，预充电阶段为将光学组件12充电至工作电压；且在本申请中，预充电阶段为100ns，以将LED补光模块的结电容充电至工作电压。</div>
+<div class="description-paragraph" id="p0098" num="0093">恒流阶段为恒流驱动控制光学组件光强上升时间；在本申请中，恒流阶段为0.8ms，在1.5A恒流驱动下，控制光强上升时间&lt;50ns。</div>
+<div class="description-paragraph" id="p0099" num="0094">泄放阶段具体为快速放电电路确保脉冲后沿陡峭；在本申请中，泄放阶段为50ns，通过快速放电电路确保脉冲后沿陡峭。</div>
+<div class="description-paragraph" id="p0100" num="0095">曝光时序编排为采用交错式触发策略对传感器组件11进行触发，具体的其通过以下公式计算最优时间窗口：</div>
+<div class="description-paragraph" id="p0101" num="0096">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0102" num="0097">其中，n为相机数量(5)，H<sub>flight</sub>为飞行高度(30m)，v<sub>max</sub>为最大速度(15m/s)。</div>
+<div class="description-paragraph" id="p0103" num="0098">在本申请的一较佳实施例中，最优时间窗口T<sub>sync</sub>=10ms，分配为：</div>
+<div class="description-paragraph" id="p0104" num="0099">前向组（前向相机111和两个复用相机113）的最优时间策略t=0-4.5ms；下向组（下向相机112和两个复用相机113）的最优时间策略t=5-9.5ms；重叠保护带：0.5ms。</div>
+<div class="description-paragraph" id="p0105" num="0100">抗干扰设计为采用自适应延迟补偿算法消除信号传输差异：</div>
+<div class="description-paragraph" id="p0106" num="0101">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0107" num="0102">其中，L<sub>i</sub>为各通道线缆长度，L<sub>max</sub>为所有通道中最长的线缆长度，c为信号传播速度(0.67c)，N为测量次数(1000次)。系统自动补偿<span class="patent-image-not-available"></span>至&lt;100ns。t<sub>txi</sub>为第 i 次测量时的发送时间（Transmit Time），t<sub>rxi</sub>为第 i次测量时的接收时间（Receive Time）。</div>
+<div class="description-paragraph" id="p0108" num="0103">在本申请的一较佳实施例中，在电动垂直起降飞行器的地面测试中，设置飞行高度25m、速度10m/s的模拟条件。使用高速示波器（采样率5GS/s）测量实际时序：</div>
+<div class="description-paragraph" id="p0109" num="0104">光学组件12的脉冲实测参数为上升时间48ns、脉宽802μs±5ns、下降时间52ns。</div>
+<div class="description-paragraph" id="p0110" num="0105">传感器组件11的曝光起始时间相对于光学组件12关闭延迟502μs±20ns。</div>
+<div class="description-paragraph" id="p0111" num="0106">前向组（前向相机111和两个复用相机113）与下向组（下向相机112和两个复用相机113）的切换间隔实测为5.01ms。</div>
+<div class="description-paragraph" id="p0112" num="0107">通过注入50mV噪声验证同步稳定性，测得时序抖动&lt;80ns；系统在强电磁干扰测试中（10V/m@1GHz），采用以下抗干扰措施：</div>
+<div class="description-paragraph" id="p0113" num="0108">差分信号传输（LVDS）；三轴屏蔽电缆(衰减&lt;3dB/100m@1GHz)；FPGA内部时序重校准（每100ms一次）。</div>
+<div class="description-paragraph" id="p0114" num="0109">实测显示在干扰环境下同步误差仍能保持在150ns以内，满足系统要求；温度循环测试（-40℃至+85℃）表明，OCXO频率稳定度达±0.1ppm，同步控制系统全程工作正常。</div>
+<div class="description-paragraph" id="p0115" num="0110">传感器数据融合处理包括：</div>
+<div class="description-paragraph" id="p0116" num="0111">前向障碍物检测：对传感器组件采集的图像信息进行特征的提取与匹配；</div>
+<div class="description-paragraph" id="p0117" num="0112">下方地形重建：采用半全局立体匹配算法，结合Census变换与梯度信息进行代价计算；</div>
+<div class="description-paragraph" id="p0118" num="0113">自适应加权融合：构建置信度评估模型，动态分配传感器组件中各传感器的权重。</div>
+<div class="description-paragraph" id="p0119" num="0114">三维避障地图生成：采用截断符号距离函数融合获取三维避障地图。</div>
+<div class="description-paragraph" id="p0120" num="0115">在本申请中，前向障碍物检测采用ORB特征匹配及三角测量算法，下方地形重建采用立体视觉算法，建立自适应加权融合机制，动态分配各相机置信度权重，输出实时三维避障地图。</div>
+<div class="description-paragraph" id="p0121" num="0116">进一步的，前向障碍物检测采用改进的ORB-SLAM3算法进行图像信息的特征提取与匹配，具体包括：</div>
+<div class="description-paragraph" id="p0122" num="0117">特征点筛选：通过运动一致性检验剔除动态物体特征点：</div>
+<div class="description-paragraph" id="p0123" num="0118">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0124" num="0119">其中，s<sub>i</sub>为第i个特征点的稳定性指标，用于量化该特征点在多帧中的位移稳定性；N为总帧数（或总测量次数），表示对第i个特征点在N帧图像中的位移进行统计；j为表示对第1帧到第N帧的位移数据进行计算；<span class="patent-image-not-available"></span>为第i个特征点在j帧间的位移向量（可能包含x、y方向的像素偏移），τ设为3像素。</div>
+<div class="description-paragraph" id="p0125" num="0120">匹配成功的特征点输入三角测量算法：</div>
+<div class="description-paragraph" id="p0126" num="0121">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0127" num="0122">其中，Z为目标特征点到摄像头（或成像平面）的深度距离；焦距<span class="patent-image-not-available"></span>=8mm，基线<span class="patent-image-not-available"></span>=
+0.5m，视差d以亚像素精度计算。<span class="patent-image-not-available"></span>为特征点在左图像中的像素坐标（u为水平方向，v
+为垂直方向）；<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>为同一特征点在右图像中的像素坐标；<span class="patent-image-not-available"></span>为
+平方根运算，用于计算两点间的欧氏距离。
+</div>
+<div class="description-paragraph" id="p0128" num="0123">下方地形重建具体为：采用半全局立体匹配(SGM)算法优化；</div>
+<div class="description-paragraph" id="p0129" num="0124">代价计算：结合Census变换与梯度信息；</div>
+<div class="description-paragraph" id="p0130" num="0125">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0131" num="0126">其中，C(p,d)为代价函数值，用于衡量“点p与点(p-d)是对应点”的可能性（值越
+小，匹配度越高）；λ为权重系数（0≤λ≤1），用于平衡两个代价项的贡献比例，优选的，<span class="patent-image-not-available"></span>=
+0.7；CTp,d)为Census 变换代价（Census Transform Cost），一种基于局部二进制模式的匹
+配代价；<span class="patent-image-not-available"></span>为左图像中p点的梯度向量（反映像素灰度/颜色的变化率和方向）；<span class="patent-image-not-available"></span>为右图像中 (p-d) 点的梯度向量，其中d表示视差向量；∥...∥为向量的模
+长（或范数），这里表示左右图像梯度向量的差异大小；p为左图像中某像素点的坐标（通常
+表示为 (u,v)）；d为视差向量（通常为水平方向偏移，即 (dx,0)），表示右图像中对应点的
+偏移量，优选的，视差范围<span class="patent-image-not-available"></span>；通过多尺度金字塔实现10cm网格分辨率；<span class="patent-image-not-available"></span>为
+左图像和右图像的像素值（灰度图或彩色通道值）。
+</div>
+<div class="description-paragraph" id="p0132" num="0127">自适应加权融合为构建置信度评估模型，动态分配传感器组件中各传感器的权重。具体的，置信度评估模型为：</div>
+<div class="description-paragraph" id="p0133" num="0128">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0134" num="0129">其中，<span class="patent-image-not-available"></span>为第i个特征（或通道）的权重系数，用于表示该特征在融合时的重要程
+度；α为温度系数（或缩放参数），用于控制权重分布的“陡峭程度”（α越大，权重差异越显
+著）；Qᵢ为第i个特征的质量评分，综合反映该特征的可靠性或有效性；β、γ为权重系数（β+
+γ可不为1），分别用于调整纹理特征和匹配特征在质量评分中的占比；<span class="patent-image-not-available"></span>为纹理特
+征评分（Texture Score），衡量特征点周围纹理的丰富程度（纹理越丰富，评分越高）；S_
+match匹配特征评分（Match Score），衡量特征点在不同视图或帧间的匹配稳定性（匹配越
+稳定，评分越高）；<span class="patent-image-not-available"></span>为对 3 个特征（k=1,2,3）的指数项求和，作为归一化分母。
+</div>
+<div class="description-paragraph" id="p0135" num="0130">三维避障地图生成为采用截断符号距离函数融合获取三维避障地图；具体地，截断符号距离函数融合模型为：</div>
+<div class="description-paragraph" id="p0136" num="0131">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0137" num="0132">其中，<span class="patent-image-not-available"></span>为更新后的加权平均值（或融合后的值），是历史值与新观测值的加权融合结果；<span class="patent-image-not-available"></span>为历史数据的权重，表示历史估计值的可信度或累积权重；<span class="patent-image-not-available"></span>历史的加权平均值（或之前的估计值）；<span class="patent-image-not-available"></span>为新观测数据的权重，表示当前新数据的可信度（权重越高，新数据影响越大）；<span class="patent-image-not-available"></span>为新的观测值（或待融合的新数据）；<span class="patent-image-not-available"></span>为更新后的总权重，是历史权重与新数据权重的和（受最大值限制）；<span class="patent-image-not-available"></span>为权重的最大值阈值，用于限制总权重不会无限增大；<span class="patent-image-not-available"></span>为取最小值函数，这里用于确保<span class="patent-image-not-available"></span>不超过<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0138" num="0133">在一较佳实施例中，在模拟城市环境中测试，设置以下参数：</div>
+<div class="description-paragraph" id="p0139" num="0134">前向检测：检测距离50m处的广告牌（2m×3m），提取326个ORB特征点，经运动滤波剩余287个，三角测量得到距离49.8m±0.05m；</div>
+<div class="description-paragraph" id="p0140" num="0135">下方重建：对30m×30m降落区域，SGM算法生成900个网格点，高程误差&lt;8cm；</div>
+<div class="description-paragraph" id="p0141" num="0136">权重计算：</div>
+<div class="description-paragraph" id="p0142" num="0137">前向相机111：<span class="patent-image-not-available"></span>=6.2, <span class="patent-image-not-available"></span>=0.91 → <span class="patent-image-not-available"></span>=0.42</div>
+<div class="description-paragraph" id="p0143" num="0138">机身左侧复用相机113：<span class="patent-image-not-available"></span>=5.8, <span class="patent-image-not-available"></span>=0.87 → <span class="patent-image-not-available"></span>=0.31</div>
+<div class="description-paragraph" id="p0144" num="0139">机身右侧复用相机113：<span class="patent-image-not-available"></span>=5.9, <span class="patent-image-not-available"></span>=0.85 →<span class="patent-image-not-available"></span>=0.27
+</div>
+<div class="description-paragraph" id="p0145" num="0140">地图融合：广告牌在TSDF地图中显示为49.82m距离，30cm厚度；降落区域高程标准差6.3cm。</div>
+<div class="description-paragraph" id="p0146" num="0141">系统处理耗时实测：特征提取：8.2ms；立体匹配：12.5ms；融合计算：6.3ms；总耗时27ms，满足20Hz实时性要求。</div>
+<div class="description-paragraph" id="p0147" num="0142">在光照变化测试中（100lux→10lux），通过自适应权重调整，测距精度保持±8cm。</div>
+<div class="description-paragraph" id="p0148" num="0143">系统工作流程控制为分时激活传感器组件中的各传感器进行障碍物检测和地形扫描，并在设定时间内完成数据融合处理；并根据环境光照条件自动调整光学组件的补光强度和传感器组件的曝光参数。</div>
+<div class="description-paragraph" id="p0149" num="0144">具体的，在执行该低空避障方法时，低空避障系统以20Hz频率循环执行，分时激活前向相机111和下向相机112组进行障碍物检测和地形扫描，并在50ms内完成数据融合处理，同时根据环境光照条件自动调整补光强度和相机曝光参数。</div>
+<div class="description-paragraph" id="p0150" num="0145">低空避障系统工作流程采用精确的时序控制架构，实现多模态传感器的高效协同工作。具体执行过程如下：</div>
+<div class="description-paragraph" id="p0151" num="0146">周期触发机制：低空避障系统主控单元生成20Hz的同步脉冲信号（周期50ms），每个周期划分为三个时序阶段：</div>
+<div class="description-paragraph" id="p0152" num="0147">前向感知阶段（0-15ms）：激活前向相机111和位于机身左侧的复用相机113，同时开启前向补光模块121。前向相机111和位于机身左侧的复用相机113曝光时间严格控制在前向补光模块121脉冲结束后0.5ms（脉宽0.8ms），确保采集到稳定的反射光信号。</div>
+<div class="description-paragraph" id="p0153" num="0148">下方感知阶段（15-30ms）：切换至下向相机112和位于机身右侧的复用相机113，同步启动下向补光模块122。采用与前向感知阶段相同的曝光时序控制，但下向补光模块122的补光强度根据前向感知阶段检测的环境亮度自动调节（调节范围10%-100%）。</div>
+<div class="description-paragraph" id="p0154" num="0149">数据处理阶段（30-50ms）：并行执行前向障碍检测和下方地形重建算法，最终进行三维地图融合。</div>
+<div class="description-paragraph" id="p0155" num="0150">自适应参数调整为环境光传感器实时监测光照强度L（单位lux），通过PID控制器动态调整系统参数：</div>
+<div class="description-paragraph" id="p0156" num="0151">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0157" num="0152">其中，<span class="patent-image-not-available"></span>，目标亮度<span class="patent-image-not-available"></span>设为50lux，PID参数<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0158" num="0153">输出值<span class="patent-image-not-available"></span>同时控制：光学组件11（前向补光模块121和下向补光模块122）的电流为0.1-1A；传感器组件的ISO感光度为100-1600；曝光时间为0.1-5ms。</div>
+<div class="description-paragraph" id="p0159" num="0154">异常处理机制具体为：当检测到以下情况时启动应急模式；其中：</div>
+<div class="description-paragraph" id="p0160" num="0155">传感器组件11图像帧丢失：自动延长当前阶段5ms并重试；</div>
+<div class="description-paragraph" id="p0161" num="0156">光学组件12故障：切换至相邻光学组件并提高传感器组件11 ISO 2档；</div>
+<div class="description-paragraph" id="p0162" num="0157">数据超时：优先保障前向感知，缩短下方扫描时间。</div>
+<div class="description-paragraph" id="p0163" num="0158">在本申请的一较佳实施例中，在黄昏环境（初始光照25lux）下的工作过程：</div>
+<div class="description-paragraph" id="p0164" num="0159">第一周期：</div>
+<div class="description-paragraph" id="p0165" num="0160">前向阶段：检测到实际光照23lux，PID输出补光强度45%，前向相机111和复用相机113的ISO设为800；</div>
+<div class="description-paragraph" id="p0166" num="0161">下向阶段：根据前向数据调整下向补光模块122补光至50%，ISO保持800</div>
+<div class="description-paragraph" id="p0167" num="0162">融合生成包含3个障碍物的地图，处理耗时48ms。</div>
+<div class="description-paragraph" id="p0168" num="0163">第五周期：</div>
+<div class="description-paragraph" id="p0169" num="0164">环境光降至18lux，PID累计误差触发光学组件12的补光增强至65%；</div>
+<div class="description-paragraph" id="p0170" num="0165">检测到左侧复用相机113的相机帧丢失，自动延长前向阶段至20ms；</div>
+<div class="description-paragraph" id="p0171" num="0166">最终耗时52ms（超出标准2ms），低空避障系统自动降低下一周期分辨率。</div>
+<div class="description-paragraph" id="p0172" num="0167">第十周期：</div>
+<div class="description-paragraph" id="p0173" num="0168">光照稳定在22lux，光学组件12的补光强度维持在55%；</div>
+<div class="description-paragraph" id="p0174" num="0169">处理时间恢复至49ms，输出地图包含：</div>
+<div class="description-paragraph" id="p0175" num="0170">前向障碍物检测：45m处电线杆（直径0.3m），定位精度±6cm；</div>
+<div class="description-paragraph" id="p0176" num="0171">下方地形重建：15m×15m区域高程图，网格误差7.2cm；</div>
+<div class="description-paragraph" id="p0177" num="0172">低空避障系统功耗维持在28W（光学组件12 18W+处理10W）；</div>
+<div class="description-paragraph" id="p0178" num="0173">如此设置，通过严格的时序编排和自适应调节，确保在光照变化±20lux范围内，低空避障系统仍能保持稳定的检测性能，测距误差控制在±10cm以内，满足电动垂直起降飞行器在复杂光照条件下的安全运行需求。</div>
+<div class="description-paragraph" id="p0179" num="0174">综上所述，本发明的低空避障系统通过设置传感器组件11和光学组件12，通过传感器组件11中的多传感器布局架构，使传感器之间形成视场重叠区，继而实现无盲区的环境感知；同时，通过控制传感器组件11和光学组件12的精确同步控制，解决了低光条件下成像质量下降的痛点；突破了现有技术中单视角感知的局限，以在在各种光照条件下实现厘米级精度的三维避障，为电动垂直起降飞行器安全起降提供可靠的技术保障。</div>
+<div class="description-paragraph" id="p0180" num="0175">以上所述，仅为本发明的具体实施方式，但本发明的保护范围并不局限于此，任何熟悉本技术领域的技术人员在本发明揭露的技术范围内，可轻易想到的变化或替换，都应涵盖在本发明的保护范围之内。因此，本发明的保护范围应以权利要求的保护范围为准。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

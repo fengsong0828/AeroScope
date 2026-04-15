@@ -1,0 +1,102 @@
+{
+    "patent_id": "CN112213688A",
+    "title": "CN112213688A - 一种用于低空空域低小慢飞行器目标个体识别的特征提取方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Tong Fang Electronic Science & Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN112213688A/zh",
+    "citations": [
+        {
+            "Publication Number": "AU4548689A (en) *",
+            "Priority Date": "1988-12-30",
+            "Publication Date": "1990-07-05",
+            "Assignee": "Hewlett-Packard Company",
+            "Title": "Encapsulation of applications for inclusion within an object management facility environment",
+            "Link": "https://patents.google.com/patent/AU4548689A/en"
+        },
+        {
+            "Publication Number": "CN106886660A (zh) *",
+            "Priority Date": "2017-03-23",
+            "Publication Date": "2017-06-23",
+            "Assignee": "哈尔滨理工大学",
+            "Title": "EEMD‑Hilbert包络谱与DBN相结合的变负载下滚动轴承状态识别方法",
+            "Link": "https://patents.google.com/patent/CN106886660A/zh"
+        },
+        {
+            "Publication Number": "CN109307862A (zh) *",
+            "Priority Date": "2018-07-05",
+            "Publication Date": "2019-02-05",
+            "Assignee": "西安电子科技大学",
+            "Title": "一种目标辐射源个体识别方法",
+            "Link": "https://patents.google.com/patent/CN109307862A/zh"
+        },
+        {
+            "Publication Number": "CN110111015A (zh) *",
+            "Priority Date": "2019-05-13",
+            "Publication Date": "2019-08-09",
+            "Assignee": "中南大学",
+            "Title": "一种基于变分模态分解多尺度排列熵的电能质量分析方法",
+            "Link": "https://patents.google.com/patent/CN110111015A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN113030847A (zh) *",
+            "Priority Date": "2021-04-13",
+            "Publication Date": "2021-06-25",
+            "Assignee": "中国民用航空飞行学院",
+            "Title": "一种用于双通道测向系统的深度学习数据集生成方法",
+            "Link": "https://patents.google.com/patent/CN113030847A/zh"
+        },
+        {
+            "Publication Number": "CN113466798A (zh) *",
+            "Priority Date": "2021-06-25",
+            "Publication Date": "2021-10-01",
+            "Assignee": "厦门天吴智能科技有限公司",
+            "Title": "基于极化信号多尺度熵特征的海面小目标检测方法",
+            "Link": "https://patents.google.com/patent/CN113466798A/zh"
+        },
+        {
+            "Publication Number": "CN113466798B (zh) *",
+            "Priority Date": "2021-06-25",
+            "Publication Date": "2024-06-14",
+            "Assignee": "厦门天吴智能科技有限公司",
+            "Title": "基于极化信号多尺度熵特征的海面小目标检测方法",
+            "Link": "https://patents.google.com/patent/CN113466798B/zh"
+        },
+        {
+            "Publication Number": "CN113869289A (zh) *",
+            "Priority Date": "2021-12-02",
+            "Publication Date": "2021-12-31",
+            "Assignee": "西北工业大学深圳研究院",
+            "Title": "基于熵的多通道舰船辐射噪声特征提取方法",
+            "Link": "https://patents.google.com/patent/CN113869289A/zh"
+        },
+        {
+            "Publication Number": "WO2024139631A1 (zh) *",
+            "Priority Date": "2022-12-29",
+            "Publication Date": "2024-07-04",
+            "Assignee": "华诺星空技术股份有限公司",
+            "Title": "一种基于神经网络的无人机目标检测方法",
+            "Link": "https://patents.google.com/patent/WO2024139631A1/zh"
+        },
+        {
+            "Publication Number": "CN116203525A (zh) *",
+            "Priority Date": "2023-04-27",
+            "Publication Date": "2023-06-02",
+            "Assignee": "中国人民解放军32035部队",
+            "Title": "一种基于rcs滑动排列熵的空间目标识别方法和装置",
+            "Link": "https://patents.google.com/patent/CN116203525A/zh"
+        },
+        {
+            "Publication Number": "CN119780860A (zh) *",
+            "Priority Date": "2024-10-21",
+            "Publication Date": "2025-04-08",
+            "Assignee": "中国人民解放军海军航空大学",
+            "Title": "一种应用时域多尺度排列熵特征的海面目标识别方法",
+            "Link": "https://patents.google.com/patent/CN119780860A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:23:51"
+}

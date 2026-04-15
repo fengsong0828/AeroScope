@@ -1,0 +1,117 @@
+{
+    "patent_id": "CN109541584B",
+    "title": "CN109541584B - 一种基于智能终端的低空飞行器侦察预警系统及方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Air Force Engineering University of PLA",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN109541584B/zh",
+    "citations": [
+        {
+            "Publication Number": "JPS6073477A (ja) *",
+            "Priority Date": "1983-09-30",
+            "Publication Date": "1985-04-25",
+            "Assignee": "Toyo Commun Equip Co Ltd",
+            "Title": "航空機緩突防止方式",
+            "Link": "https://patents.google.com/patent/JPS6073477A/ja"
+        },
+        {
+            "Publication Number": "JP2003121195A (ja) *",
+            "Priority Date": "2001-08-07",
+            "Publication Date": "2003-04-23",
+            "Assignee": "Casio Comput Co Ltd",
+            "Title": "目標位置探索装置、目標位置探索方法及びプログラム",
+            "Link": "https://patents.google.com/patent/JP2003121195A/ja"
+        },
+        {
+            "Publication Number": "CN1929335A (zh) *",
+            "Priority Date": "2006-05-25",
+            "Publication Date": "2007-03-14",
+            "Assignee": "中国人民解放军空军工程大学",
+            "Title": "基于蜂窝移动通信的无人驾驶飞行器控制系统",
+            "Link": "https://patents.google.com/patent/CN1929335A/zh"
+        },
+        {
+            "Publication Number": "CN104280731A (zh) *",
+            "Priority Date": "2013-07-10",
+            "Publication Date": "2015-01-14",
+            "Assignee": "北京瑞达恩科技股份有限公司",
+            "Title": "低空搜索雷达系统",
+            "Link": "https://patents.google.com/patent/CN104280731A/zh"
+        },
+        {
+            "Publication Number": "CN103646569A (zh) *",
+            "Priority Date": "2013-12-03",
+            "Publication Date": "2014-03-19",
+            "Assignee": "海丰通航科技有限公司",
+            "Title": "一种通用航空低空监视与服务系统",
+            "Link": "https://patents.google.com/patent/CN103646569A/zh"
+        },
+        {
+            "Publication Number": "CN104702841A (zh) *",
+            "Priority Date": "2014-12-17",
+            "Publication Date": "2015-06-10",
+            "Assignee": "吉林大学",
+            "Title": "实时低空气象情报图片采集处理系统",
+            "Link": "https://patents.google.com/patent/CN104702841A/zh"
+        },
+        {
+            "Publication Number": "CN204926552U (zh) *",
+            "Priority Date": "2015-08-14",
+            "Publication Date": "2015-12-30",
+            "Assignee": "成都翼比特科技有限责任公司",
+            "Title": "无人机低空预警管理系统",
+            "Link": "https://patents.google.com/patent/CN204926552U/zh"
+        },
+        {
+            "Publication Number": "CN205827609U (zh) *",
+            "Priority Date": "2016-05-23",
+            "Publication Date": "2016-12-21",
+            "Assignee": "河南北斗卫星导航平台有限公司",
+            "Title": "基于路养联合巡查的桥下监测预警与人员调配管理系统",
+            "Link": "https://patents.google.com/patent/CN205827609U/zh"
+        },
+        {
+            "Publication Number": "CN106297417A (zh) *",
+            "Priority Date": "2016-09-27",
+            "Publication Date": "2017-01-04",
+            "Assignee": "南京航空航天大学",
+            "Title": "一种无人机飞行服务与监管系统及方法",
+            "Link": "https://patents.google.com/patent/CN106297417A/zh"
+        },
+        {
+            "Publication Number": "CN106646454A (zh) *",
+            "Priority Date": "2016-11-25",
+            "Publication Date": "2017-05-10",
+            "Assignee": "上海无线电设备研究所",
+            "Title": "一种天基告警监视系统的目标快速搜索识别方法",
+            "Link": "https://patents.google.com/patent/CN106646454A/zh"
+        },
+        {
+            "Publication Number": "CN207089684U (zh) *",
+            "Priority Date": "2017-07-31",
+            "Publication Date": "2018-03-13",
+            "Assignee": "威海广泰空港设备股份有限公司",
+            "Title": "航空地面设备主动安全对接飞机系统",
+            "Link": "https://patents.google.com/patent/CN207089684U/zh"
+        },
+        {
+            "Publication Number": "CN107993308A (zh) *",
+            "Priority Date": "2017-09-08",
+            "Publication Date": "2018-05-04",
+            "Assignee": "北京航空航天大学",
+            "Title": "一种独立式无人机飞行安全监测与信息管理系统",
+            "Link": "https://patents.google.com/patent/CN107993308A/zh"
+        },
+        {
+            "Publication Number": "CN108333584A (zh) *",
+            "Priority Date": "2017-12-28",
+            "Publication Date": "2018-07-27",
+            "Assignee": "陕西弘毅军民融合智能科技有限公司",
+            "Title": "一种低空小目标远距离无人机探测系统及探测方法",
+            "Link": "https://patents.google.com/patent/CN108333584A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:28:28"
+}

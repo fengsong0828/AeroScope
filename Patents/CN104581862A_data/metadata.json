@@ -1,0 +1,302 @@
+{
+    "patent_id": "CN104581862A",
+    "title": "CN104581862A - 一种基于低空无人飞行器自组网的测控通信方法和系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "63655 TROOPS OF PEOPLE'S LIBERATION ARMY",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN104581862A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN101795221A (zh) *",
+            "Priority Date": "2010-01-29",
+            "Publication Date": "2010-08-04",
+            "Assignee": "中国科学院空间科学与应用研究中心",
+            "Title": "机群编队的组网拓扑结构和组合多址体制设计方法",
+            "Link": "https://patents.google.com/patent/CN101795221A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN106452821A (zh) *",
+            "Priority Date": "2015-08-13",
+            "Publication Date": "2017-02-22",
+            "Assignee": "三星Sds株式会社",
+            "Title": "无人机的网络管理装置及方法",
+            "Link": "https://patents.google.com/patent/CN106452821A/zh"
+        },
+        {
+            "Publication Number": "TWI579671B (zh) *",
+            "Priority Date": "2015-08-27",
+            "Publication Date": "2017-04-21",
+            "Assignee": "國立虎尾科技大學",
+            "Title": "結合無人飛行載具的行動式追蹤紀錄系統",
+            "Link": "https://patents.google.com/patent/TWI579671B/zh"
+        },
+        {
+            "Publication Number": "CN105242686B (zh) *",
+            "Priority Date": "2015-11-13",
+            "Publication Date": "2017-09-29",
+            "Assignee": "南京衡创天伟无人机技术有限公司",
+            "Title": "一种无人机航拍系统和航拍方法",
+            "Link": "https://patents.google.com/patent/CN105242686B/zh"
+        },
+        {
+            "Publication Number": "CN105242686A (zh) *",
+            "Priority Date": "2015-11-13",
+            "Publication Date": "2016-01-13",
+            "Assignee": "南京衡创天伟无人机技术有限公司",
+            "Title": "一种无人机航拍系统和航拍方法",
+            "Link": "https://patents.google.com/patent/CN105242686A/zh"
+        },
+        {
+            "Publication Number": "CN105491564B (zh) *",
+            "Priority Date": "2015-11-25",
+            "Publication Date": "2019-03-01",
+            "Assignee": "西安电子科技大学",
+            "Title": "用于多无人机环境下建立安全通信链路的方法",
+            "Link": "https://patents.google.com/patent/CN105491564B/zh"
+        },
+        {
+            "Publication Number": "CN105491564A (zh) *",
+            "Priority Date": "2015-11-25",
+            "Publication Date": "2016-04-13",
+            "Assignee": "西安电子科技大学",
+            "Title": "用于多无人机环境下建立安全通信链路的方法",
+            "Link": "https://patents.google.com/patent/CN105491564A/zh"
+        },
+        {
+            "Publication Number": "CN105892484A (zh) *",
+            "Priority Date": "2016-04-12",
+            "Publication Date": "2016-08-24",
+            "Assignee": "谭圆圆",
+            "Title": "一种无人飞行器的控制方法、装置及系统",
+            "Link": "https://patents.google.com/patent/CN105892484A/zh"
+        },
+        {
+            "Publication Number": "CN105933653A (zh) *",
+            "Priority Date": "2016-05-10",
+            "Publication Date": "2016-09-07",
+            "Assignee": "国网四川省电力公司电力应急中心",
+            "Title": "一种无人机无中心自组网图像和数据传输系统",
+            "Link": "https://patents.google.com/patent/CN105933653A/zh"
+        },
+        {
+            "Publication Number": "CN106023656A (zh) *",
+            "Priority Date": "2016-08-02",
+            "Publication Date": "2016-10-12",
+            "Assignee": "湖南星思科技有限公司",
+            "Title": "一种智能低空交通管理控制中心",
+            "Link": "https://patents.google.com/patent/CN106023656A/zh"
+        },
+        {
+            "Publication Number": "CN106774429A (zh) *",
+            "Priority Date": "2016-12-05",
+            "Publication Date": "2017-05-31",
+            "Assignee": "北京邮电大学",
+            "Title": "一种数据传输方法及系统",
+            "Link": "https://patents.google.com/patent/CN106774429A/zh"
+        },
+        {
+            "Publication Number": "CN106774429B (zh) *",
+            "Priority Date": "2016-12-05",
+            "Publication Date": "2019-09-17",
+            "Assignee": "北京邮电大学",
+            "Title": "一种数据传输方法及系统",
+            "Link": "https://patents.google.com/patent/CN106774429B/zh"
+        },
+        {
+            "Publication Number": "CN106527465A (zh) *",
+            "Priority Date": "2016-12-09",
+            "Publication Date": "2017-03-22",
+            "Assignee": "中国电子科技集团公司第三十八研究所",
+            "Title": "一种多阶冗余系留气球姿态控制系统及其协同控制方法",
+            "Link": "https://patents.google.com/patent/CN106527465A/zh"
+        },
+        {
+            "Publication Number": "CN106656300A (zh) *",
+            "Priority Date": "2016-12-21",
+            "Publication Date": "2017-05-10",
+            "Assignee": "中国航天时代电子公司",
+            "Title": "一种采用自组网数据链的无人机集群作战系统",
+            "Link": "https://patents.google.com/patent/CN106656300A/zh"
+        },
+        {
+            "Publication Number": "CN107942743A (zh) *",
+            "Priority Date": "2017-11-20",
+            "Publication Date": "2018-04-20",
+            "Assignee": "中国运载火箭技术研究院",
+            "Title": "一种基于铁塔基站的飞行器测控系统和方法",
+            "Link": "https://patents.google.com/patent/CN107942743A/zh"
+        },
+        {
+            "Publication Number": "CN108471604A (zh) *",
+            "Priority Date": "2018-02-11",
+            "Publication Date": "2018-08-31",
+            "Assignee": "苏州光之翼智能科技有限公司",
+            "Title": "一种基于无人机集群的组网方法",
+            "Link": "https://patents.google.com/patent/CN108471604A/zh"
+        },
+        {
+            "Publication Number": "CN108710382A (zh) *",
+            "Priority Date": "2018-05-14",
+            "Publication Date": "2018-10-26",
+            "Assignee": "西安工业大学",
+            "Title": "一种基于分簇算法的智能监测无人机控制系统",
+            "Link": "https://patents.google.com/patent/CN108710382A/zh"
+        },
+        {
+            "Publication Number": "CN108710382B (zh) *",
+            "Priority Date": "2018-05-14",
+            "Publication Date": "2024-03-26",
+            "Assignee": "西安工业大学",
+            "Title": "一种基于分簇算法的智能监测无人机控制系统",
+            "Link": "https://patents.google.com/patent/CN108710382B/zh"
+        },
+        {
+            "Publication Number": "CN110806230A (zh) *",
+            "Priority Date": "2018-08-06",
+            "Publication Date": "2020-02-18",
+            "Assignee": "海鹰航空通用装备有限责任公司",
+            "Title": "基于无人机的生态环境监测方法",
+            "Link": "https://patents.google.com/patent/CN110806230A/zh"
+        },
+        {
+            "Publication Number": "CN109474908A (zh) *",
+            "Priority Date": "2018-12-04",
+            "Publication Date": "2019-03-15",
+            "Assignee": "中国航空无线电电子研究所",
+            "Title": "一种基于任务驱动的航空自组网方法",
+            "Link": "https://patents.google.com/patent/CN109474908A/zh"
+        },
+        {
+            "Publication Number": "CN109474908B (zh) *",
+            "Priority Date": "2018-12-04",
+            "Publication Date": "2021-10-26",
+            "Assignee": "中国航空无线电电子研究所",
+            "Title": "一种基于任务驱动的航空自组网方法",
+            "Link": "https://patents.google.com/patent/CN109474908B/zh"
+        },
+        {
+            "Publication Number": "CN109613931A (zh) *",
+            "Priority Date": "2019-01-07",
+            "Publication Date": "2019-04-12",
+            "Assignee": "北京航空航天大学",
+            "Title": "基于生物社会力的异构无人机集群目标跟踪系统及方法",
+            "Link": "https://patents.google.com/patent/CN109613931A/zh"
+        },
+        {
+            "Publication Number": "CN109960279B (zh) *",
+            "Priority Date": "2019-04-10",
+            "Publication Date": "2022-03-22",
+            "Assignee": "中国人民解放军陆军工程大学",
+            "Title": "一种基于启发式算法的无人机盘旋半径优化方法",
+            "Link": "https://patents.google.com/patent/CN109960279B/zh"
+        },
+        {
+            "Publication Number": "CN109960279A (zh) *",
+            "Priority Date": "2019-04-10",
+            "Publication Date": "2019-07-02",
+            "Assignee": "中国人民解放军陆军工程大学",
+            "Title": "一种基于启发式算法的无人机盘旋半径优化方法",
+            "Link": "https://patents.google.com/patent/CN109960279A/zh"
+        },
+        {
+            "Publication Number": "CN110602167B (zh) *",
+            "Priority Date": "2019-08-09",
+            "Publication Date": "2021-11-05",
+            "Assignee": "南京泛函智能技术研究院有限公司",
+            "Title": "一种无线自组网络环境下的分布式数据存储系统",
+            "Link": "https://patents.google.com/patent/CN110602167B/zh"
+        },
+        {
+            "Publication Number": "CN110602167A (zh) *",
+            "Priority Date": "2019-08-09",
+            "Publication Date": "2019-12-20",
+            "Assignee": "南京泛函智能技术研究院有限公司",
+            "Title": "一种无线自组网络环境下的分布式数据存储系统",
+            "Link": "https://patents.google.com/patent/CN110602167A/zh"
+        },
+        {
+            "Publication Number": "CN110597294A (zh) *",
+            "Priority Date": "2019-10-14",
+            "Publication Date": "2019-12-20",
+            "Assignee": "深圳市元征科技股份有限公司",
+            "Title": "一种无人机及其集群系统",
+            "Link": "https://patents.google.com/patent/CN110597294A/zh"
+        },
+        {
+            "Publication Number": "CN111065105B (zh) *",
+            "Priority Date": "2019-12-30",
+            "Publication Date": "2021-06-11",
+            "Assignee": "电子科技大学",
+            "Title": "一种面向无人机网络切片的分布式智能路由方法",
+            "Link": "https://patents.google.com/patent/CN111065105B/zh"
+        },
+        {
+            "Publication Number": "CN111065105A (zh) *",
+            "Priority Date": "2019-12-30",
+            "Publication Date": "2020-04-24",
+            "Assignee": "电子科技大学",
+            "Title": "一种面向无人机网络切片的分布式智能路由方法",
+            "Link": "https://patents.google.com/patent/CN111065105A/zh"
+        },
+        {
+            "Publication Number": "CN111555798B (zh) *",
+            "Priority Date": "2020-05-09",
+            "Publication Date": "2022-02-11",
+            "Assignee": "中国航空无线电电子研究所",
+            "Title": "一种多平台航空网络分簇方法",
+            "Link": "https://patents.google.com/patent/CN111555798B/zh"
+        },
+        {
+            "Publication Number": "CN111555798A (zh) *",
+            "Priority Date": "2020-05-09",
+            "Publication Date": "2020-08-18",
+            "Assignee": "中国航空无线电电子研究所",
+            "Title": "一种多平台航空网络分簇方法",
+            "Link": "https://patents.google.com/patent/CN111555798A/zh"
+        },
+        {
+            "Publication Number": "CN113341712A (zh) *",
+            "Priority Date": "2021-05-31",
+            "Publication Date": "2021-09-03",
+            "Assignee": "西南电子技术研究所（中国电子科技集团公司第十研究所）",
+            "Title": "无人机自主控制系统智能分层递阶控制选择方法",
+            "Link": "https://patents.google.com/patent/CN113341712A/zh"
+        },
+        {
+            "Publication Number": "CN113341712B (zh) *",
+            "Priority Date": "2021-05-31",
+            "Publication Date": "2022-10-11",
+            "Assignee": "西南电子技术研究所（中国电子科技集团公司第十研究所）",
+            "Title": "无人机自主控制系统智能分层递阶控制选择方法",
+            "Link": "https://patents.google.com/patent/CN113341712B/zh"
+        },
+        {
+            "Publication Number": "CN113726410A (zh) *",
+            "Priority Date": "2021-08-27",
+            "Publication Date": "2021-11-30",
+            "Assignee": "酷黑科技（北京）有限公司",
+            "Title": "一种无人机群组网方法、装置及无人机集群作业系统",
+            "Link": "https://patents.google.com/patent/CN113726410A/zh"
+        },
+        {
+            "Publication Number": "CN114338702A (zh) *",
+            "Priority Date": "2021-12-30",
+            "Publication Date": "2022-04-12",
+            "Assignee": "北京天融信网络安全技术有限公司",
+            "Title": "通信数据的转发方法及无人系统集群",
+            "Link": "https://patents.google.com/patent/CN114338702A/zh"
+        },
+        {
+            "Publication Number": "CN114338702B (zh) *",
+            "Priority Date": "2021-12-30",
+            "Publication Date": "2023-11-14",
+            "Assignee": "北京天融信网络安全技术有限公司",
+            "Title": "通信数据的转发方法及无人系统集群",
+            "Link": "https://patents.google.com/patent/CN114338702B/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:24:48"
+}

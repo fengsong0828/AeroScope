@@ -1,0 +1,134 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN114397008B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES417339205">
+<invention-title id="title1" lang="ZH">低空飞行器噪声源识别的解多普勒方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="n0001">本发明主要涉及到飞行器噪声识别技术领域，特指一种低空飞行器噪声源识别的解多普勒方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="n0002">目前，低空飞行器的噪声源识别方法多采用波束形成方法，它利用传声器阵列采集运动/静止目标的辐射噪声，对目标所在区域划分网格后采用球面波假设对各网格点进行数据处理，进而获得目标各部位的噪声源强度与频谱特征。</div>
+<div class="description-paragraph" id="p0005" num="n0003">传统技术中，针对低空飞行器的噪声源识别处理流程一般如下：</div>
+<div class="description-paragraph" id="p0006" num="n0004">（1）利用传声器阵列采集飞行器飞行噪声，并基于航迹数据对声信号同步和解多普勒；</div>
+<div class="description-paragraph" id="p0007" num="n0005">（2）基于阵列在不同频率下固有的点扩展函数(PSF, point spread function)，采用不同的波束形成类方法对飞行噪声进行声成像；</div>
+<div class="description-paragraph" id="p0008" num="n0006">（3）在波束形成方法基础上采用解卷积类方法或Clean类方法等高分辨方法，对波束形成结果优化，得到高分辨成像结果；</div>
+<div class="description-paragraph" id="p0009" num="n0007">（4）结合机体结构和飞行状态，分析不同倍频程不同机体部位的噪声分布特性，给出当前飞行状态下的飞行器噪声辐射特征。</div>
+<div class="description-paragraph" id="p0010" num="n0008">在现有技术中，低空飞行器与行驶的汽车、高铁等目标类似，其运动造成的多普勒效应都对其噪声源识别造成了一定影响。</div>
+<div class="description-paragraph" id="p0011" num="n0009">针对此问题，传统手段大致分为两类处理方法：</div>
+<div class="description-paragraph" id="p0012" num="n0010">（1）忽略多普勒效应；</div>
+<div class="description-paragraph" id="p0013" num="n0011">此类方法通过提高采样率，截取短时段内的阵列接收信号，假定此时运动目标为静止目标，忽略多普勒效应直接处理。该方法要求在截取时段内，目标运动距离较小，同时为保证在该时段内有足够的采样数据进行处理，需要保持较高的采样率。对于低空飞行器而言，由于其飞行速度一般在100km/h以上，且机体尺寸长宽方向均较大，较难满足上述条件。此时忽略多普勒效应的计算结果仅能定性给出噪声源识别结果，即强噪声源的大致区域。</div>
+<div class="description-paragraph" id="p0014" num="n0012">（2）逐点解多普勒；</div>
+<div class="description-paragraph" id="p0015" num="n0013">低空飞行器飞行速度快，尺寸大，造成了不同部位的多普勒效应差异明显。为此通常对飞行器所在平面划分细密网格，假定每个网格点上存在一个辐射强度未知的声源，通常地面阵列尺寸也较大，可达直径百米左右，造成每个网格点与地面阵列中的每个传声器存在一个多普勒效应。按照亚音速莫尔斯声学理论，为了获得解多普勒后的阵列接收信号，需要声源面上每个网格点对阵列各个传声器进行解多普勒，由此造成解多普勒运算量巨大，尤其是不同网格划分方式下都需要重新解多普勒。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0016">发明内容</div>
+<div class="description-paragraph" id="p0017" num="n0014">本发明要解决的技术问题就在于：针对现有技术存在的技术问题，本发明提供一种原理简单、操作简便、可降低运算量、提高计算效率的低空飞行器噪声源识别的解多普勒方法。</div>
+<div class="description-paragraph" id="p0018" num="n0015">为解决上述技术问题，本发明采用以下技术方案：</div>
+<div class="description-paragraph" id="p0019" num="n0016">一种低空飞行器噪声源识别的解多普勒方法，其包括：</div>
+<div class="description-paragraph" id="p0020" num="n0017">利用传感器进行扫描，得到对低空飞行器的扫描网格；</div>
+<div class="description-paragraph" id="p0021" num="n0018">根据所要计算的区域边界点，确定最大允许的扫描网格边长；</div>
+<div class="description-paragraph" id="p0022" num="n0019">在确定的扫描网格边长范围内，计算中心网格点的解多普勒数据。</div>
+<div class="description-paragraph" id="p0023" num="n0020">作为本发明的进一步改进：当需要在更精细网格下进行解多普勒和波束形成时，就近选取“粗网格点”的解多普勒结果，所述“粗网格点”为确定的扫描网格边长范围内的网格点。</div>
+<div class="description-paragraph" id="p0024" num="n0021">作为本发明的进一步改进：所述确定最大允许的扫描网格边长是通过判定相邻网格点造成的幅度误差是否可以忽略来确定。</div>
+<div class="description-paragraph" id="p0025" num="n0022">作为本发明的进一步改进：相邻网格点进行替换，在替换之后，进行波束形成导向矢量计算时，相位误差方面达到设定阈值，视为确定最大允许的扫描网格的临界节点。</div>
+<div class="description-paragraph" id="p0026" num="n0023">作为本发明的进一步改进：对于网格点A和B，假定它们与地面阵列上第i个阵元的距离为<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，那么用A点代替B点进行波束形成导向矢量计算时，引入的幅度和相位误差为：</div>
+<div class="description-paragraph" id="p0027" num="n0024">幅度误差：<span class="patent-image-not-available"></span> i=1,…M</div>
+<div class="description-paragraph" id="p0028" num="n0025">相位误差：<span class="patent-image-not-available"></span> i=1,…M</div>
+<div class="description-paragraph" id="p0029" num="n0026">此时若AB距离为设定阈值（如1m），造成的幅度误差可以忽略；相位误差方面满足：</div>
+<div class="description-paragraph" id="p0030" num="n0027"> <span class="patent-image-not-available"></span> i=1,…M。</div>
+<div class="description-paragraph" id="p0031" num="n0028">作为本发明的进一步改进：若是单网格点对单传声器，那么：</div>
+<div class="description-paragraph" id="p0032" num="n0029">对于某个网格点所截取的<span class="patent-image-not-available"></span>时段内的辐射信号的时间轴<span class="patent-image-not-available"></span>是等间隔时间序列；根据航迹和阵列位置关系，得到其对应的<span class="patent-image-not-available"></span>时段内的非等间隔接收时间序列；通过降采样插值并补偿传播损失后，得到解多普勒后信号。</div>
+<div class="description-paragraph" id="p0033" num="n0030">作为本发明的进一步改进：若是单网格点对整个传声器阵列，那么：</div>
+<div class="description-paragraph" id="p0034" num="n0031">对于单个网格点其截取的辐射时段<span class="patent-image-not-available"></span>是确定的，传声器阵列中各个传声器接收信号时间序列<span class="patent-image-not-available"></span>，其中
+              <i>j</i>=1,…,
+              <i>M</i>，
+              <i>M</i>为阵元数，起止点各不相同。
+          </div>
+<div class="description-paragraph" id="p0035" num="n0032">传声器阵列中各通道应截取相同接收时刻开始的接收信号，即：</div>
+<div class="description-paragraph" id="p0036" num="n0033">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0037" num="n0034">同时，可截取的最长时长为：</div>
+<div class="description-paragraph" id="p0038" num="n0035">
+<span class="patent-image-not-available"></span>
+<i>。</i>
+</div>
+<div class="description-paragraph" id="p0039" num="n0036">作为本发明的进一步改进：若是多网格点对整个传声器阵列，那么：</div>
+<div class="description-paragraph" id="p0040" num="n0037">在飞行器上划分了多个网格点；假定每个网格点下传感器阵列解多普勒后信号的时间长度为<span class="patent-image-not-available"></span>，
+              <i>i</i>=1,…, 
+              <i>N</i>，
+              <i>N</i>为网格点数，它们存在一定差异，对各网格点采取相同的时间长度。
+          </div>
+<div class="description-paragraph" id="p0041" num="n0038">作为本发明的进一步改进：根据截取的辐射信号时段[
+              <i>tea</i>, 
+              <i>teb</i>]，分别计算各网格点的时长<span class="patent-image-not-available"></span>，取其最小值作为最终采用的辐射时间长度，即：
+          </div>
+<div class="description-paragraph" id="p0042" num="n0039">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0043" num="n0040">接下来，进行解多普勒。</div>
+<div class="description-paragraph" id="p0044" num="n0041">与现有技术相比，本发明的优点就在于：</div>
+<div class="description-paragraph" id="p0045" num="n0042">1、本发明的低空飞行器噪声源识别的解多普勒方法，原理简单、操作简便，通过较为稀疏的网格划分来降低解多普勒运算量和数据缓存量，降低运算量的同时可以为后续计算缓存可用的解多普勒结果。</div>
+<div class="description-paragraph" id="p0046" num="n0043">2、本发明的低空飞行器噪声源识别的解多普勒方法，简化了解多普勒的声源面网格区域划分，在不影响波束形成性能的基础上，大幅降低解多普勒的计算量；同时，本发明支持同一种网格划分下解多普勒结果缓存，并应用于其他各种网格划分模式下的噪声源识别。</div>
+<div class="description-paragraph" id="p0047" num="n0044">3、本发明的低空飞行器噪声源识别的解多普勒方法，将相近区域网格点统一采用区域中心点的解多普勒结果，由此造成的幅度补偿误差对波束形成的影响可以忽略，造成的相频误差对波束形成的主瓣影响可以忽略，仅在旁瓣水平略有差异。因此，本发明在不影响后续波束形成精度的前提下，大幅减小解多普勒运算量，同时解多普勒结果可以缓存用于不同网格划分模式下的波束形成运算，加快外场飞行试验数据处理。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0048">附图说明</div>
+<div class="description-paragraph" id="p0049" num="n0045">图1是本发明方法的流程示意图。</div>
+<div class="description-paragraph" id="p0050" num="n0046">图2是本发明在具体应用实例中网格点选取造成的误差示意图。</div>
+<div class="description-paragraph" id="p0051" num="n0047">图3是本发明在具体应用实例中声成像粗网格划分示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0052">具体实施方式</div>
+<div class="description-paragraph" id="p0053" num="n0048">以下将结合说明书附图和具体实施例对本发明做进一步详细说明。</div>
+<div class="description-paragraph" id="p0054" num="n0049">如图1所示，本发明的低空飞行器噪声源识别的解多普勒方法，包括：</div>
+<div class="description-paragraph" id="p0055" num="n0050">利用传感器进行扫描，得到对低空飞行器的扫描网格；</div>
+<div class="description-paragraph" id="p0056" num="n0051">根据所要计算的区域边界点，确定最大允许的扫描网格边长；</div>
+<div class="description-paragraph" id="p0057" num="n0052">在确定的扫描网格边长范围内，计算中心网格点的解多普勒数据。</div>
+<div class="description-paragraph" id="p0058" num="n0053">在具体应用实例中，进一步，当需要在更精细网格下进行解多普勒和波束形成时，可以就近选取“粗网格点”的解多普勒结果，所述“粗网格点”为确定的扫描网格边长范围内的网格点，从而减少解多普勒运算量，并对整体噪声源识别性能影响不大。</div>
+<div class="description-paragraph" id="p0059" num="n0054">通过采用本发明的上述方案，利用确定的扫描网格边长范围内的网格，即较为稀疏的网格划分来降低解多普勒运算量和数据缓存量，在降低了运算量的同时，还可以为后续计算缓存可用的解多普勒结果。</div>
+<div class="description-paragraph" id="p0060" num="n0055">由上可知，本发明在逐点解多普勒方法基础上，简化了解多普勒的声源面网格区域划分，在不影响波束形成性能的基础上，大幅降低解多普勒的计算量；例如，仍对5m×5m的部件区域解多普勒，按照1m网格边长划分有36个网格点，阵列传声器数目若仍为100个，则只需进行3600次解多普勒运算，该结果仍可用于网格边长0.2m的噪声源识别，即计算量降为原来的5%。</div>
+<div class="description-paragraph" id="p0061" num="n0056">本发明在逐点解多普勒方法基础上，能够支持同一种网格划分下解多普勒结果缓存，并应用于其他各种网格划分模式下的噪声源识别。例如，仍对5m×5m的部件区域解多普勒，按照1m网格边长划分，该解多普勒结果可用于该部件区域任意网格边长或非网格划分方式下的噪声源识别。此种情况下，噪声源识别时新的网格点取距离其最近的缓存网格点解多普勒结果即可，由此造成的多普勒和幅度衰减效应对波束形成结果基本无影响。</div>
+<div class="description-paragraph" id="p0062" num="n0057">在具体应用实例中，所述确定最大允许的扫描网格边长是通过判定相邻网格点造成的幅度误差是否可以忽略来确定。也就是说，如果相邻网格点在替换之后，进行波束形成导向矢量计算时，相位误差方面达到设定阈值，即可视为确定最大允许的扫描网格的临界节点。</div>
+<div class="description-paragraph" id="p0063" num="n0058">如图2所示，对于网格点A和B，假定它们与地面阵列上第i个阵元的距离为<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，那么用A点代替B点进行波束形成导向矢量计算时，引入的幅度和相位误差为：</div>
+<div class="description-paragraph" id="p0064" num="n0059">幅度误差：<span class="patent-image-not-available"></span> i=1,…M</div>
+<div class="description-paragraph" id="p0065" num="n0060">相位误差：<span class="patent-image-not-available"></span> i=1,…M</div>
+<div class="description-paragraph" id="p0066" num="n0061">通常低空飞行器的过顶高度在20-100m，此时若AB距离为1m，造成的幅度误差可以忽略。相位误差方面只要满足：</div>
+<div class="description-paragraph" id="p0067" num="n0062"> <span class="patent-image-not-available"></span> i=1,…M</div>
+<div class="description-paragraph" id="p0068" num="n0063">此时，相位误差对常规波束形成空间谱的主瓣基本没有影响，旁瓣也仅略有波动，对地面阵列的整体噪声源识别性能影响不大。</div>
+<div class="description-paragraph" id="p0069" num="n0064">在具体应用实例中，如图3所示，根据所要计算的区域边界点，可以按照上式确定最大允许的网格边长，仅计算这些中心网格点的解多普勒数据。</div>
+<div class="description-paragraph" id="p0070" num="n0065">在具体应用实例中，若是单网格点对单传声器，那么：</div>
+<div class="description-paragraph" id="p0071" num="n0066">对于某个网格点所截取的<span class="patent-image-not-available"></span>时段内的辐射信号的时间轴<span class="patent-image-not-available"></span>是等间隔时间序列。根据航迹和阵列位置关系，可得到其对应的<span class="patent-image-not-available"></span>时段内的非等间隔接收时间序列。</div>
+<div class="description-paragraph" id="p0072" num="n0067">那么，通过降采样插值并补偿传播损失后，即可得到解多普勒后信号。</div>
+<div class="description-paragraph" id="p0073" num="n0068">在具体应用实例中，若是单网格点对整个传声器阵列，那么：</div>
+<div class="description-paragraph" id="p0074" num="n0069">对于单个网格点其截取的辐射时段<span class="patent-image-not-available"></span>是确定的，但是传声器阵列中各个传声器接收信号时间序列<span class="patent-image-not-available"></span>，其中
+              <i>j</i>=1,…,
+              <i>M</i>，
+              <i>M</i>为阵元数，起止点各不相同。
+          </div>
+<div class="description-paragraph" id="p0075" num="n0070">为便于后续噪声源识别处理，传声器阵列中各通道应截取相同接收时刻开始的接收信号，即：</div>
+<div class="description-paragraph" id="p0076" num="n0071">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0077" num="n0072">同时，可截取的最长时长为：</div>
+<div class="description-paragraph" id="p0078" num="n0073"> <span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0079" num="n0074">在具体应用实例中，若是多网格点对整个传声器阵列，那么：</div>
+<div class="description-paragraph" id="p0080" num="n0075">在飞行器上划分了多个网格点；</div>
+<div class="description-paragraph" id="p0081" num="n0076">假定每个网格点下传感器阵列解多普勒后信号的时间长度为<span class="patent-image-not-available"></span>，
+              <i>i</i>=1,…, 
+              <i>N</i>，
+              <i>N</i>为网格点数，它们存在一定差异。这不利于比较各网格点下的声源辐射能量，故要对各网格点采取相同的时间长度。
+          </div>
+<div class="description-paragraph" id="p0082" num="n0077">在具体应用时，实际处理中可根据截取的辐射信号时段<span class="patent-image-not-available"></span>，分别计算各网格点的时长<span class="patent-image-not-available"></span>，取其最小值作为最终采用的辐射时间长度，即：</div>
+<div class="description-paragraph" id="p0083" num="n0078">
+<span class="patent-image-not-available"></span>
+<i>。</i>
+</div>
+<div class="description-paragraph" id="p0084" num="n0079">接下来，解多普勒步骤与单网格点对整个传声器阵列的情形相同，在此就不在赘述。</div>
+<div class="description-paragraph" id="p0085" num="n0080">按照上述步骤，解多普勒后的传感器阵列接收信号和静止声源的接收信号相似，接下来可利用其计算采样协方差矩阵，以估计噪声源的参数。</div>
+<div class="description-paragraph" id="p0086" num="n0081">以上仅是本发明的优选实施方式，本发明的保护范围并不仅局限于上述实施例，凡属于本发明思路下的技术方案均属于本发明的保护范围。应当指出，对于本技术领域的普通技术人员来说，在不脱离本发明原理前提下的若干改进和润饰，应视为本发明的保护范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

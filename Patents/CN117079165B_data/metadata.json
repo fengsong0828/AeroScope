@@ -1,0 +1,29 @@
+{
+    "patent_id": "CN117079165B",
+    "title": "CN117079165B - 面向低空空域飞行器的多目标跟踪方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shenyang Aerospace University",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN117079165B/zh",
+    "citations": [
+        {
+            "Publication Number": "CN113807187A (zh) *",
+            "Priority Date": "2021-08-20",
+            "Publication Date": "2021-12-17",
+            "Assignee": "北京工业大学",
+            "Title": "基于注意力特征融合的无人机视频多目标跟踪方法",
+            "Link": "https://patents.google.com/patent/CN113807187A/zh"
+        },
+        {
+            "Publication Number": "CN114724059A (zh) *",
+            "Priority Date": "2022-03-14",
+            "Publication Date": "2022-07-08",
+            "Assignee": "南京邮电大学",
+            "Title": "一种二次关联低分检测框的链式多目标跟踪方法",
+            "Link": "https://patents.google.com/patent/CN114724059A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:35:29"
+}

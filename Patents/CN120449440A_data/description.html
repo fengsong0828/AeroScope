@@ -1,0 +1,314 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120449440A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES501508244">
+<invention-title id="title1" lang="ZH">一种高速公路低空飞行器优化布置方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及飞行器优化技术领域，具体来说，涉及一种高速公路低空飞行器优化布置方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空经济作为一种战略性新兴经济产业，这两年得到快速发展，截至2024年，我国低空经济规模已突破5000亿元，无人机、eVTOL(electric Vertical Take-off andLanding，电动垂直起降飞行器)等低空飞行器在物流、应急、载人等场景加速应用，但基础设施配套滞后成为主要瓶颈。高速公路沿线具备天然的空域资源与地面基础设施(如服务区、监控系统)，但现有技术缺乏对飞行器起降、路径规划、能源补给的系统性整合方案。</div>
+<div class="description-paragraph" id="p0005" num="0003">在高速公路沿线规划低空飞行服务站点或起降枢纽，利用低空飞行器可以开展道路巡检、物流配送、旅游观光、应急救援、低空客运等应用。但是，低空经济作为一种新经济现象，目前对于其含义、如何建设等问题尚缺乏基本认识，特别是低空路网基础设施的建设，需要根据拟投入的低空飞行器数量开展规划，但是对于如何根据实际需求，综合考虑各种影响因素在起降枢纽配置合理数量的低空飞行器方面，尚没有理论依据。</div>
+<div class="description-paragraph" id="p0006" num="0004">当低空飞行器过量布置时使得组织调度复杂，装备得不到充分利用，当低空飞行器过少配置时则会影响任务效率和完成度。因此，目前尚没有成熟的技术标准用于低空飞行器的优化布置，这导致存在以下缺点：</div>
+<div class="description-paragraph" id="p0007" num="0005">1)影响因素考虑不足：低空飞行器的布置数量受人口规模、交通条件、空域资源、经济发展、消费能力、应用场景、社会情绪等多种因素影响，目前缺少基于影响因素确定低空飞行器布置数量的方法，导致低空飞行器布置数量存在盲目性；</div>
+<div class="description-paragraph" id="p0008" num="0006">2)对影响因素没有合理评估：对各影响因素所起作用大小缺少科学合理的评估，导致据此确定的低空飞行器数量不准确。</div>
+<div class="description-paragraph" id="p0009" num="0007">针对相关技术中的问题，目前尚未提出有效的解决方案。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0010">发明内容</div>
+<div class="description-paragraph" id="p0011" num="0008">针对相关技术中的问题，本发明提出一种高速公路低空飞行器优化布置方法，以克服现有相关技术所存在的上述技术问题。</div>
+<div class="description-paragraph" id="p0012" num="0009">为此，本发明采用的具体技术方案如下：</div>
+<div class="description-paragraph" id="p0013" num="0010">一种高速公路低空飞行器优化布置方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0014" num="0011">S1、根据影响因素构建评价指标体系，并利用层次分析法及熵权法，确定各评价指标的综合权重，识别评价指标的重要性；</div>
+<div class="description-paragraph" id="p0015" num="0012">S2、基于评价指标的重要性，构建低空飞行器优化布置模型，并利用模拟退火算法求解得到服务站点低空飞行器的静态最优数量配置；</div>
+<div class="description-paragraph" id="p0016" num="0013">S3、利用社会情绪共振规避算法，动态调整服务站点低空飞行器的静态最优数量配置，得到服务站点低空飞行器的最终数量配置；</div>
+<div class="description-paragraph" id="p0017" num="0014">S4、根据服务站点低空飞行器的最终数量配置，结合社会情绪数据优化低空飞行器的飞行路径。</div>
+<div class="description-paragraph" id="p0018" num="0015">进一步的，所述根据影响因素构建评价指标体系，并利用层次分析法及熵权法，确定各评价指标的综合权重，识别评价指标的重要性包括以下步骤：</div>
+<div class="description-paragraph" id="p0019" num="0016">S11、根据目标高速公路区域的人口规模、交通条件、空域资源、经济发展、消费能力、应用场景及辐射范围，构建评价指标体系；</div>
+<div class="description-paragraph" id="p0020" num="0017">S12、利用层次分析法确定各评价指标的主观权重，并通过熵权法分析各评价指标的客观权重；</div>
+<div class="description-paragraph" id="p0021" num="0018">S13、基于加权平均法，结合各评价指标的主观权重和客观权重，计算各评价指标的综合权重，并根据综合权重识别各评价指标的重要性。</div>
+<div class="description-paragraph" id="p0022" num="0019">进一步的，所述基于评价指标的重要性，构建低空飞行器优化布置模型，并利用模拟退火算法求解得到服务站点低空飞行器的静态最优数量配置包括以下步骤：</div>
+<div class="description-paragraph" id="p0023" num="0020">S21、根据评价指标及对应的综合权重，以最小化综合成本为优化目标，构建目标函数，并以服务站点数量、服务站点之间的间距及空域资源为约束条件；</div>
+<div class="description-paragraph" id="p0024" num="0021">S22、随机生成一个初始解，作为各服务站点配置低空飞行器的数量，设定初始温度、冷却因子及最大迭代次数；</div>
+<div class="description-paragraph" id="p0025" num="0022">S23、通过随机扰动当前解来调整低空飞行器的配置数量，生成新的邻域解，根据目标函数计算新的邻域解的目标函数值；</div>
+<div class="description-paragraph" id="p0026" num="0023">S24、判断新的邻域解的目标函数值是否由于当前解的目标函数值，若是，则接受新的邻域解，若否，则根据接受概率接受新的邻域解；</div>
+<div class="description-paragraph" id="p0027" num="0024">S25、根据温度的降低情况减小接受劣解的概率，以逐步引导搜索过程向全局最优解收敛；</div>
+<div class="description-paragraph" id="p0028" num="0025">S26、当达到最大迭代次数或温度降到设定的最低值时，停止迭代，并输出最优解，得到最小化目标函数的服务站点低空飞行器的静态最优数量。</div>
+<div class="description-paragraph" id="p0029" num="0026">进一步的，所述目标函数的表达式为：</div>
+<div class="description-paragraph" id="p0030" num="0027">Z＝α<sub>1</sub>·C<sub>人口规模</sub>+α<sub>2</sub>·C<sub>交通条件</sub>+α<sub>3</sub>·C<sub>空域资源</sub>+α<sub>4</sub>·C<sub>经济发展</sub> </div>
+<div class="description-paragraph" id="p0031" num="0028">+α<sub>5</sub>·C<sub>消费能力</sub>+α<sub>6</sub>·C<sub>应用场景</sub>+α<sub>7</sub>·C<sub>辐射范围</sub> </div>
+<div class="description-paragraph" id="p0032" num="0029">式中，Z表示综合成本；C<sub>人口规模</sub>表示人口规模指标的成本度量，α<sub>1</sub>表示人口规模指标的综合权重，C<sub>交通条件</sub>表示交通条件指标的成本度量，α<sub>2</sub>表示交通条件指标的综合权重，C<sub>空域资源</sub>表示空域资源指标的成本度量，α<sub>3</sub>表示空域资源指标的综合权重，C<sub>经济发展</sub>表示经济发展指标的成本度量，α<sub>4</sub>表示经济发展指标的综合权重，C<sub>消费能力</sub>表示消费能力指标的成本度量，α<sub>5</sub>表示消费能力指标的综合权重，C<sub>应用场景</sub>表示应用场景指标的成本度量，α<sub>6</sub>表示应用场景指标的综合权重，C<sub>辐射范围</sub>表示辐射范围指标的成本度量，α<sub>7</sub>表示辐射范围指标的综合权重。</div>
+<div class="description-paragraph" id="p0033" num="0030">进一步的，所述利用社会情绪共振规避算法，动态调整服务站点低空飞行器的静态最优数量配置，得到服务站点低空飞行器的最终数量配置包括以下步骤：</div>
+<div class="description-paragraph" id="p0034" num="0031">S31、基于社交媒体获取各地区关于低空飞行器的公众情绪反馈数据，并利用情感分析技术提取各地区公众情绪反馈数据的情感极性和情感强度；</div>
+<div class="description-paragraph" id="p0035" num="0032">S32、利用人口统计学权重对各地区的情感强度数据进行修正，并根据修正后的情感强度数据构建各地区的情绪分布图；</div>
+<div class="description-paragraph" id="p0036" num="0033">S33、根据各地区的情感强度及地理信息，构建群体心理场强模型，量化各地区低空飞行器部署的公众接受度；</div>
+<div class="description-paragraph" id="p0037" num="0034">S34、根据各地区低空飞行器部署的公众接受度，结合进化博弈论和共振规避机制优化各服务站点低空飞行器的静态最优数量配置，确定各服务站点低空飞行器的最终数量配置。</div>
+<div class="description-paragraph" id="p0038" num="0035">进一步的，所述利用人口统计学权重对各地区的情感强度数据进行修正，并根据修正后的情感强度数据构建各地区的情绪分布图包括以下步骤：</div>
+<div class="description-paragraph" id="p0039" num="0036">S321、通过社交媒体提取与公众情绪反馈数据相关的地理位置信息，并根据地理信息将公众情感反馈数据归属到具体地区；</div>
+<div class="description-paragraph" id="p0040" num="0037">S322、获取各地区的基础人口统计学数据，并根据各地区的人口特征和该地区的社交媒体活跃度，确定各地区的人口统计学权重；</div>
+<div class="description-paragraph" id="p0041" num="0038">S323、根据各地区的人口统计学权重对各地区的情感强度数据进行修正，基于修正后的情感强度数据构建各地区的情绪分布图。</div>
+<div class="description-paragraph" id="p0042" num="0039">进一步的，情感强度数据修正的计算公式为：</div>
+<div class="description-paragraph" id="p0043" num="0040">S′(x)＝S(x)·W(x)</div>
+<div class="description-paragraph" id="p0044" num="0041">人口统计学权重的计算公式为：</div>
+<div class="description-paragraph" id="p0045" num="0042">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0046" num="0043">式中，S’(x)表示地区x修正后的情感得分，S(x)表示地区x的情感得分，W(x)表示地区x的人口统计学权重，P(x)表示地区x的人口总数，P(T)表示服务站点中所有地区人口的总数。</div>
+<div class="description-paragraph" id="p0047" num="0044">进一步的，所述根据各地区的情感强度及地理信息，构建群体心理场强模型，量化各地区低空飞行器部署的公众接受度包括以下步骤：</div>
+<div class="description-paragraph" id="p0048" num="0045">S331、根据各地区的情感强度及地理信息，构建群体心理场强模型，其中，群体心理场强模型的表达式为：</div>
+<div class="description-paragraph" id="p0049" num="0046">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0050" num="0047">式中，Ψ(x)表示地区x的心理场强，n表示地区的数量，S(x)表示地区x的情感得分，k表示用于控制情绪强度随距离衰减速度的调节系数，r<sub>i</sub>表示服务站点与地区x的距离，R<sub>i</sub>表示低空飞行器服务的最大覆盖距离；</div>
+<div class="description-paragraph" id="p0051" num="0048">S332、利用群体心理场强模型计算各地区的心理场强，以量化各地区低空飞行器部署的公众接受度。</div>
+<div class="description-paragraph" id="p0052" num="0049">进一步的，所述根据各地区低空飞行器部署的公众接受度，结合进化博弈论和共振规避机制优化各服务站点低空飞行器的静态最优数量配置，确定各服务站点低空飞行器的最终数量配置包括以下步骤：</div>
+<div class="description-paragraph" id="p0053" num="0050">S341、获取各地区低空飞行器部署的静态最优数量配置及公众接受度，并利用加权平均法计算各服务站点内所有地区的公众接受度，得到各服务站点低空飞行器部署的公众接受度；</div>
+<div class="description-paragraph" id="p0054" num="0051">S342、定义各服务站点的低空飞行器数量策略，将服务站点作为博弈的参与者，选择低空飞行器的数量配置，并根据公众接受度、运营成本及服务效率，设计服务站点的适应度函数；</div>
+<div class="description-paragraph" id="p0055" num="0052">适应度函数的表达式为：</div>
+<div class="description-paragraph" id="p0056" num="0053">F<sub>i</sub>＝β<sub>1</sub>·Ψ<sub>i</sub>-β<sub>2</sub>·C<sub>i</sub>+β<sub>3</sub>·O<sub>i</sub> </div>
+<div class="description-paragraph" id="p0057" num="0054">式中，F<sub>i</sub>表示第i个服务站点的适应度函数值，Ψ<sub>i</sub>表示第i个服务站点的心理场强，C<sub>i</sub>表示第i个服务站点的运营成本，O<sub>i</sub>表示第i个服务站点的服务能力，β<sub>1</sub>、β<sub>2</sub>、β<sub>3</sub>分别表示第i个服务站点的心理场强权重、运营成本权重、服务能力权重；</div>
+<div class="description-paragraph" id="p0058" num="0055">S342、各服务站点根据自身适应度与邻近服务站点的适应度差异来更新策略，并通过复制动态调整飞行器数量配置；</div>
+<div class="description-paragraph" id="p0059" num="0056">策略更新公式为：</div>
+<div class="description-paragraph" id="p0060" num="0057">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0061" num="0058">式中，<span class="patent-image-not-available"></span>表示第i个服务站点在第t+1轮的低空飞行器数量，<span class="patent-image-not-available"></span>表示第i个服务站点在第t轮的低空飞行器数量，λ表示学习率，<span class="patent-image-not-available"></span>表示所有服务站点的适应度平均值；</div>
+<div class="description-paragraph" id="p0062" num="0059">S343、在每轮迭代中，监测所有服务站点的公众接受度波动情况，计算共振指数，识别潜在的情绪共振风险，当共振指数超过设定阈值时，则调整更新策略；</div>
+<div class="description-paragraph" id="p0063" num="0060">共振指数的计算公式为：</div>
+<div class="description-paragraph" id="p0064" num="0061">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0065" num="0062">调整后的更新公式为：</div>
+<div class="description-paragraph" id="p0066" num="0063">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0067" num="0064">式中，E表示共振指数，m表示服务站点的数量，x′<sub>i</sub> <sup>(t+1)</sup>表示调整后的第i个服务站点在第t+1轮的低空飞行器数量，η表示共振规避系数；</div>
+<div class="description-paragraph" id="p0068" num="0065">S344、根据博弈动态和共振抑制机制进行多轮策略更新，逐步优化各服务站点的低空飞行器数量配置，直至所有服务站点的配置数量变化小于预设的配置数量阈值或达到最大迭代次数，迭代结束，得到各服务站点的最终飞行器数量配置。</div>
+<div class="description-paragraph" id="p0069" num="0066">进一步的，所述根据服务站点低空飞行器的最终数量配置，结合社会情绪数据优化低空飞行器的飞行路径包括以下步骤：</div>
+<div class="description-paragraph" id="p0070" num="0067">S41、获取各服务站点低空飞行器的最终数量、社会情绪数据及与飞行路径相关的地理信息数据；</div>
+<div class="description-paragraph" id="p0071" num="0068">S42、以最小化飞行器路径的飞行时间和最大化公众接受度为优化目标，以飞行路径限制、公众情绪波动及飞行器服务范围为约束条件，构建飞行路径优化模型；</div>
+<div class="description-paragraph" id="p0072" num="0069">S43、利用最短路径算法优化低空飞行器的飞行路径，并将优化后的飞行路径与各地区的情绪分布图进行叠加展示，直观显示低空飞行器的飞行路线、服务范围和情绪区域。</div>
+<div class="description-paragraph" id="p0073" num="0070">本发明的有益效果为：</div>
+<div class="description-paragraph" id="p0074" num="0071">1)本发明通过综合考虑了人口规模、交通条件、空域资源、经济发展、消费能力、应用场景、辐射范围及社会情绪多种复杂因素，实现了低空飞行器的高效布置与路径优化，使低空飞行器的投入更具全局性、经济性，确保了技术的可行性、社会接受度和可持续发展，为低空飞行器行业的应用提供了重要的技术支撑。</div>
+<div class="description-paragraph" id="p0075" num="0072">2)本发明通过层次分析法和熵权法综合考虑了多种影响因素，并通过计算综合权重来识别每个因素的重要性。这种多维度的优化方法确保了低空飞行器的布置不仅满足传统的服务需求，还能够适应不同地区的社会、经济和情绪变化。</div>
+<div class="description-paragraph" id="p0076" num="0073">3)本发明通过模拟退火算法对飞行器数量进行优化配置，从而能够高效地找到服务站点的静态最优数量配置，进而减少了飞行器的空置率或过度部署的问题。同时，该方法能够根据飞行器配置数量的变化，动态调整布置，以适应不断变化的需求和情绪反馈。</div>
+<div class="description-paragraph" id="p0077" num="0074">4)本发明通过引入社会情绪共振规避算法和群体心理场强模型，能够有效避免飞行器部署过程中因公众情绪波动导致的负面影响。优化后的飞行器布置和飞行路径更能够符合公众的接受度和社会心理需求，提高了飞行器的运营效率，并降低了情绪共振的风险。</div>
+<div class="description-paragraph" id="p0078" num="0075">5)本发明基于飞行器数量配置和情绪数据的飞行路径优化，确保飞行器在高效执行任务的同时，避开公众情绪负面区域。这种优化路径不仅提高了飞行器的运营效率，还有效提升了用户体验，减少了公众对飞行器的反感和抗议。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0079">附图说明</div>
+<div class="description-paragraph" id="p0080" num="0076">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0081" num="0077">图1是根据本发明实施例的一种高速公路低空飞行器优化布置方法的流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0082">具体实施方式</div>
+<div class="description-paragraph" id="p0083" num="0078">为进一步说明各实施例，本发明提供有附图，这些附图为本发明揭露内容的一部分，其主要用以说明实施例，并可配合说明书的相关描述来解释实施例的运作原理，配合参考这些内容，本领域普通技术人员应能理解其他可能的实施方式以及本发明的优点，图中的组件并未按比例绘制，而类似的组件符号通常用来表示类似的组件。</div>
+<div class="description-paragraph" id="p0084" num="0079">根据本发明的实施例，提供了一种高速公路低空飞行器优化布置方法。</div>
+<div class="description-paragraph" id="p0085" num="0080">现结合附图和具体实施方式对本发明进一步说明，如图1所示，根据本发明实施例的高速公路低空飞行器优化布置方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0086" num="0081">S1、根据影响因素构建评价指标体系，并利用层次分析法及熵权法，确定各评价指标的综合权重，识别评价指标的重要性；</div>
+<div class="description-paragraph" id="p0087" num="0082">其中，所述根据影响因素构建评价指标体系，并利用层次分析法及熵权法，确定各评价指标的综合权重，识别评价指标的重要性包括以下步骤：</div>
+<div class="description-paragraph" id="p0088" num="0083">S11、根据目标高速公路区域的人口规模、交通条件、空域资源、经济发展、消费能力、应用场景及辐射范围，构建评价指标体系；</div>
+<div class="description-paragraph" id="p0089" num="0084">具体地，人口规模(例如某区域人口密度、总人口等)、交通条件(例如交通流量、道路密度、交通堵塞情况等)、空域资源(例如空域开放程度、限制区域、飞行难度等)、经济发展(例如区域GDP、行业发展情况、企业数量等)、消费能力(例如人均收入、消费者支付能力、消费趋势等)、应用场景(例如物流需求、城市空中出行需求等)、辐射范围(例如飞行器的服务半径、覆盖区域等)，这些指标必须与飞行器布置的优化目标密切相关，并且可以通过数据采集、调查等方式获得。</div>
+<div class="description-paragraph" id="p0090" num="0085">S12、利用层次分析法确定各评价指标的主观权重，并通过熵权法分析各评价指标的客观权重；</div>
+<div class="description-paragraph" id="p0091" num="0086">具体地，层次分析法(AHP)主要用于确定各个评价指标的相对重要性。具体操作步骤如下：</div>
+<div class="description-paragraph" id="p0092" num="0087">1)建立层次结构模型：</div>
+<div class="description-paragraph" id="p0093" num="0088">目标层：确定最终目标，即“优化低空飞行器布置”。</div>
+<div class="description-paragraph" id="p0094" num="0089">准则层：选择一级准则，通常是影响飞行器布置的几个关键因素，如：人口规模、交通条件、空域资源、经济发展、消费能力等。</div>
+<div class="description-paragraph" id="p0095" num="0090">指标层：在每个准则下，列出相关的具体评价指标。</div>
+<div class="description-paragraph" id="p0096" num="0091">例如：</div>
+<div class="description-paragraph" id="p0097" num="0092">目标层：低空飞行器优化布置；</div>
+<div class="description-paragraph" id="p0098" num="0093">准则层：人口规模、交通条件、空域资源、经济发展、消费能力、应用场景、辐射范围；</div>
+<div class="description-paragraph" id="p0099" num="0094">指标层：每个准则下的具体指标(如“人口密度”是“人口规模”下的一个指标)；</div>
+<div class="description-paragraph" id="p0100" num="0095">2)构建成对比较矩阵：</div>
+<div class="description-paragraph" id="p0101" num="0096">对于每一对准则(或指标)，进行成对比较。专家根据经验和知识判断每一对因素的相对重要性，打分通常是1至9的尺度：</div>
+<div class="description-paragraph" id="p0102" num="0097">1表示两个因素同等重要；3表示一个因素稍微重要于另一个；5表示一个因素明显重要于另一个；7表示一个因素非常重要于另一个；9表示一个因素极其重要于另一个；成对比较的结果可以生成一个对称矩阵，其中每个元素表示两者之间的相对重要性。</div>
+<div class="description-paragraph" id="p0103" num="0098">3)计算权重：</div>
+<div class="description-paragraph" id="p0104" num="0099">特征值法：通过矩阵的特征值方法，计算各个因素的权重(即每个因素对最终目标的贡献度)。通过计算最大特征值，得到归一化后的权重值。</div>
+<div class="description-paragraph" id="p0105" num="0100">具体地，熵权法是一种客观权重确定方法，通过评价指标的数据离散度来计算各个指标的权重，离散度越高，说明该指标对评估结果的贡献越大。具体步骤如下：</div>
+<div class="description-paragraph" id="p0106" num="0101">1)数据标准化：对各个指标的数据进行标准化处理，使其在相同的尺度下进行比较。常用的标准化方法有最小-最大标准化和Z-score标准化；</div>
+<div class="description-paragraph" id="p0107" num="0102">2)计算熵值：根据标准化后的数据，计算每个指标的信息熵；</div>
+<div class="description-paragraph" id="p0108" num="0103">3)计算权重：根据熵值计算每个指标的权重，权重值越大，表明该指标的信息量越多，对最终评价的影响也越大；</div>
+<div class="description-paragraph" id="p0109" num="0104">S13、基于加权平均法，结合各评价指标的主观权重和客观权重，计算各评价指标的综合权重，并根据综合权重识别各评价指标的重要性；</div>
+<div class="description-paragraph" id="p0110" num="0105">在完成了AHP和熵权法的分析后，将这两种方法的结果结合，最终得到每个评价指标的综合权重。具体方法如下：</div>
+<div class="description-paragraph" id="p0111" num="0106">合成主观权重和客观权重：根据AHP方法得到的主观权重和熵权法得到的客观权重，可以通过加权平均的方式合成最终的权重。</div>
+<div class="description-paragraph" id="p0112" num="0107">关键影响因素的识别：根据综合权重，可以识别出关键影响因素，即那些对飞行器布置优化影响最大、权重最大的因素。</div>
+<div class="description-paragraph" id="p0113" num="0108">S2、基于评价指标的重要性，构建低空飞行器优化布置模型，并利用模拟退火算法求解得到服务站点低空飞行器的静态最优数量配置；</div>
+<div class="description-paragraph" id="p0114" num="0109">其中，所述基于评价指标的重要性，构建低空飞行器优化布置模型，并利用模拟退火算法求解得到服务站点低空飞行器的静态最优数量配置包括以下步骤：</div>
+<div class="description-paragraph" id="p0115" num="0110">S21、根据评价指标及对应的综合权重，以最小化综合成本为优化目标，构建目标函数，并以服务站点数量、服务站点之间的间距及空域资源为约束条件；</div>
+<div class="description-paragraph" id="p0116" num="0111">目标函数的表达式为：</div>
+<div class="description-paragraph" id="p0117" num="0112">Z＝α<sub>1</sub>·C<sub>人口规模</sub>+α<sub>2</sub>·C<sub>交通条件</sub>+α<sub>3</sub>·C<sub>空域资源</sub>+α<sub>4</sub>·C<sub>经济发展</sub> </div>
+<div class="description-paragraph" id="p0118" num="0113">+α<sub>5</sub>·C<sub>消费能力</sub>+α<sub>6</sub>·C<sub>应用场景</sub>+α<sub>7</sub>·C<sub>辐射范围</sub> </div>
+<div class="description-paragraph" id="p0119" num="0114">式中，Z表示综合成本；C<sub>人口规模</sub>表示人口规模指标的成本度量，α<sub>1</sub>表示人口规模指标的综合权重，C<sub>交通条件</sub>表示交通条件指标的成本度量，α<sub>2</sub>表示交通条件指标的综合权重，C<sub>空域资源</sub>表示空域资源指标的成本度量，α<sub>3</sub>表示空域资源指标的综合权重，C<sub>经济发展</sub>表示经济发展指标的成本度量，α<sub>4</sub>表示经济发展指标的综合权重，C<sub>消费能力</sub>表示消费能力指标的成本度量，α<sub>5</sub>表示消费能力指标的综合权重，C<sub>应用场景</sub>表示应用场景指标的成本度量，α<sub>6</sub>表示应用场景指标的综合权重，C<sub>辐射范围</sub>表示辐射范围指标的成本度量，α<sub>7</sub>表示辐射范围指标的综合权重；</div>
+<div class="description-paragraph" id="p0120" num="0115">人口规模成本：人口规模成本衡量的是服务区域内人口规模对低空飞行器布置的需求和成本影响。人口规模较大的区域需要更多的飞行器来满足服务需求，计算方法为：可以根据人口总数与服务范围之间的关系来计算该成本，假设飞行器的服务能力与人口数量成正比，可以按如下方式计算：C<sub>人口规模</sub>＝k<sub>人口</sub>×P，其中，P是该区域的人口数量，k<sub>人口</sub>是与人口规模相关的成本系数，可以根据飞行器的服务效率和部署需求来确定；</div>
+<div class="description-paragraph" id="p0121" num="0116">交通条件成本：交通条件成本衡量的是服务区域的交通拥堵、道路建设等因素对飞行器部署的影响。交通拥堵较严重的区域可能需要更多的飞行器来提供更高效的服务，计算方法为：根据该区域的交通流量和道路状况来估算成本，可以使用交通拥堵指数或者道路密度来量化交通条件成本：C<sub>交通条件</sub>＝k<sub>交通</sub>×T<sub>拥堵</sub>×D，其中，T<sub>拥堵</sub>表示该区域的交通拥堵指数(例如高峰时段的交通延误时间)，D是该区域的道路密度或交通流量，k<sub>交通</sub>是交通条件的成本系数，基于飞行器的服务效率来调整；</div>
+<div class="description-paragraph" id="p0122" num="0117">空域资源成本：空域资源成本衡量的是可用空域资源的限制对飞行器部署的影响。空域资源越紧张，飞行器的部署和运行成本可能越高，计算方法为：空域资源可以用可用空域的总面积、飞行高度限制或飞行器数量的限制来度量，空域资源的成本可以表示为空域占用的费用或由于空域资源限制导致的资源调度费用：C<sub>空域资源</sub>＝k<sub>空域</sub>×R<sub>空域</sub>，其中，R<sub>空域</sub>表示空域资源的紧张程度，可以通过空域的可用容量与实际使用容量的比值来量化，k<sub>空域</sub>是空域资源的成本系数，考虑空域的限制性和飞行器部署的需求；</div>
+<div class="description-paragraph" id="p0123" num="0118">经济发展成本：经济发展成本考虑了服务区域的经济发展水平对飞行器部署的影响。经济发展较好的区域可能有更高的支付能力，飞行器运营的成本效益可能更高，计算方法为：经济发展水平可以通过地区的GDP、人均收入等指标来衡量，经济发展成本的计算可以基于区域经济水平与飞行器运营的相对成本：C<sub>经济发展</sub>＝k<sub>经济</sub>×GDP，其中，GDP是该区域的经济总量或者人均GDP，k<sub>经济</sub>是经济发展水平的成本系数；</div>
+<div class="description-paragraph" id="p0124" num="0119">消费能力成本：消费能力成本衡量的是区域内消费者的支付能力对飞行器服务需求的影响。消费能力较高的区域可能会更愿意支付较高的费用以享受飞行器服务，计算方法为：消费能力通常与地区的收入水平、消费支出等相关联，可以通过人均收入或者地区消费总额来计算消费能力成本：C<sub>消费能力</sub>＝k<sub>消费</sub>×C<sub>人均消费</sub>，其中，C<sub>人均消费</sub>是该区域的消费能力指标(例如人均消费额)，k<sub>消费</sub>是消费能力的成本系数；</div>
+<div class="description-paragraph" id="p0125" num="0120">应用场景成本：应用场景成本考虑了不同应用场景(如快递配送、农业监测等)对飞行器部署的特殊需求。例如，某些应用场景需要飞行器进行长时间的飞行，或需要更高的负载能力。计算方法为：每种应用场景的需求可能不同，应用场景的成本可以根据飞行器的特定要求进行评估：C<sub>应用场景</sub>＝k<sub>场景</sub>×S<sub>场景需求</sub>，其中，S<sub>场景需求</sub>是该应用场景下飞行器的需求程度(例如飞行时间、负载能力等)，k<sub>场景</sub>是应用场景的成本系数；</div>
+<div class="description-paragraph" id="p0126" num="0121">辐射范围成本：辐射范围成本衡量的是飞行器的服务范围对成本的影响。服务范围较大的区域需要更多的飞行器进行覆盖，因此会增加成本；计算方法为：辐射范围成本可以与飞行器的最大服务半径或所覆盖的区域面积成正比：C<sub>辐射范围</sub>＝k<sub>辐射</sub>×A<sub>覆盖面积</sub>，其中，A<sub>覆盖面积</sub>是服务范围的面积或飞行器的最大覆盖距离，k<sub>辐射</sub>是辐射范围的成本系数；</div>
+<div class="description-paragraph" id="p0127" num="0122">S22、随机生成一个初始解，作为各服务站点配置低空飞行器的数量，设定初始温度、冷却因子及最大迭代次数；</div>
+<div class="description-paragraph" id="p0128" num="0123">S23、通过随机扰动当前解来调整低空飞行器的配置数量，生成新的邻域解，根据目标函数计算新的邻域解的目标函数值；</div>
+<div class="description-paragraph" id="p0129" num="0124">在模拟退火算法中，随机扰动当前解来生成新的邻域解是核心操作之一，目的是探索可能的解空间，以找到目标函数的最优解。对于低空飞行器的配置问题，扰动当前解并生成新的邻域解，涉及到如何改变飞行器的配置数量，然后评估新配置的成本(目标函数值)是否更优。</div>
+<div class="description-paragraph" id="p0130" num="0125">扰动操作(生成新的邻域解)：</div>
+<div class="description-paragraph" id="p0131" num="0126">随机扰动当前解的方法是对当前解进行一些随机的调整，生成一个新的解，称为邻域解。在飞行器数量配置问题中，邻域解可以通过以下方式生成：</div>
+<div class="description-paragraph" id="p0132" num="0127">增加或减少某个站点的飞行器数量：例如，选择一个服务站点，随机增加或减少其飞行器数量，并确保飞行器数量仍在允许的范围内(例如，不能为负数)。</div>
+<div class="description-paragraph" id="p0133" num="0128">交换两个站点的飞行器数量：选择两个站点，互换它们的飞行器数量配置。</div>
+<div class="description-paragraph" id="p0134" num="0129">随机选择一个站点，调整其飞行器数量的比例：通过一些随机因子对飞行器数量做小幅度的变动(例如增加或减少5％的飞行器数量)。</div>
+<div class="description-paragraph" id="p0135" num="0130">生成邻域解的操作一般是通过随机数生成的，具有一定的随机性。</div>
+<div class="description-paragraph" id="p0136" num="0131">S24、判断新的邻域解的目标函数值是否由于当前解的目标函数值，若是，则接受新的邻域解，若否，则根据接受概率接受新的邻域解；</div>
+<div class="description-paragraph" id="p0137" num="0132">接受概率的计算公式为：</div>
+<div class="description-paragraph" id="p0138" num="0133">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0139" num="0134">式中，P(ΔZ)表示接受概率，ΔZ表示目标函数的差值，T表示当前温度；</div>
+<div class="description-paragraph" id="p0140" num="0135">S25、根据温度的降低情况减小接受劣解的概率，以逐步引导搜索过程向全局最优解收敛；</div>
+<div class="description-paragraph" id="p0141" num="0136">降温的表达式为：</div>
+<div class="description-paragraph" id="p0142" num="0137">T<sub>new</sub>＝ω·T<sub>old</sub> </div>
+<div class="description-paragraph" id="p0143" num="0138">式中，T<sub>new</sub>表示降温后的温度，ω表示冷却因子，T<sub>old</sub>表示降温之前的温度。</div>
+<div class="description-paragraph" id="p0144" num="0139">S26、当达到最大迭代次数或温度降到设定的最低值时，停止迭代，并输出最优解，得到最小化目标函数的服务站点低空飞行器的静态最优数量；</div>
+<div class="description-paragraph" id="p0145" num="0140">S3、利用社会情绪共振规避算法，动态调整服务站点低空飞行器的静态最优数量配置，得到服务站点低空飞行器的最终数量配置；</div>
+<div class="description-paragraph" id="p0146" num="0141">其中，所述利用社会情绪共振规避算法，动态调整服务站点低空飞行器的静态最优数量配置，得到服务站点低空飞行器的最终数量配置包括以下步骤：</div>
+<div class="description-paragraph" id="p0147" num="0142">S31、基于社交媒体获取各地区关于低空飞行器的公众情绪反馈数据，并利用情感分析技术提取各地区公众情绪反馈数据的情感极性和情感强度；</div>
+<div class="description-paragraph" id="p0148" num="0143">具体地，基于社交媒体获取公众情绪反馈数据并进行情感分析是实现低空飞行器优化部署时考虑社会情绪因素的重要步骤。通过从社交媒体平台(如微博等)中获取关于低空飞行器的讨论和反馈数据，可以对公众对低空飞行器的态度、情绪和接受度进行量化分析。这一过程可以分为数据收集、情感分析、情感极性和情感强度提取等几个步骤。</div>
+<div class="description-paragraph" id="p0149" num="0144">1)数据收集：</div>
+<div class="description-paragraph" id="p0150" num="0145">首先，从社交媒体平台上收集关于低空飞行器的相关数据。这些数据可以包括但不限于：</div>
+<div class="description-paragraph" id="p0151" num="0146">社交媒体帖子(例如：微博推文等)：与低空飞行器相关的内容，诸如讨论、评论、反馈、新闻、广告等。</div>
+<div class="description-paragraph" id="p0152" num="0147">评论和转发信息：用户对于低空飞行器的评论、讨论及转发，能够提供关于公众情绪的直接线索。</div>
+<div class="description-paragraph" id="p0153" num="0148">地理位置信息：社交媒体帖子通常会附带地理位置信息，利用这些信息可以将情感数据与特定地区绑定，为后续的情感分析和情绪分布图制作提供支持。</div>
+<div class="description-paragraph" id="p0154" num="0149">数据获取的常见技术：</div>
+<div class="description-paragraph" id="p0155" num="0150">API调用：很多社交媒体平台提供了API接口，允许开发者抓取公开的帖子和评论。例如，Twitter的API或微博开放平台提供了丰富的接口来获取数据。</div>
+<div class="description-paragraph" id="p0156" num="0151">网页爬虫技术：通过爬虫技术抓取社交媒体页面上的公开数据，尤其是那些没有直接提供API的社交平台。</div>
+<div class="description-paragraph" id="p0157" num="0152">2)数据清洗与预处理：</div>
+<div class="description-paragraph" id="p0158" num="0153">在获取到社交媒体数据后，通常需要进行一定的清洗和预处理，确保数据的质量和一致性。这些步骤包括：</div>
+<div class="description-paragraph" id="p0159" num="0154">去除无关数据：剔除与低空飞行器无关的讨论或不相关的内容。</div>
+<div class="description-paragraph" id="p0160" num="0155">去噪声处理：清除评论中的噪音，如无意义的符号、乱码、广告等。</div>
+<div class="description-paragraph" id="p0161" num="0156">分词和标注：特别是在中文文本中，需要将评论进行分词，并进行词性标注，以便情感分析能识别出与情绪相关的词汇。</div>
+<div class="description-paragraph" id="p0162" num="0157">3)情感分析技术：</div>
+<div class="description-paragraph" id="p0163" num="0158">情感分析技术的目的是从文本中提取出公众情绪的极性和强度。可以分为以下几个步骤：</div>
+<div class="description-paragraph" id="p0164" num="0159">情感极性(Polarity)：</div>
+<div class="description-paragraph" id="p0165" num="0160">情感极性表示公众情绪的基本方向，它可以是：</div>
+<div class="description-paragraph" id="p0166" num="0161">正面情绪：表示赞同、喜欢、支持、积极的情感态度，例如“低空飞行器很方便”。</div>
+<div class="description-paragraph" id="p0167" num="0162">负面情绪：表示反对、不喜欢、担忧、消极的情感态度，例如“低空飞行器很吵，影响生活质量”。</div>
+<div class="description-paragraph" id="p0168" num="0163">中性情绪：指的是既不特别积极也不特别消极的态度，例如“低空飞行器的发展可能带来变化，但不确定”。</div>
+<div class="description-paragraph" id="p0169" num="0164">在情感分析中，情感极性的识别通常基于词典方法、机器学习方法或深度学习方法：</div>
+<div class="description-paragraph" id="p0170" num="0165">词典方法：使用情感词典(如SentiWordNet、情感词典等)，根据文本中出现的正面和负面词汇来判断情感极性。</div>
+<div class="description-paragraph" id="p0171" num="0166">机器学习方法：训练情感分类模型(如朴素贝叶斯、支持向量机等)来预测文本的情感极性。</div>
+<div class="description-paragraph" id="p0172" num="0167">深度学习方法：利用深度神经网络(如LSTM、BERT等)对文本进行情感分类，这些模型能够学习到文本中的复杂语境，从而识别出情感极性。</div>
+<div class="description-paragraph" id="p0173" num="0168">情感强度(Sentiment Intensity)：</div>
+<div class="description-paragraph" id="p0174" num="0169">情感强度衡量的是情感的强烈程度。它反映了情绪的激烈程度，可以分为以下几种：</div>
+<div class="description-paragraph" id="p0175" num="0170">高强度的情感：表示情感反应强烈，如“这个低空飞行器真是太棒了，太便捷了！”。</div>
+<div class="description-paragraph" id="p0176" num="0171">低强度的情感：表示情感较弱，如“低空飞行器还行，不算特别好”。</div>
+<div class="description-paragraph" id="p0177" num="0172">情感强度的计算方法：</div>
+<div class="description-paragraph" id="p0178" num="0173">词典方法：通过使用带有情感强度分值的情感词典(如VADER情感词典)，为每个情感词汇赋予一个强度评分。</div>
+<div class="description-paragraph" id="p0179" num="0174">机器学习方法：利用回归模型或分类模型，预测文本中的情感强度。</div>
+<div class="description-paragraph" id="p0180" num="0175">深度学习方法：基于神经网络模型(如BERT)对文本进行多层次的分析，输出文本的情感强度。</div>
+<div class="description-paragraph" id="p0181" num="0176">S32、利用人口统计学权重对各地区的情感强度数据进行修正，并根据修正后的情感强度数据构建各地区的情绪分布图；</div>
+<div class="description-paragraph" id="p0182" num="0177">具体地，所述利用人口统计学权重对各地区的情感强度数据进行修正，并根据修正后的情感强度数据构建各地区的情绪分布图包括以下步骤：</div>
+<div class="description-paragraph" id="p0183" num="0178">S321、通过社交媒体提取与公众情绪反馈数据相关的地理位置信息，并根据地理信息将公众情感反馈数据归属到具体地区；</div>
+<div class="description-paragraph" id="p0184" num="0179">S322、获取各地区的基础人口统计学数据，并根据各地区的人口特征和该地区的社交媒体活跃度，确定各地区的人口统计学权重；</div>
+<div class="description-paragraph" id="p0185" num="0180">获取各地区的基础人口统计学数据以及根据地区的人口特征和社交媒体活跃度来确定人口统计学权重，需要经过以下步骤：</div>
+<div class="description-paragraph" id="p0186" num="0181">1)获取基础人口统计学数据：如人口总数：每个地区的总人口数量，能够反映该地区的人口规模。</div>
+<div class="description-paragraph" id="p0187" num="0182">数据来源包括：</div>
+<div class="description-paragraph" id="p0188" num="0183">政府统计年鉴或公开数据：各国政府或地方政府通常会发布年度统计数据，包括人口、收入、教育水平等。</div>
+<div class="description-paragraph" id="p0189" num="0184">社交媒体平台的数据：通过API等方式获取社交平台上的活跃用户数据，并通过区域标签来关联人口信息。</div>
+<div class="description-paragraph" id="p0190" num="0185">2)获取社交媒体活跃度数据：</div>
+<div class="description-paragraph" id="p0191" num="0186">社交媒体活跃度通常反映了该地区用户在社交平台上的活跃程度，这对情绪分析和舆情反馈的可信度有着重要影响。社交媒体活跃度包括以下指标：</div>
+<div class="description-paragraph" id="p0192" num="0187">活跃用户数：该地区每天或每月在社交媒体平台上发布内容或参与互动的用户数量。</div>
+<div class="description-paragraph" id="p0193" num="0188">发帖频率：该地区社交媒体用户的平均发帖频率和互动频率(点赞、评论、分享等)。</div>
+<div class="description-paragraph" id="p0194" num="0189">社交媒体平台的渗透率：例如在某个地区，某平台的用户数量与该地区总人口的比例。</div>
+<div class="description-paragraph" id="p0195" num="0190">内容参与度：社交媒体上关于低空飞行器的讨论数量、评论数量、转发量等，能体现该地区对低空飞行器的关注度。</div>
+<div class="description-paragraph" id="p0196" num="0191">数据来源：</div>
+<div class="description-paragraph" id="p0197" num="0192">社交媒体平台的API：通过API(如微博开放平台API等)获取特定地区的社交媒体数据。</div>
+<div class="description-paragraph" id="p0198" num="0193">社交媒体分析工具：如Brandwatch、Hootsuite、BuzzSumo等工具可以帮助收集社交媒体活跃度数据，并进行区域性分析。</div>
+<div class="description-paragraph" id="p0199" num="0194">社交媒体报告：一些市场研究公司(如Statista、eMarketer)发布的报告也提供了各地区社交媒体使用的统计数据。</div>
+<div class="description-paragraph" id="p0200" num="0195">3)计算人口统计学权重：</div>
+<div class="description-paragraph" id="p0201" num="0196">人口统计学权重是根据每个地区的人口统计特征(如人口规模)以及社交媒体活跃度来综合评定的。这些权重反映了某地区公众情绪反馈的影响力及其在情感分析中的重要性。</div>
+<div class="description-paragraph" id="p0202" num="0197">人口统计学权重的计算公式为：</div>
+<div class="description-paragraph" id="p0203" num="0198">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0204" num="0199">式中，W(x)表示地区x的人口统计学权重，P(x)表示地区x的人口总数，P(T)表示服务站点中所有地区人口的总数。</div>
+<div class="description-paragraph" id="p0205" num="0200">S323、根据各地区的人口统计学权重对各地区的情感强度数据进行修正，基于修正后的情感强度数据构建各地区的情绪分布图；</div>
+<div class="description-paragraph" id="p0206" num="0201">具体地，构建情绪分布图包括：</div>
+<div class="description-paragraph" id="p0207" num="0202">1)准备地理信息数据：</div>
+<div class="description-paragraph" id="p0208" num="0203">为了构建情绪分布图，需要将修正后的情感强度数据与地理位置(例如，地区、城市、或行政区划)进行关联。常见的地理数据可以包括：</div>
+<div class="description-paragraph" id="p0209" num="0204">经纬度数据：每个地区的经纬度，用于绘制地图。</div>
+<div class="description-paragraph" id="p0210" num="0205">地区边界数据：如行政区划或省市边界数据，可以通过GeoJSON或Shapefile格式获得。</div>
+<div class="description-paragraph" id="p0211" num="0206">2)可视化情绪分布图：</div>
+<div class="description-paragraph" id="p0212" num="0207">基于修正后的情感强度数据和地理信息，使用可视化工具生成情绪分布图。常见的工具和库包括：</div>
+<div class="description-paragraph" id="p0213" num="0208">Python的Matplotlib和Geopandas库：用于地图可视化。</div>
+<div class="description-paragraph" id="p0214" num="0209">QGIS或ArcGIS：专业的地理信息系统软件，可用于生成复杂的情绪热力图。</div>
+<div class="description-paragraph" id="p0215" num="0210">Google Maps API或Leaflet.js：用于交互式地图展示。</div>
+<div class="description-paragraph" id="p0216" num="0211">3)分析和优化：</div>
+<div class="description-paragraph" id="p0217" num="0212">通过情绪分布图，可以分析不同地区的情感趋势：</div>
+<div class="description-paragraph" id="p0218" num="0213">热度高的区域：哪些地区对低空飞行器持有强烈的情绪反应(正面或负面)。</div>
+<div class="description-paragraph" id="p0219" num="0214">关注度较低的区域：哪些地区的情感反馈较弱，可能需要更多的公共沟通和教育来提高公众接受度。</div>
+<div class="description-paragraph" id="p0220" num="0215">基于这些信息，你可以优化低空飞行器的部署策略，选择那些情感强度较高的区域进行优先部署，并通过目标函数调整飞行器配置数量。</div>
+<div class="description-paragraph" id="p0221" num="0216">具体地，情感强度数据修正的计算公式为：</div>
+<div class="description-paragraph" id="p0222" num="0217">S′(x)＝S(x)·W(x)</div>
+<div class="description-paragraph" id="p0223" num="0218">式中，S’(x)表示地区x修正后的情感得分，S(x)表示地区x的情感得分。</div>
+<div class="description-paragraph" id="p0224" num="0219">例如：假设情感强度数据是这样的(假设有3个地区)：地区A情感强度＝0.7，地区B情感强度＝0.4，地区C情感强度＝0.9；</div>
+<div class="description-paragraph" id="p0225" num="0220">每个地区的人口统计学权重分别为：地区A权重＝0.25，地区B权重＝0.35，地区C权重＝0.4；</div>
+<div class="description-paragraph" id="p0226" num="0221">因此，修正后的情感强度数据为：地区A修正后的情感强度＝0.7×0.25＝0.175，地区B修正后的情感强度＝0.4×0.35＝0.14，地区C修正后的情感强度＝0.9×0.4＝0.36。</div>
+<div class="description-paragraph" id="p0227" num="0222">S33、根据各地区的情感强度及地理信息，构建群体心理场强模型，量化各地区低空飞行器部署的公众接受度；</div>
+<div class="description-paragraph" id="p0228" num="0223">具体地，所述根据各地区的情感强度及地理信息，构建群体心理场强模型，量化各地区低空飞行器部署的公众接受度包括以下步骤：</div>
+<div class="description-paragraph" id="p0229" num="0224">S331、根据各地区的情感强度及地理信息，构建群体心理场强模型，其中，群体心理场强模型的表达式为：</div>
+<div class="description-paragraph" id="p0230" num="0225">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0231" num="0226">式中，Ψ(x)表示地区x的心理场强，n表示地区的数量，S(x)表示地区x的情感得分，k表示用于控制情绪强度随距离衰减速度的调节系数，r<sub>i</sub>表示服务站点与地区x的距离，R<sub>i</sub>表示低空飞行器服务的最大覆盖距离；</div>
+<div class="description-paragraph" id="p0232" num="0227">S332、利用群体心理场强模型计算各地区的心理场强，以量化各地区低空飞行器部署的公众接受度。</div>
+<div class="description-paragraph" id="p0233" num="0228">S34、根据各地区低空飞行器部署的公众接受度，结合进化博弈论和共振规避机制优化各服务站点低空飞行器的静态最优数量配置，确定各服务站点低空飞行器的最终数量配置。</div>
+<div class="description-paragraph" id="p0234" num="0229">具体地，所述根据各地区低空飞行器部署的公众接受度，结合进化博弈论和共振规避机制优化各服务站点低空飞行器的静态最优数量配置，确定各服务站点低空飞行器的最终数量配置包括以下步骤：</div>
+<div class="description-paragraph" id="p0235" num="0230">S341、获取各地区低空飞行器部署的静态最优数量配置及公众接受度，并利用加权平均法计算各服务站点内所有地区的公众接受度，得到各服务站点低空飞行器部署的公众接受度；</div>
+<div class="description-paragraph" id="p0236" num="0231">S342、定义各服务站点的低空飞行器数量策略，将服务站点作为博弈的参与者，选择低空飞行器的数量配置，并根据公众接受度、运营成本及服务效率，设计服务站点的适应度函数；</div>
+<div class="description-paragraph" id="p0237" num="0232">适应度函数的表达式为：</div>
+<div class="description-paragraph" id="p0238" num="0233">F<sub>i</sub>＝β<sub>1</sub>·Ψ<sub>i</sub>-β<sub>2</sub>·C<sub>i</sub>+β<sub>3</sub>·O<sub>i</sub> </div>
+<div class="description-paragraph" id="p0239" num="0234">式中，F<sub>i</sub>表示第i个服务站点的适应度函数值，Ψ<sub>i</sub>表示第i个服务站点的心理场强，C<sub>i</sub>表示第i个服务站点的运营成本，O<sub>i</sub>表示第i个服务站点的服务能力，此外，由于心理场强、运营成本及服务能力的量纲不一致，故本实施例中在计算时需要归一化处理，同时对于本实施例的其他公式中的量纲不一致时同样需要归一化处理，β<sub>1</sub>、β<sub>2</sub>、β<sub>3</sub>分别表示第i个服务站点的心理场强权重、运营成本权重、服务能力权重；</div>
+<div class="description-paragraph" id="p0240" num="0235">S342、各服务站点根据自身适应度与邻近服务站点的适应度差异来更新策略，并通过复制动态调整飞行器数量配置；</div>
+<div class="description-paragraph" id="p0241" num="0236">策略更新公式为：</div>
+<div class="description-paragraph" id="p0242" num="0237">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0243" num="0238">式中，<span class="patent-image-not-available"></span>表示第i个服务站点在第t+1轮的低空飞行器数量，<span class="patent-image-not-available"></span>表示第i个服务站点在第t轮的低空飞行器数量，λ表示学习率，<span class="patent-image-not-available"></span>表示所有服务站点的适应度平均值；</div>
+<div class="description-paragraph" id="p0244" num="0239">S343、在每轮迭代中，监测所有服务站点的公众接受度波动情况，计算共振指数，识别潜在的情绪共振风险，当共振指数超过设定阈值时，则调整更新策略；</div>
+<div class="description-paragraph" id="p0245" num="0240">共振指数的计算公式为：</div>
+<div class="description-paragraph" id="p0246" num="0241">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0247" num="0242">调整后的更新公式为：</div>
+<div class="description-paragraph" id="p0248" num="0243">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0249" num="0244">式中，E表示共振指数，m表示服务站点的数量，<span class="patent-image-not-available"></span>表示调整后的第i个服务站点在第t+1轮的低空飞行器数量，η表示共振规避系数；</div>
+<div class="description-paragraph" id="p0250" num="0245">具体地，设置共振指数阈值并调整更新策略包括：</div>
+<div class="description-paragraph" id="p0251" num="0246">当计算出每一轮迭代的共振指数(RI)后，可以将其与一个预设的共振指数阈值进行比较。当RI超过阈值时，就表示存在潜在的情绪共振风险，需要采取相应的策略进行调整。</div>
+<div class="description-paragraph" id="p0252" num="0247">策略调整机制：</div>
+<div class="description-paragraph" id="p0253" num="0248">1)共振指数低于阈值：</div>
+<div class="description-paragraph" id="p0254" num="0249">如果RI小于设定的阈值，说明公众情绪相对平稳，情绪波动和情绪一致性较低，可以继续当前的部署策略，维持正常的低空飞行器配置。</div>
+<div class="description-paragraph" id="p0255" num="0250">2)共振指数超过阈值：</div>
+<div class="description-paragraph" id="p0256" num="0251">识别潜在的情绪共振区域：当RI超过阈值时，首先需要识别哪些地区的情感波动较大，并考虑是否需要针对这些地区采取特别的沟通或部署策略。例如，某些地区的公众情绪异常激烈，可能需要进行更加密集的宣传、教育和沟通，缓解公众情绪。</div>
+<div class="description-paragraph" id="p0257" num="0252">降低情感波动：在发现情绪共振的风险后，可能需要调整低空飞行器的配置或飞行路径，避免在情绪波动较大的区域进行过于激烈的服务部署，减少可能的冲突和不安。</div>
+<div class="description-paragraph" id="p0258" num="0253">增加公众参与度：如果多个地区的情感一致性较高(例如，多个地区都呈现负面情绪)，可以考虑增加公众参与的环节，如通过线上调查、意见反馈或互动平台，了解公众的具体担忧，并及时做出响应，提升公众的参与感和认同感。</div>
+<div class="description-paragraph" id="p0259" num="0254">强化沟通和反馈机制：加强和当地社区的沟通，解释低空飞行器的用途和安全性，降低不确定性带来的负面情绪。通过正面的媒体宣传、专题讲座等方式向公众传递信息，增强他们的接受度。</div>
+<div class="description-paragraph" id="p0260" num="0255">调整更新策略，当共振指数超过设定阈值时，可以选择以下几种调整策略：</div>
+<div class="description-paragraph" id="p0261" num="0256">调整低空飞行器的配置：减少或增加某些服务站点的低空飞行器配置，根据公众情绪的波动来灵活调整。</div>
+<div class="description-paragraph" id="p0262" num="0257">调整飞行路径和飞行频率：避免飞行器经过情绪波动较大的地区或调整飞行频率，减轻公众的情绪压力。</div>
+<div class="description-paragraph" id="p0263" num="0258">实施缓慢部署策略：如果情绪波动较大，可以考虑暂时放缓低空飞行器的部署进度，逐步扩展到各个地区，观察情绪反馈的变化。</div>
+<div class="description-paragraph" id="p0264" num="0259">S344、根据博弈动态和共振抑制机制进行多轮策略更新，逐步优化各服务站点的低空飞行器数量配置，直至所有服务站点的配置数量变化小于预设的配置数量阈值或达到最大迭代次数，迭代结束，得到各服务站点的最终飞行器数量配置。</div>
+<div class="description-paragraph" id="p0265" num="0260">S4、根据服务站点低空飞行器的最终数量配置，结合社会情绪数据优化低空飞行器的飞行路径。</div>
+<div class="description-paragraph" id="p0266" num="0261">其中，所述根据服务站点低空飞行器的最终数量配置，结合社会情绪数据优化低空飞行器的飞行路径包括以下步骤：</div>
+<div class="description-paragraph" id="p0267" num="0262">S41、获取各服务站点低空飞行器的最终数量、社会情绪数据及与飞行路径相关的地理信息数据；</div>
+<div class="description-paragraph" id="p0268" num="0263">S42、以最小化飞行器路径的飞行时间和最大化公众接受度为优化目标，以飞行路径限制、公众情绪波动及飞行器服务范围为约束条件，构建飞行路径优化模型；</div>
+<div class="description-paragraph" id="p0269" num="0264">S43、利用最短路径算法优化低空飞行器的飞行路径，并将优化后的飞行路径与各地区的情绪分布图进行叠加展示，直观显示低空飞行器的飞行路线、服务范围和情绪区域。</div>
+<div class="description-paragraph" id="p0270" num="0265">综上所述，借助于本发明的上述技术方案，本发明通过综合考虑了人口规模、交通条件、空域资源、经济发展、消费能力、应用场景、辐射范围及社会情绪多种复杂因素，实现了低空飞行器的高效布置与路径优化，使低空飞行器的投入更具全局性、经济性，确保了技术的可行性、社会接受度和可持续发展，为低空飞行器行业的应用提供了重要的技术支撑。</div>
+<div class="description-paragraph" id="p0271" num="0266">同时，本发明通过层次分析法和熵权法综合考虑了多种影响因素，并通过计算综合权重来识别每个因素的重要性。这种多维度的优化方法确保了低空飞行器的布置不仅满足传统的服务需求，还能够适应不同地区的社会、经济和情绪变化。</div>
+<div class="description-paragraph" id="p0272" num="0267">同时，本发明通过模拟退火算法对飞行器数量进行优化配置，从而能够高效地找到服务站点的静态最优数量配置，进而减少了飞行器的空置率或过度部署的问题。同时，该方法能够根据飞行器配置数量的变化，动态调整布置，以适应不断变化的需求和情绪反馈。</div>
+<div class="description-paragraph" id="p0273" num="0268">同时，本发明通过引入社会情绪共振规避算法和群体心理场强模型，能够有效避免飞行器部署过程中因公众情绪波动导致的负面影响。优化后的飞行器布置和飞行路径更能够符合公众的接受度和社会心理需求，提高了飞行器的运营效率，并降低了情绪共振的风险。</div>
+<div class="description-paragraph" id="p0274" num="0269">同时，本发明基于飞行器数量配置和情绪数据的飞行路径优化，确保飞行器在高效执行任务的同时，避开公众情绪负面区域。这种优化路径不仅提高了飞行器的运营效率，还有效提升了用户体验，减少了公众对飞行器的反感和抗议。</div>
+<div class="description-paragraph" id="p0275" num="0270">以上所述仅为本发明的较佳实施例而已，并不用以限制本发明，凡在本发明的精神和原则之内，所作的任何修改、等同替换、改进等，均应包含在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

@@ -1,0 +1,214 @@
+{
+    "patent_id": "CN107300689A",
+    "title": "CN107300689A - 一种低空无人飞行器声源方位探测系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Nanjing University of Science and Technology",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN107300689A/zh",
+    "citations": [
+        {
+            "Publication Number": "US20110103191A1 (en) *",
+            "Priority Date": "2009-10-30",
+            "Publication Date": "2011-05-05",
+            "Assignee": "Samsung Electronics Co., Ltd.",
+            "Title": "Apparatus and method to track positions of multiple sound sources",
+            "Link": "https://patents.google.com/patent/US20110103191A1/en"
+        },
+        {
+            "Publication Number": "CN202794508U (zh) *",
+            "Priority Date": "2012-09-07",
+            "Publication Date": "2013-03-13",
+            "Assignee": "南京理工大学",
+            "Title": "应用于救援的基于麦克风阵列的语音定位装置",
+            "Link": "https://patents.google.com/patent/CN202794508U/zh"
+        },
+        {
+            "Publication Number": "CN103852156A (zh) *",
+            "Priority Date": "2014-03-28",
+            "Publication Date": "2014-06-11",
+            "Assignee": "南京理工大学",
+            "Title": "一种基于传声器阵列的环境噪声方位分布测量装置",
+            "Link": "https://patents.google.com/patent/CN103852156A/zh"
+        },
+        {
+            "Publication Number": "CN206057554U (zh) *",
+            "Priority Date": "2016-08-10",
+            "Publication Date": "2017-03-29",
+            "Assignee": "北京理工大学",
+            "Title": "一种多球麦克风阵列声场声压采集装置",
+            "Link": "https://patents.google.com/patent/CN206057554U/zh"
+        },
+        {
+            "Publication Number": "CN106792300A (zh) *",
+            "Priority Date": "2017-01-05",
+            "Publication Date": "2017-05-31",
+            "Assignee": "青岛理工大学",
+            "Title": "可调式麦克风阵列布置装置",
+            "Link": "https://patents.google.com/patent/CN106792300A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN109246571B (zh) *",
+            "Priority Date": "2018-09-03",
+            "Publication Date": "2021-11-23",
+            "Assignee": "广州飞达音响股份有限公司",
+            "Title": "声场检测系统和方法",
+            "Link": "https://patents.google.com/patent/CN109246571B/zh"
+        },
+        {
+            "Publication Number": "CN109246571A (zh) *",
+            "Priority Date": "2018-09-03",
+            "Publication Date": "2019-01-18",
+            "Assignee": "广州飞达音响股份有限公司",
+            "Title": "声场检测系统和方法",
+            "Link": "https://patents.google.com/patent/CN109246571A/zh"
+        },
+        {
+            "Publication Number": "CN109856593A (zh) *",
+            "Priority Date": "2018-12-21",
+            "Publication Date": "2019-06-07",
+            "Assignee": "南京理工大学",
+            "Title": "面向声源测向的微型智能阵列式声传感器及其测向方法",
+            "Link": "https://patents.google.com/patent/CN109856593A/zh"
+        },
+        {
+            "Publication Number": "CN109856593B (zh) *",
+            "Priority Date": "2018-12-21",
+            "Publication Date": "2023-01-03",
+            "Assignee": "南京理工大学",
+            "Title": "面向声源测向的微型智能阵列式声传感器及其测向方法",
+            "Link": "https://patents.google.com/patent/CN109856593B/zh"
+        },
+        {
+            "Publication Number": "CN109738899A (zh) *",
+            "Priority Date": "2018-12-29",
+            "Publication Date": "2019-05-10",
+            "Assignee": "湖南宇正智能科技有限公司",
+            "Title": "一种基于随机共振探测阵列的低空飞行器探测方法及系统",
+            "Link": "https://patents.google.com/patent/CN109738899A/zh"
+        },
+        {
+            "Publication Number": "CN109738899B (zh) *",
+            "Priority Date": "2018-12-29",
+            "Publication Date": "2024-02-13",
+            "Assignee": "湖南智晶电子科技有限公司",
+            "Title": "一种基于随机共振探测阵列的低空飞行器探测方法及系统",
+            "Link": "https://patents.google.com/patent/CN109738899B/zh"
+        },
+        {
+            "Publication Number": "EP3929074A4 (en) *",
+            "Priority Date": "2019-02-19",
+            "Publication Date": "2022-06-01",
+            "Assignee": "Panasonic Intellectual Property Management Co., Ltd.",
+            "Title": "UNMANNED AIRCRAFT, INFORMATION PROCESSING METHOD AND PROGRAM",
+            "Link": "https://patents.google.com/patent/EP3929074A4/en"
+        },
+        {
+            "Publication Number": "CN113056419A (zh) *",
+            "Priority Date": "2019-04-18",
+            "Publication Date": "2021-06-29",
+            "Assignee": "松下知识产权经营株式会社",
+            "Title": "无人飞行体、控制方法以及程序",
+            "Link": "https://patents.google.com/patent/CN113056419A/zh"
+        },
+        {
+            "Publication Number": "CN110244264B (zh) *",
+            "Priority Date": "2019-06-26",
+            "Publication Date": "2021-04-13",
+            "Assignee": "北京航天控制仪器研究所",
+            "Title": "一种声传感器基阵结构",
+            "Link": "https://patents.google.com/patent/CN110244264B/zh"
+        },
+        {
+            "Publication Number": "CN110441735A (zh) *",
+            "Priority Date": "2019-08-15",
+            "Publication Date": "2019-11-12",
+            "Assignee": "陕西金蝌蚪智能科技有限公司",
+            "Title": "一种低空无人机被动声探测装置及方法",
+            "Link": "https://patents.google.com/patent/CN110441735A/zh"
+        },
+        {
+            "Publication Number": "JP7376174B2 (ja)",
+            "Priority Date": "2019-09-10",
+            "Publication Date": "2023-11-08",
+            "Assignee": "株式会社エアロネクスト",
+            "Title": "連結可能な複数の飛行体を備える飛行体システム",
+            "Link": "https://patents.google.com/patent/JP7376174B2/ja"
+        },
+        {
+            "Publication Number": "JP2023174891A (ja) *",
+            "Priority Date": "2019-09-10",
+            "Publication Date": "2023-12-08",
+            "Assignee": "株式会社エアロネクスト",
+            "Title": "連結可能な複数の飛行体を備える飛行体システム",
+            "Link": "https://patents.google.com/patent/JP2023174891A/ja"
+        },
+        {
+            "Publication Number": "JP2022173470A (ja) *",
+            "Priority Date": "2019-09-10",
+            "Publication Date": "2022-11-18",
+            "Assignee": "株式会社エアロネクスト",
+            "Title": "連結可能な複数の飛行体を備える飛行体システム",
+            "Link": "https://patents.google.com/patent/JP2022173470A/ja"
+        },
+        {
+            "Publication Number": "CN111474520B (zh) *",
+            "Priority Date": "2020-01-10",
+            "Publication Date": "2023-05-09",
+            "Assignee": "北京航空航天大学",
+            "Title": "无人机声源定向装置及定向方法",
+            "Link": "https://patents.google.com/patent/CN111474520B/zh"
+        },
+        {
+            "Publication Number": "CN111474520A (zh) *",
+            "Priority Date": "2020-01-10",
+            "Publication Date": "2020-07-31",
+            "Assignee": "北京航空航天大学",
+            "Title": "一种基于旋转十字阵列的无人机声源定向装置及方法",
+            "Link": "https://patents.google.com/patent/CN111474520A/zh"
+        },
+        {
+            "Publication Number": "CN113132852A (zh) *",
+            "Priority Date": "2021-04-26",
+            "Publication Date": "2021-07-16",
+            "Assignee": "苏州鸿鹄骐骥电子科技有限公司",
+            "Title": "一种用于全景音频的麦克风阵列",
+            "Link": "https://patents.google.com/patent/CN113132852A/zh"
+        },
+        {
+            "Publication Number": "CN113589229B (zh) *",
+            "Priority Date": "2021-09-29",
+            "Publication Date": "2022-01-21",
+            "Assignee": "山东世纪矿山机电有限公司",
+            "Title": "一种多阵列噪声定位的目标定位装置及使用方法",
+            "Link": "https://patents.google.com/patent/CN113589229B/zh"
+        },
+        {
+            "Publication Number": "CN113589229A (zh) *",
+            "Priority Date": "2021-09-29",
+            "Publication Date": "2021-11-02",
+            "Assignee": "山东世纪矿山机电有限公司",
+            "Title": "一种多阵列噪声定位的目标定位装置及使用方法",
+            "Link": "https://patents.google.com/patent/CN113589229A/zh"
+        },
+        {
+            "Publication Number": "CN114136433A (zh) *",
+            "Priority Date": "2021-12-02",
+            "Publication Date": "2022-03-04",
+            "Assignee": "中国兵器工业集团第二一四研究所苏州研发中心",
+            "Title": "一种基于mems麦克风阵列的脉冲声波信号探测系统",
+            "Link": "https://patents.google.com/patent/CN114136433A/zh"
+        },
+        {
+            "Publication Number": "CN116639281A (zh) *",
+            "Priority Date": "2023-06-05",
+            "Publication Date": "2023-08-25",
+            "Assignee": "西北工业大学",
+            "Title": "一种阵形可变的无人机吊放麦克风阵列",
+            "Link": "https://patents.google.com/patent/CN116639281A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:23:24"
+}

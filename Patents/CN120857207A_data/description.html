@@ -1,0 +1,158 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120857207A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES509588454">
+<invention-title id="title1" lang="ZH">一种低空飞行器的多模通信网络切换方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本公开涉及低空通信技术领域，尤其涉及一种低空飞行器的多模通信网络切换方法、存储介质、电子设备以及低空飞行器。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空经济作为国家战略性新兴产业，近年来，随着无人机(UAV)、城市空中交通(UAM)、低空物流、智慧城市等应用的快速发展。传统单一通信模式(如4G/5G或卫星通信)已无法满足低空通信需求，在此背景下，低空多模融合通信技术应运而生，旨在通过整合4G/5G公网、卫星通信、低空专网、自组网等多种通信模式，构建高可靠、全覆盖、智能化的低空通信网络。</div>
+<div class="description-paragraph" id="p0005" num="0003">目前低空机载多模融合通信系统，一般是整合4G/5G公网、卫星通信、自组网等多种通信模式，采用单网通信或者多种网络同时通信的单一通信模式，通信网络切换采用手动切换，或者在当前连接网络断开后才切换至其他网络，整体切换流程时间长，容易造成通信中断和数据丢失。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本公开实施例的目的在于提供一种低空飞行器的多模通信网络切换方法、存储介质、电子设备以及低空飞行器，用以解决现有技术中存在的问题。</div>
+<div class="description-paragraph" id="p0008" num="0005">本公开的实施例采用如下技术方案：一种低空飞行器的多模通信网络切换方法，包括：在低空飞行器上电时，同时建立与所有地面通信网络和低轨卫星的连接，并从所有地面通信网络中确定当前网络质量最高的网络作为当前通信网络；根据预设周期对所述当前通信网络的当前网络质量进行监测；在所述当前通信网络的当前网络质量为高性能网络的情况下，保持所述当前通信网络进行数据传输；在所述当前通信网络的当前网络质量为可用网络的情况下，获取所述地面通信网络中的其他网络的当前网络质量，并在所述其他网络的当前网络质量为可用网络或不可用网络的情况下，保持所述当前通信网络进行数据传输，在所述其他网络的当前网络质量为高性能网络的情况下，利用所述其他网络作为新的当前通信网络进行数据传输；在所述当前通信网络的当前网络质量为不可用网络的情况下，获取所述地面通信网络中的其他网络的当前网络质量，并在所述其他网络的当前网络质量为高性能网络或可用网络的情况下，利用所述其他网络作为新的当前通信网络进行数据传输，在所述其他网络的当前网络质量为不可用网络的情况下，以所述低轨卫星作为当前通信网络进行数据传输。</div>
+<div class="description-paragraph" id="p0009" num="0006">在一些实施例中，所述地面通信网络包括：4G/5G公网和低空专网。</div>
+<div class="description-paragraph" id="p0010" num="0007">在一些实施例中，所述根据预设周期对所述当前通信网络的当前网络质量进行监测，包括：根据预设周期获取所述低空飞行器与所述当前通信网络之间的物理层参数和链路层参数；获取所述当前通信网络的类型对应的网络质量判定标准；根据所述网络质量判定标准、所述物理层参数和链路层参数确定所述当前通信网络的当前网络质量。</div>
+<div class="description-paragraph" id="p0011" num="0008">在一些实施例中，所述物理层参数包括：参考信号接收功率RSRP、信号与干扰加噪声比SINR、理论速率；所述链路层参数包括：重传率、协议开销、调度信息。</div>
+<div class="description-paragraph" id="p0012" num="0009">在一些实施例中，所述获取所述当前通信网络的类型对应的网络质量判定标准，包括：在当前通信网网络为4G/5G公网的情况下，所述网络质量判定标准包括：</div>
+<div class="description-paragraph" id="p0013" num="0010">在同时满足如下条件时，所述当前通信网络为高性能网络：</div>
+<div class="description-paragraph" id="p0014" num="0011">RSRP&gt;-90dBm、SINR&gt;20dB、速率&gt;10Mbps；</div>
+<div class="description-paragraph" id="p0015" num="0012">在同时满足如下条件时，所述当前通信网络为可用网络：</div>
+<div class="description-paragraph" id="p0016" num="0013">RSRP≥-100dBm、SINR≥10dB、速率≥1Mbps；</div>
+<div class="description-paragraph" id="p0017" num="0014">在满足以下任意一个条件时，所述当前通信网络为不可用网络：</div>
+<div class="description-paragraph" id="p0018" num="0015">RSRP&lt;-100dBm、SINR&lt;10dB、速率&lt;1Mbps；</div>
+<div class="description-paragraph" id="p0019" num="0016">在当前通信网网络为低空专网的情况下，所述网络质量判定标准包括：</div>
+<div class="description-paragraph" id="p0020" num="0017">在同时满足如下条件时，所述当前通信网络为高性能网络：</div>
+<div class="description-paragraph" id="p0021" num="0018">RSRP&gt;-95dBm、SINR&gt;20dB、速率&gt;10Mbps；</div>
+<div class="description-paragraph" id="p0022" num="0019">在同时满足如下条件时，所述当前通信网络为可用网络：</div>
+<div class="description-paragraph" id="p0023" num="0020">RSRP≥-105dBm、SINR≥10dB、速率≥1Mbps；</div>
+<div class="description-paragraph" id="p0024" num="0021">在满足以下任意一个条件时，所述当前通信网络为不可用网络：</div>
+<div class="description-paragraph" id="p0025" num="0022">RSRP&lt;-105dBm、SINR&lt;10dB、速率&lt;1Mbps；</div>
+<div class="description-paragraph" id="p0026" num="0023">其中，所述速率根据所述理论速率、所述重传率、所述协议开销以及所述调度信息确定。</div>
+<div class="description-paragraph" id="p0027" num="0024">在一些实施例中，所述从所有地面通信网络中确定当前网络质量最高的网络作为当前通信网络，包括：在所述4G/5G公网和所述低空专网的当前网络质量相同的情况下，以所述4G/5G公网作为当前通信网络。</div>
+<div class="description-paragraph" id="p0028" num="0025">在一些实施例中，还包括：在当前通信网络为低轨卫星的情况下，实时获取所有所述地面通信网络的当前网络质量，并在所有所述地面通信网络中任意一个地面通信网络的当前网络质量为高性能网络或可用网络时，以所述地面通信网络作为当前通信网络进行数据传输。</div>
+<div class="description-paragraph" id="p0029" num="0026">本公开实施例还提供了一种存储介质，存储有计算机程序，所述计算机程序被处理器执行时实现上述的低空飞行器的多模通信网络切换方法的步骤。</div>
+<div class="description-paragraph" id="p0030" num="0027">本公开实施例还提供了一种电子设备，至少包括存储器、处理器，所述存储器上存储有计算机程序，所述处理器在执行所述存储器上的计算机程序时实现上述的低空飞行器的多模通信网络切换方法的步骤。</div>
+<div class="description-paragraph" id="p0031" num="0028">本公开实施例还提供了一种低空飞行器，至少包括：如上述的电子设备，以及与所述电子设备通信连接的低空专网模块、低空专网功放、4G/5G公网模块、低轨卫星模块。</div>
+<div class="description-paragraph" id="p0032" num="0029">本公开实施例的有益效果在于：融合多种通信网络，扩大低空飞行器高速率通信需求的使用场景，并在连接时同时实现多模网络的连接，根据实际网络质量选用其中网络质量最优的网络进行数据传输，提升通信可靠性；与此同时，其余网络待机不通信，以减少网络质量比较时间和切换时间，提高通信的稳定性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0033">附图说明</div>
+<div class="description-paragraph" id="p0034" num="0030">为了更清楚地说明本说明书一个或多个实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本说明书中记载的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动性的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0035" num="0031">图1为本说明书一个或多个实施例提供的一种低空飞行器的多模通信网络切换方法的流程图；</div>
+<div class="description-paragraph" id="p0036" num="0032">图2为本说明书一个或多个实施例提供的单网通信网络接入方式和网络切换的过程示意图；</div>
+<div class="description-paragraph" id="p0037" num="0033">图3为本说明书一个或多个实施例提供的双网通信网络接入方式和网络切换的过程示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0038">具体实施方式</div>
+<div class="description-paragraph" id="p0039" num="0034">为了使本技术领域的人员更好地理解本说明书一个或多个实施例中的技术方案，下面将结合本说明书一个或多个实施例中的附图，对本说明书一个或多个实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本说明书的一部分实施例，而不是全部的实施例。基于本说明书一个或多个实施例，本领域普通技术人员在没有作出创造性劳动前提下所获得的所有其他实施例，都应当属于本文件的保护范围。</div>
+<div class="description-paragraph" id="p0040" num="0035">低空经济作为国家战略性新兴产业，近年来，随着无人机(UAV)、城市空中交通(UAM)、低空物流、智慧城市等应用的快速发展。传统单一通信模式(如4G/5G或卫星通信)已无法满足低空通信需求，在此背景下，低空多模融合通信技术应运而生，旨在通过整合4G/5G公网、卫星通信、低空专网、自组网等多种通信模式，构建高可靠、全覆盖、智能化的低空通信网络。</div>
+<div class="description-paragraph" id="p0041" num="0036">目前低空机载多模融合通信系统，一般是整合4G/5G公网、卫星通信、自组网等多种通信模式，采用单网通信或者多种网络同时通信的单一通信模式，通信网络切换采用手动切换，或者在当前连接网络断开后才切换至其他网络，整体切换流程时间长，容易造成通信中断和数据丢失。</div>
+<div class="description-paragraph" id="p0042" num="0037">为了解决上述问题，本公开第一实施例提供了一种低空飞行器的多模通信网络切换方法，用于实现低空飞行器在飞行过程中的通信质量保证。图1示出了本实施例的多模通信网络切换方法的流程图，其主要包括步骤S1至S5：</div>
+<div class="description-paragraph" id="p0043" num="0038">S1，在低空飞行器上电时，同时建立与所有地面通信网络和低轨卫星的连接，并从所有地面通信网络中确定当前网络质量最高的网络作为当前通信网络；</div>
+<div class="description-paragraph" id="p0044" num="0039">S2，根据预设周期对当前通信网络的当前网络质量进行监测；</div>
+<div class="description-paragraph" id="p0045" num="0040">S3，在当前通信网络的当前网络质量为高性能网络的情况下，保持当前通信网络进行数据传输；</div>
+<div class="description-paragraph" id="p0046" num="0041">S4，在当前通信网络的当前网络质量为可用网络的情况下，获取地面通信网络中的其他网络的当前网络质量，并在其他网络的当前网络质量为可用网络或不可用网络的情况下，保持当前通信网络进行数据传输，在其他网络的当前网络质量为高性能网络的情况下，利用其他网络作为新的当前通信网络进行数据传输；</div>
+<div class="description-paragraph" id="p0047" num="0042">S5，在当前通信网络的当前网络质量为不可用网络的情况下，获取地面通信网络中的其他网络的当前网络质量，并在其他网络的当前网络质量为高性能网络或可用网络的情况下，利用其他网络作为新的当前通信网络进行数据传输，在其他网络的当前网络质量为不可用网络的情况下，以低轨卫星作为当前通信网络进行数据传输。</div>
+<div class="description-paragraph" id="p0048" num="0043">在本实施例中，可供低空飞行器连接的网络主要包括地面通信网络和低轨卫星，其中，地面通信网络包括4G/5G公网和低空专网，4G/5G公网依托运营商部署的公众移动通信基站搭建而成，在300米以下的低空区域内覆盖面积更广，普适性更强；而低空专网为针对低空领域定制的专用通信网络，通常由政府、企业或行业主体部署，服务于特定场景(如无人机管控、物流配送)，具有高可靠性、低延迟或安全加密等特性，同时在公网无法覆盖的边远区域以及300米以上的低空区域内具有更高的稳定性。低空飞行器内集合有分别用于与不同类型的通信网络实现连接的通信模块，例如低空专网模块、低空专网功放、4G/5G公网模块、低轨卫星模块，与此同时低空飞行器内还应当配置有融合通信模块，用以实现本实施例所提供的切换方法，保证飞行器一直处于良好的通信网络环境中。</div>
+<div class="description-paragraph" id="p0049" num="0044">低空飞行器在上电时，同时建立与所有地面通信网络和低轨卫星的连接，例如融合通信模块驱动低空专网模块、4G/5G公网模块、低轨卫星模块分别建立与低空专网、4G/5G公网以及低轨卫星之间的连接，随后进行各个通信网络的网络质量判定，并从中确定定当前网络质量最高的网络作为当前通信网络实现数据传输，而对于未被确定为当前通信网络的其他网络，飞控飞行器与其保持连接，但不利用其进行数据通信。需要注意的是，考虑机载设备的功耗、体积、重量、使用成本、卫星带宽等因素，低轨卫星使用窄带卫星通信，低轨卫星工作时只传输重要且数据量不大的飞控和管控数据；使用4G/5G公网或低空专网通信时，两种网络带宽大可传输飞控和管控数据，以及飞行器工作过程中产生的图像、视频等其他数据。</div>
+<div class="description-paragraph" id="p0050" num="0045">具体地，本实施例中在进行各个通信网络的当前网络质量判定时，可通过获取低空飞行器与各个通信网络之间的物理层参数和链路层参数作为判定依据，实现不同网络之间的网络质量比较，不仅仅作为上电时优先确定的当前通信网络，在后续的飞行过程中，也同样利用物理层参数和链路层参数作为通信网络切换的依据。本实施例所选用的物理层参数主要包括参考信号接收功率RSRP、信号与干扰加噪声比SINR、理论速率，链路层参数主要包括重传率、协议开销、调度信息，其中RSRP和SINR可直接作为评价依据，剩余参数可用于计算通信速率，用以反映相应通信网络实际的吞吐量。</div>
+<div class="description-paragraph" id="p0051" num="0046">与此同时，对于不同类型的通信网络，在评价其网络质量时具有不同的标准，需要注意的是，本实施例的网络质量仅针对地面通信网络进行，低轨卫星由于其本身的窄带宽无法高速传输数据的特性，不进行网络质量的评价，仅作为特定情况下必要的飞控和管控数据传输网络。</div>
+<div class="description-paragraph" id="p0052" num="0047">对于4G/5G公网，其网络质量判定标准如表1所示：</div>
+<div class="description-paragraph" id="p0053" num="0048">表1 4G/5G公网网络质量评价标准</div>
+<div class="description-paragraph" id="p0054" num="0049">
+<tables>
+<patent-tables>
+<table class="description-table" cols="5" width="100%">
+<tbody><tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">网络类型</td>
+<td class="description-td" morerows="1" rowspan="2">RSRP范围</td>
+<td class="description-td" morerows="1" rowspan="2">SINR范围</td>
+<td class="description-td" morerows="1" rowspan="2">速率范围</td>
+<td class="description-td" morerows="1" rowspan="2">参数逻辑关系</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">高性能网络</td>
+<td class="description-td" morerows="1" rowspan="2">&gt;-90dBm</td>
+<td class="description-td" morerows="1" rowspan="2">&gt;20dB</td>
+<td class="description-td" morerows="1" rowspan="2">&gt;10Mbps</td>
+<td class="description-td" morerows="1" rowspan="2">需同时满足所有参数</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">可用网络</td>
+<td class="description-td" morerows="1" rowspan="2">≥-100dBm</td>
+<td class="description-td" morerows="1" rowspan="2">≥10dB</td>
+<td class="description-td" morerows="1" rowspan="2">≥1Mbps</td>
+<td class="description-td" morerows="1" rowspan="2">需同时满足所有参数</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">不可用网络</td>
+<td class="description-td" morerows="1" rowspan="2">&lt;-100dBm</td>
+<td class="description-td" morerows="1" rowspan="2">&lt;10dB</td>
+<td class="description-td" morerows="1" rowspan="2">&lt;1Mbps</td>
+<td class="description-td" morerows="1" rowspan="2">满足任一参数即可</td>
+</tr>
+</tbody></table>
+</patent-tables>
+</tables>
+</div>
+<div class="description-paragraph" id="p0055" num="0050">对于低空专网，其网络质量判定标准如表2所示：</div>
+<div class="description-paragraph" id="p0056" num="0051">表2低空专网网络质量评价标准</div>
+<div class="description-paragraph" id="p0057" num="0052">
+<tables>
+<patent-tables>
+<table class="description-table" cols="5" width="100%">
+<tbody><tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">网络类型</td>
+<td class="description-td" morerows="1" rowspan="2">RSRP范围</td>
+<td class="description-td" morerows="1" rowspan="2">SINR范围</td>
+<td class="description-td" morerows="1" rowspan="2">速率范围</td>
+<td class="description-td" morerows="1" rowspan="2">参数逻辑关系</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">高性能网络</td>
+<td class="description-td" morerows="1" rowspan="2">&gt;-95dBm</td>
+<td class="description-td" morerows="1" rowspan="2">&gt;20dB</td>
+<td class="description-td" morerows="1" rowspan="2">&gt;10Mbps</td>
+<td class="description-td" morerows="1" rowspan="2">需同时满足所有参数</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">可用网络</td>
+<td class="description-td" morerows="1" rowspan="2">≥-105dBm</td>
+<td class="description-td" morerows="1" rowspan="2">≥10dB</td>
+<td class="description-td" morerows="1" rowspan="2">≥1Mbps</td>
+<td class="description-td" morerows="1" rowspan="2">需同时满足所有参数</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">不可用网络</td>
+<td class="description-td" morerows="1" rowspan="2">&lt;-105dBm</td>
+<td class="description-td" morerows="1" rowspan="2">&lt;10dB</td>
+<td class="description-td" morerows="1" rowspan="2">&lt;1Mbps</td>
+<td class="description-td" morerows="1" rowspan="2">满足任一参数即可</td>
+</tr>
+</tbody></table>
+</patent-tables>
+</tables>
+</div>
+<div class="description-paragraph" id="p0058" num="0053">需要注意的是，在当前通信网络的网络质量满足高性能网络的评价标准时，其也一定满足可用网络的评价标准，在这种情况下，优先以高性能网络作为当前网络质量。</div>
+<div class="description-paragraph" id="p0059" num="0054">在一些实施例中，当设备上电并且连接各网络之后，若4G/5G公网的当前网络质量高于低空专网的当前网络质量，则选用4G/5G公网作为当前通信网络进行数据传输，此时低空飞行器同时与低空专网和低轨卫星接入但待机不通信；若低空专网的当前网络质量高于4G/5G公网的当前网络质量，则选用低空专网作为当前通信网络进行数据传输，此时低空飞行器同时与4G/5G公网和低轨卫星接入但待机不通信；若4G/5G公网的当前网络质量与低空专网的当前网络质量相同，例如都是可用网络，则优先选择具有更广的覆盖面积的4G/5G公网作为当前通信网络。</div>
+<div class="description-paragraph" id="p0060" num="0055">低空飞行器在飞行过程中，随着当前位置的不断变化，其对应通信网络的网络质量也可能会随之变化，为了防止因网络质量导致通信终端，本实施例根据预设周期对当前通信网络的当前网络质量进行监测，并根据当前网络质量的监测结果决定是否进行切换网络的操作，具体当前网络质量的评价方式和标准在前文已经进行了说明，在此不进行重复赘述。本实施例中的预设周期，可根据低空飞行器的飞行速度、飞行位置、数据传输需求等进行设定，例如在飞行速度较快时，可缩短预设周期，如果飞行位置是城市等网络覆盖情况较好的空域，则可延长预设周期，如果飞行器需要实时传输视频等数据，则可缩短预设周期以保证传输效果。在实际设置时，预设周期可以在1秒至30秒之间进行选择，具体的周期值可由操作人员进行自主设定，本实施例不进行具体限制。</div>
+<div class="description-paragraph" id="p0061" num="0056">具体地，在当前通信网络的当前网络质量为高性能网络的情况下，说明当前通信网络的网络质量足以满足飞行器的通信需求，此时无需进行网络切换，保持当前通信网络进行数据传输即可；如果当前通信网络的当前网络质量为可用网络，则可获取地面通信网络中其他网络的当前网络质量进行比较，如果其他网络的当前网络质量为可用网络或不可用网络，说明其他网络的网络情况与当前通信网络的网络情况类似甚至情况更差，此时即便进行网络切换可能通信效果也不会提升，因此在这种情况下继续保持当前通信网络进行数据传输即可，若其他网络的当前网络质量为高性能网络，说明其他网络的网络质量比当前同学网络更好，则可以网络质量更好的其他网络作为新的当前通信网络进行数据传输。在实际进行网络切换时，可首先利用原有的通信网络继续进行部分数据通信，等待新的通信网络实现数据稳定传输后，再断开原有网络的数据传输，转为待机不通信状态。</div>
+<div class="description-paragraph" id="p0062" num="0057">若当前通信网络的当前网络质量为不可用网络，则首先获取地面通信网络中其他网络的当前网络质量，并在其他网络的当前网络质量为高性能网络或可用网络的情况下，利用其他网络作为新的当前通信网络进行数据传输；如果其他网络的当前网络质量同样为不可用网络，则以低轨卫星作为当前通信网络进行数据传输，但此时传输的数据仅限于必要的飞控和管控数据，以保证低空飞行器的正常飞行控制。在一些实施例中，若当前通信卫星为低轨卫星，则在其飞行过程中，实时获取所有地面通信网络的当前网络质量，并在任意一个地面通信网络的网络质量为高性能网络或者可用网络时，以该地面通信网络作为当前通信网络进行数据传输。</div>
+<div class="description-paragraph" id="p0063" num="0058">在一些实施例中，低空飞行器的机载融合通信模式可以被设计为单网通信、双网通信或三网通信；其中，单网通信指低空专网、4G/5G公网、低轨卫星通信只有一种通信网络工作；双网通信是指4G/5G公网或低空专网和低轨卫星同时两种通信网络工作，机载设备和地面设备均具有数据滤重功能；三网通信指4G/5G公网、低空专网和低轨卫星三种通信网络同时工作，机载设备和地面设备均具有数据滤重功能。结合本实施例所提供的通信网络切换方法，图2和图3分别示出了单网通信网络接入方式和网络切换的过程示意以及双网通信网络接入方式和网络切换的过程示意。</div>
+<div class="description-paragraph" id="p0064" num="0059">如图2所示，在单网通信时，设备上电启动后，优先接入4G/5G公网进行通信传输所有数据，同时接入低空专网和低轨卫卫星络且待机不通信；若设备上电启动后，10s无法接入公网，设备会自动接入低空专网传输所有数据，同时公网信号变好时接入公网和低轨卫星络待机不通信；若设备上电启动后，公网和低空专网信号都不好，都无法接入，设备会自动接入低轨卫卫星络进行通信只传输飞控和管控数据，同时定期检测公网和低空专网信号质量；当设备检测到公网通信质量变差即将影响通信质量时，按照本实施例的网络切换方法切换到低空专网，同时接入公网和低轨卫星通信网络待机不通信；当设备检测到公网信号变差，同时检测到低空专网信号也差的情况，通信网络自动切换到低轨卫星进行通信只传输飞控和管控数据，同时定期检测公网和低空专网信号质量；低轨卫星通信时，设备自动检测公网或低空专网通信质量，当检测到公网或低空专网通信质量满足通信要求(即网络质量为可用或高性能)时，设备会及时切换到公网或低空专网进行通信。</div>
+<div class="description-paragraph" id="p0065" num="0060">如图3所示，在双网通信时，设备上电启动后，优先接入4G/5G公网通信传输所有数据，同时接入低轨卫星通信传输飞控和管控数据，低空专网接入待机不通信；设备上电接入低空专网和低轨卫卫星络，设备上电启动后，若公网信号差，设备10s无法接入公网，设备会自动接入低空专网通信传输所有数据，同时接入低轨卫星通信传输飞控和管控数据，接入公网待机不通信；当检测到公网信号变差时，进行公网和低空专网通信质量比较，若低空专网通信质量优于公网，通信网络切换到低空专网，同时接入公网待机不通信，反之亦然。</div>
+<div class="description-paragraph" id="p0066" num="0061">需要注意的是，图2和图3所示出的设备上电后优先连接公网，在公网无法连接的情况下再进行专网连接的方式，仅为实际连接过程中的一种示意，实际操作时可根据公网或专网的网络质量进行选择，或根据飞行器的飞行位置，优先选择低空专网进行连接。</div>
+<div class="description-paragraph" id="p0067" num="0062">本实施例融合多种通信网络，扩大低空飞行器高速率通信需求的使用场景，并在连接时同时实现多模网络的连接，根据实际网络质量选用其中网络质量最优的网络进行数据传输，提升通信可靠性；与此同时，其余网络待机不通信，以减少网络质量比较时间和切换时间，提高通信的稳定性。</div>
+<div class="description-paragraph" id="p0068" num="0063">基于相同的发明构思，本公开第二实施例提供了一种存储介质，存储有计算机程序，计算机程序被处理器执行时实现本公开第一实施例的低空飞行器的多模通信网络切换方法的步骤。该存储介质可以作为低空飞行器的存储介质，并低空飞行器的控制设备连接，使控制设备工作时调用存储介质中的多模通信网络切换方法实现多种网络的切换。</div>
+<div class="description-paragraph" id="p0069" num="0064">基于相同的发明构思，本公开第三实施例提供了一种电子设备，至少包括存储器、处理器，存储器上存储有计算机程序，处理器在执行存储器上的计算机程序时实现本公开第一实施例的低空飞行器的多模通信网络切换方法的步骤。本实施例的电子设备可以是低空飞行器的控制设备，或者专用于进行通信网络状态监测和切换的融合通信模块。</div>
+<div class="description-paragraph" id="p0070" num="0065">基于相同的发明构思，本公开第四实施例提供了一种低空飞行器，其至少包括本公开第三实施例所提供的电子设备，同时还包括与该电子设备通信连接的低空专网模块、低空专网功放、4G/5G公网模块、低轨卫星模块等，其中，低空专网模块用于实现与低空专网的连接，低空专网功放用于提升飞行器与低空专网之间的连接效果，4G/5G公网模块用于实现与4G/5G公网的连接，低轨卫星模块用于实现与低轨卫星的通信连接。电子设备控制上述模块实现与不同通信网络的连接，并获取相应物理层参数和链路层参数，以用于进行不同通信网络的网络质量评价，并根据评价结果进行网络切换，保证飞行器数据传输稳定性和可靠性。</div>
+<div class="description-paragraph" id="p0071" num="0066">最后应说明的是：以上各实施例仅用以说明本公开的技术方案，而非对其限制；尽管参照前述各实施例对本公开进行了详细的说明，本领域的普通技术人员应当理解：其依然可以对前述各实施例所记载的技术方案进行修改，或者对其中部分或者全部技术特征进行等同替换；而这些修改或者替换，并不使相应技术方案的本质脱离本公开各实施例技术方案的范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

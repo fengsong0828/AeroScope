@@ -1,0 +1,53 @@
+{
+    "patent_id": "CN120252729A",
+    "title": "CN120252729A - 一种用于低空飞行器航行引导的路径规划方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Guangxi Kongyu Shuzhi Information Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120252729A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN109921426A (zh) *",
+            "Priority Date": "2019-04-17",
+            "Publication Date": "2019-06-21",
+            "Assignee": "兰州理工大学",
+            "Title": "基于cv-kde的风电并网系统概率潮流计算方法",
+            "Link": "https://patents.google.com/patent/CN109921426A/zh"
+        },
+        {
+            "Publication Number": "CN112781592A (zh) *",
+            "Priority Date": "2019-11-11",
+            "Publication Date": "2021-05-11",
+            "Assignee": "南京航空航天大学",
+            "Title": "一种低空物流无人机路径规划方法及系统",
+            "Link": "https://patents.google.com/patent/CN112781592A/zh"
+        },
+        {
+            "Publication Number": "CN117367433A (zh) *",
+            "Priority Date": "2023-11-16",
+            "Publication Date": "2024-01-09",
+            "Assignee": "浙江省交通运输科学研究院",
+            "Title": "低空无人机路径规划方法、装置、无人机及可读存储介质",
+            "Link": "https://patents.google.com/patent/CN117367433A/zh"
+        },
+        {
+            "Publication Number": "CN117930294A (zh) *",
+            "Priority Date": "2024-01-24",
+            "Publication Date": "2024-04-26",
+            "Assignee": "中国民航大学",
+            "Title": "一种非视距传输环境下基于核密度估计的gnss鲁棒定位方法",
+            "Link": "https://patents.google.com/patent/CN117930294A/zh"
+        },
+        {
+            "Publication Number": "CN119623120A (zh) *",
+            "Priority Date": "2025-02-11",
+            "Publication Date": "2025-03-14",
+            "Assignee": "水利部交通运输部国家能源局南京水利科学研究院",
+            "Title": "一种基于时间分解理论栅格化设计暴雨强度的方法",
+            "Link": "https://patents.google.com/patent/CN119623120A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:58:34"
+}

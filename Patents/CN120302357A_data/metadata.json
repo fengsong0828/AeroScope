@@ -1,0 +1,37 @@
+{
+    "patent_id": "CN120302357A",
+    "title": "CN120302357A - 一种实现低空飞行器多链路切换与冗余传输的方法和介质 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Jitai Aviation Technology Suzhou Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120302357A/zh",
+    "citations": [],
+    "cited_by": [
+        {
+            "Publication Number": "CN120710857A (zh) *",
+            "Priority Date": "2025-08-21",
+            "Publication Date": "2025-09-26",
+            "Assignee": "大连理工大学",
+            "Title": "一种港口智能装备的双路冗余通信架构设计方法",
+            "Link": "https://patents.google.com/patent/CN120710857A/zh"
+        },
+        {
+            "Publication Number": "CN120812678A (zh) *",
+            "Priority Date": "2025-09-15",
+            "Publication Date": "2025-10-17",
+            "Assignee": "成都屿西半导体科技有限公司",
+            "Title": "一种面向低空飞行器与地面网络深度融合的多模通信模块及其组网与动态切换方法",
+            "Link": "https://patents.google.com/patent/CN120812678A/zh"
+        },
+        {
+            "Publication Number": "CN120812678B (zh) *",
+            "Priority Date": "2025-09-15",
+            "Publication Date": "2025-11-28",
+            "Assignee": "成都屿西半导体科技有限公司",
+            "Title": "一种面向低空飞行器与地面网络深度融合的多模通信模块及其组网与动态切换方法",
+            "Link": "https://patents.google.com/patent/CN120812678B/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:32:03"
+}

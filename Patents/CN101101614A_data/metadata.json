@@ -1,0 +1,77 @@
+{
+    "patent_id": "CN101101614A",
+    "title": "CN101101614A - 远程飞行器实际低空突防航迹的撞地概率解析评价与修正方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Beijing Institute of Technology BIT",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN101101614A/zh",
+    "citations": [],
+    "cited_by": [
+        {
+            "Publication Number": "CN102016738B (zh) *",
+            "Priority Date": "2008-03-18",
+            "Publication Date": "2013-05-29",
+            "Assignee": "空中客车运营简化股份公司",
+            "Title": "用于横向操纵在地面上滑行的飞行器的方法和装置",
+            "Link": "https://patents.google.com/patent/CN102016738B/zh"
+        },
+        {
+            "Publication Number": "CN102831298A (zh) *",
+            "Priority Date": "2012-07-30",
+            "Publication Date": "2012-12-19",
+            "Assignee": "北京理工大学",
+            "Title": "一种用于目标发生器的目标实时路径规划方法",
+            "Link": "https://patents.google.com/patent/CN102831298A/zh"
+        },
+        {
+            "Publication Number": "CN102831298B (zh) *",
+            "Priority Date": "2012-07-30",
+            "Publication Date": "2015-03-04",
+            "Assignee": "北京理工大学",
+            "Title": "一种用于目标发生器的目标实时路径规划方法",
+            "Link": "https://patents.google.com/patent/CN102831298B/zh"
+        },
+        {
+            "Publication Number": "CN103963966A (zh) *",
+            "Priority Date": "2013-01-30",
+            "Publication Date": "2014-08-06",
+            "Assignee": "空中客车运营简化股份公司",
+            "Title": "用于滑行的飞行器的侧向控制的方法和装置",
+            "Link": "https://patents.google.com/patent/CN103963966A/zh"
+        },
+        {
+            "Publication Number": "CN103963966B (zh) *",
+            "Priority Date": "2013-01-30",
+            "Publication Date": "2017-06-06",
+            "Assignee": "空中客车运营简化股份公司",
+            "Title": "用于滑行的飞行器的侧向控制的方法和装置",
+            "Link": "https://patents.google.com/patent/CN103963966B/zh"
+        },
+        {
+            "Publication Number": "CN105865457A (zh) *",
+            "Priority Date": "2016-06-16",
+            "Publication Date": "2016-08-17",
+            "Assignee": "南昌航空大学",
+            "Title": "一种基于文化算法的动态环境下航迹规划方法",
+            "Link": "https://patents.google.com/patent/CN105865457A/zh"
+        },
+        {
+            "Publication Number": "CN105865457B (zh) *",
+            "Priority Date": "2016-06-16",
+            "Publication Date": "2018-12-21",
+            "Assignee": "南昌航空大学",
+            "Title": "一种基于文化算法的动态环境下航迹规划方法",
+            "Link": "https://patents.google.com/patent/CN105865457B/zh"
+        },
+        {
+            "Publication Number": "CN112149276A (zh) *",
+            "Priority Date": "2020-08-21",
+            "Publication Date": "2020-12-29",
+            "Assignee": "中国人民解放军93114部队",
+            "Title": "批次航迹的突防概率的计算方法和装置",
+            "Link": "https://patents.google.com/patent/CN112149276A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:28:45"
+}

@@ -1,0 +1,117 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN109738899B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES451238323">
+<invention-title id="title1" lang="ZH">一种基于随机共振探测阵列的低空飞行器探测方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明主要涉及到技术领域，特指一种基于随机共振探测阵列的低空飞行器探测方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空飞行器飞行噪声是由各种噪声源叠加而成的。主要噪声源包括:旋翼噪声、尾桨噪声、发动机噪声和传动系统噪声等。例如，旋翼直升机和多轴无人机飞行噪声主要有旋翼噪声和尾桨噪声构成。旋翼产生的噪声，是一个周期的噪声信号，其具有鲜明的线频特征，频率低、传播距离远，可以作为有效的远程直升机预警检测信号源。旋翼飞行器噪声具有典型的多谐频特征，信号分离提取分析技术可以量化分析旋翼噪声和尾桨噪声构成，为特征提取奠定了技术基础。</div>
+<div class="description-paragraph" id="p0005" num="0003">近年来，计算机噪声识别技术的发展和进步，使得利用高灵敏度的麦克风进行声源的监听与定向成为可能。基于低频声波的超低空预警系统正是基于该技术发展而来。超低空飞行目标发射声波的主要能量集中在低频段，因而绕射能力强、衰减慢，这就决定了声探测系统具有如下特点：</div>
+<div class="description-paragraph" id="p0006" num="0004">(1)不受能见度的限制。声探测系统可以在夜间、阴雨天和大雾等恶劣气象条件下实施侦察，正好弥补了其它侦察手段的不足(如光学仪器)，保障了全天候昼夜不间断侦察。</div>
+<div class="description-paragraph" id="p0007" num="0005">(2)不受视线限制。声探测技术受地貌、地物的影响不大，可在复杂城市环境下，对收到建筑物遮蔽的低空飞行目标进行警戒探测。</div>
+<div class="description-paragraph" id="p0008" num="0006">(3)作业隐蔽，不易暴露。解决了极低弱旋转噪声信号检测问题，采用被动式工作原理进行声探测，声探测系统不发射任何电磁信号。</div>
+<div class="description-paragraph" id="p0009" num="0007">(4)侦察范围较大。由于低频声波衰减系数小，方向性弱，所以侦察正面范围较大，侦察距离较远，覆盖面积大。</div>
+<div class="description-paragraph" id="p0010" num="0008">(5)生产成本低、消耗功率低、生产周期短。一部声测系统的成本仅及一部侦察校射雷达的几十分之一。</div>
+<div class="description-paragraph" id="p0011" num="0009">(6)基于旋翼飞行器信号特征提取与多特征识别智能算法，可实现多基站组网定位方法实现定位。</div>
+<div class="description-paragraph" id="p0012" num="0010">相对于雷达和视频监控低空警戒系统，基于声探测的低空警戒系统，具有隐蔽性、全天候、低成本、低功耗、不易被干扰等独特的优点，不仅具有战术使用意义，而且也具有战略威慑意义，是全天候低空警戒系统重要组成部分。</div>
+<div class="description-paragraph" id="p0013" num="0011">远程低空飞行器探测与警戒系统所面临的声学环境为极其微弱声信号环境。以直升机为例，以声辐射源声压级130dB，考虑到声波衰减，那么15Km后声压级水平可能仅有30dB，甚至更低，而通常环境下的背景噪声60dB左右，那么远距离处，对于可探测到的直升机声波信号的信噪比SNR小于-30dB。传统声信号处理方法，如时延法、MUSIC阵列算法、极大似然法、变换法等都是基于信号模型的算法，要求SNR&gt;&gt;0才有效果。对于极其微弱的声学环境，SNR&lt;&lt;0，以上方法无法满足远程低空飞行器探测与警戒系统的应用要求。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0014">发明内容</div>
+<div class="description-paragraph" id="p0015" num="0012">本发明要解决的技术问题就在于：针对现有技术存在的技术问题，本发明提供一种全天候、低成本、低功耗、探测精度高、适用范围广的基于随机共振探测阵列的低空飞行器探测方法及系统。</div>
+<div class="description-paragraph" id="p0016" num="0013">为解决上述技术问题，本发明采用以下技术方案：</div>
+<div class="description-paragraph" id="p0017" num="0014">一种基于随机共振探测阵列的低空飞行器探测方法，其步骤包括：</div>
+<div class="description-paragraph" id="p0018" num="0015">步骤S1：低空飞行器声音信号特征的采集，得到噪声分布频段和带宽；</div>
+<div class="description-paragraph" id="p0019" num="0016">步骤S2：建立随机共振探测器阵列；配置参数，使随机共振探测器阵列的特征敏感频点分布在飞行器的噪声分布频段和带宽；</div>
+<div class="description-paragraph" id="p0020" num="0017">步骤S3：构建声学监控立体防护网；在待探测的空间区域内设置声学传感器及一个以上基于步骤S2中随机共振探测器阵列的探测单元，形成声学监控立体防护网；</div>
+<div class="description-paragraph" id="p0021" num="0018">步骤S4：利用声学监控立体防护网进行实时监控。</div>
+<div class="description-paragraph" id="p0022" num="0019">作为本发明的进一步改进：在所述步骤S1中，所述低空飞行器的声音信号为声音频谱特征，所述声音频谱特征包括旋翼基频、二次谐频，尾桨基频、二次谐频、多旋翼基频、二次谐频中的一项或多项，进而建立关联模型。</div>
+<div class="description-paragraph" id="p0023" num="0020">作为本发明的进一步改进：所述随机共振探测器阵列的敏感频率范围为分段频率覆盖或者整体频段覆盖。</div>
+<div class="description-paragraph" id="p0024" num="0021">作为本发明的进一步改进：所述两个以上的随机共振探测器阵列成间隔状设置。</div>
+<div class="description-paragraph" id="p0025" num="0022">作为本发明的进一步改进：所述声学传感器用来敏感环境声音信号，该声音信号由飞行器旋翼噪声s(t)和背景噪声W(t)共同构成；通过模拟信号处理后，旋翼噪声和背景噪声均得到线性增强K[s(t)+W(t)]；增强后的信号通过随机共振探测阵列，将产生非线性能量转化效果。</div>
+<div class="description-paragraph" id="p0026" num="0023">作为本发明的进一步改进：在所述步骤S4中，经过声纹特征量提取与匹配之后，得到相关信息；依据预先获知的飞行目标声学指纹特征，与实时监控获得的声指纹实时数据特性分析模块输出数据由声纹特征量提取与匹配模块进行比对判定，分析探测目标性质，决策目标事件是否满足触发警戒条件。</div>
+<div class="description-paragraph" id="p0027" num="0024">作为本发明的进一步改进：还包括步骤S5：通过重复上述步骤S1到S4，并配置多个随机共振探测器阵列监控谐振频率特征量，对多个谐振频率进行检测。</div>
+<div class="description-paragraph" id="p0028" num="0025">作为本发明的进一步改进：还包括步骤S6：通过重复步骤S1到S4，并配置多个空间上分布测控探测点，监控谐振频率特征量，应用于在空间上分布多个测控探测点。</div>
+<div class="description-paragraph" id="p0029" num="0026">作为本发明的进一步改进：还包括步骤S7：通过重复步骤S1到S4，并建立复杂的网状结构的分布测控探测点，监控谐振频率特征量，建立更为复杂的网状结构的分布测控探测点。</div>
+<div class="description-paragraph" id="p0030" num="0027">本发明进一步提供一种基于随机共振探测阵列的低空飞行器探测系统，其包括：</div>
+<div class="description-paragraph" id="p0031" num="0028">飞行目标声学指纹模块，用来收集低空飞行器的声音信号特征；</div>
+<div class="description-paragraph" id="p0032" num="0029">声学传感器，用来敏感环境声音信号；</div>
+<div class="description-paragraph" id="p0033" num="0030">随机共振探测器阵列，用来依据声学传感器采集的实时信号，使得特定频段信号得到加强，并通过内置的声纹特征分析模块，得到相关声纹特征信号；声纹特征量提取与匹配模块，用来将随机共振探测器阵列输出的声纹特征信号与飞行目标声学指纹模块进行比较分析，形成匹配结果输出；</div>
+<div class="description-paragraph" id="p0034" num="0031">事件目标识别模块，用来结合声纹特征量提取与匹配模块输出的匹配结果，分析得到预警信息。</div>
+<div class="description-paragraph" id="p0035" num="0032">与现有技术相比，本发明的优点在于：</div>
+<div class="description-paragraph" id="p0036" num="0033">1、本发明的一种基于随机共振探测阵列的低空飞行器探测方法及系统，探测精度高、适用范围广，其利用低频声波对复杂城市环境各种障碍物的低损耗绕射特性，能够对0.5km-10km范围内的无人机和武装直升机等旋翼飞行器进行远距离探测和预警。</div>
+<div class="description-paragraph" id="p0037" num="0034">2、本发明的一种基于随机共振探测阵列的低空飞行器探测方法及系统，基于声探测的低空警戒系统，具有隐蔽性、全天候、低成本、低功耗、不易被干扰等独特的优点，不仅具有战术使用意义，而且也具有战略威慑意义，是全天候低空警戒系统重要组成部分。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0038">附图说明</div>
+<div class="description-paragraph" id="p0039" num="0035">图1是本发明方法的流程示意图。</div>
+<div class="description-paragraph" id="p0040" num="0036">图2是本发明在具体应用实例中探测系统的结构原理示意图。</div>
+<div class="description-paragraph" id="p0041" num="0037">图3是本发明在具体应用实例中随机共振探测器阵列幅频特征曲线示意图。</div>
+<div class="description-paragraph" id="p0042" num="0038">图4是本发明在具体应用实例中经过随机共振探测器阵列后目标信号S(t)典型幅频特性曲线示意图。</div>
+<div class="description-paragraph" id="p0043" num="0039">图5是本发明在具体应用实例中随机共振非线性动力学方程数据流图。</div>
+<div class="description-paragraph" id="p0044" num="0040">图6是本发明在具体应用实例中随机共振电路典型的窄带幅频特性曲线示意图。</div>
+<div class="description-paragraph" id="p0045" num="0041">图7是本发明在具体应用实例中某型直升机的旋翼(a)和尾桨(b)近场噪声谱分布特征示意图。</div>
+<div class="description-paragraph" id="p0046" num="0042">图8是本发明在具体应用实例中随机共振探测器电路模块原理图。</div>
+<div class="description-paragraph" id="p0047" num="0043">图9是本发明在具体应用实例中声学监控立体防护网的示意图。</div>
+<div class="description-paragraph" id="p0048" num="0044">图例说明：</div>
+<div class="description-paragraph" id="p0049" num="0045">1、飞行目标声学指纹模块；2、声学传感器；3、随机共振探测器阵列；4、声纹特征量提取与匹配模块；5、事件目标识别模块。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0050">具体实施方式</div>
+<div class="description-paragraph" id="p0051" num="0046">以下将结合说明书附图和具体实施例对本发明做进一步详细说明。</div>
+<div class="description-paragraph" id="p0052" num="0047">如图1和图9所示，本发明一种基于随机共振探测阵列的低空飞行器探测方法，其步骤包括：</div>
+<div class="description-paragraph" id="p0053" num="0048">步骤S1：低空飞行器声音信号特征的采集，得到噪声分布频段和带宽；</div>
+<div class="description-paragraph" id="p0054" num="0049">通过收集信息，建立现有技术中低空飞行器(如无人机)的声音频谱特征，如旋翼基频、二次谐频，尾桨基频、二次谐频、多旋翼基频、二次谐频等信号特征。即，可通过预先获取数据，并建立关联模型。</div>
+<div class="description-paragraph" id="p0055" num="0050">步骤S2：建立随机共振探测器阵列3；</div>
+<div class="description-paragraph" id="p0056" num="0051">配置参数，使随机共振探测器阵列3的特征敏感频点分布在飞行器的噪声分布频段和带宽；</div>
+<div class="description-paragraph" id="p0057" num="0052">随机共振探测器阵列3的敏感频率范围既可以分段频率覆盖，也可以整体频段覆盖。例如分段覆盖[17Hz，25Hz]、[50Hz，85Hz]、[130Hz，175Hz]、[300Hz，350Hz]、[500Hz，650Hz]；整体频段覆盖[17Hz，650Hz]。根据实际应用的需求进行合理选择即可。</div>
+<div class="description-paragraph" id="p0058" num="0053">步骤S3：构建声学监控立体防护网；</div>
+<div class="description-paragraph" id="p0059" num="0054">在待探测的空间区域内设置声学传感器2及一个以上基于步骤S2中随机共振探测器阵列3的探测单元，构建声学监控立体防护网。</div>
+<div class="description-paragraph" id="p0060" num="0055">两个以上的随机共振探测器阵列3成间隔状设置，如可以采用蜂窝状布置方式。</div>
+<div class="description-paragraph" id="p0061" num="0056">以电容式声学传感器2(传声器)为例，增加随机共振探测器阵列3后，具有较强的灵敏度和动态范围，可以在5千米至10千米的间隔设置蜂窝状构建随机共振探测器阵列3探测单元，构建大区域声学监控立体防护网。</div>
+<div class="description-paragraph" id="p0062" num="0057">步骤S4：利用声学监控立体防护网进行实时监控；</div>
+<div class="description-paragraph" id="p0063" num="0058">各个随机共振探测器阵列3探测单元通过网络(如自建专网或者4G网络、5G网络)联网，并采用GPS定位导航或北斗定位导航信号建立时间同步信号。通过不同空域节点探测事件的触发时间差，采用时间反演法可以确定入侵目标的飞行高度、飞行速度、实时位置以及航迹趋势等信息，为航空管制提供了有效的技术手段。</div>
+<div class="description-paragraph" id="p0064" num="0059">参见图3和图4，其中，声学传感器2用来敏感环境声音信号，该信号由飞行器旋翼噪声s(t)和背景噪声W(t)共同构成。通过模拟信号处理后，旋翼噪声和背景噪声均得到线性增强K[s(t)+W(t)]。增强后的信号通过随机共振探测阵列3，将产生非线性能量转化效果。</div>
+<div class="description-paragraph" id="p0065" num="0060">然后，经过声纹特征量提取与匹配之后，得到相关信息，例如首达波时间t，特征频点分布及其带宽等。</div>
+<div class="description-paragraph" id="p0066" num="0061">最后，结合事件目标识别方法，即可以得到预警信息。即：依据预先获知的飞行目标声学指纹特征，与实时监控获得的声指纹实时数据特性分析模块输出数据由声纹特征量提取与匹配模块4进行比对判定，分析探测目标性质，决策目标事件是否满足触发警戒条件。</div>
+<div class="description-paragraph" id="p0067" num="0062">即使无法判断某个机型的情况下，通过检测到陌生频率噪声入侵，仍可以触发探测事件，通过不同空域节点探测事件的触发时间差，采用时间反演法可以确定入侵目标的飞行高度、飞行速度、实时位置以及航迹趋势等信息。图9为声学监控立体防护网警戒飞行器示意图。</div>
+<div class="description-paragraph" id="p0068" num="0063">进一步，在具体应用实例中，本发明还可以包括步骤S5：通过重复上述步骤S1到S4，并配置多个随机共振探测器阵列3监控谐振频率特征量，就可以对多个谐振频率进行检测。</div>
+<div class="description-paragraph" id="p0069" num="0064">进一步，在具体应用实例中，本发明还可以包括步骤S6：通过重复步骤S1到S4，并配置多个空间上分布测控探测点，监控谐振频率特征量，就可以应用于在空间上分布多个测控探测点。</div>
+<div class="description-paragraph" id="p0070" num="0065">进一步，在具体应用实例中，本发明还可以包括步骤S7：通过重复步骤S1到S4，并建立复杂的网状结构的分布测控探测点，监控谐振频率特征量，就可以建立更为复杂的网状结构的分布测控探测点。</div>
+<div class="description-paragraph" id="p0071" num="0066">如图2和图9所示，基于本发明的上述方法，本发明进一步提出一种基于随机共振探测阵列的低空飞行器探测系统，它包括：</div>
+<div class="description-paragraph" id="p0072" num="0067">飞行目标声学指纹模块1，用来收集低空飞行器的声音信号特征；</div>
+<div class="description-paragraph" id="p0073" num="0068">声学传感器2，用来敏感环境声音信号；</div>
+<div class="description-paragraph" id="p0074" num="0069">随机共振探测器阵列3，用来依据声学传感器2采集的实时信号，使得特定频段信号得到加强，并通过内置的声纹特征分析模块，得到相关声纹特征信号；</div>
+<div class="description-paragraph" id="p0075" num="0070">声纹特征量提取与匹配模块4，用来将随机共振探测器阵列3输出的声纹特征信号与飞行目标声学指纹模块1进行比较分析，形成匹配结果输出；</div>
+<div class="description-paragraph" id="p0076" num="0071">事件目标识别模块5，用来结合声纹特征量提取与匹配模块4输出的匹配结果，分析得到预警信息。</div>
+<div class="description-paragraph" id="p0077" num="0072">随机共振电路是基于随机共振原理的微弱信号检测电路。本发明采用的随机共振电路是基于双稳系统随机共振原理的微弱信号检测电路，双稳系统动力学模型是一种非线性系统模型，其动力学方程如下：</div>
+<div class="description-paragraph" id="p0078" num="0073">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0079" num="0074">方程中，a和b为双稳态系统模型参数。s(t)为饱含大量噪声的待检测周期信号，设待检测信号为Acos(ω<sub>0</sub>t)，噪声值为Γ(t)。则s(t)＝Acos(ω<sub>0</sub>t)+Γ(t)。SR随机共振电路能够在s(t)的信噪比极小的情况下(SNR&lt;&lt;-10dB)将周期信号Acos(ω<sub>0</sub>t)检测出来。方程(1)对应的随机共振非线性动力学方程数据流图如图5所示。</div>
+<div class="description-paragraph" id="p0080" num="0075">随机共振电路具有很强的窄带信号增加特性，通过设置上述方程中的a，b的值，使其能够对特定频率的周期性的信号极为敏感，能够实现极低信噪比SNR情况下对特定频率的信号能量进行敏感增强。图6为典型的随机共振电路典型的窄带幅频特性曲线。</div>
+<div class="description-paragraph" id="p0081" num="0076">对于低空飞行器而言，其旋翼噪声表现为较强的线频特征，即其能量分布在窄带频率内。图7为某型直升机的旋翼(图a)和尾桨(图b)近场噪声谱分布特征。旋翼噪声主频能量集中在90Hz，带宽约20Hz的频带内，尾桨噪声主频能量集中在105Hz，带宽约10Hz的频带内。</div>
+<div class="description-paragraph" id="p0082" num="0077">通常，飞行器在机动时旋翼转速不同，其频谱中心点会略微左右偏移。远程低空飞行器探测与警戒系统所面临的声学环境为极其微弱声信号环境。</div>
+<div class="description-paragraph" id="p0083" num="0078">构建随机共振探测器阵列3的随机共振探测器电路模块原理图如图8所示，通过调整图8中的电位器K1和K2，等效调整方程中参数a、b，可以实现预定敏感频率设置；N个随机共振探测器电路模块构建随机共振探测器阵列3。例如，采用整体频段覆盖[17Hz，650Hz]方案，频率步进宽度为2Hz时，共需要317个随机共振探测器电路模块。若采用分段覆盖[17Hz，25Hz]、[50Hz，85Hz]、[130Hz，175Hz]、[300Hzc，350Hz]、[500Hz，650Hz]，则只需要需要144个随机共振探测器电路模块。</div>
+<div class="description-paragraph" id="p0084" num="0079">在一个具体应用实例中，本发明的方法详细流程为：</div>
+<div class="description-paragraph" id="p0085" num="0080">步骤S100、假设已经预知目标飞行器的噪声分布频段f0和带宽df，这些数据可以通过实测实验或数据分析获得；</div>
+<div class="description-paragraph" id="p0086" num="0081">步骤S200、构建随机共振探测器电路模块，构建阵列。</div>
+<div class="description-paragraph" id="p0087" num="0082">配置参数，使其特征敏感频点分布在[f0-df/2，f0+df/2]。</div>
+<div class="description-paragraph" id="p0088" num="0083">由于随机共振探测器电路模块特征敏感频点具有较强的线频特征，这里设置频点步进距离DF为0.5Hz到3Hz之间为宜。计算出所需的随机共振探测器电路模块数目为N。N＝DF/df，M圆整。那么随机共振探测器阵列3的幅频特性曲线将呈现梳妆非线性滤波器特征，如图3所示。</div>
+<div class="description-paragraph" id="p0089" num="0084">步骤S300、在构建声学监控立体防护网中，声学传感器2敏感到的信号线性增强后K[s(t)+W(t)]，经过随机共振探测器阵列3后，将使得特定频段信号得到加强，随机共振探测器阵列3输出的信号记为S(t)，则：</div>
+<div class="description-paragraph" id="p0090" num="0085">S(t)＝SR1(t)+SR2(t)+SR3(t)+…+SRN(t)</div>
+<div class="description-paragraph" id="p0091" num="0086">其中SRi(t)为第i个随机共振电路模块输出值，i＝1..N。经过随机共振探测器阵列3后，目标信号S(t)的典型幅频特性曲线见图4所示。</div>
+<div class="description-paragraph" id="p0092" num="0087">步骤S400、随机共振探测器阵列3输出的信号S(t)经过AD采样，通过内置的声纹特征分析模块，得到相关信息，例如首达波时间t，特征频点分布及其带宽等。</div>
+<div class="description-paragraph" id="p0093" num="0088">步骤S500、依据预先获知的飞行目标声学指纹特征，与实时监控获得的声指纹实时数据特性分析模块输出数据由声纹特征量提取与匹配模块4进行比对判定，分析探测目标性质，决策目标事件是否满足触发警戒条件。</div>
+<div class="description-paragraph" id="p0094" num="0089">步骤S600、如若需要对多个谐振频率进行检测，重复上述步骤S100到S500，可以配置多个随机共振探测器阵列3监控谐振频率特征量。</div>
+<div class="description-paragraph" id="p0095" num="0090">步骤S700、如若需要在空间上分布多个测控探测点，则可以重复步骤S100到S600，就可以配置多个空间上分布测控探测点，监控谐振频率特征量。</div>
+<div class="description-paragraph" id="p0096" num="0091">步骤S800、若有需要建立复杂的网状结构的分布测控探测点，则可以重复步骤S100到S600，建立复杂的网状结构的分布测控探测点，监控谐振频率特征量。例如，可以构建满足城市无人机监控网，通过监控网络对可疑的频率特征点进行监控和数据分析。即，可以通过不同网点的首达波时间t，进行时间反演目标定位、测速和运动轨迹轨迹跟踪，也可以通过数据库比对方式确定目标性质。</div>
+<div class="description-paragraph" id="p0097" num="0092">通过上述步骤S100到S800，在频域内采用密集随机共振探测器阵列3布局，在立体空域内采用网格化探测节点布局的方式，就可以实现完备的声学监控立体防护网。例如，对于低空飞行器(直升机、多旋翼无人机等)，旋翼噪声能够多集中在低频段600Hz以下。那么可以在频域[5Hz，600Hz]区间内，以2Hz步进间隔密集布置随机共振探测器阵列3，作为一个探测节点；同时，在敏感空间区域内，采用蜂窝状组网方式，分布多个探测节点，则可以构建完备的声学监控立体防护网。</div>
+<div class="description-paragraph" id="p0098" num="0093">以上仅是本发明的优选实施方式，本发明的保护范围并不仅局限于上述实施例，凡属于本发明思路下的技术方案均属于本发明的保护范围。应当指出，对于本技术领域的普通技术人员来说，在不脱离本发明原理前提下的若干改进和润饰，应视为本发明的保护范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

@@ -1,0 +1,133 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120913456A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES510923571">
+<invention-title id="title1" lang="ZH">面向低空多飞行器混合起降场的交通全景态势可视化系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空空域管理，具体涉及面向低空多飞行器混合起降场的交通全景态势可视化系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空空域的逐步开放及低空飞行活动的日益频繁，低空多飞行器混合起降场面临的交通管理问题愈发复杂。当前，低空交通领域涉及多种类型的飞行器，其飞行状态、定位信息等数据来源广泛且格式多样，包括雷达定位数据、飞行器状态数据、电子围栏数据和机位占用数据在内的多源异构数据，传统数据处理方式难以对这些数据进行统一有效的处理与分析，无法构建准确、全面的低空立体交通模型。</div>
+<div class="description-paragraph" id="p0005" num="0003">同时，在低空交通态势信息展示方面，现有技术难以满足全面、直观地呈现飞行器的飞行状态和位置的需求。不同机型具有独特特性，对于飞行器图标与航迹的显示缺乏差异化处理，导致用户难以快速、直观地了解各飞行器的具体情况。而且，低空交通态势信息展示不够精细，无法实时、准确地为用户提供空域各区域的状态。</div>
+<div class="description-paragraph" id="p0006" num="0004">此外，在低空飞行活动中，“黑飞”现象时有发生，对正常低空交通的秩序和安全构成严重威胁。现有技术对于黑飞目标的识别、预警、反制措施的联动执行及可视化展示存在不足，不能及时有效地应对“黑飞”问题。并且，缺乏将多源异构数据、网格状态数据和反制联动信息进行融合并直观呈现的技术手段，难以让用户全面、直观地掌握低空交通全景态势，不利于低空交通的高效管理和安全运行。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">（一）解决的技术问题</div>
+<div class="description-paragraph" id="p0009">针对现有技术所存在的上述缺点，本发明提供了面向低空多飞行器混合起降场的交通全景态势可视化系统，能够有效克服现有技术所存在的无法全面、直观、精准地展示低空交通态势信息，难以让用户全面、直观地掌握低空交通全景态势的缺陷。</div>
+<div class="description-paragraph" id="p0010" num="0006">（二）技术方案</div>
+<div class="description-paragraph" id="p0011">为实现以上目的，本发明通过以下技术方案予以实现：</div>
+<div class="description-paragraph" id="p0012">面向低空多飞行器混合起降场的交通全景态势可视化系统，包括以下组成部分：</div>
+<div class="description-paragraph" id="p0013">多模态数据集成引擎，对雷达定位、飞行器状态、电子围栏和机位占用在内的多源异构数据进行统一数据处理，并构建低空立体交通数字孪生体；</div>
+<div class="description-paragraph" id="p0014">三维动态渲染模块，根据不同机型的特性和需求，差异化显示图标与航迹，实现对低空飞行器的三维动态可视化，便于用户直观地了解飞行器的飞行状态和位置；</div>
+<div class="description-paragraph" id="p0015">红绿灯状态实时叠加模块，将空域划分为多个三维网格单元，形成北斗三维网格空间，实时计算每个三维网格单元的状态，并叠加至地理信息底图的相应位置处，为用户提供空域的交通态势信息；</div>
+<div class="description-paragraph" id="p0016">应急干预可视化模块，对黑飞目标进行自动识别和标红预警，联动反制设备对黑飞目标进行跟踪和反制，并生成处置日志；</div>
+<div class="description-paragraph" id="p0017">多源数据融合可视化模块，将多源异构数据、网格状态数据和反制联动信息进行融合，实现“飞行实体+红绿灯网格+反制联动”三位一体的可视化呈现，为用户提供全面、直观的低空交通全景态势。</div>
+<div class="description-paragraph" id="p0018" num="0007">优选地，所述多模态数据集成引擎的功能包括：</div>
+<div class="description-paragraph" id="p0019">数据接入：采用多种通信协议与不同数据源进行连接，实现数据的实时采集，对于雷达定位数据，通过雷达接口协议获取飞行器的位置、速度信息；飞行器状态数据通过飞行器自身的通信链路获取，包括飞行高度、电池电量和飞行模式；电子围栏数据和机位占用数据通过与相关管理系统进行数据交互获取；</div>
+<div class="description-paragraph" id="p0020">数据清洗：对采集到的多源异构数据进行预处理，去除噪声数据、重复数据和异常数据；</div>
+<div class="description-paragraph" id="p0021">数据转换：将清洗后的数据转换为统一格式，便于后续的存储和分析；</div>
+<div class="description-paragraph" id="p0022">数据存储：采用分布式数据库存储处理后的数据，以提高数据的存储和查询效率，同时构建低空立体交通数字孪生体，将飞行器、电子围栏和机位在内的实体以对象的形式进行存储和管理，每个对象包含其属性信息和空间信息。</div>
+<div class="description-paragraph" id="p0023" num="0008">优选地，所述对采集到的多源异构数据进行预处理，去除噪声数据、重复数据和异常数据，包括：</div>
+<div class="description-paragraph" id="p0024">对于雷达定位数据中的异常数据，结合距离和速度两个关键因素进行判断，更符合飞行器的实际飞行情况，更准确地识别并剔除异常数据，提高数据质量，为后续构建准确的低空立体交通数字孪生体提供可靠基础：</div>
+<div class="description-paragraph" id="p0025">设采集到的雷达定位数据为P={p<sub>1</sub>,p<sub>2</sub>,…,p<sub>m</sub>}，其中p<sub>i</sub>=(x<sub>i</sub>,y<sub>i</sub>,z<sub>i</sub>)表示第i个定位点的三维坐标，定义相邻定位点之间的距离阈值d<sub>max</sub>和速度阈值V<sub>max</sub>，若满足<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>，ΔT为相邻定位点之间的时间间隔，则认为第i+1个定位点p<sub>i+1</sub>为异常点，予以剔除。</div>
+<div class="description-paragraph" id="p0026" num="0009">优选地，所述三维动态渲染模块的功能包括：</div>
+<div class="description-paragraph" id="p0027">机型识别：通过分析飞行器状态数据中的型号信息或根据雷达定位数据的特征对飞行器进行机型识别：</div>
+<div class="description-paragraph" id="p0028">设采集到的飞行器状态数据中包含型号字段model，根据预设的机型映射表M={(model<sub>1</sub>,type<sub>1</sub>),(model<sub>2</sub>,type<sub>2</sub>),…,(model<sub>m</sub>,type<sub>m</sub>)}，将型号字段model映射为对应的机型type，机型包括物流无人机、载人eVTOL和直升机；</div>
+<div class="description-paragraph" id="p0029">图标显示：根据识别出的机型，从预设的图标库中选择相应的图标进行显示，图标库中包含不同机型的三维图标，每个图标具有不同的颜色、形状和大小，以区分不同机型；</div>
+<div class="description-paragraph" id="p0030">航迹渲染：根据飞行器的历史位置数据，采用贝塞尔曲线对飞行器的航迹进行平滑渲染。</div>
+<div class="description-paragraph" id="p0031" num="0010">优选地，所述根据飞行器的历史位置数据，采用贝塞尔曲线对飞行器的航迹进行平滑渲染，包括：</div>
+<div class="description-paragraph" id="p0032">采用贝塞尔曲线对飞行器的航迹进行平滑渲染，并且能够根据飞行器的历史位置点分布动态计算控制点，还能够根据飞行器的历史位置点数量动态确定曲线阶数，这种动态调整使得航迹渲染更加灵活，能够更好地适应不同飞行轨迹的特点，使渲染出的航迹更符合飞行器的实际飞行轨迹，提高了三维动态可视化的真实性和准确性：</div>
+<div class="description-paragraph" id="p0033">设飞行器的历史位置点序列为Q={q<sub>1</sub>,q<sub>2</sub>,…,q<sub>n</sub>}，其中q<sub>j</sub>=(x<sub>j</sub>,y<sub>j</sub>,z<sub>j</sub>)表示第j个历史位置点的三维坐标，贝塞尔曲线的控制点能够根据飞行器的历史位置点分布进行动态计算，以实现航迹的平滑过渡：</div>
+<div class="description-paragraph" id="p0034"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0035">上式中，B(t)为贝塞尔曲线函数，t为时间参数，<span class="patent-image-not-available"></span>，P<sub>i</sub>为第i个控制点，随着时间参数t从0均匀变化至1，贝塞尔曲线从第一个控制点P<sub>0</sub>连续过渡至最后一个控制点P<sub>n</sub>，n为曲线阶数，<span class="patent-image-not-available"></span>为组合数，<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0036" num="0011">优选地，所述红绿灯状态实时叠加模块的功能包括：</div>
+<div class="description-paragraph" id="p0037">网格划分：根据低空飞行区域的范围和形状，以北斗坐标系为基准，将空域划分为多个三维网格单元，形成北斗三维网格空间；</div>
+<div class="description-paragraph" id="p0038">网格状态计算：计算每个三维网格单元的状态；</div>
+<div class="description-paragraph" id="p0039">状态叠加：将计算得到的每个三维网格单元的状态以不同颜色的方块实时叠加至地理信息底图的相应位置处，使用户能够直观地了解低空飞行区域的交通态势。</div>
+<div class="description-paragraph" id="p0040" num="0012">优选地，所述计算每个三维网格单元的状态，包括：</div>
+<div class="description-paragraph" id="p0041">综合考虑三维网格单元内飞行器的数量、平均飞行速度和飞行高度标准差三个关键因素，通过预设阈值来计算三维网格单元的状态，这种多因素综合判断的方式能够更准确、全面地反映低空飞行区域的交通态势，为用户提供更可靠的交通态势信息，有助于用户及时做出决策：</div>
+<div class="description-paragraph" id="p0042"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0043">其中，S<sub>k</sub>为第k个三维网格单元的状态值，S<sub>k</sub>=0时表示危险状态，用红色表示，S<sub>k</sub>=1时表示警告状态，用黄色表示，S<sub>k</sub>=2时表示安全状态，用绿色表示，N为三维网格单元内飞行器的数量，n<sub>max</sub>为预设最大飞行器数量，v<sub>avg</sub>为三维网格单元内飞行器的平均飞行速度，v<sub>min</sub>、v<sub>max</sub>为预设最小、最大飞行器飞行速度，<span class="patent-image-not-available"></span>为三维网格单元内飞行器的飞行高度标准差，<span class="patent-image-not-available"></span>为预设最大飞行器飞行高度标准差。</div>
+<div class="description-paragraph" id="p0044" num="0013">优选地，所述应急干预可视化模块的功能包括：</div>
+<div class="description-paragraph" id="p0045">黑飞目标识别：通过与预设的合法飞行器列表进行比对，识别出未在合法飞行器列表中的飞行器作为黑飞目标；</div>
+<div class="description-paragraph" id="p0046">标红预警：一旦识别出黑飞目标，立即在可视化界面上将该黑飞目标标红显示，并发出警报声音，提醒用户注意；</div>
+<div class="description-paragraph" id="p0047">反制设备联动：根据黑飞目标的位置信息，通过通信接口联动反制设备对黑飞目标进行跟踪和反制；</div>
+<div class="description-paragraph" id="p0048">处置日志生成：记录黑飞目标的识别时间、位置、反制设备的启动时间、反制过程和反制结果信息，生成处置日志，并存储至数据库中，以便后续的分析和追溯。</div>
+<div class="description-paragraph" id="p0049" num="0014">优选地，所述根据黑飞目标的位置信息，通过通信接口联动反制设备对黑飞目标进行跟踪和反制，包括：</div>
+<div class="description-paragraph" id="p0050">反制设备对黑飞目标进行跟踪时，基于卡尔曼滤波思想进行简化设计，引入跟踪系数并根据反制设备性能和黑飞目标速度进行调整，使得反制设备能够根据实际情况动态调整跟踪策略，这种动态调整提高了跟踪的准确性和稳定性，能够更有效地对黑飞目标进行跟踪和反制，增强了应急干预的及时性和有效性：</div>
+<div class="description-paragraph" id="p0051"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0052">其中，Q(t)、<span class="patent-image-not-available"></span>分别为反制设备在时刻t、<span class="patent-image-not-available"></span>的位置，P(t)为黑飞目标在时刻t的位置，<span class="patent-image-not-available"></span>为时间间隔，<span class="patent-image-not-available"></span>为跟踪系数，根据反制设备性能和黑飞目标速度进行调整。</div>
+<div class="description-paragraph" id="p0053" num="0015">优选地，所述多源数据融合可视化模块的功能包括：</div>
+<div class="description-paragraph" id="p0054">数据融合：将多模态数据集成引擎提供的多源异构数据、红绿灯状态实时叠加模块提供的网格状态数据和应急干预可视化模块提供的反制联动信息进行融合，采用基于时间同步的数据融合方法，确保不同数据源的数据在时间上的一致性；</div>
+<div class="description-paragraph" id="p0055">可视化呈现：在地理信息底图上同时显示多源异构数据、网格状态数据和反制联动信息，其中多源异构数据根据三维动态渲染模块的规则进行差异化显示，黑飞目标标红预警；网格状态数据以不同颜色的方块叠加显示；反制联动信息通过动态线条或箭头表示反制设备的轨迹和反制方向，实现“飞行实体+红绿灯网格+反制联动”三位一体的可视化呈现，为用户提供全面、直观的低空交通全景态势。</div>
+<div class="description-paragraph" id="p0056" num="0016">（三）有益效果</div>
+<div class="description-paragraph" id="p0057">与现有技术相比，本发明所提供的面向低空多飞行器混合起降场的交通全景态势可视化系统，具有以下有益效果：</div>
+<div class="description-paragraph" id="p0058">1）全面直观呈现，优化态势感知</div>
+<div class="description-paragraph" id="p0059">多模态数据集成引擎对多源异构数据进行统一数据处理，并构建低空立体交通数字孪生体，为系统提供了准确且全面的数据基础；三维动态渲染模块根据不同机型特性差异化显示图标与航迹，实现对低空飞行器的三维动态可视化；红绿灯状态实时叠加模块将空域划分为三维网格单元，并实时计算网格状态叠加至地理信息底图，提供低空交通态势信息；多源数据融合可视化模块实现“飞行实体+红绿灯网格+反制联动”三位一体的可视化呈现，这些功能模块共同作用，使用户能够全面、直观地了解低空交通全景态势，极大地优化了用户对于低空交通态势的感知能力，有助于及时发现潜在问题和异常情况；</div>
+<div class="description-paragraph" id="p0060">2）及时高效应急，保障飞行安全</div>
+<div class="description-paragraph" id="p0061">应急干预可视化模块具备对黑飞目标的自动识别和标红预警功能，能够迅速发现非法飞行行为，并联动反制设备对黑飞目标进行跟踪和反制，同时生成处置日志，这一全流程的自动化应急处理机制，大大缩短了从发现“黑飞”现象到采取反制措施的时间间隔，提高了应急响应速度和处理效率，在面对黑飞等紧急情况时，能够及时有效地保障低空飞行活动的安全，减少黑飞对正常低空交通的秩序和安全的威胁；</div>
+<div class="description-paragraph" id="p0062">3）深度数据融合，助力科学决策</div>
+<div class="description-paragraph" id="p0063">多源数据融合可视化模块将多源异构数据、网格状态数据和反制联动信息进行深度融合，为用户提供了综合、全面的信息展示，这种融合呈现方式打破了数据之间的壁垒，使用户能够从多个维度、多个层面了解低空交通的实时运行状况，基于这些丰富且准确的信息，用户能够做出更加科学、合理的决策，例如合理规划飞行路线、优化空域资源分配、制定应急预案等，从而提升低空多飞行器混合起降场的整体运营管理水平。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0064">附图说明</div>
+<div class="description-paragraph" id="p0065" num="0017">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍。显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0066" num="0018">图1 为本发明的系统示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0067">具体实施方式</div>
+<div class="description-paragraph" id="p0068" num="0019">为使本发明实施例的目的、技术方案和优点更加清楚，下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述。显然，所描述的实施例是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有作出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0069" num="0020">下面结合具体示例介绍本发明提供的面向低空多飞行器混合起降场的交通全景态势可视化系统的具体功能模块（如图1所示），包括：</div>
+<div class="description-paragraph" id="p0070">多模态数据集成引擎，对雷达定位、飞行器状态、电子围栏和机位占用在内的多源异构数据进行统一数据处理，并构建低空立体交通数字孪生体；</div>
+<div class="description-paragraph" id="p0071">三维动态渲染模块，根据不同机型的特性和需求，差异化显示图标与航迹，实现对低空飞行器的三维动态可视化，便于用户直观地了解飞行器的飞行状态和位置；</div>
+<div class="description-paragraph" id="p0072">红绿灯状态实时叠加模块，将空域划分为多个三维网格单元，形成北斗三维网格空间，实时计算每个三维网格单元的状态，并叠加至地理信息底图的相应位置处，为用户提供空域的交通态势信息；</div>
+<div class="description-paragraph" id="p0073">应急干预可视化模块，对黑飞目标进行自动识别和标红预警，联动反制设备对黑飞目标进行跟踪和反制，并生成处置日志；</div>
+<div class="description-paragraph" id="p0074">多源数据融合可视化模块，将多源异构数据、网格状态数据和反制联动信息进行融合，实现“飞行实体+红绿灯网格+反制联动”三位一体的可视化呈现，为用户提供全面、直观的低空交通全景态势。</div>
+<div class="description-paragraph" id="p0075" num="0021">一、多模态数据集成引擎（如图1所示）的功能包括：</div>
+<div class="description-paragraph" id="p0076">数据接入：采用多种通信协议与不同数据源进行连接，实现数据的实时采集，对于雷达定位数据，通过雷达接口协议获取飞行器的位置、速度信息；飞行器状态数据通过飞行器自身的通信链路获取，包括飞行高度、电池电量和飞行模式；电子围栏数据和机位占用数据通过与相关管理系统进行数据交互获取；</div>
+<div class="description-paragraph" id="p0077">数据清洗：对采集到的多源异构数据进行预处理，去除噪声数据、重复数据和异常数据；</div>
+<div class="description-paragraph" id="p0078">数据转换：将清洗后的数据转换为统一格式，便于后续的存储和分析；</div>
+<div class="description-paragraph" id="p0079">数据存储：采用分布式数据库存储处理后的数据，以提高数据的存储和查询效率，同时构建低空立体交通数字孪生体，将飞行器、电子围栏和机位在内的实体以对象的形式进行存储和管理，每个对象包含其属性信息和空间信息。</div>
+<div class="description-paragraph" id="p0080" num="0022">具体地，对采集到的多源异构数据进行预处理，去除噪声数据、重复数据和异常数据，包括：</div>
+<div class="description-paragraph" id="p0081">对于雷达定位数据中的异常数据，结合距离和速度两个关键因素进行判断，更符合飞行器的实际飞行情况，更准确地识别并剔除异常数据，提高数据质量，为后续构建准确的低空立体交通数字孪生体提供可靠基础：</div>
+<div class="description-paragraph" id="p0082">设采集到的雷达定位数据为P={p<sub>1</sub>,p<sub>2</sub>,…,p<sub>m</sub>}，其中p<sub>i</sub>=(x<sub>i</sub>,y<sub>i</sub>,z<sub>i</sub>)表示第i个定位点的三维坐标，定义相邻定位点之间的距离阈值d<sub>max</sub>和速度阈值V<sub>max</sub>，若满足<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>，ΔT为相邻定位点之间的时间间隔，则认为第i+1个定位点p<sub>i+1</sub>为异常点，予以剔除。</div>
+<div class="description-paragraph" id="p0083" num="0023">二、三维动态渲染模块（如图1所示）的功能包括：</div>
+<div class="description-paragraph" id="p0084">机型识别：通过分析飞行器状态数据中的型号信息或根据雷达定位数据的特征对飞行器进行机型识别：</div>
+<div class="description-paragraph" id="p0085">设采集到的飞行器状态数据中包含型号字段model，根据预设的机型映射表M={(model<sub>1</sub>,type<sub>1</sub>),(model<sub>2</sub>,type<sub>2</sub>),…,(model<sub>m</sub>,type<sub>m</sub>)}，将型号字段model映射为对应的机型type，机型包括物流无人机、载人eVTOL和直升机；</div>
+<div class="description-paragraph" id="p0086">图标显示：根据识别出的机型，从预设的图标库中选择相应的图标进行显示，图标库中包含不同机型的三维图标，每个图标具有不同的颜色、形状和大小，以区分不同机型；</div>
+<div class="description-paragraph" id="p0087">航迹渲染：根据飞行器的历史位置数据，采用贝塞尔曲线对飞行器的航迹进行平滑渲染。</div>
+<div class="description-paragraph" id="p0088" num="0024">具体地，根据飞行器的历史位置数据，采用贝塞尔曲线对飞行器的航迹进行平滑渲染，包括：</div>
+<div class="description-paragraph" id="p0089">采用贝塞尔曲线对飞行器的航迹进行平滑渲染，并且能够根据飞行器的历史位置点分布动态计算控制点，还能够根据飞行器的历史位置点数量动态确定曲线阶数，这种动态调整使得航迹渲染更加灵活，能够更好地适应不同飞行轨迹的特点，使渲染出的航迹更符合飞行器的实际飞行轨迹，提高了三维动态可视化的真实性和准确性：</div>
+<div class="description-paragraph" id="p0090">设飞行器的历史位置点序列为Q={q<sub>1</sub>,q<sub>2</sub>,…,q<sub>n</sub>}，其中q<sub>j</sub>=(x<sub>j</sub>,y<sub>j</sub>,z<sub>j</sub>)表示第j个历史位置点的三维坐标，贝塞尔曲线的控制点能够根据飞行器的历史位置点分布进行动态计算，以实现航迹的平滑过渡：</div>
+<div class="description-paragraph" id="p0091"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0092">上式中，B(t)为贝塞尔曲线函数，t为时间参数，<span class="patent-image-not-available"></span>，P<sub>i</sub>为第i个控制点，随着时间参数t从0均匀变化至1，贝塞尔曲线从第一个控制点P<sub>0</sub>连续过渡至最后一个控制点P<sub>n</sub>，n为曲线阶数，<span class="patent-image-not-available"></span>为组合数，<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0093" num="0025">三、红绿灯状态实时叠加模块（如图1所示）的功能包括：</div>
+<div class="description-paragraph" id="p0094">网格划分：根据低空飞行区域的范围和形状，以北斗坐标系为基准，将空域划分为多个三维网格单元，形成北斗三维网格空间；</div>
+<div class="description-paragraph" id="p0095">网格状态计算：计算每个三维网格单元的状态；</div>
+<div class="description-paragraph" id="p0096">状态叠加：将计算得到的每个三维网格单元的状态以不同颜色的方块实时叠加至地理信息底图的相应位置处，使用户能够直观地了解低空飞行区域的交通态势。</div>
+<div class="description-paragraph" id="p0097" num="0026">具体地，计算每个三维网格单元的状态，包括：</div>
+<div class="description-paragraph" id="p0098">综合考虑三维网格单元内飞行器的数量、平均飞行速度和飞行高度标准差三个关键因素，通过预设阈值来计算三维网格单元的状态，这种多因素综合判断的方式能够更准确、全面地反映低空飞行区域的交通态势，为用户提供更可靠的交通态势信息，有助于用户及时做出决策：</div>
+<div class="description-paragraph" id="p0099"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0100">其中，S<sub>k</sub>为第k个三维网格单元的状态值，S<sub>k</sub>=0时表示危险状态，用红色表示，S<sub>k</sub>=1时表示警告状态，用黄色表示，S<sub>k</sub>=2时表示安全状态，用绿色表示，N为三维网格单元内飞行器的数量，n<sub>max</sub>为预设最大飞行器数量，v<sub>avg</sub>为三维网格单元内飞行器的平均飞行速度，v<sub>min</sub>、v<sub>max</sub>为预设最小、最大飞行器飞行速度，<span class="patent-image-not-available"></span>为三维网格单元内飞行器的飞行高度标准差，<span class="patent-image-not-available"></span>为预设最大飞行器飞行高度标准差。</div>
+<div class="description-paragraph" id="p0101" num="0027">四、应急干预可视化模块（如图1所示）的功能包括：</div>
+<div class="description-paragraph" id="p0102">黑飞目标识别：通过与预设的合法飞行器列表进行比对，识别出未在合法飞行器列表中的飞行器作为黑飞目标；</div>
+<div class="description-paragraph" id="p0103">标红预警：一旦识别出黑飞目标，立即在可视化界面上将该黑飞目标标红显示，并发出警报声音，提醒用户注意；</div>
+<div class="description-paragraph" id="p0104">反制设备联动：根据黑飞目标的位置信息，通过通信接口联动反制设备对黑飞目标进行跟踪和反制；</div>
+<div class="description-paragraph" id="p0105">处置日志生成：记录黑飞目标的识别时间、位置、反制设备的启动时间、反制过程和反制结果信息，生成处置日志，并存储至数据库中，以便后续的分析和追溯。</div>
+<div class="description-paragraph" id="p0106" num="0028">具体地，根据黑飞目标的位置信息，通过通信接口联动反制设备对黑飞目标进行跟踪和反制，包括：</div>
+<div class="description-paragraph" id="p0107">反制设备对黑飞目标进行跟踪时，基于卡尔曼滤波思想进行简化设计，引入跟踪系数并根据反制设备性能和黑飞目标速度进行调整，使得反制设备能够根据实际情况动态调整跟踪策略，这种动态调整提高了跟踪的准确性和稳定性，能够更有效地对黑飞目标进行跟踪和反制，增强了应急干预的及时性和有效性：</div>
+<div class="description-paragraph" id="p0108"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0109">其中，Q(t)、<span class="patent-image-not-available"></span>分别为反制设备在时刻t、<span class="patent-image-not-available"></span>的位置，P(t)为黑飞目标在时刻t的位置，<span class="patent-image-not-available"></span>为时间间隔，<span class="patent-image-not-available"></span>为跟踪系数，根据反制设备性能和黑飞目标速度进行调整。</div>
+<div class="description-paragraph" id="p0110" num="0029">上述技术方案，应急干预可视化模块具备对黑飞目标的自动识别和标红预警功能，能够迅速发现非法飞行行为，并联动反制设备对黑飞目标进行跟踪和反制，同时生成处置日志，这一全流程的自动化应急处理机制，大大缩短了从发现“黑飞”现象到采取反制措施的时间间隔，提高了应急响应速度和处理效率，在面对黑飞等紧急情况时，能够及时有效地保障低空飞行活动的安全，减少黑飞对正常低空交通的秩序和安全的威胁。</div>
+<div class="description-paragraph" id="p0111" num="0030">五、多源数据融合可视化模块（如图1所示）的功能包括：</div>
+<div class="description-paragraph" id="p0112">数据融合：将多模态数据集成引擎提供的多源异构数据、红绿灯状态实时叠加模块提供的网格状态数据和应急干预可视化模块提供的反制联动信息进行融合，采用基于时间同步的数据融合方法，确保不同数据源的数据在时间上的一致性；</div>
+<div class="description-paragraph" id="p0113">可视化呈现：在地理信息底图上同时显示多源异构数据、网格状态数据和反制联动信息，其中多源异构数据根据三维动态渲染模块的规则进行差异化显示，黑飞目标标红预警；网格状态数据以不同颜色的方块叠加显示；反制联动信息通过动态线条或箭头表示反制设备的轨迹和反制方向，实现“飞行实体+红绿灯网格+反制联动”三位一体的可视化呈现，为用户提供全面、直观的低空交通全景态势。</div>
+<div class="description-paragraph" id="p0114" num="0031">本申请技术方案中，多模态数据集成引擎对多源异构数据进行统一数据处理，并构建低空立体交通数字孪生体，为系统提供了准确且全面的数据基础；三维动态渲染模块根据不同机型特性差异化显示图标与航迹，实现对低空飞行器的三维动态可视化；红绿灯状态实时叠加模块将空域划分为三维网格单元，并实时计算网格状态叠加至地理信息底图，提供低空交通态势信息；多源数据融合可视化模块实现“飞行实体+红绿灯网格+反制联动”三位一体的可视化呈现，这些功能模块共同作用，使用户能够全面、直观地了解低空交通全景态势，极大地优化了用户对于低空交通态势的感知能力，有助于及时发现潜在问题和异常情况。</div>
+<div class="description-paragraph" id="p0115" num="0032">多源数据融合可视化模块将多源异构数据、网格状态数据和反制联动信息进行深度融合，为用户提供了综合、全面的信息展示，这种融合呈现方式打破了数据之间的壁垒，使用户能够从多个维度、多个层面了解低空交通的实时运行状况，基于这些丰富且准确的信息，用户能够做出更加科学、合理的决策，例如合理规划飞行路线、优化空域资源分配、制定应急预案等，从而提升低空多飞行器混合起降场的整体运营管理水平。</div>
+<div class="description-paragraph" id="p0116" num="0033">以上实施例仅用以说明本发明的技术方案，而非对其限制；尽管参照前述实施例对本发明进行了详细的说明，本领域的普通技术人员应当理解：其依然可以对前述各实施例所记载的技术方案进行修改，或者对其中部分技术特征进行等同替换；而这些修改或者替换，并不会使相应技术方案的本质脱离本发明各实施例技术方案的精神和范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

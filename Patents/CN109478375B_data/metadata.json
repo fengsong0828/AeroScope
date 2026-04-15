@@ -1,0 +1,85 @@
+{
+    "patent_id": "CN109478375B",
+    "title": "CN109478375B - 跟踪低空飞行无人驾驶的飞行器和物体的雷达系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Rhombus Systems Group Inc",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN109478375B/zh",
+    "citations": [
+        {
+            "Publication Number": "US5276449A (en) *",
+            "Priority Date": "1992-09-16",
+            "Publication Date": "1994-01-04",
+            "Assignee": "The Boeing Company",
+            "Title": "Radar retroreflector with polarization control",
+            "Link": "https://patents.google.com/patent/US5276449A/en"
+        },
+        {
+            "Publication Number": "JP2004163218A (ja) *",
+            "Priority Date": "2002-11-12",
+            "Publication Date": "2004-06-10",
+            "Assignee": "Toshiba Corp",
+            "Title": "空港監視システム",
+            "Link": "https://patents.google.com/patent/JP2004163218A/ja"
+        },
+        {
+            "Publication Number": "CN101192350A (zh) *",
+            "Priority Date": "2006-11-30",
+            "Publication Date": "2008-06-04",
+            "Assignee": "黄金富",
+            "Title": "主动发射三维立体飞行信息的飞机防撞及导航系统和方法",
+            "Link": "https://patents.google.com/patent/CN101192350A/zh"
+        },
+        {
+            "Publication Number": "CN102112892A (zh) *",
+            "Priority Date": "2007-05-29",
+            "Publication Date": "2011-06-29",
+            "Assignee": "剑桥顾问",
+            "Title": "雷达系统和方法",
+            "Link": "https://patents.google.com/patent/CN102112892A/zh"
+        },
+        {
+            "Publication Number": "CN101359048A (zh) *",
+            "Priority Date": "2007-07-30",
+            "Publication Date": "2009-02-04",
+            "Assignee": "株式会社东芝",
+            "Title": "收发模块",
+            "Link": "https://patents.google.com/patent/CN101359048A/zh"
+        },
+        {
+            "Publication Number": "CN101482609B (zh) *",
+            "Priority Date": "2008-03-05",
+            "Publication Date": "2013-11-20",
+            "Assignee": "中国科学院嘉兴无线传感网工程中心",
+            "Title": "基于无线传感网的超低空低速平面微带雷达探测器",
+            "Link": "https://patents.google.com/patent/CN101482609B/zh"
+        },
+        {
+            "Publication Number": "CN102680979A (zh) *",
+            "Priority Date": "2011-03-15",
+            "Publication Date": "2012-09-19",
+            "Assignee": "深圳光启高等理工研究院",
+            "Title": "一种雷达抗干扰的方法",
+            "Link": "https://patents.google.com/patent/CN102680979A/zh"
+        },
+        {
+            "Publication Number": "EP2799895B1 (en) *",
+            "Priority Date": "2013-05-02",
+            "Publication Date": "2020-08-12",
+            "Assignee": "The Boeing Company",
+            "Title": "Device and system using angle of arrival measurements for ads-b authentication and navigation",
+            "Link": "https://patents.google.com/patent/EP2799895B1/en"
+        },
+        {
+            "Publication Number": "CN105404291A (zh) *",
+            "Priority Date": "2014-09-05",
+            "Publication Date": "2016-03-16",
+            "Assignee": "空中客车防卫和太空有限责任公司",
+            "Title": "用于无人飞行器运载工具的跟随系统",
+            "Link": "https://patents.google.com/patent/CN105404291A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:19:15"
+}

@@ -1,0 +1,521 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120161778A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES497428873">
+<invention-title id="title1" lang="ZH">一种抗传感器故障的低空飞行器多模态推进控制方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及飞行器智能控制领域，尤其具体涉及一种抗传感器故障的低空飞行器多模态推进控制方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">当前，低空经济作为国家重点支持的战略性新兴产业，正在加速催生新型航空平台，特别是短距起降与垂直起降类飞行器，广泛应用于城市空中交通、物流运输、应急响应等场景；与传统飞行器相比，短垂飞机具有多模式切换、多类型推进器混合工作的特点，对推进系统提出了更高的智能化、自适应与鲁棒性控制需求。</div>
+<div class="description-paragraph" id="p0005" num="0003">典型短垂飞行器在执行任务过程中需频繁经历垂直起飞、爬升、巡航、悬停、过渡、下降和垂直降落的多状态切换，推进系统结构复杂，包含电推进、涡扇推进、倾转机构及舵面系统，控制变量之间高度耦合，动态响应特性差异显著。</div>
+<div class="description-paragraph" id="p0006" num="0004">传统推进控制策略多为单模型控制器，难以兼顾多模态飞行需求，且在复杂扰动环境下响应迟缓、调参效率低，控制性能易退化；尤其在多传感器系统中，若存在测量异常或故障，易导致状态估计失真，进而影响控制策略决策，存在较大鲁棒性风险。</div>
+<div class="description-paragraph" id="p0007" num="0005">针对上述挑战，人工智能控制算法逐渐引入飞控领域；近年来，深度强化学习结合模型预测控制、模糊控制的多策略融合成为发展趋势，但实际应用中依然面临策略不稳定、切换不平滑及传感器异常缺乏鲁棒处理机制的问题。</div>
+<div class="description-paragraph" id="p0008" num="0006">为此，本发明提出一种抗传感器故障的低空飞行器多模态推进控制方法，融合控制策略输出、引入传感器残差感知机制并具备容错调参能力的推进控制方法。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0009">发明内容</div>
+<div class="description-paragraph" id="p0010" num="0007">本发明的目的在于提供一种抗传感器故障的低空飞行器多模态推进控制方法，为解决上述现有技术问题，本发明通过以下技术方案实现：</div>
+<div class="description-paragraph" id="p0011">本发明实施例提供的一种抗传感器故障的低空飞行器多模态推进控制方法，具体包括如下步骤：</div>
+<div class="description-paragraph" id="p0012">S1：构建推进组件的非线性模型；</div>
+<div class="description-paragraph" id="p0013">S2：实时采集飞行状态与传感器观测参数，输入至飞行状态识别模块与健康参数估算模块，分别识别飞行模式与每一推进组件健康状态；</div>
+<div class="description-paragraph" id="p0014">S3：引入权重嵌入融合网络，输入状态残差与健康状态，生成所述控制策略群的加权系数，提取局部扰动特征，建模多通道状态时序依赖，输出残差加权向量；</div>
+<div class="description-paragraph" id="p0015">S4：将识别状态及健康状态联合输入控制策略群推进控制优化，并分别计算控制动作输出；</div>
+<div class="description-paragraph" id="p0016">S5：根据控制策略群的加权系数加权控制动作输出，生成最终推进指令，将最终推进指令分发至飞行器各推进子系统，各推进子系统反馈信号与传感器数据至经验池与健康参数估算模块，并进行策略更新与故障感知精度迭代。</div>
+<div class="description-paragraph" id="p0017" num="0008">进一步的，所述非线性模型的具体获取方法为：</div>
+<div class="description-paragraph" id="p0018">定义控制变量向量描述飞行器推进系统控制过程；</div>
+<div class="description-paragraph" id="p0019">定义控制变量向量：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0020">其中，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>代表两个独立电推进模块的输出功率百分比；</div>
+<div class="description-paragraph" id="p0021"> <span class="patent-image-not-available"></span>代表涡扇喷口偏转角度；</div>
+<div class="description-paragraph" id="p0022"> <span class="patent-image-not-available"></span>代表倾转机构角度；</div>
+<div class="description-paragraph" id="p0023"> <span class="patent-image-not-available"></span>代表涡扇或风扇推进器的尾喷口开度；</div>
+<div class="description-paragraph" id="p0024">变量构成系统主控输入，参与实时优化过程；</div>
+<div class="description-paragraph" id="p0025">定义系统状态向量，刻画推进系统在不同控制输入下的演化过程；</div>
+<div class="description-paragraph" id="p0026">定义系统状态向量：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0027">其中，<span class="patent-image-not-available"></span>代表当前时刻推进系统的合成推力；</div>
+<div class="description-paragraph" id="p0028"> <span class="patent-image-not-available"></span>代表单位推力能耗；</div>
+<div class="description-paragraph" id="p0029"> <span class="patent-image-not-available"></span>代表飞行器高度；</div>
+<div class="description-paragraph" id="p0030"> <span class="patent-image-not-available"></span>代表飞行器前向速度；</div>
+<div class="description-paragraph" id="p0031">基于不同推进器之间存在非线性耦合，非线性耦合包括但不仅限于：电推进器动态响应快、涡扇系统滞后性强和气流干扰耦合复杂，系统状态转移过程通过函数<span class="patent-image-not-available"></span>进行非线性映射；</div>
+<div class="description-paragraph" id="p0032">进一步的，所述推进组件健康状态的获取方法为：</div>
+<div class="description-paragraph" id="p0033">基于Actor网络根据Critic网络对于动作的奖惩值来更新自身参数，此时新的损失函数为：</div>
+<div class="description-paragraph" id="p0034">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0035" num="0009">Actor网络采用的策略梯度更新公式如下：</div>
+<div class="description-paragraph" id="p0036">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0037" num="0010">Critic网络通过DQN算法更新其参数，梯度更新公式如下：</div>
+<div class="description-paragraph" id="p0038">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0039" num="0011">其中，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别为Actor网络和Critic网络的学习率；<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别为Actor网络和Critic网络的参数；<span class="patent-image-not-available"></span>代表智能体在环境状态<span class="patent-image-not-available"></span>下执行动作<span class="patent-image-not-available"></span>获得的奖励值大小；<span class="patent-image-not-available"></span>代表折扣因子，用于衡量未来奖励的重要性，<span class="patent-image-not-available"></span>代表在状态<span class="patent-image-not-available"></span>时由Actor网络生成动作输入到Critic网络得到的动作价值，代表时间差分误差，<span class="patent-image-not-available"></span>代表策略<span class="patent-image-not-available"></span>关于参数<span class="patent-image-not-available"></span>在状态<span class="patent-image-not-available"></span>下的梯度，<span class="patent-image-not-available"></span>代表Actor网络采用的策略；</div>
+<div class="description-paragraph" id="p0040">基于Actor-Critic模型获得的奖励值识别飞行模式与每一推进组件的健康状态；</div>
+<div class="description-paragraph" id="p0041">进一步的，所述加权系数的获取方法为：</div>
+<div class="description-paragraph" id="p0042">当<span class="patent-image-not-available"></span>最大回合数时，为动作探索初始化一个随机过程<span class="patent-image-not-available"></span>，获得初始状态<span class="patent-image-not-available"></span>，并计算初始残差<span class="patent-image-not-available"></span>；输入至残差感知网络，得到残差加权系数<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0043">进一步的，所述残差加权向量的获取方法为：</div>
+<div class="description-paragraph" id="p0044">随机初始化当前Actor网络<span class="patent-image-not-available"></span>的权重参数<span class="patent-image-not-available"></span>和当前Critic网络<span class="patent-image-not-available"></span>的权重参数<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0045">初始化目标Actor网络<span class="patent-image-not-available"></span>和目标Critic网络<span class="patent-image-not-available"></span>，各自的网络权重参数分别为：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0046">初始化经验回放池<span class="patent-image-not-available"></span>存储状态转移与控制残差信息；</div>
+<div class="description-paragraph" id="p0047">残差感知网络初始化，构建CNN + Transformer组合网络；</div>
+<div class="description-paragraph" id="p0048">网络输入为当前状态下的残差序列<span class="patent-image-not-available"></span>，即预估状态与真实状态的差值；</div>
+<div class="description-paragraph" id="p0049">CNN模块提取局部扰动峰值，Transformer模块建模残差随时间和通道的演化关系；</div>
+<div class="description-paragraph" id="p0050">网络输出为残差加权向量<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0051">进一步的，所述推进控制优化的方法为：</div>
+<div class="description-paragraph" id="p0052">通过公式</div>
+<div class="description-paragraph" id="p0053">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0054" num="0012">改写为：</div>
+<div class="description-paragraph" id="p0055">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0056" num="0013">式中：</div>
+<div class="description-paragraph" id="p0057">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0058" num="0014">其中，<span class="patent-image-not-available"></span>为状态变量的时间导数，<span class="patent-image-not-available"></span>为状态矩阵，刻画状态变量自身对其导数的影响，<span class="patent-image-not-available"></span>为状态变量的变化量，<span class="patent-image-not-available"></span>为输入矩阵，描述输入对状态导数的作用，<span class="patent-image-not-available"></span>为输入变量的变化量，<span class="patent-image-not-available"></span>为矩阵，体现对状态导数的影响，<span class="patent-image-not-available"></span>为额外变量的变化量，<span class="patent-image-not-available"></span>为过程噪声，<span class="patent-image-not-available"></span>为输出变量的变化量，<span class="patent-image-not-available"></span>为输出矩阵，描述状态对输出的影响，<span class="patent-image-not-available"></span>为直接传输矩阵，表示输入对输出的直接作用，<span class="patent-image-not-available"></span>为矩阵，刻画对输出的影响，<span class="patent-image-not-available"></span>为测量噪声，<span class="patent-image-not-available"></span>为新的状态变量导数，<span class="patent-image-not-available"></span>为新的状态向量；</div>
+<div class="description-paragraph" id="p0059">基于EKF的设计，将式：</div>
+<div class="description-paragraph" id="p0060">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0061" num="0015">转换为离散形式：</div>
+<div class="description-paragraph" id="p0062">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0063" num="0016">式中下标k表示该变量在第k步的值；</div>
+<div class="description-paragraph" id="p0064">定义：</div>
+<div class="description-paragraph" id="p0065">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0066" num="0017">初始化：</div>
+<div class="description-paragraph" id="p0067">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0068" num="0018">状态预测：</div>
+<div class="description-paragraph" id="p0069">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0070" num="0019">滤波器中的遗忘因子为：</div>
+<div class="description-paragraph" id="p0071">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0072" num="0020">其中，<span class="patent-image-not-available"></span>为遗忘因子基准值。</div>
+<div class="description-paragraph" id="p0073" num="0021"> <span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>矩阵为：</div>
+<div class="description-paragraph" id="p0074">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0075" num="0022">其中，<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0076" num="0023">量测预测：</div>
+<div class="description-paragraph" id="p0077">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0078" num="0024">非线性项<span class="patent-image-not-available"></span>线性化时引入的误差与噪声<span class="patent-image-not-available"></span>相比，<span class="patent-image-not-available"></span>附近的噪声忽略不计；对<span class="patent-image-not-available"></span>进行一阶泰勒展开得到</div>
+<div class="description-paragraph" id="p0079">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0080" num="0025">进而；得到EKF的批处理回归公式：</div>
+<div class="description-paragraph" id="p0081">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0082" num="0026">其中，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0083">上式中的估计问题改写为</div>
+<div class="description-paragraph" id="p0084">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0085" num="0027">观测向量为<span class="patent-image-not-available"></span>，回归矩阵为<span class="patent-image-not-available"></span>，噪声为<span class="patent-image-not-available"></span>。误差<span class="patent-image-not-available"></span>的协方差矩阵为</div>
+<div class="description-paragraph" id="p0086">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0087" num="0028">修正步骤中计算的EKF更新状态<span class="patent-image-not-available"></span>，通过执行加权最小二乘得到，线性回归：</div>
+<div class="description-paragraph" id="p0088">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0089" num="0029">可转化为：</div>
+<div class="description-paragraph" id="p0090">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0091" num="0030">EKF的修正步长可由下式得到：</div>
+<div class="description-paragraph" id="p0092">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0093" num="0031">其中，为第k+1步的状态向量，<span class="patent-image-not-available"></span>为离散状态转移函数，<span class="patent-image-not-available"></span>为第k步的过程噪声，<span class="patent-image-not-available"></span>为第k步的测量输出，<span class="patent-image-not-available"></span>为离散测量函数，<span class="patent-image-not-available"></span>为第k步的测量噪声，<span class="patent-image-not-available"></span>为状态转移函数对状态x的雅可比矩阵，<span class="patent-image-not-available"></span>为测量函数对状态x的雅可比矩阵，<span class="patent-image-not-available"></span>为初始状态估计，<span class="patent-image-not-available"></span>为初始状态估计的协方差矩阵，<span class="patent-image-not-available"></span>为第k步的先验状态估计，<span class="patent-image-not-available"></span>为第k步的状态转移函数，<span class="patent-image-not-available"></span>为第k-1步的后验状态估计，<span class="patent-image-not-available"></span>为第k步的先验协方差矩阵，<span class="patent-image-not-available"></span>为第k步的遗忘因子，<span class="patent-image-not-available"></span>为状态转移函数对状态x在<span class="patent-image-not-available"></span>处的雅可比矩阵，<span class="patent-image-not-available"></span>为第k-1步的后验协方差矩阵，<span class="patent-image-not-available"></span>为第k-1步的过程噪声协方差矩阵，<span class="patent-image-not-available"></span>为遗忘因子基准值，<span class="patent-image-not-available"></span>为计算遗忘因子的中间矩阵，<span class="patent-image-not-available"></span>为中间矩阵，<span class="patent-image-not-available"></span>为矩阵<span class="patent-image-not-available"></span>的迹，<span class="patent-image-not-available"></span>为测量函数h对状态x在<span class="patent-image-not-available"></span>处的雅可比矩阵，<span class="patent-image-not-available"></span>为初始协方差，<span class="patent-image-not-available"></span>为第k步的测量噪声协方差矩阵，<span class="patent-image-not-available"></span>为第k步的卡尔曼增益矩阵，<span class="patent-image-not-available"></span>为第k步的测量值，<span class="patent-image-not-available"></span>为第k步的后验状态估计，<span class="patent-image-not-available"></span>为第k步的后验协方差矩阵，h为非线性观测函数,<span class="patent-image-not-available"></span>为第k步的真实状态，<span class="patent-image-not-available"></span>为第k步的观测噪声，<span class="patent-image-not-available"></span>为第k步的先验状态估计，<span class="patent-image-not-available"></span>为观测函数h在<span class="patent-image-not-available"></span>处的雅可比矩阵，I为n×n单位矩阵，<span class="patent-image-not-available"></span>为先验状态估计误差，<span class="patent-image-not-available"></span>为组合观测向量，<span class="patent-image-not-available"></span>为组合回归矩阵，<span class="patent-image-not-available"></span>为组合噪声向量，<span class="patent-image-not-available"></span>为观测噪声的协方差矩阵，<span class="patent-image-not-available"></span>为先验状态估计的协方差矩阵，<span class="patent-image-not-available"></span>为协方差更新的修正项；</div>
+<div class="description-paragraph" id="p0094">进一步的，所述控制动作输出的获取方法为：</div>
+<div class="description-paragraph" id="p0095">将RE-DEORL的决策过程从确定性变为随机性过程，在策略输出动作的基础上添加噪声<span class="patent-image-not-available"></span>实现探索性的扩展，最终环境执行的动作<span class="patent-image-not-available"></span>表达式为：</div>
+<div class="description-paragraph" id="p0096">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0097" num="0032">其中，将<span class="patent-image-not-available"></span>设置为高斯白噪声，均值μ为策略网络的输出值；</div>
+<div class="description-paragraph" id="p0098">基于训练过程的不断进行，将噪声方差持续减小实现探索与利用的平衡；</div>
+<div class="description-paragraph" id="p0099">进一步的，所述最终推进指令的获取方法为：</div>
+<div class="description-paragraph" id="p0100">推力误差不超出容差阈值；推进器功率不得超过极限值；姿态角变化率限制，防止急剧机动；喷口面积、转速和电压约束；</div>
+<div class="description-paragraph" id="p0101">目标函数数学形式为：</div>
+<div class="description-paragraph" id="p0102">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0103" num="0033">其中，J为目标函数，λ为控制惩罚因子，<span class="patent-image-not-available"></span>产生推力<span class="patent-image-not-available"></span>时消耗的能量，<span class="patent-image-not-available"></span>为推进器实际产生的推力，<span class="patent-image-not-available"></span>为期望的目标推力值；</div>
+<div class="description-paragraph" id="p0104">进一步的，所述进行策略更新的方法为：</div>
+<div class="description-paragraph" id="p0105">利用最小二乘法计算测量参数：</div>
+<div class="description-paragraph" id="p0106">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0107" num="0034">基于测量参数计算残差：</div>
+<div class="description-paragraph" id="p0108">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0109" num="0035">当所有传感器无故障即无异常测量点时，残差<span class="patent-image-not-available"></span>的值非常小，是一个接近于0的正整数；当部分传感器出现异常测量点时，残差<span class="patent-image-not-available"></span>的值大；</div>
+<div class="description-paragraph" id="p0110">由于<span class="patent-image-not-available"></span>是一个<span class="patent-image-not-available"></span>维的病态矩阵；将其相似行消除，即若<span class="patent-image-not-available"></span>，则令<span class="patent-image-not-available"></span>的第i行元素为0，其中<span class="patent-image-not-available"></span>表示矩阵<span class="patent-image-not-available"></span>的第i行元素，病态矩阵容限误差<span class="patent-image-not-available"></span>为大于0的常数；</div>
+<div class="description-paragraph" id="p0111">利用上述方法将对式</div>
+<div class="description-paragraph" id="p0112">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0113" num="0036">进行求解的问题，化为非齐次线性方程组的求解问题；利用行列式的初等行变换；解得</div>
+<div class="description-paragraph" id="p0114">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0115" num="0037">其中，<span class="patent-image-not-available"></span>为通解，广义残差<span class="patent-image-not-available"></span>为特解，<span class="patent-image-not-available"></span>，通解项代表满足残差为0的测量参数的系列组合，特解项代表导致残差不为0的测量参数的系列组合，特解项元素的值越大，代表对应传感器测量参数越异常；</div>
+<div class="description-paragraph" id="p0116">新的权重函数定义为</div>
+<div class="description-paragraph" id="p0117">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0118" num="0038">GIRLS-EKF的量测预测方程为</div>
+<div class="description-paragraph" id="p0119">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0120" num="0039">其中，<span class="patent-image-not-available"></span>为权重矩阵，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为通过最小二乘法估计的测量参数，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>的广义逆矩阵，r为观测值与估计值的残差，<span class="patent-image-not-available"></span>为矩阵第i行元素，<span class="patent-image-not-available"></span>为容限误差常数，<span class="patent-image-not-available"></span>为新定义的权重函数，<span class="patent-image-not-available"></span>为残差项，<span class="patent-image-not-available"></span>为权重函数的阈值常数，<span class="patent-image-not-available"></span>为先验状态协方差矩阵，<span class="patent-image-not-available"></span>为观测噪声协方差矩阵，<span class="patent-image-not-available"></span>为第k步的输入变量，为由<span class="patent-image-not-available"></span>权重函数构成的权重矩阵；</div>
+<div class="description-paragraph" id="p0121">进一步的，所述故障感知精度迭代的方法为：</div>
+<div class="description-paragraph" id="p0122">基于确保干净数据下估计器的一致性，<span class="patent-image-not-available"></span>应固定为<span class="patent-image-not-available"></span>，其中<span class="patent-image-not-available"></span>为标准高斯分布，尺度估计器<span class="patent-image-not-available"></span>通过迭代求解：</div>
+<div class="description-paragraph" id="p0123">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0124" num="0040">其中，<span class="patent-image-not-available"></span>是相对标准残差，权函数：</div>
+<div class="description-paragraph" id="p0125">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0126" num="0041">选择的<span class="patent-image-not-available"></span>函数为：</div>
+<div class="description-paragraph" id="p0127">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0128" num="0042">权函数定义为：</div>
+<div class="description-paragraph" id="p0129">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0130" num="0043">其中，<span class="patent-image-not-available"></span>表示<span class="patent-image-not-available"></span>函数的期望，<span class="patent-image-not-available"></span>为标准高斯分布，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>函数，<span class="patent-image-not-available"></span>为尺度估计器的方差，m为样本数量，<span class="patent-image-not-available"></span>为权函数，<span class="patent-image-not-available"></span>为相对标准残差，<span class="patent-image-not-available"></span>为阈值常数，<span class="patent-image-not-available"></span>为状态估计值，<span class="patent-image-not-available"></span>为尺度估计值。</div>
+<div class="description-paragraph" id="p0131" num="0044">本发明的有益效果：</div>
+<div class="description-paragraph" id="p0132">1、本发明构建了一套融合控制策略机制，集成强化学习RE-DEORL、模型预测控制MPC与模糊控制方法，结合飞行状态与系统健康参数，实现控制策略输出的智能加权融合，打破了传统推进控制中单一策略难以适应多飞行状态的局限，有效提升了系统在多模式、多任务阶段下的泛化能力与响应灵活性；采用的RE-DEORL强化学习算法结合了Actor-Critic结构与DQN思想，融合经验回放机制与目标网络设计，提升了策略训练的稳定性与样本利用效率，避免策略陷入局部最优，同时通过动态扰动扩展机制提高了控制策略对复杂飞行环境变化的适应能力与收敛速度；</div>
+<div class="description-paragraph" id="p0133">2、引入了基于CNN与Transformer构建的残差感知权重网络，结合GIRLS-EKF滤波结构进行多通道传感器信号处理与健康参数估算，能够在存在传感器异常、非高斯噪声或推进器性能退化情况下自动调整控制结构，实现系统的动态容错调节与鲁棒性能保障；基于飞行性能反馈与估算健康状态自适应调整控制器输出权重，实现了控制策略的“自进化”能力；同时，系统采用结构化神经网络对控制变量进行融合与解耦，结合推进器异构响应特性，实现多推进组件间协同驱动与功率最优分配，具备良好的工程可集成性与平台适应性，适用于电推进、涡扇混合、倾转旋翼等多类推进配置；实现了低空飞行器在复杂飞行状态与传感器异常工况下的推进控制鲁棒性与能效最优化，为智能控制架构提供了系统化解决方案，具有显著的应用价值与技术推广前景。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0134">附图说明</div>
+<div class="description-paragraph" id="p0135" num="0045">为了更清楚地说明本发明实施例中的技术方案，下面将对实施例描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0136" num="0046">图1是本发明实施例1提供的一种抗传感器故障的低空飞行器多模态推进控制方法的抗传感器故障的多控制器融合机制结构示意图；</div>
+<div class="description-paragraph" id="p0137">图2是本发明实施例1提供的一种抗传感器故障的低空飞行器多模态推进控制方法的Actor-Critic网络架构与训练流程图；</div>
+<div class="description-paragraph" id="p0138">图3是本发明实施例1提供的一种抗传感器故障的低空飞行器多模态推进控制方法的基于RE-DEORL算法的推进控制优化流程图；</div>
+<div class="description-paragraph" id="p0139">图4是本发明实施例1提供的一种抗传感器故障的低空飞行器多模态推进控制方法的发动机容错机载自适应模型建模方法的结构简图；</div>
+<div class="description-paragraph" id="p0140">图5是本发明实施例1提供的一种抗传感器故障的低空飞行器多模态推进控制方法的GIRLS-EKF结构流程图；</div>
+<div class="description-paragraph" id="p0141">图6是本发明实施例1提供的一种抗传感器故障的低空飞行器多模态推进控制方法的GIRLS原理示意图；</div>
+<div class="description-paragraph" id="p0142">图7是本发明实施例1提供的一种抗传感器故障的低空飞行器多模态推进控制方法的步骤流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0143">具体实施方式</div>
+<div class="description-paragraph" id="p0144" num="0047">为了使本技术领域的人员更好地理解本发明方案，下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本发明一部分的实施例，而不是全部的实施例，基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都应当属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0145" num="0048">实施例1</div>
+<div class="description-paragraph" id="p0146">如图1和图7所示，本发明实施例提供的一种抗传感器故障的低空飞行器多模态推进控制方法，具体包括如下步骤：</div>
+<div class="description-paragraph" id="p0147">S1：构建短距/垂直起降飞行器的推进组件的非线性模型；</div>
+<div class="description-paragraph" id="p0148">针对短垂飞行器中电推进、涡扇推进、倾转旋翼等多类型推进单元，构建统一的非线性建模与智能控制架构，提出基于RE-DEORL强化学习算法主控的融合推进控制策略，并联合健康感知机制、残差加权网络与控制器权重调节机制，动态协调推进单元输出；</div>
+<div class="description-paragraph" id="p0149">控制变量包括但不限于：电推进功率分配比、喷口面积、倾转角度、喷口偏转角度和模态切换变量；</div>
+<div class="description-paragraph" id="p0150">在具体实施例中，所述非线性模型的构建方法为：</div>
+<div class="description-paragraph" id="p0151">定义控制变量向量描述飞行器推进系统控制过程；</div>
+<div class="description-paragraph" id="p0152">具体的，定义控制变量向量：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0153">其中，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>代表两个独立电推进模块的输出功率百分比，主要影响垂直起降与低速姿态控制；</div>
+<div class="description-paragraph" id="p0154"> <span class="patent-image-not-available"></span>代表涡扇喷口偏转角度，控制推进方向的细调，尤其用于起飞、悬停与下降阶段的姿态修正；</div>
+<div class="description-paragraph" id="p0155"> <span class="patent-image-not-available"></span>代表倾转机构角度，决定电推进器或风扇的工作方向，是实现垂直-水平飞行过渡的关键变量；</div>
+<div class="description-paragraph" id="p0156"> <span class="patent-image-not-available"></span>代表涡扇或风扇推进器的尾喷口开度，影响出口气流速度和动量，是调节水平推力与能耗之间平衡的重要控制参数；</div>
+<div class="description-paragraph" id="p0157">变量构成系统主控输入，参与实时优化过程；</div>
+<div class="description-paragraph" id="p0158">定义系统状态向量，刻画推进系统在不同控制输入下的演化过程；</div>
+<div class="description-paragraph" id="p0159">具体的，定义系统状态向量：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0160">其中，<span class="patent-image-not-available"></span>代表当前时刻推进系统的合成推力；</div>
+<div class="description-paragraph" id="p0161"> <span class="patent-image-not-available"></span>代表单位推力能耗（如百瓦/牛顿），代表能效性能；</div>
+<div class="description-paragraph" id="p0162"> <span class="patent-image-not-available"></span>代表飞行器高度，用于反映垂直飞行状态；</div>
+<div class="description-paragraph" id="p0163"> <span class="patent-image-not-available"></span>代表飞行器前向速度，衡量水平推进输出；</div>
+<div class="description-paragraph" id="p0164">基于不同推进器之间存在非线性耦合，非线性耦合包括但不仅限于：电推进器动态响应快、涡扇系统滞后性强和气流干扰耦合复杂，系统状态转移过程通过函数<span class="patent-image-not-available"></span>进行非线性映射；</div>
+<div class="description-paragraph" id="p0165">需要说明的是，函数<span class="patent-image-not-available"></span>由飞行器气动模型、推进组件响应模型和功率转换模型联合构建，支持离线仿真与在线强化学习训练过程中迭代优化；</div>
+<div class="description-paragraph" id="p0166">保证飞行器任务推进稳定性的前提下，最小化单位推力能耗，即构造如下非线性约束优化模型：</div>
+<div class="description-paragraph" id="p0167">性能指标：最小化能耗率<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0168">约束条件：飞行安全边界，包括最大功率、电机转速上限和姿态角限制，多推进器间功率动态平衡，推力输出满足不同飞行状态要求，如悬停推力和水平巡航推力；</div>
+<div class="description-paragraph" id="p0169">系统通过强化学习持续迭代更新策略网络，并联合其他控制器输出实现融合调节；</div>
+<div class="description-paragraph" id="p0170">S2：实时采集飞行状态与传感器观测参数，输入至飞行状态识别模块与健康参数估算模块，分别识别飞行模式与每一推进组件的健康状态；</div>
+<div class="description-paragraph" id="p0171">在具体实施例中，实时采集飞行高度、速度、任务阶段、倾角、推力需求等状态变量；采用基于决策树的状态分类模型，判断当前飞行所处的模式，如垂直起飞、悬停、水平巡航、转场过渡等；该模块输出将作为策略融合机制的参考变量；</div>
+<div class="description-paragraph" id="p0172">控制策略群包含以下三类控制算法模块：RE-DEORL主控模块负责主策略生成与学习控制变量；MPC控制模块利用系统模型进行短时域内控制变量预测与轨迹修正；模糊控制模块基于经验规则和状态变量模糊推理，适应突发扰动和不确定性环境；</div>
+<div class="description-paragraph" id="p0173">融合控制器输出模块以三种控制器输出为输入；构建一个加权融合机制，输出最优控制动作；权重动态变化，由自学习模块实时更新；</div>
+<div class="description-paragraph" id="p0174">自学习调参模块使用轻量级神经网络构建状态-权重映射函数<span class="patent-image-not-available"></span>；根据飞行任务阶段、系统性能反馈、自定义奖惩机制对各控制器输出权重进行动态调整；实现控制器输出在不同场景下的最优匹配与资源利用；</div>
+<div class="description-paragraph" id="p0175">执行指令生成与下发模块接收融合后的控制量，包括但不仅限于：推进功率、电机控制信号和喷口调节量；转化为低层控制指令，通过控制总线分发至各推进子系统；</div>
+<div class="description-paragraph" id="p0176">如图1所示，抗传感器故障的多控制器融合机制结构形成一个由状态识别→控制策略群并行输出→自学习融合→最终执行构成的多层控制体系，实现系统级响应能力与能源效率的耦合最优化；</div>
+<div class="description-paragraph" id="p0177">需要说明的是，多控制器结构中，RE-DEORL为主控核心，生成主控制策略，提供系统训练与性能驱动的基准；策略网络的输出作为控制变量初值，同时作为模糊控制与MPC的参考输入；RE-DEORL的训练目标优化策略自身，引导融合控制器模块学习在不同状态下最优组合方式；在训练过程中，RE-DEORL控制器接收经验池中的交互数据，利用目标网络与实时网络对比误差更新价值网络，再反馈给策略网络，完成逐步迭代优化；</div>
+<div class="description-paragraph" id="p0178">控制结构在执行飞行任务的过程中，根据状态感知模块输出，自动判断飞行工况，并进行如下流程：</div>
+<div class="description-paragraph" id="p0179">输入当前状态<span class="patent-image-not-available"></span>，供 RE-DEORL、MPC、模糊控制器并行处理；</div>
+<div class="description-paragraph" id="p0180">三个控制器分别计算输出<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0181">将状态<span class="patent-image-not-available"></span>输入融合器权重网络，计算融合权重<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0182">根据融合公式生成最终控制量<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0183">发送控制指令至执行器，完成推进控制；</div>
+<div class="description-paragraph" id="p0184">系统收集执行反馈，存入经验池供RE-DEORL训练更新；</div>
+<div class="description-paragraph" id="p0185">若存在性能退化或飞行模式切换，自动重新调整融合权重或触发控制结构重组；</div>
+<div class="description-paragraph" id="p0186">如图2所示，Actor-Critic模型通过将策略梯度方法与值函数方法结合的方式得到更优的算法结构；</div>
+<div class="description-paragraph" id="p0187">在Actor-Critic模型结构中，Actor网络的依据为策略梯度算法，根据当前状态从连续动作中选取合适的动作；</div>
+<div class="description-paragraph" id="p0188">Critic网络的依据是DQN等值函数方法，计算该动作执行后发生状态转移所带来的奖惩值，评估该动作是否合理；</div>
+<div class="description-paragraph" id="p0189">Actor-Critic结构；对网络参数进行单步更新，避免策略梯度算法回合制更新导致模型效率低下的问题；</div>
+<div class="description-paragraph" id="p0190">在具体的交互过程中，Actor网络获取每一个动作的概率值，再基于概率大小选择行为；</div>
+<div class="description-paragraph" id="p0191">Critic网络不断进行更新，以完善每个状态下选择每个动作的奖惩值；</div>
+<div class="description-paragraph" id="p0192">基于Actor网络根据Critic网络对于动作的奖惩值来更新自身参数，此时新的损失函数为：</div>
+<div class="description-paragraph" id="p0193">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0194" num="0049">Actor网络采用的策略梯度更新公式如下：</div>
+<div class="description-paragraph" id="p0195">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0196" num="0050">Critic网络通过DQN算法更新其参数，梯度更新公式如下：</div>
+<div class="description-paragraph" id="p0197">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0198" num="0051">其中，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别为Actor网络和Critic网络的学习率；<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别为Actor网络和Critic网络的参数；<span class="patent-image-not-available"></span>代表智能体在环境状态<span class="patent-image-not-available"></span>下执行动作<span class="patent-image-not-available"></span>获得的奖励值大小；<span class="patent-image-not-available"></span>代表折扣因子，用于衡量未来奖励的重要性，<span class="patent-image-not-available"></span>代表在状态<span class="patent-image-not-available"></span>时由Actor网络生成动作输入到Critic网络得到的动作价值，代表时间差分误差，<span class="patent-image-not-available"></span>代表策略<span class="patent-image-not-available"></span>关于参数<span class="patent-image-not-available"></span>在状态<span class="patent-image-not-available"></span>下的梯度，<span class="patent-image-not-available"></span>代表Actor网络采用的策略；</div>
+<div class="description-paragraph" id="p0199">基于Actor-Critic模型获得的奖励值识别飞行模式与每一推进组件的健康状态；</div>
+<div class="description-paragraph" id="p0200">S3：引入权重嵌入融合网络，输入状态残差与健康状态，生成所述控制策略群的加权系数，提取局部扰动特征，建模多通道状态时序依赖，输出残差加权向量；</div>
+<div class="description-paragraph" id="p0201">在具体实施例中，基于原始Actor-Critic架构基础上引入残差感知权重机制，有效增强系统对非高斯噪声、突发异常信号的适应能力，并在Actor-Critic模型结构基础上融入了DQN算法的思想，其结构包含价值网络和策略网络两部分；</div>
+<div class="description-paragraph" id="p0202">强化学习通常基于MDP模型，数据之间存在关联，导致训练不稳定，网络难以收敛，基于RE-DEORL算法利用经验回放池和目标网络两种方式来改善算法整体的性能；</div>
+<div class="description-paragraph" id="p0203">面对传感器信号扰动、非高斯分布残差、突发异常值时，Actor-Critic结构难以鲁棒调整；</div>
+<div class="description-paragraph" id="p0204">控制策略对噪声变化的敏感性高，可能导致策略发散或性能退化，将残差感知权重网络引入到以下两个核心点：</div>
+<div class="description-paragraph" id="p0205">状态预处理阶段：构建一个 CNN+Transformer 网络结构</div>
+<div class="description-paragraph" id="p0206">输入：状态残差，多通道传感器残差流<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0207">CNN模块：提取局部扰动特征；</div>
+<div class="description-paragraph" id="p0208">Transformer模块：建模长期状态依赖、异常持续性模式；</div>
+<div class="description-paragraph" id="p0209">输出：残差加权向量<span class="patent-image-not-available"></span>，作为控制变量加权调整参数；</div>
+<div class="description-paragraph" id="p0210">控制器输出加权机制中引入<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0211" num="0052">原始控制量<span class="patent-image-not-available"></span>重写为：</div>
+<div class="description-paragraph" id="p0212">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0213" num="0053">其中<span class="patent-image-not-available"></span>为状态敏感动态增益系数，用于调整在异常扰动下的动作幅度；</div>
+<div class="description-paragraph" id="p0214">对于深度强化学习的神经网络，在利用梯度下降法更新神经元的权重系数时，需要一定量的样本数据；</div>
+<div class="description-paragraph" id="p0215">若利用在线交互学习的方式，则当前网络更新结束后需要丢弃当前数据，导致数据利用率大幅度降低，智能体需要与环境进行更多的交互达到最终收敛的效果；</div>
+<div class="description-paragraph" id="p0216">经验回放技术开辟一定大小的缓存区，将状态转移信息<span class="patent-image-not-available"></span>保存下来；</div>
+<div class="description-paragraph" id="p0217">状态转移样本信息按照先后顺序依次进入缓存区，若缓存区已满，则新样本进入时，时间最久的样本被移出缓存区；</div>
+<div class="description-paragraph" id="p0218">需要说明的是，RE-DEORL算法作为确定性策略梯度算法，在给定初始状态后根据策略网络得到的交互序列是固定的，智能体无法生成不同的行为来对环境进行深度探索，因此策略就无法得到提升；</div>
+<div class="description-paragraph" id="p0219">如图3所示，基于RE-DEORL算法进行推进控制优化；</div>
+<div class="description-paragraph" id="p0220">具体的，随机初始化当前Actor网络<span class="patent-image-not-available"></span>的权重参数<span class="patent-image-not-available"></span>和当前Critic网络<span class="patent-image-not-available"></span>的权重参数<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0221">初始化目标Actor网络<span class="patent-image-not-available"></span>和目标Critic网络<span class="patent-image-not-available"></span>，各自的网络权重参数分别为：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0222">初始化经验回放池<span class="patent-image-not-available"></span>，用于存储状态转移与控制残差信息；</div>
+<div class="description-paragraph" id="p0223">残差感知网络初始化，构建CNN + Transformer组合网络，用于提取多通道状态残差序列中的扰动特征和时间依赖性；</div>
+<div class="description-paragraph" id="p0224">网络输入为当前状态下的残差序列<span class="patent-image-not-available"></span>，即预估状态与真实状态的差值；</div>
+<div class="description-paragraph" id="p0225">CNN模块提取局部扰动峰值，Transformer模块建模残差随时间和通道的演化关系；</div>
+<div class="description-paragraph" id="p0226">网络输出为残差加权向量<span class="patent-image-not-available"></span>，用于控制变量动态调节；</div>
+<div class="description-paragraph" id="p0227">当<span class="patent-image-not-available"></span>最大回合数时，为动作探索初始化一个随机过程<span class="patent-image-not-available"></span>，获得初始状态<span class="patent-image-not-available"></span>，并计算初始残差<span class="patent-image-not-available"></span>；输入至残差感知网络，得到残差加权系数<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0228">生成加权控制动作，将状态<span class="patent-image-not-available"></span>输入当前策略网络，输出原始动作向量<span class="patent-image-not-available"></span>；使用残差加权机制，得到最终执行动作<span class="patent-image-not-available"></span>将<span class="patent-image-not-available"></span>发送至环境执行；</div>
+<div class="description-paragraph" id="p0229">环境反馈新状态<span class="patent-image-not-available"></span>、奖励<span class="patent-image-not-available"></span>、新残差<span class="patent-image-not-available"></span>；将状态转移样本<span class="patent-image-not-available"></span>存储至经验回放池，从经验回放池<span class="patent-image-not-available"></span>随机采样<span class="patent-image-not-available"></span>条样本，作为Actor网络、Critic网络的训练数据，令<span class="patent-image-not-available"></span>，通过最小化损失函数<span class="patent-image-not-available"></span>来更新Critic网络参数</div>
+<div class="description-paragraph" id="p0230">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0231" num="0054">其中，<span class="patent-image-not-available"></span>为目标<span class="patent-image-not-available"></span>值，<span class="patent-image-not-available"></span>；在计算<span class="patent-image-not-available"></span>时，<span class="patent-image-not-available"></span>代表折扣系数，<span class="patent-image-not-available"></span>，用到了目标价值网络<span class="patent-image-not-available"></span>和目标策略网络<span class="patent-image-not-available"></span>，使得<span class="patent-image-not-available"></span>网络在训练过程中能够保持稳定，同时更加容易收敛；</div>
+<div class="description-paragraph" id="p0232">计算策略网络的梯度：</div>
+<div class="description-paragraph" id="p0233">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0234" num="0055">更新目标网络<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>：</div>
+<div class="description-paragraph" id="p0235">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0236" num="0056">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0237" num="0057">其中，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别为当前策略网络和当前价值网络的参数，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别为目标策略网络和目标价值网络的参数，<span class="patent-image-not-available"></span>为更新系数，表示更新步长，在当前网络参数和目标网络参数之间进行平衡；</div>
+<div class="description-paragraph" id="p0238">需要说明的是，RE-DEORL在保留RE-DEORL训练框架基础上，融合了状态残差自感知调节机制，通过引入CNN + Transformer组合感知网络和动作加权结构，显著增强了策略网络在复杂扰动环境下的鲁棒性与自适应调节能力；特别适用于多传感器、多控制变量、非高斯噪声背景下的推进系统智能控制任务；</div>
+<div class="description-paragraph" id="p0239">S4：将识别状态及健康状态联合输入控制策略群推进控制优化，并分别计算控制动作输出；</div>
+<div class="description-paragraph" id="p0240">如图4所示，构建自适应模型；</div>
+<div class="description-paragraph" id="p0241">动机具有强烈的非线性，即模型的系统方程和量测方程都是非线性的。EKF是对原系统和量测先进行泰勒级数展开，将系统近似为一阶线性系统再作线性卡尔曼滤波器估计，与线性KF的区别在于使用非线性模型计算状态值和输出值，解决非线性系统的参数估计问题。</div>
+<div class="description-paragraph" id="p0242" num="0058">由于发动机的性能退化是缓慢发生的，认为满足<span class="patent-image-not-available"></span>；通过公式</div>
+<div class="description-paragraph" id="p0243">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0244" num="0059">改写为：</div>
+<div class="description-paragraph" id="p0245">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0246" num="0060">式中：</div>
+<div class="description-paragraph" id="p0247">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0248" num="0061">其中，<span class="patent-image-not-available"></span>为状态变量的时间导数，<span class="patent-image-not-available"></span>为状态矩阵，刻画状态变量自身对其导数的影响，<span class="patent-image-not-available"></span>为状态变量的变化量，<span class="patent-image-not-available"></span>为输入矩阵，描述输入对状态导数的作用，<span class="patent-image-not-available"></span>为输入变量的变化量，<span class="patent-image-not-available"></span>为矩阵，体现对状态导数的影响，<span class="patent-image-not-available"></span>为额外变量的变化量，<span class="patent-image-not-available"></span>为过程噪声，<span class="patent-image-not-available"></span>为输出变量的变化量，<span class="patent-image-not-available"></span>为输出矩阵，描述状态对输出的影响，<span class="patent-image-not-available"></span>为直接传输矩阵，表示输入对输出的直接作用，<span class="patent-image-not-available"></span>为矩阵，刻画对输出的影响，<span class="patent-image-not-available"></span>为测量噪声，<span class="patent-image-not-available"></span>为新的状态变量导数，<span class="patent-image-not-available"></span>为新的状态向量；</div>
+<div class="description-paragraph" id="p0249">基于EKF的设计，将式：</div>
+<div class="description-paragraph" id="p0250">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0251" num="0062">转换为离散形式：</div>
+<div class="description-paragraph" id="p0252">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0253" num="0063">式中下标k表示该变量在第k步的值；</div>
+<div class="description-paragraph" id="p0254">定义：</div>
+<div class="description-paragraph" id="p0255">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0256" num="0064">初始化：</div>
+<div class="description-paragraph" id="p0257">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0258" num="0065">状态预测：</div>
+<div class="description-paragraph" id="p0259">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0260" num="0066">滤波器中的遗忘因子为：</div>
+<div class="description-paragraph" id="p0261">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0262" num="0067">其中，<span class="patent-image-not-available"></span>为遗忘因子基准值。</div>
+<div class="description-paragraph" id="p0263" num="0068"> <span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>矩阵为：</div>
+<div class="description-paragraph" id="p0264">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0265" num="0069">其中，<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0266" num="0070">量测预测：</div>
+<div class="description-paragraph" id="p0267">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0268" num="0071">非线性项<span class="patent-image-not-available"></span>线性化时引入的误差与噪声<span class="patent-image-not-available"></span>相比，<span class="patent-image-not-available"></span>附近的噪声忽略不计；对<span class="patent-image-not-available"></span>进行一阶泰勒展开；得到</div>
+<div class="description-paragraph" id="p0269">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0270" num="0072">进而；得到EKF的批处理回归公式：</div>
+<div class="description-paragraph" id="p0271">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0272" num="0073">其中，<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0273">上式中的估计问题改写为</div>
+<div class="description-paragraph" id="p0274">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0275" num="0074">观测向量为<span class="patent-image-not-available"></span>，回归矩阵为<span class="patent-image-not-available"></span>，噪声为<span class="patent-image-not-available"></span>。误差<span class="patent-image-not-available"></span>的协方差矩阵为</div>
+<div class="description-paragraph" id="p0276">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0277" num="0075">修正步骤中计算的EKF更新状态<span class="patent-image-not-available"></span>，通过执行加权最小二乘得到，线性回归：</div>
+<div class="description-paragraph" id="p0278">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0279" num="0076">可转化为：</div>
+<div class="description-paragraph" id="p0280">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0281" num="0077">EKF的修正步长可由下式得到：</div>
+<div class="description-paragraph" id="p0282">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0283" num="0078">其中，为第k+1步的状态向量，<span class="patent-image-not-available"></span>为离散状态转移函数，<span class="patent-image-not-available"></span>为第k步的过程噪声，<span class="patent-image-not-available"></span>为第k步的测量输出，<span class="patent-image-not-available"></span>为离散测量函数，<span class="patent-image-not-available"></span>为第k步的测量噪声，<span class="patent-image-not-available"></span>为状态转移函数对状态x的雅可比矩阵，<span class="patent-image-not-available"></span>为测量函数对状态x的雅可比矩阵，<span class="patent-image-not-available"></span>为初始状态估计，<span class="patent-image-not-available"></span>为初始状态估计的协方差矩阵，<span class="patent-image-not-available"></span>为第k步的先验状态估计，<span class="patent-image-not-available"></span>为第k步的状态转移函数，<span class="patent-image-not-available"></span>为第k-1步的后验状态估计，<span class="patent-image-not-available"></span>为第k步的先验协方差矩阵，<span class="patent-image-not-available"></span>为第k步的遗忘因子，<span class="patent-image-not-available"></span>为状态转移函数对状态x在<span class="patent-image-not-available"></span>处的雅可比矩阵，<span class="patent-image-not-available"></span>为第k-1步的后验协方差矩阵，<span class="patent-image-not-available"></span>为第k-1步的过程噪声协方差矩阵，<span class="patent-image-not-available"></span>为遗忘因子基准值，<span class="patent-image-not-available"></span>为计算遗忘因子的中间矩阵，<span class="patent-image-not-available"></span>为中间矩阵，<span class="patent-image-not-available"></span>为矩阵<span class="patent-image-not-available"></span>的迹，<span class="patent-image-not-available"></span>为测量函数h对状态x在<span class="patent-image-not-available"></span>处的雅可比矩阵，<span class="patent-image-not-available"></span>为初始协方差，<span class="patent-image-not-available"></span>为第k步的测量噪声协方差矩阵，<span class="patent-image-not-available"></span>为第k步的卡尔曼增益矩阵，<span class="patent-image-not-available"></span>为第k步的测量值，<span class="patent-image-not-available"></span>为第k步的后验状态估计，<span class="patent-image-not-available"></span>为第k步的后验协方差矩阵，h为非线性观测函数,<span class="patent-image-not-available"></span>为第k步的真实状态，<span class="patent-image-not-available"></span>为第k步的观测噪声，<span class="patent-image-not-available"></span>为第k步的先验状态估计，<span class="patent-image-not-available"></span>为观测函数h在<span class="patent-image-not-available"></span>处的雅可比矩阵，I为n×n单位矩阵，<span class="patent-image-not-available"></span>为先验状态估计误差，<span class="patent-image-not-available"></span>为组合观测向量，<span class="patent-image-not-available"></span>为组合回归矩阵，<span class="patent-image-not-available"></span>为组合噪声向量，<span class="patent-image-not-available"></span>为观测噪声的协方差矩阵，<span class="patent-image-not-available"></span>为先验状态估计的协方差矩阵，<span class="patent-image-not-available"></span>为协方差更新的修正项；</div>
+<div class="description-paragraph" id="p0284">如图5所示，改进迭代重加权最小二乘-扩展卡尔曼滤波器；</div>
+<div class="description-paragraph" id="p0285">GIRLS模块根据权重公式计算权重，异常值离群体越远，分配的权重越小，当异常值超过一定的限制值c时，其权重将变为0；</div>
+<div class="description-paragraph" id="p0286">混合自适应模块根据历史数据对测量噪声协方差矩阵和遗忘因子进行更新，从而不断优化滤波器参数；</div>
+<div class="description-paragraph" id="p0287">通过利用测量值与模型计算值的残差以及滤波器计算得到的参数进行迭代运算，实现状态量<span class="patent-image-not-available"></span>的估计；</div>
+<div class="description-paragraph" id="p0288">需要说明的是，发动机的飞行包线较大，工作模式较多，且工作环境恶劣，在复杂环境下容易受到干扰，此外，传感器数量众多且易发生故障，容易产生较大的测量异常值；经典的加权最小二乘方法，即高斯噪声下的最大似然估计器，将受到精度下降的影响，表现为估计值方差增大和偏差增加，从而影响可靠性和估计精度，具有较差的鲁棒性；</div>
+<div class="description-paragraph" id="p0289">Huber M估计器是对滤波器异常观测值的一种研究方法，通过引入权重来重新构造测量噪声协方差矩阵，从而降低异常观测值对系统的影响，提高滤波器的鲁棒性；</div>
+<div class="description-paragraph" id="p0290">Huber代价函数是M估计中最常用的代价函数，其表达式如下述公式所示：</div>
+<div class="description-paragraph" id="p0291">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0292" num="0079">式中，γ为调节因子，i为1，2，…m，m为观测量的维数，<span class="patent-image-not-available"></span>为观测残差；</div>
+<div class="description-paragraph" id="p0293">修正后的量测噪声协方差矩阵为：</div>
+<div class="description-paragraph" id="p0294">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0295" num="0080">式中，<span class="patent-image-not-available"></span>为权重函数，<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0296" num="0081">需要说明的是，通过将上述公式替代EKF中的测量噪声协方差矩阵，得到了基于Huber的鲁棒EKF算法，对测量噪声协方差矩阵进行重加权，为不同大小的观测残差构造不同的权重，从而重构测量噪声协方差矩阵，克服异常观测值对估计精度的影响，达到提升估计器鲁棒性的目的；</div>
+<div class="description-paragraph" id="p0297">根据公式：</div>
+<div class="description-paragraph" id="p0298">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0299" num="0082">需要说明的是，由于信息异常值出现在预测状态<span class="patent-image-not-available"></span>中，它们的影响会通过矩阵<span class="patent-image-not-available"></span>传播到上述公式的左边的观测向量，从而造成较大的估计误差；对噪声等扰动造成的小偏离异常值具有一定的隔离作用，在一定程度上提高滤波器的鲁棒性和估计精度；当传感器出现故障，测量值与实际值有较大偏差时，无法克服异常测量值的影响；</div>
+<div class="description-paragraph" id="p0300">加权最小二乘估计器是高斯噪声下的最大似然估计器，被视作使回归残差范数最小的估计器，即<span class="patent-image-not-available"></span>满足：</div>
+<div class="description-paragraph" id="p0301">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0302" num="0083">其中，<span class="patent-image-not-available"></span>为残差的标准差，即<span class="patent-image-not-available"></span>，残差向量为<span class="patent-image-not-available"></span>，arg min代表使后面式子达到最小值时的变量的取值；</div>
+<div class="description-paragraph" id="p0303">标准差估计的大小受到异常测量值即离群点的影响，为了使相应的残差平方最小化，滤波器甚至倾向于向离群点倾斜；</div>
+<div class="description-paragraph" id="p0304">如图6所示，基于广义迭代重加权最小二乘，左下方实线圆表示待估计的圆，左下方圆点表示正常观测值，右上方突出圆点表示异常观测值，右上方实线圆表示WLS拟合结果，虚线圆表示GIRLS拟合结果；</div>
+<div class="description-paragraph" id="p0305">GIRLS方法对所有观测值进行迭代重加权运算，为正常观测值赋予权重1，为异常观测值赋予小于1的权重，异常观测值距离正常值越远，权重越小，直至为0；</div>
+<div class="description-paragraph" id="p0306">需要说明的是，采用WLS方法进行拟合时，由于异常观测值的权重仍为1，拟合结果与待估计值会有较大偏差，而GIRLS方法由于隔离了异常观测值，拟合效果远优于WLS方法拟合结果；</div>
+<div class="description-paragraph" id="p0307">若回归最小化残差的鲁棒尺度，则估计是鲁棒的，即：</div>
+<div class="description-paragraph" id="p0308">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0309" num="0084">其中，<span class="patent-image-not-available"></span>是一个鲁棒尺度估计器，最小化鲁棒尺度估计器；确保对异常测量值的隔离，估计残差尺度的估计器定义如下：</div>
+<div class="description-paragraph" id="p0310">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0311" num="0085">式中，<span class="patent-image-not-available"></span>，函数<span class="patent-image-not-available"></span>是满足<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>的有界<span class="patent-image-not-available"></span>函数，<span class="patent-image-not-available"></span>是偶函数且<span class="patent-image-not-available"></span>对<span class="patent-image-not-available"></span>不递减；</div>
+<div class="description-paragraph" id="p0312">将RE-DEORL的决策过程从确定性变为随机性过程，在策略输出动作的基础上添加噪声<span class="patent-image-not-available"></span>实现探索性的扩展，最终环境执行的动作<span class="patent-image-not-available"></span>表达式为：</div>
+<div class="description-paragraph" id="p0313">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0314" num="0086">其中，将<span class="patent-image-not-available"></span>设置为高斯白噪声，均值μ为策略网络的输出值；</div>
+<div class="description-paragraph" id="p0315">基于训练过程的不断进行，将噪声方差持续减小来实现探索与利用的平衡；</div>
+<div class="description-paragraph" id="p0316">S5：根据控制策略群的加权系数加权控制动作输出，生成最终推进指令，将最终推进指令分发至飞行器各推进子系统，各推进子系统反馈信号与传感器数据至经验池与健康参数估算模块，并进行策略更新与故障感知精度迭代；</div>
+<div class="description-paragraph" id="p0317">基于确保干净数据下估计器的一致性，<span class="patent-image-not-available"></span>应固定为<span class="patent-image-not-available"></span>，其中<span class="patent-image-not-available"></span>为标准高斯分布，尺度估计器<span class="patent-image-not-available"></span>通过迭代求解：</div>
+<div class="description-paragraph" id="p0318">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0319" num="0087">其中，<span class="patent-image-not-available"></span>是相对标准残差，权函数：</div>
+<div class="description-paragraph" id="p0320">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0321" num="0088">选择的<span class="patent-image-not-available"></span>函数为：</div>
+<div class="description-paragraph" id="p0322">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0323" num="0089">权函数定义为：</div>
+<div class="description-paragraph" id="p0324">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0325" num="0090">需要说明的是，标准残差对应于一个具有无界<span class="patent-image-not-available"></span>函数的估计器，即<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>；其中，<span class="patent-image-not-available"></span>表示<span class="patent-image-not-available"></span>函数的期望，<span class="patent-image-not-available"></span>为标准高斯分布，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>函数，<span class="patent-image-not-available"></span>为尺度估计器的方差，m为样本数量，<span class="patent-image-not-available"></span>为权函数，<span class="patent-image-not-available"></span>为相对标准残差，<span class="patent-image-not-available"></span>为阈值常数，<span class="patent-image-not-available"></span>为状态估计值，<span class="patent-image-not-available"></span>为尺度估计值；这种情况下鲁棒性的缺乏；理解为对所有残差使用一个相等的权重<span class="patent-image-not-available"></span>进行加权，最小化残差的鲁棒尺度得到高度鲁棒估计器；</div>
+<div class="description-paragraph" id="p0326">GIRLS方法首先利用最小二乘法计算测量参数：</div>
+<div class="description-paragraph" id="p0327">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0328" num="0091">基于测量参数计算残差：</div>
+<div class="description-paragraph" id="p0329">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0330" num="0092">当所有传感器无故障即无异常测量点时，残差<span class="patent-image-not-available"></span>的值非常小，是一个接近于0的正整数；当部分传感器出现异常测量点时，残差<span class="patent-image-not-available"></span>的值大；</div>
+<div class="description-paragraph" id="p0331">由于<span class="patent-image-not-available"></span>是一个<span class="patent-image-not-available"></span>维的病态矩阵；将其相似行消除，即若<span class="patent-image-not-available"></span>，则令<span class="patent-image-not-available"></span>的第i行元素为0，其中<span class="patent-image-not-available"></span>表示矩阵<span class="patent-image-not-available"></span>的第i行元素，病态矩阵容限误差<span class="patent-image-not-available"></span>为大于0的常数；</div>
+<div class="description-paragraph" id="p0332">利用上述方法将对式</div>
+<div class="description-paragraph" id="p0333">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0334" num="0093">进行求解的问题，化为非齐次线性方程组的求解问题；利用行列式的初等行变换；解得</div>
+<div class="description-paragraph" id="p0335">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0336" num="0094">其中，<span class="patent-image-not-available"></span>为通解，广义残差<span class="patent-image-not-available"></span>为特解，<span class="patent-image-not-available"></span>，通解项代表满足残差为0的测量参数的系列组合，特解项代表导致残差不为0的测量参数的系列组合，特解项元素的值越大，代表对应传感器测量参数越异常；</div>
+<div class="description-paragraph" id="p0337">新的权重函数定义为</div>
+<div class="description-paragraph" id="p0338">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0339" num="0095">GIRLS-EKF的量测预测方程为</div>
+<div class="description-paragraph" id="p0340">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0341" num="0096">其中，<span class="patent-image-not-available"></span>为权重矩阵，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为通过最小二乘法估计的测量参数，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>的广义逆矩阵，r为观测值与估计值的残差，<span class="patent-image-not-available"></span>为矩阵第i行元素，<span class="patent-image-not-available"></span>为容限误差常数，<span class="patent-image-not-available"></span>为新定义的权重函数，<span class="patent-image-not-available"></span>为残差项，<span class="patent-image-not-available"></span>为权重函数的阈值常数，<span class="patent-image-not-available"></span>为先验状态协方差矩阵，<span class="patent-image-not-available"></span>为观测噪声协方差矩阵，<span class="patent-image-not-available"></span>为第k步的输入变量，为由<span class="patent-image-not-available"></span>权重函数构成的权重矩阵；</div>
+<div class="description-paragraph" id="p0342">最低能耗控制目标为：在不同飞行模式下，输出期望推力的同时，最小化单位推力能耗<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0343">控制目标用于飞机在巡航、过渡、低空巡检等阶段的任务控制优化；</div>
+<div class="description-paragraph" id="p0344">控制变量包括：电推进功率<span class="patent-image-not-available"></span>，尾喷管开度<span class="patent-image-not-available"></span>，倾转角度<span class="patent-image-not-available"></span>，喷口偏转角<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0345" num="0097">约束条件包括：推力误差不超出容差阈值；推进器功率不得超过极限值；姿态角变化率限制，防止急剧机动；喷口面积、转速和电压约束；</div>
+<div class="description-paragraph" id="p0346">目标函数数学形式为：</div>
+<div class="description-paragraph" id="p0347">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0348" num="0098">其中λ为控制惩罚因子，用于平衡推进性能与能效的关系，J为目标函数，<span class="patent-image-not-available"></span>产生推力<span class="patent-image-not-available"></span>时消耗的能量，<span class="patent-image-not-available"></span>为推进器实际产生的推力，<span class="patent-image-not-available"></span>为期望的目标推力值；</div>
+<div class="description-paragraph" id="p0349">需要说明的是，最终问题可归结为一个带非线性动态约束的优化问题，求解过程中通过RE-DEORL迭代策略不断优化控制变量组合，逼近最优推力能耗比；</div>
+<div class="description-paragraph" id="p0350">以上对本发明的一个实施例进行了详细说明，但所述内容仅为本发明的较佳实施例，不能被认为用于限定本发明的实施范围；上述公式均是去量纲取其数值计算，公式是由采集大量数据进行软件模拟得到最近真实情况的一个公式，公式中的预设参数由本领域的技术人员根据实际情况和历史经验进行设置，可根据实际情况进行调整；以上所述仅为本发明的优选实施例而已，并不用于限制本发明，凡依据本发明申请范围所作的均等变化与改进等，仍应归属于本发明的专利涵盖范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

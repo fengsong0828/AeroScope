@@ -1,0 +1,124 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120069433A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES495966687">
+<invention-title id="title1" lang="ZH">一种基于AI和物联网的低空飞行器运行监测管理系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空飞行器运行监测技术领域，具体涉及一种基于AI和物联网的低空飞行器运行监测管理系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">无人机是一种无人驾驶的低空飞行器，可以在城市或者山区等复杂环境中灵活飞行，目前无人机已经广泛应用于农业和物流配送等各个领域。</div>
+<div class="description-paragraph" id="p0005" num="0003">其中，在农业领域中，无人机可以通过搭载的传感器和摄像头，采集目标区域内的农作物图片，用于分析农作物生长情况和病虫害信息；通常无人机在执行任务时，确定飞行线路，然后根据飞行线路的距离和无人机的实时剩余电量选择出能够执行本次飞行线路的无人机。</div>
+<div class="description-paragraph" id="p0006" num="0004">但是，在低空域中，也会有鸟类飞行，无人机在飞行过程中，需要躲避鸟类，若鸟类较多，无人机风险较大，容易导致无人机坠毁，且在无人机躲避鸟类时，需要耗费更多的电量，因此当无人机进入鸟类较多的空域时，因躲避鸟类造成电量耗费较多，无法完成本次飞行线路。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明的目的在于提供一种基于AI和物联网的低空飞行器运行监测管理系统，解决以上技术问题：</div>
+<div class="description-paragraph" id="p0009" num="0006">本发明的目的可以通过以下技术方案实现：</div>
+<div class="description-paragraph" id="p0010" num="0007">一种基于AI和物联网的低空飞行器运行监测管理系统，所述管理系统包括：</div>
+<div class="description-paragraph" id="p0011" num="0008">鸟类分布采集模块，用于采集目标区域低空域内鸟类活动信息数据；</div>
+<div class="description-paragraph" id="p0012" num="0009">划分模块，用于将目标区域划分为若干个监测区域单元；</div>
+<div class="description-paragraph" id="p0013" num="0010">飞行器监测模块，用于监测飞行器获取飞行器的实时数据；</div>
+<div class="description-paragraph" id="p0014" num="0011">飞行信息模块，用于获取飞行信息数据；</div>
+<div class="description-paragraph" id="p0015" num="0012">分析模块，用于根据各监测区域单元的鸟类活动轨迹确定各监测区域单元的安全评级，根据各监测区域单元的安全评级结果和飞行信息数据确定飞行路线和飞行线路危险指数；再根据飞行线路危险指数和飞行器的实时数据进行分析，判断能够执行本次飞行线路的飞行器。</div>
+<div class="description-paragraph" id="p0016" num="0013">作为本发明进一步的方案：所述飞行器的实时数据包括飞行器的任务状态、实时电量和电池状态系数；所述飞行信息数据包括出发地位置信息数据和目的地位置信息数据；所述鸟类活动信息数据包括鸟类数量；所述飞行线路包括从出发地到目的地的飞行线路和从目的地返回出发地的飞行线路。</div>
+<div class="description-paragraph" id="p0017" num="0014">作为本发明进一步的方案：所述分析模块的分析方法包括以下步骤：</div>
+<div class="description-paragraph" id="p0018" num="0015">S1：通过对各监测区域单元过去预设时间内的鸟类数量进行分析，获取各监测区域单元的飞行安全指数；</div>
+<div class="description-paragraph" id="p0019" num="0016">S2：通过对各监测区域单元的飞行安全指数进行分析，对各监测区域单元进行安全评级；</div>
+<div class="description-paragraph" id="p0020" num="0017">S3：再通过对各监测区域单元的安全评级结果、出发地位置信息数据和目的地位置信息数据进行分析，确定飞行线路；</div>
+<div class="description-paragraph" id="p0021" num="0018">S4：根据飞行线路经过的各监测区域的飞行安全指数进行分析，确定飞行线路危险指数；</div>
+<div class="description-paragraph" id="p0022" num="0019">S5：根据飞行线路、飞行线路危险指数、各飞行器电池状态系数进行分析，获得各飞行器执行本次飞行的最低电量；</div>
+<div class="description-paragraph" id="p0023" num="0020">S6：根据各飞行器执行本次飞行的最低电量和飞行器的实时电量进行比较，判断能够执行本次飞行线路的飞行器。</div>
+<div class="description-paragraph" id="p0024" num="0021">作为本发明进一步的方案：通过公式：</div>
+<div class="description-paragraph" id="p0025" num="0022">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0026" num="0023">计算第n个监测区域单元的飞行安全指数P<sub>n</sub>；</div>
+<div class="description-paragraph" id="p0027" num="0024">其中，f(X)为第一判断函数，当X&gt;0时，f(X)＝1；当X≤0时，f(X)＝0；Q<sub>bn</sub>(t)为第n个监测区域单元的飞鸟数量随时间变化的变化曲线，n∈N；t<sub>d</sub>为当前时间；Δt为预设时长；Q<sub>1</sub>为预设飞鸟数量；t<sub>nup</sub>为第n个监测区域单元的当前时间过去预设时长内飞鸟数量超过第一预设值的累计时长；δ<sub>0</sub>为第一预设比值。</div>
+<div class="description-paragraph" id="p0028" num="0025">作为本发明进一步的方案：第n个监测区域单元的安全评级过程为：</div>
+<div class="description-paragraph" id="p0029" num="0026">当P<sub>n</sub>＝0时，第n个监测区域单元为安全区域；</div>
+<div class="description-paragraph" id="p0030" num="0027">当P<sub>n</sub>＝1时，第n个监测区域单元为低风险区域；</div>
+<div class="description-paragraph" id="p0031" num="0028">当P<sub>n</sub>＝2时，第n个监测区域单元为高风险区域。</div>
+<div class="description-paragraph" id="p0032" num="0029">作为本发明进一步的方案：通过公式：</div>
+<div class="description-paragraph" id="p0033" num="0030">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0034" num="0031">计算飞行线路危险指数F；</div>
+<div class="description-paragraph" id="p0035" num="0032">其中，A为该飞行线路经过的低风险区域的数量，a∈A；S<sub>a</sub>为该飞行线路经过第a个低风险区域的路线长度；S<sub>ALL</sub>为该飞行线路的路线总长度；C<sub>1</sub>为第一预设常数。</div>
+<div class="description-paragraph" id="p0036" num="0033">作为本发明进一步的方案：通过公式：</div>
+<div class="description-paragraph" id="p0037" num="0034">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0038" num="0035">计算第m个飞行器执行本次飞行的最低电量B<sub>mL</sub>；</div>
+<div class="description-paragraph" id="p0039" num="0036">其中，B<sub>m</sub>(S<sub>ALL</sub>)为第m个飞行器执行飞行线路耗费的基本电量；δ<sub>mB</sub>为第m个飞行器的电池状态系数，0≤δ<sub>mB</sub>≤1；C<sub>2</sub>为第二预设常数；R<sub>m</sub>为任务状态系数。</div>
+<div class="description-paragraph" id="p0040" num="0037">作为本发明进一步的方案：能否执行本次飞行线路的判断过程为；</div>
+<div class="description-paragraph" id="p0041" num="0038">将第m个飞行器的剩余电量与第m个飞行器执行本次飞行的最低电量B<sub>mL</sub>进行比较；</div>
+<div class="description-paragraph" id="p0042" num="0039">当B<sub>my</sub>≥B<sub>mL</sub>时，第m个飞行器能够执行本次飞行；</div>
+<div class="description-paragraph" id="p0043" num="0040">否则，第m个飞行器不能够执行本次飞行。</div>
+<div class="description-paragraph" id="p0044" num="0041">本发明的有益效果：</div>
+<div class="description-paragraph" id="p0045" num="0042">本发明通过鸟类分布采集模块采集目标区域低空域内鸟类活动信息数据；通过划分模块将目标区域划分为若干个监测区域单元；通过飞行器监测模块监测飞行器获取飞行器的实时数据；通过飞行信息模块获取飞行信息数据；最后通过分析模块根据各监测区域单元的鸟类活动轨迹确定各监测区域单元的安全评级，根据出发地位置信息数据和目的地位置信息数据、低风险区域和安全区域确定飞行线路，使得飞行线路避开鸟类较多的高风险区域，降低飞行器坠毁的风险，根据各监测区域单元的安全评级结果和飞行信息数据确定飞行路线和飞行线路危险指数；再根据飞行线路危险指数和飞行器的实时数据进行分析，判断能够执行本次飞行线路的飞行器；根据飞行路线的危险程度、距离和飞行器的电池状态多个维度，综合选择出能够执行本次飞行线路的飞行器，确保选出的飞行器能够圆满完成本次飞行线路。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0046">附图说明</div>
+<div class="description-paragraph" id="p0047" num="0043">下面结合附图对本发明作进一步的说明。</div>
+<div class="description-paragraph" id="p0048" num="0044">图1为本发明一种实施例的系统模块框架图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0049">具体实施方式</div>
+<div class="description-paragraph" id="p0050" num="0045">下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有作出创造性劳动前提下所获得的所有其它实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0051" num="0046">请参阅图1所示，在一个实施例中，提供了一种基于AI和物联网的低空飞行器运行监测管理系统，包括：</div>
+<div class="description-paragraph" id="p0052" num="0047">鸟类分布采集模块，用于采集目标区域低空域内鸟类活动信息数据；</div>
+<div class="description-paragraph" id="p0053" num="0048">划分模块，用于将目标区域划分为若干个监测区域单元；</div>
+<div class="description-paragraph" id="p0054" num="0049">飞行器监测模块，用于监测飞行器获取飞行器的实时数据；</div>
+<div class="description-paragraph" id="p0055" num="0050">飞行信息模块，用于获取飞行信息数据；</div>
+<div class="description-paragraph" id="p0056" num="0051">分析模块，用于根据各监测区域单元的鸟类活动轨迹确定各监测区域单元的安全评级，根据各监测区域单元的安全评级结果和飞行信息数据确定飞行路线和飞行线路危险指数；再根据飞行线路危险指数和飞行器的实时数据进行分析，判断能够执行本次飞行线路的飞行器；</div>
+<div class="description-paragraph" id="p0057" num="0052">通过上述技术方案，本实施例通过鸟类分布采集模块采集目标区域低空域内鸟类活动信息数据；具体地，可以采用探鸟雷达采集鸟类活动信息数据；通过划分模块将目标区域划分为若干个监测区域单元；通过飞行器监测模块监测飞行器获取飞行器的实时数据；通过飞行信息模块获取飞行信息数据；最后通过分析模块根据各监测区域单元的鸟类活动轨迹确定各监测区域单元的安全评级，安全评级分为高风险区域、低风险区域和安全区域，根据出发地位置信息数据和目的地位置信息数据、低风险区域和安全区域确定飞行线路，使得飞行线路避开鸟类较多的高风险区域，降低飞行器坠毁的风险，若在低风险区域和安全区域内无法确定飞行线路，则取消执行本次任务；根据各监测区域单元的安全评级结果和飞行信息数据确定飞行路线和飞行线路危险指数；再根据飞行线路危险指数和飞行器的实时数据进行分析，判断能够执行本次飞行线路的飞行器；根据飞行路线的危险程度、距离和飞行器的电池状态多个维度，综合选择出能够执行本次飞行线路的飞行器，确保选出的飞行器能够圆满完成本次飞行线路。</div>
+<div class="description-paragraph" id="p0058" num="0053">作为本发明的一种实施方式，所述飞行器的实时数据包括飞行器的任务状态、实时电量和电池状态系数；所述飞行信息数据包括出发地位置信息数据和目的地位置信息数据；所述鸟类活动信息数据包括鸟类数量；所述飞行线路包括从出发地到目的地的飞行线路和从目的地返回出发地的飞行线路。</div>
+<div class="description-paragraph" id="p0059" num="0054">所述分析模块的分析方法包括以下步骤：</div>
+<div class="description-paragraph" id="p0060" num="0055">S1：通过对各监测区域单元过去预设时间内的鸟类数量进行分析，获取各监测区域单元的飞行安全指数；</div>
+<div class="description-paragraph" id="p0061" num="0056">S2：通过对各监测区域单元的飞行安全指数进行分析，对各监测区域单元进行安全评级；</div>
+<div class="description-paragraph" id="p0062" num="0057">S3：再通过对各监测区域单元的安全评级结果、出发地位置信息数据和目的地位置信息数据进行分析，确定飞行线路；</div>
+<div class="description-paragraph" id="p0063" num="0058">S4：根据飞行线路经过的各监测区域的飞行安全指数进行分析，确定飞行线路危险指数；</div>
+<div class="description-paragraph" id="p0064" num="0059">S5：根据飞行线路、飞行线路危险指数、各飞行器电池状态系数进行分析，获得各飞行器执行本次飞行的最低电量；</div>
+<div class="description-paragraph" id="p0065" num="0060">S6：根据各飞行器执行本次飞行的最低电量和飞行器的实时电量进行比较，判断能够执行本次飞行线路的飞行器；</div>
+<div class="description-paragraph" id="p0066" num="0061">通过上述技术方案，本实施例首先通过对各监测区域单元过去预设时间内的鸟类数量进行分析，获取各监测区域单元的飞行安全指数；再通过对各监测区域单元的飞行安全指数进行分析，对各监测区域单元进行安全评级；然后再通过对各监测区域单元的安全评级结果、出发地位置信息数据和目的地位置信息数据进行分析，确定飞行线路；安全评级分为高风险区域、低风险区域和安全区域，根据出发地位置信息数据和目的地位置信息数据、低风险区域和安全区域确定飞行线路，接着根据飞行线路经过的各监测区域的飞行安全指数进行分析，确定飞行线路危险指数；最后根据飞行线路、飞行线路危险指数、各飞行器电池状态系数进行分析，获得各飞行器执行本次飞行的最低电量；根据各飞行器执行本次飞行的最低电量和飞行器的实时电量进行比较，判断能够执行本次飞行线路的飞行器；根据飞行路线的危险程度、距离和飞行器的电池状态多个维度，综合选择出能够执行本次飞行线路的飞行器，确保选出的飞行器能够圆满完成本次飞行线路。</div>
+<div class="description-paragraph" id="p0067" num="0062">作为本发明的一种实施方式，通过公式：</div>
+<div class="description-paragraph" id="p0068" num="0063">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0069" num="0064">计算第m个监测区域单元的飞行安全指数P<sub>n</sub>；</div>
+<div class="description-paragraph" id="p0070" num="0065">其中，f(X)为第一判断函数，当X&gt;0时，f(X)＝1；当X≤0时，f(X)＝0；Q<sub>bn</sub>(t)为第n个监测区域单元的飞鸟数量随时间变化的变化曲线，n∈N；t<sub>d</sub>为当前时间；Δt为预设时长；Q<sub>1</sub>为预设飞鸟数量；t<sub>nup</sub>为第n个监测区域单元的当前时间过去预设时长内飞鸟数量超过第一预设值的累计时长；δ<sub>0</sub>为第一预设比值；</div>
+<div class="description-paragraph" id="p0071" num="0066">通过上述技术方案，本实施例<span class="patent-image-not-available"></span>为第n个监测区域单元当前时间过去预设时长内的平均飞鸟数量；<span class="patent-image-not-available"></span> <span class="patent-image-not-available"></span>为第n个监测区域单元当前时间过去预设时长内的平均飞鸟数量与预设飞鸟数量的差值；在公式<span class="patent-image-not-available"></span>中，第一判断函数f(X)中的X指代的是<span class="patent-image-not-available"></span>当<span class="patent-image-not-available"></span>时，说明第n个监测区域单元当前时间过去预设时长内的平均飞鸟数量没有超过预设飞鸟数量，第n个监测区域单元飞鸟数量较少，撞击风险较小，<span class="patent-image-not-available"></span> <span class="patent-image-not-available"></span>当<span class="patent-image-not-available"></span>时，说明第n个监测区域单元当前时间过去预设时长内的平均飞鸟数量超过预设飞鸟数量，第n个监测区域单元飞鸟数量较多，撞击风险较大，<span class="patent-image-not-available"></span> <span class="patent-image-not-available"></span>为第n个监测区域单元的当前时间过去预设时长内飞鸟数量超过第一预设值的累计时长与预设时长的比值；<span class="patent-image-not-available"></span>为第n个监测区域单元的当前时间过去预设时长内飞鸟数量超过第一预设值的累计时长与预设时长的比值与第一预设比值的差值；在公式<span class="patent-image-not-available"></span>中，第一判断函数f(X)中的X指代的是<span class="patent-image-not-available"></span>当<span class="patent-image-not-available"></span>时，说明第n个监测区域单元的当前时间过去预设时长内飞鸟数量超过第一预设值的累计时长较短，因此安全风险较小，<span class="patent-image-not-available"></span>当<span class="patent-image-not-available"></span>时，说明第n个监测区域单元的当前时间过去预设时长内飞鸟数量超过第一预设值的累计时长较长，因此安全风险较大，<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0072" num="0067">需要说明的是，预设时长Δt、预设飞鸟数量Q<sub>1</sub>和第一预设比值δ<sub>0</sub>为预设值，根据经验获取，在此不做详述。</div>
+<div class="description-paragraph" id="p0073" num="0068">作为本发明的一种实施方式，第n个监测区域单元的安全评级过程为：</div>
+<div class="description-paragraph" id="p0074" num="0069">当P<sub>n</sub>＝0时，第n个监测区域单元为安全区域；</div>
+<div class="description-paragraph" id="p0075" num="0070">当P<sub>n</sub>＝1时，第n个监测区域单元为低风险区域；</div>
+<div class="description-paragraph" id="p0076" num="0071">当P<sub>n</sub>＝2时，第n个监测区域单元为高风险区域；</div>
+<div class="description-paragraph" id="p0077" num="0072">通过上述技术方案，本实施例当第n个监测区域单元当前时间过去预设时长内的平均飞鸟数量超过预设飞鸟数量且第n个监测区域单元的当前时间过去预设时长内飞鸟数量超过第一预设值的累计时长较长时，此时P<sub>n</sub>＝2，第n个监测区域单元为高风险区域；当第n个监测区域单元当前时间过去预设时长内的平均飞鸟数量超过预设飞鸟数量或者第n个监测区域单元的当前时间过去预设时长内飞鸟数量超过第一预设值的累计时长较长时，即P<sub>n</sub>＝1时，第n个监测区域单元为低风险区域；当第n个监测区域单元当前时间过去预设时长内的平均飞鸟数量没有超过预设飞鸟数量且第n个监测区域单元的当前时间过去预设时长内飞鸟数量没有超过第一预设值的累计时长较长时，此时P<sub>n</sub>＝0，第n个监测区域单元为安全区域。</div>
+<div class="description-paragraph" id="p0078" num="0073">作为本发明的一种实施方式，通过公式：</div>
+<div class="description-paragraph" id="p0079" num="0074">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0080" num="0075">计算飞行线路危险指数F；</div>
+<div class="description-paragraph" id="p0081" num="0076">其中，A为该飞行线路经过的低风险区域的数量，a∈A；S<sub>a</sub>为该飞行线路经过第a个低风险区域的路线长度；S<sub>ALL</sub>为该飞行线路的路线总长度；C<sub>1</sub>为第一预设常数；</div>
+<div class="description-paragraph" id="p0082" num="0077">通过上述技术方案，本实施例<span class="patent-image-not-available"></span>为该飞行线路经过所有低风险区域的累计长度；<span class="patent-image-not-available"></span>为该飞行线路经过所有低风险区域的累计长度占该飞行线路的线路总长度的比值；该飞行线路经过所有低风险区域的累计长度占该飞行线路的路线总长度的比值<span class="patent-image-not-available"></span>越大，飞行线路危险指数F越大；该飞行线路经过所有低风险区域的累计长度占该飞行线路的路线总长度的比值<span class="patent-image-not-available"></span>越小，飞行线路危险指数F越小；</div>
+<div class="description-paragraph" id="p0083" num="0078">需要说明的是，第一预设常数C<sub>1</sub>为预设值，根据经验获取，在此不做详述。</div>
+<div class="description-paragraph" id="p0084" num="0079">作为本发明的一种实施方式，通过公式：</div>
+<div class="description-paragraph" id="p0085" num="0080">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0086" num="0081">计算第m个飞行器执行本次飞行的最低电量B<sub>mL</sub>；</div>
+<div class="description-paragraph" id="p0087" num="0082">其中，B<sub>m</sub>(S<sub>ALL</sub>)为第m个飞行器执行飞行线路耗费的基本电量；δ<sub>mB</sub>为第m个飞行器的电池状态系数，0≤δ<sub>mB</sub>≤1；C<sub>2</sub>为第二预设常数；R<sub>m</sub>为任务状态系数；</div>
+<div class="description-paragraph" id="p0088" num="0083">通过上述技术方案，本实施例任务状态分为等待任务状态和执行任务状态，等待任务状态系数为1，执行任务状态系数为0；再通过预设各种型号的飞行器耗费的电量随飞行距离的基本电量变化曲线；根据基本电量变化曲线获取距离为S<sub>ALL</sub>耗费的基本电量；第m个飞行器的电池状态系数δ<sub>mB</sub>越小；说明电池状态越差，飞行相同距离，耗电速度更快，因此第m个飞行器执行本次飞行的最低电量越高B<sub>mL</sub>；飞行线路危险指数F越大，需要飞行器躲避的风险越多，飞行器在躲避风险时，也需要耗费越多的电量，因此第m个飞行器执行本次飞行的最低电量越高B<sub>mL</sub>；第m个飞行器的电池状态系数δ<sub>m</sub>x的获得方式为现有技术，在此不做详述；</div>
+<div class="description-paragraph" id="p0089" num="0084">需要说明的是，第二预设常数C<sub>2</sub>为预设值，根据经验获取，在此不做详述。</div>
+<div class="description-paragraph" id="p0090" num="0085">作为本发明的一种实施方式，能否执行本次飞行线路的判断过程为；</div>
+<div class="description-paragraph" id="p0091" num="0086">将第m个飞行器的剩余电量与第m个飞行器执行本次飞行的最低电量B<sub>mL</sub>进行比较；</div>
+<div class="description-paragraph" id="p0092" num="0087">当B<sub>my</sub>≥B<sub>mL</sub>时，第m个飞行器能够执行本次飞行；</div>
+<div class="description-paragraph" id="p0093" num="0088">否则，第m个飞行器不能够执行本次飞行；</div>
+<div class="description-paragraph" id="p0094" num="0089">通过上述技术方案，本实施例将第m个飞行器的剩余电量与第m个飞行器执行本次飞行的最低电量B<sub>mL</sub>进行比较；当B<sub>my</sub>≥B<sub>mL</sub>时，说明第m个飞行器处于等待任务，且电量超过第m个飞行器执行本次飞行的最低电量B<sub>mL</sub>，因此能够执行本次飞行。</div>
+<div class="description-paragraph" id="p0095" num="0090">以上对本发明的一个实施例进行了详细说明，但所述内容仅为本发明的较佳实施例，不能被认为用于限定本发明的实施范围。凡依本发明申请范围所作的均等变化与改进等，均应仍归属于本发明的专利涵盖范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

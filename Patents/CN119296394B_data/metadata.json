@@ -1,0 +1,29 @@
+{
+    "patent_id": "CN119296394B",
+    "title": "CN119296394B - 用于飞行器的低空交通控制方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shenzhen Urban Transport Planning Center Co Ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119296394B/zh",
+    "citations": [
+        {
+            "Publication Number": "CN117146840A (zh) *",
+            "Priority Date": "2023-05-16",
+            "Publication Date": "2023-12-01",
+            "Assignee": "智航高科(苏州)有限公司",
+            "Title": "一种多源多目标路径规划方法及智能车库调度系统",
+            "Link": "https://patents.google.com/patent/CN117146840A/zh"
+        },
+        {
+            "Publication Number": "CN118897572A (zh) *",
+            "Priority Date": "2024-08-16",
+            "Publication Date": "2024-11-05",
+            "Assignee": "国网山东省电力公司超高压公司",
+            "Title": "一种基于ai的无人机避障方法",
+            "Link": "https://patents.google.com/patent/CN118897572A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:40:57"
+}

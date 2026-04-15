@@ -1,0 +1,200 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN118424324A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES470610074">
+<invention-title id="title1" lang="ZH">基于测距信息的低空飞行器视觉惯性里程计方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属导航定位与授时技术领域，具体涉及基于测距信息的低空飞行器视觉惯性里程计方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空空域通常是指真高(离地高度)1000m(含)以下空域。低空飞行器在物流、救援、安防、旅游及农业等众多领域取得广泛应用。由于侦察范围广、空地衔接紧密，大多数作战飞行器也选择在低空执行任务。低空飞行器主要依赖全球定位系统(GlobalPositioning System,GPS)进行导航，然而卫星信号存在衰减、多径效应、干扰和欺骗等问题，对飞行器不依赖卫星的导航性能提出了更高的要求，惯性/视觉融合定位导航技术是兼具功能和成本的解决方案之一。</div>
+<div class="description-paragraph" id="p0005" num="0003">视觉即时定位与构图(Simultaneous Localization And Mapping,SLAM)技术的核心在于相机姿态和特征点尺度的估计。双目相机间的基线长度可作为视觉导航系统的尺度基准。然而在执行远距离深度测量时，由于相机基线较短，三角结构不明显，随着飞行高度的增加，双目视觉估计精度降低。基于单目相机的视觉系统体积小、成本低、安装简单，但存在尺度不确定性，无法准确表示环境的深度信息。同时，当飞行器在空中高速转弯、下视相机进行近似旋转运动的时候，特征点容易跟踪失败，三角化算法退化导致尺度估计错误，纯视觉里程计无法满足飞行器在复杂环境的高精度定位需求。</div>
+<div class="description-paragraph" id="p0006" num="0004">惯性测量单元(Inertial Measurement Unit,IMU)可以弥补单目相机的缺陷，不仅能够提供必要的尺度信息，而且依据加速度计提供的重力向量能够将估计的位置转到世界坐标系中。由于不包含实时构建地图的环节，视觉惯性里程计(Visual-InertialOdometry,VIO)实现了SLAM的轻量化和低成本化表达。近年来，VIO技术领域涌现出了诸多方案，根据算法框架可以分为三种：基于优化、基于深度学习和基于滤波。基于优化框架的代表是2019年Qin T等提出的Vins-Fusion，该系统结合IMU预积分算法和重投影理论，融合IMU和视觉信息，利用非线性优化计算得到运动信息估计。但是优化过程花费的计算资源较多，且结果存在一定的不确定性。基于深度学习的VIO框架，普遍存在复杂度高、对硬件和数据依赖性强的问题。基于滤波的VIO系统以多状态约束卡尔曼滤波器(Multi-StateConstraint Kalman Filter,MSCKF)、ROVIO、OpenVINS为代表，因其对计算资源的要求更低而受到研究者的广泛关注。然而，在低空场景，随着飞行器飞行高度的提升以及机动状态的多变，尺度估计误差迅速累积导致位姿估计的不确定性提高，利用传统方案来完成VIO任务的难度较大。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">针对现有技术的不足，本发明基于测距信息的低空飞行器视觉惯性里程计方法及系统，利用MSCKF框架对惯性和视觉信息进行融合，准确估计出飞行器的当前位姿。</div>
+<div class="description-paragraph" id="p0009" num="0006">为实现上述目的，本发明提供了如下方案：</div>
+<div class="description-paragraph" id="p0010" num="0007">基于测距信息的低空飞行器视觉惯性里程计方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0011" num="0008">按照预设航路，采集下视地面图像、惯性信息以及测距信息，并融合所述下视地面图像和惯性信息，获得飞行器的机动状态；</div>
+<div class="description-paragraph" id="p0012" num="0009">基于飞行器的机动状态和激光等高面提取，对所述下视地面图像中的特征点深度值进行校正填充；</div>
+<div class="description-paragraph" id="p0013" num="0010">融合所述惯性信息以及被测距信息修正的视觉信息对飞行器位姿进行更新。</div>
+<div class="description-paragraph" id="p0014" num="0011">优选的，对所述下视地面图像中的特征点深度值进行校正填充的方法包括：</div>
+<div class="description-paragraph" id="p0015" num="0012">采用基于基线约束和参考高度的鲁棒深度估计初始化方法，对基于特征点三角化获得的特征点初始深度进行筛选，获得所述下视地面图像中特征点优选深度；</div>
+<div class="description-paragraph" id="p0016" num="0013">基于机动状态和平面假设的深度自适应填充方法，对三角化结果不理想的特征点进行深度自适应填充，补充视觉尺度信息。</div>
+<div class="description-paragraph" id="p0017" num="0014">优选的，获得所述下视地面图像中特征点深度的方法为：</div>
+<div class="description-paragraph" id="p0018" num="0015">所述下视地面图像利用单目相机采集，基于位姿初始化后的所述惯性信息，计算所述单目相机位姿，获得所述单目相机运动的旋转矩阵和平移向量；</div>
+<div class="description-paragraph" id="p0019" num="0016">基于单目相机运动的旋转矩阵和平移向量，利用对极几何原理，获得两张下视地面图像中同一个特征点间的三角关系；</div>
+<div class="description-paragraph" id="p0020" num="0017">扩充下视地面图像滑动窗口队列，并基于基线长度约束对滑动窗口中有显著视差的特征点的三角关系进行三角化，获得所述特征点初始深度；其中所述基线长度为相邻两帧下视地面图像对应的单目相机中心间的距离；</div>
+<div class="description-paragraph" id="p0021" num="0018">对激光测距仪以及气压高度计获取的信息进行融合，获得低空飞行器的参考高度信息，并基于所述参考高度信息，筛选所述特征点初始深度，获得特征点优选深度。</div>
+<div class="description-paragraph" id="p0022" num="0019">优选的，对三角化结果不理想的特征点进行深度自适应填充包括对激光等高平面的特征点进行填充以及基于飞行器机动状态进行填充，方法为：</div>
+<div class="description-paragraph" id="p0023" num="0020">基于限制对比度自适应直方图均衡化，增强所述下视地面图像的对比度，获得特征点提取图；</div>
+<div class="description-paragraph" id="p0024" num="0021">所述测距信息利用激光测距仪采集，对含有所述激光测距仪的激光点的下视地面图像进行特征提取，获得激光点周围区域的激光等高面；其中，所述激光点周围区域内的特征点具有同样的深度信息，所述深度信息为激光测距值；</div>
+<div class="description-paragraph" id="p0025" num="0022">为所述激光等高面内深度误差大于预设误差阈值的特征点填充当前激光测距值；</div>
+<div class="description-paragraph" id="p0026" num="0023">若特征点在激光等高面外，基于所述机动状态，对深度误差小于预设误差阈值的特征点填充当前参考高度信息，完成对所述视觉尺度信息的补充。</div>
+<div class="description-paragraph" id="p0027" num="0024">本发明还公开基于测距信息的低空飞行器视觉惯性里程计系统，用于应用所述的方法，包括：</div>
+<div class="description-paragraph" id="p0028" num="0025">信息采集模块，用于按照预设航路，采集下视地面图像、惯性信息以及测距信息，并融合所述下视地面图像和惯性信息，获得飞行器的机动状态；</div>
+<div class="description-paragraph" id="p0029" num="0026">尺度恢复模块，用于基于飞行器的机动状态和激光等高面提取，对所述下视地面图像中的特征点深度值进行校正填充；</div>
+<div class="description-paragraph" id="p0030" num="0027">位姿更新模块，用于融合所述惯性信息以及被测距信息修正的视觉信息对飞行器位姿进行更新。</div>
+<div class="description-paragraph" id="p0031" num="0028">优选的，所述尺度恢复模块包括：</div>
+<div class="description-paragraph" id="p0032" num="0029">特征点深度获取单元，用于采用基于基线约束和参考高度的鲁棒深度估计初始化方法，对基于特征点三角化获得的特征点初始深度进行筛选，获得所述下视地面图像中特征点优选深度；</div>
+<div class="description-paragraph" id="p0033" num="0030">特征点深度填充单元，用于基于机动状态和平面假设的深度自适应填充方法，对三角化结果不理想的特征点进行深度自适应填充，补充视觉尺度信息。</div>
+<div class="description-paragraph" id="p0034" num="0031">优选的，所述特征点深度获取单元包括：</div>
+<div class="description-paragraph" id="p0035" num="0032">相机位姿计算子单元，用于所述下视地面图像利用单目相机采集，基于位姿初始化后的所述惯性信息，计算所述单目相机位姿，获得所述单目相机运动的旋转矩阵和平移向量；</div>
+<div class="description-paragraph" id="p0036" num="0033">特征点获取子单元，用于基于单目相机运动的旋转矩阵和平移向量，利用对极几何原理，获得两张下视地面图像中同一个特征点间的三角关系；</div>
+<div class="description-paragraph" id="p0037" num="0034">三角化子单元，用于扩充下视地面图像滑动窗口队列，并基于基线长度约束对滑动窗口中有显著视差的特征点的三角关系进行三角化，获得所述特征点初始深度；其中所述基线长度为相邻两帧下视地面图像对应的单目相机中心间的距离；</div>
+<div class="description-paragraph" id="p0038" num="0035">深度筛选子单元，用于对激光测距仪以及气压高度计获取的信息进行融合，获得低空飞行器的参考高度信息，并基于所述参考高度信息，筛选所述特征点初始深度，获得特征点优选深度。</div>
+<div class="description-paragraph" id="p0039" num="0036">优选的，所述特征点深度填充单元：</div>
+<div class="description-paragraph" id="p0040" num="0037">图像均衡子单元，用于基于限制对比度自适应直方图均衡化，增强所述下视地面图像的对比度，获得特征点提取图；</div>
+<div class="description-paragraph" id="p0041" num="0038">特征提取子单元，用于所述测距信息利用激光测距仪采集，对含有所述激光测距仪的激光点的下视地面图像进行特征提取，获得激光点周围区域的激光等高面；其中，所述激光点周围区域内的特征点具有同样的深度信息，所述深度信息为激光测距值；</div>
+<div class="description-paragraph" id="p0042" num="0039">第一填充子单元，用于为所述激光等高面内深度误差大于预设误差阈值的特征点填充当前激光测距值；</div>
+<div class="description-paragraph" id="p0043" num="0040">第二填充子单元，用于若特征点在激光等高面外，基于所述机动状态，对深度误差小于预设误差阈值的特征点填充当前参考高度信息，完成对所述视觉尺度信息的补充。</div>
+<div class="description-paragraph" id="p0044" num="0041">与现有技术相比，本发明的有益效果为：本发明通过扩充滑窗队列、约束基线长度来进行鲁棒深度估计初始化以实现对初始深度结果的优选，确保其精确度；通过机动状态、激光平面检测，为部分三角化失败的特征点自适应填充测距信息，防止视觉信息缺失导致轨迹发散；基于MSCKF架构，融合惯性以及由测距信息修正的视觉信息，实现飞行器位姿的更新。经过试验验证，相较于传统VIO方案，本发明改进算法有效提高了飞行器在未知低空环境的定位精度，平均提升69％。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0045">附图说明</div>
+<div class="description-paragraph" id="p0046" num="0042">为了更清楚地说明本发明的技术方案，下面对实施例中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动性的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0047" num="0043">图1为本发明实施例基于测距信息的低空飞行器视觉惯性里程计方法流程图；</div>
+<div class="description-paragraph" id="p0048" num="0044">图2为本发明实施例多个相机位姿序列对同一特征点的观测示意图；</div>
+<div class="description-paragraph" id="p0049" num="0045">图3为本发明实施例飞行器下视图像中特征点深度与测距信息的关系示意图；</div>
+<div class="description-paragraph" id="p0050" num="0046">图4为本发明实施例飞行器倾斜时特征点深度与参考高度的三角关系示意图；</div>
+<div class="description-paragraph" id="p0051" num="0047">图5为本发明实施例特征点深度自适应填充流程图；</div>
+<div class="description-paragraph" id="p0052" num="0048">图6为本发明实施例试验Ⅰ各方法定位效果对比图；(a)位置误差对比图；(b)定位轨迹对比图。</div>
+<div class="description-paragraph" id="p0053" num="0049">图7为本发明实施例试验Ⅱ各方法定位效果对比图；(a)位置误差对比图；(b)定位轨迹对比图；</div>
+<div class="description-paragraph" id="p0054" num="0050">图8为本发明实施例试验Ⅲ各方法定位效果对比图；(a)位置误差对比图；(b)定位轨迹对比图；</div>
+<div class="description-paragraph" id="p0055" num="0051">图9为本发明实施例设备示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0056">具体实施方式</div>
+<div class="description-paragraph" id="p0057" num="0052">下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0058" num="0053">为使本发明的上述目的、特征和优点能够更加明显易懂，下面结合附图和具体实施方式对本发明作进一步详细的说明。</div>
+<div class="description-paragraph" id="p0059" num="0054">实施例一</div>
+<div class="description-paragraph" id="p0060" num="0055">如图1所示，基于测距信息的低空飞行器视觉惯性里程计方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0061" num="0056">S1：按照预设航路，采集下视地面图像、惯性信息以及测距信息，并融合所述下视地面图像和惯性信息，获得飞行器的机动状态；</div>
+<div class="description-paragraph" id="p0062" num="0057">进一步的实施方式在于，采集的信息还包括用于定位精度对比的实时动态载波相位差分RTK信息。</div>
+<div class="description-paragraph" id="p0063" num="0058">关于飞行器机动状态的判断，具体在校正填充进行详细描述。</div>
+<div class="description-paragraph" id="p0064" num="0059">S2：基于飞行器的机动状态和激光等高面提取，对所述下视地面图像中的特征点深度值进行校正填充；</div>
+<div class="description-paragraph" id="p0065" num="0060">进一步的实施方式在于，对所述下视地面图像中的特征点深度值进行校正填充的方法包括：</div>
+<div class="description-paragraph" id="p0066" num="0061">采用基于基线约束和参考高度的鲁棒深度估计初始化方法，对基于特征点三角化获得的特征点初始深度进行筛选，获得所述下视地面图像中特征点优选深度；</div>
+<div class="description-paragraph" id="p0067" num="0062">进一步的实施方式在于，获得下视地面图像中特征点深度的方法为：</div>
+<div class="description-paragraph" id="p0068" num="0063">下视地面图像利用单目相机采集，基于位姿初始化后的惯性信息，计算单目相机位姿，获得单目相机运动的旋转矩阵和平移向量；</div>
+<div class="description-paragraph" id="p0069" num="0064">基于单目相机运动的旋转矩阵和平移向量，利用对极几何原理，获得两张下视地面图像中同一个特征点间的三角关系；在本实施例中，单目相机中，特征点的深度通过三角化方法来完成。已知相机运动的旋转矩阵R和平移向量t，根据对极几何原理，在两张图像中观测同一个特征点，存在如下的关系：</div>
+<div class="description-paragraph" id="p0070" num="0065">s<sub>1</sub>x<sub>1</sub>＝s<sub>2</sub>Rx<sub>2</sub>+t  (1)</div>
+<div class="description-paragraph" id="p0071" num="0066">其中，x<sub>1</sub>、x<sub>2</sub>分别为特征点在两张图像中的归一化坐标，s<sub>1</sub>、s<sub>2</sub>分别对应特征点的深度。</div>
+<div class="description-paragraph" id="p0072" num="0067">对式(1)两侧左乘<span class="patent-image-not-available"></span>得到式(2)：</div>
+<div class="description-paragraph" id="p0073" num="0068">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0074" num="0069">由<span class="patent-image-not-available"></span>可求出s<sub>2</sub>；随后将s<sub>2</sub>代入到式(1)可求出s<sub>1</sub>，由特征点的深度和像素坐标即可确定其空间坐标。由于已知的R、t准确性未知，导致式(2)无法为零，因此可利用图像滑窗队列构造多组三角化关系，从而进行最小二乘求解。</div>
+<div class="description-paragraph" id="p0075" num="0070">扩充下视地面图像滑动窗口队列，并基于基线长度约束对滑动窗口中有显著视差的特征点的三角关系进行三角化，获得所述特征点初始深度；其中所述基线长度为相邻两帧下视地面图像对应的单目相机中心间的距离；在本实施例中，相机平移较小时，由于分辨率有限，将导致较大的深度不确定性。如图2所示，Q为相机光心，P为交汇点，当特征点p移动一个像素，使得视线角变化δθ，测量到的深度值相应地变化δd。基线长度t是指相邻两帧对应的相机中心间的距离，基线长度t越大，δd越小，即三角化测量更加精确。本文通过扩充图像滑动窗口队列，同时使用滑动窗口中有显著视差的特征点进行三角化，以求得更加可靠的初始深度、提升三角化精度。这里的“显著视差”是指特征点间的像素坐标距离达到预设的阈值。飞行器执行同样的运动时，随着飞行高度的增加，地面特征点在图像上移动的幅度越小，因此该阈值的设置应随着高度的增加自适应降低，确保对于同一特征点构造不少于4组三角化关系，最小二乘求解会更可靠、稳定。</div>
+<div class="description-paragraph" id="p0076" num="0071">对激光测距仪以及气压高度计获取的信息进行融合，获得低空飞行器的参考高度信息，并基于所述参考高度信息，筛选所述特征点初始深度，获得特征点优选深度。在本实施例中，低空飞行器在大部分飞行时间内保持着机体平稳的状态。因此当测距传感器与相机对齐时(激光测距仪垂直射向地面、气压高度计与相机平行)，可提供有关特征深度的可靠信息。飞行器下视图像中的特征点深度与测距信息的关系如图3所示。</div>
+<div class="description-paragraph" id="p0077" num="0072">利用已知的参考高度信息h<sup>r</sup>，可以筛除不可信的特征点初始深度f<sub>D</sub>。在设置深度阈值的时候，需考虑地面的结构化，假设地面建筑物、树木等最大高度为h<sup>m</sup>米，则阈值下限设置为：</div>
+<div class="description-paragraph" id="p0078" num="0073">f<sub>D</sub>＞h<sup>r</sup>-h<sup>m</sup>  (3)</div>
+<div class="description-paragraph" id="p0079" num="0074">同时，考虑到飞行器在空中存在轻微的倾斜，这会导致特征点深度比参考高度大。当飞行器的倾斜角度为θ时，特征点深度f<sub>D</sub>与参考高度h<sup>r</sup>之间的三角关系如图4所示，并遵循如下关系：</div>
+<div class="description-paragraph" id="p0080" num="0075">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0081" num="0076">假设飞行器最大倾斜角度为θ<sub>m</sub>，即cosθ<sub>m</sub>＜cosθ＜1，代入式(4)可得：</div>
+<div class="description-paragraph" id="p0082" num="0077">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0083" num="0078">结合式(3)和(5)可以确定初始深度的范围：</div>
+<div class="description-paragraph" id="p0084" num="0079">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0085" num="0080">由此建立的初始深度筛选机制可实现对初始深度估计结果的优选，避免不可信的尺度信息影响位姿估计。</div>
+<div class="description-paragraph" id="p0086" num="0081">基于机动状态和平面假设的深度自适应填充方法，对三角化结果不理想的特征点进行深度自适应填充，补充视觉尺度信息。</div>
+<div class="description-paragraph" id="p0087" num="0082">为了判断飞行器机动状态，首先对IMU数据与图像数据进行同步处理。随后，根据式(7)计算相邻图像帧中匹配、对应的特征点的平均像素差d<sub>k</sub>为：</div>
+<div class="description-paragraph" id="p0088" num="0083">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0089" num="0084">其中，<span class="patent-image-not-available"></span>为第k帧图像匹配特征点的像素坐标，n为匹配特征点的个数。</div>
+<div class="description-paragraph" id="p0090" num="0085">同时，计算两帧图像间的加速度方差和平均角速度。若平均像素差小于阈值且加速度方差小于阈值，则判断飞行器处于静止或悬停状态；若平均角速度大于阈值或者平均像素差大于阈值，则判断飞行器处于转弯/旋转/剧烈晃动状态；其他情况，则判断飞行器正在直线运动。算法详情如下：</div>
+<div class="description-paragraph" id="p0091" num="0086">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0092" num="0087">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0093" num="0088">进一步的实施方式在于，对三角化结果不理想的特征点进行深度自适应填充包括对激光等高平面的特征点进行填充以及基于飞行器机动状态进行填充。</div>
+<div class="description-paragraph" id="p0094" num="0089">具体方法为：</div>
+<div class="description-paragraph" id="p0095" num="0090">基于限制对比度自适应直方图均衡化，增强下视地面图像的对比度，获得特征点提取图；</div>
+<div class="description-paragraph" id="p0096" num="0091">测距信息利用激光测距仪采集，对含有激光测距仪的激光点的下视地面图像进行特征提取，获得激光点周围区域的激光等高面；其中，激光点周围区域内的特征点具有同样的深度信息，深度信息为激光测距值；</div>
+<div class="description-paragraph" id="p0097" num="0092">在本实施例中，由于激光测距仪与相机相对安装位置固定，激光测距仪的光束所接触的地面点在相机图像中的坐标位置保持不变。基于该现象，在该激光点周围区域进行激光等高平面提取，则该区域内的特征点具有同样的深度信息，即激光测距值。</div>
+<div class="description-paragraph" id="p0098" num="0093">一方面，通过应用限制对比度自适应直方图均衡化(Contrast Limited AdaptiveHistogram Equalization,CLAHE)，增强原始图像的对比度并提升其清晰度，以便更准确、均匀地提取特征点。另一方面，对原始图像进行高斯模糊操作从而减少噪声，随后采取Canny边缘检测算法进行地面图像边缘提取，再寻找激光点所在的最大方形区块，即认为是激光等高平面。最后，将激光等高平面映射到特征点提取图中，从而划分出激光等高点。</div>
+<div class="description-paragraph" id="p0099" num="0094">为激光等高面内深度误差大于预设误差阈值的特征点填充当前激光测距值；</div>
+<div class="description-paragraph" id="p0100" num="0095">若特征点在激光等高面外，基于所述机动状态，对深度误差小于预设误差阈值的特征点填充当前参考高度信息，完成对所述视觉尺度信息的补充。</div>
+<div class="description-paragraph" id="p0101" num="0096">在本实施例中，随着低空飞行器飞行高度的上升，三角化的错误率增高，尤其体现在部分机动状态时。严格的初始深度筛选机制以及恶劣的视觉条件会使得大量特征点无法成功三角化，影响视觉系统的正常运作。在这样的情况下，除了适当地放宽深度阈值之外，可以在某些条件下进行深度信息的自适应填充，以确保视觉系统的稳定性。如图5所示。</div>
+<div class="description-paragraph" id="p0102" num="0097">由于负值深度会造成VIO系统崩溃，在得到特征点初始深度f<sub>D</sub>之后，首先认定深度为负值的特征点三角化失败；随后按照前述步骤进行激光等高平面提取，为平面内深度误差较大的特征点填充当前激光测距值h<sup>l</sup>；接着，根据前述筛选机制进行初始深度优选，并适当放宽阈值范围；最后，如果识别到飞行器处于静止、悬停、转弯/旋转/剧烈晃动等机动状态，且当前特征点未通过初始深度筛选机制时，则为深度误差较小的特征点填充当前参考高度h<sup>r</sup>。通过补充特征点观测信息，可以有效减少VIO系统轨迹发散的情况。图6中，ε<sub>D1</sub>、ε<sub>D3</sub>为深度误差阈值；ε<sub>D2</sub>为初始深度优选机制调整阈值，可根据场景难度调整。</div>
+<div class="description-paragraph" id="p0103" num="0098">S3：融合所述惯性信息以及被测距信息修正的视觉信息对飞行器位姿进行更新。</div>
+<div class="description-paragraph" id="p0104" num="0099">基于IMU测量单元获取的惯性信息，进行预积分状态预测、IMU状态传播以及IMU测量噪声估计，完成位姿初始化，位姿初始化后的惯性信息为单目相机位姿计算提供初值。</div>
+<div class="description-paragraph" id="p0105" num="0100">在本实施例中，本发明设计的无人机试验平台中提供两种测距传感器：激光测距仪和气压高度计。激光测距仪通过计算光束发射和到达时间来测量距离，在飞行器倾斜或地面起伏较大时，激光测距值与参考高度间的误差较大；气压高度计提供海平面到飞行器的垂直距离，受海平面气压、温度、湿度、地理位置等各种环境因素影响，随不同飞行地点、飞行时间而变化。</div>
+<div class="description-paragraph" id="p0106" num="0101">为了更有效地辅助深度估计，对上述两种距离进行权重系数设置从而更准确地拟合出参考高度。以优化后的k时刻世界坐标系下的z轴高度<span class="patent-image-not-available"></span>作为参考值，k时刻的激光测距值为<span class="patent-image-not-available"></span>气压高度值为<span class="patent-image-not-available"></span>分别计算<span class="patent-image-not-available"></span>相对于<span class="patent-image-not-available"></span>的误差二范数<span class="patent-image-not-available"></span>公式如下：</div>
+<div class="description-paragraph" id="p0107" num="0102">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0108" num="0103">由误差二范数进行权重分配，得到k+1时刻参考高度先验信息的权重<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0109" num="0104">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0110" num="0105">因此，k+1时刻的参考高度<span class="patent-image-not-available"></span>可表示为：</div>
+<div class="description-paragraph" id="p0111" num="0106">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0112" num="0107">基于MSCKF(测距信息辅助的基于多状态约束卡尔曼滤波器)的视觉/惯性里程计：</div>
+<div class="description-paragraph" id="p0113" num="0108">本发明算法在OpenVINS的基础上进行改进，在预积分阶段，利用IMU和初始状态信息来确定对象的姿态、速度和位置等。随后将相机状态扩充到状态向量中，利用特征点对多个历史相机状态的约束来更新状态向量。</div>
+<div class="description-paragraph" id="p0114" num="0109">IMU的状态向量如下：</div>
+<div class="description-paragraph" id="p0115" num="0110">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0116" num="0111">其中，<span class="patent-image-not-available"></span>为单位四元数，表示在k时刻从世界系G到IMU坐标系I<sub>k</sub>的旋转；<span class="patent-image-not-available"></span>为IMU在世界系的位置；<span class="patent-image-not-available"></span>为IMU在世界系的速度；<span class="patent-image-not-available"></span>为陀螺仪的偏差；<span class="patent-image-not-available"></span>为加速度计的偏差。</div>
+<div class="description-paragraph" id="p0117" num="0112">图像采集的频率一般低于IMU，每采集到一张图片，则计算当前相机状态并加入到状态向量中，同时扩充状态协方差。一张图像中有n个特征点，特征点坐标指其在世界系的位置，组成状态向量x<sub>N</sub>：</div>
+<div class="description-paragraph" id="p0118" num="0113">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0119" num="0114">由特征点深度值和像素坐标(u,v)即可得到特征点在相机坐标系下的坐标，然后通过变换矩阵可转换到世界系中，因此准确的深度估计尤为重要。通过基于基线长度约束的特征点三角化步骤获得该特征点大致的深度初值，并通过参考高度、平面假设、机动状态判断对初始深度进行约束、优选、填充，随后，将视觉和惯性信息转到同一个坐使用图像滑窗内可观测到该特征点的其他帧位姿以及这些特征点的观测信息一起构建全面的约束，从而估计出置信度更高的深度值，为相机的位姿提供必要的观测信息。构造一个优化问题，其目标是最小化IMU预测的相机位姿和视觉信息测量得到的位姿之间的差异，即重投影误差。最后，系统会定期进行状态估计的更新和校正，以纠正由于传感器噪声和估计误差积累导致的偏差，实现对飞行器在三维空间的位置和姿态的准确、持续估计。</div>
+<div class="description-paragraph" id="p0120" num="0115">实施例二</div>
+<div class="description-paragraph" id="p0121" num="0116">为了验证本发明算法的有效性和稳定性，开展了一系列的无人机户外实飞试验。试验中使用的多传感器融合平台能够采集惯性信息、下视地面图像(仅使用其中一个相机)、测距信息、用于定位精度对比的实时动态载波相位差分(Real-Time Kinematic,RTK)信息等。</div>
+<div class="description-paragraph" id="p0122" num="0117">试验设计：如图9所示，试验中所采用的采集平台(机载传感器模块)、位置基准(RTK天线)在飞行载体上的安装方式，传感器相关信息如表1所示。由DJI M300 RTK搭载传感器模块，按提前设置的航路点飞行，采集视觉(下视地面图像)、惯性信息、测距信息和RTK数据，巡航速度为10m/s左右。试验场景中包含房屋、农田、树木、湖泊、道路等。对采集的数据包进行离线VIO解算，计算机处理器为AMD Ryzen 96900hx with radeon graphic×16，操作系统为Ubuntu 18.04。</div>
+<div class="description-paragraph" id="p0123" num="0118">表1</div>
+<div class="description-paragraph" id="p0124" num="0119">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0125" num="0120">为了验证所提算法在飞行器处于不同高度、各种机动状态下的性能，共开展了三组实飞试验：</div>
+<div class="description-paragraph" id="p0126" num="0121">1)试验Ⅰ：飞行器垂直上升至250m-巡航一圈-下降至起点，起飞至降落耗时418s；</div>
+<div class="description-paragraph" id="p0127" num="0122">2)试验Ⅱ：飞行器垂直上升至100m-巡航一圈-上升至150m-巡航一圈-上升至250米-巡航一圈-下降至起点，起飞至降落耗时817s；</div>
+<div class="description-paragraph" id="p0128" num="0123">3)试验Ⅲ：飞行器垂直上升至150m-巡航三圈-下降至起点，起飞至降落耗时737s。</div>
+<div class="description-paragraph" id="p0129" num="0124">表2</div>
+<div class="description-paragraph" id="p0130" num="0125">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0131" num="0126">试验结果：</div>
+<div class="description-paragraph" id="p0132" num="0127">对比每组数据集在Vins-Fusion、Vins-Fusion-Loop(开启回环校正)、OpenVINS、改进OpenVINS-a算法下的效果，误差对比结果如图6、图7和图8所示，定位均方根误差(RootMean Square Error,RMSE)如表2所示，黑色粗体数字表示性能最佳。</div>
+<div class="description-paragraph" id="p0133" num="0128">试验Ⅰ和试验Ⅱ在部分算法框架下出现预测轨迹发散的情况，仅截取其未发散的部分(终点在定位轨迹对比图中标记为Endpoint)进行分析，其余未发散的情况均分析完整轨迹，以时间同步为基准进行轨迹对齐。</div>
+<div class="description-paragraph" id="p0134" num="0129">由图6、图7、图8以及表2可以得出如下结论：</div>
+<div class="description-paragraph" id="p0135" num="0130">(1)在低空场景下，所提算法解算得到的位置和高度误差较低。相比于传统OpenVINS算法，试验Ⅰ位置RMSE减少74.03％，高度RMSE减少54.51％；试验Ⅱ位置RMSE减少54.36％，高度RMSE无降低(因OpenVINS在下降阶段发散)；试验Ⅲ位置RMSE减少39.39％，高度RMSE减少43.42％。由于对特征点进行初始尺度优选，提高了尺度估计的准确性。</div>
+<div class="description-paragraph" id="p0136" num="0131">(2)在飞行器大幅度转弯、悬停等易发散的情况下，所提算法能够减少定位失败的情况。如图7(a)和图7(b)所示，在转弯半径较小(视角旋转剧烈)的试验Ⅱ中，当飞行器准备下降的时候，出现了大幅旋转和镜头晃动的情况，OpenVINS解算的轨迹发散。改进后的算法能够抑制发散，表现出较好的稳定性和鲁棒性。通过对部分三角化失败的特征点进行深度自适应填充，提升了VIO系统应对视觉退化场景的能力。</div>
+<div class="description-paragraph" id="p0137" num="0132">(3)所提算法通过对尺度进行约束和校正，能有效地减少首尾误差。Vins-Fusion-Loop通过回环校正来确保轨迹的闭合性，从而降低首尾误差。如图8(a)和图8(b)所示，在试验Ⅲ中，所提算法在首尾误差方面与Vins-Fusion-Loop相比虽然没有改进，但差距较小，并且省去了回环检测的算力开销；而相较于传统的OpenVINS算法，首尾误差降低了57.79％。</div>
+<div class="description-paragraph" id="p0138" num="0133">实施例三</div>
+<div class="description-paragraph" id="p0139" num="0134">本发明还提供基于测距信息的低空飞行器视觉惯性里程计系统，用于应用的方法，包括：</div>
+<div class="description-paragraph" id="p0140" num="0135">信息采集模块，用于按照预设航路，采集下视地面图像、惯性信息以及测距信息，并融合所述下视地面图像和惯性信息，获得飞行器的机动状态；</div>
+<div class="description-paragraph" id="p0141" num="0136">尺度恢复模块，用于基于飞行器的机动状态和激光等高面提取，对所述下视地面图像中的特征点深度值进行校正填充；</div>
+<div class="description-paragraph" id="p0142" num="0137">位姿更新模块，用于融合所述惯性信息以及被测距信息修正的视觉信息对飞行器位姿进行更新。</div>
+<div class="description-paragraph" id="p0143" num="0138">进一步的实施方式在于，所述尺度恢复模块包括：</div>
+<div class="description-paragraph" id="p0144" num="0139">特征点深度获取单元，用于采用基于基线约束和参考高度的鲁棒深度估计初始化方法，对基于特征点三角化获得的特征点初始深度进行筛选，获得所述下视地面图像中特征点优选深度；</div>
+<div class="description-paragraph" id="p0145" num="0140">特征点深度填充单元，用于基于机动状态和平面假设的深度自适应填充方法，对三角化结果不理想的特征点进行深度自适应填充，补充视觉尺度信息。</div>
+<div class="description-paragraph" id="p0146" num="0141">进一步的实施方式在于，所述特征点深度获取单元包括：</div>
+<div class="description-paragraph" id="p0147" num="0142">相机位姿计算子单元，用于所述下视地面图像利用单目相机采集，基于位姿初始化后的所述惯性信息，计算所述单目相机位姿，获得所述单目相机运动的旋转矩阵和平移向量；</div>
+<div class="description-paragraph" id="p0148" num="0143">特征点获取子单元，用于基于单目相机运动的旋转矩阵和平移向量，利用对极几何原理，获得两张下视地面图像中同一个特征点间的三角关系；</div>
+<div class="description-paragraph" id="p0149" num="0144">三角化子单元，用于扩充下视地面图像滑动窗口队列，并基于基线长度约束对滑动窗口中有显著视差的特征点的三角关系进行三角化，获得所述特征点初始深度；其中所述基线长度为相邻两帧下视地面图像对应的单目相机中心间的距离；</div>
+<div class="description-paragraph" id="p0150" num="0145">深度筛选子单元，用于对激光测距仪以及气压高度计获取的信息进行融合，获得低空飞行器的参考高度信息，并基于所述参考高度信息，筛选所述特征点初始深度，获得特征点优选深度。</div>
+<div class="description-paragraph" id="p0151" num="0146">进一步的实施方式在于，所述特征点深度填充单元：</div>
+<div class="description-paragraph" id="p0152" num="0147">图像均衡子单元，用于基于限制对比度自适应直方图均衡化，增强所述下视地面图像的对比度，获得特征点提取图；</div>
+<div class="description-paragraph" id="p0153" num="0148">特征提取子单元，用于所述测距信息利用激光测距仪采集，对含有所述激光测距仪的激光点的下视地面图像进行特征提取，获得激光点周围区域的激光等高面；其中，所述激光点周围区域内的特征点具有同样的深度信息，所述深度信息为激光测距值；</div>
+<div class="description-paragraph" id="p0154" num="0149">第一填充子单元，用于为所述激光等高面内深度误差大于预设误差阈值的特征点填充当前激光测距值；</div>
+<div class="description-paragraph" id="p0155" num="0150">第二填充子单元，用于若特征点在激光等高面外，基于所述机动状态，对深度误差小于预设误差阈值的特征点填充当前参考高度信息，完成对所述视觉尺度信息的补充。以上所述的实施例仅是对本发明优选方式进行的描述，并非对本发明的范围进行限定，在不脱离本发明设计精神的前提下，本领域普通技术人员对本发明的技术方案做出的各种变形和改进，均应落入本发明权利要求书确定的保护范围内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

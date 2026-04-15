@@ -1,0 +1,137 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN105357000A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES377556434">
+<invention-title id="tilte1" lang="ZH">基于低空飞行器的量子密钥分发方法、系统、通信网络及通信方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001" num="0001">技术领域
+	</div>
+<div class="description-paragraph" id="p0002" num="0002">本发明涉及一种基于低空飞行器的量子密钥分发方法及装置，尤其涉及一种基于低空飞行器的量子密钥分发方法、系统、通信网络及通信方法。
+	</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003" num="0003">背景技术
+	</div>
+<div class="description-paragraph" id="p0004" num="0004">目前主要以光纤为信道的量子密钥分发需要有光纤网络，而光纤网络通常位置是固定的，且光纤网络不是所有地方都有，一些特殊地区不方便铺设光纤，量子密钥通过光纤传输就无法实现。同时光纤网络的铺设过程，一方面耗时长，另一方面投入大，一定程度上限制了量子密钥在一些情况下的使用，特别是在军事作战过程中，需要野外或作战区快速部署量子密钥网络时候。对一些移动性较强的场合，固定位置的光纤更是很难满足要求，这样造成无法方便对一些移动设备进行量子加密通信。
+	</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0005" num="0005">发明内容
+	</div>
+<div class="description-paragraph" id="p0006" num="0006">本发明的目的是针对上述现有技术的不足，提供一种基于低空飞行器的量子密钥分发方法、系统、通信网络及通信方法，本基于低空飞行器的量子密钥分发方法、系统、通信网络及通信方法采用自由空间的量子密钥分配方式，可以很好的解决物理线路通道固定的束缚，使用载有量子密钥分发设备的低空飞行器在空中与地面通信点上的量子密钥分发设备进行量子密钥分发，利用自由空间的量子密钥分配方式进行密钥分发，本系统具有极大的机动性，可快速部署，摆脱了传统的固定线路式的密钥分发的束缚。
+	</div>
+<div class="description-paragraph" id="p0007" num="0007">为实现上述技术目的，本发明采取的技术方案为：基于低空飞行器的量子密钥分发方法，其特征在于包括以下步骤：
+	</div>
+<div class="description-paragraph" id="p0008" num="0008">低空飞行器携带量子密钥分发设备，根据命令飞行到指定位置A地，与地面量子密钥分发设备完成量子密钥的分发；
+	</div>
+<div class="description-paragraph" id="p0009" num="0009">然后低空飞行器再飞行到B地分发量子密钥，使低空飞行器在A和B两地形成相同的共享密钥；
+	</div>
+<div class="description-paragraph" id="p0010" num="0010">最后，地面加密通信设备采用共享密钥完成数据的量子加密保护传输，并对地面通信进行安全保障。
+	</div>
+<div class="description-paragraph" id="p0011" num="0011">为实现上述技术目的，本发明采取的另一种技术方案为：基于低空飞行器的量子密钥分发系统，其特征在于：
+	</div>
+<div class="description-paragraph" id="p0012" num="0012">包括低空飞行器和地面量子密钥分发设备，低空飞行器上携带量子密钥分发设备；低空飞行器用于根据命令飞行到指定位置A地，与地面量子密钥分发设备完成量子密钥的分发；
+	</div>
+<div class="description-paragraph" id="p0013" num="0013">低空飞行器还用于再飞行到B地分发量子密钥，使低空飞行器在A和B两地形成相同的共享密钥；
+	</div>
+<div class="description-paragraph" id="p0014" num="0014">地面加密通信设备用于采用共享密钥完成数据的量子加密保护传输，并对地面通信进行安全保障。
+	</div>
+<div class="description-paragraph" id="p0015" num="0015">为实现上述技术目的，本发明采取的第三种技术方案为：低空飞行器量子密钥通信网络，其特征在于：
+	</div>
+<div class="description-paragraph" id="p0016" num="0016">包括指挥部、地面系统和低空飞行器；低空飞行器上配置有量子密钥分发设备和控制装置；地面系统安装有与低空飞行器配对的量子密钥分发设备和控制装置；
+	</div>
+<div class="description-paragraph" id="p0017" num="0017">指挥部用于管理和控制所有低空飞行器，即控制低空飞行器在指定时间内飞往指定地点进行量子密钥分发，控制低空飞行器选择最优的飞行线路；
+	</div>
+<div class="description-paragraph" id="p0018" num="0018">低空飞行器上配置的控制装置用于接收和处理指挥部下发的命令并向指挥部上报低空飞行器位置与状态，也用于控制低空飞行器上配置的量子密钥分发设备进行密钥分发和密钥服务工作；
+	</div>
+<div class="description-paragraph" id="p0019" num="0019">地面系统安装的与低空飞行器配对的量子密钥分发设备和控制装置用于完成与低空飞行器之间的量子密钥分发；当低空飞行器和地面系统双方完成量子密钥分发后即可使用量子密钥进行加密通信。
+	</div>
+<div class="description-paragraph" id="p0020" num="0020">为实现上述技术目的，本发明采取的第四种技术方案为：低空飞行器量子密钥通信方法，其特征在于包括以下步骤：
+	</div>
+<div class="description-paragraph" id="p0021" num="0021">通过指挥部管理和控制所有低空飞行器，即控制低空飞行器在指定时间内飞往指定地点进行量子密钥分发，控制低空飞行器选择最优的飞行线路；
+	</div>
+<div class="description-paragraph" id="p0022" num="0022">低空飞行器上配置有量子密钥分发设备和控制装置；通过低空飞行器上配置的控制装置接收和处理指挥部下发的命令并向指挥部上报低空飞行器位置与状态；通过低空飞行器上配置的控制装置控制低空飞行器上配置的量子密钥分发设备进行密钥分发和密钥服务工作；
+	</div>
+<div class="description-paragraph" id="p0023" num="0023">地面系统安装有与低空飞行器配对的量子密钥分发设备和控制装置；通过地面系统安装的与低空飞行器配对的量子密钥分发设备和控制装置完成与低空飞行器之间的量子密钥分发；当低空飞行器和地面系统双方完成量子密钥分发后即可使用量子密钥进行加密通信。
+	</div>
+<div class="description-paragraph" id="p0024" num="0024">本发明将量子密钥分发设备与低空飞行器相结合，使用灵活方便，机动性强，军事作战时可以快速组建密钥分发网络，实现量子加密的保密通信。系统主要功能如下：低空飞行器可在指定时间内飞往指定地点；智能选择与调整低空飞行器的飞行线路；空地实时安全分发量子密钥；快速移动、构建量子保密通信网络；卫星定位、导航；低空飞行器在卫星的导航下，低空飞行，不会被敌军发现，而且飞行路线可以灵活设定绕开某些障碍或者敌占区。飞行高度在100~200米，低空飞行有利于量子密码设备的对焦与传输。低空飞行器与地面完成了量子密钥分发后，地面加密通信设备采用量子密钥完成数据的量子加密保护传输，对地面通信进行安全保障，如图1所示。
+	</div>
+<div class="description-paragraph" id="p0025" num="0025">通过多个低空飞行器组建量子密钥通信网络，可以实现量子密钥网的快速部署，不再因为没有光纤资源而无法建网。
+	</div>
+<div class="description-paragraph" id="p0026" num="0026">系统工作流程：飞行线路的确定在低空飞行器系统中起着关键作用，不但要求低空飞行器可以找到预设地点而且要能找准地点，同时飞行路径还需能够绕开障碍物或者敌占区等特殊区间。本方案中低空飞行器的飞行线路使用卫星进行导航，飞行前设定线路，飞行过程中根据定位精确沿着指定路线飞行，飞行过程中指挥部也可以根据需要调整飞行线路。如图3。
+	</div>
+<div class="description-paragraph" id="p0027" num="0027">本发明中量子密钥传输采用自由空间的方案，通信的一方是在低空飞行器这样的飞行移动设备上，对焦瞄准有很大难度。本方案采用的低空飞行器飞行高度不高，空地间对焦难度大大降低，并且地面系统是固定的，地面系统设有规则多点定位装置，低空飞行器飞越上空的时候，可以根据地面的对焦装置准确对焦，对焦完成后即可进行量子密钥的传输。
+	</div>
+<div class="description-paragraph" id="p0028" num="0028">本发明采用低空飞行方式进行量子密钥分发，很好的避免了大气、雨雾和烟尘等对通信的影响，同时低空飞行器的低空飞行减少了在密钥传输前与地面对焦的难度。另外系统指挥部可以对低空飞行器的飞行线路、时间、高度进行严格控制并可以及时获取低空飞行器位置与状态信息。其次低空飞行器采用卫星定位技术来确定准确目标点和飞行路线。最后本方案的低空飞行器采用规则多点对焦装置完成准确对焦。
+	</div>
+<div class="description-paragraph" id="p0029" num="0029">本发明具有独特的密钥生成方式，并且不需要固定的量子网络通道，在任何地点上只要拥有一台量子密钥分发设备就可以和低空飞行器上的量子密钥分发设备生成量子密钥对。由于其密钥分发可移动性的特点给其在未来应用中提供了极大的空间。特别是在军事作战中，实现快速量子密钥网络的部署，完成保密数据通信有极高的应用价值。
+	</div>
+<div class="description-paragraph" id="p0030" num="0030">总之，本发明采用自由空间的量子密钥分配方式，可以很好的解决物理线路通道固定的束缚，使用载有量子密钥分发设备的低空飞行器在空中与地面通信点上的量子密钥分发设备进行量子密钥分发，利用自由空间的量子密钥分配方式进行密钥分发，自由空间的量子密钥分发方案有多种，如偏振编码，相位编码，连续变量编码，本发明具有极大的机动性，可快速部署，摆脱了传统的固定线路式的密钥分发的束缚。
+	</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0031" num="0031">附图说明
+	</div>
+<div class="description-paragraph" id="p0032" num="0032">图1为本发明基于低空飞行器的量子密钥分发系统结构示意图。
+	</div>
+<div class="description-paragraph" id="p0033" num="0033">图2为本发明基于低空飞行器的量子密钥通信网络结构示意图；
+	</div>
+<div class="description-paragraph" id="p0034" num="0034">图3为本发明基于低空飞行器的量子密钥通信网络的传输路线规划示意图。
+	</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0035" num="0035">具体实施方式
+	</div>
+</mode-for-invention>
+<mode-for-invention>
+<div class="description-paragraph" id="p0036" num="0036">
+<b>实施例1</b>
+</div>
+<div class="description-paragraph" id="p0037" num="0037">参见图1，本基于低空飞行器的量子密钥分发方法，包括以下步骤：
+	</div>
+<div class="description-paragraph" id="p0038" num="0038">低空飞行器携带量子密钥分发设备，根据命令飞行到指定位置A地，与地面量子密钥分发设备完成量子密钥的分发；
+	</div>
+<div class="description-paragraph" id="p0039" num="0039">然后低空飞行器再飞行到B地分发量子密钥，使低空飞行器在A和B两地形成相同的共享密钥；
+	</div>
+<div class="description-paragraph" id="p0040" num="0040">最后，地面加密通信设备采用共享密钥完成数据的量子加密保护传输，并对地面通信进行安全保障。
+	</div>
+</mode-for-invention>
+<mode-for-invention>
+<div class="description-paragraph" id="p0041" num="0041">
+<b>实施例2</b>
+</div>
+<div class="description-paragraph" id="p0042" num="0042">参见图2，本基于低空飞行器的量子密钥分发系统包括低空飞行器和地面量子密钥分发设备，低空飞行器上携带量子密钥分发设备；低空飞行器用于根据命令飞行到指定位置A地，与地面量子密钥分发设备完成量子密钥的分发；
+	</div>
+<div class="description-paragraph" id="p0043" num="0043">低空飞行器还用于再飞行到B地分发量子密钥，使低空飞行器在A和B两地形成相同的共享密钥；
+	</div>
+<div class="description-paragraph" id="p0044" num="0044">地面加密通信设备用于采用共享密钥完成数据的量子加密保护传输，并对地面通信进行安全保障。
+	</div>
+</mode-for-invention>
+<mode-for-invention>
+<div class="description-paragraph" id="p0045" num="0045">
+<b>实施例3</b>
+</div>
+<div class="description-paragraph" id="p0046" num="0046">参见图2，本低空飞行器量子密钥通信网络包括指挥部、地面系统和低空飞行器；低空飞行器上配置有量子密钥分发设备和控制装置；地面系统安装有与低空飞行器配对的量子密钥分发设备和控制装置；
+	</div>
+<div class="description-paragraph" id="p0047" num="0047">指挥部用于管理和控制所有低空飞行器，即控制低空飞行器在指定时间内飞往指定地点进行量子密钥分发，控制低空飞行器选择最优的飞行线路；
+	</div>
+<div class="description-paragraph" id="p0048" num="0048">低空飞行器上配置的控制装置用于接收和处理指挥部下发的命令并向指挥部上报低空飞行器位置与状态，也用于控制低空飞行器上配置的量子密钥分发设备进行密钥分发和密钥服务工作；
+	</div>
+<div class="description-paragraph" id="p0049" num="0049">地面系统安装的与低空飞行器配对的量子密钥分发设备和控制装置用于完成与低空飞行器之间的量子密钥分发；当低空飞行器和地面系统双方完成量子密钥分发后即可使用量子密钥进行加密通信。
+	</div>
+</mode-for-invention>
+<mode-for-invention>
+<div class="description-paragraph" id="p0050" num="0050">
+<b>实施例4</b>
+</div>
+<div class="description-paragraph" id="p0051" num="0051">参见图2，本低空飞行器量子密钥通信方法，包括以下步骤：
+	</div>
+<div class="description-paragraph" id="p0052" num="0052">通过指挥部管理和控制所有低空飞行器，即控制低空飞行器在指定时间内飞往指定地点进行量子密钥分发，控制低空飞行器选择最优的飞行线路；
+	</div>
+<div class="description-paragraph" id="p0053" num="0053">低空飞行器上配置有量子密钥分发设备和控制装置；通过低空飞行器上配置的控制装置接收和处理指挥部下发的命令并向指挥部上报低空飞行器位置与状态；通过低空飞行器上配置的控制装置控制低空飞行器上配置的量子密钥分发设备进行密钥分发和密钥服务工作；
+	</div>
+<div class="description-paragraph" id="p0054" num="0054">地面系统安装有与低空飞行器配对的量子密钥分发设备和控制装置；通过地面系统安装的与低空飞行器配对的量子密钥分发设备和控制装置完成与低空飞行器之间的量子密钥分发；当低空飞行器和地面系统双方完成量子密钥分发后即可使用量子密钥进行加密通信。
+	</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

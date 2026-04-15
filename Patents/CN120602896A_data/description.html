@@ -1,0 +1,63 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120602896A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES504752838">
+<invention-title id="title1" lang="ZH">低空飞行器动态轨迹数据压缩传输与预测方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空飞行器无线通信技术领域，更具体地说，涉及低空飞行器动态轨迹数据压缩传输与预测方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空飞行器应用的普及，除了传统的应用领域得到进一步拓展外，私人与公务低空飞行器的需求不断增长，同时低空飞行器在火灾救援、海上急救、缉私缉毒、消防、医疗救助等公务方面的应用也在很快展开。</div>
+<div class="description-paragraph" id="p0005" num="0003">目前低空飞行器与控制中心通信通常采用甚高频通信、高频通信和无线网络通信相结合的方式，其中，甚高频通信距离太近且受飞行高度影响较大，高频通信因短波信号不稳定、电台间相互干扰，通信质量差，无线网络受地域制约，在森林、山区等移动网络无法覆盖的地方无法使用。</div>
+<div class="description-paragraph" id="p0006" num="0004">而随着北斗二号系统开通运行后，虽能保证低空飞行器通信的连续性，为使用部门提供更直接有效的监控和指挥调度，但目前民用北斗卡频度较高，短报文容量有限，传输数据量受到严重制约，在这种情况下，如何高效压缩低空飞行器动态轨迹数据并进行可靠传输，同时对轨迹进行准确预测成为急待解决的问题，鉴于此，我们提出一种低空飞行器动态轨迹数据压缩传输与预测方法。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明的目的在于提供一种低空飞行器动态轨迹数据压缩传输与预测方法，旨在解决现有技术难以高效压缩低空飞行器动态轨迹数据并进行可靠传输，同时对轨迹进行准确预测的问题。</div>
+<div class="description-paragraph" id="p0009" num="0006">为解决上述技术问题，本发明提供如下技术方案：一种低空飞行器动态轨迹数据压缩传输与预测方法，该方法包括以下步骤；</div>
+<div class="description-paragraph" id="p0010">S1、对低空飞行器的动态轨迹数据进行特征提取和压缩处理，所述压缩处理采用基于时空相关性的压缩方法去除冗余数据；</div>
+<div class="description-paragraph" id="p0011">S2、通过指挥调度中心配置北斗指挥型用户机、低空飞行器配置下属北斗用户机的中继方式实现利用北斗卫星系统将压缩后的数据传输至指挥调度中心；</div>
+<div class="description-paragraph" id="p0012">S3、然后通过结合北斗系统精准授时功能，利用实时采集的飞行数据及历史轨迹数据，采用线性外推预测模型分析飞行器运动趋势并预测未来轨迹。</div>
+<div class="description-paragraph" id="p0013" num="0007">优选的，在上述步骤S1中，所述特征提取包括提取飞行高度、速度、加速度、经纬度坐标信息。</div>
+<div class="description-paragraph" id="p0014" num="0008">优选的，在上述步骤S1中，通过判断公式<span class="patent-image-not-available"></span>是否成立来确定时空相关性，式中，<span class="patent-image-not-available"></span>为轨迹点<span class="patent-image-not-available"></span>与<span class="patent-image-not-available"></span>的空间距离，<span class="patent-image-not-available"></span>为误差系数，<span class="patent-image-not-available"></span>为平均飞行速度，当满足该条件时，表明两点具有时空相关性，可进行压缩处理，从而减少数据冗余。</div>
+<div class="description-paragraph" id="p0015" num="0009">优选的，在上述步骤S2中，所述数据传输过程中，采用单机多卡轮换连续定位的方式，将定位频度缩小至10秒之内，使定位点数增加，误差缩小。</div>
+<div class="description-paragraph" id="p0016" num="0010">优选的，在上述步骤S2中，所述北斗指挥型用户机可容纳100-1000个用户终端，实现位置监控、通播、授时、轨迹回放及数据管理功能。</div>
+<div class="description-paragraph" id="p0017" num="0011">优选的，在上述步骤S3中，所述预测模型公式为<span class="patent-image-not-available"></span>，式中，<span class="patent-image-not-available"></span>为预测的<span class="patent-image-not-available"></span>时刻位置，<span class="patent-image-not-available"></span>为当前位置，<span class="patent-image-not-available"></span>为当前速度，<span class="patent-image-not-available"></span>为当前加速度，<span class="patent-image-not-available"></span>为预测时间间隔。</div>
+<div class="description-paragraph" id="p0018" num="0012">优选的，在上述步骤S2中，所述压缩方法还包括以下步骤：</div>
+<div class="description-paragraph" id="p0019">S1.1、采用自回归模型对时间上相邻的轨迹点数据进行分析，利用历史轨迹点数据来预测当前轨迹点数据值，对于具有较强自相关性的轨迹数据时间序列，通过计算预测值与实际值之间的残差，并对残差进行编码存储，从而减少时间维度上的冗余信息；</div>
+<div class="description-paragraph" id="p0020">S1.2、将飞行器飞行区域划分为多个空间块，当判断相邻轨迹点在同一空间块或相邻空间块内，且满足时空相关性条件时，利用空间相关性进一步减少数据冗余；</div>
+<div class="description-paragraph" id="p0021">S1.3、构建轨迹数据特征字典，将常见的轨迹数据特征模式存储在字典中，在压缩过程中，对于符合字典中模式的轨迹数据部分，直接引用字典中的索引，以此减少数据存储量。</div>
+<div class="description-paragraph" id="p0022" num="0013">优选的，在上述步骤S1.1中，当前轨迹点为<span class="patent-image-not-available"></span>，其自回归预测模型可表示为<span class="patent-image-not-available"></span>，式中，<span class="patent-image-not-available"></span>为自回归系数，<span class="patent-image-not-available"></span>为过去<span class="patent-image-not-available"></span>个时间步的轨迹点数据，<span class="patent-image-not-available"></span>为预测残差 。</div>
+<div class="description-paragraph" id="p0023" num="0014">与现有技术相比，本发明的有益效果是：</div>
+<div class="description-paragraph" id="p0024">1、本发明通过基于时空相关性的压缩方法去除冗余数据，有效减少了数据量，提升了传输效率，同时结合北斗精准授时功能及线性外推预测模型，实现了对飞行器未来轨迹的准确预测，满足了低空飞行器在通信传输和轨迹预测方面的迫切需求。</div>
+<div class="description-paragraph" id="p0025" num="0015">2、本发明在数据压缩处理中，采用自回归模型分析时间相邻轨迹点数据，通过计算残差并编码存储，减少时间维度冗余，将飞行区域划分为空间块，利用空间相关性进一步降低数据冗余，构建轨迹数据特征字典，引用字典索引减少数据存储量，多维度压缩方式显著提高了数据压缩效率。</div>
+<div class="description-paragraph" id="p0026" num="0016">3、本发明在数据传输过程中，采用单机多卡轮换连续定位方式，将定位频度缩小至10秒之内，增加定位点数，缩小误差，同时北斗指挥型用户机容纳100-1000个用户终端，实现位置监控、通播、授时、轨迹回放及数据管理等功能，保障了数据传输的可靠性和定位的精度。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0027">附图说明</div>
+<div class="description-paragraph" id="p0028" num="0017">图1为本发明中方法的流程示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0029">具体实施方式</div>
+<div class="description-paragraph" id="p0030" num="0018">下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本发明一部分实施例，而不是全部的实施例。</div>
+<div class="description-paragraph" id="p0031" num="0019">实施例一</div>
+<div class="description-paragraph" id="p0032">如图1所示，一种低空飞行器动态轨迹数据压缩传输与预测方法，该方法包括以下步骤；</div>
+<div class="description-paragraph" id="p0033">S1、对低空飞行器的动态轨迹数据进行特征提取和压缩处理，压缩处理采用基于时空相关性的压缩方法去除冗余数据，以提取关键特征并利用时空相关性压缩数据，减少数据量，降低传输带宽需求，提高数据传输效率，同时保留轨迹关键信息；</div>
+<div class="description-paragraph" id="p0034">S2、通过指挥调度中心配置北斗指挥型用户机、低空飞行器配置下属北斗用户机的中继方式实现利用北斗卫星系统将压缩后的数据传输至指挥调度中心，以借助北斗卫星系统的中继传输，在低空环境中实现稳定的数据传输，尤其适用于信号覆盖较差的区域，保障数据传输的可靠性；</div>
+<div class="description-paragraph" id="p0035">S3、然后通过结合北斗系统精准授时功能，利用实时采集的飞行数据及历史轨迹数据，采用线性外推预测模型分析飞行器运动趋势并预测未来轨迹，以利用北斗授时的高精度时间基准，结合实时和历史数据预测轨迹，提前掌握飞行器运动趋势，为指挥调度提供决策支持，提升低空飞行管理的安全性和效率。</div>
+<div class="description-paragraph" id="p0036" num="0020">其中，在上述步骤S1中，特征提取包括提取飞行高度、速度、加速度、经纬度坐标信息，以提取这些关键运动参数，全面表征飞行器的动态轨迹特征，为后续的压缩处理和轨迹预测提供准确的基础数据。</div>
+<div class="description-paragraph" id="p0037" num="0021">其中，在上述步骤S1中，通过判断公式<span class="patent-image-not-available"></span>是否成立来确定时空相关性，式中，<span class="patent-image-not-available"></span>为轨迹点<span class="patent-image-not-available"></span>与<span class="patent-image-not-available"></span>的空间距离，<span class="patent-image-not-available"></span>为误差系数，<span class="patent-image-not-available"></span>为平均飞行速度，当满足该条件时，表明两点具有时空相关性，可进行压缩处理，从而减少数据冗余。</div>
+<div class="description-paragraph" id="p0038" num="0022">其中，在上述步骤S2中，数据传输过程中，采用单机多卡轮换连续定位的方式，将定位频度缩小至10秒之内，使定位点数增加，误差缩小，以单机多卡轮换定位的方式提高定位频率，增加定位点数，从而降低定位误差，提高轨迹数据的精度，使传输的数据更准确地反映飞行器的实际位置。</div>
+<div class="description-paragraph" id="p0039" num="0023">其中，在上述步骤S2中，北斗指挥型用户机可容纳100-1000个用户终端，实现位置监控、通播、授时、轨迹回放及数据管理功能，以北斗指挥型用户机的大容量用户终端支持能力，满足多架低空飞行器的同时监控和管理需求，其多种功能为指挥调度中心提供全面的飞行器状态信息和数据管理手段。</div>
+<div class="description-paragraph" id="p0040" num="0024">其中，在上述步骤S3中，预测模型公式为<span class="patent-image-not-available"></span>，式中，<span class="patent-image-not-available"></span>为预测的<span class="patent-image-not-available"></span>时刻位置，<span class="patent-image-not-available"></span>为当前位置，<span class="patent-image-not-available"></span>为当前速度，<span class="patent-image-not-available"></span>为当前加速度，<span class="patent-image-not-available"></span>为预测时间间隔，以基于当前位置、速度和加速度，结合预测时间间隔，简单快速地预测飞行器未来位置，为实时监控和预警提供依据，适用于飞行器运动状态相对稳定的场景。</div>
+<div class="description-paragraph" id="p0041" num="0025">其中，在上述步骤S2中，压缩方法还包括以下步骤：</div>
+<div class="description-paragraph" id="p0042">S1.1、采用自回归模型对时间上相邻的轨迹点数据进行分析，利用历史轨迹点数据来预测当前轨迹点数据值，对于具有较强自相关性的轨迹数据时间序列，通过计算预测值与实际值之间的残差，并对残差进行编码存储，从而减少时间维度上的冗余信息；</div>
+<div class="description-paragraph" id="p0043">S1.2、将飞行器飞行区域划分为多个空间块，当判断相邻轨迹点在同一空间块或相邻空间块内，且满足时空相关性条件时，利用空间相关性进一步减少数据冗余；</div>
+<div class="description-paragraph" id="p0044">S1.3、构建轨迹数据特征字典，将常见的轨迹数据特征模式存储在字典中，在压缩过程中，对于符合字典中模式的轨迹数据部分，直接引用字典中的索引，以此减少数据存储量。</div>
+<div class="description-paragraph" id="p0045" num="0026">其中，在上述步骤S1.1中，当前轨迹点为<span class="patent-image-not-available"></span>，其自回归预测模型可表示为<span class="patent-image-not-available"></span>，式中，<span class="patent-image-not-available"></span>为自回归系数，<span class="patent-image-not-available"></span>为过去<span class="patent-image-not-available"></span>个时间步的轨迹点数据，<span class="patent-image-not-available"></span>为预测残差 。</div>
+<div class="description-paragraph" id="p0046" num="0027">本发明实施例公布的是较佳的实施例，但并不局限于此，本领域的普通技术人员，极易根据上述实施例，领会本发明的精神，并做出不同的引申和变化，但只要不脱离本发明的精神，都在本发明的保护范围内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

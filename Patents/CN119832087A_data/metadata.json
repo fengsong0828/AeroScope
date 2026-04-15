@@ -1,0 +1,53 @@
+{
+    "patent_id": "CN119832087A",
+    "title": "CN119832087A - 一种用于低空飞行器的数据感知智能处理方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Gansu Tianli Hengzhi Electronic Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119832087A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN108281044A (zh) *",
+            "Priority Date": "2017-01-06",
+            "Publication Date": "2018-07-13",
+            "Assignee": "广州赛度检测服务有限公司",
+            "Title": "一种基于网格的社区低空飞行器快速锁定方法",
+            "Link": "https://patents.google.com/patent/CN108281044A/zh"
+        },
+        {
+            "Publication Number": "WO2024061374A1 (zh) *",
+            "Priority Date": "2022-09-20",
+            "Publication Date": "2024-03-28",
+            "Assignee": "影石创新科技股份有限公司",
+            "Title": "无人机控制方法、装置、计算机设备和存储介质",
+            "Link": "https://patents.google.com/patent/WO2024061374A1/zh"
+        },
+        {
+            "Publication Number": "CN116760747A (zh) *",
+            "Priority Date": "2023-07-04",
+            "Publication Date": "2023-09-15",
+            "Assignee": "嘉兴职业技术学院",
+            "Title": "一种网络信息安全性智能检测方法及装置",
+            "Link": "https://patents.google.com/patent/CN116760747A/zh"
+        },
+        {
+            "Publication Number": "CN116719349A (zh) *",
+            "Priority Date": "2023-07-17",
+            "Publication Date": "2023-09-08",
+            "Assignee": "深圳互酷科技有限公司",
+            "Title": "一种无人机环绕飞行的控制方法、装置及介质",
+            "Link": "https://patents.google.com/patent/CN116719349A/zh"
+        },
+        {
+            "Publication Number": "CN118550904A (zh) *",
+            "Priority Date": "2024-05-15",
+            "Publication Date": "2024-08-27",
+            "Assignee": "中国地震应急搜救中心",
+            "Title": "基于星基的ads-b航迹预测方法及装置",
+            "Link": "https://patents.google.com/patent/CN118550904A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:59:05"
+}

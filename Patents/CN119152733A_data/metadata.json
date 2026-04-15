@@ -1,0 +1,78 @@
+{
+    "patent_id": "CN119152733A",
+    "title": "CN119152733A - 一种低空空域的飞行器管制方法、系统及终端 - Google Patents",
+    "status": "Unknown",
+    "assignee": "China Telecom Corp Ltd Shenzhen Branch",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119152733A/zh",
+    "citations": [
+        {
+            "Publication Number": "WO2002099769A1 (en) *",
+            "Priority Date": "2001-06-01",
+            "Publication Date": "2002-12-12",
+            "Assignee": "The Boeing Company",
+            "Title": "Air traffic management system and method",
+            "Link": "https://patents.google.com/patent/WO2002099769A1/en"
+        },
+        {
+            "Publication Number": "EP1517281A2 (en) *",
+            "Priority Date": "2003-09-16",
+            "Publication Date": "2005-03-23",
+            "Assignee": "COMSOFT GmbH",
+            "Title": "Safety nets for alerting of hazardous situations in air traffic",
+            "Link": "https://patents.google.com/patent/EP1517281A2/en"
+        },
+        {
+            "Publication Number": "CN115602001A (zh) *",
+            "Priority Date": "2022-09-29",
+            "Publication Date": "2023-01-13",
+            "Assignee": "亿航智能设备（广州）有限公司（Cn）",
+            "Title": "基于大数据识别的无人驾驶航空器管理方法、系统和介质",
+            "Link": "https://patents.google.com/patent/CN115602001A/zh"
+        },
+        {
+            "Publication Number": "CN117570980A (zh) *",
+            "Priority Date": "2023-10-31",
+            "Publication Date": "2024-02-20",
+            "Assignee": "哈尔滨工业大学重庆研究院",
+            "Title": "一种基于uwb与gps融合定位算法的方法及系统",
+            "Link": "https://patents.google.com/patent/CN117570980A/zh"
+        },
+        {
+            "Publication Number": "CN118898922A (zh) *",
+            "Priority Date": "2024-06-12",
+            "Publication Date": "2024-11-05",
+            "Assignee": "北京理工大学",
+            "Title": "城市低空立体交通管理与控制平台和方法",
+            "Link": "https://patents.google.com/patent/CN118898922A/zh"
+        },
+        {
+            "Publication Number": "CN118942287A (zh) *",
+            "Priority Date": "2024-07-22",
+            "Publication Date": "2024-11-12",
+            "Assignee": "浪潮软件科技有限公司",
+            "Title": "基于空间网格的无人机管控方法、系统、设备及介质",
+            "Link": "https://patents.google.com/patent/CN118942287A/zh"
+        },
+        {
+            "Publication Number": "CN118658342A (zh) *",
+            "Priority Date": "2024-08-16",
+            "Publication Date": "2024-09-17",
+            "Assignee": "国科星图(深圳)数字技术产业研发中心有限公司",
+            "Title": "低空空域管控方法及系统",
+            "Link": "https://patents.google.com/patent/CN118658342A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN119380588A (zh) *",
+            "Priority Date": "2024-12-27",
+            "Publication Date": "2025-01-28",
+            "Assignee": "柒星通信科技（北京）有限公司",
+            "Title": "一种低空飞行器实时监管及冲突预警系统",
+            "Link": "https://patents.google.com/patent/CN119380588A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:27:24"
+}

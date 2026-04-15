@@ -1,0 +1,77 @@
+{
+    "patent_id": "CN119905019A",
+    "title": "CN119905019A - 一种低空飞行器空中交通管理方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Zhejiang Tianji Spacetime Intelligent Big Data Operation Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119905019A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN111143097A (zh) *",
+            "Priority Date": "2018-11-03",
+            "Publication Date": "2020-05-12",
+            "Assignee": "千寻位置网络有限公司",
+            "Title": "面向gnss定位服务的故障治理系统和方法",
+            "Link": "https://patents.google.com/patent/CN111143097A/zh"
+        },
+        {
+            "Publication Number": "KR20200105008A (ko) *",
+            "Priority Date": "2019-02-28",
+            "Publication Date": "2020-09-07",
+            "Assignee": "주식회사 켐에쎈",
+            "Title": "비행경로 일괄 편집 및 시간 동기화를 통한 군집 드론의 자율 비행 방법",
+            "Link": "https://patents.google.com/patent/KR20200105008A/ko"
+        },
+        {
+            "Publication Number": "US20210255645A1 (en) *",
+            "Priority Date": "2019-07-31",
+            "Publication Date": "2021-08-19",
+            "Assignee": "Nanjing University Of Aeronautics And Astronautics",
+            "Title": "Online modeling method for dynamic mutual observation of drone swarm collaborative navigation",
+            "Link": "https://patents.google.com/patent/US20210255645A1/en"
+        },
+        {
+            "Publication Number": "CN118915820A (zh) *",
+            "Priority Date": "2024-07-25",
+            "Publication Date": "2024-11-08",
+            "Assignee": "南京航空航天大学",
+            "Title": "基于改进智能势场和共识协议的无人机系统及其避障算法",
+            "Link": "https://patents.google.com/patent/CN118915820A/zh"
+        },
+        {
+            "Publication Number": "CN119002513A (zh) *",
+            "Priority Date": "2024-08-13",
+            "Publication Date": "2024-11-22",
+            "Assignee": "欧冶链金再生资源有限公司",
+            "Title": "一种基于改进季节优化算法的无人机速度控制优化方法",
+            "Link": "https://patents.google.com/patent/CN119002513A/zh"
+        },
+        {
+            "Publication Number": "CN118645019A (zh) *",
+            "Priority Date": "2024-08-14",
+            "Publication Date": "2024-09-13",
+            "Assignee": "威海市华美航空科技股份有限公司",
+            "Title": "智能无人机数据处理系统",
+            "Link": "https://patents.google.com/patent/CN118645019A/zh"
+        },
+        {
+            "Publication Number": "CN119002553A (zh) *",
+            "Priority Date": "2024-08-30",
+            "Publication Date": "2024-11-22",
+            "Assignee": "西北工业大学",
+            "Title": "一种基于无向图阵型度量的协同轨迹优化方法及系统",
+            "Link": "https://patents.google.com/patent/CN119002553A/zh"
+        },
+        {
+            "Publication Number": "CN119049345A (zh) *",
+            "Priority Date": "2024-10-30",
+            "Publication Date": "2024-11-29",
+            "Assignee": "湖南力翔智能科技有限公司",
+            "Title": "一种空中快警指挥方法及系统",
+            "Link": "https://patents.google.com/patent/CN119049345A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:58:59"
+}

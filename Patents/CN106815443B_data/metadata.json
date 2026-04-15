@@ -1,0 +1,29 @@
+{
+    "patent_id": "CN106815443B",
+    "title": "CN106815443B - 面向变化环境的超低空飞行器三维多批多航迹规划方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Beijing Institute of Technology BIT",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN106815443B/zh",
+    "citations": [
+        {
+            "Publication Number": "CN103557867A (zh) *",
+            "Priority Date": "2013-10-09",
+            "Publication Date": "2014-02-05",
+            "Assignee": "哈尔滨工程大学",
+            "Title": "一种基于稀疏a*搜索的三维多uav协同航迹规划方法",
+            "Link": "https://patents.google.com/patent/CN103557867A/zh"
+        },
+        {
+            "Publication Number": "CN103913172A (zh) *",
+            "Priority Date": "2013-12-06",
+            "Publication Date": "2014-07-09",
+            "Assignee": "北京航空航天大学",
+            "Title": "一种适用于复杂低空下飞行器的路径规划方法",
+            "Link": "https://patents.google.com/patent/CN103913172A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:30:58"
+}

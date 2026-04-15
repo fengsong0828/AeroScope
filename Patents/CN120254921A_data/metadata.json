@@ -1,0 +1,53 @@
+{
+    "patent_id": "CN120254921A",
+    "title": "CN120254921A - 低空飞行器航路气象数据采集处理方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Xi'an Lechi Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120254921A/zh",
+    "citations": [
+        {
+            "Publication Number": "WO2009011611A1 (ru) *",
+            "Priority Date": "2007-07-17",
+            "Publication Date": "2009-01-22",
+            "Assignee": "Zakrytoe Aktsionernoe Obschestvo 'vniira-Navigator'",
+            "Title": "Способ посадки летательных аппаратов с использованием спутниковой навигационной системы и система посадки на его основе",
+            "Link": "https://patents.google.com/patent/WO2009011611A1/ru"
+        },
+        {
+            "Publication Number": "US20210239849A1 (en) *",
+            "Priority Date": "2020-02-05",
+            "Publication Date": "2021-08-05",
+            "Assignee": "Tupaia Ltd.",
+            "Title": "Providing an accurate location for a gnss device in urban environments",
+            "Link": "https://patents.google.com/patent/US20210239849A1/en"
+        },
+        {
+            "Publication Number": "WO2022015873A2 (en) *",
+            "Priority Date": "2020-07-14",
+            "Publication Date": "2022-01-20",
+            "Assignee": "Spirent Communications Plc",
+            "Title": "An architecture for providing forecasts of gnss obscuration and multipath",
+            "Link": "https://patents.google.com/patent/WO2022015873A2/en"
+        },
+        {
+            "Publication Number": "WO2023134098A1 (zh) *",
+            "Priority Date": "2022-01-17",
+            "Publication Date": "2023-07-20",
+            "Assignee": "天津七一二通信广播股份有限公司",
+            "Title": "复杂机场环境下gbas系统及应用方法",
+            "Link": "https://patents.google.com/patent/WO2023134098A1/zh"
+        },
+        {
+            "Publication Number": "US20240094402A1 (en) *",
+            "Priority Date": "2022-09-16",
+            "Publication Date": "2024-03-21",
+            "Assignee": "Spirent Communications Plc",
+            "Title": "Utilizing Low Earth Orbit (LEO) Satellite Data for Obscuration and Multipath Risk Analysis",
+            "Link": "https://patents.google.com/patent/US20240094402A1/en"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:57:41"
+}

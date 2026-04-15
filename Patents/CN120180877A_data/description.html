@@ -1,0 +1,279 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120180877A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES497734912">
+<invention-title id="title1" lang="ZH">一种低空飞行器起降平台选址优化方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及无人驾驶飞行器(UAV)的管理与优化领域，具体涉及一种低空飞行器起降平台选址优化方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着无人机技术的迅猛发展，尤其是在城市空中交通(Urban Air Mobility，UAM)中的广泛应用，无人机在低空空域的使用频率和密度显著增加，但同时也带来了诸多问题，包括空域资源的高效利用、飞行安全性的保障以及多无人机协同作业的管理等。</div>
+<div class="description-paragraph" id="p0005" num="0003">现有的低空飞行器起降平台选址优化方法在面对高密度飞行环境和动态空域变化时，存在以下主要不足：现有系统在整合交通、气象、地理、环境等多源数据方面存在滞后，无法全面反映城市动态变化，影响选址优化的准确性和实时性；传统优化算法在处理多目标和复杂约束条件时效率低下，难以满足高效、灵活的选址需求；无法实时响应城市环境的快速变化，导致选址方案难以动态调整，降低了系统的适应性和稳定性；数字孪生体作为先进的模拟和预测工具，在低空飞行器起降平台选址优化中的应用尚不普遍，无法充分利用其提供的模拟和实时更新能力。</div>
+<div class="description-paragraph" id="p0006" num="0004">为解决上述问题，本发明提出一种低空飞行器起降平台选址优化方法，通过数字孪生体构建虚拟城市模型，为选址优化提供精准的模拟环境和实时反馈，以提升选址方案的准确性和可行性，进而提升无人机飞行的安全性和运营效率。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">鉴于上述问题，本发明提供一种低空飞行器起降平台选址优化方法，包括：</div>
+<div class="description-paragraph" id="p0009" num="0006">步骤S1，获取包括城市交通流量数据、气象数据、地形地貌数据、环境数据、POI数据的实时动态数据和静态GIS数据；</div>
+<div class="description-paragraph" id="p0010" num="0007">步骤S2，根据所述静态GIS数据构建城市三维数字模型，根据所述三维数字模型和所述实时动态数据构建数字孪生体模型；</div>
+<div class="description-paragraph" id="p0011" num="0008">步骤S3，构建所述数字孪生体模型中候选起降平台位置的环境约束条件和安全约束条件；其中，所述环境约束条件包括地形坡度、建筑物高度、障碍物分布、风向风速和噪音影响；所述安全约束条件包括安全距离、航线规划和紧急情况下的备降点；</div>
+<div class="description-paragraph" id="p0012" num="0009">步骤S4，通过粒子群优化算法对所述数字孪生体模型进行多目标优化，生成满足所述环境约束条件和安全约束条件的最优候选起降平台选址方案集；</div>
+<div class="description-paragraph" id="p0013" num="0010">步骤S5，根据实时数据反馈动态更新所述数字孪生体模型，对所述起降平台选址方案进行动态调整。</div>
+<div class="description-paragraph" id="p0014" num="0011">在一种可选的方式中，在所述步骤S1中：</div>
+<div class="description-paragraph" id="p0015" num="0012">从城市交通监控系统实时采集道路交通流量和公共交通站点数据；</div>
+<div class="description-paragraph" id="p0016" num="0013">从气象站或在线气象服务实时采集温度、湿度、风速和风向气象数据；</div>
+<div class="description-paragraph" id="p0017" num="0014">从GIS数据库获取城市地形地貌、建筑物分布和土地使用类型信息，并进行三维建模得到城市三维空间信息数据；</div>
+<div class="description-paragraph" id="p0018" num="0015">从环境监测站点实时采集噪声和空气质量环境数据；</div>
+<div class="description-paragraph" id="p0019" num="0016">从公共数据源或第三方服务获取包括城市中医院、学校、商业区和交通站点的POI数据。</div>
+<div class="description-paragraph" id="p0020" num="0017">在一种可选的方式中，在所述步骤S2中，所述根据所述静态GIS数据构建城市三维数字模型进一步包括：</div>
+<div class="description-paragraph" id="p0021" num="0018">根据所述静态GIS数据构建城市基础三维模型，通过API接口实时接入所述实时动态数据；</div>
+<div class="description-paragraph" id="p0022" num="0019">将所述实时动态数据映射到所述城市三维数字模型中，实时更新所述城市三维数字模型的参数，以反映城市环境的动态变化。</div>
+<div class="description-paragraph" id="p0023" num="0020">在一种可选的方式中，在所述步骤S4中，所述通过粒子群优化算法对所述数字孪生体模型进行多目标优化进一步包括：</div>
+<div class="description-paragraph" id="p0024" num="0021">根据城市人口密度、交通流量、飞行器起降需求、OD出行需求以及区域服务需求生成需求评估模型；</div>
+<div class="description-paragraph" id="p0025" num="0022">根据所述需求评估模型和所述环境约束条件和安全约束条件，对所述数字孪生体模型中的候选选址位置进行多目标优化，生成满足所述需求评估模型、所述环境约束条件和安全约束条件的可选起降平台选址方案。</div>
+<div class="description-paragraph" id="p0026" num="0023">在一种可选的方式中，所述根据城市人口密度、交通流量、飞行器起降需求、OD出行需求以及区域服务需求生成需求评估模型进一步包括：</div>
+<div class="description-paragraph" id="p0027" num="0024">根据人口密度和收入水平数据评估高端社区的起降需求；</div>
+<div class="description-paragraph" id="p0028" num="0025">根据交通流预测模型分析商务区高峰时段的需求波动；</div>
+<div class="description-paragraph" id="p0029" num="0026">基于历史急救数据评估医院周边紧急服务需求；</div>
+<div class="description-paragraph" id="p0030" num="0027">根据空域限制和交通需求优化机场交通枢纽的平台位置，以最大化服务效率；</div>
+<div class="description-paragraph" id="p0031" num="0028">根据地面交通枢纽数据优化地铁站附近平台的可达性。</div>
+<div class="description-paragraph" id="p0032" num="0029">在一种可选的方式中，所述环境约束条件进一步包括：</div>
+<div class="description-paragraph" id="p0033" num="0030">根据噪声传播模型和环境监测数据，动态设置噪声缓冲区；通过视域计算模型优化平台的可视性，确保飞行器安全起降；</div>
+<div class="description-paragraph" id="p0034" num="0031">结合地形和建筑数据，使用空间分析工具设置避障区域；</div>
+<div class="description-paragraph" id="p0035" num="0032">根据法律和政策数据库，排除禁飞区域内的选址点；</div>
+<div class="description-paragraph" id="p0036" num="0033">根据飞行高度限制数据库，自动排除禁飞区域内的选址点；</div>
+<div class="description-paragraph" id="p0037" num="0034">根据数字高程模型进行坡度分析，确保选址区域的物理条件。</div>
+<div class="description-paragraph" id="p0038" num="0035">在一种可选的方式中，所述生成满足所述环境约束条件和安全约束条件的最优候选起降平台选址方案集进一步包括：</div>
+<div class="description-paragraph" id="p0039" num="0036">将各个区域的需求权重与环境约束条件结合，利用加权算法对所有候选点进行评分，生成初步选址方案；</div>
+<div class="description-paragraph" id="p0040" num="0037">使用粒子群优化算法评估每个候选选址点的需求和环境适应性，将需求加权与环境约束条件相结合，搜索适合的选址位置并动态调整粒子的位置，找到满足所有条件的最优选址方案；其中，对不满足约束条件的候选点施加惩罚权重，避免将不合适的区域选入最终方案；</div>
+<div class="description-paragraph" id="p0041" num="0038">在迭代过程中动态调整搜索空间的边界，其中，当选址点不符合约束条件时，该选址点被移出搜索空间或者搜索空间的可行域被重新定义为不包含违约点的区域，筛选符合需求的候选平台位置。</div>
+<div class="description-paragraph" id="p0042" num="0039">在一种可选的方式中，所述方法还包括，对所述候选平台位置进行评估，具体包括：</div>
+<div class="description-paragraph" id="p0043" num="0040">评估每个候选平台的需求覆盖度，计算其对高需求区域的覆盖比例；</div>
+<div class="description-paragraph" id="p0044" num="0041">通过模拟分析评估选址方案在噪声、飞行高度、视域、避障的适应性；</div>
+<div class="description-paragraph" id="p0045" num="0042">结合城市的禁飞区和飞行高度限制，对选址方案进行法律合规性评估；</div>
+<div class="description-paragraph" id="p0046" num="0043">根据选址区域的建设成本维护成本以及预期的使用收益，评估候选平台位置的经济效益。</div>
+<div class="description-paragraph" id="p0047" num="0044">在一种可选的方式中，所述方法还包括：</div>
+<div class="description-paragraph" id="p0048" num="0045">将需求覆盖度、环境适应性、法律合规性、成本效益的评估结果进行加权计算，得出综合评分；</div>
+<div class="description-paragraph" id="p0049" num="0046">根据综合评分的高低，对所有选址方案进行排序，确定最佳的低空飞行器起降平台选址方案。</div>
+<div class="description-paragraph" id="p0050" num="0047">在一种可选的方式中，所述方法还包括：</div>
+<div class="description-paragraph" id="p0051" num="0048">将所述最佳的低空飞行器起降平台选址方案在所述数字孪生体模型中进行可视化呈现，并生成包含选址位置、评估结果和约束条件的选址报告。</div>
+<div class="description-paragraph" id="p0052" num="0049">根据本发明提供的方案，包括：步骤S1，获取包括城市交通流量数据、气象数据、地形地貌数据、环境数据、POI数据的实时动态数据和静态GIS数据；步骤S2，根据所述静态GIS数据构建城市三维数字模型，根据所述三维数字模型和所述实时动态数据构建数字孪生体模型；步骤S3，构建所述数字孪生体模型中候选起降平台位置的环境约束条件和安全约束条件；其中，所述环境约束条件包括地形坡度、建筑物高度、障碍物分布、风向风速和噪音影响；所述安全约束条件包括安全距离、航线规划和紧急情况下的备降点；步骤S4，通过粒子群优化算法对所述数字孪生体模型进行多目标优化，生成满足所述环境约束条件和安全约束条件的最优候选起降平台选址方案集；步骤S5，根据实时数据反馈动态更新所述数字孪生体模型，对所述起降平台选址方案进行动态调整。本发明通过数字孪生体构建虚拟城市模型，为选址优化提供精准的模拟环境和实时反馈，提升了选址方案的准确性和可行性。</div>
+<div class="description-paragraph" id="p0053" num="0050">上述说明仅是本发明技术方案的概述，为了能够更清楚了解本发明的技术手段，而可依照说明书的内容予以实施，并且为了让本发明的上述和其它目的、特征和优点能够更明显易懂，以下特举本发明的具体实施方式。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0054">附图说明</div>
+<div class="description-paragraph" id="p0055" num="0051">通过阅读下文优选实施方式的详细描述，各种其他的优点和益处对于本领域普通技术人员将变得清楚明了。附图仅用于示出优选实施方式的目的，而并不认为是对本发明的限制。而且在整个附图中，用相同的参考符号表示相同的部件。在附图中：</div>
+<div class="description-paragraph" id="p0056" num="0052">图1示出了本发明实施例的低空飞行器起降平台选址优化方法的流程示意图；</div>
+<div class="description-paragraph" id="p0057" num="0053">图2示出了本发明实施例的数据采集流程示意图；</div>
+<div class="description-paragraph" id="p0058" num="0054">图3示出了本发明实施例的数据预处理流程示意图；</div>
+<div class="description-paragraph" id="p0059" num="0055">图4示出了本发明实施例的虚拟模型动态调整流程示意图；</div>
+<div class="description-paragraph" id="p0060" num="0056">图5示出了本发明实施例的低空飞行器起降平台选择方案的流程示意图；</div>
+<div class="description-paragraph" id="p0061" num="0057">图6示出了本发明实施例的平台选择方案的评估流程示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0062">具体实施方式</div>
+<div class="description-paragraph" id="p0063" num="0058">下面将参照附图更详细地描述本发明的示例性实施例。虽然附图中显示了本发明的示例性实施例，然而应当理解，可以以各种形式实现本发明而不应被这里阐述的实施例所限制。相反，提供这些实施例是为了能够更透彻地理解本发明，并且能够将本发明的范围完整的传达给本领域的技术人员。</div>
+<div class="description-paragraph" id="p0064" num="0059">图1示出了本发明实施例的低空飞行器起降平台选址优化方法的流程示意图。具体地，如图1所示，包括以下步骤：</div>
+<div class="description-paragraph" id="p0065" num="0060">步骤S1，获取包括城市交通流量数据、气象数据、地形地貌数据、环境数据、POI数据的实时动态数据和静态GIS数据。</div>
+<div class="description-paragraph" id="p0066" num="0061">本实施例中，通过整合实时动态数据，可以及时感知气象变化、交通状况、环境污染等，及时调整飞行计划，降低事故风险。结合地形地貌数据提前规划飞行路线，避开障碍物，确保飞行安全。根据交通状况、气象条件动态调整飞行路径。利用有利风向降低飞行能耗，提高能源利用效率。结合POI数据选择最便捷的起降地点。通过环境监测数据降低UAM运行对环境的影响，提升公众接受度。</div>
+<div class="description-paragraph" id="p0067" num="0062">在一种可选的方式中，在所述步骤S1中：</div>
+<div class="description-paragraph" id="p0068" num="0063">从城市交通监控系统实时采集道路交通流量和公共交通站点数据；</div>
+<div class="description-paragraph" id="p0069" num="0064">从气象站或在线气象服务实时采集温度、湿度、风速和风向气象数据；</div>
+<div class="description-paragraph" id="p0070" num="0065">从GIS数据库获取城市地形地貌、建筑物分布和土地使用类型信息，并进行三维建模得到城市三维空间信息数据；</div>
+<div class="description-paragraph" id="p0071" num="0066">从环境监测站点实时采集噪声和空气质量环境数据；</div>
+<div class="description-paragraph" id="p0072" num="0067">从公共数据源或第三方服务获取包括城市中医院、学校、商业区和交通站点的POI数据。</div>
+<div class="description-paragraph" id="p0073" num="0068">本实施例中，如图2所示，通过城市交通监控系统实时获取道路交通流量、公交车站、地铁站等交通枢纽的实时数据，并对交通数据进行多维度分析，如交通密度、平均车速、交通拥堵程度等，提供优化模型所需的交通状况数据。</div>
+<div class="description-paragraph" id="p0074" num="0069">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0075" num="0070">其中，D<sub>traffic</sub>为交通密度评分，T<sub>vehicle</sub>为单位时间内通过车辆数量，A为监测区域面积。</div>
+<div class="description-paragraph" id="p0076" num="0071">通过气象站或在线气象服务收集实时的温度、湿度、风速、风向等气象数据，并将气象变化趋势与历史数据进行对比，识别潜在的极端天气模式，对飞行器起降影响进行预测。</div>
+<div class="description-paragraph" id="p0077" num="0072">W<sub>Weather</sub>＝f(T<sub>1</sub>，H，V，D)</div>
+<div class="description-paragraph" id="p0078" num="0073">其中，W<sub>Weather</sub>为气象评分，T<sub>1</sub>、H、V、D分别为温度、湿度、风速、风向。</div>
+<div class="description-paragraph" id="p0079" num="0074">使用地理信息系统(GIS)技术获取城市的地形地貌、建筑物分布、土地使用类型等信息，结合3D建模技术，提供高精度的城市三维空间数据。</div>
+<div class="description-paragraph" id="p0080" num="0075">G<sub>Geography</sub>＝GIS(L，E，U)</div>
+<div class="description-paragraph" id="p0081" num="0076">其中，G<sub>Geography</sub>为地理评分，L为地形数据，E为建筑物分布数据，U为土地使用类型数据。</div>
+<div class="description-paragraph" id="p0082" num="0077">为此，进一步说明如下：</div>
+<div class="description-paragraph" id="p0083" num="0078">L(地形数据)：包括数字高程模型(DEM)数据，用于描述区域的坡度、海拔等地形特征。</div>
+<div class="description-paragraph" id="p0084" num="0079">E(建筑物分布数据)：包括建筑物的高度、密度和分布情况，通常通过矢量或点云数据获得。</div>
+<div class="description-paragraph" id="p0085" num="0080">U(土地使用类型)：反映不同区域的土地利用状态(如居住、商业、工业等)，一般来源于土地利用规划或GIS数据库。</div>
+<div class="description-paragraph" id="p0086" num="0081">GIS”函数不是单一数学函数，而是通过现有GIS软件或开发库(如ArcGIS、QGIS、GeoPandas等)，采用数据叠加和空间分析方法，对地形、建筑分布和土地利用等数据进行归一化处理和加权融合。为提高精度，可采用如下加权模型：</div>
+<div class="description-paragraph" id="p0087" num="0082">G<sub>Geography</sub>＝w<sub>L</sub>×f<sub>L</sub>(L)+w<sub>E</sub>×f<sub>E</sub>(E)+W<sub>U</sub>×f<sub>U</sub>(U)</div>
+<div class="description-paragraph" id="p0088" num="0083">其中：</div>
+<div class="description-paragraph" id="p0089" num="0084">f<sub>L</sub>(L)、f<sub>E</sub>(E)和f<sub>U</sub>(U)分别对原始数据进行归一化(或采用指数映射函数)处理；</div>
+<div class="description-paragraph" id="p0090" num="0085">w<sub>L</sub>、w<sub>E</sub>和w<sub>U</sub>分别为f<sub>L</sub>(L)、f<sub>E</sub>(E)和f<sub>U</sub>(U)的权重，依据区域实际情况(如地形起伏、建筑密度重要性等)通过专家调校或层次分析法(AHP)确定。</div>
+<div class="description-paragraph" id="p0091" num="0086">通过环境监测站点收集噪声、空气质量等环境数据，结合城市环境噪声地图，评估不同区域对低空飞行器起降的影响。</div>
+<div class="description-paragraph" id="p0092" num="0087">E<sub>Environment</sub>＝α×Noise+β×AirQuality</div>
+<div class="description-paragraph" id="p0093" num="0088">其中，α和β为权重系数，Noise(噪声)和AirQuality(空气质量)分别为环境评分指标，系数满足α+β＝1。</div>
+<div class="description-paragraph" id="p0094" num="0089">Noise(噪声)：代表区域环境噪声水平，数据来源于城市环境噪声监测或噪声地图。</div>
+<div class="description-paragraph" id="p0095" num="0090">AirQuality(空气质量)：反映区域空气质量情况，数据来源于环境监测站或相关公共数据。</div>
+<div class="description-paragraph" id="p0096" num="0091">α和β(权重系数)：为噪声与空气质量在整体环境评分中的相对权重，其具体取值依据实际区域特征、历史数据统计及专家评估确定。例如，在人口稠密区域中噪声的影响可能更为显著，则可设置α取值高于β，如α＝0.6，β＝0.4；在空气质量问题较为突出的区域，权重则可进行相应调整。</div>
+<div class="description-paragraph" id="p0097" num="0092">从公共数据源或第三方服务获取城市中医院、学校、商业区、交通站点等POI数据，建立城市关键点的空间数据库，为平台选址提供依据。</div>
+<div class="description-paragraph" id="p0098" num="0093">POI数据库＝{医院，学校，商业区，交通站点}</div>
+<div class="description-paragraph" id="p0099" num="0094">然后，如图3所示，对上述数据进行预处理，包括：</div>
+<div class="description-paragraph" id="p0100" num="0095">数据去重，对采集的数据进行去重处理，避免重复数据影响后续分析，使用哈希表或数据库去重算法，确保数据的唯一性。</div>
+<div class="description-paragraph" id="p0101" num="0096">空值填充，使用均值插补、最近邻插补或机器学习算法(如K近邻)填充缺失的数据，并根据数据特性选择适当的填充策略。</div>
+<div class="description-paragraph" id="p0102" num="0097">异常值检测，通过统计分析和机器学习方法(如孤立森林、支持向量机(SVM))检测并剔除异常值，确保数据的准确性与有效性。</div>
+<div class="description-paragraph" id="p0103" num="0098">数据标准化，采用Z-score标准化或Min-Max标准化方法，对不同数据源进行标准化处理，确保数据符合后续处理和建模的要求，统一尺度和范围，避免由于量纲不同造成的分析偏差。</div>
+<div class="description-paragraph" id="p0104" num="0099">如图4所示，将城市的地理信息系统(GIS)数据整合到数字孪生体中，构建城市的基础模型，包括地形、建筑物和道路网的三维数据，并将其与其他模块的数据进行融合。</div>
+<div class="description-paragraph" id="p0105" num="0100">通过API接口接入实时交通、气象、环境监测等动态数据，采用高效的数据流处理技术，确保数据接入的实时性和稳定性。</div>
+<div class="description-paragraph" id="p0106" num="0101">步骤S2，根据所述静态GIS数据构建城市三维数字模型，根据所述三维数字模型和所述实时动态数据构建数字孪生体模型。</div>
+<div class="description-paragraph" id="p0107" num="0102">本实施例中，静态GIS数据和三维数字模型提供高精度的城市地理信息，准确反映城市建筑和基础设施的详细信息。通过实时动态数据数字孪生模型实时反映城市的运行状态。</div>
+<div class="description-paragraph" id="p0108" num="0103">具体地，使用高精度的遥感设备(如LiDAR)进行城市地形和建筑物的数据采集，生成高精度的地形模型和建筑模型。使用3D建模软件将地形模型和建筑模型进行融合，生成城市三维数字模型。将三维数字模型与实时动态数据进行融合生成数字孪生模型。</div>
+<div class="description-paragraph" id="p0109" num="0104">在一种可选的方式中，在所述步骤S2中，所述根据所述静态GIS数据构建城市三维数字模型进一步包括：</div>
+<div class="description-paragraph" id="p0110" num="0105">根据所述静态GIS数据构建城市基础三维模型，通过API接口实时接入所述实时动态数据；</div>
+<div class="description-paragraph" id="p0111" num="0106">将所述实时动态数据映射到所述城市三维数字模型中，实时更新所述城市三维数字模型的参数，以反映城市环境的动态变化。</div>
+<div class="description-paragraph" id="p0112" num="0107">本实施例中，使用静态GIS数据(如地形、建筑轮廓)构建城市基础三维模型(如CityEngine，Cesium，Unreal Engine等3D建模软件或GIS软件)，无需包含所有细节，侧重于基础框架即可。</div>
+<div class="description-paragraph" id="p0113" num="0108">步骤S3，构建所述数字孪生体模型中候选起降平台位置的环境约束条件和安全约束条件；其中，所述环境约束条件包括地形坡度、建筑物高度、障碍物分布、风向风速和噪音影响；所述安全约束条件包括安全距离、航线规划和紧急情况下的备降点。</div>
+<div class="description-paragraph" id="p0114" num="0109">本实施例中，在三维数字模型中标记安全距离范围，将安全距离范围映射到三维数字模型中，显示安全距离分布。使用GPS和航线规划算法生成候选起降平台的航线，整合航线数据生成航线规划图。将航线规划图映射到三维数字模型中并显示航线路径。使用GIS数据和地面勘查采集备降点的位置和环境信息。整合备降点数据生成备降点图。将备降点图映射到三维数字模型中并显示备降点的位置和环境信息。</div>
+<div class="description-paragraph" id="p0115" num="0110">步骤S4，通过粒子群优化算法对所述数字孪生体模型进行多目标优化，生成满足所述环境约束条件和安全约束条件的最优候选起降平台选址方案集。</div>
+<div class="description-paragraph" id="p0116" num="0111">本实施例中，如图5所示，目标函数包括最小化地形坡度、建筑物高度影响、障碍物影响、风速影响、噪音影响、最大化安全距离、航线可行性、备降点可行性。决策变量包括起降平台的经度、纬度、高度。随机生成一组粒子，每个粒子代表一个候选起降平台位置和方向。粒子的初始位置和速度在搜索空间内随机生成。对于每个粒子，将其位置和方向映射到数字孪生模型中，计算其对应的目标函数值。将数字孪生模型返回的数据进行整合，生成每个粒子的环境约束值和安全约束值(目标函数值)。根据目标函数值和约束条件，计算粒子的适应度值。基于搜索空间的边界约束更新粒子的速度和位置时。在每次迭代中，记录全局最优位置和对应的目标函数值。同时记录每次迭代中所有粒子的位置和对应的目标函数值，用于生成帕累托最优解集。在迭代结束后，根据帕累托支配关系从所有粒子中选择一组非支配解，形成帕累托最优解集，将帕累托最优解作为候选起降平台选址方案集输出。</div>
+<div class="description-paragraph" id="p0117" num="0112">其中，遗传算法通过自然选择的机制，适用于处理复杂的约束条件，能够优化噪声缓冲区、飞行高度限制和禁飞区等多种约束。具体来说，遗传算法模拟多个候选选址点的适应度，并根据环境条件(如噪声、禁飞区、飞行高度等)进行选择，保留符合条件的选址区域，从而有效筛选出符合环境要求的最优方案。</div>
+<div class="description-paragraph" id="p0118" num="0113">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0119" num="0114">其中，Fitness为适应度，ωi为各约束条件的权重，fi(P)为选址点P对应的约束条件评分。</div>
+<div class="description-paragraph" id="p0120" num="0115">每个fi(P)代表选址点P在第i项约束条件下的评分，如地形坡度、建筑物高度、障碍物、风速、噪音、安全距离等。</div>
+<div class="description-paragraph" id="p0121" num="0116">权重系数ω<sub>i</sub>用于调节每项约束条件在整体适应度中的贡献，依据各指标的重要性确定。权重系数的具体值可以通过专家评估、统计回归或敏感性分析得到，以确保各约束条件在最终优化结果中得到合理体现，例如，如果某区域对安全距离要求特别高，相应约束条件的ω值将较大。</div>
+<div class="description-paragraph" id="p0122" num="0117">在一种可选的方式中，在所述步骤S4中，所述通过粒子群优化算法对所述数字孪生体模型进行多目标优化进一步包括：</div>
+<div class="description-paragraph" id="p0123" num="0118">根据城市人口密度、交通流量、飞行器起降需求、OD出行需求以及区域服务需求生成需求评估模型；</div>
+<div class="description-paragraph" id="p0124" num="0119">根据所述需求评估模型和所述环境约束条件和安全约束条件，对所述数字孪生体模型中的候选选址位置进行多目标优化，生成满足所述需求评估模型、所述环境约束条件和安全约束条件的可选起降平台选址方案。</div>
+<div class="description-paragraph" id="p0125" num="0120">本实施例中，传统的选址方法只考虑单一因素(如地理位置)，本申请同时考虑城市人口密度、交通流量、飞行器起降需求、出行需求以及区域服务需求等多个维度，选址方案更加科学合理。引入环境约束条件和安全约束条件，保证选址方案的可靠性，降低潜在风险。根据不同的城市特点和需求进行调整，应用于不同类型的城市和场景。</div>
+<div class="description-paragraph" id="p0126" num="0121">在一种可选的方式中，所述根据城市人口密度、交通流量、飞行器起降需求、OD出行需求以及区域服务需求生成需求评估模型进一步包括：</div>
+<div class="description-paragraph" id="p0127" num="0122">根据人口密度和收入水平数据评估高端社区的起降需求；</div>
+<div class="description-paragraph" id="p0128" num="0123">根据交通流预测模型分析商务区高峰时段的需求波动；</div>
+<div class="description-paragraph" id="p0129" num="0124">基于历史急救数据评估医院周边紧急服务需求；</div>
+<div class="description-paragraph" id="p0130" num="0125">根据空域限制和交通需求优化机场交通枢纽的平台位置，以最大化服务效率；</div>
+<div class="description-paragraph" id="p0131" num="0126">根据地面交通枢纽数据优化地铁站附近平台的可达性。</div>
+<div class="description-paragraph" id="p0132" num="0127">具体地，使用基于人口密度和收入水平的加权分析模型，在数据采集模块收集到的区域人口、收入等数据基础上，为高端小区分配较高权重。选址优先靠近这些高需求区域，确保平台能满足高端小区的出行需求。</div>
+<div class="description-paragraph" id="p0133" num="0128">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0134" num="0129">其中，<span class="patent-image-not-available"></span>为高端小区的需求权重，P为人口密度，I为收入水平，满足α+β＝1。</div>
+<div class="description-paragraph" id="p0135" num="0130">权重α和β决定了人口密度与收入水平对高端社区需求的相对影响，其取值可依据区域实际情况或通过统计分析(例如多元回归或层次分析法)确定。</div>
+<div class="description-paragraph" id="p0136" num="0131">通过交通流预测模型，利用交通监控模块收集的交通流量数据，识别商务区高峰时段的需求波动。优化算法优先考虑商务区周边的选址，确保在高需求时段提供足够的起降平台。</div>
+<div class="description-paragraph" id="p0137" num="0132">D<sub>CBD</sub>＝f(Q，H)</div>
+<div class="description-paragraph" id="p0138" num="0133">其中，D<sub>CBD</sub>为商务区的需求评分，Q为交通流量，H为高峰时段的需求波动。</div>
+<div class="description-paragraph" id="p0139" num="0134">H反映区域在高峰时段的需求波动情况，采用统计方法，如标准差或变化率计算，对高峰时段内交通流量数据的波动性进行量化，得到指标H；数值较高时说明区域内在高峰时段出行需求波动剧烈，需求不稳定。在选址优化过程中，区域的H值将作为辅助信息纳入需求评估模型，指导对区域服务能力的动态调整。数值较高的区域通常意味着在高峰时段需要更高的调度灵活性和平台承载能力，以保证出行需求得到充分满足。</div>
+<div class="description-paragraph" id="p0140" num="0135">基于历史急救数据，通过紧急服务需求分析模型评估医院周边的起降需求。优先选择医院周边的区域进行选址，满足紧急医疗服务需求。</div>
+<div class="description-paragraph" id="p0141" num="0136">D<sub>hospital</sub>＝γ×A<sub>aid</sub> </div>
+<div class="description-paragraph" id="p0142" num="0137">其中，D<sub>hospital</sub>为医院周边的需求评分，A<sub>aid</sub>为急救需求指数，γ为权重系数。</div>
+<div class="description-paragraph" id="p0143" num="0138">A<sub>aid</sub>为急救需求指数，通过统计急救呼叫次数、急诊就诊量及急救车出动频次等数据，并经归一化及加权平均后得出该综合指标A<sub>aid</sub>的数值越高，表明医院及其周边区域内急救资源的需求越迫切。；权重系数γ反映急救需求在整体选址中的重要性，依据区域医疗资源和历史数据确定。</div>
+<div class="description-paragraph" id="p0144" num="0139">结合空域限制与交通需求分析，优化平台位置以最大化服务效率。平台应尽量靠近机场和其他交通枢纽，以方便换乘。</div>
+<div class="description-paragraph" id="p0145" num="0140">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0146" num="0141">其中：D<sub>Hub</sub>是城际枢纽的需求评分。n是考虑的交通枢纽数量(如机场、地铁站、公交站等)。δi是每个交通枢纽的权重系数，反映该枢纽的重要性或优先级。Pi是枢纽所在区域的需求强度，通常可以通过人口密度、商业活动密集度等指标衡量。Ti是交通流量，反映该枢纽的交通流量或通勤量，例如每天的乘客流量或换乘频率。</div>
+<div class="description-paragraph" id="p0147" num="0142">结合地面交通枢纽数据，优化平台设置的可达性。优先选择地铁站附近的区域，提高飞行器与地面交通的无缝连接。</div>
+<div class="description-paragraph" id="p0148" num="0143">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0149" num="0144">其中，D<sub>Subway</sub>为地铁站附近的需求评分。D<sub>Walking</sub>为起降平台到地铁站的步行距离。T<sub>Transfer</sub>为从平台到地铁站的换乘所需时间。<span class="patent-image-not-available"></span>为地铁线路的交通流量(如客流量)。∈为权重系数，反映地铁站的相对重要性。α，β，Y为步行距离、换乘时间和交通流量的权重系数。</div>
+<div class="description-paragraph" id="p0150" num="0145">通过收集和分析区域内的起点-终点(0D)出行数据，识别主要的出行需求路径和关键节点。将0D需求与现有的高端小区、商务区、医院、机场及地铁站等关键区域的需求分析结果相结合，筛选出最具潜力和需求的选址区域，确保平台布局既满足空间上的优选，又能有效覆盖实际的出行需求。</div>
+<div class="description-paragraph" id="p0151" num="0146">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0152" num="0147">其中：D<sub>OD</sub>为OD需求评分。m为考虑的OD对数量。λ<sub>j</sub>为第j个OD对的权重系数，反映其重要性。OD<sub>j</sub>为第j个OD对的出行需求量(例如出行次数、出行人数等)，φj为综合筛选因子。</div>
+<div class="description-paragraph" id="p0153" num="0148">综合筛选因子公式：</div>
+<div class="description-paragraph" id="p0154" num="0149">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0155" num="0150">其中：φj为第j个OD对的综合筛选因子。Cj为第j个OD对的出行成本，包含票价、燃料费、停车费等直接成本，和换乘成本等间接成本。Tj为第j个0D对的出行时间，从起点到终点的总出行时间，包括等待、换乘和飞行时间。Vj为第j个0D对的时间价值，基于平均工资率和乘客调查数据，确定合适的k值。Cmax，Tmax，Vmax分别为出行成本、出行时间和时间价值的最大值，用于归一化。α，β，γ为各筛选因子的权重系数，满足α+β+γ＝1。</div>
+<div class="description-paragraph" id="p0156" num="0151">在一种可选的方式中，所述环境约束条件进一步包括：</div>
+<div class="description-paragraph" id="p0157" num="0152">根据噪声传播模型和环境监测数据，动态设置噪声缓冲区；通过视域计算模型优化平台的可视性，确保飞行器安全起降；</div>
+<div class="description-paragraph" id="p0158" num="0153">结合地形和建筑数据，使用空间分析工具设置避障区域；</div>
+<div class="description-paragraph" id="p0159" num="0154">根据法律和政策数据库，排除禁飞区域内的选址点；</div>
+<div class="description-paragraph" id="p0160" num="0155">根据飞行高度限制数据库，自动排除禁飞区域内的选址点；</div>
+<div class="description-paragraph" id="p0161" num="0156">根据数字高程模型进行坡度分析，确保选址区域的物理条件。</div>
+<div class="description-paragraph" id="p0162" num="0157">本实施例中，使用噪声传播模型，结合城市环境监测站点的数据，分析噪声影响范围，设置噪声缓冲区。优化算法排除高噪声区域，确保平台选址符合噪声标准。</div>
+<div class="description-paragraph" id="p0163" num="0158">N<sub>buffer</sub>＝NoiseModel(L，M)</div>
+<div class="description-paragraph" id="p0164" num="0159">其中，N<sub>buffer</sub>为噪声缓冲区，L为噪声源位置，M为噪声传播参数。</div>
+<div class="description-paragraph" id="p0165" num="0160">通过3D可视分析工具(如视域计算模型)，优化平台的可视性。确保平台在城市环境中无遮挡，便于用户寻找和识别平台位置。</div>
+<div class="description-paragraph" id="p0166" num="0161">结合城市地形和建筑物高度数据，使用空间分析工具设置避障区域。优化算法确保选址区域远离建筑物和其他障碍物，避免飞行器起降时的安全隐患。</div>
+<div class="description-paragraph" id="p0167" num="0162">根据法律和政策数据库，自动排除禁飞区域内的选址点。确保平台不位于禁飞区内，符合当地航空法规。</div>
+<div class="description-paragraph" id="p0168" num="0163">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0169" num="0164">其中，P<sub>Optional</sub>为可选平台位置，P<sub>Total</sub>为所有候选点，<span class="patent-image-not-available"></span>为禁飞区内的点。</div>
+<div class="description-paragraph" id="p0170" num="0165">根据城市飞行高度限制数据库，优化算法优先选择飞行高度较为宽松的区域。避免选择受限区域，确保飞行器在合规范围内起降。</div>
+<div class="description-paragraph" id="p0171" num="0166">使用数字高程模型(Digital Elevation Model，DEM)进行坡度分析，确保选址区域符合平台建设的物理条件。平台所选区域应满足直径和坡度要求，以保证飞行器安全起降。</div>
+<div class="description-paragraph" id="p0172" num="0167">在一种可选的方式中，所述生成满足所述环境约束条件和安全约束条件的最优候选起降平台选址方案集进一步包括：</div>
+<div class="description-paragraph" id="p0173" num="0168">将各个区域的需求权重与环境约束条件结合，利用加权算法对所有候选点进行评分，生成初步选址方案；</div>
+<div class="description-paragraph" id="p0174" num="0169">使用粒子群优化算法评估每个候选选址点的需求和环境适应性，将需求加权与环境约束条件相结合，搜索适合的选址位置并动态调整粒子的位置，找到满足所有条件的最优选址方案；其中，对不满足约束条件的候选点施加惩罚权重，避免将不合适的区域选入最终方案；</div>
+<div class="description-paragraph" id="p0175" num="0170">在迭代过程中动态调整搜索空间的边界，其中，当选址点不符合约束条件时，该选址点被移出搜索空间或者搜索空间的可行域被重新定义为不包含违约点的区域，筛选符合需求的候选平台位置。</div>
+<div class="description-paragraph" id="p0176" num="0171">本实施例中，遗传算法通过自然选择的机制，适用于处理复杂的约束条件，能够优化噪声缓冲区、飞行高度限制和禁飞区等多种约束。具体来说，遗传算法可以模拟多个候选选址点的适应度，并根据环境条件(如噪声、禁飞区、飞行高度等)进行选择，保留符合条件的选址区域，从而有效筛选出符合环境要求的最优方案。</div>
+<div class="description-paragraph" id="p0177" num="0172">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0178" num="0173">其中，Fitness为适应度，ωi为各约束条件的权重，fi(P)为选址点P对应的约束条件评分。</div>
+<div class="description-paragraph" id="p0179" num="0174">每个fi(P)代表选址点P在第i项约束条件下的评分，如地形坡度、建筑物高度、障碍物、风速、噪音、安全距离等。</div>
+<div class="description-paragraph" id="p0180" num="0175">权重系数ω<sub>i</sub>用于调节每项约束条件在整体适应度中的贡献，依据各指标的重要性确定。权重系数的具体值可以通过专家评估、统计回归或敏感性分析得到，以确保各约束条件在最终优化结果中得到合理体现，例如，如果某区域对飞行高度限制特别高，相应约束条件的ω值将较大。</div>
+<div class="description-paragraph" id="p0181" num="0176">基于需求分析和环境约束分析的结果，应用多目标优化算法生成一组选址方案，确保选址方案在需求覆盖度、环境适应性、法律合规性及成本效益等方面均达到最佳平衡。</div>
+<div class="description-paragraph" id="p0182" num="0177">将各个区域的需求权重(如高端小区、商务区、医院、机场等)与环境约束条件(如噪声、禁飞区、可视性等)结合，利用加权算法对所有候选点进行评分，生成初步选址方案。评分标准根据需求的优先级和约束条件的严格程度进行调整。</div>
+<div class="description-paragraph" id="p0183" num="0178">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0184" num="0179">其中，γj为需求权重，Dj(P)为需求评分，λk为约束条件权重，Ck(P)为约束评分。</div>
+<div class="description-paragraph" id="p0185" num="0180">需求权重γj：</div>
+<div class="description-paragraph" id="p0186" num="0181">用于调整各需求指标(如高端小区、商务区、医院、机场等)的贡献。各指标权重可通过专家评估、历史数据统计或归一化处理确定，满足<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0187" num="0182">粒子群优化(PSO)通过模拟“粒子”的飞行过程，在多维空间内进行全局搜索，能够快速收敛到最优解。在选址方案生成中，PSO算法通过评估每个候选选址点的需求和环境适应性，将需求加权与环境约束相结合，搜索出适合的选址位置。PSO能够有效处理具有多个目标和约束条件的优化问题，并动态调整粒子的位置，以找到满足所有条件的最优选址方案。</div>
+<div class="description-paragraph" id="p0188" num="0183">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0189" num="0184">其中，<span class="patent-image-not-available"></span>为粒子i在迭代k时的速度，<span class="patent-image-not-available"></span>为粒子i的位置，pi为粒子i的个体最佳位置，g为全局最佳位置，w为惯性权重，c<sub>1</sub>、c<sub>2</sub>为加速常数，r<sub>1</sub>、r<sub>2</sub>为随机数。</div>
+<div class="description-paragraph" id="p0190" num="0185">对不满足约束条件的候选点(如噪声超过标准、位于禁飞区内、飞行高度不合规等)施加惩罚权重。在优化过程中，这些候选点的适应度值会降低，从而在搜索过程中优先剔除这些不符合要求的选址区域。通过逐步增加惩罚值，避免算法将不合适的区域选入最终方案。</div>
+<div class="description-paragraph" id="p0191" num="0186">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0192" num="0187">在算法的迭代过程中，动态调整搜索空间的边界。当某个选址点不符合某一约束条件时(例如，位于噪声三维缓冲区内)，该点会被移出搜索空间，或者搜索空间的可行域会被重新定义为不包含违约点的区域。这样，优化算法可以自动调整候选点的位置，避免重复评估已经被排除的无效区域。</div>
+<div class="description-paragraph" id="p0193" num="0188">基于评分结果和环境限制，筛选出一批符合需求的候选平台位置。这些候选平台应具备较高的需求适应性，并且能够满足所有环境和物理限制要求。</div>
+<div class="description-paragraph" id="p0194" num="0189">P<sub>canndidate</sub>＝{P∈P<sub>optional</sub>|Score(P)&gt;θ}。</div>
+<div class="description-paragraph" id="p0195" num="0190">在一种可选的方式中，所述方法还包括，对所述候选平台位置进行评估，具体包括：</div>
+<div class="description-paragraph" id="p0196" num="0191">评估每个候选平台的需求覆盖度，计算其对高需求区域的覆盖比例；</div>
+<div class="description-paragraph" id="p0197" num="0192">通过模拟分析评估选址方案在噪声、飞行高度、视域、避障的适应性；</div>
+<div class="description-paragraph" id="p0198" num="0193">结合城市的禁飞区和飞行高度限制，对选址方案进行法律合规性评估；</div>
+<div class="description-paragraph" id="p0199" num="0194">根据选址区域的建设成本维护成本以及预期的使用收益，评估候选平台位置的经济效益。</div>
+<div class="description-paragraph" id="p0200" num="0195">本实施例中，评估每个候选平台的需求覆盖度，计算其对高需求区域(如高端小区、商务区、医院等)的覆盖比例，并确保平台选址能够有效覆盖主要的需求区域。</div>
+<div class="description-paragraph" id="p0201" num="0196">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0202" num="0197">其中，C<sub>covering</sub>(P)为平台P的覆盖度，φj为高需求区域j的覆盖权重，δj(P)为平台P对区域j的覆盖比例。</div>
+<div class="description-paragraph" id="p0203" num="0198">通过模拟分析，评估选址方案在噪声、飞行高度、视域、避障等方面的适应性。确保平台的建设不违反环境保护要求，并能够在实际操作中保证飞行器的安全起降。</div>
+<div class="description-paragraph" id="p0204" num="0199">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0205" num="0200">其中，A<sub>Adapt</sub>(P)为平台P的环境适应性评分，ψk为环境适应性因素的权重，ηk(P)为平台P在环境适应性因素k上的评分，k为环境适应性因素的索引(从1开始)，l为环境适应性因素的总数。</div>
+<div class="description-paragraph" id="p0206" num="0201">ψk表示第k个环境适应性因素在评估平台环境适应性时的相对重要性。这些权重通常通过专家判断、历史数据分析或敏感性测试确定，并且经过归一化处理，以确保每个环境因素对最终评分的贡献能够反映其实际影响。</div>
+<div class="description-paragraph" id="p0207" num="0202">结合城市的禁飞区和飞行高度限制，对选址方案进行法律合规性评估。确保所有选址区域符合当地航空管理部门的法律法规，并且不涉及任何禁止飞行的区域。</div>
+<div class="description-paragraph" id="p0208" num="0203">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0209" num="0204">其中，L<sub>Compliance</sub>(P)为平台P的法律合规性评分，H(P)为平台P的飞行高度，H<sub>limit</sub>为飞行高度限制，<span class="patent-image-not-available"></span>为禁飞区。</div>
+<div class="description-paragraph" id="p0210" num="0205">根据选址区域的建设成本、维护成本以及预期的使用收益，评估选址方案的经济效益。确保选址方案具有合理的投入产出比，并能够在经济上实现可持续性。</div>
+<div class="description-paragraph" id="p0211" num="0206">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0212" num="0207">其中，C<sub>benefit</sub>(P)为平台P的成本效益评分，R(P)为平台P的预期收益，C<sub>total</sub>(P)为平台P的总成本。</div>
+<div class="description-paragraph" id="p0213" num="0208">C<sub>Synthesize</sub>(P)＝α1×C<sub>cover</sub>(P)+α2×A<sub>fitness</sub>(P)+α3×L<sub>compliance</sub>(P)+α4</div>
+<div class="description-paragraph" id="p0214" num="0209">×C<sub>bene几t</sub>(P)</div>
+<div class="description-paragraph" id="p0215" num="0210">其中，α1+ 2+α3+α4＝1，用于平衡需求覆盖、环境适应、法律合规与成本效益在最终评分中的贡献</div>
+<div class="description-paragraph" id="p0216" num="0211">在一种可选的方式中，所述方法还包括：</div>
+<div class="description-paragraph" id="p0217" num="0212">将需求覆盖度、环境适应性、法律合规性、成本效益的评估结果进行加权计算，得出综合评分；</div>
+<div class="description-paragraph" id="p0218" num="0213">根据综合评分的高低，对所有选址方案进行排序，确定最佳的低空飞行器起降平台选址方案。</div>
+<div class="description-paragraph" id="p0219" num="0214">在一种可选的方式中，所述方法还包括：</div>
+<div class="description-paragraph" id="p0220" num="0215">将所述最佳的低空飞行器起降平台选址方案在所述数字孪生体模型中进行可视化呈现，并生成包含选址位置、评估结果和约束条件的选址报告。</div>
+<div class="description-paragraph" id="p0221" num="0216">本实施例中，将各个区域的需求权重(如高端小区、商务区、医院、机场等)与环境约束条件(如噪声、禁飞区、可视性等)结合，利用加权算法对所有候选点进行评分，生成初步选址方案。评分标准根据需求的优先级和约束条件的严格程度进行调整。</div>
+<div class="description-paragraph" id="p0222" num="0217">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0223" num="0218">其中，γj为需求权重，Dj(P)为需求评分，λk为约束条件权重，″Ck(P)为约束评分。</div>
+<div class="description-paragraph" id="p0224" num="0219">步骤S5，根据实时数据反馈动态更新所述数字孪生体模型，对所述起降平台选址方案进行动态调整。</div>
+<div class="description-paragraph" id="p0225" num="0220">本实施例中，如图6所示，从交通监控、气象站、环境监测设备等实时获取最新数据，采用高效的数据采集协议(如MQTT、WebSocket)进行数据获取，确保数据的时效性。根据实时数据更新优化模型中的输入参数，使用数据驱动的方式动态调整算法模型中的权重和参数，确保实时性和适应性。</div>
+<div class="description-paragraph" id="p0226" num="0221">根据反馈的实时数据，优化算法重新计算并调整选址方案，结合增量式计算和局部调整策略，使优化过程能够实时响应环境变化。持续监控调整后的选址方案的效果，通过模拟结果和实际效果对比，使用性能评估指标(如收益率、服务质量、运行成本)验证方案的有效性，确保系统在实际应用中的稳定性和持续优化能力。性能指标＝{收益率，服务质量，运行成本)，其中，各性能指标用于评估选址方案的有效性和优化效果。</div>
+<div class="description-paragraph" id="p0227" num="0222">根据本发明提供的方案，包括：步骤S1，获取包括城市交通流量数据、气象数据、地形地貌数据、环境数据、POI数据的实时动态数据和静态GIS数据；步骤S2，根据所述静态GIS数据构建城市三维数字模型，根据所述三维数字模型和所述实时动态数据构建数字孪生体模型；步骤S3，构建所述数字孪生体模型中候选起降平台位置的环境约束条件和安全约束条件；其中，所述环境约束条件包括地形坡度、建筑物高度、障碍物分布、风向风速和噪音影响；所述安全约束条件包括安全距离、航线规划和紧急情况下的备降点；步骤S4，通过粒子群优化算法对所述数字孪生体模型进行多目标优化，生成满足所述环境约束条件和安全约束条件的最优候选起降平台选址方案集；步骤S5，根据实时数据反馈动态更新所述数字孪生体模型，对所述起降平台选址方案进行动态调整。本发明通过数字孪生体构建虚拟城市模型，为选址优化提供精准的模拟环境和实时反馈，提升了选址方案的准确性和可行性。</div>
+<div class="description-paragraph" id="p0228" num="0223">本领域那些技术人员可以理解，可以对实施例中的设备中的模块进行自适应性地改变并且把它们设置在与该实施例不同的一个或多个设备中。可以把实施例中的模块或单元或组件组合成一个模块或单元或组件，以及此外可以把它们分成多个子模块或子单元或子组件。除了这样的特征和/或过程或者单元中的至少一些是相互排斥之外，可以采用任何组合对本说明书(包括伴随的权利要求、摘要和附图)中公开的所有特征以及如此公开的任何方法或者设备的所有过程或单元进行组合。除非另外明确陈述，本说明书(包括伴随的权利要求、摘要和附图)中公开的每个特征可以由提供相同、等同或相似目的的替代特征来代替。此外，本领域的技术人员能够理解，尽管在此的一些实施例包括其它实施例中所包括的某些特征而不是其它特征，但是不同实施例的特征的组合意味着处于本发明的范围之内并且形成不同的实施例。例如，在下面的权利要求书中，所要求保护的实施例的任意之一都可以以任意的组合方式来使用。本发明可以借助于包括有若干不同元件的硬件以及借助于适当编程的计算机来实现。在列举了若干装置的单元权利要求中，这些装置中的若干个可以是通过同一个硬件项来具体体现。上述实施例中的步骤，除有特殊说明外，不应理解为对执行顺序的限定。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

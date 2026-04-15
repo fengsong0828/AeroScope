@@ -1,0 +1,278 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN121122082A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES514465232">
+<invention-title id="title1" lang="ZH">一种低空飞行器监视方法、装置、设备及存储介质</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空交通管理技术领域，特别涉及一种低空飞行器监视方法、装置、设备及存储介质。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空飞行器的广泛应用，特别是在多运营商、多飞行器、多任务的环境下，有效的低空交通管理系统的需求日益增加。</div>
+<div class="description-paragraph" id="p0005" num="0003">现有的航空监视系统主要有ADS-B系统、雷达和光学监控系统。其中，ADS-B系统用于高空飞行的飞行状态播报，ADS-B播报的飞行数据源自飞行器机载传感器，在卫星导航信号受阻时ADS-B播报的飞行器位置精度退化，利用ADS-B对低空飞行器进行监视时需要飞行器配合，并且，现有的ADS-B系统不能用于探测、监视非合作飞行器；雷达和光学监控系统，在监视低空的、飞行速度慢的、小型化的飞行器时仍可能失去目标，同时不能提供飞行器的身份信息；同时低空的环境复杂，例如城市建筑物遮挡、多种干扰源，都导致低空空域监视的可靠性不佳，影响低空飞行活动的快速发展和多样化的发展。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本发明为解决上述技术问题，提供一种低空飞行器监视方法、装置、设备及存储介质。</div>
+<div class="description-paragraph" id="p0008" num="0005">为实现上述目的，本发明提供一种基于Ku波段探测雷达和ADS-B融合的低空飞行器监视方法，包括：</div>
+<div class="description-paragraph" id="p0009">获取飞行器对应的ADS-B报文信号，所述ADS-B报文信号包括飞行器的身份信息、位置与速度信息；</div>
+<div class="description-paragraph" id="p0010">获取飞行器对应的Ku波段雷达探测信号，所述Ku波段雷达探测信号包括Ku波段雷达探测到飞行器的位置与速度信息，处理获得Ku波段雷达探测到飞行器的位置与速度信息；</div>
+<div class="description-paragraph" id="p0011">采用多速率交互式多模型粒子滤波算法对所述Ku波段探测到飞行器的位置与速度信息和所述ADS-B报文信号中的位置与速度信息进行匹配融合，</div>
+<div class="description-paragraph" id="p0012">当所述Ku波段探测到飞行器的位置与速度信息和所述ADS-B报文信号中的位置与速度信息匹配，输出融合后的飞行器的位置与速度信息；</div>
+<div class="description-paragraph" id="p0013">当所述Ku波段探测到飞行器的位置与速度信息和所述ADS-B报文信号中的位置与速度信息不匹配，则利用所述Ku波段探测雷达信号输出飞行器的位置与速度信息并输出飞行器异常信号。</div>
+<div class="description-paragraph" id="p0014" num="0006">可选的，利用高斯混合概率假设密度滤波器处理Ku波段雷达探测信息，获取飞行器的位置与速度信息，包括：</div>
+<div class="description-paragraph" id="p0015">获取Ku波段探测雷达信号；</div>
+<div class="description-paragraph" id="p0016">将获取的所述Ku波段雷达探测信号中的有关飞行器的位置与速度信息进行预处理，获得初始Ku波段雷达探测到飞行器的位置与速度信息以及目标点；</div>
+<div class="description-paragraph" id="p0017">将所述初始Ku波段雷达探测到飞行器的位置与速度信息利用高斯混合概率假设密度滤波器进行处理，最终获得Ku波段雷达探测到飞行器的位置与速度信息。</div>
+<div class="description-paragraph" id="p0018" num="0007">可选的，利用高斯混合概率假设密度滤波器处理初始Ku波段雷达探测到飞行器的位置与速度信息的步骤包括：</div>
+<div class="description-paragraph" id="p0019">初始化所述GM-PHD滤波器，设置各个参数，包括输入目标新生概率模型、目标存续概率、高斯白噪声协方差矩阵、系统矩阵F和G、时间步长△、目标探测概率，输出当前目标状态分布和初始的不确定度量状态协方差矩阵，所述当前目标状态分布和初始的不确定度量状态协方差矩阵是通过目标新生概率模型和现有目标状态初始化的一组高斯分布获得；</div>
+<div class="description-paragraph" id="p0020">预测新生目标状态、预测存续目标状态，包括输入上一次状态估计、控制增量、过程噪声，输出当前目标状态预测和协方差预测；</div>
+<div class="description-paragraph" id="p0021">创建概率假设密度更新元素，包括输入通过上一步得到的当前目标状态预测值、雷达观测数据、雷达观测矩阵、协方差预测，输出结合观测数据修正状态的权重卡尔曼增益；</div>
+<div class="description-paragraph" id="p0022">根据实时Ku波段探测雷达信号更新各目标状态，包括输入所述雷达观测数据、所述权重卡尔曼增益、所述当前目标状态预测值和协方差预测值，输出更新后的状态估计、更新后的协方差矩阵，其中，用于更新状态估计、协方差矩阵的所述高斯混合概率假设密度滤波器的动力学模型为：</div>
+<div class="description-paragraph" id="p0023">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0024" num="0008"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0025">系统矩阵F和G分别为：</div>
+<div class="description-paragraph" id="p0026"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0027">其中，<span class="patent-image-not-available"></span>，x<sub>k</sub>为时刻k目标的位置坐标向量，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>分别为k时刻目标在x，y，z方向的位置坐标，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>分别为k时刻目标在x，y，z方向的速度，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>时刻目标的航向角，<span class="patent-image-not-available"></span>为k时刻的高斯白噪声，k为当前时刻，k-1为上一时刻，△为时间步长，系统矩阵F和G为状态转移矩阵F和噪声输入矩阵G。</div>
+<div class="description-paragraph" id="p0028" num="0009">可选的，所述多速率交互式多模型粒子滤波算法的步骤包括：</div>
+<div class="description-paragraph" id="p0029">设置算法模型，包括：输入模态跳变概率模型<span class="patent-image-not-available"></span>，所述跳变概率模型为：</div>
+<div class="description-paragraph" id="p0030"> <span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>表示从模态<span class="patent-image-not-available"></span>切换到模态<span class="patent-image-not-available"></span>的概率，<span class="patent-image-not-available"></span>是系统在<span class="patent-image-not-available"></span>时刻的模态，<span class="patent-image-not-available"></span>是系统在<span class="patent-image-not-available"></span>时刻的模态；</div>
+<div class="description-paragraph" id="p0031">设置扰动的协方差矩阵Q、测量协方差矩阵R，包括Ku波段雷达的测量噪声协方差矩阵和ADS-B系统的测量噪声协方差矩阵；所述扰动的协方差矩阵定义模态i下飞行器状态在过程中可能受到的过程噪声，所述Ku波段雷达的测量噪声协方差矩阵定义Ku波段雷达的测量噪声，所述ADS-B系统的测量噪声协方差矩阵定义ADS-B系统的测量噪声；模态i的状态转移方程和测量方程如下：</div>
+<div class="description-paragraph" id="p0032">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0033" num="0010">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0034" num="0011">其中，<span class="patent-image-not-available"></span>表示<span class="patent-image-not-available"></span>时刻的状态向量，<span class="patent-image-not-available"></span>为服从正态分布<span class="patent-image-not-available"></span>的过程噪声，<span class="patent-image-not-available"></span>为服从正态分布<span class="patent-image-not-available"></span>的测量噪声，N表示模态总数，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>时刻的测量信息，<span class="patent-image-not-available"></span>为模态<span class="patent-image-not-available"></span>下的状态转移矩阵，定义了状态变量如何从<span class="patent-image-not-available"></span>时刻更新到<span class="patent-image-not-available"></span>时刻，<span class="patent-image-not-available"></span>为模态<span class="patent-image-not-available"></span>下的过程噪声输入矩阵，用于调整噪声对不同状态变量的影响强度，<span class="patent-image-not-available"></span>是模态<span class="patent-image-not-available"></span>的量测转移矩阵；</div>
+<div class="description-paragraph" id="p0035">随机生成初始粒子集<span class="patent-image-not-available"></span>和模态概率分布，初始模态概率<span class="patent-image-not-available"></span>为：<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>为总的模态数目；</div>
+<div class="description-paragraph" id="p0036">基于垫升系统构建算法各个模态对应的多速率输出动力学模型，包括采用Ku波段雷达和ADS-B对同一目标信号进行观测，此时离散动态系统可描述为：</div>
+<div class="description-paragraph" id="p0037">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0038" num="0012">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0039" num="0013">其中，<span class="patent-image-not-available"></span>，为<span class="patent-image-not-available"></span>时刻的状态向量，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>,<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0040">设定<span class="patent-image-not-available"></span>为帧周期，<span class="patent-image-not-available"></span>为具体的传感器（即ADS-B或者Ku波段雷达），对于每个传感器，每帧<span class="patent-image-not-available"></span>获得M个样本，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为量测矩阵，<span class="patent-image-not-available"></span>为馈通矩阵，<span class="patent-image-not-available"></span>为第<span class="patent-image-not-available"></span>帧中ADS-B和Ku波段雷达的第<span class="patent-image-not-available"></span>个测量，<span class="patent-image-not-available"></span>，上标Ku和AB为分别指代Ku波段雷达和ADS-B，则：</div>
+<div class="description-paragraph" id="p0041">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0042" num="0014">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0043" num="0015">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0044" num="0016">其中，“<span class="patent-image-not-available"></span>”代表矩阵的转置，则经过垫升的系统模型表述为：<span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0045">其中，系统矩阵<span class="patent-image-not-available"></span>构建如下：</div>
+<div class="description-paragraph" id="p0046"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0047"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0048"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0049"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0050">数据交互与状态滤波，包括某一模态i在k-1时刻的估计值和模态概率分别为<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，由不同的模态估计的状态<span class="patent-image-not-available"></span>和协方差<span class="patent-image-not-available"></span>获得交互后各模型的初始值<span class="patent-image-not-available"></span>和协方差<span class="patent-image-not-available"></span>，即：</div>
+<div class="description-paragraph" id="p0051">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0052" num="0017">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0053" num="0018">根据混合初值和Ku波段雷达或者ADS-B的测量，将其作为k时刻每个滤波器的输入，对各模型进行滤波，产生新的模态状态估计<span class="patent-image-not-available"></span>和协方差<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0054">模态概率更新，基于当前观测数据和先前的模态概率，更新每个模态的概率，包括基于<span class="patent-image-not-available"></span>，模态概率更新为：<span class="patent-image-not-available"></span>，其中，滤波器似然函数<span class="patent-image-not-available"></span>是联合概率密度函数；</div>
+<div class="description-paragraph" id="p0055">最终得到系统估计值<span class="patent-image-not-available"></span>与协方差<span class="patent-image-not-available"></span>：</div>
+<div class="description-paragraph" id="p0056">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0057" num="0019">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0058" num="0020">其中，<span class="patent-image-not-available"></span>是粒子的权重，<span class="patent-image-not-available"></span>为k时刻目标状态的估计值，<span class="patent-image-not-available"></span>为k时刻目标状态的估计协方差。</div>
+<div class="description-paragraph" id="p0059" num="0021">可选的，利用多速率交互式多模型粒子滤波算法中的协方差矩阵判断信息匹配效果，当该矩阵的迹大于指定阈值时，视作ADS-B报文信号与Ku波段雷达探测信息不匹配，否则视作匹配。</div>
+<div class="description-paragraph" id="p0060" num="0022">本发明还提供一种基于Ku波段探测雷达和ADS-B融合的低空飞行器监视系统，包括：</div>
+<div class="description-paragraph" id="p0061">飞行监视信息收集系统、数据传输处理系统，所述飞行监视信息收集系统、数据传输处理系统相连；</div>
+<div class="description-paragraph" id="p0062">所述飞行监视信息收集系统包括ADS-B地面接收模块和Ku波段雷达探测模块，利用ADS-B地面接收模块获取飞行器对应的ADS-B报文信号，所述ADS-B报文信号包括飞行器的身份信息、位置与速度信息；利用Ku波段雷达探测模块获取飞行器对应的Ku波段雷达探测信号，所述Ku波段雷达探测信号包括Ku波段雷达探测到飞行器的位置与速度信息；</div>
+<div class="description-paragraph" id="p0063">所述数据传输处理系统包括数据融合处理模块，所述数据传输处理系统接收飞行器对应的ADS-B报文对应的飞行器的位置与速度信息和Ku波段雷达探测到飞行器的位置与速度信息，利用数据融合处理模块采用多速率交互式多模型粒子滤波算法对Ku波段探测到飞行器的位置与速度信息和ADS-B报文信号中的位置与速度信息进行匹配融合，当Ku波段探测到飞行器的位置与速度信息和ADS-B报文信号中的位置与速度信息匹配，输出融合后的飞行器的位置与速度信息并输出飞行器正常信号；当Ku波段探测到飞行器的位置与速度信息和ADS-B报文信号中的位置与速度信息不匹配，则利用Ku波段探测雷达信号输出飞行器的位置与速度信息并输出飞行器异常信号。</div>
+<div class="description-paragraph" id="p0064" num="0023">可选的，还包括：显示与控制终端，所述显示与控制终端与数据传输处理系统相连，数据传输处理系统输出的飞行器的位置与速度信息、飞行器正常/异常信号显示在显示与控制终端。</div>
+<div class="description-paragraph" id="p0065" num="0024">可选的，飞行监视信息收集系统还包括自检模块，利用自检模块对ADS-B地面接收模块和Ku波段雷达探测模块进行自检，分别获得ADS-B自检信息和雷达自检信息，所述数据传输处理系统接收所述ADS-B自检信息和雷达自检信息并进行融合，根据融合后的飞行器的位置与速度信息获取ADS-B地面接收模块和Ku波段雷达探测模块的自检结果。</div>
+<div class="description-paragraph" id="p0066" num="0025">本发明还提供一种低空飞行器监视设备，包括：存储器、处理器及存储在所述存储器上并可在所述处理器上运行的低空飞行器监视程序，所述低空飞行器监视程序配置为实现上述的低空飞行器监视方法的步骤。</div>
+<div class="description-paragraph" id="p0067" num="0026">本发明还提供一种存储介质，包括：所述存储介质上存储有低空飞行器监视程序，所述低空飞行器监视程序被处理器执行时实现上所述的低空飞行器监视方法。</div>
+<div class="description-paragraph" id="p0068" num="0027">综上所述，本发明的优点及有益效果为：</div>
+<div class="description-paragraph" id="p0069">本发明提供一种低空飞行器监视方法、系统、设备及存储介质。低空飞行器监视方法，采用ADS-B和Ku波段探测雷达共同工作，利用ADS-B获取飞行器对应的身份信息、位置与速度信息，利用Ku波段探测雷达获取飞行器对应的位置与速度信息，两种不同的信息来源形成互补，提升监视系统的可靠性；将Ku波段探测雷达和ADS-B获取的位置与速度信息采用多速率交互式多模型粒子滤波算法进行融合，将不同来源的低空飞行器的位置与速度信息进行处理，实现对空域中飞行器状态更精准的估计，显著提高了监测数据的可靠性和实用性，避免了现有技术中，仅采用Ku波段探测雷达或者ADS-B对飞行器进行监控，导致信息来源单一，监视的可靠性不足的问题，同时实现对监视区域的多信息余度监测，进一步提升对飞行器监视的可靠性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0070">附图说明</div>
+<div class="description-paragraph" id="p0071" num="0028">图1为本发明实施例提供的一种基于Ku波段探测雷达和ADS-B融合的低空飞行器监视方法的流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0072">具体实施方式</div>
+<div class="description-paragraph" id="p0073" num="0029">为使本发明的目的、技术方案和优点更加清楚，下面将结合本发明具体实施方式及相应的附图对本发明技术方案进行清楚、完整地描述。显然，所描述的实施方式仅是本发明一部分实施方式，而不是全部的实施方式。基于本发明中的实施方式，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施方式，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0074" num="0030">下面详细描述本发明的实施方式，实施方式的示例在附图中示出，其中自始至终相同或类似的标号表示相同或类似的元件或具有相同或类似功能的元件。下面通过参考附图描述的实施方式是示例性的，仅用于解释本发明，而不能理解为对本发明的限制。</div>
+<div class="description-paragraph" id="p0075" num="0031">本发明提供基于Ku波段探测雷达和ADS-B融合的低空飞行器监视方法，如图1所示，包括：</div>
+<div class="description-paragraph" id="p0076">步骤S10，获取飞行器对应的ADS-B报文信号，所述ADS-B报文信号包括飞行器的身份信息、位置与速度信息；</div>
+<div class="description-paragraph" id="p0077">步骤S20，获取飞行器对应的Ku波段雷达探测信号，所述Ku波段雷达探测信号包括Ku波段雷达探测到飞行器的位置与速度信息，处理获得Ku波段雷达探测到飞行器的位置与速度信息；</div>
+<div class="description-paragraph" id="p0078">步骤S30，采用多速率交互式多模型粒子滤波算法对所述Ku波段探测到飞行器的位置与速度信息和所述ADS-B报文信号中的位置与速度信息进行匹配融合，</div>
+<div class="description-paragraph" id="p0079">当所述Ku波段探测到飞行器的位置与速度信息和所述ADS-B报文信号中的位置与速度信息匹配，输出融合后的飞行器的位置与速度信息；</div>
+<div class="description-paragraph" id="p0080">当所述Ku波段探测到飞行器的位置与速度信息和所述ADS-B报文信号中的位置与速度信息不匹配，则利用所述Ku波段探测雷达信号输出飞行器的位置与速度信息并输出飞行器异常信号。</div>
+<div class="description-paragraph" id="p0081" num="0032">具体的，本发明采用ADS-B和Ku波段探测雷达共同工作，利用ADS-B获取飞行器对应的身份信息、位置与速度信息，利用Ku波段探测雷达获取飞行器对应的位置与速度信息，两种不同的信息来源形成互补，提升监视系统的可靠性；将Ku波段探测雷达和ADS-B获取的位置与速度信息采用多速率交互式多模型粒子滤波算法进行融合，将不同来源的低空飞行器的位置与速度信息进行处理，实现对空域中飞行器状态更精准的估计，显著提高了监测数据的可靠性和实用性。</div>
+<div class="description-paragraph" id="p0082" num="0033">执行步骤S10，获取飞行器对应的ADS-B报文信号，所述ADS-B报文信号包括飞行器的身份信息、位置与速度信息。</div>
+<div class="description-paragraph" id="p0083" num="0034">在本发明实施例中，所述飞行器为无人机。</div>
+<div class="description-paragraph" id="p0084" num="0035">在其他实施例中，所述飞行器为载人飞机、直升飞机或者其他适合的飞行设备。</div>
+<div class="description-paragraph" id="p0085" num="0036">在本发明实施例中，ADS-B为机载广播式自动相关监视技术(AutomaticDependent Surveillance-Broadcast，ADS-B)，为一种开放式广播技术。</div>
+<div class="description-paragraph" id="p0086" num="0037">在本发明实施例中，通过ADS-B接收器接收飞行器广播的ADS-B报文，通过ADS-B内部的处理器对接收的所述ADS-B报文进行信号解调、数据解码获得所述ADS-B报文信号，通过ADS-B OUT发射器输出解码后的所述ADS-B报文信号。</div>
+<div class="description-paragraph" id="p0087" num="0038">通过接收广播发来的飞行器对应的ADS-B报文信号，获取飞行器的位置与速度信息，其中，所述飞行器的位置包括飞行器当前的经度、纬度、高度其中的一种或几种。</div>
+<div class="description-paragraph" id="p0088" num="0039">在本发明实施例中，所述ADS-B报文信号还包括飞行器姿态信息、航线信息、天气信息等其中的一种或多种。</div>
+<div class="description-paragraph" id="p0089" num="0040">执行步骤S20，获取飞行器对应的Ku波段雷达探测信号，所述Ku波段雷达探测信号包括Ku波段雷达探测到飞行器的位置与速度信息，处理获得Ku波段雷达探测到飞行器的位置与速度信息。</div>
+<div class="description-paragraph" id="p0090" num="0041">在本发明实施例中，所述Ku波段雷达探测信号的获取基于电磁波的反射原理，通过发送短脉冲信号、接收目标回波信号、分析回波信号的频率变化获取Ku波段雷达探测信号并实现对监视区域的探测、监视。</div>
+<div class="description-paragraph" id="p0091" num="0042">在本发明实施例中，利用高斯混合概率假设密度滤波器处理Ku波段雷达探测信号，获得所述Ku波段雷达探测到飞行器的位置与速度信息的步骤包括：</div>
+<div class="description-paragraph" id="p0092">步骤S211，获取Ku波段探测雷达信号。</div>
+<div class="description-paragraph" id="p0093" num="0043">在本发明实施例中，通过Ku波段探测雷达设备获取所述Ku波段雷达探测信号。</div>
+<div class="description-paragraph" id="p0094" num="0044">步骤S212，将获取的所述Ku波段雷达探测信号中的有关飞行器的位置与速度信息进行预处理，获得初始Ku波段雷达探测到飞行器的位置与速度信息以及目标点。</div>
+<div class="description-paragraph" id="p0095" num="0045">在本发明实施例中，对所述Ku波段雷达探测信号中的有关飞行器的位置与速度信息进行的预处理包括：数字下变频、脉冲压缩（Pulse Compression，PC）、动目标监测（MTD）、恒虚警监测（CFAR）、聚类（Clustering）其中的一种或几种。</div>
+<div class="description-paragraph" id="p0096" num="0046">通过预处理，将所述Ku波段雷达探测信号中的有关飞行器的位置与速度信息进行优化和提取，获得优化了的初始Ku波段雷达探测到飞行器的位置与速度信息，其中，</div>
+<div class="description-paragraph" id="p0097">所述脉冲压缩提升了雷达探测距离的分辨率、所述动目标检测通过多普勒频移提取飞行器的速度信息、所述恒虚警监测用于过滤掉所述获取Ku波段探测雷达信号中的噪声和虚假目标（即：并不是真正的飞行器），减少位置与速度测量中的虚假信号、所述聚类将所述获取Ku波段探测雷达信号中的多个探测点进行合并成为一个目标点（即：合成为一个飞行器），从而更准确地估计飞行器的实际位置；</div>
+<div class="description-paragraph" id="p0098">所述动目标检测通过多普勒频移提取所述Ku波段雷达探测信号中的有关飞行器的速度信息、所述恒虚警监监测减少飞行器的速度测量中的虚假信号、所述聚类帮助聚合多个飞行器的速度的测量点，从而得到更一致的飞行器的速度信息的估计，通过各预处理技术的结合，确保从获取的所述Ku波段雷达探测信号中提取出清晰的、经过去噪和过滤的初始Ku波段雷达探测到飞行器的位置与速度信息。</div>
+<div class="description-paragraph" id="p0099" num="0047">步骤S213，将所述初始Ku波段雷达探测到飞行器的位置与速度信息利用高斯混合概率假设密度（GM-PHD）滤波器进行处理，最终获得Ku波段雷达探测到飞行器的位置与速度信息。</div>
+<div class="description-paragraph" id="p0100" num="0048">预处理后获得的所述初始Ku波段雷达探测到飞行器的位置与速度信息是基于每个独立的所述Ku波段雷达探测信号得到的，并不能反映多目标的真实状态（即：多飞行器的位置与速度信息），将所述初始Ku波段雷达探测到飞行器的位置与速度信息通过所述GM-PHD滤波器将多个不同时刻的所述初始Ku波段雷达探测到飞行器的位置与速度信息进行融合，一方面，去除所述获取Ku波段探测雷达信号中的噪声和虚假目标，从而得到更精确的飞行器的位置信息，另一方面，将多个不同时刻的速度信息进行处理获得的飞行器的速度信息更加的平滑、准确，从而反映了真实的飞行器的运动轨迹；另外GM-PHD滤波器还能动态管理飞行器的生成和消失，对应于飞行器在监测区域的飞入和飞离，有助于飞行器的监测管理。</div>
+<div class="description-paragraph" id="p0101" num="0049">在本发明实施例中，利用高斯混合概率假设密度（GM-PHD）滤波器处理初始Ku波段雷达探测到飞行器的位置与速度信息的步骤包括：</div>
+<div class="description-paragraph" id="p0102">步骤S213-1，初始化所述GM-PHD滤波器，设置各个参数，包括输入目标新生概率模型、目标存续概率、高斯白噪声协方差矩阵、系统矩阵F和G、时间步长△、目标探测概率，输出当前目标状态分布和初始的不确定度量状态协方差矩阵P<sub>0</sub>，所述当前目标状态分布和初始的不确定度量状态协方差矩阵P<sub>0</sub>通过目标新生概率模型和现有目标状态初始化的一组高斯分布获得；</div>
+<div class="description-paragraph" id="p0103">在本发明实施例中，所述目标新生概率模型用于描述每个时间步长中新目标（如新进入监测区域的飞行器）出现的概率分布，用于预测新目标可能出现的位置和速度范围；</div>
+<div class="description-paragraph" id="p0104">所述目标存续概率用于表示已存在相邻时间步之间目标保持存在的概率，反映了目标的运动持续性；</div>
+<div class="description-paragraph" id="p0105">所述高斯白噪声协方差矩阵用于表示过程噪声的协方差矩阵，在雷达信号处理中，噪声是不可避免的，通过所述高斯白噪声协方差矩阵量化噪声对目标状态估计的影响，帮助所述GM-PHD滤波器更准确地处理数据。</div>
+<div class="description-paragraph" id="p0106" num="0050">所述系统矩阵F（状态转移矩阵）和系统矩阵G（控制输入矩阵或者过程噪声矩阵）中，系统矩阵F表示目标状态的动态变化规律，即目标在不同时间步之间的状态转移关系，描述了飞行器的位置和速度随时间的变化；系统矩阵G用于将过程噪声与目标状态联系起来，反映噪声对目标状态变化的影响，描述了加速度噪声对飞行器位置和速度的影响。</div>
+<div class="description-paragraph" id="p0107" num="0051">所述时间步长△用于表示相邻两次观测之间的时间间隔，具体的，时间步长的选择可以参考雷达的采样频率和目标的动态特性；</div>
+<div class="description-paragraph" id="p0108">所述目标探测概率用于表示在给定时间内探测到目标的概率，所述目标探测概率受到雷达性能、目标特性以及环境因素等多种因素的影响。</div>
+<div class="description-paragraph" id="p0109" num="0052">在本发明实施例中，输出当前目标状态分布和初始的不确定度量状态协方差矩阵P<sub>0</sub>是通过所述目标新生概率模型和现有目标状态初始化的一组高斯分布来获得，初始的不确定度量状态协方差矩阵P<sub>0</sub>反映了对目标状态估计的初始不确定性。</div>
+<div class="description-paragraph" id="p0110" num="0053">步骤S213-2，预测新生目标状态、预测存续目标状态，包括输入上一次状态估计、控制增量、过程噪声，输出当前目标状态预测和协方差预测。</div>
+<div class="description-paragraph" id="p0111" num="0054">在本发明实施例中，在所述GM-PHD滤波器初始化完成后，进入状态预测，对新生目标和存续目标的状态进行预测，其中，对于已经存在的目标，预测其在当前时刻的状态，对于新出现的目标，预测其在当前时刻的状态。</div>
+<div class="description-paragraph" id="p0112" num="0055">所述GM-PHD滤波器通过预测新生目标状态、预测存续目标状态分别预测新生目标和存续目标的状态，然后将这些预测结果合并，形成完整的当前目标状态预测和协方差预测。</div>
+<div class="description-paragraph" id="p0113" num="0056">在本发明实施例中，上一次状态估计是所述GM-PHD滤波器在前一时间步对目标状态的估计结果，所述上一次状态估计为当前时间步的状态预测提供基础；控制增量反映了目标在相邻时间步之间的控制输入变化；过程噪声描述了目标状态变化过程中受到的随机干扰，所述过程噪声可以通过高斯白噪声协方差矩阵进行量化。</div>
+<div class="description-paragraph" id="p0114" num="0057">在本发明实施例中，当前目标状态预测和协方差预测可以通过系统矩阵F和G结合上一次状态估计、控制增量和过程噪声，获得当前时间步的目标状态预测；同时，利用系统矩阵F和高斯白噪声协方差矩阵，对目标状态的不确定性进行预测，得到协方差预测。具体的，基于卡尔曼滤波的预测公式，为后续的状态更新提供预测信息。</div>
+<div class="description-paragraph" id="p0115" num="0058">步骤S213-3，创建概率假设密度更新元素，包括输入通过上一步得到的当前目标状态预测值、协方差预测以及雷达观测数据、雷达观测矩阵，输出结合观测数据修正状态的权重卡尔曼增益K<sub>k</sub>。</div>
+<div class="description-paragraph" id="p0116" num="0059">在本发明实施例中，在状态预测的基础上，根据雷达观测数据对目标状态进行更新。</div>
+<div class="description-paragraph" id="p0117" num="0060">在本发明实施例中，通过所述雷达观测矩阵将所述当前目标状态预测值映射到观测空间，使得所述当前目标状态预测值能够与所述雷达观测数据进行比较。</div>
+<div class="description-paragraph" id="p0118" num="0061">在本发明实施例中，所述当前目标状态预测值、所述协方差预测为上一步状态预测的输出结果，为状态更新提供了预测基础；所述雷达观测数据为Ku波段雷达在当前时间步对目标的观测结果，包含了目标的位置、速度等信息；所述雷达观测矩阵为数学工具，将目标状态与雷达观测数据联系起来，反映了雷达观测模型的特性。</div>
+<div class="description-paragraph" id="p0119" num="0062">步骤S213-4，根据实时Ku波段探测雷达信号更新各目标状态，包括输入所述雷达观测数据、所述权重卡尔曼增益K<sub>k</sub>、当前目标状态预测值<span class="patent-image-not-available"></span>和协方差预测值<span class="patent-image-not-available"></span>，输出更新后的状态估计、更新后的协方差矩阵，其中，更新后的状态估计修正了预测的误差，更新后的协方差矩阵降低了目标状态的不确定性。</div>
+<div class="description-paragraph" id="p0120" num="0063">在本发明实施例中，所述雷达观测数据、所述权重卡尔曼增益Kk、所述当前目标状态预测值和协方差预测值为前面步骤的输出结果，为后续状态更新提供了必要的信息，其中，所述雷达观测数据提供了目标的实时观测信息，所述权重卡尔曼增益K<sub>k</sub>决定了观测数据在状态更新中的权重，所述当前目标状态预测值和协方差预测值则为状态更新提供了预测基础。</div>
+<div class="description-paragraph" id="p0121" num="0064">在本发明实施例中，通过将所述雷达观测数据与所述目标状态预测值进行融合，利用所述卡尔曼增益K<sub>k</sub>对目标状态进行修正，得到所述更新后的状态估计值；同时，根据状态更新的结果，对目标状态的不确定性进行修正，得到所述更新后的协方差矩阵。</div>
+<div class="description-paragraph" id="p0122" num="0065">所述更新后的状态估计值修正了预测的误差，使目标状态的估计更加准确，所述更新后的协方差矩阵反映了目标状态估计的不确定性，其值通常小于预测阶段的协方差预测值，经过观测数据的修正，降低了目标状态的估计不确定性。所述GM-PHD滤波器能够逐步提高对飞行器位置与速度信息的估计精度，为飞行器的监测和管理提供可靠的数据支持。</div>
+<div class="description-paragraph" id="p0123" num="0066">在本发明实施例中，用于更新状态估计、协方差矩阵的所述高斯混合概率假设密度滤波器的动力学模型为：</div>
+<div class="description-paragraph" id="p0124">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0125" num="0067">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0126" num="0068">系统矩阵F和G分别为：</div>
+<div class="description-paragraph" id="p0127"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0128">其中，<span class="patent-image-not-available"></span>，x<sub>k</sub>为时刻k目标的位置坐标向量，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>分别为k时刻目标在x、y、z方向的位置坐标，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>为时刻k目标在x、y、z方向的速度，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>时刻目标的航向角，<span class="patent-image-not-available"></span>为k−1时刻的过程噪声，<span class="patent-image-not-available"></span>为k时刻的控制输入，k为当前时刻，k-1为上一时刻，△为时间步长，系统矩阵F和G为状态转移矩阵F和噪声输入矩阵G。</div>
+<div class="description-paragraph" id="p0129" num="0069">在本发明实施例中，状态转移矩阵F定义了飞行器从上一时刻k-1到当前时刻k的状态（包括飞行器的位置、速度和航向角）演变过程，状态转移矩阵F反映了飞行器的动态特性；G是过程噪声输入矩阵用于缩放上一时刻的过程噪声w<sub>k-1</sub>对飞行器状态的影响，通过两个矩阵能够预测飞行器在下一个时间步的状态。</div>
+<div class="description-paragraph" id="p0130" num="0070">在本发明实施例中，通过高斯混合概率假设密度滤波器获得并输出飞行器的位置与速度信息以及协方差矩阵。</div>
+<div class="description-paragraph" id="p0131" num="0071">在预测新生目标状态、预测存续目标状态的过程中，新的状态预测基于高斯混合概率假设密度滤波器的动力学模型迭代更新GM-PHD滤波器，使得GM-PHD滤波器在获得观测信息的情况下对目标状态进行预测，并为后续通过与观测数据的结合，实现对目标状态更新提供基础。</div>
+<div class="description-paragraph" id="p0132" num="0072">执行步骤S30，采用多速率交互式多模型粒子滤波算法对所述Ku波段探测到飞行器的位置与速度信息和所述ADS-B报文信号中的位置与速度信息进行匹配融合，</div>
+<div class="description-paragraph" id="p0133">当所述Ku波段探测到飞行器的位置与速度信息和所述ADS-B报文信号中的位置与速度信息匹配，输出融合后的飞行器的位置与速度信息；</div>
+<div class="description-paragraph" id="p0134">当所述Ku波段探测到飞行器的位置与速度信息号和所述ADS-B报文信号中的位置与速度信息不匹配，则利用所述Ku波段探测雷达信号输出飞行器的位置与速度信息并输出飞行器异常信号。</div>
+<div class="description-paragraph" id="p0135" num="0073">在本发明实施例中，所述多速率交互式多模型粒子滤波算法的步骤包括：</div>
+<div class="description-paragraph" id="p0136">步骤S321，设置算法模型；</div>
+<div class="description-paragraph" id="p0137">在本发明实施例中，设置算法模型，为所述多速率交互式多模型粒子滤波算法定义和配置算法所需的各种模型和参数。</div>
+<div class="description-paragraph" id="p0138" num="0074">在本发明实施例中，定义状态空间模型，确定系统的状态向量和观测向量，其中，所述状态向量表示系统状态的变量，例如位置、速度、加速度等，所述观测向量表示可观测到的输出，获得系统的动态行为和观测过程。</div>
+<div class="description-paragraph" id="p0139" num="0075">选择模态，确定系统可能存在的多个模态，并为每个模态设定相应的状态转移矩阵、观测矩阵以及噪声协方差矩阵，所述模态代表了飞行器处于的不同状态、行为模式）。</div>
+<div class="description-paragraph" id="p0140" num="0076">初始化参数，设置初始状态估计、初始协方差和初始模态概率，其中，所述初始状态估计提供了算法的开始状态，所述初始协方差表示初始状态估计的不确定性，所述初始模态概率表示最初系统处于各个模态的概率分布。</div>
+<div class="description-paragraph" id="p0141" num="0077">输入模态跳变概率模型<span class="patent-image-not-available"></span>，所述跳变概率模型为：</div>
+<div class="description-paragraph" id="p0142"> <span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>表示系统从模态<span class="patent-image-not-available"></span>切换到模态<span class="patent-image-not-available"></span>的概率，<span class="patent-image-not-available"></span>是系统在<span class="patent-image-not-available"></span>时刻的模态，<span class="patent-image-not-available"></span>是系统在<span class="patent-image-not-available"></span>时刻的模态，在多模态的情况下，系统的行为会随时间变化，通过所述模态跳变概率模型量化系统的变化，帮助算法在不同模态之间进行切换，以适应系统的实际行为。</div>
+<div class="description-paragraph" id="p0143" num="0078">设置扰动的协方差矩阵<span class="patent-image-not-available"></span>、测量协方差矩阵<span class="patent-image-not-available"></span>，所述扰动的协方差矩阵<span class="patent-image-not-available"></span>定义模态<span class="patent-image-not-available"></span>下飞行器状态在过程中可能受到的过程噪声，所述测量协方差矩阵<span class="patent-image-not-available"></span>包括Ku波段雷达的测量噪声协方差矩阵R<sub>Ku</sub>和ADS-B系统的测量噪声协方差矩阵R<sub>ADS-B</sub>；所述R<sub>Ku</sub>定义Ku波段雷达的测量噪声，所述R<sub>ADS-B</sub>定义ADS-B系统的测量噪声；对于每一个模态<span class="patent-image-not-available"></span>的动态行为由状态转移方程和测量方程描述，模态<span class="patent-image-not-available"></span>的状态转移方程<span class="patent-image-not-available"></span>和测量方程<span class="patent-image-not-available"></span>如下：</div>
+<div class="description-paragraph" id="p0144">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0145" num="0079">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0146" num="0080">其中，<span class="patent-image-not-available"></span>为时刻k的状态向量，<span class="patent-image-not-available"></span>为服从正态分布<span class="patent-image-not-available"></span>的过程噪声，<span class="patent-image-not-available"></span>为服从正态分布<span class="patent-image-not-available"></span>的测量噪声，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>时刻的测量信息，<span class="patent-image-not-available"></span>为模态<span class="patent-image-not-available"></span>下的状态转移矩阵，定义了状态变量如何从<span class="patent-image-not-available"></span>时刻更新到<span class="patent-image-not-available"></span>时刻，<span class="patent-image-not-available"></span>为模态<span class="patent-image-not-available"></span>下的过程噪声输入矩阵，用于调整噪声对不同状态变量的影响强度，H是模态<span class="patent-image-not-available"></span>的量测转移矩阵，将状态向量映射到观测向量。</div>
+<div class="description-paragraph" id="p0147" num="0081">随机生成初始粒子集<span class="patent-image-not-available"></span>和模态概率分布，<span class="patent-image-not-available"></span>为第i个粒子的初始状态向量，<span class="patent-image-not-available"></span>为第i个粒子的初始权重，初始模态概率分布<span class="patent-image-not-available"></span>为：<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>为总的模态数目，N为自然数，<span class="patent-image-not-available"></span>为概率，<span class="patent-image-not-available"></span>为初始时刻系统的模态。</div>
+<div class="description-paragraph" id="p0148" num="0082">步骤S322，基于垫升系统构建算法各个模态对应的多速率输出动力学模型；</div>
+<div class="description-paragraph" id="p0149">在本发明实施例中，采用垫升系统，通过引入虚拟采样点，将不同采样率的数据统一到一个公共的时间框架中，对于每个模态<span class="patent-image-not-available"></span>，构建其对应的多速率输出动力学模型，包括状态转移方程和观测方程。具体的，</div>
+<div class="description-paragraph" id="p0150">采用两个具有不同速率的传感器（即：Ku波段雷达和ADS-B系统）对同一目标信号进行观测，此时离散动态系统可描述为：</div>
+<div class="description-paragraph" id="p0151">状态转移方程：<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0152" num="0083">观测方程：<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0153" num="0084">其中，<span class="patent-image-not-available"></span>为时刻k+1的状态估计向量，<span class="patent-image-not-available"></span>为状态转移矩阵，，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>时刻的状态向量，<span class="patent-image-not-available"></span>为过程噪声输入矩阵，<span class="patent-image-not-available"></span>为过程噪声向量，<span class="patent-image-not-available"></span>为在时刻kT+t<sub>p</sub>从传感器s获得的观测向量，<span class="patent-image-not-available"></span>为传感器s的观测矩阵，<span class="patent-image-not-available"></span>为时刻kT+t<sub>p</sub>的状态估计向量，<span class="patent-image-not-available"></span>为传感器s的观测噪声输入矩阵，<span class="patent-image-not-available"></span>为传感器s在时刻kT+t<sub>p</sub>的观测噪声，T为传感器的采样周期，t<sub>p</sub>为时间偏移，表示观测时刻相对于帧开始的偏移，s为传感器类型，可以是Ku波段雷达或ADS-B系统，<span class="patent-image-not-available"></span>为馈通矩阵。<span class="patent-image-not-available"></span>为表示在时刻k的过程噪声向量，<span class="patent-image-not-available"></span>表示过程噪声输入矩阵,<span class="patent-image-not-available"></span>；<span class="patent-image-not-available"></span>表示在时刻k的状态估计向量。</div>
+<div class="description-paragraph" id="p0154" num="0085">设定<span class="patent-image-not-available"></span>为帧周期，<span class="patent-image-not-available"></span>为具体的传感器（即ADS-B或者Ku波段雷达），对于每个传感器，每帧<span class="patent-image-not-available"></span>获得M个样本，<span class="patent-image-not-available"></span>，MAB是ADS-B系统在一个帧周期内获得的样本数，MKu是Ku波段雷达在一个帧周期内获得的样本数，<span class="patent-image-not-available"></span>为量测矩阵，<span class="patent-image-not-available"></span>为馈通矩阵，<span class="patent-image-not-available"></span>为第<span class="patent-image-not-available"></span>帧中ADS-B和Ku波段雷达的第<span class="patent-image-not-available"></span>个测量，<span class="patent-image-not-available"></span>，上标Ku和AB为分别指代Ku波段雷达和ADS-B，引入下列表达：</div>
+<div class="description-paragraph" id="p0155">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0156" num="0086">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0157" num="0087">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0158" num="0088">其中，<span class="patent-image-not-available"></span>为时刻k的状态估计向量，<span class="patent-image-not-available"></span>为时刻kT的状态估计向量，T为帧周期，<span class="patent-image-not-available"></span>为n维实数空间，n是状态向量的维度，<span class="patent-image-not-available"></span>为从时刻kT到(k+1)T−1的过程噪声向量，<span class="patent-image-not-available"></span>为每个时间点的过程噪声，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>维实数空间，<span class="patent-image-not-available"></span>为过程噪声向量的维度，<span class="patent-image-not-available"></span>为时刻k从所有传感器获得的观测向量，<span class="patent-image-not-available"></span>从Ku波段雷达在时<span class="patent-image-not-available"></span>到<span class="patent-image-not-available"></span>的观测向量，<span class="patent-image-not-available"></span>表示从ADS-B系统在时间<span class="patent-image-not-available"></span>的观测向量，<span class="patent-image-not-available"></span>为Ku波段雷达在一个帧周期T内获得的观测数量，<span class="patent-image-not-available"></span>为ADS-B系统在一个帧周期T内获得的观测数量，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>为从kT开始到每个观测时刻的时间偏移，<span class="patent-image-not-available"></span>表示M<sub>Ku</sub>+M<sub>AB</sub>维实数空间，即观测向量的维度，“<span class="patent-image-not-available"></span>”代表矩阵的转置，则经过垫升的系统模型表述为：</div>
+<div class="description-paragraph" id="p0159">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0160" num="0089">其中，<span class="patent-image-not-available"></span>为经过垫升处理的系统模型，<span class="patent-image-not-available"></span>为时刻k+1的状态估计向量，<span class="patent-image-not-available"></span>为时刻k的状态估计向量，<span class="patent-image-not-available"></span>为过程噪声输入矩阵，<span class="patent-image-not-available"></span>为过程噪声向量，<span class="patent-image-not-available"></span>为时刻k的观测向量，H为观测矩阵，<span class="patent-image-not-available"></span>为观测噪声输入矩阵，<span class="patent-image-not-available"></span>为观测噪声向量。</div>
+<div class="description-paragraph" id="p0161" num="0090">系统矩阵<span class="patent-image-not-available"></span>构建如下：</div>
+<div class="description-paragraph" id="p0162"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0163"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0164"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0165"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0166">其中，<span class="patent-image-not-available"></span>为状态转移矩阵，表示为<span class="patent-image-not-available"></span>的转置，<span class="patent-image-not-available"></span>为过程噪声输入矩阵，<span class="patent-image-not-available"></span>为状态转移矩阵的转置，<span class="patent-image-not-available"></span>为观测矩阵<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别为Ku波段雷达和ADS-B系统的观测矩阵，<span class="patent-image-not-available"></span> <span class="patent-image-not-available"></span>为状态转移矩阵的幂，<span class="patent-image-not-available"></span>为观测噪声输入矩阵，<span class="patent-image-not-available"></span> <span class="patent-image-not-available"></span>分别为Ku波段雷达和ADS-B系统的观测噪声输入矩阵。</div>
+<div class="description-paragraph" id="p0167" num="0091">步骤S323，数据交互与状态滤波；</div>
+<div class="description-paragraph" id="p0168">在本发明实施例中，结合前一时刻的状态估计和模态概率，计算混合初始状态估计和协方差，使用混合初始值进行状态和协方差的预测，基于当前传感器的测量值对各模型进行更新。具体的：</div>
+<div class="description-paragraph" id="p0169">某一模态<span class="patent-image-not-available"></span>在<span class="patent-image-not-available"></span>时刻的估计值和模态概率分别为<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，由不同的模态估计的状态<span class="patent-image-not-available"></span>和协方差<span class="patent-image-not-available"></span>获得交互后各模型的初始值<span class="patent-image-not-available"></span>和协方差<span class="patent-image-not-available"></span>，即：</div>
+<div class="description-paragraph" id="p0170">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0171" num="0092">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0172" num="0093">其中，<span class="patent-image-not-available"></span>为时刻k−1对模态i的状态估计，<span class="patent-image-not-available"></span>为系统在初始时刻处于模态i的概率，<span class="patent-image-not-available"></span>为时刻k−1对模态i的状态估计，<span class="patent-image-not-available"></span>为在时刻k−1对模态i的协方差估计，<span class="patent-image-not-available"></span>为时刻k-1对模态i的初始协方差估计，<span class="patent-image-not-available"></span>表示对所有模型从1到N求和，N为模型的总数，<span class="patent-image-not-available"></span>为第i个模型的状态估计与混合初始状态估计之间的协方差。</div>
+<div class="description-paragraph" id="p0173" num="0094">根据混合初值和当前传感器（Ku波段雷达或者ADS-B）的测量，将其作为<span class="patent-image-not-available"></span>时刻每个滤波器的输入，对各模型进行滤波，产生新的模态状态估计<span class="patent-image-not-available"></span>和协方差<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0174">步骤S324，模态概率更新；</div>
+<div class="description-paragraph" id="p0175">在本发明实施例中，基于当前观测数据和先前的模态概率，更新每个模态的概率。具体的：</div>
+<div class="description-paragraph" id="p0176">基于<span class="patent-image-not-available"></span>，模态概率更新为：<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>为时刻k模态i的更新概率，<span class="patent-image-not-available"></span>时刻k−1模态i的概率，<span class="patent-image-not-available"></span>为滤波器似然函数的归一化因子，滤波器似然函数<span class="patent-image-not-available"></span>是联合概率密度函数；</div>
+<div class="description-paragraph" id="p0177">最终得到系统估计值<span class="patent-image-not-available"></span>与协方差<span class="patent-image-not-available"></span>：</div>
+<div class="description-paragraph" id="p0178">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0179" num="0095">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0180" num="0096">其中，<span class="patent-image-not-available"></span>为时刻k模态i的状态估计，<span class="patent-image-not-available"></span>是粒子的权重，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>时刻目标状态的估计值，<span class="patent-image-not-available"></span>为<span class="patent-image-not-available"></span>时刻目标状态的估计协方差，<span class="patent-image-not-available"></span>为对所有模态从1到N求和，<span class="patent-image-not-available"></span>为第i个模型的状态估计与系统状态估计之间的协方差。</div>
+<div class="description-paragraph" id="p0181" num="0097">在本发明实施例中，所述多速率交互式多模型粒子滤波算法的迭代循环步骤包括：多模型数据交互-测量数据滤波-模态概率更新。</div>
+<div class="description-paragraph" id="p0182" num="0098">在本发明实施例中，所述多速率交互式多模型粒子滤波算法具有多模型，即多模态，具体包括：匀速直线运动、常速向左转向运动、常速向右转向运动、匀加速直线运动、匀减速直线运动、匀速直线爬升、匀速直线下降中的其中一种或几种。</div>
+<div class="description-paragraph" id="p0183" num="0099">在本发明实施例中，测量数据滤波利用粒子滤波算法根据ADS-B信息与Ku波段探测雷达信息对各个模态的交互后状态估计进行更新，对各个模态产生滤波后的状态估计与协方差矩阵。</div>
+<div class="description-paragraph" id="p0184" num="0100">在本发明实施例中，模态概率更新依照似然函数更新模态概率，进而融合各个模态的状态估计与协方差矩阵形成该时刻目标的状态估计与协方差矩阵。</div>
+<div class="description-paragraph" id="p0185" num="0101">交互式多模型算法复杂度较低，在模型有效的情况下能够高效准确地融合信息产生更精确地飞行器状态估计。</div>
+<div class="description-paragraph" id="p0186" num="0102">在本发明实施例中，利用多速率交互式多模型粒子滤波算法中的协方差矩阵判断信息匹配效果，当该矩阵的迹大于指定阈值时，视作ADS-B报文信号与Ku波段雷达探测信息不匹配，否则视作匹配。</div>
+<div class="description-paragraph" id="p0187" num="0103">本发明还提供一种基于Ku波段探测雷达和ADS-B融合的低空飞行器监视系统，包括：</div>
+<div class="description-paragraph" id="p0188">飞行监视信息收集系统、数据传输处理系统，所述飞行监视信息收集系统、数据传输处理系统相连；</div>
+<div class="description-paragraph" id="p0189">所述飞行监视信息收集系统包括ADS-B地面接收模块和Ku波段雷达探测模块，利用ADS-B地面接收模块获取飞行器对应的ADS-B报文信号，所述ADS-B报文信号包括飞行器的身份信息、位置与速度信息；利用Ku波段雷达探测模块获取飞行器对应的Ku波段雷达探测信号，所述Ku波段雷达探测信号包括Ku波段雷达探测到飞行器的位置与速度信息；</div>
+<div class="description-paragraph" id="p0190">所述数据传输处理系统包括数据融合处理模块，所述数据传输处理系统接收飞行器对应的ADS-B报文对应的飞行器的位置与速度信息和Ku波段雷达探测到飞行器的位置与速度信息，利用数据融合处理模块采用多速率交互式多模型粒子滤波算法对Ku波段探测雷达信号和ADS-B报文信号中的位置与速度信息进行匹配融合，当Ku波段探测雷达信号和ADS-B报文信号匹配，输出融合后的飞行器的位置与速度信息并输出飞行器正常信号；当Ku波段探测雷达信号和ADS-B报文信号不匹配，则利用Ku波段探测雷达信号输出飞行器的位置与速度信息并输出飞行器异常信号。</div>
+<div class="description-paragraph" id="p0191" num="0104">在本发明实施例中，所述飞行监视信息收集系统通过ADS-B地面接收模块和Ku波段雷达探测模块收集监视信息，并向所述数据传输处理系统输出所述监视信息，所述监视信息包括ADS-B报文信号、Ku波段雷达探测信号。</div>
+<div class="description-paragraph" id="p0192" num="0105">通过采用所述ADS-B地面接收模块和所述Ku波段雷达探测模块共同工作，实现对监视区域的多信息余度监视，且两种不同的信息来源形成互补，提升监视系统的可靠性。</div>
+<div class="description-paragraph" id="p0193" num="0106">在本发明实施例中，所述ADS-B地面接收模块包括：ADS-B接收器、ADS-B内部的处理器、ADS-B OUT发射器，所述ADS-B接收器、所述ADS-B内部的处理器和所述ADS-B OUT发射器依次相连；</div>
+<div class="description-paragraph" id="p0194">通过所述ADS-B接收器接收飞行器广播的ADS-B报文，通过ADS-B内部的处理器对接收的所述ADS-B报文进行信号解调、数据解码获得所述ADS-B报文信号，通过所述ADS-BOUT发射器将解码后的所述ADS-B报文信号发送到所述数据传输处理系统。</div>
+<div class="description-paragraph" id="p0195" num="0107">通过接收广播发来的飞行器对应的ADS-B报文信号，获取飞行器的位置与速度信息，其中，所述飞行器的位置信息包括飞行器当前的经度、纬度、高度。</div>
+<div class="description-paragraph" id="p0196" num="0108">在本发明实施例中，所述ADS-B报文信号还包括飞行器姿态信息、航线信息、天气信息等其中的一种或多种。</div>
+<div class="description-paragraph" id="p0197" num="0109">在本发明实施例中，所述Ku波段雷达探测模块包括所述Ku波段探测雷达设备，所述Ku波段探测雷达设备基于电磁波的反射原理，通过发送短脉冲信号、接收目标回波信号、分析回波信号的频率变化获取所述Ku波段探测雷达信号，进而实现对监视区域的飞行器的探测、监视。</div>
+<div class="description-paragraph" id="p0198" num="0110">在本发明实施例中，所述数据传输处理系统还包括多功能接入设备、外部数据接口、内部数据接口；</div>
+<div class="description-paragraph" id="p0199">所述内部数据接口的一端与所述飞行监视信息收集系统相连，另一端与所述数据融合处理模块的一端相连，用于接收所述飞行监视信息收集系统输出的所述监视信息，并向所述数据融合处理模块输出所述监视信息；</div>
+<div class="description-paragraph" id="p0200">所述数据融合处理模块的另一端与所述多功能接入设备的一端、所述内部数据接口的一端相连，所述数据融合处理模块接收所述飞行监视信息收集系统输出的所述监视信息并将所述监视信息进行匹配融合，并输出对应的融合结果，至所述多功能接入设备和所述内部数据接口，其中，所述融合结果包括飞行器的位置与速度信息、飞行器正常/异常信号；</div>
+<div class="description-paragraph" id="p0201">所述多功能接入设备的另一端用于输出融合结果；所述内部数据接口的另一端用于输出除所述融合结果以外的其他监视信息。</div>
+<div class="description-paragraph" id="p0202" num="0111">本发明通过所述内部数据接口、所述外部数据接口和所述多功能接入设备为所述飞行监视信息收集系统与所述数据融合处理模块之间提供高速的数据链接；通过所述数据融合处理模块将Ku波段探测雷达和ADS-B获取的位置与速度信息采用多速率交互式多模型粒子滤波算法进行融合，将不同来源的低空飞行器的位置与速度信息进行处理，实现对空域中飞行器状态更精准的估计，显著提高了监测数据的可靠性和实用性。</div>
+<div class="description-paragraph" id="p0203" num="0112">在本发明实施例中，所述一种基于Ku波段探测雷达和ADS-B融合的低空飞行器监视系统还包括：显示与控制终端，所述显示与控制终端与数据传输处理系统相连，数据传输处理系统输出的飞行器的位置与速度信息、飞行器正常/异常信号显示在显示与控制终端。</div>
+<div class="description-paragraph" id="p0204" num="0113">在本发明实施例中，所述显示与控制终端包括图形界面，所述图形界面用于显示所述数据传输处理系统中所述多功能接入设备输出的融合结果，即：飞行器的位置与速度信息、飞行器正常/异常信号，用于与监视人员的交互，便于监视人员实时查看飞行器的监视信息，例如飞行器位置、飞行器电源供电状态、各个的模块状态以及自检信息或者其他监控信息。</div>
+<div class="description-paragraph" id="p0205" num="0114">在本发明实施例中，将所述ADS-B地面接收模块、所述Ku波段雷达探测模块、所述显示与控制终端进行统一授时，保障所述基于Ku波段探测雷达和ADS-B融合的低空飞行器监视系统的时间统一，避免不同数据源使用的时钟信息不一致的情况。</div>
+<div class="description-paragraph" id="p0206" num="0115">在其他实施例中，设置飞行器位置监控界面中的绿色图标代表Ku波段探测雷达信号和ADS-B报文信号匹配的飞行器，红色图标代表Ku波段探测雷达信号和ADS-B报文信号不匹配的飞行器。</div>
+<div class="description-paragraph" id="p0207" num="0116">在本发明实施例中，将所述ADS-B地面接收模块获取的所述ADS-B报文信号的坐标、所述Ku波段雷达探测模块获取的所述Ku波段探测雷达信号的坐标转换为WGS-84（WorldGeodetic System-1984）坐标系，避免不同数据源使用的坐标系不一致的情况。</div>
+<div class="description-paragraph" id="p0208" num="0117">在本发明实施例中，所述一种基于Ku波段探测雷达和ADS-B融合的低空飞行器监视系统还包括：其他监控单元，所述其他监控单元与所述内部数据接口的另一端相连，用于接收所述内部数据接口输出的除所述融合结果以外的其他监视信息并进行显示。</div>
+<div class="description-paragraph" id="p0209" num="0118">在本发明实施例中，飞行监视信息收集系统还包括自检模块，利用自检模块对ADS-B地面接收模块和Ku波段雷达探测模块进行自检，分别获得ADS-B自检信息和雷达自检信息，所述数据传输处理系统接收所述ADS-B自检信息和雷达自检信息并进行融合，根据融合后的飞行器的位置与速度信息获取ADS-B地面接收模块和Ku波段雷达探测模块的自检结果。</div>
+<div class="description-paragraph" id="p0210" num="0119">在本发明实施例中，所述数据传输处理系统将所述自检结果输出至所述多功能接入设备，由所述多功能接入设备输出至所述显示与控制终端，显示在所述图形界面上，实现与监视人员的实时交互。</div>
+<div class="description-paragraph" id="p0211" num="0120">本发明还提供一种低空飞行器监视设备，包括：存储器、处理器及存储在所述存储器上并可在所述处理器上运行的低空飞行器监视程序，所述低空飞行器监视程序配置为实现如权上述的低空飞行器监视方法的步骤。</div>
+<div class="description-paragraph" id="p0212" num="0121">本发明还提供一种存储介质，包括：所述存储介质上存储有低空飞行器监视程序，所述低空飞行器监视程序被处理器执行时实现如上述的低空飞行器监视方法。</div>
+<div class="description-paragraph" id="p0213" num="0122">最后说明，任何依靠本发明装置结构以及所述实施例的技术方案，进行的部分或者全部技术特征的修改或者等同替换，所得到的本质不脱离本发明的相应技术方案，都属于本发明装置结构以及所述实施方案的专利范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

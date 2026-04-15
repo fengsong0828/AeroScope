@@ -1,0 +1,192 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN117687426A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES455074656">
+<invention-title id="title1" lang="ZH">一种低空环境下的无人飞行器飞行控制方法和系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及计量技术领域，具体的，涉及一种低空环境下的无人飞行器飞行控制方法和系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">目前监控无人飞行器行业发展迅速，引入了大量智能移动终端，用于代替人工实现自动检查监控无人飞行器部件状况。监控无人飞行器部件巡检距离远，位置高，在高电压下危险系数大，而人工巡检耗时耗力，效率较低。由于巡检的结果需及时存储，工作人员常携带照相机和GPS导航仪等设备，上传至监控无人飞行器维修中心存档，这在交通不发达的地方无疑增加巡检难度，同时监控无人飞行器部件故障不明，人工故障检测检查十分危险，也易造成人员受伤。目前图像可视化行业发展迅猛，它在监控无人飞行器故障检测上面也有着很多的应用，但普遍方案所使用的双目视觉系统和机载多线雷达过于昂贵，增加了巡检成本。</div>
+<div class="description-paragraph" id="p0005" num="0003">然而由于自然、人为等多种因素，监控无人飞行器系统的故障是不可避免的，造成对用户施工的中断或施工质量的下降，甚至损坏监控无人飞行器设备。另一方面，在故障检测规模和复杂程度不断增加的同时，监控无人飞行器系统自动化水平也在不断加强，越来越多的自动装置应用到监控无人飞行器系统，当故障检测发生故障时无法第一时间有效的判断出故障地点造成了很大的损失。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">根据本发明第一方面，本发明请求保护一种低空环境下的无人飞行器飞行控制方法，用于施工现场，其特征在于，包括以下步骤：</div>
+<div class="description-paragraph" id="p0008">预先构建施工现场空间的坐标模型；</div>
+<div class="description-paragraph" id="p0009">基于所述施工现场空间上监控无人飞行器的不同，修正所述监控无人飞行器展示的第一施工现场空间坐标模型或者第一施工现场二维坐标系；</div>
+<div class="description-paragraph" id="p0010">将所述施工现场空间的坐标模型和所述第一施工现场空间坐标模型或者第一施工现场二维坐标系进行融合处理，获得目标施工现场坐标系；</div>
+<div class="description-paragraph" id="p0011">利用所述目标施工现场坐标系对所述施工现场空间进行监控无人飞行器故障检测。</div>
+<div class="description-paragraph" id="p0012" num="0005">进一步地，所述预先构建施工现场空间的坐标模型，包括：</div>
+<div class="description-paragraph" id="p0013">用于利用下列公式计算所述施工现场空间的坐标模型的三维坐标点；</div>
+<div class="description-paragraph" id="p0014">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0015" num="0006">其中，所述R为起重运行半径的最大距离，所述H为施工现场的层高，所述<span class="patent-image-not-available"></span>为施工现场的进场监控无人飞行器最远距离，所述λ为施工现场的宽度，所述e为起重运行半径的面积，所述x为所述三维坐标点中的南北向坐标点，所述y为所述三维坐标点中的东西向坐标点，所述z为所述三维坐标点中的层高向坐标点；</div>
+<div class="description-paragraph" id="p0016">根据预设数量个所述三维坐标点构建所述施工现场空间的坐标模型；</div>
+<div class="description-paragraph" id="p0017">构建完毕后展示所述施工现场空间的坐标模型。</div>
+<div class="description-paragraph" id="p0018" num="0007">进一步地，所述基于所述施工现场空间上监控无人飞行器的不同，修正所述监控无人飞行器展示的第一施工现场空间坐标模型或者第一施工现场二维坐标系，包括：</div>
+<div class="description-paragraph" id="p0019">确定所述施工现场空间的具体监控无人飞行器；</div>
+<div class="description-paragraph" id="p0020">当所述具体监控无人飞行器为第一故障监控无人飞行器时，修正所述第一故障监控无人飞行器构建的所述第一施工现场空间坐标模型；</div>
+<div class="description-paragraph" id="p0021">当所述具体监控无人飞行器为第二故障监控无人飞行器或第三故障监控无人飞行器时，修正所述第二故障监控无人飞行器或第三故障监控无人飞行器构建的所述第一施工现场二维坐标系。</div>
+<div class="description-paragraph" id="p0022" num="0008">进一步地，在将所述施工现场空间的坐标模型和所述第一施工现场空间坐标模型或者第一施工现场二维坐标系进行融合处理，获得目标施工现场坐标系之前，所述方法还包括：</div>
+<div class="description-paragraph" id="p0023">根据所述第一施工现场空间坐标模型或者第二施工现场二维坐标系确定所述施工现场空间所在的最小外接矩形；</div>
+<div class="description-paragraph" id="p0024">在所述最小外接矩形内确定所述施工现场空间的当前位置；</div>
+<div class="description-paragraph" id="p0025">将所述当前位置确定为所述第一施工现场空间坐标模型或者第一施工现场二维坐标系中的第一中心点。</div>
+<div class="description-paragraph" id="p0026" num="0009">进一步地，所述将所述施工现场空间的坐标模型和所述第一施工现场空间坐标模型或者第一施工现场二维坐标系进行融合处理，获得目标施工现场坐标系，包括：</div>
+<div class="description-paragraph" id="p0027">修正所述施工现场空间的坐标模型的第二中心点，所述第二中心点为起重运行半径承重墙所在的点；</div>
+<div class="description-paragraph" id="p0028">修正所述施工现场空间在所述最小外接矩形内当前时刻的第一宽度和第一长度；</div>
+<div class="description-paragraph" id="p0029">计算所述第一宽度和第一长度的垂直平分线到所述第一宽度和第一长度到所述第二中心点的第一偏离距离；</div>
+<div class="description-paragraph" id="p0030">根据所述第一偏离距离对所述第一中心点进行位置修正；</div>
+<div class="description-paragraph" id="p0031">修正位置修正后的第一中心点的第二宽度，计算所述第二宽度和所述第一宽度的第二偏离距离；</div>
+<div class="description-paragraph" id="p0032">根据所述第二偏离距离将所述位置修正后的第一中心点进行平移；</div>
+<div class="description-paragraph" id="p0033">将平移之后的位置确认为目标中心点；</div>
+<div class="description-paragraph" id="p0034">基于所述目标中心点和最小外接矩形，构建新的第二施工现场空间坐标模型或者第二施工现场二维坐标系；</div>
+<div class="description-paragraph" id="p0035">将所述第二施工现场空间坐标模型或者第二施工现场二维坐标系确认为所述目标施工现场坐标系。</div>
+<div class="description-paragraph" id="p0036" num="0010">进一步地，所述利用所述目标施工现场坐标系对所述施工现场空间进行监控无人飞行器故障检测，包括：</div>
+<div class="description-paragraph" id="p0037">修正所述施工现场空间的车辆运动学模型；</div>
+<div class="description-paragraph" id="p0038">将所述车辆运动学模型和所述目标施工现场坐标系进行结合以获得所述施工现场空间施工现场的用电信息和用气信息；</div>
+<div class="description-paragraph" id="p0039">根据所述施工现场空间施工现场的用电信息和用气信息对所述施工现场空间进行监控无人飞行器故障检测。</div>
+<div class="description-paragraph" id="p0040" num="0011">根据本发明第二方面，本发明请求保护一种低空环境下的无人飞行器飞行控制系统，用于施工现场，其特征在于，该系统包括：</div>
+<div class="description-paragraph" id="p0041">构建模块，用于预先构建施工现场空间的坐标模型；</div>
+<div class="description-paragraph" id="p0042">修正模块，用于基于所述施工现场空间上监控无人飞行器的不同，修正所述监控无人飞行器展示的第一施工现场空间坐标模型或者第一施工现场二维坐标系；</div>
+<div class="description-paragraph" id="p0043">处理模块，用于将所述施工现场空间的坐标模型和所述第一施工现场空间坐标模型或者第一施工现场二维坐标系进行融合处理，获得目标施工现场坐标系；</div>
+<div class="description-paragraph" id="p0044">监控无人飞行器故障检测模块，用于利用所述目标施工现场坐标系对所述施工现场空间进行监控无人飞行器故障检测。</div>
+<div class="description-paragraph" id="p0045" num="0012">进一步地，所述构建模块，包括：</div>
+<div class="description-paragraph" id="p0046">施工现场三维子模块，用于利用下列公式计算所述施工现场空间的坐标模型的三维坐标点；</div>
+<div class="description-paragraph" id="p0047">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0048" num="0013">其中，所述R为起重运行半径的最大距离，所述H为施工现场的层高，所述<span class="patent-image-not-available"></span>为施工现场的进场监控无人飞行器最远距离，所述λ为施工现场的宽度，所述e为起重运行半径的面积，所述x为所述三维坐标点中的南北向坐标点，所述y为所述三维坐标点中的东西向坐标点，所述z为所述三维坐标点中的层高向坐标点；</div>
+<div class="description-paragraph" id="p0049">施工现场模型子模块，用于根据预设数量个所述三维坐标点构建所述施工现场空间的坐标模型；</div>
+<div class="description-paragraph" id="p0050">展示子模块，用于构建完毕后展示所述施工现场空间的坐标模型；</div>
+<div class="description-paragraph" id="p0051">所述修正模块，包括：</div>
+<div class="description-paragraph" id="p0052">确定子模块，用于确定所述施工现场空间的具体监控无人飞行器；</div>
+<div class="description-paragraph" id="p0053">第一修正子模块，用于当所述具体监控无人飞行器为第一故障监控无人飞行器时，修正所述第一故障监控无人飞行器构建的所述第一施工现场空间坐标模型；</div>
+<div class="description-paragraph" id="p0054">第二修正子模块，用于当所述具体监控无人飞行器为第二故障监控无人飞行器或第三故障监控无人飞行器时，修正所述第二故障监控无人飞行器或第三故障监控无人飞行器构建的所述第一施工现场二维坐标系。</div>
+<div class="description-paragraph" id="p0055" num="0014">进一步地，所述系统还包括：</div>
+<div class="description-paragraph" id="p0056">矩形绘制模块，用于根据所述第一施工现场空间坐标模型或者第二施工现场二维坐标系确定所述施工现场空间所在的最小外接矩形；</div>
+<div class="description-paragraph" id="p0057">感应模块，用于在所述最小外接矩形内确定所述施工现场空间的当前位置；</div>
+<div class="description-paragraph" id="p0058">中心点模块，用于将所述当前位置确定为所述第一施工现场空间坐标模型或者第一施工现场二维坐标系中的第一中心点。</div>
+<div class="description-paragraph" id="p0059" num="0015">进一步地，所述处理模块，包括：</div>
+<div class="description-paragraph" id="p0060">第三修正子模块，用于修正所述施工现场空间的坐标模型的第二中心点，所述第二中心点为起重运行半径承重墙所在的点；</div>
+<div class="description-paragraph" id="p0061">第四修正子模块，用于修正所述施工现场空间在所述最小外接矩形内当前时刻的第一宽度和第一长度；</div>
+<div class="description-paragraph" id="p0062">第二计算子模块，用于计算所述第一宽度和第一长度的垂直平分线到所述第一宽度和第一长度到所述第二中心点的第一偏离距离；</div>
+<div class="description-paragraph" id="p0063">修正子模块，用于根据所述第一偏离距离对所述第一中心点进行位置修正；</div>
+<div class="description-paragraph" id="p0064">第五修正子模块，用于修正位置修正后的第一中心点的第二宽度，计算所述第二宽度和所述第一宽度的第二偏离距离；</div>
+<div class="description-paragraph" id="p0065">平移子模块，用于根据所述第二偏离距离将所述位置修正后的第一中心点进行平移；</div>
+<div class="description-paragraph" id="p0066">第一确认子模块，用于将平移之后的位置确认为目标中心点；</div>
+<div class="description-paragraph" id="p0067">第二构建子模块，用于基于所述目标中心点和最小外接矩形，构建新的第二施工现场空间坐标模型或者第二施工现场二维坐标系；</div>
+<div class="description-paragraph" id="p0068">第二确认子模块，用于将所述第二施工现场空间坐标模型或者第二施工现场二维坐标系确认为所述目标施工现场坐标系；</div>
+<div class="description-paragraph" id="p0069">所述监控无人飞行器故障检测模块，包括：</div>
+<div class="description-paragraph" id="p0070">第六修正子模块，用于修正所述施工现场空间的车辆运动学模型；</div>
+<div class="description-paragraph" id="p0071">获得子模块，用于将所述车辆运动学模型和所述目标施工现场坐标系进行结合以获得所述施工现场空间施工现场的用电信息和用气信息；</div>
+<div class="description-paragraph" id="p0072">监控无人飞行器故障检测子模块，用于根据所述施工现场空间施工现场的用电信息和用气信息对所述施工现场空间进行监控无人飞行器故障检测。</div>
+<div class="description-paragraph" id="p0073" num="0016">本发明请求保护一种低空环境下的无人飞行器飞行控制方法和系统，用于施工现场，通过预先构建施工现场空间的坐标模型；基于施工现场空间上监控无人飞行器的不同，修正监控无人飞行器展示的第一施工现场空间坐标模型或者第一施工现场二维坐标系；将施工现场空间的坐标模型和第一施工现场空间坐标模型或者第一施工现场二维坐标系进行融合处理，获得目标施工现场坐标系；利用目标施工现场坐标系对施工现场空间进行监控无人飞行器故障检测。该方案一方面有效地考虑了在不同施工现场下的监控无人飞行器使用位置的差异对监控无人飞行器故障的影响，通过融合施工现场空间以及施工现场立体坐标的方式充分确保监控无人飞行器使用环境的准确，合理制定在不同施工现场下的故障监控无人飞行器控制和布局。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0074">附图说明</div>
+<div class="description-paragraph" id="p0075" num="0017">图1为本发明所涉及的一种低空环境下的无人飞行器飞行控制方法的工作流程图；</div>
+<div class="description-paragraph" id="p0076">图2为本发明所涉及的一种低空环境下的无人飞行器飞行控制方法的第二工作流程图；</div>
+<div class="description-paragraph" id="p0077">图3为本发明所涉及的一种低空环境下的无人飞行器飞行控制系统的结构模块图；</div>
+<div class="description-paragraph" id="p0078">图4为本发明所涉及的一种低空环境下的无人飞行器飞行控制系统的第二结构模块图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0079">具体实施方式</div>
+<div class="description-paragraph" id="p0080" num="0018">这里将详细地对示例性实施例进行说明，其示例表示在附图中。下面的描述涉及附图时，除非另有表示，不同附图中的相同数字表示相同或相似的要素。以下示例性实施例中所描述的实施方式并不代表与本公开相一致的所有实施方式。相反，它们仅是与如所附权利要求书中所详述的、本公开的一些方面相一致的系统和方法的例子。</div>
+<div class="description-paragraph" id="p0081" num="0019">一种低空环境下的无人飞行器飞行控制方法，用于施工现场，如图1所示，包括以下步骤：</div>
+<div class="description-paragraph" id="p0082">步骤S101、预先构建施工现场空间的坐标模型；</div>
+<div class="description-paragraph" id="p0083">步骤S102、基于施工现场空间上监控无人飞行器的不同，修正监控无人飞行器展示的第一施工现场空间坐标模型或者第一施工现场二维坐标系；</div>
+<div class="description-paragraph" id="p0084">步骤S103、将施工现场空间的坐标模型和第一施工现场空间坐标模型或者第一施工现场二维坐标系进行融合处理，获得目标施工现场坐标系；</div>
+<div class="description-paragraph" id="p0085">步骤S104、利用目标施工现场坐标系对施工现场空间进行监控无人飞行器故障检测；</div>
+<div class="description-paragraph" id="p0086">在本实施例中，我们实现构建一个起重运行半径表面的施工现场空间的坐标模型，然后和施工现场空间上安装的监控无人飞行器生成的施工现场空间坐标模型或者施工现场二维坐标系作融合处理，生成的施工现场空间坐标模型或者施工现场二维坐标系取决于监控无人飞行器的不同，在融合处理后我们获得施工现场空间所在区域的目标施工现场坐标系，根据目标施工现场坐标系和施工现场空间在目标施工现场坐标系中的具体位置来对施工现场空间进行监控无人飞行器故障检测。</div>
+<div class="description-paragraph" id="p0087" num="0020">上述技术方案的工作原理为：预先构建施工现场空间的坐标模型；基于施工现场空间上监控无人飞行器的不同，修正监控无人飞行器展示的第一施工现场空间坐标模型或者第一施工现场二维坐标系；将施工现场空间的坐标模型和第一施工现场空间坐标模型或者第一施工现场二维坐标系进行融合处理，获得目标施工现场坐标系；利用目标施工现场坐标系对施工现场空间进行监控无人飞行器故障检测。</div>
+<div class="description-paragraph" id="p0088" num="0021">上述技术方案的有益效果为：通过将施工现场空间的坐标模型与施工现场空间上监控无人飞行器生成的施工现场空间坐标模型或者施工现场二维坐标系进行融合处理获得可以对施工现场空间进行监控无人飞行器故障检测的目标施工现场坐标系，可以准确的获得施工现场空间施工现场的位置信息和坐标方向，并且可以根据上述信息准确的对施工现场空间进行监控无人飞行器故障检测，解决了现有技术中由于无法精确的对不断变化中的施工现场空间进行监控无人飞行器故障检测，进而会发生监控无人飞行器使用检测不准确甚至更严重的影响的问题，提高了准确性和安全性，同时本方法可以使得各个施工重型车辆运营公司实现实际的自动施工重型车辆运营运输方式，很大程度上节省了施工重型车辆运营企业家的成本。</div>
+<div class="description-paragraph" id="p0089" num="0022">在一个实施例中，预先构建施工现场空间的坐标模型，包括：</div>
+<div class="description-paragraph" id="p0090">用于利用下列公式计算所述施工现场空间的坐标模型的三维坐标点；</div>
+<div class="description-paragraph" id="p0091">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0092" num="0023">其中，所述R为起重运行半径的最大距离，所述H为施工现场的层高，所述<span class="patent-image-not-available"></span>为施工现场的进场监控无人飞行器最远距离，λ为施工现场的宽度，e为起重运行半径的面积，x为三维坐标点中的南北向坐标点，y为三维坐标点中的东西向坐标点，z为三维坐标点中的层高向坐标点；</div>
+<div class="description-paragraph" id="p0093">根据预设数量个三维坐标点构建施工现场空间的坐标模型；</div>
+<div class="description-paragraph" id="p0094">构建完毕后展示施工现场空间的坐标模型。</div>
+<div class="description-paragraph" id="p0095" num="0024">上述技术方案的有益效果为：根据实际数据套到公式里来构建施工现场空间的坐标模型，使得构建的施工现场空间的坐标模型更加准确，并且为后续和一种低空环境下的无人飞行器飞行控制设备生成的施工现场空间坐标模型或者施工现场二维坐标系做融合处理作了一个良好的铺垫、</div>
+<div class="description-paragraph" id="p0096">在一个实施例中，如图2所示，基于施工现场空间上监控无人飞行器的不同，修正监控无人飞行器展示的第一施工现场空间坐标模型或者第一施工现场二维坐标系，包括：</div>
+<div class="description-paragraph" id="p0097">步骤S201、确定施工现场空间的具体监控无人飞行器；</div>
+<div class="description-paragraph" id="p0098">步骤S202、当具体监控无人飞行器为第一故障监控无人飞行器时，修正第一故障监控无人飞行器构建的第一施工现场空间坐标模型；</div>
+<div class="description-paragraph" id="p0099">步骤S203、当具体监控无人飞行器为第二故障监控无人飞行器或第三故障监控无人飞行器时，修正第二故障监控无人飞行器或第三故障监控无人飞行器构建的第一施工现场二维坐标系；</div>
+<div class="description-paragraph" id="p0100">上述技术方案的有益效果为：可以针对施工现场空间上监控无人飞行器的不同来生成不同的施工现场坐标系，可应对多种情况，避免只能单一生成一种施工现场坐标系而无法和施工现场空间的坐标模型有效融合的意外情况的发生。</div>
+<div class="description-paragraph" id="p0101" num="0025">在一个实施例中，在将施工现场空间的坐标模型和第一施工现场空间坐标模型或者第一施工现场二维坐标系进行融合处理，获得目标施工现场坐标系之前，上述方法还包括：</div>
+<div class="description-paragraph" id="p0102">根据第一施工现场空间坐标模型或者第二施工现场二维坐标系确定施工现场空间所在的最小外接矩形；</div>
+<div class="description-paragraph" id="p0103">在最小外接矩形内确定施工现场空间的当前位置；</div>
+<div class="description-paragraph" id="p0104">将当前位置确定为第一施工现场空间坐标模型或者第一施工现场二维坐标系中的第一中心点。</div>
+<div class="description-paragraph" id="p0105" num="0026">上述技术方案的有益效果为：通过判断施工现场空间在所处最小外接矩形内的具体位置来确定施工现场空间在第一施工现场空间坐标模型或者第一施工现场二维坐标系中中的第一中心点来对施工现场空间进行位置追踪和感应。</div>
+<div class="description-paragraph" id="p0106" num="0027">在一个实施例中，将施工现场空间的坐标模型和第一施工现场空间坐标模型或者第一施工现场二维坐标系进行融合处理，获得目标施工现场坐标系，包括：</div>
+<div class="description-paragraph" id="p0107">修正施工现场空间的坐标模型的第二中心点，第二中心点为起重运行半径承重墙所在的点；</div>
+<div class="description-paragraph" id="p0108">修正施工现场空间在最小外接矩形内当前时刻的第一宽度和第一长度；</div>
+<div class="description-paragraph" id="p0109">计算第一宽度和第一长度的垂直平分线到第一宽度和第一长度到第二中心点的第一偏离距离；</div>
+<div class="description-paragraph" id="p0110">根据第一偏离距离对第一中心点进行位置修正；</div>
+<div class="description-paragraph" id="p0111">修正位置修正后的第一中心点的第二宽度，计算第二宽度和第一宽度的第二偏离距离；</div>
+<div class="description-paragraph" id="p0112">根据第二偏离距离将位置修正后的第一中心点进行平移；</div>
+<div class="description-paragraph" id="p0113">将平移之后的位置确认为目标中心点；</div>
+<div class="description-paragraph" id="p0114">基于目标中心点和最小外接矩形，构建新的第二施工现场空间坐标模型或者第二施工现场二维坐标系；</div>
+<div class="description-paragraph" id="p0115">将第二施工现场空间坐标模型或者第二施工现场二维坐标系确认为目标施工现场坐标系；</div>
+<div class="description-paragraph" id="p0116">在本实施例中，我们将施工现场空间的坐标模型中承重墙的点作为第二中心点，然后根据施工现场空间在最小外接矩形内当前时刻的第一宽度和第一长度的交叉点到地面的第一直线(即上述垂直平分线)和施工现场空间在最小外接矩形内当前时刻的第一宽度和第一长度的交叉点到承重墙(即第二中心点)的的第二直线之间的角度来对施工现场空间在当前位置的第一中心点进行修正，上述修正的意义是将施工现场空间的坐标模型和中心点折射到施工现场空间坐标模型或者施工现场二维坐标系的中心点，统一方向和区域，修正后我们计算施工现场空间宽度的偏离距离对其进行平移即可准确的判断出施工现场空间在施工现场空间的坐标模型中的具体位置，然后将其感应中心点来重新构建新的施工现场空间坐标模型或者施工现场二维坐标系来作为最终的目标施工现场坐标系。</div>
+<div class="description-paragraph" id="p0117" num="0028">上述技术方案的有益效果为：既使用了施工现场空间在施工现场空间的坐标模型中的准确位置又可以构建出目标施工现场坐标系，使得最终施工现场空间的位置更切合实际，构建出的目标施工现场坐标系也可以更直观的显示出施工现场空间的位置变化，使得监控无人飞行器故障检测也更加准确。</div>
+<div class="description-paragraph" id="p0118" num="0029">在一个实施例中，利用目标施工现场坐标系对施工现场空间进行监控无人飞行器故障检测，包括：</div>
+<div class="description-paragraph" id="p0119">修正施工现场空间的车辆运动学模型；</div>
+<div class="description-paragraph" id="p0120">将车辆运动学模型和目标施工现场坐标系进行结合以获得施工现场空间施工现场的用电信息和用气信息；</div>
+<div class="description-paragraph" id="p0121">根据施工现场空间施工现场的用电信息和用气信息对施工现场空间进行监控无人飞行器故障检测。</div>
+<div class="description-paragraph" id="p0122" num="0030">上述技术方案的有益效果为：通过将目标施工现场坐标系和车辆运动学模型进行结合来修正施工现场空间施工现场的用电信息和用气信息，可以根据用电信息和用气信息结合施工现场空间在目标施工现场坐标系中的具体位置来对施工现场空间进行准确无误的监控无人飞行器故障检测工作，节省了人力。</div>
+<div class="description-paragraph" id="p0123" num="0031">本实施例还公开了一种低空环境下的无人飞行器飞行控制系统，用于施工现场，如图3所示，该系统包括：</div>
+<div class="description-paragraph" id="p0124">构建模块301，用于预先构建施工现场空间的坐标模型；</div>
+<div class="description-paragraph" id="p0125">修正模块302，用于基于施工现场空间上监控无人飞行器的不同，修正监控无人飞行器展示的第一施工现场空间坐标模型或者第一施工现场二维坐标系；</div>
+<div class="description-paragraph" id="p0126">处理模块303，用于将施工现场空间的坐标模型和第一施工现场空间坐标模型或者第一施工现场二维坐标系进行融合处理，获得目标施工现场坐标系；</div>
+<div class="description-paragraph" id="p0127">监控无人飞行器故障检测模块304，用于利用目标施工现场坐标系对施工现场空间进行监控无人飞行器故障检测。</div>
+<div class="description-paragraph" id="p0128" num="0032">在一个实施例中，构建模块，包括：</div>
+<div class="description-paragraph" id="p0129">施工现场三维子模块，用于利用下列公式计算所述施工现场空间的坐标模型的三维坐标点；</div>
+<div class="description-paragraph" id="p0130">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0131" num="0033">其中，所述R为起重运行半径的最大距离，所述H为施工现场的层高，所述<span class="patent-image-not-available"></span>为施工现场的进场监控无人飞行器最远距离，λ为施工现场的宽度，e为起重运行半径的面积，x为三维坐标点中的南北向坐标点，y为三维坐标点中的东西向坐标点，z为三维坐标点中的层高向坐标点；</div>
+<div class="description-paragraph" id="p0132">施工现场模型子模块，用于根据预设数量个三维坐标点构建施工现场空间的坐标模型；</div>
+<div class="description-paragraph" id="p0133">展示子模块，用于构建完毕后展示施工现场空间的坐标模型；</div>
+<div class="description-paragraph" id="p0134">修正模块，包括：</div>
+<div class="description-paragraph" id="p0135">确定子模块，用于确定施工现场空间的具体监控无人飞行器；</div>
+<div class="description-paragraph" id="p0136">第一修正子模块，用于当具体监控无人飞行器为第一故障监控无人飞行器时，修正第一故障监控无人飞行器构建的第一施工现场空间坐标模型；</div>
+<div class="description-paragraph" id="p0137">第二修正子模块，用于当具体监控无人飞行器为第二故障监控无人飞行器或第三故障监控无人飞行器时，修正第二故障监控无人飞行器或第三故障监控无人飞行器构建的第一施工现场二维坐标系。</div>
+<div class="description-paragraph" id="p0138" num="0034">在一个实施例中，上述系统还包括：</div>
+<div class="description-paragraph" id="p0139">矩形绘制模块，用于根据第一施工现场空间坐标模型或者第二施工现场二维坐标系确定施工现场空间所在的最小外接矩形；</div>
+<div class="description-paragraph" id="p0140">感应模块，用于在最小外接矩形内确定施工现场空间的当前位置；</div>
+<div class="description-paragraph" id="p0141">中心点模块，用于将当前位置确定为第一施工现场空间坐标模型或者第一施工现场二维坐标系中的第一中心点。</div>
+<div class="description-paragraph" id="p0142" num="0035">在一个实施例中，处理模块，包括：</div>
+<div class="description-paragraph" id="p0143">第三修正子模块，用于修正施工现场空间的坐标模型的第二中心点，第二中心点为起重运行半径承重墙所在的点；</div>
+<div class="description-paragraph" id="p0144">第四修正子模块，用于修正施工现场空间在最小外接矩形内当前时刻的第一宽度和第一长度；</div>
+<div class="description-paragraph" id="p0145">第二计算子模块，用于计算第一宽度和第一长度的垂直平分线到第一宽度和第一长度到第二中心点的第一偏离距离；</div>
+<div class="description-paragraph" id="p0146">修正子模块，用于根据第一偏离距离对第一中心点进行位置修正；</div>
+<div class="description-paragraph" id="p0147">第五修正子模块，用于修正位置修正后的第一中心点的第二宽度，计算第二宽度和第一宽度的第二偏离距离；</div>
+<div class="description-paragraph" id="p0148">平移子模块，用于根据第二偏离距离将位置修正后的第一中心点进行平移；</div>
+<div class="description-paragraph" id="p0149">第一确认子模块，用于将平移之后的位置确认为目标中心点；</div>
+<div class="description-paragraph" id="p0150">第二构建子模块，用于基于目标中心点和最小外接矩形，构建新的第二施工现场空间坐标模型或者第二施工现场二维坐标系；</div>
+<div class="description-paragraph" id="p0151">第二确认子模块，用于将第二施工现场空间坐标模型或者第二施工现场二维坐标系确认为目标施工现场坐标系；</div>
+<div class="description-paragraph" id="p0152">如图4所示，监控无人飞行器故障检测模块，包括：</div>
+<div class="description-paragraph" id="p0153">第六修正子模块4041，用于修正施工现场空间的车辆运动学模型；</div>
+<div class="description-paragraph" id="p0154">获得子模块4042，用于将车辆运动学模型和目标施工现场坐标系进行结合以获得施工现场空间施工现场的用电信息和用气信息；</div>
+<div class="description-paragraph" id="p0155">监控无人飞行器故障检测子模块4043，用于根据施工现场空间施工现场的用电信息和用气信息对施工现场空间进行监控无人飞行器故障检测。</div>
+<div class="description-paragraph" id="p0156" num="0036">在一个实施例中，包括：</div>
+<div class="description-paragraph" id="p0157">通过超声波监控无人飞行器故障检测数据展示一个参考坐标系，上述参考坐标系包括三维或者二维坐标系，利用第三故障超声波监控无人飞行器+CJT第一故障超声波监控无人飞行器+DR融合的超声波监控无人飞行器故障检测方法，可以将施工现场空间的位置进行误差的检测并精确感应，融合完毕后展示施工现场空间可以理解的坐标系数据，例如：第三故障监控无人飞行器智能超声波监控无人飞行器的感应精度为+-20nl，CJT 第一故障监控无人飞行器智能超声波监控无人飞行器的感应精度为+-1nl+1ppm，DR智能超声波监控无人飞行器的感应精度为+-10～15nl，将三个精度进行融合处理，可以使施工现场空间精度可达+-2～5nl，在20HZ的频率下精度可达+-1nl，大大的提高了施工现场空间位置的精度，也使超声波监控无人飞行器故障检测的精度大大提高。</div>
+<div class="description-paragraph" id="p0158" num="0037">本领域技术人员应当理解的是，本发明中的第一、第二指的是不同应用阶段而已。</div>
+<div class="description-paragraph" id="p0159" num="0038">本领域技术人员在考虑说明书及实践这里公开的公开后，将容易想到本公开的其它实施方案。本申请旨在涵盖本公开的任何变型、用途或者适应性变化，这些变型、用途或者适应性变化遵循本公开的一般性原理并包括本公开未公开的本技术领域中的公知常识或惯用技术手段。说明书和实施例仅被视为示例性的，本公开的真正范围和精神由下面的权利要求指出。</div>
+<div class="description-paragraph" id="p0160" num="0039">应当理解的是，本公开并不局限于上面已经描述并在附图中示出的精确结构，并且可以在不脱离其范围进行各种修改和改变。本公开的范围仅由所附的权利要求来限制。</div>
+<div class="description-paragraph" id="p0161" num="0040">本领域技术人员能够理解，本公开所披露的内容可以出现多种变型和改进。例如，以上所描述的各种设备或组件可以通过硬件实现，也可以通过软件、固件、或者三者中的一些或全部的组合实现。</div>
+<div class="description-paragraph" id="p0162" num="0041">本公开中使用了流程图用来说明根据本公开的实施例的方法的步骤。应当理解的是，前面或后面的步骤不一定按照顺序来精确的进行。相反，可以按照倒序或同时处理各种步骤。同时，也可以将其他操作添加到这些过程中。</div>
+<div class="description-paragraph" id="p0163" num="0042">本领域普通技术人员可以理解上述方法中的全部或部分的步骤可通过计算机程序来指令相关硬件完成，程序可以存储于计算机可读存储介质中，如只读存储器、磁盘或光盘等。可选地，上述实施例的全部或部分步骤也可以使用一个或多个集成电路来实现。相应地，上述实施例中的各模块/单元可以采用硬件的形式实现，也可以采用软件功能模块的形式实现。本公开并不限制于任何特定形式的硬件和软件的结合。</div>
+<div class="description-paragraph" id="p0164" num="0043">除非另有定义，这里使用的所有术语具有与本公开所属领域的普通技术人员共同理解的相同含义。还应当理解，诸如在通常字典里定义的那些术语应当被解释为具有与它们在相关技术的上下文中的含义相一致的含义，而不应用理想化或极度形式化的意义来解释，除非这里明确地这样定义。</div>
+<div class="description-paragraph" id="p0165" num="0044">以上是对本公开的说明，而不应被认为是对其的限制。尽管描述了本公开的若干示例性实施例，但本领域技术人员将容易地理解，在不背离本公开的新颖教学和优点的前提下可以对示例性实施例进行许多修改。因此，所有这些修改都意图包含在权利要求书所限定的本公开范围内。应当理解，上面是对本公开的说明，而不应被认为是限于所公开的特定实施例，并且对所公开的实施例以及其他实施例的修改意图包含在所附权利要求书的范围内。本公开由权利要求书及其等效物限定。</div>
+<div class="description-paragraph" id="p0166" num="0045">在本说明书的描述中，参考术语“一个实施例”、“一些实施例”、“示意性实施例”、“示例”、“具体示例”、或“一些示例”等的描述意指结合该实施例或示例描述的具体特征、结构、材料或者特点包含于本发明的至少一个实施例或示例中。在本说明书中，对上述术语的示意性表述不一定指的是相同的实施例或示例。而且，描述的具体特征、结构、材料或者特点可以在任何的一个或多个实施例或示例中以合适的方式结合。</div>
+<div class="description-paragraph" id="p0167" num="0046">尽管已经示出和描述了本发明的实施例，本领域的普通技术人员可以理解：在不脱离本发明的原理和宗旨的情况下可以对这些实施例进行多种变化、修改、替换和变型，本发明的范围由权利要求及其等同物限定。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

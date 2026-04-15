@@ -1,0 +1,85 @@
+{
+    "patent_id": "CN120452230A",
+    "title": "CN120452230A - 低空飞行器与车辆协同的智慧高速管控系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Innovation Research Institute Of Shandong Expressway Group Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120452230A/zh",
+    "citations": [
+        {
+            "Publication Number": "WO2020227429A1 (en) *",
+            "Priority Date": "2019-05-06",
+            "Publication Date": "2020-11-12",
+            "Assignee": "Strong Force Iot Portfolio 2016, Llc",
+            "Title": "Platform for facilitating development of intelligence in an industrial internet of things system",
+            "Link": "https://patents.google.com/patent/WO2020227429A1/en"
+        },
+        {
+            "Publication Number": "US20230054246A1 (en) *",
+            "Priority Date": "2020-05-06",
+            "Publication Date": "2023-02-23",
+            "Assignee": "Beijing Institute Of Technology",
+            "Title": "Iterative joint estimation method of vehicle mass and road gradient based on mmrls and sh-stf",
+            "Link": "https://patents.google.com/patent/US20230054246A1/en"
+        },
+        {
+            "Publication Number": "US11561553B1 (en) *",
+            "Priority Date": "2020-05-11",
+            "Publication Date": "2023-01-24",
+            "Assignee": "Vecna Robotics, Inc.",
+            "Title": "System and method of providing a multi-modal localization for an object",
+            "Link": "https://patents.google.com/patent/US11561553B1/en"
+        },
+        {
+            "Publication Number": "WO2022205526A1 (zh) *",
+            "Priority Date": "2021-04-01",
+            "Publication Date": "2022-10-06",
+            "Assignee": "江苏科技大学",
+            "Title": "一种用于水下无人机器人集群的动态定位信息融合方法",
+            "Link": "https://patents.google.com/patent/WO2022205526A1/zh"
+        },
+        {
+            "Publication Number": "US20250102663A1 (en) *",
+            "Priority Date": "2022-07-01",
+            "Publication Date": "2025-03-27",
+            "Assignee": "Chongqing University Of Posts And Telecommunications",
+            "Title": "Multi-sensor fusion method and system for intelligent driving vehicles",
+            "Link": "https://patents.google.com/patent/US20250102663A1/en"
+        },
+        {
+            "Publication Number": "CN119168264A (zh) *",
+            "Priority Date": "2024-08-19",
+            "Publication Date": "2024-12-20",
+            "Assignee": "浙江工业大学",
+            "Title": "一种基于多源异构数据的综合交通枢纽一体化智慧运行系统",
+            "Link": "https://patents.google.com/patent/CN119168264A/zh"
+        },
+        {
+            "Publication Number": "CN119334363A (zh) *",
+            "Priority Date": "2024-10-25",
+            "Publication Date": "2025-01-21",
+            "Assignee": "西安衍舆航天科技有限公司",
+            "Title": "航空器与卫星集群协同导航定位精确控制方法及系统",
+            "Link": "https://patents.google.com/patent/CN119334363A/zh"
+        },
+        {
+            "Publication Number": "CN120182070A (zh) *",
+            "Priority Date": "2025-03-18",
+            "Publication Date": "2025-06-20",
+            "Assignee": "南雄市马来宾环保油墨有限公司",
+            "Title": "一种智能飞行系统及方法",
+            "Link": "https://patents.google.com/patent/CN120182070A/zh"
+        },
+        {
+            "Publication Number": "CN120252763A (zh) *",
+            "Priority Date": "2025-03-29",
+            "Publication Date": "2025-07-04",
+            "Assignee": "黑龙江交通职业技术学院",
+            "Title": "智能交通系统中的动态路径规划方法及系统",
+            "Link": "https://patents.google.com/patent/CN120252763A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:57:28"
+}

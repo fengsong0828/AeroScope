@@ -1,0 +1,116 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120690062A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES506308145">
+<invention-title id="title1" lang="ZH">基于网格的低空飞行器碰撞预警方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本申请涉及低空飞行领域，特别是涉及一种基于网格的低空飞行器碰撞预警方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着航空技术的不断发展，低空飞行器包括小型民用飞机、直升机以及数量庞大的无人机，在众多领域得到广泛应用，如航拍、农业植保、物流配送等。然而，低空飞行环境复杂多变，存在诸多不确定因素，例如城市中的高楼大厦等障碍物，给低空飞行带来了巨大的安全挑战。</div>
+<div class="description-paragraph" id="p0005" num="0003">相关技术中，低空飞行器将自身的飞行数据上传至服务端，服务端根据飞行数据及城市的低空三维数据，实时计算低空飞行器与障碍物的距离来进行碰撞预警，但这种预警方法所涉及的数据计算量大，其时效性较差。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">基于此，有必要针对上述技术问题，提供一种基于网格的低空飞行器碰撞预警方法、系统、计算机设备及计算机可读存储介质。</div>
+<div class="description-paragraph" id="p0008" num="0005">第一方面，本发明实施例提出一种基于网格的低空飞行器碰撞预警方法，所述方法包括：</div>
+<div class="description-paragraph" id="p0009" num="0006">获取目标区域的低空三维数据，对所述低空三维数据进行网格化划分为若干个第一网格；</div>
+<div class="description-paragraph" id="p0010" num="0007">利用网格编码对各所述第一网格进行标记，及利用网格类型编码对各所述第一网格的类型进行标记，所述第一网格的类型包括空域网格和障碍物网格；及利用障碍物编码对所述障碍物网格进行标记；</div>
+<div class="description-paragraph" id="p0011" num="0008">针对各所述空域网格，通过网格搜索方法确定在预设范围内是否存在障碍物网格；若是，则计算各所述障碍物网格与该所述空域网格的距离，并结合各所述障碍物网格对应的网格编码及障碍物编码生成该所述空域网格的障碍物信息；</div>
+<div class="description-paragraph" id="p0012" num="0009">基于目标低空飞行器的飞行数据确定其所在的空域网格，获取该所述空域网格对应的障碍物信息，并结合所述飞行数据判断所述目标低空飞行器是否存在障碍物碰撞风险。</div>
+<div class="description-paragraph" id="p0013" num="0010">在一些实施例中，所述利用障碍物编码对所述障碍物网格进行标记包括：</div>
+<div class="description-paragraph" id="p0014" num="0011">判断两个所述障碍物网格之间是否临接，若是，则判断所述障碍物网格属于同一障碍物，利用相同的障碍物编码对所述障碍物网格进行标记。</div>
+<div class="description-paragraph" id="p0015" num="0012">在一些实施例中，所述针对各所述空域网格，通过网格搜索方法确定在预设范围内是否存在障碍物网格；若是，则计算各所述障碍物网格与该所述空域网格的距离，并结合各所述障碍物网格对应的网格编码及障碍物编码生成该所述空域网格的障碍物信息包括：</div>
+<div class="description-paragraph" id="p0016" num="0013">针对搜索队列中待搜索的第一个空域网格，搜索其邻面的第一网格，根据其网格类型编码确定是否为障碍物网格，若是，则判断所搜索到的障碍物编码的个数是否大于最大障碍物个数，若是，则结束搜索；若小于最大障碍物个数，则获取该障碍物网格的障碍物编码，并计算所述第一个空域网格与该第一网格之间的距离，生成所述第一个空域网格的四元组；若该第一网格为空域网格，则将该空域网格加入所述搜索队列，并继续沿该第一网格所邻面的六个方向搜索，直到搜索范围达到预设范围；根据所有的四元组生成所述第一个空域网格的障碍物信息；</div>
+<div class="description-paragraph" id="p0017" num="0014">重复上述网格搜索方法的步骤，直到所述搜索队列中的各空域网格完成网格搜索，生成各空域网格的障碍物信息。</div>
+<div class="description-paragraph" id="p0018" num="0015">在一些实施例中，所述获取该所述空域网格对应的障碍物信息，并结合所述飞行数据判断所述目标低空飞行器是否存在障碍物碰撞风险包括：</div>
+<div class="description-paragraph" id="p0019" num="0016">基于所述障碍物信息获取该所述空域网格与该所述障碍物网格的距离；</div>
+<div class="description-paragraph" id="p0020" num="0017">基于所述飞行数据获取所述目标低空飞行器的飞行速度，并基于所述飞行速度确定对应的预设距离；</div>
+<div class="description-paragraph" id="p0021" num="0018">若该所述空域网格与该所述障碍物网格的距离小于预设距离，则确定所述目标低空飞行器存在障碍物碰撞风险。</div>
+<div class="description-paragraph" id="p0022" num="0019">在一些实施例中，所述方法还包括：</div>
+<div class="description-paragraph" id="p0023" num="0020">对所述低空三维数据进行网格化划分为若干个第二网格，各所述第二网格包括多个所述第一网格；</div>
+<div class="description-paragraph" id="p0024" num="0021">所述针对各所述空域网格，通过网格搜索方法确定在预设范围内是否存在障碍物网格包括：</div>
+<div class="description-paragraph" id="p0025" num="0022">针对一空域网格，先依次遍历该空域网格所在第二网格中的第一网格，根据所述第一网格的网格类型编码确定其中的障碍物网格；再依次遍历搜索该所述空域网格各方向的预设范围内的第二网格，判断所述第二网格中是否存在障碍物网格，若存在，则依次遍历所述第二网格中的第一网格，根据所述第一网格的网格类型编码确定其中的障碍物网格。</div>
+<div class="description-paragraph" id="p0026" num="0023">在一些实施例中，所述方法还包括：</div>
+<div class="description-paragraph" id="p0027" num="0024">当所述低空三维数据更新时，获取更新区域对应的第一网格；</div>
+<div class="description-paragraph" id="p0028" num="0025">利用网格编码对所述更新区域对应的第一网格进行重新标记，及利用网格类型编码对所述更新区域对应的第一网格的类型进行重新标记；及利用障碍物编码对所述障碍物网格进行标记；</div>
+<div class="description-paragraph" id="p0029" num="0026">针对距离所述更新区域对应的第一网格在预设范围内的空域网格，通过网格搜索方法确定在预设范围内是否存在障碍物网格；若是，则计算各所述障碍物网格与该所述空域网格的距离，并结合各所述障碍物网格对应的网格编码及障碍物编码更新该所述空域网格的障碍物信息。</div>
+<div class="description-paragraph" id="p0030" num="0027">在一些实施例中，所述对所述低空三维数据进行网格化划分为若干个第一网格包括：</div>
+<div class="description-paragraph" id="p0031" num="0028">针对不同预设高度区间的低空三维数据，采用不同粒度的网格化划分；其中，所述预设高度区间越大，对应网格化划分的粒度越大。</div>
+<div class="description-paragraph" id="p0032" num="0029">第二方面，本发明实施例提出一种基于网格的低空飞行器碰撞预警系统，所述系统包括：</div>
+<div class="description-paragraph" id="p0033" num="0030">网格划分模块，用于获取目标区域的低空三维数据，对所述低空三维数据进行网格化划分为若干个第一网格；</div>
+<div class="description-paragraph" id="p0034" num="0031">网格标记模块，用于利用网格编码对各所述第一网格进行标记，及利用网格类型编码对各所述第一网格的类型进行标记，所述第一网格的类型包括空域网格和障碍物网格；及利用障碍物编码对所述障碍物网格进行标记；</div>
+<div class="description-paragraph" id="p0035" num="0032">距离计算模块，用于针对各所述空域网格，通过网格搜索方法确定在预设范围内是否存在障碍物网格；若是，则计算各所述障碍物网格与该所述空域网格的距离，并结合各所述障碍物网格对应的网格编码及障碍物编码生成该所述空域网格的障碍物信息；</div>
+<div class="description-paragraph" id="p0036" num="0033">风险预测模块，用于基于目标低空飞行器的飞行数据确定其所在的空域网格，获取该所述空域网格对应的障碍物信息，并结合所述飞行数据判断所述目标低空飞行器是否存在障碍物碰撞风险。</div>
+<div class="description-paragraph" id="p0037" num="0034">第三方面，本发明实施例提出一种计算机设备，包括存储器和处理器，所述存储器存储有计算机程序，所述处理器执行第一方面所述的步骤。</div>
+<div class="description-paragraph" id="p0038" num="0035">第四方面，本发明实施例提出一种计算机可读存储介质，其上存储有计算机程序，所述处理器执行所述计算机程序时实现第一方面所述的步骤。</div>
+<div class="description-paragraph" id="p0039" num="0036">上述方法、系统、计算机设备和存储介质，获取目标区域的低空三维数据，对所述低空三维数据进行网格化划分为若干个第一网格；利用网格编码对各所述第一网格进行标记，及利用网格类型编码对各所述第一网格的类型进行标记，所述第一网格的类型包括空域网格和障碍物网格；及利用障碍物编码对所述障碍物网格进行标记；针对各所述空域网格，通过网格搜索方法确定在预设范围内是否存在障碍物网格；若是，则计算各所述障碍物网格与该所述空域网格的距离，并结合各所述障碍物网格对应的网格编码及障碍物编码生成该所述空域网格的障碍物信息；基于目标低空飞行器的飞行数据确定其所在的空域网格，获取该所述空域网格对应的障碍物信息，并结合所述飞行数据判断所述目标低空飞行器是否存在障碍物碰撞风险。本申请能够快速的判断目标低空飞行器是否存在障碍物碰撞风险，提高了低空飞行器飞行的安全性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0040">附图说明</div>
+<div class="description-paragraph" id="p0041" num="0037">图1为一实施例中基于网格的低空飞行器碰撞预警方法的流程示意图；</div>
+<div class="description-paragraph" id="p0042" num="0038">图2为一实施例中确定障碍物碰撞风险的流程示意图；</div>
+<div class="description-paragraph" id="p0043" num="0039">图3为一实施例中更新障碍物信息的流程示意图；</div>
+<div class="description-paragraph" id="p0044" num="0040">图4为一实施例中基于网格的低空飞行器碰撞预警系统的结构示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0045">具体实施方式</div>
+<div class="description-paragraph" id="p0046" num="0041">为了更清楚地说明本发明的实施例的技术方案，下面将对实施例描述中所需要使用的附图作简单的介绍。显而易见地，下面描述中的附图仅仅是本发明的一些示例或实施例，对于本领域的普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图将本发明应用于其他类似情景。除非从语言环境中显而易见或另做说明，图中相同标号代表相同结构或操作。</div>
+<div class="description-paragraph" id="p0047" num="0042">如本发明和权利要求书中所示，除非上下文明确提示例外情形，“一”、“一个”、“一种”和/或“该”等词并非特指单数，也可包括复数。一般说来，术语“包括”与“包含”仅提示包括已明确标识的步骤和元素，而这些步骤和元素不构成一个排它性的罗列，方法或者设备也可能包含其他的步骤或元素。</div>
+<div class="description-paragraph" id="p0048" num="0043">虽然本发明对根据本发明的实施例的装置中的某些模块做出了各种引用，然而，任何数量的不同模块可以被使用并运行在计算设备和/或处理器上。模块仅是说明性的，并且装置和方法的不同方面可以使用不同模块。</div>
+<div class="description-paragraph" id="p0049" num="0044">应当理解的是，当单元或模块被描述为“连接”、“耦接”其它单元、模块或块时，其可以指直接连接或耦接，或者与其它单元、模块或块通信，或者可以存在中间的单元、模块或块，除非上下文明确指明其它方式。本文所使用的术语“和/或”可包括一个或多个相关列出项目的任意与所有组合。</div>
+<div class="description-paragraph" id="p0050" num="0045">如图1所示，本发明实施例提供了一种基于网格的低空飞行器碰撞预警方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0051" num="0046">S102，获取目标区域的低空三维数据，对所述低空三维数据进行网格化划分为若干个第一网格。</div>
+<div class="description-paragraph" id="p0052" num="0047">在一些示例实施例中，例如采用GeoSOT网格、北斗网格等网格划分方式来对低空三维数据网格化划分。</div>
+<div class="description-paragraph" id="p0053" num="0048">S104，利用网格编码对各所述第一网格进行标记，及利用网格类型编码对各所述第一网格的类型进行标记，所述第一网格的类型包括空域网格和障碍物网格；及针对属于同一障碍物的障碍物网格利用相同的障碍物编码对所其进行标记。</div>
+<div class="description-paragraph" id="p0054" num="0049">在对低空三维数据网格划分之后，针对每一个第一网格采用唯一的网格编码meshCode进行标记。每个第一网格都具有其各自的位置信息f(longitude，latitude，height)，其中longitude表示经度，latitude表示纬度，height表示高度。</div>
+<div class="description-paragraph" id="p0055" num="0050">利用低空三维数据判断各第一网格是空域网格还是障碍物网格，利用网格类型编码type对各所述第一网格的类型进行标记。</div>
+<div class="description-paragraph" id="p0056" num="0051">针对属于同一障碍物的障碍物网格及利用相同的障碍物编码obstacleId对其进行标记，对于属于不同障碍物的障碍物网格采用不同的障碍物编码obstacleId对其进行标记，例如将铁塔、桥梁等障碍物标注唯一的障碍物编码obstacleId。</div>
+<div class="description-paragraph" id="p0057" num="0052">在一些实施例中，判断两个所述障碍物网格之间是否临接，若是，则判断所述障碍物网格属于同一障碍物，利用相同的障碍物编码对所述障碍物网格进行标记。</div>
+<div class="description-paragraph" id="p0058" num="0053">在一些实施例中，还针对第一网格中的地表面网格，采用地表面类型编码groundType进行标记，例如道路、湖面、山域等。</div>
+<div class="description-paragraph" id="p0059" num="0054">S106，针对各所述空域网格，通过网格搜索方法确定在预设范围内是否存在障碍物网格；若是，则计算各所述障碍物网格与该所述空域网格的距离，并结合各所述障碍物网格对应的网格编码及障碍物编码生成该所述空域网格的障碍物信息。</div>
+<div class="description-paragraph" id="p0060" num="0055">在一些实施例中，针对某一空域网格，在其预设范围内可能存在多个障碍物，这时可以选择其中距离最近的部分障碍物。</div>
+<div class="description-paragraph" id="p0061" num="0056">在获得各空域网格的障碍物信息之后，将障碍物信息与各空域网格的网格编码关联后进行存储。若某一些空域网格在预设范围内不存在障碍物网格，则其障碍物信息为空。</div>
+<div class="description-paragraph" id="p0062" num="0057">S108，基于目标低空飞行器的飞行数据确定其所在的空域网格，获取该所述空域网格对应的障碍物信息，并结合所述飞行数据判断所述目标低空飞行器是否存在障碍物碰撞风险。</div>
+<div class="description-paragraph" id="p0063" num="0058">所述飞行数据包括目标低空飞行器的低空飞行数据，例如位置、方向、速度、高位等信息。根据目标低空飞行器的位置信息可以确定其所在的空域网格，获取对应的网格编码通过搜索可以得到对应的障碍物信息。</div>
+<div class="description-paragraph" id="p0064" num="0059">在判断目标低空飞行器存在障碍物碰撞风险时，生成报警信息输出至目标低空飞行器，进行及时报警。</div>
+<div class="description-paragraph" id="p0065" num="0060">本实施例中，各空域网格的障碍物信息在进行障碍物碰撞风险检测之前就已经获得，因此在进行障碍物碰撞风险检测时，只需要获取目标低空飞行器的飞行数据通过搜索就可以快速的得到障碍物信息，并及时的判断是否存在障碍物碰撞风险。相比于现有技术，本技术方案的数据计算量更小，障碍物碰撞风险检测更加快速，提高了低空飞行器飞行的安全性。</div>
+<div class="description-paragraph" id="p0066" num="0061">在一些实施例中，所述针对各所述空域网格，通过网格搜索方法确定在预设范围内是否存在障碍物网格包括：</div>
+<div class="description-paragraph" id="p0067" num="0062">针对一空域网格，依次遍历搜索该所述空域网格各方向的预设范围内的网格，根据所述第一网格的网格类型编码确定是否为障碍物网格。</div>
+<div class="description-paragraph" id="p0068" num="0063">在一具体实施例中，在网格搜索之前需要先设定搜索条件fun(meshCode，maxDistance，obstacleCount)，其中meshCode表示待搜索的空域网格；maxDistance表示与障碍物的最大距离，由此可以确定各方向的预设范围；obstacleCount表示最大障碍物个数。</div>
+<div class="description-paragraph" id="p0069" num="0064">在进行网格搜索时，初始化搜索队列，先确定待搜索的第一个空域网格meshCode<sub>start</sub>，搜索邻面的第一网格meshCode<sub>head</sub>，根据其网格类型编码确定是否为障碍物网格，若是，则判断所搜索到的障碍物编码的个数是否大于最大障碍物个数obstacleCount，若是，则结束搜索；若小于最大障碍物个数obstacleCount，则获取该障碍物网格的障碍物编码obstacleId，并计算空域网格meshCode<sub>start</sub>与第一网格meshCode<sub>head</sub>之间的距离Distance，生成该空域网格的四元组（meshCode<sub>start</sub>，obstacleId，meshCode<sub>head</sub>，Distance）。若邻面的第一网格meshCode<sub>head</sub>为空域网格，则将该空域网格加入搜索队列，并继续沿第一网格meshCode<sub>head</sub>邻面的六个方向搜索，将未被处理过的邻面的第一网格逐一重复执行上述步骤，直到搜索范围达到预设范围。针对空域网格meshCode<sub>start</sub>的网格搜索完成后，对所有的四元组进行处理得到空域网格meshCode<sub>start</sub>的障碍物信息。针对搜索队列中的空域网格，重复上述网格搜索方法，得到所有空域网格的障碍物信息。</div>
+<div class="description-paragraph" id="p0070" num="0065">在一些实施例中，如图2所示，所述获取该所述空域网格对应的障碍物信息，并结合所述飞行数据判断所述目标低空飞行器是否存在障碍物碰撞风险包括：</div>
+<div class="description-paragraph" id="p0071" num="0066">S202，基于所述障碍物信息获取该所述空域网格与该所述障碍物网格的距离；</div>
+<div class="description-paragraph" id="p0072" num="0067">S204，基于所述飞行数据获取所述目标低空飞行器的飞行速度，并基于所述飞行速度确定对应的预设距离；</div>
+<div class="description-paragraph" id="p0073" num="0068">S206，若该所述空域网格与该所述障碍物网格的距离小于预设距离，则确定所述目标低空飞行器存在障碍物碰撞风险。</div>
+<div class="description-paragraph" id="p0074" num="0069">其中的预设距离根据目标低空飞行器的飞行速度所确定，其飞行速度越快对应的预设距离越大，当空域网格与该所述障碍物网格的距离小于预设距离，则确定目标低空飞行器是否存在障碍物碰撞风险。本实施例根据目标低空飞行器的飞行数据实现对触发障碍物碰撞风险的自适应调整。</div>
+<div class="description-paragraph" id="p0075" num="0070">由于对低空三维数据进行网格化划分后得到的第一网格的数量巨大，利用第一网格进行网格搜索其效率低。</div>
+<div class="description-paragraph" id="p0076" num="0071">为解决该技术问题，在一些实施例中，对所述低空三维数据进行网格化划分为若干个第二网格，各所述第二网格包括多个所述第一网格。第一网格可以理解为第二网格的子网格，例如第二网格包括64个第一网格。第二网格包括各第一网格的标记。</div>
+<div class="description-paragraph" id="p0077" num="0072">针对一空域网格，先依次遍历该空域网格所在第二网格中的第一网格，根据所述第一网格的网格类型编码确定其中的障碍物网格；再依次遍历搜索该所述空域网格各方向的预设范围内的第二网格，判断所述第二网格中是否存在障碍物网格，若存在，则依次遍历所述第二网格中的第一网格，根据所述第一网格的网格类型编码确定其中的障碍物网格。</div>
+<div class="description-paragraph" id="p0078" num="0073">针对第二网格可以采用与第一网格相同的网格搜索方法，在本实施例中不再赘述。</div>
+<div class="description-paragraph" id="p0079" num="0074">相比于利用第一网格进行网格搜索，本实施例采用的网格搜索方法采用分层搜索的方式，先搜索第二网格来快速判断是否存在障碍物网格，在存在障碍物网格的情况下，再搜索其中的第一网格实现障碍物网格的快速定位，提高了网格搜索效率。</div>
+<div class="description-paragraph" id="p0080" num="0075">在一些实施例中，如图3所示，所述方法还包括：</div>
+<div class="description-paragraph" id="p0081" num="0076">S302，当所述低空三维数据更新时，获取更新区域对应的第一网格；</div>
+<div class="description-paragraph" id="p0082" num="0077">S304，利用网格编码对所述更新区域对应的第一网格进行重新标记，及利用网格类型编码对所述更新区域对应的第一网格的类型进行重新标记；及利用障碍物编码对所述障碍物网格进行标记；</div>
+<div class="description-paragraph" id="p0083" num="0078">S306，针对距离所述更新区域对应的第一网格在预设范围内的空域网格，通过网格搜索方法确定在预设范围内是否存在障碍物网格；若是，则计算各所述障碍物网格与该所述空域网格的距离，并结合各所述障碍物网格对应的网格编码及障碍物编码更新该所述空域网格的障碍物信息。</div>
+<div class="description-paragraph" id="p0084" num="0079">现有技术中，当低空三维数据更新时，需要对更新后的所有低空三维数据重新划分网格、重新标记、重新网格搜索生成障碍物信息，因此数据的处理量大，数据的处理时间长。</div>
+<div class="description-paragraph" id="p0085" num="0080">在本实施例中，只需要针对更新区域对应的第一网格进行重新标记，重新网格搜索生成障碍物信息，与现有技术相比，数据处理量减少，数据的处理时间大大缩短。</div>
+<div class="description-paragraph" id="p0086" num="0081">在一些实施例中，针对不同预设高度区间的低空三维数据，采用不同粒度的网格化划分；其中，所述预设高度区间越大，对应网格化划分的粒度越大。</div>
+<div class="description-paragraph" id="p0087" num="0082">在一示例实施例中，500米至1000米的高度范围内，网格的粒度为100米×100米，0至500米的高度范围内，网格的粒度为10米×10米。</div>
+<div class="description-paragraph" id="p0088" num="0083">可以理解的是，在相对的高空区域，存在障碍物的可能性较低，因此可以采用粒度较大的网格划分；在相对的低空区域，存在障碍物的可能性较大，因此需要采用粒度更小的网格划分。本实施例所采用的网格划分方法，大大降低了网格划分的时间。</div>
+<div class="description-paragraph" id="p0089" num="0084">应该理解的是，虽然上述流程图中的各个步骤按照箭头的指示依次显示，但是这些步骤并不是必然按照箭头指示的顺序依次执行。除非本文中有明确的说明，这些步骤的执行并没有严格的顺序限制，这些步骤可以以其它的顺序执行。而且，上述流程图中的至少一部分步骤可以包括多个步骤或者多个阶段，这些步骤或者阶段并不必然是在同一时刻执行完成，而是可以在不同的时刻执行，这些步骤或者阶段的执行顺序也不必然是依次进行，而是可以与其它步骤或者其它步骤中的步骤或者阶段的至少一部分轮流或者交替地执行。</div>
+<div class="description-paragraph" id="p0090" num="0085">在一实施例中，如图4所示，本发明实施例提供了一种基于网格的低空飞行器碰撞预警系统，所述系统包括：</div>
+<div class="description-paragraph" id="p0091" num="0086">网格划分模块402，用于获取目标区域的低空三维数据，对所述低空三维数据进行网格化划分为若干个第一网格；</div>
+<div class="description-paragraph" id="p0092" num="0087">网格标记模块404，用于利用网格编码对各所述第一网格进行标记，及利用网格类型编码对各所述第一网格的类型进行标记，所述第一网格的类型包括空域网格和障碍物网格；及利用障碍物编码对所述障碍物网格进行标记；</div>
+<div class="description-paragraph" id="p0093" num="0088">距离计算模块406，用于针对各所述空域网格，通过网格搜索方法确定在预设范围内是否存在障碍物网格；若是，则计算各所述障碍物网格与该所述空域网格的距离，并结合各所述障碍物网格对应的网格编码及障碍物编码生成该所述空域网格的障碍物信息；</div>
+<div class="description-paragraph" id="p0094" num="0089">风险预测模块408，用于基于目标低空飞行器的飞行数据确定其所在的空域网格，获取该所述空域网格对应的障碍物信息，并结合所述飞行数据判断所述目标低空飞行器是否存在障碍物碰撞风险。</div>
+<div class="description-paragraph" id="p0095" num="0090">在一实施例中，本发明实施例提供了一种计算机设备，包括存储器和处理器，所述存储器存储有计算机程序，所述处理器执行所述计算机程序时，实现上述任一项基于网格的低空飞行器碰撞预警方法实施例中的步骤。</div>
+<div class="description-paragraph" id="p0096" num="0091">在一实施例中，本发明实施例提供了一种计算机可读存储介质，其上存储有计算机程序，计算机程序被处理器执行时实现上述任一项基于网格的低空飞行器碰撞预警方法实施例中的步骤。</div>
+<div class="description-paragraph" id="p0097" num="0092">本领域普通技术人员可以理解实现上述实施例方法中的全部或部分流程，是可以通过计算机程序来指令相关的硬件来完成，计算机程序可存储于一非易失性计算机可读取存储介质中，该计算机程序在执行时，可包括如上述各方法的实施例的流程。其中，本申请所提供的各实施例中所使用的对存储器、存储、数据库或其它介质的任何引用，均可包括非易失性和易失性存储器中的至少一种。非易失性存储器可包括只读存储器（Read-OnlyMemory，ROM）、磁带、软盘、闪存或光存储器等。易失性存储器可包括随机存取存储器（Random Access Memory，RAM）或外部高速缓冲存储器。作为说明而非局限，RAM可以是多种形式，比如静态随机存取存储器（Static Random Access Memory，SRAM）或动态随机存取存储器（Dynamic Random Access Memory，DRAM）等。</div>
+<div class="description-paragraph" id="p0098" num="0093">以上实施例的各技术特征可以进行任意的组合，为使描述简洁，未对上述实施例中的各个技术特征所有可能的组合都进行描述，然而，只要这些技术特征的组合不存在矛盾，都应当认为是本说明书记载的范围。</div>
+<div class="description-paragraph" id="p0099" num="0094">以上实施例仅表达了本申请的几种实施方式，其描述较为具体和详细，但并不能因此而理解为对发明专利范围的限制。应当指出的是，对于本领域的普通技术人员来说，在不脱离本申请构思的前提下，还可以做出若干变形和改进，这些都属于本申请的保护范围。因此，本申请专利的保护范围应以所附权利要求为准。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

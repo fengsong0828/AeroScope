@@ -1,0 +1,61 @@
+{
+    "patent_id": "CN112862914B",
+    "title": "CN112862914B - 基于多层级多核心的低空飞行器防御区域可视化融合方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Zhejiang Lover Health Science and Technology Development Co Ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN112862914B/zh",
+    "citations": [
+        {
+            "Publication Number": "KR20170121484A (ko) *",
+            "Priority Date": "2016-04-25",
+            "Publication Date": "2017-11-02",
+            "Assignee": "국방과학연구소",
+            "Title": "상황도기반 적 위협분석 및 가시화 방법 및 시스템",
+            "Link": "https://patents.google.com/patent/KR20170121484A/ko"
+        },
+        {
+            "Publication Number": "CN107490992A (zh) *",
+            "Priority Date": "2017-09-29",
+            "Publication Date": "2017-12-19",
+            "Assignee": "中航天元防务技术（北京）有限公司",
+            "Title": "近程低空防御控制方法及系统",
+            "Link": "https://patents.google.com/patent/CN107490992A/zh"
+        },
+        {
+            "Publication Number": "CN109090093A (zh) *",
+            "Priority Date": "2018-07-24",
+            "Publication Date": "2018-12-28",
+            "Assignee": "南京林航新材料科技有限公司",
+            "Title": "一种军用机场鸟害预警防治一体化平台",
+            "Link": "https://patents.google.com/patent/CN109090093A/zh"
+        },
+        {
+            "Publication Number": "CN111627259A (zh) *",
+            "Priority Date": "2020-04-16",
+            "Publication Date": "2020-09-04",
+            "Assignee": "广州海格亚华防务科技有限公司",
+            "Title": "机场净空保护区内无人机入侵分级预警方法及存储介质",
+            "Link": "https://patents.google.com/patent/CN111627259A/zh"
+        },
+        {
+            "Publication Number": "CN112163598A (zh) *",
+            "Priority Date": "2020-09-07",
+            "Publication Date": "2021-01-01",
+            "Assignee": "北京北斗天巡科技有限公司",
+            "Title": "一种基于增强型学习算法的非均匀无人机网格化监测方法",
+            "Link": "https://patents.google.com/patent/CN112163598A/zh"
+        },
+        {
+            "Publication Number": "CN112270680A (zh) *",
+            "Priority Date": "2020-11-20",
+            "Publication Date": "2021-01-26",
+            "Assignee": "浙江科技学院",
+            "Title": "基于声音和图像融合的低空无人机探测的方法",
+            "Link": "https://patents.google.com/patent/CN112270680A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:01:34"
+}

@@ -1,0 +1,215 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120913450A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES510923565">
+<invention-title id="title1" lang="ZH">低空飞行器协同调度方法、系统、设备及存储介质</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于飞行调度技术领域，具体涉及一种低空飞行器协同调度方法、系统、设备及存储介质。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空交通环境动态变化对实时响应提出严峻挑战。城市空域中临时建筑、施工设施可能数小时内改变空域结构，突发强风、团雾等微尺度气象现象常在10分钟内形成，远超传统云端模型的响应能力。</div>
+<div class="description-paragraph" id="p0005" num="0003">现有系统依赖周期性模型更新机制，需经历数据采集、清洗、训练及验证全流程，通常以周为单位迭代，导致新出现的障碍物图层、气象参数无法及时同步。这一问题在无人机集群作业场景尤为突出，当飞行器遭遇未录入系统的临时通信塔时，传统导航模型因缺乏实时重构能力，可能引发避障失效。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">针对现有技术的上述不足，本发明提供一种低空飞行器协同调度方法、系统、设备及存储介质，以解决上述技术问题。</div>
+<div class="description-paragraph" id="p0008" num="0005">第一方面，本发明提供一种低空飞行器协同调度方法，包括：</div>
+<div class="description-paragraph" id="p0009">边缘节点接收无人机群的实时数据，并利用预部署的调度模型生成相应的调度数据；</div>
+<div class="description-paragraph" id="p0010">边缘节点确认所述实时数据为环境突变数据，则将所述环境突变数据上传至区域云；</div>
+<div class="description-paragraph" id="p0011">区域云为所述环境突变数据匹配历史场景数据，若匹配成功则生成调度数据，若匹配不成功则将所述环境突变数据上传至中心云；</div>
+<div class="description-paragraph" id="p0012">中心云基于接收的环境突变数据生成调度数据，并将所述调度数据返回至区域云，并由区域云将所述调度数据下发至边缘节点。</div>
+<div class="description-paragraph" id="p0013" num="0006">在一个可选的实施方式中，所述方法还包括：</div>
+<div class="description-paragraph" id="p0014">构建三级联邦架构：</div>
+<div class="description-paragraph" id="p0015">边缘层，部署KubeEdge边缘节点，运行实时数据处理和轻量推理</div>
+<div class="description-paragraph" id="p0016">区域云，Kubernetes集群，负责区域数据聚合和模型训练</div>
+<div class="description-paragraph" id="p0017">中心云，作为联邦控制平面，通过KubeFed管理多个区域云，执行全局调度。</div>
+<div class="description-paragraph" id="p0018" num="0007">在一个可选的实施方式中，边缘节点接收无人机群的实时数据，并利用预部署的调度模型生成相应的调度数据，包括：</div>
+<div class="description-paragraph" id="p0019">边缘节点接收无人机群的实时数据，所述实时数据包括运动状态数据、位置数据和图像数据；</div>
+<div class="description-paragraph" id="p0020">边缘节点利用本地部署的调度模型基于所述实时数据生成调度数据和置信度；</div>
+<div class="description-paragraph" id="p0021">确认所述置信度达到设定的置信度阈值，则将所述调度数据下发至无人机群。</div>
+<div class="description-paragraph" id="p0022" num="0008">在一个可选的实施方式中，边缘节点确认所述实时数据为环境突变数据，则将所述环境突变数据上传至区域云，包括：</div>
+<div class="description-paragraph" id="p0023">若所述置信度未达到所述置信度阈值，则边缘节点将所述实时数据作为环境突变数据上传至区域云。</div>
+<div class="description-paragraph" id="p0024" num="0009">在一个可选的实施方式中，所述方法还包括：</div>
+<div class="description-paragraph" id="p0025">对于环境突变数据，边缘节点将接收自区域云的调度数据下发至无人机群；</div>
+<div class="description-paragraph" id="p0026">边缘节点获取无人机群执行所述调度数据后生成的更新数据；</div>
+<div class="description-paragraph" id="p0027">边缘节点将所述环境突变数据、调度数据和更新数据整合为新增场景数据，并将所述新增场景数据上传至区域云。</div>
+<div class="description-paragraph" id="p0028" num="0010">在一个可选的实施方式中，所述方法还包括：</div>
+<div class="description-paragraph" id="p0029">区域云指导多个边缘节点的调度模型基于各自生成的新增场景数据执行联邦训练。</div>
+<div class="description-paragraph" id="p0030" num="0011">在一个可选的实施方式中，所述方法还包括：</div>
+<div class="description-paragraph" id="p0031">中心云确定多个区域的飞行限制规则，并将飞行限制规则分发至相应的区域云，区域云基于接收的飞行限制规则生成多个无人机群的区域级调度指令并将区域级调度指令下发至相应的边缘节点，边缘节点基于接收的区域级调度指令生成对无人机群的调度参数，并将所述调度参数发送至无人机群。</div>
+<div class="description-paragraph" id="p0032" num="0012">第二方面，本发明提供一种低空飞行器协同调度系统，包括：</div>
+<div class="description-paragraph" id="p0033">第一调度模块，用于边缘节点接收无人机群的实时数据，并利用预部署的调度模型生成相应的调度数据；</div>
+<div class="description-paragraph" id="p0034">第二调度模块，用于边缘节点确认所述实时数据为环境突变数据，则将所述环境突变数据上传至区域云；</div>
+<div class="description-paragraph" id="p0035">第三调度模块，用于区域云为所述环境突变数据匹配历史场景数据，若匹配成功则生成调度数据，若匹配不成功则将所述环境突变数据上传至中心云；</div>
+<div class="description-paragraph" id="p0036">第四调度模块，用于中心云基于接收的环境突变数据生成调度数据，并将所述调度数据返回至区域云，并由区域云将所述调度数据下发至边缘节点。</div>
+<div class="description-paragraph" id="p0037" num="0013">第三方面，提供一种设备，包括：</div>
+<div class="description-paragraph" id="p0038">存储器，用于存储低空飞行器协同调度程序；</div>
+<div class="description-paragraph" id="p0039">处理器，用于执行所述低空飞行器协同调度程序时实现如第一方面提供的低空飞行器协同调度方法的步骤。</div>
+<div class="description-paragraph" id="p0040" num="0014">第四方面，提供了一种计算机可读存储介质，存储介质上存储有低空飞行器协同调度程序，低空飞行器协同调度程序被处理器执行时实现如第一方面提供的低空飞行器协同调度方法的步骤。</div>
+<div class="description-paragraph" id="p0041" num="0015">本发明的有益效果在于，本发明提供的低空飞行器协同调度方法、系统、设备及存储介质，通过边缘计算实现无人机集群实时控制，智能过滤无效数据减少数据传输；区域云场景匹配复用已验证方案，降低决策风险；中心云支撑未知事件处理并驱动模型持续进化。因此，本发明构建了兼具实时性、可靠性和自进化能力的低空交通管理体系。</div>
+<div class="description-paragraph" id="p0042" num="0016">此外，本发明设计原理可靠，结构简单，具有非常广泛的应用前景。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0043">附图说明</div>
+<div class="description-paragraph" id="p0044" num="0017">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍，显而易见地，对于本领域普通技术人员而言，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0045" num="0018">图1是本发明一个实施例的方法的示意性流程图。</div>
+<div class="description-paragraph" id="p0046" num="0019">图2是本发明一个实施例的系统的示意性框图。</div>
+<div class="description-paragraph" id="p0047" num="0020">图3为本发明实施例提供的一种设备的结构示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0048">具体实施方式</div>
+<div class="description-paragraph" id="p0049" num="0021">为了使本技术领域的人员更好地理解本发明中的技术方案，下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都应当属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0050" num="0022">除非另有定义，本文所使用的所有的技术和科学术语与属于本发明的技术领域的技术人员通常理解的含义相同。本文中在本发明的说明书中所使用的术语只是为了描述具体的实施例的目的，不是旨在于限制本发明。</div>
+<div class="description-paragraph" id="p0051" num="0023">本发明实施例提供的低空飞行器协同调度方法由计算机设备执行，相应地，低空飞行器协同调度系统运行于计算机设备中。</div>
+<div class="description-paragraph" id="p0052" num="0024">图1是本发明一个实施例的方法的示意性流程图。其中，图1执行主体可以为一种低空飞行器协同调度系统。根据不同的需求，该流程图中步骤的顺序可以改变，某些可以省略。</div>
+<div class="description-paragraph" id="p0053" num="0025">如图1所示，该方法包括：</div>
+<div class="description-paragraph" id="p0054">S1.边缘节点接收无人机群的实时数据，并利用预部署的调度模型生成相应的调度数据；</div>
+<div class="description-paragraph" id="p0055">S2.边缘节点确认所述实时数据为环境突变数据，则将所述环境突变数据上传至区域云；</div>
+<div class="description-paragraph" id="p0056">S3.区域云为所述环境突变数据匹配历史场景数据，若匹配成功则生成调度数据，若匹配不成功则将所述环境突变数据上传至中心云；</div>
+<div class="description-paragraph" id="p0057">S4.中心云基于接收的环境突变数据生成调度数据，并将所述调度数据返回至区域云，并由区域云将所述调度数据下发至边缘节点。</div>
+<div class="description-paragraph" id="p0058" num="0026">首先，构建三级联邦架构：</div>
+<div class="description-paragraph" id="p0059">通过Kubeedge和Senda框架，构建“边缘节点-区域云-中心云”三级联邦结构实现端边云联邦学习和协同推理。</div>
+<div class="description-paragraph" id="p0060" num="0027">边缘层（无人机/边缘基站，边端设备），本地通过KubeEdge调度轻量级算法容器到指定边端设备；区域云（区域级KubeEdge集群智算中心），负责与边端设备联合训练模型和集群的调度，通过聚合辖区边缘模型参数，生成区域优化模型；中心云（全国数据中心）负责夸区域集群对接和数据全国统一纳管，保证飞行器在全国范围内接受集群安全调度。</div>
+<div class="description-paragraph" id="p0061" num="0028">低空飞行器终端优先处理实时任务（避障、基础识别），遇到复杂场景（如雨天看不清、陌生障碍物）时，将关键数据传给区域云智算中心，区域云综合多设备信息生成优化方案（多视角分析、动态模型切换）；若问题仍无法解决（如需要历史大数据或高精度模型），则调用中心云端资源深度处理。</div>
+<div class="description-paragraph" id="p0062" num="0029">边缘侧，采用差分隐私，在梯度更新时添加拉普拉斯噪声，确保单条数据不可追溯；传输层，通过同态加密保护模型参数，即使中间节点被劫持也无法破解；云端，部署可信执行环境（TEE），在安全飞地内完成全局模型聚合。</div>
+<div class="description-paragraph" id="p0063" num="0030">在本发明的一种实施例中，基于步骤S1，以下将给出一种可能的实施例对其具体的实施方案进行非限制性阐述。</div>
+<div class="description-paragraph" id="p0064" num="0031">1、实时数据接收技术细节。</div>
+<div class="description-paragraph" id="p0065" num="0032">通信协议：采用低功耗广域网（LPWAN）协议（如LoRaWAN、NB-IoT）实现无人机群与边缘节点的长距离低功耗通信，适用于复杂地形和广域覆盖场景。对于图像数据传输，使用优化的H.265视频编码协议，并通过TCP/IP协议栈建立稳定连接，减少数据传输延迟和丢包率。同时，为确保数据传输的可靠性和安全性，采用DTLS（DatagramTransportLayerSecurity）协议对数据进行加密传输，防止数据泄露和篡改。</div>
+<div class="description-paragraph" id="p0066" num="0033">数据采集与预处理：无人机搭载高精度传感器（如惯性测量单元（IMU）、GPS/北斗双模定位模块、视觉传感器）实时采集运动状态数据（速度、加速度、姿态角）、位置数据（经纬度、海拔）和图像数据。在数据传输前，对原始数据进行预处理，包括去噪（采用卡尔曼滤波算法处理运动状态数据和位置数据，去除噪声干扰）、数据压缩（对图像数据采用JPEGXR压缩算法，在保证图像质量的前提下降低数据量）和格式转换（将传感器采集的不同格式数据统一转换为JSON格式，便于边缘节点解析）。</div>
+<div class="description-paragraph" id="p0067" num="0034">数据缓冲与同步：边缘节点建立环形数据缓冲区，设置合理的缓冲区大小（根据无人机数据发送频率和数据量动态调整），防止数据溢出和丢失。采用时间戳同步机制，在每个数据包中添加高精度时间戳（精确到微秒级），通过 NTP（Network Time Protocol）协议实现无人机与边缘节点的时间同步，确保接收到的实时数据具有准确的时间顺序，为后续调度决策提供可靠依据。</div>
+<div class="description-paragraph" id="p0068" num="0035">2、调度模型构建与调度数据生成技术细节。</div>
+<div class="description-paragraph" id="p0069" num="0036">调度模型架构：采用深度学习框架（如TensorFlow、PyTorch）构建基于强化学习的调度模型，以深度Q网络（DQN）或策略梯度算法（如PPO）为基础架构。模型输入层接收经过预处理的实时数据（运动状态数据、位置数据和图像数据），经过多层卷积神经网络（CNN）和循环神经网络（RNN）提取特征，隐藏层进行特征融合和复杂关系建模，输出层生成调度数据（包括无人机的飞行路径调整指令、任务分配方案、资源调度策略等）和对应的置信度。</div>
+<div class="description-paragraph" id="p0070" num="0037">模型训练与优化：使用历史飞行数据、模拟场景数据和实际任务数据对调度模型进行训练。通过构建奖励函数来引导模型学习最优调度策略，奖励函数综合考虑任务完成效率（如任务执行时间、覆盖范围）、资源消耗（如电量消耗、飞行距离）、安全性（如避免碰撞、保持通信链路稳定）等因素。采用小批量梯度下降（Mini - Batch Gradient Descent）算法进行模型参数更新，定期使用新的实时数据对模型进行微调，以适应环境变化和任务需求。</div>
+<div class="description-paragraph" id="p0071" num="0038">调度数据生成：当边缘节点接收到实时数据后，将数据输入到训练好的调度模型中。模型根据输入数据的特征和当前环境状态，通过前向传播计算出最优调度数据。同时，利用模型的不确定性估计方法（如蒙特卡洛dropout、贝叶斯神经网络）计算出每个调度数据的置信度，置信度反映了模型对生成调度数据的可靠程度，取值范围为0到1。</div>
+<div class="description-paragraph" id="p0072" num="0039">3、置信度判断与调度数据下发技术细节。</div>
+<div class="description-paragraph" id="p0073" num="0040">置信度阈值设定：根据实际任务需求和风险承受能力，动态设定置信度阈值。例如，对于高风险、关键任务（如灾害救援、重要目标监测），将置信度阈值设定为0.9以上；对于一般任务，可适当降低阈值至0.8。通过实验和实际应用不断优化阈值设置，在保证任务执行效果的前提下，提高调度决策的效率。</div>
+<div class="description-paragraph" id="p0074" num="0041">置信度判断与决策：边缘节点将调度模型生成的置信度与设定的阈值进行比较。若置信度达到或超过阈值，则认为调度数据可靠，将其封装成特定格式的控制指令包（包含调度数据、校验信息、目标无人机标识等）；若置信度未达到阈值，边缘节点可采取以下措施：一是重新调用调度模型，基于新的实时数据再次生成调度数据和置信度；二是启动备用调度方案（如基于规则的启发式调度算法生成的方案），确保无人机群能够持续执行任务。</div>
+<div class="description-paragraph" id="p0075" num="0042">调度数据下发：通过可靠的通信链路将封装好的调度数据下发至无人机群。采用ACK（Acknowledgment）机制确保数据传输的可靠性，即无人机接收到调度数据后，向边缘节点发送确认消息，若边缘节点在规定时间内未收到确认消息，则重新发送调度数据。同时，为避免多个无人机同时接收数据导致的网络拥塞，采用时分复用（TDM）或频分复用（FDM）技术对通信信道进行合理分配，确保调度数据能够准确、及时地下发至每架无人机。</div>
+<div class="description-paragraph" id="p0076" num="0043">在本发明的一种实施例中，基于步骤S3，以下将给出一种可能的实施例对其具体的实施方案进行非限制性阐述。</div>
+<div class="description-paragraph" id="p0077" num="0044">1、区域云数据存储与管理。</div>
+<div class="description-paragraph" id="p0078" num="0045">历史场景数据存储架构：区域云采用分布式文件系统（如Ceph或GlusterFS）来存储海量的历史场景数据。这些数据按照不同的场景类型（如自然灾害、重大活动等）进行分类存储，每个场景类型下再按照时间顺序进行划分。同时，为了提高数据的检索效率，使用NoSQL数据库（如MongoDB或Cassandra）建立索引，记录每个历史场景数据的关键信息，如场景类型、发生时间、地点、主要特征等。</div>
+<div class="description-paragraph" id="p0079" num="0046">数据更新与维护：区域云会定期从中心云或其他数据源同步最新的历史场景数据，以保证数据的时效性。同时，会对过期或无效的数据进行清理，释放存储空间。在数据更新过程中，采用增量更新的方式，只更新发生变化的数据部分，减少数据传输量和存储开销。</div>
+<div class="description-paragraph" id="p0080" num="0047">2、环境突变数据预处理。</div>
+<div class="description-paragraph" id="p0081" num="0048">数据清洗：当区域云接收到环境突变数据后，首先会对数据进行清洗。去除数据中的噪声、异常值和重复数据。例如，对于气象数据中的异常温度值（可能是传感器故障导致），可以采用基于统计学的方法（如3σ原则）进行识别和剔除。</div>
+<div class="description-paragraph" id="p0082" num="0049">特征提取：从清洗后的数据中提取关键特征，这些特征将用于与历史场景数据进行匹配。对于不同类型的环境突变数据，提取的特征也不同。例如，对于地震数据，可以提取震级、震源深度、震中位置等特征；对于火灾数据，可以提取火灾面积、火势蔓延速度、风向等特征。</div>
+<div class="description-paragraph" id="p0083" num="0050">3、历史场景数据匹配算法。</div>
+<div class="description-paragraph" id="p0084" num="0051">相似度计算方法：采用多种相似度计算方法来评估环境突变数据与历史场景数据的匹配程度。对于数值型特征，可以使用欧氏距离、曼哈顿距离等方法计算相似度；对于文本型特征，可以使用余弦相似度、编辑距离等方法。例如，对于气象数据中的温度、湿度等数值型特征，使用欧氏距离计算相似度；对于描述性的事件信息（如灾害发生的具体情况），使用余弦相似度计算。</div>
+<div class="description-paragraph" id="p0085" num="0052">匹配规则与阈值设定：设定匹配规则和阈值来判断是否匹配成功。例如，当环境突变数据与历史场景数据在多个关键特征上的相似度都超过一定阈值（如80%）时，认为匹配成功。可以根据不同的场景类型和数据特点，动态调整匹配规则和阈值。</div>
+<div class="description-paragraph" id="p0086" num="0053">4、调度数据生成。</div>
+<div class="description-paragraph" id="p0087" num="0054">基于模板的生成方法：如果环境突变数据与历史场景数据匹配成功，区域云会根据匹配到的历史场景数据对应的调度模板来生成调度数据。调度模板是预先定义好的，包含了在该场景下的资源调配、应急响应措施等信息。例如，对于地震场景，调度模板可能包括救援队伍的派遣方案、医疗物资的调配计划等。</div>
+<div class="description-paragraph" id="p0088" num="0055">数据定制与优化：在生成调度数据时，会根据当前环境突变数据的具体情况对调度模板进行定制和优化。例如，根据当前地震的震级和受灾范围，调整救援队伍的数量和医疗物资的供应量。同时，会考虑当前的资源可用性和实时情况，确保调度数据的可行性和有效性。</div>
+<div class="description-paragraph" id="p0089" num="0056">5、数据上传至中心云。</div>
+<div class="description-paragraph" id="p0090" num="0057">数据封装与加密：如果环境突变数据与历史场景数据匹配不成功，区域云会将环境突变数据进行封装和加密。使用安全的加密算法（如AES算法）对数据进行加密，确保数据在传输过程中的安全性。同时，在数据封装中添加元数据，如数据的类型、采集时间、来源等信息。</div>
+<div class="description-paragraph" id="p0091" num="0058">上传协议与策略：采用可靠的上传协议（如HTTP/2或MQTT）将加密后的数据上传至中心云。为了提高上传效率和可靠性，采用分块上传和断点续传的策略。同时，会根据网络状况动态调整上传速率，避免对网络造成过大压力。</div>
+<div class="description-paragraph" id="p0092" num="0059">在本发明的一种实施例中，基于步骤S4，以下将给出一种可能的实施例对其具体的实施方案进行非限制性阐述。</div>
+<div class="description-paragraph" id="p0093" num="0060">中心云基于接收的环境突变数据生成调度数据，并将所述调度数据返回至区域云，并由区域云将所述调度数据下发至边缘节点</div>
+<div class="description-paragraph" id="p0094">在上述实施例的基础上，为了进一步提高调度精度，为一种可实施的方式，提供一种模型更新方法：</div>
+<div class="description-paragraph" id="p0095">1、调度数据下发至无人机群。</div>
+<div class="description-paragraph" id="p0096" num="0061">边缘节点与无人机群之间采用低延迟、高可靠性的通信协议，如 ZigBee 或 5GNR-U（5G 非授权频段）。对于需要实时交互的控制指令（如飞行路径调整），使用 5G NR-U确保低延迟传输；对于一般性状态信息同步，可采用 ZigBee 以降低功耗。</div>
+<div class="description-paragraph" id="p0097" num="0062">将从区域云接收的调度数据封装成特定格式的数据包，添加源地址（边缘节点地址）、目标地址（无人机地址）、数据类型等信息。使用对称加密算法（如 AES）对数据包进行加密，加密密钥定期更新，确保数据传输的安全性。</div>
+<div class="description-paragraph" id="p0098" num="0063">根据无人机群的拓扑结构和任务分配情况，采用广播、组播或单播的方式分发调度数据。对于通用的调度指令，采用广播方式；对于特定无人机的个性化指令，采用单播方式。同时，设置重传机制，若无人机在规定时间内未确认接收，边缘节点将重新发送数据。</div>
+<div class="description-paragraph" id="p0099" num="0064">2、获取无人机群更新数据。</div>
+<div class="description-paragraph" id="p0100" num="0065">无人机按照预设的时间间隔或事件触发机制采集更新数据，包括飞行状态（速度、高度、姿态）、任务执行进度、环境感知数据（如温度、湿度、空气质量）等。数据采集频率根据任务需求和无人机资源状况进行动态调整。</div>
+<div class="description-paragraph" id="p0101" num="0066">为减少数据传输量，无人机对采集到的更新数据进行预处理，包括数据压缩（如采用无损压缩算法 LZ77）和特征提取。同时，采用自适应调制编码技术，根据信道状况动态调整传输速率和编码方式，提高数据传输效率。</div>
+<div class="description-paragraph" id="p0102" num="0067">边缘节点接收来自多个无人机的更新数据后，进行数据汇聚和融合。采用多传感器融合算法（如卡尔曼滤波）对不同类型的更新数据进行融合处理，提高数据的准确性和可靠性。</div>
+<div class="description-paragraph" id="p0103" num="0068">3、新增场景数据整合与上传。</div>
+<div class="description-paragraph" id="p0104" num="0069">边缘节点将环境突变数据、调度数据和更新数据按照一定的规则进行整合，形成新增场景数据。可以采用数据关联算法，将不同来源的数据关联起来，构建完整的场景描述。同时，为新增场景数据添加时间戳、地理位置等元数据，方便后续分析和管理。</div>
+<div class="description-paragraph" id="p0105" num="0070">在上传新增场景数据之前，边缘节点对数据的质量进行评估。检查数据的完整性、准确性和一致性，对于缺失或异常的数据进行修复或标记。采用数据质量评估指标（如数据缺失率、错误率）对数据质量进行量化评估。</div>
+<div class="description-paragraph" id="p0106" num="0071">采用可靠的上传协议（如 HTTP/2 或 MQTT）将新增场景数据上传至区域云。为提高上传效率，采用分块上传和断点续传的策略。同时，对上传的数据进行加密处理，确保数据在传输过程中的安全性。</div>
+<div class="description-paragraph" id="p0107" num="0072">4、区域云指导联邦训练。</div>
+<div class="description-paragraph" id="p0108" num="0073">采用横向联邦学习架构，多个边缘节点在不共享原始数据的情况下，通过区域云进行模型参数的交换和更新。区域云作为协调者，负责初始化全局模型、分发模型参数、聚合局部模型参数等工作。</div>
+<div class="description-paragraph" id="p0109" num="0074">区域云选择适合调度任务的模型架构，如卷积神经网络（CNN）或循环神经网络（RNN）。对全局模型进行初始化，将初始模型参数分发给各个边缘节点。</div>
+<div class="description-paragraph" id="p0110" num="0075">边缘节点根据接收到的全局模型参数，使用本地生成的新增场景数据进行局部训练。在每个训练周期结束后，边缘节点计算本地模型参数的梯度，并将梯度信息上传至区域云。</div>
+<div class="description-paragraph" id="p0111" num="0076">区域云接收来自各个边缘节点的梯度信息，采用聚合算法（如 FedAvg）对局部模型参数进行聚合，更新全局模型参数。然后将更新后的全局模型参数分发给各个边缘节点，进行下一轮训练。</div>
+<div class="description-paragraph" id="p0112" num="0077">设置训练终止条件，如达到预设的训练轮数、模型性能指标（如准确率、损失函数值）收敛等。当满足终止条件时，训练过程结束，区域云将最终的全局模型参数分发给各个边缘节点，用于实际的调度任务。</div>
+<div class="description-paragraph" id="p0113" num="0078">在一个具体的示例中，打造实时增量更新机制，边缘触发式模型迭代。</div>
+<div class="description-paragraph" id="p0114" num="0079">当边缘节点检测到局部环境突变（如通过异常检测算法发现新增障碍物），自动启动本地模型微调；将微调梯度加密上传至区域云，触发局部联邦学习（仅召集相邻节点参与）；区域云能在短时间内完成模型迭代并下发，较传统全局更新速度大大提升。使用动态权重分配策略，根据边缘节点数据新鲜度（如无人机实时采集数据权重=0.9，历史数据=0.1）与场景覆盖率（城市节点权重&gt;荒漠节点），动态调整联邦聚合权重，使模型更偏向最新高价值数据。</div>
+<div class="description-paragraph" id="p0115" num="0080">边缘触发条件判断：</div>
+<div class="description-paragraph" id="p0116">输入：飞行器实时传感器流：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0117">历史数据窗口：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0118">环境突变阈值：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0119">处理：</div>
+<div class="description-paragraph" id="p0120">采用滑动窗口差分检测：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0121">当<span class="patent-image-not-available"></span>时触发本地模型更新。</div>
+<div class="description-paragraph" id="p0122" num="0081">本地模型微调：</div>
+<div class="description-paragraph" id="p0123">模型结构：</div>
+<div class="description-paragraph" id="p0124"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0125">微调目标：</div>
+<div class="description-paragraph" id="p0126"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0127">其中<span class="patent-image-not-available"></span>（实时数据权重），<span class="patent-image-not-available"></span>（历史正则项）。</div>
+<div class="description-paragraph" id="p0128" num="0082">输出：</div>
+<div class="description-paragraph" id="p0129">加密梯度矩阵：<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0130" num="0083">区域联邦聚合：</div>
+<div class="description-paragraph" id="p0131">动态权重计算：</div>
+<div class="description-paragraph" id="p0132">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0133" num="0084"> <span class="patent-image-not-available"></span>：数据采集时间差（秒）；</div>
+<div class="description-paragraph" id="p0134"> <span class="patent-image-not-available"></span>：场景覆盖率（城市区域S=1.0, 荒漠S=0.3）；</div>
+<div class="description-paragraph" id="p0135"> <span class="patent-image-not-available"></span>：数据新鲜度衰减因子。</div>
+<div class="description-paragraph" id="p0136" num="0085">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0137" num="0086">其中K为参与联邦的相邻节点数（通过KubeEdge ServiceBus自动发现）。</div>
+<div class="description-paragraph" id="p0138" num="0087">模型迭代下发：</div>
+<div class="description-paragraph" id="p0139">输出规格：</div>
+<div class="description-paragraph" id="p0140">模型参数：<span class="patent-image-not-available"></span>（通过CloudHub广播）；</div>
+<div class="description-paragraph" id="p0141">元数据：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0142">版本控制：<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0143">下发策略：</div>
+<div class="description-paragraph" id="p0144">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0145" num="0088">通过EdgeHub实现差分更新。</div>
+<div class="description-paragraph" id="p0146" num="0089">在上述实施例的基础上，进一步提供以下方法：</div>
+<div class="description-paragraph" id="p0147">中心云确定多个区域的飞行限制规则，并将飞行限制规则分发至相应的区域云，区域云基于接收的飞行限制规则生成多个无人机群的区域级调度指令并将区域级调度指令下发至相应的边缘节点，边缘节点基于接收的区域级调度指令生成对无人机群的调度参数，并将所述调度参数发送至无人机群。</div>
+<div class="description-paragraph" id="p0148" num="0090">具体的，包括以下步骤：</div>
+<div class="description-paragraph" id="p0149">1、中心云确定飞行限制规则。</div>
+<div class="description-paragraph" id="p0150" num="0091">规则数据来源：</div>
+<div class="description-paragraph" id="p0151">法律法规：中心云定期从官方渠道（如民航管理部门网站）获取国家和地方有关无人机飞行的法律法规，包括禁飞区、限飞高度、飞行时间限制等信息。</div>
+<div class="description-paragraph" id="p0152" num="0092">实时数据监测：利用卫星遥感、气象监测站、地面雷达等设备，实时监测地理环境、气象条件、空域活动等信息。例如，当监测到某区域有大型活动、自然灾害或军事演习时，将该区域设定为临时禁飞区。</div>
+<div class="description-paragraph" id="p0153" num="0093">历史数据分析：对过往无人机飞行数据进行分析，总结出容易发生冲突或危险的区域和时间段，以此作为制定飞行限制规则的参考。</div>
+<div class="description-paragraph" id="p0154" num="0094">规则制定与更新：</div>
+<div class="description-paragraph" id="p0155">规则制定算法：采用专家系统和机器学习算法相结合的方式制定飞行限制规则。专家系统根据法律法规和行业经验设定基础规则，机器学习算法通过对实时数据和历史数据的分析，对规则进行优化和调整。</div>
+<div class="description-paragraph" id="p0156" num="0095">规则更新机制：中心云实时监测数据变化，当出现新的法律法规、环境变化或重大事件时，及时更新飞行限制规则。同时，定期对规则进行评估和优化，确保规则的有效性和合理性。</div>
+<div class="description-paragraph" id="p0157" num="0096">规则格式标准化：</div>
+<div class="description-paragraph" id="p0158">将飞行限制规则统一为标准化的格式，如JSON或XML，便于后续的分发和处理。规则内容包括限制区域（用经纬度坐标表示）、限制时间范围、限制类型（禁飞、限高、限速等）、限制等级等信息。</div>
+<div class="description-paragraph" id="p0159" num="0097">2、中心云分发飞行限制规则至区域云。</div>
+<div class="description-paragraph" id="p0160" num="0098">采用安全可靠的通信协议，如 HTTPS 或 MQTT over TLS，确保规则数据在传输过程中的安全性和完整性。同时，为提高传输效率，采用数据压缩技术（如 Gzip）对规则数据进行压缩。</div>
+<div class="description-paragraph" id="p0161" num="0099">分发策略：根据区域云的地理位置、业务需求和网络状况，采用分层分发或广播分发的策略。对于大型区域云，可以采用分层分发，先将规则分发给区域中心节点，再由中心节点分发给下属的子节点；对于小型区域云，可以采用广播分发，直接将规则发送给所有区域云。</div>
+<div class="description-paragraph" id="p0162" num="0100">分发确认机制：区域云接收到飞行限制规则后，向中心云发送确认消息。若中心云在规定时间内未收到确认消息，将重新发送规则数据，确保每个区域云都能准确接收到最新的规则。</div>
+<div class="description-paragraph" id="p0163" num="0101">3、区域云生成区域级调度指令。</div>
+<div class="description-paragraph" id="p0164" num="0102">数据融合与分析：区域云将接收到的飞行限制规则与本地的无人机群信息（如位置、状态、任务）进行融合和分析。采用地理信息系统（GIS）技术，将飞行限制规则可视化，直观地展示限制区域和无人机的位置关系。</div>
+<div class="description-paragraph" id="p0165" num="0103">调度算法选择：根据不同的场景和需求，选择合适的调度算法，如遗传算法、蚁群算法或模拟退火算法。这些算法可以在满足飞行限制规则的前提下，优化无人机群的飞行路径、任务分配和资源利用，提高调度效率和安全性。</div>
+<div class="description-paragraph" id="p0166" num="0104">指令生成与优化：根据调度算法的结果，生成区域级调度指令。指令内容包括无人机的飞行路径、任务分配、飞行速度、高度等信息。同时，对生成的指令进行优化，考虑无人机的续航能力、通信能力和负载能力等因素，确保指令的可行性和有效性。</div>
+<div class="description-paragraph" id="p0167" num="0105">4、区域云下发区域级调度指令至边缘节点。</div>
+<div class="description-paragraph" id="p0168" num="0106">通信协议与数据格式：采用与中心云分发规则相同的通信协议（如HTTPS或MQTToverTLS）和数据格式（如JSON或XML），确保数据的一致性和兼容性。</div>
+<div class="description-paragraph" id="p0169" num="0107">指令分发策略：根据边缘节点的地理位置和无人机群的分布情况，采用分组分发或单播分发的策略。对于集中分布的无人机群，可以将边缘节点分组，将指令发送给组内的主节点，再由主节点分发给组内的其他节点；对于分散分布的无人机群，可以采用单播分发，直接将指令发送给每个边缘节点。</div>
+<div class="description-paragraph" id="p0170" num="0108">指令确认与反馈：边缘节点接收到区域级调度指令后，向区域云发送确认消息，并反馈指令的执行情况。区域云根据反馈信息，及时调整调度指令，确保无人机群的飞行安全和任务顺利执行。</div>
+<div class="description-paragraph" id="p0171" num="0109">5、边缘节点生成调度参数并发送至无人机群。</div>
+<div class="description-paragraph" id="p0172" num="0110">参数细化与调整：边缘节点根据接收到的区域级调度指令，结合本地无人机的具体情况（如型号、性能、当前状态），对指令进行细化和调整，生成具体的调度参数。例如，根据无人机的续航能力，调整飞行速度和高度；根据无人机的通信范围，优化通信策略。</div>
+<div class="description-paragraph" id="p0173" num="0111">数据格式转换：将调度参数转换为无人机能够识别和执行的格式，如二进制代码或特定的指令集。同时，为确保数据的准确性和可靠性，添加校验信息（如 CRC 校验码）。</div>
+<div class="description-paragraph" id="p0174" num="0112">通信协议与发送方式：采用与无人机通信的专用协议，如ZigBee或5GNR-U，将调度参数发送给无人机群。根据无人机的分布情况和通信需求，采用广播、组播或单播的方式发送参数。同时，设置重传机制，若无人机在规定时间内未确认接收，边缘节点将重新发送参数。</div>
+<div class="description-paragraph" id="p0175" num="0113">在一些实施例中，所述低空飞行器协同调度系统可以包括多个由计算机程序段所组成的功能模块。所述低空飞行器协同调度系统中的各个程序段的计算机程序可以存储于计算机设备的存储器中，并由至少一个处理器所执行，以执行（详见图1描述）低空飞行器协同调度的功能。</div>
+<div class="description-paragraph" id="p0176" num="0114">本实施例中，所述低空飞行器协同调度系统根据其所执行的功能，可以被划分为多个功能模块，如图2所示。本发明所称的模块是指一种能够被至少一个处理器所执行并且能够完成固定功能的一系列计算机程序段，其存储在存储器中。在本实施例中，关于各模块的功能将在后续的实施例中详述。</div>
+<div class="description-paragraph" id="p0177" num="0115">第一调度模块，用于边缘节点接收无人机群的实时数据，并利用预部署的调度模型生成相应的调度数据；</div>
+<div class="description-paragraph" id="p0178">第二调度模块，用于边缘节点确认所述实时数据为环境突变数据，则将所述环境突变数据上传至区域云；</div>
+<div class="description-paragraph" id="p0179">第三调度模块，用于区域云为所述环境突变数据匹配历史场景数据，若匹配成功则生成调度数据，若匹配不成功则将所述环境突变数据上传至中心云；</div>
+<div class="description-paragraph" id="p0180">第四调度模块，用于中心云基于接收的环境突变数据生成调度数据，并将所述调度数据返回至区域云，并由区域云将所述调度数据下发至边缘节点。</div>
+<div class="description-paragraph" id="p0181" num="0116">图3为本申请实施例提供的低空飞行器协同调度方法可以应用于设备。本领域技术人员可以理解，本发明实施例中所涉及的设备结构并不构成对设备的限定，设备可以包括比图示更多或更少的部件，或者组合某些部件，或者不同的部件布置。在本发明实施例中，设备包括但不限于膝上型计算机、台式计算机、工作台、个人数字助理、服务器、刀片式服务器、大型计算机、和其它适合的计算机。设备还可以表示各种形式的移动装置，诸如，个人数字处理、蜂窝电话、智能电话、可穿戴设备和其它类似的计算装置。本文所示的部件、它们的连接和关系、以及它们的功能仅仅作为示例，并且不意在限制本文中描述的和/或者要求的本申请实施例的实现。</div>
+<div class="description-paragraph" id="p0182" num="0117">其中，该设备300可以包括：处理器310、存储器320及通信单元330。这些组件通过一条或多条总线进行通信，本领域技术人员可以理解，图中示出的服务器的结构并不构成对本发明的限定，它既可以是总线形结构，也可以是星型结构，还可以包括比图示更多或更少的部件，或者组合某些部件，或者不同的部件布置。</div>
+<div class="description-paragraph" id="p0183" num="0118">其中，该存储器320可以用于存储处理器310的执行指令，存储器320可以由任何类型的易失性或非易失性存储设备或者它们的组合实现，如静态随机存取存储器（SRAM），电可擦除可编程只读存储器（EEPROM），可擦除可编程只读存储器（EPROM），可编程只读存储器（PROM），只读存储器（ROM），磁存储器，快闪存储器，磁盘或光盘。当存储器320中的执行指令由处理器310执行时，使得设备300能够执行以下上述方法实施例中的部分或全部步骤。</div>
+<div class="description-paragraph" id="p0184" num="0119">处理器310为存储设备的控制中心，利用各种接口和线路连接整个电子设备的各个部分，通过运行或执行存储在存储器320内的软件程序和/或模块，以及调用存储在存储器内的数据，以执行电子设备的各种功能和/或处理数据。所述处理器可以由集成电路(Integrated Circuit，简称IC) 组成，例如可以由单颗封装的IC 所组成，也可以由连接多颗相同功能或不同功能的封装IC而组成。举例来说，处理器310可以仅包括中央处理器(Central Processing Unit，简称CPU)。在本发明实施方式中，CPU可以是单运算核心，也可以包括多运算核心。</div>
+<div class="description-paragraph" id="p0185" num="0120">通信单元330，用于建立通信信道，从而使所述存储设备可以与其它设备进行通信。接收其他设备发送的用户数据或者向其他设备发送用户数据。</div>
+<div class="description-paragraph" id="p0186" num="0121">本发明还提供一种计算机存储介质，其中，该计算机存储介质可存储有程序，该程序执行时可包括本发明提供的各实施例中的部分或全部步骤。所述的存储介质可为磁碟、光盘、只读存储记忆体（英文：Read-Only Memory，简称：ROM）或随机存储记忆体（英文：Random Access Memory，简称：RAM）等。</div>
+<div class="description-paragraph" id="p0187" num="0122">本领域的技术人员可以清楚地了解到本发明实施例中的技术可借助软件加必需的通用硬件平台的方式来实现。基于这样的理解，本发明实施例中的技术方案本质上或者说对现有技术做出贡献的部分可以以软件产品的形式体现出来，该计算机软件产品存储在一个存储介质中如U盘、移动硬盘、只读存储器（ROM，Read-Only Memory）、随机存取存储器（RAM，Random Access Memory）、磁碟或者光盘等各种可以存储程序代码的介质，包括若干指令用以使得一台计算机设备（可以是个人计算机，服务器，或者第二设备、网络设备等）执行本发明各个实施例所述方法的全部或部分步骤。</div>
+<div class="description-paragraph" id="p0188" num="0123">本说明书中各个实施例之间相同相似的部分互相参见即可。尤其，对于设备实施例而言，由于其基本相似于方法实施例，所以描述的比较简单，相关之处参见方法实施例中的说明即可。</div>
+<div class="description-paragraph" id="p0189" num="0124">在本发明所提供的几个实施例中，应该理解到，所揭露的系统和方法，可以通过其它的方式实现。例如，以上所描述的系统实施例仅仅是示意性的，例如，所述模块的划分，仅仅为一种逻辑功能划分，实际实现时可以有另外的划分方式，例如多个模块或组件可以结合或者可以集成到另一个系统，或一些特征可以忽略，或不执行。另一点，所显示或讨论的相互之间的耦合或直接耦合或通信连接可以是通过一些接口，系统或模块的间接耦合或通信连接，可以是电性，机械或其它的形式。</div>
+<div class="description-paragraph" id="p0190" num="0125">所述作为分离部件说明的模块可以是或者也可以不是物理上分开的，作为模块显示的部件可以是或者也可以不是物理模块，即可以位于一个地方，或者也可以分布到多个网络模块上。可以根据实际的需要选择其中的部分或者全部模块来实现本实施例方案的目的。</div>
+<div class="description-paragraph" id="p0191" num="0126">另外，在本发明各个实施例中的各功能模块可以集成在一个处理模块中，也可以是各个模块单独物理存在，也可以两个或两个以上模块集成在一个模块中。</div>
+<div class="description-paragraph" id="p0192" num="0127">尽管通过参考附图并结合优选实施例的方式对本发明进行了详细描述，但本发明并不限于此。在不脱离本发明的精神和实质的前提下，本领域普通技术人员可以对本发明的实施例进行各种等效的修改或替换，而这些修改或替换都应在本发明的涵盖范围内/任何熟悉本技术领域的技术人员在本发明揭露的技术范围内，可轻易想到变化或替换，都应涵盖在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

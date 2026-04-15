@@ -1,0 +1,116 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN118746842A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES476756597">
+<invention-title id="title1" lang="ZH">一种低空飞行器的抗干扰跟踪方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于低空安全领域，具体为一种低空飞行器的抗干扰跟踪方法，适用于无人机的识别跟踪。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">在低空安全领域，现阶段由于目标识别跟踪方法不够完善，使用激光系统对低空飞行器(如无人机)进行跟踪打击过程中，会发生如图1或者图2中所示情况。图1所示情况下，在跟踪过程中(图中红色点)会受到以下几类干扰：强光反射干扰、激光打击产生的亮斑干扰、激光打击产生的火光、烟雾等会覆盖正常的跟踪点，导致跟踪点邻域范围内不能提取有效的特征，从而导致跟踪失败；图2所示情况下，目标发生较大形变时，跟踪点在视场中消失，从而导致跟踪失败。</div>
+<div class="description-paragraph" id="p0005" num="0003">以上两种情况面临的都是同一个问题，即目标在跟踪过程中受到干扰，导致当前跟踪点不能提取出目标的有效特征，因此开发新的低空目标识别跟踪方法保障目标跟踪的稳定性就显得至关重要。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">针对上述存在的问题或不足，为解决现有目标识别跟踪方法由于外界光干扰或目标发生较大形变时导致跟踪失败的问题，本发明提供了一种低空飞行器的抗干扰跟踪方法。本发明通过目标物理尺寸的先验知识，解算目标当前形态、跟踪点位置与实际目标大小的映射关系，然后根据映射关系在目标上选取至少1个目标点作为备选跟踪点，通过打击点设置的距离阈值、形变时对应的目标点是否达到移出视场的阈值，将跟踪点替换为备选跟踪点，从而达到目标跟踪时抗干扰的效果。</div>
+<div class="description-paragraph" id="p0008" num="0005">一种低空飞行器的抗干扰跟踪方法，如图3所示，包括以下步骤：</div>
+<div class="description-paragraph" id="p0009" num="0006">步骤1、计算像素目标与物理目标的映射关系；</div>
+<div class="description-paragraph" id="p0010" num="0007">对于待跟踪目标：</div>
+<div class="description-paragraph" id="p0011" num="0008">以其物理目标轮廓中心为原点，建立物理坐标系XOY，将物理目标轮廓划分为4个象限，在物理目标轮廓上选取n个物理坐标点组成集合[(x<sub>1</sub>,y<sub>1</sub>),…,(x<sub>n</sub>,y<sub>n</sub>)]，其中，n≥4；</div>
+<div class="description-paragraph" id="p0012" num="0009">以其像素目标轮廓中心为原点，建立像素坐标系uov，将像素目标轮廓划分为4个象限，在像素目标轮廓上选取n个像素坐标点组成集合[(u<sub>1</sub>,v<sub>1</sub>),…,(u<sub>n</sub>,v<sub>n</sub>)]，此n个像素坐标点分别一一对应XOY坐标上选取的n个物理坐标点；</div>
+<div class="description-paragraph" id="p0013" num="0010">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0014" num="0011">通过[(x<sub>1</sub>,y<sub>1</sub>),…,(x<sub>n</sub>,y<sub>n</sub>)]集合和对应的[(u<sub>1</sub>,v<sub>1</sub>),…,(u<sub>n</sub>,v<sub>n</sub>)]集合，解算透视变换矩阵H中各参数，从而构建像素坐标系uov与物理坐标系XOY的映射关系；</div>
+<div class="description-paragraph" id="p0015" num="0012">步骤2、选择跟踪点和备选跟踪点；</div>
+<div class="description-paragraph" id="p0016" num="0013">设跟踪点为p<sub>1</sub>(u<sub>t1</sub>,v<sub>t1</sub>)，备选跟踪点为p<sub>2</sub>(u<sub>s1</sub>,v<sub>s1</sub>)，通过透视变换矩阵H映射到物理坐标系XOY中分别表示为P<sub>1</sub>(x<sub>t1</sub>,y<sub>t1</sub>),P<sub>2</sub>(x<sub>s1</sub>,y<sub>s1</sub>)：</div>
+<div class="description-paragraph" id="p0017" num="0014">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0018" num="0015">在跟踪过程中，计算像素坐标系uov中每一帧的跟踪点和备选跟踪点映射到物理坐标系XOY中的坐标点，假设有m帧连续跟踪过程，则映射的坐标点表示为：</div>
+<div class="description-paragraph" id="p0019" num="0016">(x<sub>t2</sub>,y<sub>t2</sub>),(x<sub>t3</sub>,y<sub>t3</sub>),…,(x<sub>tm</sub>,y<sub>tm</sub>)，(x<sub>s2</sub>,y<sub>s2</sub>),(x<sub>s3</sub>,y<sub>s3</sub>),…,(x<sub>sm</sub>,y<sub>sm</sub>)</div>
+<div class="description-paragraph" id="p0020" num="0017">计算每个映射点与选定第一帧映射点的距离：</div>
+<div class="description-paragraph" id="p0021" num="0018">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0022" num="0019">其中，d<sub>t</sub>表示在跟踪过程中第i帧跟踪点在物理坐标系XOY中坐标点(x<sub>ti</sub>,y<sub>ti</sub>)与跟踪第1帧跟踪点在物理坐标系XOY中坐标点(x<sub>t1</sub>,y<sub>t1</sub>)的物理距离，d<sub>s</sub>表示备选跟踪点在跟踪过程中第i帧备选跟踪点在物理坐标系XOY中坐标点(x<sub>si</sub>,y<sub>ti</sub>)与第1帧备选跟踪点在物理坐标系XOY中坐标点(x<sub>s1</sub>,y<sub>s1</sub>)的物理距离；</div>
+<div class="description-paragraph" id="p0023" num="0020">若d<sub>t</sub>小于设定的阈值T<sub>1</sub>，则跟踪点选择成功，否则选择其他跟踪点；若d<sub>s</sub>小于设定阈值T<sub>1</sub>范围内，则备选跟踪点选择成功，否则选择其他备选跟踪点；T<sub>1</sub>是根据目标物理大小设定乘以比例系数0.1-0.3得到；</div>
+<div class="description-paragraph" id="p0024" num="0021">步骤3、计算备选跟踪点替换条件。</div>
+<div class="description-paragraph" id="p0025" num="0022">(1)计算激光打击点与跟踪点距离；</div>
+<div class="description-paragraph" id="p0026" num="0023">将物理坐标系XOY设置的激光打击点位置映射到像素坐标系uov中：</div>
+<div class="description-paragraph" id="p0027" num="0024">p<sub>d</sub>(u<sub>d</sub>,v<sub>d</sub>,1)＝H<sup>-1</sup>P<sub>d</sub>(x<sub>d</sub>,y<sub>d</sub>,1)</div>
+<div class="description-paragraph" id="p0028" num="0025">其中，p<sub>d</sub>(u<sub>d</sub>,v<sub>d</sub>,1)为uov坐标系下的打击点，P<sub>d</sub>(x<sub>d</sub>,y<sub>d</sub>,1)表示XOY坐标系下的打击点，H<sup>-1</sup>表示透视变换矩阵H的逆矩阵；</div>
+<div class="description-paragraph" id="p0029" num="0026">计算当前帧的像素坐标系uov中跟踪点p<sub>tg</sub>(u<sub>tg</sub>,v<sub>tg</sub>,1)和打击点p<sub>d</sub>(u<sub>d</sub>,v<sub>d</sub>,1)的像素坐标距离，判断是否小于设定阈值T<sub>2</sub>，则将跟踪点替换为备选跟踪点后继续跟踪；T<sub>2</sub>是根据目标像素大小设定乘以比例系数0.1-0.3得到；</div>
+<div class="description-paragraph" id="p0030" num="0027">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0031" num="0028">其中，d<sub>tg</sub>表示像素坐标系uov中跟踪点p<sub>tg</sub>与打击点p<sub>d</sub>的像素坐标距离；</div>
+<div class="description-paragraph" id="p0032" num="0029">(2)跟踪点移出视野范围；</div>
+<div class="description-paragraph" id="p0033" num="0030">设在像素坐标系uov中成像大小为宽w，高h，跟踪点的特征描述模板尺寸大小为2c，则将物理坐标系XOY中跟踪点P<sub>1</sub>(x<sub>t1</sub>,y<sub>t1</sub>)映射到像素坐标系uov中p<sub>e</sub>(u<sub>e</sub>,v<sub>e</sub>)，转换关系为：</div>
+<div class="description-paragraph" id="p0034" num="0031">p<sub>e</sub>(u<sub>e</sub>,v<sub>e</sub>,1)＝H<sup>-1</sup>P<sub>1</sub>(x<sub>t1</sub>,y<sub>t1</sub>,1)</div>
+<div class="description-paragraph" id="p0035" num="0032">如果u<sub>e</sub>&lt;c或者v<sub>e</sub>&lt;c，或者u<sub>e</sub>&gt;w-c或者v<sub>e</sub>&gt;h-c，则表示目标跟踪点移除视野范围，跟踪失败，将备选跟踪点替换跟踪点后继续跟踪；</div>
+<div class="description-paragraph" id="p0036" num="0033">步骤4、重复步骤1-3，如满足跟踪点或者备选跟踪点失效的条件，则重新选取跟踪点或备选跟踪点，直至跟踪结束。</div>
+<div class="description-paragraph" id="p0037" num="0034">进一步的，所述步骤1选取的n个物理坐标点，在4个象限内均有分布，以使得映射关系更为精准，进而后续跟踪结果跟为精准。</div>
+<div class="description-paragraph" id="p0038" num="0035">进一步的，所述步骤2选取的跟踪点和备选跟踪点在待跟踪目标的边缘、颜色和纹理丰富的区域选取，以使得跟踪结果更为精准。</div>
+<div class="description-paragraph" id="p0039" num="0036">进一步的，所述步骤2选取的跟踪点和备选跟踪点设置在不同象限内，保障跟踪点和备选跟踪点不会同时被干扰，以使得跟踪结果更为精准。</div>
+<div class="description-paragraph" id="p0040" num="0037">进一步的，所述步骤2选取的备选跟踪点至少2个，且分布于跟踪点的两个相邻象限，以使得跟踪结果更为精准。</div>
+<div class="description-paragraph" id="p0041" num="0038">在低空安全领域，现阶段由于目标识别跟踪方法一般只有一个跟踪点，使用激光系统对低空飞行器(如无人机)进行跟踪打击后产生的强光、烟雾、火光等干扰或者低空飞行器飞行过程中目标跟踪点移出视场后，都会导致跟踪失效，从而影响低空安全。本发明提出备选跟踪点的概念，即在一个跟踪点的基础上，增加选取至少1个目标点作为备选跟踪点，通过判断打击点是否与跟踪点过近、跟踪点是否达移出视场等条件，将跟踪点替换为备选跟踪点，从而达到目标跟踪过程中抗干扰的效果；并且通过构建具有映射关系的像素坐标系uov与物理坐标系XOY，辅以判断阈值T<sub>1</sub>、T<sub>2</sub>以及相应的判断方法使得跟踪点与备选跟踪点精确切换。</div>
+<div class="description-paragraph" id="p0042" num="0039">综上所述，本发明通过目标物理尺寸的先验知识，解算目标当前形态、跟踪点位置与实际目标大小的映射关系，然后根据映射关系在目标上选取至少1个目标点作为备选跟踪点，通过打击点设置的距离阈值、形变时对应的目标点是否达到移出视场的阈值，将跟踪点替换为备选跟踪点，从而达到目标跟踪时抗干扰的效果。本发明在目标跟踪点出现急剧变化(外界干扰或跟踪点丢失)的情况下仍然可以持续对低空飞行器进行跟踪，有效维护低空安全。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0043">附图说明</div>
+<div class="description-paragraph" id="p0044" num="0040">图1为现有跟踪过程中激光打击产生光雾干扰导致跟踪失败的示意图；</div>
+<div class="description-paragraph" id="p0045" num="0041">图2为现有跟踪过程中目标发生较大形变导致跟踪失败的示意图；</div>
+<div class="description-paragraph" id="p0046" num="0042">图3为本发明的流程图。</div>
+<div class="description-paragraph" id="p0047" num="0043">图4为实施例中待跟踪目标的物理目标轮廓、像素目标轮廓及其对应的坐标系。</div>
+<div class="description-paragraph" id="p0048" num="0044">图5为实施例中的跟踪点和备选跟踪点示意图。</div>
+<div class="description-paragraph" id="p0049" num="0045">图6为实施例中的跟踪点(红色点)和激光打击点(绿色点)示意图。</div>
+<div class="description-paragraph" id="p0050" num="0046">图7为实施例中跟踪点移出视野的示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0051">具体实施方式</div>
+<div class="description-paragraph" id="p0052" num="0047">下面结合附图和实施例对本发明做进一步的详细说明。</div>
+<div class="description-paragraph" id="p0053" num="0048">一种低空飞行器的抗干扰跟踪方法，如图3所示，包括以下步骤：</div>
+<div class="description-paragraph" id="p0054" num="0049">步骤1、计算像素目标与物理目标的映射关系；</div>
+<div class="description-paragraph" id="p0055" num="0050">本实施例如图4所示，a为物理目标轮廓，b为图像上提取的像素目标轮廓。对于待跟踪目标，图4c是以物理目标轮廓中心为原点，建立物理坐标系XOY，将物理目标轮廓划分为4个象限，并在4个象限内的目标轮廓上选取7个物理坐标点(如图4c中蓝色点)组成集合[(x<sub>1</sub>,y<sub>1</sub>),…,(x<sub>7</sub>,y<sub>7</sub>)]。图4d是以像素目标轮廓中心为原点，建立像素坐标系uov，并选取像素目标轮廓上的7个像素坐标点组成集合[(u<sub>1</sub>,v<sub>1</sub>),…,(u<sub>7</sub>,v<sub>7</sub>)]，此7个像素坐标点分别一一对应XOY坐标上选取的7个物理坐标点。</div>
+<div class="description-paragraph" id="p0056" num="0051">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0057" num="0052">通过两个坐标系所选的对应坐标点的集合，计算透视变换矩阵H(3*3的矩阵)，将像素坐标系uov中的目标点映射到物理坐标系XOY中，从而构建uov与XOY的映射关系。</div>
+<div class="description-paragraph" id="p0058" num="0053">步骤2、选择跟踪点和备选跟踪点。</div>
+<div class="description-paragraph" id="p0059" num="0054">选择跟踪点和备选跟踪点(如图5中红色点)，在目标的边缘、颜色、纹理等丰富的区域选取，且跟踪点和备选跟踪点不在同一象限内。设机翼与机身交汇处的红色点为跟踪点p<sub>1</sub>(u<sub>t1</sub>,v<sub>t1</sub>)，机尾处红色点为备选跟踪点p<sub>2</sub>(u<sub>s1</sub>,v<sub>s1</sub>)，通过矩阵H映射到物理坐标系XOY中分别表示为P<sub>1</sub>(x<sub>t1</sub>,y<sub>t1</sub>),P<sub>2</sub>(x<sub>s1</sub>,y<sub>s1</sub>)：</div>
+<div class="description-paragraph" id="p0060" num="0055">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0061" num="0056">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0062" num="0057">在跟踪过程中，在像素坐标系uov中计算每一帧的跟踪点和备选跟踪点映射到物理坐标系XOY中的坐标点，设有m帧连续跟踪过程，则映射的坐标点表示为：</div>
+<div class="description-paragraph" id="p0063" num="0058">(x<sub>t2</sub>,y<sub>t2</sub>),(x<sub>t3</sub>,y<sub>t3</sub>),…,(x<sub>tm</sub>,y<sub>tm</sub>)，(x<sub>s2</sub>,y<sub>s2</sub>),(x<sub>s3</sub>,y<sub>s3</sub>),…,(x<sub>sm</sub>,y<sub>sm</sub>)</div>
+<div class="description-paragraph" id="p0064" num="0059">计算每个映射点与选定第一帧映射点的距离：</div>
+<div class="description-paragraph" id="p0065" num="0060">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0066" num="0061">其中，d<sub>t</sub>表示在跟踪过程中第i帧跟踪点在物理坐标系XOY中坐标点(x<sub>ti</sub>,y<sub>ti</sub>)与跟踪第1帧跟踪点在物理坐标系XOY中坐标点(x<sub>t1</sub>,y<sub>t1</sub>)的物理距离，d<sub>s</sub>表示备选跟踪点在跟踪过程中第i帧备选跟踪点在物理坐标系XOY中坐标点(x<sub>si</sub>,y<sub>ti</sub>)与第1帧备选跟踪点在物理坐标系XOY中坐标点(x<sub>s1</sub>,y<sub>s1</sub>)的物理距离；</div>
+<div class="description-paragraph" id="p0067" num="0062">若d<sub>t</sub>小于设定的阈值T<sub>1</sub>，则跟踪点选择成功，否则选择其他跟踪点；若d<sub>s</sub>小于设定阈值T<sub>1</sub>范围内，则备选跟踪点选择成功，否则选择其他备选跟踪点；T<sub>1</sub>是根据目标物理大小设定乘以比例系数0.1-0.3得到。</div>
+<div class="description-paragraph" id="p0068" num="0063">步骤3、计算备选跟踪点替换条件。</div>
+<div class="description-paragraph" id="p0069" num="0064">(1)计算激光打击点与跟踪点距离；</div>
+<div class="description-paragraph" id="p0070" num="0065">将物理坐标系XOY设置的激光打击点(如图6中绿色点)位置映射到像素坐标系uov中：</div>
+<div class="description-paragraph" id="p0071" num="0066">p<sub>d</sub>(u<sub>d</sub>,v<sub>d</sub>,1)＝H<sup>-1</sup>P<sub>d</sub>(x<sub>d</sub>,y<sub>d</sub>,1)</div>
+<div class="description-paragraph" id="p0072" num="0067">其中，p<sub>d</sub>(u<sub>d</sub>,v<sub>d</sub>,1)为uov坐标系下的打击点，P<sub>d</sub>(x<sub>d</sub>,y<sub>d</sub>,1)表示XOY坐标系下的打击点，H<sup>-1</sup>表示透视变换矩阵H的逆矩阵。</div>
+<div class="description-paragraph" id="p0073" num="0068">计算当前帧的像素坐标系uov中跟踪点p<sub>tg</sub>(u<sub>tg</sub>,v<sub>tg</sub>,1)和打击点p<sub>d</sub>(u<sub>d</sub>,v<sub>d</sub>,1)的像素坐标距离，判断是否小于设定阈值T<sub>2</sub>(T<sub>2</sub>是根据目标像素大小设定乘以比例系数在0.1到0.3之间)，则将跟踪点替换为备选跟踪点后继续跟踪。</div>
+<div class="description-paragraph" id="p0074" num="0069">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0075" num="0070">其中，d<sub>tg</sub>表示像素坐标系uov中跟踪点p<sub>tg</sub>与打击点p<sub>d</sub>的像素坐标距离。</div>
+<div class="description-paragraph" id="p0076" num="0071">(2)跟踪点移出视野范围；</div>
+<div class="description-paragraph" id="p0077" num="0072">如图7所示，在跟踪的目标进行旋转、平移等运动过程中，跟踪点超出视野范围后，会导致目标跟踪失败。设在像素坐标系uov中成像大小为宽w，高h，跟踪点的特征描述模板尺寸大小为2c，则将物理坐标系XOY中跟踪点P<sub>t</sub>(x<sub>tt</sub>,y<sub>t1</sub>)映射到像素坐标系uov中p<sub>e</sub>(u<sub>e</sub>,v<sub>e</sub>)，转换关系为：</div>
+<div class="description-paragraph" id="p0078" num="0073">p<sub>e</sub>(u<sub>e</sub>,v<sub>e</sub>,1)＝H<sup>-1</sup>P<sub>1</sub>(x<sub>t1</sub>,y<sub>t1</sub>,1)</div>
+<div class="description-paragraph" id="p0079" num="0074">如果u<sub>e</sub>&lt;c或者v<sub>e</sub>&lt;c，或者u<sub>e</sub>&gt;w-c或者v<sub>e</sub>&gt;h-c，则表示目标跟踪点移除视野范围，跟踪失败，将备选跟踪点替换跟踪点后继续跟踪。</div>
+<div class="description-paragraph" id="p0080" num="0075">步骤4、重复1-3过程，如满足跟踪点或者备选跟踪点失效的条件，则重新选取跟踪点或选取备选跟踪点，直至跟踪结束。</div>
+<div class="description-paragraph" id="p0081" num="0076">通过以上实施例可见，本发明提出备选跟踪点的概念，通过目标物理尺寸的先验知识，解算目标当前形态、跟踪点位置与实际目标大小的映射关系，然后根据映射关系在目标上选取至少1个目标点作为备选跟踪点；通过打击点设置的距离阈值、形变时对应的目标点是否达到移出视场的阈值，将跟踪点替换为备选跟踪点，从而达到目标跟踪时强抗干扰的效果。本发明有效解决了现有激光系统对无人机跟踪，因目标跟踪点出现急剧变化(外界干扰或目标跟踪点丢失)的情况下导致跟踪失效的问题，有效维护低空安全。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

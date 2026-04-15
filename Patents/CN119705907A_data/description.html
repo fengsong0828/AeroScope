@@ -1,0 +1,224 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119705907A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES491174749">
+<invention-title id="title1" lang="ZH">一种低空飞行器分布式电池组电量动态优化管理方法和系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于飞行器技术领域，具体涉及一种低空飞行器分布式电池组电量动态优化管理方法和系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着科技的飞速发展，低空飞行器在众多领域得到了广泛应用。其不仅在救灾抢险、测绘勘察等公共服务领域发挥着关键作用，还深入到越野航拍、照明探路等民用领域，为人们的生产生活和社会发展提供了极大便利。</div>
+<div class="description-paragraph" id="p0005" num="0003">然而，在低空飞行器技术不断进步的同时，也面临着诸多挑战。在多旋转翼结构的低空飞行器中，电池包的设计与管理成为影响其性能的关键因素之一。由于电池本身的生产工艺限制，配组的单体电芯存在电性能的差异性，即均一性不一致。在使用过程中，持续的充放电循环会导致单体电芯的电压差距逐渐增大，这种不平衡严重影响了整组电池的充放电性能，进而对电池整体容量和使用寿命产生了极为不利的影响。此外，在多旋转翼结构中采用分布式电池组设计时，即便初衷是为了优化电力分配，但不同的使用工况仍会致使各电池组电量出现不一致的情况。例如，在执行不同任务或处于不同飞行姿态时，各个电机的负载差异以及环境因素的变化，都会造成电池组之间的电量失衡。这种电量不一致性直接导致了飞行器的续航时间大幅降低，巡航里程显著变小，极大地限制了低空飞行器的作业范围和应用场景。</div>
+<div class="description-paragraph" id="p0006" num="0004">目前，针对电池组的电量管理技术虽然有了一定的发展，但仍存在明显的缺陷。现有的技术大多只是针对整个电池包以及每个电池组的电芯进行均衡处理，且大多数采用的是被动均衡技术。虽然主动均衡技术理论上可以将电芯中能量高的部分泄放传递给能量低的电芯，从而有效均衡电芯间的能量差异，保证电芯的一致性，提高能量的吞吐量，但实际应用中，主动均衡电路设计极为复杂，矩阵开关的布局也相当繁琐。这不仅需要频繁地切换均衡电路，而且其可靠性难以得到有效保证，使得整个系统过于复杂，不利于精准控制。并且，由于低空飞行器系统自身的耦合性以及电池特性差异等复杂问题，对于分离式的电池包、电池组电量动态优化技术的研究和应用还相对较少，难以满足低空飞行器在实际使用过程中对电池管理日益增长的高效性和精准性需求。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">有鉴于此，本发明提出一种低空飞行器分布式电池组电量动态优化管理方法和系统，旨在针对上述现有技术中存在的电池组电池容量不一致性影响飞行器电池充放电性能，进而导致无人机续航能力差、作业范围小以及电池整体容量和使用寿命受影响等问题，通过飞控系统控制电机状态以及优化电池组电量管理方法，提升短板电池组电池容量，进而提升低空飞行器的续航里程。</div>
+<div class="description-paragraph" id="p0009" num="0006">为了实现上述目的，本发明提供的技术方案如下：</div>
+<div class="description-paragraph" id="p0010" num="0007">第一方面，本发明提供了一种低空飞行器分布式电池组电量动态优化管理方法，应用于有多组并联电池组的低空飞行器，每组电池组连接一个或多个电机，包括如下步骤：</div>
+<div class="description-paragraph" id="p0011" num="0008">获取低空飞行器在所处运行工况下电池组中各单体电池的运行参数；</div>
+<div class="description-paragraph" id="p0012" num="0009">利用运行参数计算电池组的电量状态，并根据电量状态对所处运行工况的支撑情况调整低空飞行器的运行状态，以优化电量消耗；运行状态包括电机的运行状态；</div>
+<div class="description-paragraph" id="p0013" num="0010">对于调整后的低空飞行器，根据电池组的电量状态判断电池组是否达到均衡状态，若否，则采用主动均衡策略对电池组进行电池均衡处理，以优化电池组状态。</div>
+<div class="description-paragraph" id="p0014" num="0011">进一步的，运行工况包括起飞工况；</div>
+<div class="description-paragraph" id="p0015" num="0012">在起飞工况下，利用运行参数计算电池组的电量状态，并根据电量状态对所处运行工况的支撑情况调整低空飞行器的运行状态，以优化电量消耗，包括：</div>
+<div class="description-paragraph" id="p0016" num="0013">利用电池的运行参数计算电池组的剩余电量，并根据剩余电量确定电池组当前可提供的最大功率；</div>
+<div class="description-paragraph" id="p0017" num="0014">根据低空飞行器的设计参数计算在起飞工况下，低空飞行器所需的起飞功率；</div>
+<div class="description-paragraph" id="p0018" num="0015">判断电池组当前可提供的最大功率是否大于起飞功率，若是，则允许起飞操作并按照电池组的剩余电量占比确定相关联的电机的功率分配占比；若否，则限制起飞操作。</div>
+<div class="description-paragraph" id="p0019" num="0016">进一步的，运行工况还包括巡航工况；</div>
+<div class="description-paragraph" id="p0020" num="0017">在巡航工况下，利用运行参数计算电池组的电量状态，并根据电量状态对所处运行工况的支撑情况调整低空飞行器的运行状态，以优化电量消耗，包括：</div>
+<div class="description-paragraph" id="p0021" num="0018">根据低空飞行器的飞行参数计算低空飞行器巡航所需的稳定功率；</div>
+<div class="description-paragraph" id="p0022" num="0019">利用电池的运行参数计算电池组的剩余电量；</div>
+<div class="description-paragraph" id="p0023" num="0020">根据剩余电量和稳定功率计算剩余续航时间；</div>
+<div class="description-paragraph" id="p0024" num="0021">根据剩余续航时间判断是否满足安全要求，若否，则调整低空飞行器的飞行参数，并计算新的稳定功率，直至调整后的低空飞行器的剩余续航时间满足安全要求。</div>
+<div class="description-paragraph" id="p0025" num="0022">进一步的，运行工况还包括降落工况；</div>
+<div class="description-paragraph" id="p0026" num="0023">在降落工况下，利用运行参数计算电池组的电量状态，并根据电量状态对所处运行工况的支撑情况调整低空飞行器的运行状态，以优化电量消耗，包括：</div>
+<div class="description-paragraph" id="p0027" num="0024">利用电池的运行参数计算电池组的剩余电量；</div>
+<div class="description-paragraph" id="p0028" num="0025">计算低空飞行器在降落过程中所需的辅助功率；</div>
+<div class="description-paragraph" id="p0029" num="0026">根据剩余电量和辅助功率以及降落时间判断是否满足降落需求，若否，则调整低空飞行器的飞行参数以降低电量消耗或更换降落地点。</div>
+<div class="description-paragraph" id="p0030" num="0027">进一步的，电池组的电量状态包括电池组的荷电状态和电压状态；荷电状态和电压状态分别根据修正后的电流积分值和电压积分值确定，如下：</div>
+<div class="description-paragraph" id="p0031" num="0028">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0032" num="0029">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0033" num="0030">式中，<span class="patent-image-not-available"></span>为时刻<span class="patent-image-not-available"></span>的电量，<span class="patent-image-not-available"></span>为初始电量，<span class="patent-image-not-available"></span>为从初始时刻到当前时刻<span class="patent-image-not-available"></span>所划分的时间步长数量，<span class="patent-image-not-available"></span>为误差系数，<span class="patent-image-not-available"></span>为在时间步长<span class="patent-image-not-available"></span>时测量得到的电流值，<span class="patent-image-not-available"></span>为时间步长；<span class="patent-image-not-available"></span>为时刻<span class="patent-image-not-available"></span>修正后的电压，<span class="patent-image-not-available"></span>为时刻<span class="patent-image-not-available"></span>的电压，<span class="patent-image-not-available"></span>为温度补偿系数，<span class="patent-image-not-available"></span>为时刻<span class="patent-image-not-available"></span>的放电电流，<span class="patent-image-not-available"></span>为电池内阻。</div>
+<div class="description-paragraph" id="p0034" num="0031">进一步的，根据电池组的电量状态判断电池组是否达到均衡状态，包括：</div>
+<div class="description-paragraph" id="p0035" num="0032">判断任意两个电池组的荷电状态之差和电压之差是否小于设定阈值，若是，则判断为达到均衡状态，若否，则判断两个电池组之间未达到均衡，需要按照主动均衡策略进行均衡处理。</div>
+<div class="description-paragraph" id="p0036" num="0033">进一步的，在主动均衡策略中，按照主动均衡策略进行均衡处理包括：</div>
+<div class="description-paragraph" id="p0037" num="0034">按照电池组的剩余电量由大到小选择对应的电机运行，以降低大容量电池组的电量；</div>
+<div class="description-paragraph" id="p0038" num="0035">或在电池组之间互相进行能量转换，以减小电池组之间的电量差异。</div>
+<div class="description-paragraph" id="p0039" num="0036">第二方面，本发明提供了一种低空飞行器分布式电池组电量动态优化管理系统，包括：飞控系统和电池管理系统；</div>
+<div class="description-paragraph" id="p0040" num="0037">电池管理系统中设置有多组并联电池组，飞控系统中设置有若干个电机；每组电池组连接一个或多个电机；</div>
+<div class="description-paragraph" id="p0041" num="0038">电池管理系统用于获取低空飞行器在所处运行工况下电池组中各单体电池的运行参数；还用于利用运行参数计算电池组的电量状态，并根据电量状态对所处运行工况的支撑情况，通过飞控系统调整低空飞行器的运行状态，以优化电量消耗；运行状态包括电机的运行状态；还用于对于调整后的低空飞行器，根据电池组的电量状态判断电池组是否达到均衡状态，若否，则采用主动均衡策略对电池组进行电池均衡处理，以优化电池组状态。</div>
+<div class="description-paragraph" id="p0042" num="0039">进一步的，电池组的电量状态包括电池组的荷电状态和电压状态；荷电状态和电压状态分别根据修正后的电流积分值和电压积分值确定，如下：</div>
+<div class="description-paragraph" id="p0043" num="0040">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0044" num="0041">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0045" num="0042">式中，<span class="patent-image-not-available"></span>为时刻<span class="patent-image-not-available"></span>的电量，<span class="patent-image-not-available"></span>为初始电量，<span class="patent-image-not-available"></span>为从初始时刻到当前时刻<span class="patent-image-not-available"></span>所划分的时间步长数量，<span class="patent-image-not-available"></span>为误差系数，<span class="patent-image-not-available"></span>为在时间步长<span class="patent-image-not-available"></span>时测量得到的电流值，<span class="patent-image-not-available"></span>为时间步长；<span class="patent-image-not-available"></span>为时刻<span class="patent-image-not-available"></span>修正后的电压，<span class="patent-image-not-available"></span>为时刻<span class="patent-image-not-available"></span>的电压，<span class="patent-image-not-available"></span>为温度补偿系数，<span class="patent-image-not-available"></span>为时刻<span class="patent-image-not-available"></span>的放电电流，<span class="patent-image-not-available"></span>为电池内阻。</div>
+<div class="description-paragraph" id="p0046" num="0043">进一步的，根据电池组的电量状态判断电池组是否达到均衡状态，包括：</div>
+<div class="description-paragraph" id="p0047" num="0044">判断任意两个电池组的荷电状态之差和电压之差是否小于设定阈值，若是，则判断为达到均衡状态，若否，则判断两个电池组之间未达到均衡，需要按照主动均衡策略进行均衡处理。</div>
+<div class="description-paragraph" id="p0048" num="0045">综上，本发明提供了一种低空飞行器分布式电池组电量动态优化管理方法和系统，应用于有多组并联电池组的低空飞行器，每组电池组连接一个或多个电机的情况。包括获取低空飞行器在所处运行工况下电池组中各单体电池的运行参数；利用运行参数计算电池组的电量状态，并根据电量状态对所处运行工况的支撑情况调整低空飞行器的运行状态，以优化电量消耗；运行状态包括电机的运行状态；对于调整后的低空飞行器，根据电池组的电量状态判断电池组是否达到均衡状态，若否，则采用主动均衡策略对电池组进行电池均衡处理，以优化电池组状态。本发明通过在不同运行工况下对飞行状态的调整和对电池组的主动均衡，可以解决无人机续航能力差、作业范围小以及电池整体容量和使用寿命受影响等问题。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0049">附图说明</div>
+<div class="description-paragraph" id="p0050" num="0046">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其它的附图。</div>
+<div class="description-paragraph" id="p0051" num="0047">图1为本发明实施例提供的一种低空飞行器分布式电池组电量动态优化管理方法的流程图；</div>
+<div class="description-paragraph" id="p0052" num="0048">图2为本发明实施例提供的电池组电量优化示意图；</div>
+<div class="description-paragraph" id="p0053" num="0049">图3为本发明实施例提供的巡航状态下电池组电量优化方法流程图；</div>
+<div class="description-paragraph" id="p0054" num="0050">图4为本发明实施例提供的一种低空飞行器分布式电池组电量动态优化管理系统的组成框图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0055">具体实施方式</div>
+<div class="description-paragraph" id="p0056" num="0051">为使得本发明的目的、特征、优点能够更加的明显和易懂，下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，下面所描述的实施例仅仅是本发明一部分实施例，而非全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其它实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0057" num="0052">请参阅图1，本实施例提供一种低空飞行器分布式电池组电量动态优化管理方法，应用于有多组并联电池组的低空飞行器，每组电池组连接一个或多个电机，包括如下步骤：</div>
+<div class="description-paragraph" id="p0058" num="0053">S11：获取低空飞行器在所处运行工况下电池组中各单体电池的运行参数。</div>
+<div class="description-paragraph" id="p0059" num="0054">需要说明的是，获取低空飞行器在所处运行工况下电池组中各单体电池的运行参数是整个电量动态优化管理的基础。这些运行参数包含了电池当前的各类关键信息，比如电池单体的电压、电流以及温度等。不同的运行工况（像起飞、巡航、降落等）下，电池的工作状态不同，通过收集这些参数，可以为后续准确分析电池组的电量情况以及整体性能提供数据支持。</div>
+<div class="description-paragraph" id="p0060" num="0055">S12：利用运行参数计算电池组的电量状态，并根据电量状态对所处运行工况的支撑情况调整低空飞行器的运行状态，以优化电量消耗；运行状态包括电机的运行状态。</div>
+<div class="description-paragraph" id="p0061" num="0056">需要说明的是，在获取了各单体电池的运行参数后，利用这些参数计算电池组的电量状态是核心环节之一。电量状态的准确把握对于合理控制飞行器运行至关重要，它能反映出电池组当前剩余电能的情况。然后根据电量状态对所处运行工况的支撑情况来调整低空飞行器的运行状态，目的在于优化电量消耗，确保飞行器能在不同工况下都能高效、稳定地运行，避免出现电量浪费或者因电量不足而影响飞行安全、性能等情况。把电机的运行状态纳入运行状态范畴，是因为电机是消耗电池电能的主要部件，调整电机的工作情况（如功率分配、开启关闭等）能直接影响电量的消耗速率。</div>
+<div class="description-paragraph" id="p0062" num="0057">S13：对于调整后的低空飞行器，根据电池组的电量状态判断电池组是否达到均衡状态，若否，则采用主动均衡策略对电池组进行电池均衡处理，以优化电池组状态。</div>
+<div class="description-paragraph" id="p0063" num="0058">需要说明的是，经过对飞行器运行状态的调整后，再次根据电池组的电量状态判断电池组是否达到均衡状态是保障电池组整体性能以及飞行器后续持续稳定运行的重要步骤。由于电池本身特性、使用工况等因素影响，电池组内各电池单体的电量可能会出现不均衡情况，不均衡的电池组不仅会影响电池整体的充放电性能、使用寿命，还可能导致飞行器出现动力不稳定等问题。若判断出电池组未达到均衡状态，采用主动均衡策略对电池组进行电池均衡处理，能够使各电池单体的电量趋于一致，优化电池组状态，提升电池组的整体一致性和稳定性，确保飞行器后续运行过程中电池能持续稳定地为电机等部件提供电能。</div>
+<div class="description-paragraph" id="p0064" num="0059">本实施例提供了一种低空飞行器分布式电池组电量动态优化管理方法，首先精准获取低空飞行器在不同运行工况下电池组中各单体电池的运行参数，以此为基础精确计算电池组电量状态，依据该电量状态对所处工况的支撑情况动态调整包括电机运行状态在内的低空飞行器运行状态，优化电量消耗，随后根据调整后电池组的电量状态判断是否均衡，若不均衡则实施主动均衡策略对电池组进行处理，通过这一系列步骤从精细的参数监测、精准的电量评估、灵活的飞行调控到有效的电池均衡，协同解决了现有技术中电池管理粗放、主动均衡复杂低效以及电量动态优化不足等问题，实现了对低空飞行器电池组电量的高效动态优化管理。</div>
+<div class="description-paragraph" id="p0065" num="0060">本实施例通过在不同工况下基于电池电量状态优化飞行状态，避免了不必要的电量浪费，使得电池电能能够更合理地被利用。采用主动均衡策略对电池组进行均衡处理，能及时纠正电池组内各单体电池的电量不均衡情况，避免因部分电池过度充放电等不均衡问题对电池整体容量造成损害，保证了电池在使用过程中的健康状态。同时，该管理方法从获取单体电池运行参数出发，到精准计算电量状态，再到动态调整飞行状态和进行电池均衡处理，形成了一套完善且精细的管理流程，克服了现有技术中对电池管理不够精准、高效的问题，满足了低空飞行器在实际使用过程中对电池管理日益增长的高效性和精准性需求，保障了飞行器飞行的稳定性和可靠性，提升了低空飞行器的整体性能和使用价值。</div>
+<div class="description-paragraph" id="p0066" num="0061">在一个实施例中，电池组的电量状态包括电池组的荷电状态和电压状态；荷电状态和电压状态分别根据修正后的电流积分值和电压积分值确定。电流积分值和电压积分值分别采用高精度电流积分算法和高精度电压补偿算法进行计算，步骤分别如下：</div>
+<div class="description-paragraph" id="p0067" num="0062">（1）高精度电流积分算法</div>
+<div class="description-paragraph" id="p0068" num="0063">1）电流测量</div>
+<div class="description-paragraph" id="p0069" num="0064">首先，通过高精度电流传感器对电池组的充放电电流进行实时测量。设测量得到的电流值为，其单位为安培（A），这里的<span class="patent-image-not-available"></span>表示时间。</div>
+<div class="description-paragraph" id="p0070" num="0065">例如，电流传感器的精度可以达到 ±0.1%，能够准确捕捉电流的微小变化。</div>
+<div class="description-paragraph" id="p0071" num="0066">2）积分计算</div>
+<div class="description-paragraph" id="p0072" num="0067">为了计算电池的剩余电量（SOC），需要对电流进行积分。采用离散时间积分方法，将时间间隔划分为小的步长<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0073" num="0068">在每个时间步长内，累计电流对时间的积分。设<span class="patent-image-not-available"></span>为电池的电量（单位：安时，Ah），初始电量为<span class="patent-image-not-available"></span>，则积分公式为：</div>
+<div class="description-paragraph" id="p0074" num="0069">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0075" num="0070">其中，<span class="patent-image-not-available"></span>为从初始时刻到当前时刻<span class="patent-image-not-available"></span>所划分的时间步长数量。</div>
+<div class="description-paragraph" id="p0076" num="0071">3）误差修正</div>
+<div class="description-paragraph" id="p0077" num="0072">由于电流传感器存在一定的零点漂移和测量误差，需要进行误差修正。可以定期对电池进行校准操作，例如，在电池处于静止状态且已知初始电量的情况下，测量一段时间内的电流积分值，并与实际应该保持不变的电量进行对比，从而确定误差系数<span class="patent-image-not-available"></span>。修正后的电流积分公式变为：</div>
+<div class="description-paragraph" id="p0078" num="0073">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0079" num="0074">式中，<span class="patent-image-not-available"></span>为误差系数，<span class="patent-image-not-available"></span>为在时间步长<span class="patent-image-not-available"></span>时测量得到的电流值。</div>
+<div class="description-paragraph" id="p0080" num="0075">（2）高精度电压补偿算法</div>
+<div class="description-paragraph" id="p0081" num="0076">1）电压测量</div>
+<div class="description-paragraph" id="p0082" num="0077">使用高精度电压传感器测量电池单体的端电压<span class="patent-image-not-available"></span>，精度可达到 ±0.01V。</div>
+<div class="description-paragraph" id="p0083" num="0078">2）温度补偿</div>
+<div class="description-paragraph" id="p0084" num="0079">电池的电压与温度密切相关。设电池的温度为<span class="patent-image-not-available"></span>，根据电池的温度特性曲线，得到温度对电压的影响系数<span class="patent-image-not-available"></span>。则补偿后的电压<span class="patent-image-not-available"></span>为：</div>
+<div class="description-paragraph" id="p0085" num="0080">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0086" num="0081">例如，对于锂离子电池，当温度升高时，电池的开路电压会有所下降，通过温度补偿可以更准确地反映电池的真实状态。</div>
+<div class="description-paragraph" id="p0087" num="0082">3）负载补偿</div>
+<div class="description-paragraph" id="p0088" num="0083">当电池处于放电状态时，由于电池内阻<span class="patent-image-not-available"></span>的存在，会产生电压降。设放电电流为<span class="patent-image-not-available"></span>，则负载引起的电压降为<span class="patent-image-not-available"></span>。补偿后的电压公式变为：</div>
+<div class="description-paragraph" id="p0089" num="0084">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0090" num="0085">同样，在充电过程中，也需要考虑充电电流引起的电压变化进行相应补偿。</div>
+<div class="description-paragraph" id="p0091" num="0086">在进一步的实施例中，根据电池组的电量状态判断电池组是否达到均衡状态，包括：</div>
+<div class="description-paragraph" id="p0092" num="0087">判断任意两个电池组的荷电状态之差和电压之差是否小于设定阈值，若是，则判断为达到均衡状态，若否，则判断两个电池组之间未达到均衡，需要按照主动均衡策略进行均衡处理。</div>
+<div class="description-paragraph" id="p0093" num="0088">以下分别对荷电状态之差和电压之差的判断进行介绍。</div>
+<div class="description-paragraph" id="p0094" num="0089">（1）SOC 差异判断</div>
+<div class="description-paragraph" id="p0095" num="0090">计算电池组中各个电池单体的 SOC，设第<span class="patent-image-not-available"></span>个电池单体的 SOC 为<span class="patent-image-not-available"></span>。当任意两个电池单体的 SOC 差值<span class="patent-image-not-available"></span>大于设定的阈值<span class="patent-image-not-available"></span>（例如<span class="patent-image-not-available"></span>）时，触发均衡条件。即<span class="patent-image-not-available"></span>，表示电池单体之间的 SOC 不均衡程度超出了可接受范围，需要进行均衡操作。</div>
+<div class="description-paragraph" id="p0096" num="0091">（2）除了 SOC 差异，还可以根据电池单体的电压差异来判断均衡条件。设第<span class="patent-image-not-available"></span>个电池单体的电压为<span class="patent-image-not-available"></span>，当任意两个电池单体的电压差值<span class="patent-image-not-available"></span>大于设定的电压阈值<span class="patent-image-not-available"></span>（例如<span class="patent-image-not-available"></span>）时，也触发均衡条件。即<span class="patent-image-not-available"></span>，表明电池单体之间的电压不均衡，可能会影响电池组的整体性能和寿命，需要进行均衡调整。</div>
+<div class="description-paragraph" id="p0097" num="0092">在进一步的实施例中，在主动均衡策略中，按照主动均衡策略进行均衡处理包括：按照电池组的剩余电量由大到小选择对应的电机运行，以降低大容量电池组的电量；或在电池组之间互相进行能量转换，以减小电池组之间的电量差异。</div>
+<div class="description-paragraph" id="p0098" num="0093">在进行主动均衡时，首先以一定的采样频率<span class="patent-image-not-available"></span>（例如<span class="patent-image-not-available"></span>）同时采集电池组的电流<span class="patent-image-not-available"></span>、各个电池单体的电压<span class="patent-image-not-available"></span>和温度<span class="patent-image-not-available"></span>等数据。</div>
+<div class="description-paragraph" id="p0099" num="0094">然后根据高精度电流积分算法计算电池的 SOC，根据高精度电压补偿算法对电池单体电压进行补偿。然后判断是否满足均衡条件。</div>
+<div class="description-paragraph" id="p0100" num="0095">如果满足 SOC 或电压不均衡条件，则进入均衡控制阶段；如果不满足，则继续监测电池状态，同时根据电池的 SOC 等状态信息，控制电池的充放电过程。例如，当 SOC 接近 100% 时，减少充电电流，防止过充；当 SOC 较低时，根据负载需求合理分配放电电流，以延长电池的使用寿命。</div>
+<div class="description-paragraph" id="p0101" num="0096">当触发均衡条件后，根据电池管理系统采用的均衡策略进行操作。如果是主动均衡策略，通过双向 DC - DC 变换器将电量较高的电池单体的能量转移到电量较低的电池单体。设转移的功率为<span class="patent-image-not-available"></span>，转移时间为<span class="patent-image-not-available"></span>，则转移的电量为<span class="patent-image-not-available"></span>。通过合理控制转移功率和时间，逐步缩小电池单体之间的 SOC 或电压差异。</div>
+<div class="description-paragraph" id="p0102" num="0097">如果是被动均衡策略，则在电量较高的电池单体上并联电阻，使其进行额外放电，直到电池单体之间的差异减小到阈值范围内。</div>
+<div class="description-paragraph" id="p0103" num="0098">在整个控制过程中，不断根据电池的实际运行状态进行反馈调整。例如，如果在均衡过程中发现某个电池单体的温度上升过快，可能会调整均衡策略或降低均衡功率，以确保电池组的安全运行。同时，根据电池的长期使用数据，对电流积分算法中的误差系数、电压补偿算法中的温度和负载影响系数等参数进行优化，提高电池管理系统的精度和可靠性。</div>
+<div class="description-paragraph" id="p0104" num="0099">请参阅图2，图2展示了一个电池管理系统进行电池组电量优化的示意图。其中，飞控系统（Flight Control System）位于图的最上方。飞控系统通过连接到四个电机（Motor，标记为 M）。电机（Motor）标记为 M，每个电机连接到一个电池组。电池组（Battery Pack）共有四个，分别标记为电池组 1、电池组 2、电池组 3 和电池组 4。每个电池组连接到一个矩阵开关。矩阵开关（Matrix Switch）共有四个，分别位于每个电池组的下方。每个矩阵开关连接到一个双向 DC/DC 转换器。双向 DC/DC 转换器（Bidirectional DC/DC）共有四个，分别位于每个矩阵开关的下方。这些转换器连接到直流母线（DC Bus）。电池管理系统（Battery Management System）位于图的左侧。电池管理系统连接到四个矩阵开关。以下结合图2对上述实施例的主动均衡策略进行介绍。</div>
+<div class="description-paragraph" id="p0105" num="0100">如图2所示，当电池组1和电池组4的电量最大时，可以让飞控的控制电池组1和电池组4对应的电机作为主要动力源，提供主要的能量来源，使得电池组1、2、3、4等的电池电量接近。同时，当电池管理系统也可以启动主动均衡模式，通过矩阵开关打开后，电池组1的电池通过双向DC/DC转换器，使得电池组1的电量流向电池组2，如此循环，使得电池组1、2、3、4等的电池电量一致。这个架构的主要功能是通过电池管理系统来控制和管理电池组的充放电过程，确保电机能够稳定地获得电力供应。双向 DC/DC 转换器用于在电池组和直流母线之间进行电能转换，矩阵开关则用于选择和控制电池组的连接状态。</div>
+<div class="description-paragraph" id="p0106" num="0101">在上述电池组电量优化过程中，通过自适应的电池能量分配策略，根据飞行任务的实时需求动态调整各个电池组的供能比例。例如，在飞行器执行高强度机动动作时，优先将能量分配给对机动性起关键作用的电机对应的电池组，确保飞行姿态的精准控制；而在平稳巡航阶段，则均匀分配能量或根据电池组电量差异进行智能调配，以实现整体电池系统的高效利用和电量均衡。</div>
+<div class="description-paragraph" id="p0107" num="0102">优先利用电量相对充足的电池组，避免出现部分电池组过度放电而其他电池组还有较多电量剩余的情况，有助于从整体上让各电池组电量趋于接近。在此基础上，再配合电池管理系统的主动均衡模式，利用双向 DC/DC 转换器实现电量在不同电池组间的流转，例如让电池组 1 的电量流向电池组 2 等依次循环，能更精准地确保各个电池组的电量达到高度一致。这样一来，整个电池系统的可用容量能得到更充分的利用，延长了电池组整体的续航时间，也提升了电池组的使用寿命，因为避免了因个别电池组过充、过放而导致的电池性能快速衰减问题。</div>
+<div class="description-paragraph" id="p0108" num="0103">电池管理系统与飞控系统协同发挥核心控制作用，管理电池组的充放电过程，结合矩阵开关对电池组连接状态的选择和控制以及双向 DC/DC 转换器在电池组和直流母线间的电能转换功能，使得无论在不同飞行工况下（比如起飞、巡航、降落等阶段对动力需求不同时），电机都能够稳定地获得电力供应。例如在飞行过程中，根据各电池组电量情况灵活切换主要动力源，并且通过电能转换和电量均衡调节，保证直流母线处电能的稳定输出，避免因电池组电量不均衡或电能转换不畅等问题导致电机动力输出出现波动，进而提高了飞行器飞行的安全性和可靠性。</div>
+<div class="description-paragraph" id="p0109" num="0104">根据飞行器的不同工作模式（如起飞、爬升、巡航、降落）以及能源的实时状态（如电池电量、燃油剩余量），自动、平滑地在电池和燃油发电机等能源之间进行切换，并优化两者的协同工作。例如，在起飞和爬升阶段，优先使用电池和燃油发电机共同提供强大动力，以快速提升飞行器高度；在巡航阶段，根据电池剩余电量和燃油消耗情况，合理分配两者的输出功率，以达到最佳的能源利用效率和续航里程；在降落阶段，主要依靠电池提供稳定动力，确保降落过程的安全性和精准性。</div>
+<div class="description-paragraph" id="p0110" num="0105">在进一步的实施例中，运行工况包括起飞工况；</div>
+<div class="description-paragraph" id="p0111" num="0106">在起飞工况下，利用运行参数计算电池组的电量状态，并根据电量状态对所处运行工况的支撑情况调整低空飞行器的运行状态，以优化电量消耗，包括：</div>
+<div class="description-paragraph" id="p0112" num="0107">S21：利用电池的运行参数计算电池组的剩余电量，并根据剩余电量确定电池组当前可提供的最大功率。</div>
+<div class="description-paragraph" id="p0113" num="0108">需要说明的是，起飞时，通过飞行器的飞控系统首先从电池管理系统获取电池组的当前状态信息，包括电池的剩余电量（<span class="patent-image-not-available"></span>）、各个电池单体的电压<span class="patent-image-not-available"></span>和温度<span class="patent-image-not-available"></span>等。通过高精度电流积分算法计算得到的<span class="patent-image-not-available"></span>，例如设当前<span class="patent-image-not-available"></span>。然后根据剩余电量可以确定电池组可提供的最大功率。</div>
+<div class="description-paragraph" id="p0114" num="0109">S22：根据低空飞行器的设计参数计算在起飞工况下，低空飞行器所需的起飞功率。</div>
+<div class="description-paragraph" id="p0115" num="0110">需要说明的是，根据飞行器的起飞重量<span class="patent-image-not-available"></span>、起飞所需的加速度<span class="patent-image-not-available"></span>和空气动力学参数等，计算起飞所需的功率<span class="patent-image-not-available"></span>。假设飞行器的推力与功率关系为<span class="patent-image-not-available"></span>（其中<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为重力加速度，<span class="patent-image-not-available"></span>为起飞速度）。</div>
+<div class="description-paragraph" id="p0116" num="0111">S23：判断电池组当前可提供的最大功率是否大于起飞功率，若是，则允许起飞操作并按照电池组的剩余电量占比确定相关联的电机的功率分配占比；若否，则限制起飞操作。</div>
+<div class="description-paragraph" id="p0117" num="0112">需要说明的是，通过飞行器的电池管理系统根据当前电池状态评估是否能够提供足够的功率满足起飞需求。若<span class="patent-image-not-available"></span>（<span class="patent-image-not-available"></span>为电池组可提供的最大功率，可根据电池的<span class="patent-image-not-available"></span>、电压和内阻等参数计算得出，例如<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为电池组的效率，<span class="patent-image-not-available"></span>为电池组总电压，<span class="patent-image-not-available"></span>为允许的最大放电电流），则允许起飞操作继续；否则，即调整低空飞行器的运行状态，例如飞控系统发出警告并限制起飞。</div>
+<div class="description-paragraph" id="p0118" num="0113">在起飞工况下，需要进行电池均衡与功率分配调整。即在起飞过程中，持续监测电池状态。如果电池组中存在电池单体之间的 SOC 差异<span class="patent-image-not-available"></span>或电压差异<span class="patent-image-not-available"></span>（如前面所述的均衡条件阈值），电池管理系统启动均衡操作。</div>
+<div class="description-paragraph" id="p0119" num="0114">对于主动均衡，通过双向 DC - DC 变换器调整电池单体之间的能量分布，以确保电池组整体性能稳定。同时，根据电池单体的状态，飞控系统可以调整电机的功率分配。例如，如果某个电池单体电压较低，适当降低与之关联的电机的功率分配比例<span class="patent-image-not-available"></span>，设总电机功率为<span class="patent-image-not-available"></span>，第<span class="patent-image-not-available"></span>个电机的功率<span class="patent-image-not-available"></span>，其中<span class="patent-image-not-available"></span>根据电池单体的电压、SOC 等状态进行动态调整，以保证整体飞行的安全性和稳定性。</div>
+<div class="description-paragraph" id="p0120" num="0115">在一个实施例中，运行工况还包括巡航工况；</div>
+<div class="description-paragraph" id="p0121" num="0116">在巡航工况下，利用运行参数计算电池组的电量状态，并根据电量状态对所处运行工况的支撑情况调整低空飞行器的运行状态，以优化电量消耗，包括：</div>
+<div class="description-paragraph" id="p0122" num="0117">S31：根据低空飞行器的飞行参数计算低空飞行器巡航所需的稳定功率。</div>
+<div class="description-paragraph" id="p0123" num="0118">需要说明的是，进入巡航阶段后，根据当前的飞行高度<span class="patent-image-not-available"></span>、飞行速度<span class="patent-image-not-available"></span>、空气阻力<span class="patent-image-not-available"></span>等参数计算巡航所需的稳定功率<span class="patent-image-not-available"></span>（例如<span class="patent-image-not-available"></span>）。</div>
+<div class="description-paragraph" id="p0124" num="0119">S32：利用电池的运行参数计算电池组的剩余电量。</div>
+<div class="description-paragraph" id="p0125" num="0120">需要说明的是，结合高精度电流积分算法和电压补偿算法，精确计算电池的剩余电量<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0126" num="0121">S33：根据剩余电量和稳定功率计算剩余续航时间。</div>
+<div class="description-paragraph" id="p0127" num="0122">需要说明的是，根据电池的剩余电量和巡航功率，预估剩余续航时间<span class="patent-image-not-available"></span>（其中<span class="patent-image-not-available"></span>为根据 SOC 计算得出的剩余电量，<span class="patent-image-not-available"></span>=<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为电池组的额定电量）。</div>
+<div class="description-paragraph" id="p0128" num="0123">S34：根据剩余续航时间判断是否满足安全要求，若否，则调整低空飞行器的飞行参数，并计算新的稳定功率，直至调整后的低空飞行器的剩余续航时间满足安全要求。</div>
+<div class="description-paragraph" id="p0129" num="0124">需要说明的是，如果预估续航时间低于安全阈值<span class="patent-image-not-available"></span>，飞控系统会规划返航路径或寻找合适的降落地点，并调整飞行参数，如降低飞行速度以减少功率消耗，<span class="patent-image-not-available"></span>=<span class="patent-image-not-available"></span>（<span class="patent-image-not-available"></span>根据剩余电量和安全需求计算得出），相应地重新计算<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0130" num="0125">在巡航工况下，需要进行电池状态维护与均衡策略优化。在巡航过程中，继续监测电池单体的电压和温度变化。由于巡航时负载相对稳定，更注重电池的长期健康状态维护。如果某个电池单体的温度<span class="patent-image-not-available"></span> 高于安全温度上限 <span class="patent-image-not-available"></span>，飞控系统与电池管理系统协同，调整飞行器姿态或开启散热装置，以降低电池温度。</div>
+<div class="description-paragraph" id="p0131" num="0126">对于电池均衡策略，在满足飞行功率需求的前提下，适当增加主动均衡的频率和能量转移量，以进一步缩小电池单体之间的 SOC 和电压差异，提高电池组的整体一致性和寿命。例如，增加主动均衡的功率转移量<span class="patent-image-not-available"></span>，使电池单体的 SOC 差异在巡航过程中逐渐减小，</div>
+<div class="description-paragraph" id="p0132" num="0127"> <span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0133" num="0128">在一个实施例中，运行工况还包括降落工况；</div>
+<div class="description-paragraph" id="p0134" num="0129">在降落工况下，利用运行参数计算电池组的电量状态，并根据电量状态对所处运行工况的支撑情况调整低空飞行器的运行状态，以优化电量消耗，包括：</div>
+<div class="description-paragraph" id="p0135" num="0130">S41：利用电池的运行参数计算电池组的剩余电量。</div>
+<div class="description-paragraph" id="p0136" num="0131">需要说明的是，当飞控系统接收到降落指令后，首先从电池管理系统获取电池的剩余电量<span class="patent-image-not-available"></span>和电池组的电压状态。</div>
+<div class="description-paragraph" id="p0137" num="0132">S41：计算低空飞行器在降落过程中所需的辅助功率。</div>
+<div class="description-paragraph" id="p0138" num="0133">需要说明的是，检查剩余电量是否足以支持降落过程中的各种操作，包括起落架放下、襟翼调整等辅助系统的电力需求<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0139" num="0134">S41：根据剩余电量和辅助功率以及降落时间判断是否满足降落需求，若否，则调整低空飞行器的飞行参数以降低电量消耗或更换降落地点。</div>
+<div class="description-paragraph" id="p0140" num="0135">需要说明的是，如果<span class="patent-image-not-available"></span>（<span class="patent-image-not-available"></span>为电池放电效率，<span class="patent-image-not-available"></span>为预计降落时间），则允许进行正常降落程序。否则，飞控系统会采取应急措施，如优先保障关键系统的电力供应，减少非关键系统的电力消耗，或者尝试在更近的合适地点降落。</div>
+<div class="description-paragraph" id="p0141" num="0136">在降落工况，需要考虑电池安全与故障处理。在降落过程中，密切监测电池组的状态。如果出现电池单体过放（电压低于过放阈值<span class="patent-image-not-available"></span>）或其他异常情况，飞控系统会立即采取措施，如切断与异常电池单体相关的电路，利用剩余健康电池单体完成降落操作，并在降落后对电池组进行全面检查和故障诊断。同时，记录降落过程中的电池状态数据，包括SOC、电压、温度等变化曲线，以便后续分析和优化电池管理策略，提高飞行器在不同工况下的电池使用效率和飞行安全性。</div>
+<div class="description-paragraph" id="p0142" num="0137">通过在起飞、巡航和降落等不同工况下，飞控系统与电池管理系统紧密协作，综合考虑飞行器的动力需求、电池状态和飞行安全等多方面因素，实现对飞行器的有效控制和优化运行。</div>
+<div class="description-paragraph" id="p0143" num="0138">请参阅图3，图3示出了巡航工况下电池优化管理的流程，包括以下步骤：</div>
+<div class="description-paragraph" id="p0144" num="0139">1.流程启动。</div>
+<div class="description-paragraph" id="p0145" num="0140">2.系统发送指令：</div>
+<div class="description-paragraph" id="p0146" num="0141">系统首先发送指令。</div>
+<div class="description-paragraph" id="p0147" num="0142">3.获取各电池组电量状态、电机功率状态、功率方向等：</div>
+<div class="description-paragraph" id="p0148" num="0143">系统获取各个电池组的电量状态、电机的功率状态以及功率方向等信息。</div>
+<div class="description-paragraph" id="p0149" num="0144">4.在巡航状态下，电池组是否达到均衡状态：</div>
+<div class="description-paragraph" id="p0150" num="0145">系统检查在巡航状态下，电池组是否达到均衡状态。如果达到均衡状态，则流程跳转到 “结束” 节点。如果未达到均衡状态，则继续下一步。</div>
+<div class="description-paragraph" id="p0151" num="0146">5.最大电量电池组给最小电量电池组进行充电：</div>
+<div class="description-paragraph" id="p0152" num="0147">系统让最大电量的电池组给最小电量的电池组进行充电。</div>
+<div class="description-paragraph" id="p0153" num="0148">6.最大电量电池组主要提供电机电力能量：</div>
+<div class="description-paragraph" id="p0154" num="0149">最大电量的电池组主要负责提供电机所需的电力能量。</div>
+<div class="description-paragraph" id="p0155" num="0150">7.飞控系统控制飞行器平衡：</div>
+<div class="description-paragraph" id="p0156" num="0151">飞行控制系统负责控制飞行器的平衡。</div>
+<div class="description-paragraph" id="p0157" num="0152">8.电池组是否达到均衡状态：</div>
+<div class="description-paragraph" id="p0158" num="0153">系统再次检查电池组是否达到均衡状态。如果达到均衡状态，则流程跳转到 “结束” 节点。如果未达到均衡状态，则流程返回到第 5 步，继续进行充电和平衡控制操作。</div>
+<div class="description-paragraph" id="p0159" num="0154">9.结束：</div>
+<div class="description-paragraph" id="p0160" num="0155">当电池组达到均衡状态时，流程结束。</div>
+<div class="description-paragraph" id="p0161" num="0156">常规状态下，电池管理系统发送指令获取各电池组电池电量状态，向飞控系统获得电池功率状态、功率方向等。在飞行器在巡航状态飞行时，若电池组处于不均衡状态，最大电量电池组给最小电量电池组进行充电；电池组之间SOC电量状态差异达5%以上或某一电池组SOC电量状态小于30%以下时，系统开展飞控均衡模式，在飞行过程中，通过控制电机的工况，优先使用电池组电量高的电池供电，同时，飞近系统控制飞行器的平衡。</div>
+<div class="description-paragraph" id="p0162" num="0157">请参阅图4，本发明实施例还提供了一种低空飞行器分布式电池组电量动态优化管理系统，包括：飞控系统和电池管理系统；</div>
+<div class="description-paragraph" id="p0163" num="0158">电池管理系统中设置有多组并联电池组，飞控系统中设置有若干个电机；每组电池组连接一个或多个电机；</div>
+<div class="description-paragraph" id="p0164" num="0159">电池管理系统用于获取低空飞行器在所处运行工况下电池组中各单体电池的运行参数；还用于利用运行参数计算电池组的电量状态，并根据电量状态对所处运行工况的支撑情况，通过飞控系统调整低空飞行器的运行状态，以优化电量消耗；运行状态包括电机的运行状态；还用于对于调整后的低空飞行器，根据电池组的电量状态判断电池组是否达到均衡状态，若否，则采用主动均衡策略对电池组进行电池均衡处理，以优化电池组状态。</div>
+<div class="description-paragraph" id="p0165" num="0160">进一步的，电池组的电量状态包括电池组的荷电状态和电压状态；荷电状态和电压状态分别根据修正后的电流积分值和电压积分值确定，如下：</div>
+<div class="description-paragraph" id="p0166" num="0161">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0167" num="0162">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0168" num="0163">式中，<span class="patent-image-not-available"></span>为时刻<span class="patent-image-not-available"></span>的电量，<span class="patent-image-not-available"></span>为初始电量，<span class="patent-image-not-available"></span>为从初始时刻到当前时刻<span class="patent-image-not-available"></span>所划分的时间步长数量，<span class="patent-image-not-available"></span>为误差系数，<span class="patent-image-not-available"></span>为在时间步长<span class="patent-image-not-available"></span>时测量得到的电流值，<span class="patent-image-not-available"></span>为时间步长；<span class="patent-image-not-available"></span>为时刻<span class="patent-image-not-available"></span>修正后的电压，<span class="patent-image-not-available"></span>为时刻<span class="patent-image-not-available"></span>的电压，<span class="patent-image-not-available"></span>为温度补偿系数，<span class="patent-image-not-available"></span>为时刻<span class="patent-image-not-available"></span>的放电电流，<span class="patent-image-not-available"></span>为电池内阻。</div>
+<div class="description-paragraph" id="p0169" num="0164">进一步的，根据电池组的电量状态判断电池组是否达到均衡状态，包括：</div>
+<div class="description-paragraph" id="p0170" num="0165">判断任意两个电池组的荷电状态之差和电压之差是否小于设定阈值，若是，则判断为达到均衡状态，若否，则判断两个电池组之间未达到均衡，需要按照主动均衡策略进行均衡处理。</div>
+<div class="description-paragraph" id="p0171" num="0166">进一步的，运行工况包括起飞工况；</div>
+<div class="description-paragraph" id="p0172" num="0167">在起飞工况下，利用运行参数计算电池组的电量状态，并根据电量状态对所处运行工况的支撑情况调整低空飞行器的运行状态，以优化电量消耗，包括：</div>
+<div class="description-paragraph" id="p0173" num="0168">利用电池的运行参数计算电池组的剩余电量，并根据剩余电量确定电池组当前可提供的最大功率；</div>
+<div class="description-paragraph" id="p0174" num="0169">根据低空飞行器的设计参数计算在起飞工况下，低空飞行器所需的起飞功率；</div>
+<div class="description-paragraph" id="p0175" num="0170">判断电池组当前可提供的最大功率是否大于起飞功率，若是，则允许起飞操作并按照电池组的剩余电量占比确定相关联的电机的功率分配占比；若否，则限制起飞操作。</div>
+<div class="description-paragraph" id="p0176" num="0171">进一步的，运行工况还包括巡航工况；</div>
+<div class="description-paragraph" id="p0177" num="0172">在巡航工况下，利用运行参数计算电池组的电量状态，并根据电量状态对所处运行工况的支撑情况调整低空飞行器的运行状态，以优化电量消耗，包括：</div>
+<div class="description-paragraph" id="p0178" num="0173">根据低空飞行器的飞行参数计算低空飞行器巡航所需的稳定功率；</div>
+<div class="description-paragraph" id="p0179" num="0174">利用电池的运行参数计算电池组的剩余电量；</div>
+<div class="description-paragraph" id="p0180" num="0175">根据剩余电量和稳定功率计算剩余续航时间；</div>
+<div class="description-paragraph" id="p0181" num="0176">根据剩余续航时间判断是否满足安全要求，若否，则调整低空飞行器的飞行参数，并计算新的稳定功率，直至调整后的低空飞行器的剩余续航时间满足安全要求。</div>
+<div class="description-paragraph" id="p0182" num="0177">进一步的，运行工况还包括降落工况；</div>
+<div class="description-paragraph" id="p0183" num="0178">在降落工况下，利用运行参数计算电池组的电量状态，并根据电量状态对所处运行工况的支撑情况调整低空飞行器的运行状态，以优化电量消耗，包括：</div>
+<div class="description-paragraph" id="p0184" num="0179">利用电池的运行参数计算电池组的剩余电量；</div>
+<div class="description-paragraph" id="p0185" num="0180">计算低空飞行器在降落过程中所需的辅助功率；</div>
+<div class="description-paragraph" id="p0186" num="0181">根据剩余电量和辅助功率以及降落时间判断是否满足降落需求，若否，则调整低空飞行器的飞行参数以降低电量消耗或更换降落地点。</div>
+<div class="description-paragraph" id="p0187" num="0182">以上实施例仅用以说明本发明的技术方案，而非对其限制；尽管参照前述实施例对本发明进行了详细的说明，本领域的普通技术人员应当理解：其依然可以对前述各实施例所记载的技术方案进行修改，或者对其中部分技术特征进行等同替换；而这些修改或者替换，并不使相应技术方案的本质脱离本发明各实施例技术方案的精神和范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

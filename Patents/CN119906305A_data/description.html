@@ -1,0 +1,155 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119906305A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES493670128">
+<invention-title id="title1" lang="ZH">结合气象数据的低空飞行器智能涡轮发电控制方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及飞行器能源管理技术领域，尤其涉及结合气象数据的低空飞行器智能涡轮发电控制方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空飞行器在巡航、物流运输、环境监测等领域的广泛应用，对其续航能力和能源管理的要求日益提高。传统飞行器多依赖电池或燃料驱动，而这些能源形式在复杂的气象环境中续航时间有限，且能源利用效率较低。近年来，涡轮发电技术逐渐应用于低空飞行器中，通过风能发电补充飞行器的电力需求。然而，如何根据实时气象数据和飞行任务需求，动态调整发电策略，使得飞行器在不同环境下都能高效地利用风能，成为现有技术中的一个关键挑战。</div>
+<div class="description-paragraph" id="p0005" num="0003">现有技术中，涡轮发电系统多依赖固定的气象条件判断和预设的发电模式，无法灵活应对复杂和多变的气象条件，导致了发电效率低下以及能源浪费等问题。此外，现有系统缺乏实时的反馈机制，无法根据实时变化的气象条件对发电功率进行动态调整，容易出现风速过高或不足时发电功率不匹配的情况，影响了飞行器的续航能力和运行效率。因此，迫切需要一种能够结合实时气象数据，并动态调整发电功率的智能控制方法，解决上述问题。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">基于上述目的，本发明提供了结合气象数据的低空飞行器智能涡轮发电控制方法。</div>
+<div class="description-paragraph" id="p0008" num="0005">结合气象数据的低空飞行器智能涡轮发电控制方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0009" num="0006">S1：在飞行器上部署气象传感器阵列，用于实时获取飞行器周边的风速、风向、温湿度和气压的数据，并通过无线通信技术将获取的数据传输至地面控制中心；</div>
+<div class="description-paragraph" id="p0010" num="0007">S2：地面控制中心对接收到的数据进行分析，结合历史气象数据和预设的气象模型，预测未来短时间内的气象条件；</div>
+<div class="description-paragraph" id="p0011" num="0008">S3：根据S2分析的结果，判断是否具备启动涡轮发电的条件；</div>
+<div class="description-paragraph" id="p0012" num="0009">S4：若S3中判断具备启动条件时，飞行器将根据当前的飞行任务和电力需求，选择对应的发电模式；所述发电模式包括全功率发电模式、部分功率发电模式和待机模式；</div>
+<div class="description-paragraph" id="p0013" num="0010">S5：在发电过程中，根据飞行器的实时电量、飞行速度以及气象条件的变化，动态调整涡轮的发电功率，使发电输出与飞行器的电力需求相匹配；</div>
+<div class="description-paragraph" id="p0014" num="0011">S6：飞行器持续获取气象数据，并将实时数据反馈到地面控制中心，控制中心将根据最新的气象数据调整发电策略，以应对气象条件的变化。</div>
+<div class="description-paragraph" id="p0015" num="0012">可选的，所述S1具体包括：</div>
+<div class="description-paragraph" id="p0016" num="0013">S11：所述气象传感器阵列包括风速传感器、风向传感器、温湿度传感器和气压传感器，所有传感器均布置在飞行器的外部结构表面；其中，风速传感器安装在飞行器前部机头位置；风向传感器安装在飞行器机翼的两侧；温湿度传感器安装在飞行器底部的保护罩内；气压传感器则安装在飞行器尾部上方位置；</div>
+<div class="description-paragraph" id="p0017" num="0014">S12：所述风速传感器用于实时测量飞行器周围的空气流动速度，风向传感器用于实时检测飞行器前方和侧面的风向变化，温湿度传感器用于实时测量环境温度和湿度，气压传感器用于检测飞行器所在高度的气压值；每个传感器均通过数据接口与飞行器的中央数据处理单元相连；</div>
+<div class="description-paragraph" id="p0018" num="0015">S13：所有传感器获取的数据将通过数据处理单元进行初步处理，排除由飞行器振动或气流波动引起的高频噪声和瞬时异常数据，确保气象数据的平滑性和准确性；处理后的数据通过无线通信模块传输至地面控制中心，所述无线通信模块采用基于IEEE 802.11协议的无线局域网技术，确保数据在复杂环境下的传输速率和稳定性。</div>
+<div class="description-paragraph" id="p0019" num="0016">可选的，所述S2具体包括：</div>
+<div class="description-paragraph" id="p0020" num="0017">S21：地面控制中心接收到传输的气象数据后，通过数据清洗算法对数据进行处理，去除噪声数据和异常值，确保数据的准确性；</div>
+<div class="description-paragraph" id="p0021" num="0018">S22：将清洗后的实时气象数据与历史气象数据进行比对分析，所述历史气象数据包括过去相同区域内、相同季节和气象条件下的风速、风向、温湿度及气压数据；具体比对过程使用动态时间规整算法，用于捕捉实时数据与历史数据之间的时间序列相似性；</div>
+<div class="description-paragraph" id="p0022" num="0019">S23：地面控制中心基于比对分析后的数据调用预设的气象模型，结合区域气象特点预先训练的贝叶斯网络算法，通过输入当前实时数据与历史数据的分析结果，直接预测未来短时间内的气象变化趋势，尤其针对风速和风向的变化；</div>
+<div class="description-paragraph" id="p0023" num="0020">S24：结合模型预测结果，生成未来气象条件的变化趋势图，用于后续涡轮发电启动条件的判断。</div>
+<div class="description-paragraph" id="p0024" num="0021">可选的，所述S22具体包括：</div>
+<div class="description-paragraph" id="p0025" num="0022">S221：将实时气象数据和历史气象数据分别表示为两个时间序列，并为每个时间点的数据赋值；</div>
+<div class="description-paragraph" id="p0026" num="0023">S222：计算实时气象数据序列中每个时间点与历史气象数据序列中每个时间点之间的差值，并生成一个表示两个序列之间差异的矩阵，用于确定数据之间的匹配程度；</div>
+<div class="description-paragraph" id="p0027" num="0024">S223：基于差值矩阵，构建累积差异值矩阵，通过比较不同路径的累积值，找到从第一个数据点开始到每个数据点的最小差异值，从而确定两个序列之间的最优匹配路径；</div>
+<div class="description-paragraph" id="p0028" num="0025">S224：根据累积差异值的结果，确定实时气象数据与历史气象数据在每个时间点的最佳匹配点，并构建一个包含所有匹配点的路径；</div>
+<div class="description-paragraph" id="p0029" num="0026">S225：根据最优匹配路径，计算两个时间序列之间的总差异值，总差异值用于表示两个序列之间的整体相似度。</div>
+<div class="description-paragraph" id="p0030" num="0027">可选的，所述S23具体包括：</div>
+<div class="description-paragraph" id="p0031" num="0028">S231：地面控制中心接收到实时数据与历史数据的比对分析结果后，先将数据输入到预设的贝叶斯网络模型中，所述贝叶斯网络模型是基于区域气象特点预先训练的，模型中的节点表示气象变量，包括风速、风向、温度和气压，边表示变量之间的条件概率关系；</div>
+<div class="description-paragraph" id="p0032" num="0029">S232：根据贝叶斯网络的条件概率公式，计算出当前气象条件下各个气象变量的联合概率分布；</div>
+<div class="description-paragraph" id="p0033" num="0030">S233：利用当前实时气象数据作为观测证据，更新贝叶斯网络中未观测气象变量的后验概率分布；</div>
+<div class="description-paragraph" id="p0034" num="0031">S234：根据更新后的后验概率分布，预测未来短时间内的风速和风向变化趋势，具体先提取后验概率分布中风速和风向的概率值，得到其在未来各个取值下的概率分布；然后根据概率分布，确定风速和风向的变化范围，生成未来短时间内的风速和风向预测结果。</div>
+<div class="description-paragraph" id="p0035" num="0032">可选的，所述S3具体包括：</div>
+<div class="description-paragraph" id="p0036" num="0033">S31：根据步骤S2分析的结果，提取当前的风速<span class="patent-image-not-available"></span>和风向<span class="patent-image-not-available"></span>，并将风速与预设的启动风速阈值<span class="patent-image-not-available"></span>进行比较，若当前风速<span class="patent-image-not-available"></span>，则风速满足启动条件；</div>
+<div class="description-paragraph" id="p0037" num="0034">S32：在风速条件满足的前提下，分析通过贝叶斯网络预测得到的未来短时间内的风速和风向变化趋势，若预测的未来风速仍然满足启动风速阈值<span class="patent-image-not-available"></span>，且预测风向与飞行器前进方向的夹角<span class="patent-image-not-available"></span>在允许的最大偏差角度<span class="patent-image-not-available"></span>之内，则认为未来气象条件适合启动发电；</div>
+<div class="description-paragraph" id="p0038" num="0035">S33：结合当前气象条件和预测的短期气象变化，若当前和未来风速、风向均满足发电启动条件，地面控制中心则判定具备启动涡轮发电的条件，并发出启动指令。</div>
+<div class="description-paragraph" id="p0039" num="0036">可选的，所述S4具体包括：</div>
+<div class="description-paragraph" id="p0040" num="0037">S41：在判断具备启动涡轮发电的条件后，先评估飞行器当前的飞行任务类型，包括飞行器是否处于巡航模式、低速飞行模式或悬停模式，并结合飞行器的电力需求，确定发电功率的需求等级；</div>
+<div class="description-paragraph" id="p0041" num="0038">S42：当飞行器处于高电力需求的任务状态时，选择全功率发电模式；</div>
+<div class="description-paragraph" id="p0042" num="0039">S43：若飞行任务处于中等电力需求状态，选择部分功率发电模式；</div>
+<div class="description-paragraph" id="p0043" num="0040">S44：当飞行器处于低电力需求状态或即将完成任务时，选择待机模式。</div>
+<div class="description-paragraph" id="p0044" num="0041">可选的，所述S5具体包括</div>
+<div class="description-paragraph" id="p0045" num="0042">S51：实时监测飞行器的电量状态，并计算剩余电量与任务电力需求之间的差异<span class="patent-image-not-available"></span>；若<span class="patent-image-not-available"></span>，则说明剩余电量不足，系统需要提高发电功率；若<span class="patent-image-not-available"></span>，则电量充足，系统减少发电功率；</div>
+<div class="description-paragraph" id="p0046" num="0043">S52：根据飞行速度的实时变化，评估飞行速度对电力需求的影响，当飞行速度增大时，负载功率增加，发电系统相应提高功率输出；当速度减小时，负载功率降低，发电功率也需相应减少；</div>
+<div class="description-paragraph" id="p0047" num="0044">S53：结合气象条件，包括实时风速<span class="patent-image-not-available"></span>和实时风向<span class="patent-image-not-available"></span>的变化，评估涡轮发电效率；当风速较高时，涡轮发电的功率输出提高，风速较低或风向不利时，则需要降低发电功率；</div>
+<div class="description-paragraph" id="p0048" num="0045">S54：综合电量状态<span class="patent-image-not-available"></span>、飞行速度<span class="patent-image-not-available"></span>和气象条件<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，采用反馈控制算法动态调整涡轮发电功率，使发电输出与飞行器的电力需求相匹配。</div>
+<div class="description-paragraph" id="p0049" num="0046">可选的，所述涡轮发电功率的计算公式为：<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>为涡轮发电的功率，<span class="patent-image-not-available"></span>为当前任务的基础电力需求；<span class="patent-image-not-available"></span>为剩余电量与任务电力需求的差异；<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>代表对应的控制调整系数，用于控制电量补偿和环境条件的影响；<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>为对应飞行速度和风速的影响因子；<span class="patent-image-not-available"></span>为飞行器的实时飞行速度；<span class="patent-image-not-available"></span>为风速；<span class="patent-image-not-available"></span>为风向与飞行器前进方向之间的夹角；<span class="patent-image-not-available"></span>为风向对发电效率的影响。</div>
+<div class="description-paragraph" id="p0050" num="0047">可选的，所述S6具体包括：</div>
+<div class="description-paragraph" id="p0051" num="0048">S61：飞行器通过部署的气象传感器，持续实时采集周围环境的气象数据，包括风速、风向、温湿度和气压，并将这些数据通过无线通信系统发送至地面控制中心；</div>
+<div class="description-paragraph" id="p0052" num="0049">S62：地面控制中心接收实时传输的气象数据后，对其进行数据清洗和预处理，以剔除噪声和异常数据；处理后的数据将结合历史气象数据和预设的气象模型进行分析，预测短期内气象条件的变化趋势；</div>
+<div class="description-paragraph" id="p0053" num="0050">S63：地面控制中心对当前的发电策略进行调整；当预测到风速增加且风向与飞行器前进方向有利时，控制中心会发出指令，增加发电功率；当预测到风速减弱或风向不利时，系统将降低发电功率；</div>
+<div class="description-paragraph" id="p0054" num="0051">S64：地面控制中心将调整后的发电策略通过无线通信技术反馈给飞行器，飞行器根据收到的指令，自动调节涡轮发电机的输出功率，以应对当前气象条件的变化。</div>
+<div class="description-paragraph" id="p0055" num="0052">本发明的有益效果：</div>
+<div class="description-paragraph" id="p0056" num="0053">本发明，通过结合实时气象数据分析和预测技术，能够根据风速、风向等气象条件的变化，动态调整涡轮发电的功率输出，通过实时采集和反馈气象数据，地面控制中心可以及时优化发电策略，确保在风能条件有利时提高发电效率，而在风速不足或风向不利时减少功率输出，从而有效提升飞行器的能源利用效率和续航能力。</div>
+<div class="description-paragraph" id="p0057" num="0054">本发明，通过采用了基于历史气象数据和预设模型的智能预测技术，通过对短期气象变化趋势的预判，提前做出发电策略的调整，避免了气象条件突变对发电系统的影响，这种技术手段提高了系统的响应速度和灵活性，确保飞行器能够在复杂的气象环境下稳定、高效地运行，显著改善了现有技术中存在的能源浪费和续航不足问题。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0058">附图说明</div>
+<div class="description-paragraph" id="p0059" num="0055">为了更清楚地说明本发明或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0060" num="0056">图1为本发明实施例的智能涡轮发电控制方法示意图；</div>
+<div class="description-paragraph" id="p0061" num="0057">图2为本发明实施例的选择发电模式的流程示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0062">具体实施方式</div>
+<div class="description-paragraph" id="p0063" num="0058">下面结合附图和具体实施例对本发明进行详细描述。同时在这里做以说明的是，为了使实施例更加详尽，下面的实施例为最佳、优选实施例，对于一些公知技术本领域技术人员也可采用其他替代方式而进行实施；而且附图部分仅是为了更具体的描述实施例，而并不旨在对本发明进行具体的限定。</div>
+<div class="description-paragraph" id="p0064" num="0059">需要指出的是，在说明书中提到“一个实施例”、“实施例”、“示例性实施例”、“一些实施例”等指示所述的实施例可以包括特定特征、结构或特性，但未必每个实施例都包括该特定特征、结构或特性。另外，在结合实施例描述特定特征、结构或特性时，结合其它实施例（无论是否明确描述）实现这种特征、结构或特性应在相关领域技术人员的知识范围内。</div>
+<div class="description-paragraph" id="p0065" num="0060">通常，可以至少部分从上下文中的使用来理解术语。例如，至少部分取决于上下文，本文中使用的术语“一个或多个”可以用于描述单数意义的任何特征、结构或特性，或者可以用于描述复数意义的特征、结构或特性的组合。另外，术语“基于”可以被理解为不一定旨在传达一组排他性的因素，而是可以替代地，至少部分地取决于上下文，允许存在不一定明确描述的其他因素。</div>
+<div class="description-paragraph" id="p0066" num="0061">如图1-图2所示，结合气象数据的低空飞行器智能涡轮发电控制方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0067" num="0062">S1：在飞行器上部署气象传感器阵列，用于实时获取飞行器周边的风速、风向、温湿度和气压的数据，并通过无线通信技术将获取的数据传输至地面控制中心；</div>
+<div class="description-paragraph" id="p0068" num="0063">S2：地面控制中心对接收到的数据进行分析，结合历史气象数据和预设的气象模型，预测未来短时间内的气象条件；</div>
+<div class="description-paragraph" id="p0069" num="0064">S3：根据S2分析的结果，判断是否具备启动涡轮发电的条件；</div>
+<div class="description-paragraph" id="p0070" num="0065">S4：若S3中判断具备启动条件时，飞行器将根据当前的飞行任务和电力需求，选择对应的发电模式；发电模式包括全功率发电模式、部分功率发电模式和待机模式；</div>
+<div class="description-paragraph" id="p0071" num="0066">S5：在发电过程中，根据飞行器的实时电量、飞行速度以及气象条件的变化，动态调整涡轮的发电功率，使发电输出与飞行器的电力需求相匹配；</div>
+<div class="description-paragraph" id="p0072" num="0067">S6：飞行器持续获取气象数据，并将实时数据反馈到地面控制中心，控制中心将根据最新的气象数据调整发电策略，以应对气象条件的变化。</div>
+<div class="description-paragraph" id="p0073" num="0068">S1具体包括：</div>
+<div class="description-paragraph" id="p0074" num="0069">S11：气象传感器阵列包括风速传感器、风向传感器、温湿度传感器和气压传感器，所有传感器均布置在飞行器的外部结构表面，以确保获取的数据准确反映飞行器周边的气象环境；其中，风速传感器安装在飞行器前部机头位置，以便于实时监测前方空气流动的速度；风向传感器安装在飞行器机翼的两侧，用于测量来自不同方向的风向变化，确保获取的风向数据具有全面的空间覆盖；温湿度传感器安装在飞行器底部的保护罩内，以避免受到日光直射和降水的影响；气压传感器则安装在飞行器尾部上方位置，用于精确测量飞行器当前高度的气压变化，避免因气流扰动影响测量精度；</div>
+<div class="description-paragraph" id="p0075" num="0070">S12：风速传感器用于实时测量飞行器周围的空气流动速度，风向传感器用于实时检测飞行器前方和侧面的风向变化，温湿度传感器用于实时测量环境温度和湿度，气压传感器用于检测飞行器所在高度的气压值；每个传感器均通过数据接口与飞行器的中央数据处理单元相连，确保数据采集的精度和连续性；</div>
+<div class="description-paragraph" id="p0076" num="0071">S13：所有传感器获取的数据将通过数据处理单元进行初步处理，采用卡尔曼滤波算法对数据进行过滤，排除由飞行器振动或气流波动引起的高频噪声和瞬时异常数据，确保气象数据的平滑性和准确性；处理后的数据通过无线通信模块传输至地面控制中心，无线通信模块采用基于IEEE 802.11协议的无线局域网技术，确保数据在复杂环境下的传输速率和稳定性，且具备较强的抗干扰能力；上述步骤通过将气象传感器阵列合理布局在飞行器表面，并结合高效的无线通信技术，确保了飞行器能够实时获取周边环境的精确气象数据，并快速传输至地面控制中心，有助于提升飞行器的发电效率和气象适应能力。</div>
+<div class="description-paragraph" id="p0077" num="0072">S2具体包括：</div>
+<div class="description-paragraph" id="p0078" num="0073">S21：地面控制中心接收到传输的气象数据后，通过数据清洗算法对数据进行处理，去除噪声数据和异常值，确保数据的准确性；</div>
+<div class="description-paragraph" id="p0079" num="0074">S22：将清洗后的实时气象数据与历史气象数据进行比对分析，历史气象数据包括过去相同区域内、相同季节和气象条件下的风速、风向、温湿度及气压数据；具体比对过程使用动态时间规整（DTW）算法，用于捕捉实时数据与历史数据之间的时间序列相似性；</div>
+<div class="description-paragraph" id="p0080" num="0075">S23：地面控制中心基于比对分析后的数据调用预设的气象模型，结合区域气象特点预先训练的贝叶斯网络算法，通过输入当前实时数据与历史数据的分析结果，直接预测未来短时间内的气象变化趋势，尤其针对风速和风向的变化；</div>
+<div class="description-paragraph" id="p0081" num="0076">S24：结合模型预测结果，生成未来气象条件的变化趋势图，用于后续涡轮发电启动条件的判断。</div>
+<div class="description-paragraph" id="p0082" num="0077">S22具体包括：</div>
+<div class="description-paragraph" id="p0083" num="0078">S221：将实时气象数据和历史气象数据分别表示为两个时间序列，并为每个时间点的数据赋值；</div>
+<div class="description-paragraph" id="p0084" num="0079">S222：计算实时气象数据序列中每个时间点与历史气象数据序列中每个时间点之间的差值，并生成一个表示两个序列之间差异的矩阵，用于确定数据之间的匹配程度；</div>
+<div class="description-paragraph" id="p0085" num="0080">S223：基于差值矩阵，构建累积差异值矩阵，通过比较不同路径的累积值，找到从第一个数据点开始到每个数据点的最小差异值，从而确定两个序列之间的最优匹配路径；</div>
+<div class="description-paragraph" id="p0086" num="0081">S224：根据累积差异值的结果，确定实时气象数据与历史气象数据在每个时间点的最佳匹配点，并构建一个包含所有匹配点的路径；</div>
+<div class="description-paragraph" id="p0087" num="0082">S225：根据最优匹配路径，计算两个时间序列之间的总差异值，总差异值用于表示两个序列之间的整体相似度。</div>
+<div class="description-paragraph" id="p0088" num="0083">使用动态时间规整算法进行比对分析的计算步骤如下：</div>
+<div class="description-paragraph" id="p0089" num="0084">首先，将实时气象数据和历史气象数据分别表示为两个时间序列，分别记为<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>表示实时气象数据在
+第<span class="patent-image-not-available"></span>个时间点的数据值，<span class="patent-image-not-available"></span>表示历史气象数据在第个时间点的数据值，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别为两个时
+间序列的长度；
+</div>
+<div class="description-paragraph" id="p0090" num="0085">然后，计算实时气象数据序列<span class="patent-image-not-available"></span>和历史气象数据序列<span class="patent-image-not-available"></span>之间的欧氏距离，定义距离矩阵<span class="patent-image-not-available"></span>，其中<span class="patent-image-not-available"></span>表示序列第<span class="patent-image-not-available"></span>个时间点的数据值与<span class="patent-image-not-available"></span>序列第<span class="patent-image-not-available"></span>个时间点的数据值之间的距离，计算公式为：<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>为实时气象数据序列<span class="patent-image-not-available"></span>在第<span class="patent-image-not-available"></span>个时间点的数据值，<span class="patent-image-not-available"></span>为历史气象数据序列<span class="patent-image-not-available"></span>在第<span class="patent-image-not-available"></span>个时间点的数据值，<span class="patent-image-not-available"></span>表示两个时间点之间的平方差；</div>
+<div class="description-paragraph" id="p0091" num="0086">接着，基于距离矩阵<span class="patent-image-not-available"></span>，构建累积距离矩阵<span class="patent-image-not-available"></span>，其中<span class="patent-image-not-available"></span>表示从<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>的第一个数据点到第<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>个数据点的最小累积距离，计算公式为：<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别表示累积距离矩阵在前一个位置的累积距离值；</div>
+<div class="description-paragraph" id="p0092" num="0087">随后，根据累积距离矩阵<span class="patent-image-not-available"></span>的结果，找到实时气象数据与历史气象数据之间的最优匹配路径<span class="patent-image-not-available"></span>，其中<span class="patent-image-not-available"></span>表示时间序列<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>在第<span class="patent-image-not-available"></span>和第<span class="patent-image-not-available"></span>个时间点的匹配关系；</div>
+<div class="description-paragraph" id="p0093" num="0088">最后，通过最优匹配路径和累积距离<span class="patent-image-not-available"></span>，得到实时气象数据与历史气象数据之间的相似性度量，其中<span class="patent-image-not-available"></span>为两个序列的最小累积距离，表示两者之间的总体相似性。</div>
+<div class="description-paragraph" id="p0094" num="0089">S23具体包括：</div>
+<div class="description-paragraph" id="p0095" num="0090">S231：地面控制中心接收到实时数据与历史数据的比对分析结果后，先将数据输入到预设的贝叶斯网络模型中，贝叶斯网络模型是基于区域气象特点预先训练的，模型中的节点表示气象变量，包括风速、风向、温度和气压，边表示变量之间的条件概率关系；</div>
+<div class="description-paragraph" id="p0096" num="0091">S232：根据贝叶斯网络的条件概率公式，计算出当前气象条件下各个气象变量的联合概率分布，联合概率分布的计算公式为：<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>表示所有气象变量的联合概率；<span class="patent-image-not-available"></span>表示第<span class="patent-image-not-available"></span>个气象变量；<span class="patent-image-not-available"></span>表示气象变量<span class="patent-image-not-available"></span>的父节点集合（即直接影响<span class="patent-image-not-available"></span>的气象变量）；<span class="patent-image-not-available"></span>表示在父节点条件下气象变量<span class="patent-image-not-available"></span>的条件概率；</div>
+<div class="description-paragraph" id="p0097" num="0092">S233：利用当前实时气象数据作为观测证据，更新贝叶斯网络中未观测气象变量
+的后验概率分布，更新公式为：<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>表示在观测到证据<span class="patent-image-not-available"></span>
+的条件下，气象变量<span class="patent-image-not-available"></span>的后验概率；<span class="patent-image-not-available"></span>表示需要预测的气象变量（如未来的风速<span class="patent-image-not-available"></span>和风向<span class="patent-image-not-available"></span>
+）；<span class="patent-image-not-available"></span>表示当前实时气象数据（已观测到的气象变量值）；<span class="patent-image-not-available"></span>表示在气象变量<span class="patent-image-not-available"></span>的条件
+下观测到证据<span class="patent-image-not-available"></span>的条件概率；<span class="patent-image-not-available"></span>表示气象变量<span class="patent-image-not-available"></span>的先验概率（基于历史数据计算得到）；<span class="patent-image-not-available"></span>表示观测证据<span class="patent-image-not-available"></span>的边缘概率；
+</div>
+<div class="description-paragraph" id="p0098" num="0093">S234：根据更新后的后验概率分布，预测未来短时间内的风速和风向变化趋势，具体先提取后验概率分布中风速<span class="patent-image-not-available"></span>和风向<span class="patent-image-not-available"></span>的概率值，得到其在未来各个取值下的概率分布；然后根据概率分布，确定风速和风向的变化范围，生成未来短时间内的风速和风向预测结果；通过计算贝叶斯网络的联合概率分布，并利用当前实时气象数据更新气象变量的后验概率，能够准确预测未来短时间内的风速和风向变化趋势；该方法充分利用了气象变量之间的条件依赖关系，提高了气象预测的精确度，为涡轮发电的启动和动态调节提供了可靠的数据支持，增强了飞行器在复杂气象条件下的适应能力和能源利用效率。</div>
+<div class="description-paragraph" id="p0099" num="0094">S3具体包括：</div>
+<div class="description-paragraph" id="p0100" num="0095">S31：根据步骤S2分析的结果，提取当前的风速<span class="patent-image-not-available"></span>和风向<span class="patent-image-not-available"></span>，并将风速与预设的启动风速阈值<span class="patent-image-not-available"></span>进行比较，若当前风速<span class="patent-image-not-available"></span>，则风速满足启动条件；</div>
+<div class="description-paragraph" id="p0101" num="0096">S32：在风速条件满足的前提下，分析通过贝叶斯网络预测得到的未来短时间内（如10分钟内）的风速和风向变化趋势，若预测的未来风速仍然满足启动风速阈值<span class="patent-image-not-available"></span>，且预测风向与飞行器前进方向的夹角<span class="patent-image-not-available"></span>在允许的最大偏差角度<span class="patent-image-not-available"></span>之内，则认为未来气象条件适合启动发电；</div>
+<div class="description-paragraph" id="p0102" num="0097">S33：结合当前气象条件和预测的短期气象变化，若当前和未来风速、风向均满足发电启动条件，地面控制中心则判定具备启动涡轮发电的条件，并发出启动指令；若预测结果显示未来风速或风向不稳定，则延迟启动决策；通过结合当前气象数据与未来短时间内的气象条件预测，能够更精确地判断是否具备启动涡轮发电的条件，这种方式不仅能避免由于气象条件短期波动导致的误启动，还提高了系统的响应灵活性和能源利用效率，确保在最优气象条件下进行发电操作。</div>
+<div class="description-paragraph" id="p0103" num="0098">S4具体包括：</div>
+<div class="description-paragraph" id="p0104" num="0099">S41：在判断具备启动涡轮发电的条件后，先评估飞行器当前的飞行任务类型，包括飞行器是否处于巡航模式、低速飞行模式或悬停模式，并结合飞行器的电力需求，确定发电功率的需求等级；</div>
+<div class="description-paragraph" id="p0105" num="0100">S42：当飞行器处于高电力需求的任务状态时，选择全功率发电模式；</div>
+<div class="description-paragraph" id="p0106" num="0101">S43：若飞行任务处于中等电力需求状态，选择部分功率发电模式；</div>
+<div class="description-paragraph" id="p0107" num="0102">S44：当飞行器处于低电力需求状态或即将完成任务时，选择待机模式；通过根据飞行任务和电力需求实时变化，飞行器能够在全功率、部分功率和待机模式之间动态切换，确保发电功率与实际需求相匹配，以最大化能源利用效率。</div>
+<div class="description-paragraph" id="p0108" num="0103">选择对应的发电模式的具体步骤如下：</div>
+<div class="description-paragraph" id="p0109" num="0104">首先，在步骤S3中判断具备启动涡轮发电的条件后，首先计算飞行器当前的电力需求<span class="patent-image-not-available"></span>，公式为：<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>表示飞行器基础系统（如通信、导航、控制系统）所需的基本电力，<span class="patent-image-not-available"></span>为当前飞行任务所需的电力（如推进系统或特殊设备的额外需求），<span class="patent-image-not-available"></span>为安全冗余电力，用于应对突发情况；</div>
+<div class="description-paragraph" id="p0110" num="0105">然后，根据计算出的电力需求<span class="patent-image-not-available"></span>，评估需求等级<span class="patent-image-not-available"></span>，需求等级的确定依据预设的电力需求阈值范围；具体为，</div>
+<div class="description-paragraph" id="p0111" num="0106">若 <span class="patent-image-not-available"></span>时，则需求等级<span class="patent-image-not-available"></span>为高，表示飞行器处于高负载任务状态；</div>
+<div class="description-paragraph" id="p0112" num="0107">若 <span class="patent-image-not-available"></span> 时，则需求等级<span class="patent-image-not-available"></span>为中，表示飞行器处于中等负载任务状态；</div>
+<div class="description-paragraph" id="p0113" num="0108">若<span class="patent-image-not-available"></span>，则需求等级<span class="patent-image-not-available"></span>为低，表示飞行器处于低负载或待机状态；</div>
+<div class="description-paragraph" id="p0114" num="0109">最后，根据需求等级<span class="patent-image-not-available"></span>确定发电模式：</div>
+<div class="description-paragraph" id="p0115" num="0110">当<span class="patent-image-not-available"></span>为高时，选择全功率发电模式，此时涡轮发电机将以最大功率输出，满足飞行器所有系统的电力需求；</div>
+<div class="description-paragraph" id="p0116" num="0111">当<span class="patent-image-not-available"></span>为中时，选择部分功率发电模式，发电功率按炤需求适度降低，以避免过度发电和能源浪费；</div>
+<div class="description-paragraph" id="p0117" num="0112">当<span class="patent-image-not-available"></span>为低时，选择待机模式，涡轮发电系统将进入节能状态，仅维持基础功能所需的最低电力供应。</div>
+<div class="description-paragraph" id="p0118" num="0113">S5具体包括</div>
+<div class="description-paragraph" id="p0119" num="0114">S51：实时监测飞行器的电量状态，并计算剩余电量与任务电力需求之间的差异<span class="patent-image-not-available"></span>；计算公式为：<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>表示当前任务所需的电力，<span class="patent-image-not-available"></span>表示当前电池剩余电量；若<span class="patent-image-not-available"></span>，则说明剩余电量不足，系统需要提高发电功率；若<span class="patent-image-not-available"></span>，则电量充足，系统减少发电功率；</div>
+<div class="description-paragraph" id="p0120" num="0115">S52：根据飞行速度的实时变化，评估飞行速度对电力需求的影响；飞行速度<span class="patent-image-not-available"></span>与电力需求之间的关系通过负载功率计算公式确定，当飞行速度增大时，负载功率增加，发电系统相应提高功率输出；当速度减小时，负载功率降低，发电功率也需相应减少；</div>
+<div class="description-paragraph" id="p0121" num="0116">S53：结合气象条件，包括实时风速<span class="patent-image-not-available"></span>和实时风向<span class="patent-image-not-available"></span>的变化，评估涡轮发电效率；当风速较高时，涡轮发电的功率输出提高，风速较低或风向不利时，则需要降低发电功率；涡轮发电效率<span class="patent-image-not-available"></span>根据风速和风向确定，结合这些条件调整发电功率输出；</div>
+<div class="description-paragraph" id="p0122" num="0117">S54：综合电量状态<span class="patent-image-not-available"></span>、飞行速度<span class="patent-image-not-available"></span>和气象条件<span class="patent-image-not-available"></span>,<span class="patent-image-not-available"></span>，采用反馈控制算法动态调整涡轮发电功率，使发电输出与飞行器的电力需求相匹配。</div>
+<div class="description-paragraph" id="p0123" num="0118">涡轮发电功率的计算公式为：<span class="patent-image-not-available"></span>，其中，<span class="patent-image-not-available"></span>为涡轮发电的功率，<span class="patent-image-not-available"></span>为当前任务的基础电力需求；<span class="patent-image-not-available"></span>为剩余电量与任务电力需求的差异；<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>代表对应的控制调整系数，用于控制电量补偿和环境条件的影响；<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>为对应飞行速度和风速的影响因子；<span class="patent-image-not-available"></span>为飞行器的实时飞行速度；<span class="patent-image-not-available"></span>为风速；<span class="patent-image-not-available"></span>为风向与飞行器前进方向之间的夹角；<span class="patent-image-not-available"></span>为风向对发电效率的影响，表示风向与前进方向越一致，发电效率越高；上述步骤通过结合电量状态、飞行速度和气象条件的实时变化，并利用反馈控制算法，系统能够动态调整涡轮发电的功率输出，确保发电功率与飞行器的实际电力需求精准匹配，从而提升能源利用效率，并适应不同飞行条件下的电力需求变化。</div>
+<div class="description-paragraph" id="p0124" num="0119">S6具体包括：</div>
+<div class="description-paragraph" id="p0125" num="0120">S61：飞行器通过部署的气象传感器，持续实时采集周围环境的气象数据，包括风速、风向、温湿度和气压，并将这些数据通过无线通信系统发送至地面控制中心；</div>
+<div class="description-paragraph" id="p0126" num="0121">S62：地面控制中心接收实时传输的气象数据后，对其进行数据清洗和预处理，以剔除噪声和异常数据，确保数据的有效性；处理后的数据将结合历史气象数据和预设的气象模型进行分析，预测短期内气象条件的变化趋势；</div>
+<div class="description-paragraph" id="p0127" num="0122">S63：地面控制中心对当前的发电策略进行调整；当预测到风速增加且风向与飞行器前进方向有利时，控制中心会发出指令，增加发电功率；当预测到风速减弱或风向不利时，系统将降低发电功率，确保发电系统在风能利用较低的情况下仍能稳定运行；</div>
+<div class="description-paragraph" id="p0128" num="0123">S64：地面控制中心将调整后的发电策略通过无线通信技术反馈给飞行器，飞行器根据收到的指令，自动调节涡轮发电机的输出功率，以应对当前气象条件的变化；上述步骤通过持续监测和反馈气象数据，地面控制中心能够基于实时数据动态调整发电策略，确保飞行器在各种气象条件下维持高效稳定的发电输出，这种实时调整机制增强了系统的响应能力，优化了能源利用效率，并有效延长了飞行器的续航时间。</div>
+<div class="description-paragraph" id="p0129" num="0124">本发明涵盖任何在本发明的精髓和范围上做的替代、修改、等效方法以及方案。为了使公众对本发明有彻底的了解，在以下本发明优选实施例中详细说明了具体的细节，而对本领域技术人员来说没有这些细节的描述也可以完全理解本发明。另外，为了避免对本发明的实质造成不必要的混淆，并没有详细说明众所周知的方法、过程、流程、元件和电路等。</div>
+<div class="description-paragraph" id="p0130" num="0125">以上所述仅是本发明的优选实施方式，应当指出，对于本技术领域的普通技术人员来说，在不脱离本发明原理的前提下，还可以作出若干改进和润饰，这些改进和润饰也应视为本发明的保护范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

@@ -1,0 +1,59 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN121069424A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES513703562">
+<invention-title id="title1" lang="ZH">基于北斗和ADS-B的低空飞行器监管备份容错系统及方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明主要涉及低空飞行器监管技术领域，尤其是涉及一种基于北斗和ADS-B的低空飞行器监管备份容错系统及方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">当前低空飞行器智能监管系统主要依赖北斗系统实现通信与定位，具体包括北斗3短报文芯片的RDSS双向通信、SM4加密数据传输、飞控指令交互等功能。但现有单一北斗监管模式存在监管丢失风险，具体原因是：当北斗信号受电磁干扰，或者高楼、山区的遮挡，或地面站故障时，会出现信号状态异常，导致低空飞行器位置数据丢失、指令传输中断，进而影响低空飞行器位置信息监管的连续性。</div>
+<div class="description-paragraph" id="p0005" num="0003">独立的ADS-B系统具备位置信息广播能力，并且有高精度，覆盖范围广，成本低廉的优势，但缺乏北斗的加密通信、指令下发功能，无法单独满足低空飞行器监管的安全合规性需求。</div>
+<div class="description-paragraph" id="p0006" num="0004">因此，现有技术中缺乏一种既能发挥北斗系统的加密通信、指令交互优势，又能通过ADS-B实现对低空飞行器位置信息进行备份容错，自动协同的双轨监管方案。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明所要解决的技术问题是：</div>
+<div class="description-paragraph" id="p0009">提供一种基于北斗和ADS-B的低空飞行器监管备份容错系统及方法，目的在于提高低空飞行器位置监管的可靠性。</div>
+<div class="description-paragraph" id="p0010" num="0006">本发明解决上述技术问题所采用的技术方案是：</div>
+<div class="description-paragraph" id="p0011">一方面，本发明提供一种基于北斗和ADS-B的低空飞行器监管备份容错系统，所述系统包括北斗模块，ADS-B模块，低空飞行器，北斗状态监测模块、切换控制模块、告警报文生成模块和监管平台；所述北斗模块用于监测低空飞行器位置信息，所述北斗状态监测模块用于监测北斗模块的信号状态，若北斗模块信号异常条件被触发，则告警报文生成模块生成北斗中断告警信号发送至监管平台，监管平台通过切换控制模块切换ADS-B模块进行低空飞行器位置监测。</div>
+<div class="description-paragraph" id="p0012" num="0007">另一方面，基于上述系统，本发明还提供一种基于北斗和ADS-B的低空飞行器监管备份容错方法，所述方法包括：北斗模块实时监测低空飞行器位置信息，北斗状态监测模块实时监测北斗模块的信号状态，若北斗模块信号状态异常，告警报文生成模块生成北斗中断告警信号发送至监管平台，监管平台通过切换控制模块切换至ADS-B模块进行低空飞行器位置监测；</div>
+<div class="description-paragraph" id="p0013">所述北斗模块信号状态异常包括：</div>
+<div class="description-paragraph" id="p0014">（1）北斗模块信号强度小于北斗短报文通信最低接收阈值；</div>
+<div class="description-paragraph" id="p0015">（2）北斗短报文连续m次丢失；</div>
+<div class="description-paragraph" id="p0016">（3）北斗地面站出现并发处理异常。</div>
+<div class="description-paragraph" id="p0017" num="0008">进一步的，所述m基于北斗模块通信成功率≥99.9%的验证指标反向推导获得。</div>
+<div class="description-paragraph" id="p0018" num="0009">进一步的，所述北斗地面站出现并发处理异常具体包括：地面站实时并发请求负载超过预设容量阈值10%。</div>
+<div class="description-paragraph" id="p0019" num="0010">进一步的，所述方法还包括，若北斗状态监测模块监测到北斗模块信号状态恢复正常，则监管平台通过切换控制模块切换回北斗模块进行低空飞行器位置监测，ADS-B模块转换为持续接收低空飞行器位置信息，但不向外播报状态；</div>
+<div class="description-paragraph" id="p0020">所述北斗模块信号状态恢复正常包括：北斗信号强度恢复至大于北斗短报文通信最低接收阈值，且至少连续n次成功接收到北斗短报文n大于m。</div>
+<div class="description-paragraph" id="p0021" num="0011">进一步的，所述方法还包括：北斗模块正常监测低空飞行器位置信息过程时，监管平台对比北斗模块和ADS-B模块监控的低空飞行器位置信息，若北斗模块和ADS-B模块监控的低空飞行器位置信息差异达到设定值，则监管平台通过告警报文生成模块触发误差告警信息，并通过监管平台启动北斗模块和ADS-B模块进行自检。</div>
+<div class="description-paragraph" id="p0022" num="0012">进一步的，北斗模块和ADS-B模块监控的低空飞行器位置信息差异设定值为5m.</div>
+<div class="description-paragraph" id="p0023">进一步的，所述北斗模块和ADS-B模块的切换延迟小于等于1s。</div>
+<div class="description-paragraph" id="p0024" num="0013">进一步的，所述监管平台采用NVIDIAJetsonTX2模块。</div>
+<div class="description-paragraph" id="p0025" num="0014">进一步的，所述北斗状态监测模块、切换控制模块、告警报文生成模块集成在低空飞行器控制终端中。</div>
+<div class="description-paragraph" id="p0026" num="0015">本发明的有益效果：本发明所述的基于北斗和ADS-B的低空飞行器监管备份容错系统及方法，通过设置ADS-B模块作为北斗模块对低空飞行器位置信息监测的补充设计，在北斗模块信号异常时，切换到ADS-B模块对低空飞行器进行位置监控，保证始终能够可靠的获取低空飞行器的位置信息，对低空飞行器位置进行全域监控。</div>
+</disclosure>
+<mode-for-invention>
+<div class="description-paragraph" id="p0027">具体实施方式</div>
+<div class="description-paragraph" id="p0028" num="0016">本发明解决上述技术问题所采用的技术方案核心是：设计北斗模块和ADS-B模块的双轨低空飞行器位置监测模式，以北斗模块作为主轨道对低空飞行器进行位置信息监管，以及控制指令下发，ADS-B模块作为北斗信号异常状态时低空飞行器的位置监管设备实现对低空飞行器位置监管，提升低空飞行器位置监管的可靠性。</div>
+<div class="description-paragraph" id="p0029" num="0017">本发明所述的基于北斗和ADS-B的低空飞行器监管备份容错系统包括北斗模块，ADS-B模块，低空飞行器，北斗状态监测模块、切换控制模块、告警报文生成模块和监管平台；所述北斗模块用于监测低空飞行器位置信息，所述北斗状态监测模块用于监测北斗模块的信号状态，若北斗模块信号异常条件被触发，则告警报文生成模块生成北斗中断告警信号发送至监管平台，监管平台控制切换控制模块切换至ADS-B模块进行低空飞行器位置监测。</div>
+<div class="description-paragraph" id="p0030" num="0018">具体的，上述部件的具体选型或选型要求包括：</div>
+<div class="description-paragraph" id="p0031">切换控制模块基于C语言编写触发条件判断逻辑，控制北斗模块和ADS-B模块的启停止；</div>
+<div class="description-paragraph" id="p0032">北斗模块需要支持RDSS双向通信、UID熔断固化模块；</div>
+<div class="description-paragraph" id="p0033">ADS-B模块需要支持1090ES协议，功耗1.2W，位置更新频率1Hz；</div>
+<div class="description-paragraph" id="p0034">所述监管平台采用NVIDIAJetsonTX2集群模块。</div>
+<div class="description-paragraph" id="p0035" num="0019">作为优选，所述北斗状态监测模块、切换控制模块、告警报文生成模块集成在低空飞行器的控制终端中，所述低空飞行器控制终端采用瑞芯微RK3588或全志T113-S3处理器的飞控主板。</div>
+<div class="description-paragraph" id="p0036" num="0020">基于上述系统，本发明所述的基于北斗和ADS-B的低空飞行器监管备份容错方法包括：</div>
+<div class="description-paragraph" id="p0037">北斗模块实时监测低空飞行器位置信息，北斗状态监测模块实时监测北斗模块的信号状态，若北斗模块信号状态异常，告警报文生成模块生成北斗中断告警信号发送至监管平台，监管平台基于设计的自动切换机制控制切换控制模块切换至ADS-B模块进行低空飞行器位置监测。</div>
+<div class="description-paragraph" id="p0038" num="0021">所述自动切换机制基于北斗短报文的特性进行设定，具体包括：</div>
+<div class="description-paragraph" id="p0039">（1）北斗信号强度小于北斗短报文通信最低接收阈值；例如设置北斗信号强度≤-120dBm时，从北斗模块切换至ADS-B模块进行低空飞行器位置监测。</div>
+<div class="description-paragraph" id="p0040" num="0022">（2）北斗短报文连续m次丢失时，从北斗模块切换至ADS-B模块进行低空飞行器位置监测，具体的，北斗短报文连续丢失次数m基于北斗模块通信成功率≥99.9%的验证指标反向推导获得。</div>
+<div class="description-paragraph" id="p0041" num="0023">（3）北斗地面站出现并发处理异常，所述北斗地面站出现并发处理异常具体包括：地面站实时并发请求负载超过预设容量阈值10%。</div>
+<div class="description-paragraph" id="p0042" num="0024">由于北斗模块作为低空飞行器位置信息监测的主轨道，因此，若北斗状态监测模块监测到北斗模块信息状态恢复正常，则监管平台控制切换控制模块切换至北斗模块进行低空飞行器位置监测，ADS-B模块转换为热备份状态，即持续接收低空飞行器位置信息，但不向外播报状态；</div>
+<div class="description-paragraph" id="p0043">所述北斗模块信息状态恢复正常包括：北斗信号强度恢复至大于北斗短报文通信最低接收阈值，且至少连续n次成功接收到北斗短报文，其中n大于m。</div>
+<div class="description-paragraph" id="p0044" num="0025">为了确保北斗模块和ADS-B模块数据的准确性，北斗模块正常监测低空飞行器位置信息过程时，监管平台对比北斗模块和ADS-B模块监控的低空飞行器位置信息，若北斗模块和ADS-B模块监控的低空飞行器位置信息差异达到设定值，例如北斗模块和ADS-B模块监控的低空飞行器位置信息差异达到5m，则监管平台通过告警报文生成模块触发误差告警信息，并通过监管平台启动北斗模块和ADS-B模块的进行自检。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

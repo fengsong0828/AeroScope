@@ -1,0 +1,54 @@
+{
+    "patent_id": "CN114202721A",
+    "title": "CN114202721A - 低空飞行器的检测方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Zhongke Computing Technology Innovation Research Institute",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN114202721A/zh",
+    "citations": [
+        {
+            "Publication Number": "WO2020001216A1 (zh) *",
+            "Priority Date": "2018-06-26",
+            "Publication Date": "2020-01-02",
+            "Assignee": "杭州海康威视数字技术股份有限公司",
+            "Title": "异常事件的检测",
+            "Link": "https://patents.google.com/patent/WO2020001216A1/zh"
+        },
+        {
+            "Publication Number": "CN111522228A (zh) *",
+            "Priority Date": "2019-02-02",
+            "Publication Date": "2020-08-11",
+            "Assignee": "北京京东尚科信息技术有限公司",
+            "Title": "一种飞行器的检测方法及装置",
+            "Link": "https://patents.google.com/patent/CN111522228A/zh"
+        },
+        {
+            "Publication Number": "CN112016414A (zh) *",
+            "Priority Date": "2020-08-14",
+            "Publication Date": "2020-12-01",
+            "Assignee": "熵康(深圳)科技有限公司",
+            "Title": "一种检测高空抛物事件的方法、装置及楼面智能监控系统",
+            "Link": "https://patents.google.com/patent/CN112016414A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN114998761A (zh) *",
+            "Priority Date": "2022-06-15",
+            "Publication Date": "2022-09-02",
+            "Assignee": "北京庚图科技有限公司",
+            "Title": "一种飞机目标检测方法、装置、电子设备及介质",
+            "Link": "https://patents.google.com/patent/CN114998761A/zh"
+        },
+        {
+            "Publication Number": "CN114998761B (zh) *",
+            "Priority Date": "2022-06-15",
+            "Publication Date": "2024-06-14",
+            "Assignee": "北京庚图科技有限公司",
+            "Title": "一种飞机目标检测方法、装置、电子设备及介质",
+            "Link": "https://patents.google.com/patent/CN114998761B/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:52:08"
+}

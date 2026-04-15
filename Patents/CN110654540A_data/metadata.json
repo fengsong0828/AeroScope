@@ -1,0 +1,86 @@
+{
+    "patent_id": "CN110654540A",
+    "title": "CN110654540A - 一种低空多旋翼无人飞行器系统及其控制方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "China University of Geosciences Beijing",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN110654540A/zh",
+    "citations": [
+        {
+            "Publication Number": "KR20170094045A (ko) *",
+            "Priority Date": "2016-02-05",
+            "Publication Date": "2017-08-17",
+            "Assignee": "경북대학교 산학협력단",
+            "Title": "틸트로터 기반의 멀티콥터형 스마트 드론",
+            "Link": "https://patents.google.com/patent/KR20170094045A/ko"
+        },
+        {
+            "Publication Number": "CN205738082U (zh) *",
+            "Priority Date": "2016-05-19",
+            "Publication Date": "2016-11-30",
+            "Assignee": "新野宇丰实业有限公司",
+            "Title": "一种油电混合多旋翼飞行器",
+            "Link": "https://patents.google.com/patent/CN205738082U/zh"
+        },
+        {
+            "Publication Number": "CN206042757U (zh) *",
+            "Priority Date": "2016-08-31",
+            "Publication Date": "2017-03-29",
+            "Assignee": "三峡大学",
+            "Title": "库岸边坡植被喷播、施肥、喷药、修剪、监测装置",
+            "Link": "https://patents.google.com/patent/CN206042757U/zh"
+        },
+        {
+            "Publication Number": "CN107963205A (zh) *",
+            "Priority Date": "2017-11-13",
+            "Publication Date": "2018-04-27",
+            "Assignee": "西北工业大学",
+            "Title": "一种基于多旋翼推进的跨介质航行器",
+            "Link": "https://patents.google.com/patent/CN107963205A/zh"
+        },
+        {
+            "Publication Number": "CN209410326U (zh) *",
+            "Priority Date": "2018-12-21",
+            "Publication Date": "2019-09-20",
+            "Assignee": "华南理工大学广州学院",
+            "Title": "一种旋翼飞行器",
+            "Link": "https://patents.google.com/patent/CN209410326U/zh"
+        },
+        {
+            "Publication Number": "CN110217389A (zh) *",
+            "Priority Date": "2019-06-19",
+            "Publication Date": "2019-09-10",
+            "Assignee": "中国人民解放军空军工程大学",
+            "Title": "一种矢量倾转的共轴双旋翼无人机",
+            "Link": "https://patents.google.com/patent/CN110217389A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN113946158A (zh) *",
+            "Priority Date": "2021-12-02",
+            "Publication Date": "2022-01-18",
+            "Assignee": "中国地质调查局地球物理调查中心",
+            "Title": "基于无人机组投放震源体的地震波激发系统与方法",
+            "Link": "https://patents.google.com/patent/CN113946158A/zh"
+        },
+        {
+            "Publication Number": "CN114518107A (zh) *",
+            "Priority Date": "2022-02-16",
+            "Publication Date": "2022-05-20",
+            "Assignee": "中国地质大学（北京）",
+            "Title": "一种基于无人机遥控震源的无线同步控制系统",
+            "Link": "https://patents.google.com/patent/CN114518107A/zh"
+        },
+        {
+            "Publication Number": "CN114518107B (zh) *",
+            "Priority Date": "2022-02-16",
+            "Publication Date": "2023-05-23",
+            "Assignee": "中国地质大学（北京）",
+            "Title": "一种基于无人机遥控震源的无线同步控制系统",
+            "Link": "https://patents.google.com/patent/CN114518107B/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:33:15"
+}

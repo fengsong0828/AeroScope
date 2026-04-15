@@ -1,0 +1,43 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN110262551A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES211186593">
+<invention-title lang="ZH">一种飞行器海面高、低空巡航预选高度基准切换方法</invention-title>
+<div class="description-paragraph" id="p0001" num="0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0002">本发明属于航空技术领域，涉及一种飞行器海面高、低空巡航预选高度基准切换方法。</div>
+<div class="description-paragraph" id="p0003" num="0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0004">飞行器在高空飞行时保持高度的气压高度是以标准大气为基准的，由于海洋气象环境变化快，在海面低空临近区域会出现不同的气压，飞行器将面临海面低空气压波动较大的情况，将标准大气高度作为单一高度基准或高度基准切换不合理，会使高度计算出现大幅度跳变。安装有自动驾驶仪的勘查、探测类飞行器在沿海环境执行高空巡航勘查和低空巡航抵近查看任务，需完成高空巡航向低空巡航状态切换或低空巡航向高空巡航状态切换，在利用自动驾驶仪自动进行状态切换飞行和巡航时，需设置预选高度，并向预选高度平稳飞行，提前确定预选高度的高度基准，才能使自动驾驶仪能够提前计算好巡航模式的垂直控制参数，避免出现飞机在海面低空巡航时的高度大幅度跳变。《教练机》2017年02期《一种无人机组合高度设计方法》公开了一种无人机组合高度设计方法，其方法是通过气压高度表、无线电高度表及加速度计三种测高信号的组合，来分别保证高空和低空飞行高度的平稳测量，不足之处是没有给出高、低空巡航预选高度的高度基准切换方法。</div>
+<div class="description-paragraph" id="p0005" num="0005">发明内容</div>
+<div class="description-paragraph" id="p0006" num="0006">解决的技术问题</div>
+<div class="description-paragraph" id="p0007" num="0007">本发明提供一种飞行器海面高、低空巡航预选高度基准切换方法，解决了飞行器在海面高、低空巡航状态切换时，预选高度基准不合理引起的高度误判。</div>
+<div class="description-paragraph" id="p0008" num="0008">技术方案</div>
+<div class="description-paragraph" id="p0009" num="0009">为了解决上述问题，本发明通过以下步骤实现：</div>
+<div class="description-paragraph" id="p0010" num="0010">1、通过电子飞行仪表系统(EFIS)控制板设置飞行器预选值高度数值。</div>
+<div class="description-paragraph" id="p0011" num="0011">2、EFIS判断预选高度与H<sub>K</sub>的关系，选择合适的高度基准，发送给自动驾驶仪并在显示器上显示。判断逻辑如下：</div>
+<div class="description-paragraph" id="p0012" num="0012">a)当预选高度大于H<sub>K</sub>时，使用气压高度作为基准，预选高度显示为"B XXX"和"R---"。</div>
+<div class="description-paragraph" id="p0013" num="0013">b)当预选高度小于H<sub>K</sub>，自动驾驶仪海面低空巡航模式有效时，使用无线电高度作为基准，预选高度显示为"B---"和"R XXX"。</div>
+<div class="description-paragraph" id="p0014" num="0014">c)当预选高度小于H<sub>K</sub>，自动驾驶仪海面低空巡航模式无效时，使用气压高度作为基准，预选高度显示为"B XXX"和"R---"。</div>
+<div class="description-paragraph" id="p0015" num="0015">d)自动驾驶仪海面低空巡航模式无效时，若EFIS-PFD在绝对气压高度显示模式，预选高度显示绝对高度值，并将此值发送给自动驾驶仪，若在相对气压高度显示模式，预选高度显示为相对高度值，此时发送给自动驾驶仪的预选高度数值为换算后的绝对高度值。</div>
+<div class="description-paragraph" id="p0016" num="0016">其中，H<sub>K</sub>是根据无线电高度有效精度来确定，B为气压高度标识，R为无线电高度标识，XXX在此用于替代EFIS系统发送给自动驾驶仪的预选高度数值，---表示数据无效。</div>
+<div class="description-paragraph" id="p0017" num="0017">有益技术效果</div>
+<div class="description-paragraph" id="p0018" num="0018">本发明提供了一种飞行器海面高、低空巡航预选高度基准切换方法，该方法利用不同高度基准的优势，克服将标准大气高度作为单一高度基准源，在海面低空测高精度不足的问题，提高了飞行器海面高、低空巡航的高度控制可靠性。</div>
+<div class="description-paragraph" id="p0019" num="0019">附图说明</div>
+<div class="description-paragraph" id="p0020" num="0020">图1为为预选高度的高度基准变化显示示意图。</div>
+<div class="description-paragraph" id="p0021" num="0021">具体实施方式</div>
+<div class="description-paragraph" id="p0022" num="0022">下面就具体实施步骤对本发明作进一步详细描述：</div>
+<div class="description-paragraph" id="p0023" num="0023">参见附图1所示，一种飞行器海面高、低空巡航预选高度基准切换方法，具体实现步骤如下：</div>
+<div class="description-paragraph" id="p0024" num="0024">步骤一，手动调节EFIS控制板上的预选高度旋钮，设置飞行器预选值高度数值；</div>
+<div class="description-paragraph" id="p0025" num="0025">步骤二，EFIS控制板通过RS 422数据总线将预选高度数值发送给EFIS处理机；</div>
+<div class="description-paragraph" id="p0026" num="0026">步骤三，EFIS处理机接收预选高度数值，并按如下逻辑判断预选高度与H<sub>K</sub>的关系并确定预选高度基准：</div>
+<div class="description-paragraph" id="p0027" num="0027">a)当预选高度大于H<sub>K</sub>时，使用气压高度作为基准；</div>
+<div class="description-paragraph" id="p0028" num="0028">b)当预选高度小于H<sub>K</sub>，自动驾驶仪海面低空巡航模式状态变量为“1”有效时，使用无线电高度作为基准；</div>
+<div class="description-paragraph" id="p0029" num="0029">c)当预选高度小于H<sub>K</sub>，自动驾驶仪海面低空巡航模式状态变量为“0”无效时，使用气压高度作为基准；</div>
+<div class="description-paragraph" id="p0030" num="0030">其中，H<sub>K</sub>＝1200m为切换常数。</div>
+<div class="description-paragraph" id="p0031" num="0031">步骤四，EFIS处理机通过HB 6096总线将高度基准和预选高度数值发送给自动驾驶仪和显示器，发送前预选高度数值按下述方式处理：</div>
+<div class="description-paragraph" id="p0032" num="0032">自动驾驶仪海面低空巡航模式状态变量为“0”无效时，若主飞行显示器高度显示模式为绝对气压高度模式，将预选高度绝对高度值发送给自动驾驶仪，若显示模式为相对气压高度显示模式，将预选高度相对高度数值换算为绝对高度值后，发送给自动驾驶仪和主飞行显示器。</div>
+<div class="description-paragraph" id="p0033" num="0033">步骤五,主飞行显示器接收预选高度基准和高度数值并显示，显示按下述方式：</div>
+<div class="description-paragraph" id="p0034" num="0034">a)使用气压高度作为基准时，显示“B XXX”(B为绿色，XXX为洋红色)和“R---”(R为白色，---为橙黄色)；</div>
+<div class="description-paragraph" id="p0035" num="0035">b)使用无线电高度作为基准时，显示“B---”(B为白色，---为橙黄色)和“R XXX”(R为绿色，XXX为洋红色)；</div>
+<div class="description-paragraph" id="p0036" num="0036">B为气压高度标识，R为无线电高度标识，XXX在此用于替代EFIS系统发送给自动驾驶仪的预选高度数值，---表示数据无效。</div>
+</div>
+</div>
+</section></body></html>

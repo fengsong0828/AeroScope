@@ -1,0 +1,110 @@
+{
+    "patent_id": "CN111028547A",
+    "title": "CN111028547A - 一种低空飞行器编队局部通信失效时的解决方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "CETC 28 Research Institute",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN111028547A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN102147255A (zh) *",
+            "Priority Date": "2011-01-12",
+            "Publication Date": "2011-08-10",
+            "Assignee": "北京航空航天大学",
+            "Title": "一种威胁信息共享环境下的无人机群实时航路规划方法",
+            "Link": "https://patents.google.com/patent/CN102147255A/zh"
+        },
+        {
+            "Publication Number": "CN102651162A (zh) *",
+            "Priority Date": "2011-02-28",
+            "Publication Date": "2012-08-29",
+            "Assignee": "波音公司",
+            "Title": "用于空中交通工具的替代性通信",
+            "Link": "https://patents.google.com/patent/CN102651162A/zh"
+        },
+        {
+            "Publication Number": "JP2015200925A (ja) *",
+            "Priority Date": "2014-04-04",
+            "Publication Date": "2015-11-12",
+            "Assignee": "株式会社Ihi",
+            "Title": "自律航走体の制御システム",
+            "Link": "https://patents.google.com/patent/JP2015200925A/ja"
+        },
+        {
+            "Publication Number": "CN106843269A (zh) *",
+            "Priority Date": "2017-01-22",
+            "Publication Date": "2017-06-13",
+            "Assignee": "北京航空航天大学",
+            "Title": "一种基于小型鸟类集群飞行机制的无人机编队方法",
+            "Link": "https://patents.google.com/patent/CN106843269A/zh"
+        },
+        {
+            "Publication Number": "CN108124471A (zh) *",
+            "Priority Date": "2017-12-11",
+            "Publication Date": "2018-06-05",
+            "Assignee": "深圳市道通智能航空技术有限公司",
+            "Title": "无人飞行器返航方法、装置、存储介质和无人飞行器",
+            "Link": "https://patents.google.com/patent/CN108124471A/zh"
+        },
+        {
+            "Publication Number": "CN108260092A (zh) *",
+            "Priority Date": "2018-03-21",
+            "Publication Date": "2018-07-06",
+            "Assignee": "钱子宇",
+            "Title": "一种蜂群无人机系统",
+            "Link": "https://patents.google.com/patent/CN108260092A/zh"
+        },
+        {
+            "Publication Number": "CN110324788A (zh) *",
+            "Priority Date": "2019-07-04",
+            "Publication Date": "2019-10-11",
+            "Assignee": "河南牧业经济学院",
+            "Title": "基于航迹的航空自组网分簇方法及计算机可读存储介质",
+            "Link": "https://patents.google.com/patent/CN110324788A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN112291810A (zh) *",
+            "Priority Date": "2020-11-02",
+            "Publication Date": "2021-01-29",
+            "Assignee": "北京邮电大学",
+            "Title": "无人机网络的网络分裂检测方法和装置",
+            "Link": "https://patents.google.com/patent/CN112291810A/zh"
+        },
+        {
+            "Publication Number": "CN112291810B (zh) *",
+            "Priority Date": "2020-11-02",
+            "Publication Date": "2022-02-08",
+            "Assignee": "北京邮电大学",
+            "Title": "无人机网络的网络分裂检测方法和装置",
+            "Link": "https://patents.google.com/patent/CN112291810B/zh"
+        },
+        {
+            "Publication Number": "CN116860001A (zh) *",
+            "Priority Date": "2023-07-31",
+            "Publication Date": "2023-10-10",
+            "Assignee": "烟台海上航天科技有限公司",
+            "Title": "基于通信丢失的无人机编队避障方法及系统",
+            "Link": "https://patents.google.com/patent/CN116860001A/zh"
+        },
+        {
+            "Publication Number": "CN116954266A (zh) *",
+            "Priority Date": "2023-09-21",
+            "Publication Date": "2023-10-27",
+            "Assignee": "北京航空航天大学",
+            "Title": "一种通信约束的无人机编队鲁棒控制方法及系统",
+            "Link": "https://patents.google.com/patent/CN116954266A/zh"
+        },
+        {
+            "Publication Number": "CN116954266B (zh) *",
+            "Priority Date": "2023-09-21",
+            "Publication Date": "2023-12-08",
+            "Assignee": "北京航空航天大学",
+            "Title": "一种通信约束的无人机编队鲁棒控制方法及系统",
+            "Link": "https://patents.google.com/patent/CN116954266B/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:35:49"
+}

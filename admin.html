@@ -1125,10 +1125,13 @@
                     listFields: [{key:'name',label:'名称',type:'text'}, {key:'industry_chain',label:'产业链',type:'text'}, {key:'is_listed',label:'上市',type:'boolean'}],
                     editFields: [
                         {key:'name',label:'公司名',type:'text'}, 
+                        {key:'name_en',label:'英文名',type:'text'},
                         {key:'logo_url',label:'公司 Logo',type:'image'},
                         {key:'industry_chain',label:'产业链',type:'select',options:['upstream','midstream','downstream']},
                         {key:'primary_category',label:'赛道',type:'select',options:['eVTOL','Drone','FlyingCar','Battery','Avionics','Service']},
                         {key:'description',label:'简介',type:'textarea'},
+                        {key:'location',label:'总部地点',type:'text'},
+                        {key:'founded_year',label:'成立年份',type:'text'},
                         {key:'tags',label:'标签',type:'array'},
                         {key:'total_funding_est_usd',label:'融资额(M)',type:'number'},
                         {key:'is_listed',label:'上市',type:'boolean'},
@@ -1149,8 +1152,8 @@
                         {key:'spec_range_km',label:'航程 (km)',type:'text'},
                         {key:'spec_speed_kmh',label:'速度 (km/h)',type:'text'},
                         {key:'spec_payload_kg',label:'载重 (kg)',type:'text'},
-                        {key:'spec_propulsion',label:'动力类型',type:'text'},
-                        {key:'spec_piloting',label:'驾驶模式',type:'text'},
+                        {key:'spec_propulsion',label:'动力类型',type:'select',options:['Electric','Hybrid','Hydrogen','Fuel']},
+                        {key:'spec_piloting',label:'驾驶模式',type:'select',options:['Autonomous','Piloted','Remote']},
                         {key:'certification_status',label:'状态',type:'select',options:['Concept','Prototype','Testing','Certified']},
                         {key:'draft',label:'草稿',type:'boolean'}
                     ]
@@ -1174,7 +1177,9 @@
                     editFields: [
                         {key:'title',label:'标题',type:'text'},
                         {key:'author',label:'作者',type:'text'},
+                        {key:'publish_date',label:'发布日期',type:'date'},
                         {key:'image_url',label:'封面图',type:'image'},
+                        {key:'file_url',label:'报告文件(PDF)',type:'file'},
                         {key:'summary',label:'摘要',type:'textarea'},
                         {key:'content',label:'正文',type:'textarea'},
                         {key:'is_pro_only',label:'Pro专享',type:'boolean'},
@@ -1189,12 +1194,24 @@
                 'investors': {
                     title: '投资方',
                     listFields: [{key:'name',label:'名称'}, {key:'type',label:'类型'}],
-                    editFields: [{key:'name',label:'名称',type:'text'}, {key:'type',label:'类型',type:'text'}, {key:'total_amount',label:'总额',type:'number'}]
+                    editFields: [
+                        {key:'name',label:'名称',type:'text'}, 
+                        {key:'type',label:'类型',type:'select',options:['VC','PE','CVC','Angel_Investor','Government','Accelerator','Family_Office','Bank']}, 
+                        {key:'total_amount',label:'总额',type:'number'},
+                        {key:'draft',label:'草稿',type:'boolean'}
+                    ]
                 },
                 'funding_events': {
                     title: '融资事件',
                     listFields: [{key:'company_name',label:'公司'}, {key:'funding_round',label:'轮次'}, {key:'funding_amount',label:'金额'}],
-                    editFields: [{key:'company_name',label:'公司',type:'text'}, {key:'funding_amount',label:'金额',type:'number'}]
+                    editFields: [
+                        {key:'company_name',label:'公司',type:'text'}, 
+                        {key:'funding_round',label:'轮次',type:'select',options:['Seed','Angel','Pre-A','Series A','Series B','Series C','Series D','Pre-IPO','IPO','Strategic','M&A']},
+                        {key:'funding_date',label:'日期',type:'date'},
+                        {key:'funding_amount',label:'金额(M)',type:'number'},
+                        {key:'currency',label:'币种',type:'select',options:['USD','CNY','EUR']},
+                        {key:'draft',label:'草稿',type:'boolean'}
+                    ]
                 },
                 'cooperation_leads': {
                     title: '线索',

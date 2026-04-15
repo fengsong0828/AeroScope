@@ -1,0 +1,46 @@
+{
+    "patent_id": "CN119379009A",
+    "title": "CN119379009A - 一种低空飞行器全方位监管系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Qixing Communication Technology Anhui Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119379009A/zh",
+    "citations": [
+        {
+            "Publication Number": "US20160140851A1 (en) *",
+            "Priority Date": "2014-11-18",
+            "Publication Date": "2016-05-19",
+            "Assignee": "Ziv LEVY",
+            "Title": "Systems and methods for drone navigation",
+            "Link": "https://patents.google.com/patent/US20160140851A1/en"
+        },
+        {
+            "Publication Number": "CN113870623A (zh) *",
+            "Priority Date": "2021-10-18",
+            "Publication Date": "2021-12-31",
+            "Assignee": "南京航空航天大学",
+            "Title": "一种空中交通服务安全性快速实时检测系统及方法",
+            "Link": "https://patents.google.com/patent/CN113870623A/zh"
+        },
+        {
+            "Publication Number": "CN118915817A (zh) *",
+            "Priority Date": "2024-07-16",
+            "Publication Date": "2024-11-08",
+            "Assignee": "上海辅雅智能技术有限公司",
+            "Title": "一种无人机编队航线自动规划系统及方法",
+            "Link": "https://patents.google.com/patent/CN118915817A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN119782846A (zh) *",
+            "Priority Date": "2025-03-07",
+            "Publication Date": "2025-04-08",
+            "Assignee": "北方天途航空技术发展（北京）有限公司",
+            "Title": "基于云控平台的无人机锁定监控方法及系统",
+            "Link": "https://patents.google.com/patent/CN119782846A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:40:01"
+}

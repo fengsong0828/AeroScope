@@ -1,0 +1,142 @@
+{
+    "patent_id": "CN108168706A",
+    "title": "CN108168706A - 一种监测低空无人飞行器的多谱红外成像检测跟踪系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Henan University of Technology",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN108168706A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN101252677A (zh) *",
+            "Priority Date": "2007-10-19",
+            "Publication Date": "2008-08-27",
+            "Assignee": "西安交通大学",
+            "Title": "一种基于多光谱图像传感器的目标跟踪方法",
+            "Link": "https://patents.google.com/patent/CN101252677A/zh"
+        },
+        {
+            "Publication Number": "GB2537122A (en) *",
+            "Priority Date": "2015-04-07",
+            "Publication Date": "2016-10-12",
+            "Assignee": "James Tansley John",
+            "Title": "Automated drone package receiver module",
+            "Link": "https://patents.google.com/patent/GB2537122A/en"
+        },
+        {
+            "Publication Number": "CN107219520A (zh) *",
+            "Priority Date": "2017-05-31",
+            "Publication Date": "2017-09-29",
+            "Assignee": "成都新越科技有限公司",
+            "Title": "一种反无人机分布式组网探测方法及其装置",
+            "Link": "https://patents.google.com/patent/CN107219520A/zh"
+        },
+        {
+            "Publication Number": "CN107392173A (zh) *",
+            "Priority Date": "2017-08-04",
+            "Publication Date": "2017-11-24",
+            "Assignee": "成都云擎科技有限公司",
+            "Title": "一种基于光电搜索的反无人机系统",
+            "Link": "https://patents.google.com/patent/CN107392173A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN108981928A (zh) *",
+            "Priority Date": "2018-10-19",
+            "Publication Date": "2018-12-11",
+            "Assignee": "深圳聚瑞华实业有限公司",
+            "Title": "一种红外线体温计",
+            "Link": "https://patents.google.com/patent/CN108981928A/zh"
+        },
+        {
+            "Publication Number": "CN110031802A (zh) *",
+            "Priority Date": "2019-04-04",
+            "Publication Date": "2019-07-19",
+            "Assignee": "中国科学院数学与系统科学研究院",
+            "Title": "具有未知量测零偏的双红外传感器的融合定位方法",
+            "Link": "https://patents.google.com/patent/CN110031802A/zh"
+        },
+        {
+            "Publication Number": "CN110031802B (zh) *",
+            "Priority Date": "2019-04-04",
+            "Publication Date": "2020-10-09",
+            "Assignee": "中国科学院数学与系统科学研究院",
+            "Title": "具有未知量测零偏的双红外传感器的融合定位方法",
+            "Link": "https://patents.google.com/patent/CN110031802B/zh"
+        },
+        {
+            "Publication Number": "CN110244756A (zh) *",
+            "Priority Date": "2019-04-29",
+            "Publication Date": "2019-09-17",
+            "Assignee": "福州大学",
+            "Title": "无人机快速追踪协同避障方法",
+            "Link": "https://patents.google.com/patent/CN110244756A/zh"
+        },
+        {
+            "Publication Number": "CN110244756B (zh) *",
+            "Priority Date": "2019-04-29",
+            "Publication Date": "2021-09-24",
+            "Assignee": "福州大学",
+            "Title": "无人机快速追踪协同避障方法",
+            "Link": "https://patents.google.com/patent/CN110244756B/zh"
+        },
+        {
+            "Publication Number": "WO2021078663A1 (en) *",
+            "Priority Date": "2019-10-23",
+            "Publication Date": "2021-04-29",
+            "Assignee": "Airbus Operations Limited",
+            "Title": "Aerial vehicle detection",
+            "Link": "https://patents.google.com/patent/WO2021078663A1/en"
+        },
+        {
+            "Publication Number": "GB2588893A (en) *",
+            "Priority Date": "2019-10-23",
+            "Publication Date": "2021-05-19",
+            "Assignee": "Airbus Operations Ltd",
+            "Title": "Aerial vehicle detection",
+            "Link": "https://patents.google.com/patent/GB2588893A/en"
+        },
+        {
+            "Publication Number": "RU201367U1 (ru) *",
+            "Priority Date": "2020-07-28",
+            "Publication Date": "2020-12-11",
+            "Assignee": "Акционерное общество Научно-производственный центр «Электронные вычислительно-информационные системы» (АО НПЦ «ЭЛВИС»)",
+            "Title": "Система детектирования беспилотных летальных аппаратов (бпла)",
+            "Link": "https://patents.google.com/patent/RU201367U1/ru"
+        },
+        {
+            "Publication Number": "RU2746394C1 (ru) *",
+            "Priority Date": "2020-07-28",
+            "Publication Date": "2021-04-13",
+            "Assignee": "Акционерное общество Научно-производственный центр \"Электронные вычислительно-информационные системы\" (АО НПЦ \"ЭЛВИС\")",
+            "Title": "Система и способ детектирования беспилотных летальных аппаратов (бпла)",
+            "Link": "https://patents.google.com/patent/RU2746394C1/ru"
+        },
+        {
+            "Publication Number": "CN113489945A (zh) *",
+            "Priority Date": "2020-12-18",
+            "Publication Date": "2021-10-08",
+            "Assignee": "深圳市卫飞科技有限公司",
+            "Title": "一种目标定位方法、装置、系统及计算机可读存储介质",
+            "Link": "https://patents.google.com/patent/CN113489945A/zh"
+        },
+        {
+            "Publication Number": "RU2758881C1 (ru) *",
+            "Priority Date": "2020-12-30",
+            "Publication Date": "2021-11-02",
+            "Assignee": "Федеральное казённое учреждение \"войсковая часть 36360\"",
+            "Title": "Тепловизионный способ обнаружения беспилотного летательного аппарата типа \"мультикоптер\"",
+            "Link": "https://patents.google.com/patent/RU2758881C1/ru"
+        },
+        {
+            "Publication Number": "CN119299809A (zh) *",
+            "Priority Date": "2024-09-30",
+            "Publication Date": "2025-01-10",
+            "Assignee": "北京空间机电研究所",
+            "Title": "一种超远距离可见红外多目标生态监测系统",
+            "Link": "https://patents.google.com/patent/CN119299809A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:23:38"
+}

@@ -1,0 +1,89 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN107843260A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES357460631">
+<invention-title id="tilte1" lang="ZH">一种基于电磁指纹信息的低空无人飞行器定位导航方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001" num="0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0002">本发明涉及一种无人飞行器定位导航方法，尤其是涉及一种基于电磁指纹信息的低空无人飞行器定位导航方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003" num="0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0004">常见的无人飞行器的导航方式有惯性导航、无线电导航、卫星导航、组合导航等，但目前应用基本上是以惯性导航系统和全球卫星定位系统组合导航为主。全球卫星导航系统(GNSS)是近年来发展最为迅速的一种导航方法，它依靠发射一系列卫星进行导航。卫星导航所使用的系统要包括美国的GPS、欧洲的民用GALILEO、俄罗斯的GLONASS以及中国的北斗卫星定位系统，其中GPS应用最为广泛。</div>
+<div class="description-paragraph" id="p0005" num="0005">卫星导航系统主要由空间卫星部分、地面监控部分、用户接收处理部分组成，具有全球、全天候、自动化、高效益的特点。其定位方式主要采用时间测距导航定位法，即用户通过接收不在同一平面的4颗卫星(为保证结果唯一，4颗卫星不能在同一平面)发来信号的传播时间，然后完成一组包括4个方程式的模型数学运算，就可算出用户位置的三维坐标以及用户钟与系统时间的误差。但是卫星信号易受到有意或者无意的干扰影响，且目前市面上已经有很多GPS卫星信号干扰机出售，同时单独的GPS信号十分微弱，并且在某些特定环境中比如室内、深林、桥洞、隧道内无法使用。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006" num="0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0007">本发明的目的就是为了克服上述现有技术存在的缺陷而提供一种基于电磁指纹信息的低空无人飞行器定位导航方法，与传统的卫星定位方式形成互补，可以作为无人机飞行器导航的有效方式，实现了无人飞行器定位方式的多样性，提高了无人飞行器定位的稳定性。</div>
+<div class="description-paragraph" id="p0008" num="0008">本发明的目的可以通过以下技术方案来实现：</div>
+<div class="description-paragraph" id="p0009" num="0009">一种基于电磁指纹信息的低空无人飞行器定位导航方法，包括：</div>
+<div class="description-paragraph" id="p0010" num="0010">离线采集阶段，在定位区域内选取参考点，在每个参考点处采集不同的地面电磁信号源的指纹特征信息，将指纹特征信息融合成信号强度向量，再结合对应参考点的坐标信息形成指纹地图存入数据库；</div>
+<div class="description-paragraph" id="p0011" num="0011">在线定位阶段，无人飞行器实时采集不同电磁信号的场强形成信号强度向量，将信号强度向量与指纹地图中的信号强度向量进行匹配，得到对应的坐标信息，定位服务器将位置坐标信息发送至地面控制中心；</div>
+<div class="description-paragraph" id="p0012" num="0012">导航阶段，地面控制中心通过航迹规划，将地面控制信息和导航数据发送给无人飞行器，无人飞行器对地面控制信息和导航数据进行解码生成控制指令，控制电力驱动调整飞行姿态实现自主导航功能。</div>
+<div class="description-paragraph" id="p0013" num="0013">所述的地面电磁信号源包括手机移动基站、WIFI基站、广播基站和微波中继站。</div>
+<div class="description-paragraph" id="p0014" num="0014">所述的指纹特征信息包括场强RSSI值和ID，其中移动基站对应的是CID值，WIFI基站对应的是Mac值，广播基站和微波中继站对应的都是各自发射塔的ID。</div>
+<div class="description-paragraph" id="p0015" num="0015">所述的离线采集阶段中，通过高斯滤波处理后，将指纹特征信息融合成信号强度向量组。</div>
+<div class="description-paragraph" id="p0016" num="0016">所述的高斯滤波处理包括：利用高斯滤波剔除部分误差较大的RSSI数据，然后利用卡尔曼滤波实现平滑的数据输出。</div>
+<div class="description-paragraph" id="p0017" num="0017">所述的离线采集阶段中，指纹地图的建立过程包括以下步骤：</div>
+<div class="description-paragraph" id="p0018" num="0018">1)对定位区域进行网格划分；</div>
+<div class="description-paragraph" id="p0019" num="0019">2)在每个网格内选取参考点；</div>
+<div class="description-paragraph" id="p0020" num="0020">3)在各参考点采集不同信号源的信号强度值和对应的固定ID值，经过处理后融合成指纹信息向量，每个参考点对应一组指纹信息向量；</div>
+<div class="description-paragraph" id="p0021" num="0021">4)将采集到指纹信息数据存入服务器中的数据库，建立指纹地图。</div>
+<div class="description-paragraph" id="p0022" num="0022">所述的在线定位阶段中，指纹匹配算法采用K近邻法。</div>
+<div class="description-paragraph" id="p0023" num="0023">所述的K近邻法具体包括：</div>
+<div class="description-paragraph" id="p0024" num="0024">求得每个参考点与待定位点之间的距离D<sub>i</sub>，将D<sub>i</sub>从小到大排序，选择最小的K个值，以下式计算对应的K个参考点位置坐标的均值，即为待定位点估算的位置坐标：</div>
+<div class="description-paragraph" id="p0025" num="0025">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0026" num="0026">式中(x<sub>i</sub>,y<sub>i</sub>)为第i个参考点位置坐标。</div>
+<div class="description-paragraph" id="p0027" num="0027">所述的在线定位阶段中，所述的指纹地图的位置坐标信息为相对坐标或转换后的绝对坐标。</div>
+<div class="description-paragraph" id="p0028" num="0028">与现有技术相比，本发明具有以下优点：</div>
+<div class="description-paragraph" id="p0029" num="0029">(1)通过事先测得无人飞行器的目标活动区域的电磁指纹信息，建立指纹数据库，然后实时对比来确认目标的所在位置的真实性，利用电磁指纹进行定位导航，克服了现有技术中信号单一、受干扰程度大的缺点。</div>
+<div class="description-paragraph" id="p0030" num="0030">(2)通过离线阶段的网格划分建立大量的指纹数据库，在线阶段只需要采取简单的数据指纹匹配就可以实现对移动目标的定位，同时达到一种计算负载的有效分配；</div>
+<div class="description-paragraph" id="p0031" num="0031">(3)在某些特殊的场景下，卫星信号受干扰或受阻时，无人飞行器无法可靠定位，本专利技术可以给无人飞行器提供一种辅助卫星的定位方式，与卫星定位方式形成互补。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0032" num="0032">附图说明</div>
+<div class="description-paragraph" id="p0033" num="0033">图1为本发明一种基于电磁指纹信息的低空无人飞行器定位导航方法的流程图；</div>
+<div class="description-paragraph" id="p0034" num="0034">图2为本发明一种基于电磁指纹信息的低空无人飞行器定位导航方法的结构图；</div>
+<div class="description-paragraph" id="p0035" num="0035">图3为本发明对指纹信息进行高斯滤波处理的流程图；</div>
+<div class="description-paragraph" id="p0036" num="0036">图4为本发明指纹地图的建立的流程图；</div>
+<div class="description-paragraph" id="p0037" num="0037">图中标注：1、手机移动基站，2、WIFI基站，3、广播基站，4、微波中继站，5、无人飞行器，6、信号指纹特征信息，7、指纹信息融合，8、指纹地图，9、数据库，10、地面控制中心，11、地面电磁信号源，12、定位服务器。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0038" num="0038">具体实施方式</div>
+<div class="description-paragraph" id="p0039" num="0039">下面结合附图和具体实施例对本发明进行详细说明。本实施例以本发明技术方案为前提进行实施，给出了详细的实施方式和具体的操作过程，但本发明的保护范围不限于下述的实施例。</div>
+</mode-for-invention>
+<mode-for-invention>
+<div class="description-paragraph" id="p0040" num="0040">实施例</div>
+<div class="description-paragraph" id="p0041" num="0041">随着社会的发展，人们生活的周围被越来越多的电磁信号充斥着，主要信号类型有：移动通信基站的信号、微波中继站的信号、WIFI无线网络的信号、广播电台的信号等。周围生活的环境中每个地方都是由以上几种电磁信号覆盖。其中，大部分信号基站和发射塔都是固定的，这样就使得某地的电磁信号具有独一无二的特征值，这种特征称为电磁指纹。可以通过事先测得无人飞行器的目标活动区域的电磁指纹信息，建立指纹数据库，然后实时对比来确认目标的所在位置的真实性，实现利用电磁指纹进行定位导航。</div>
+<div class="description-paragraph" id="p0042" num="0042">如图1所示，一种基于电磁指纹信息的低空无人飞行器定位导航方法，包括：</div>
+<div class="description-paragraph" id="p0043" num="0043">步骤13、离线采集阶段，在定位区域内选取参考点，在每个参考点处采集不同的地面电磁信号源11的指纹特征信息，通过高斯滤波处理后，将指纹特征信息融合成信号强度向量，再结合对应参考点的坐标信息形成指纹地图存入数据库9；</div>
+<div class="description-paragraph" id="p0044" num="0044">高斯滤波处理包括：利用高斯滤波剔除部分误差较大的RSSI数据，然后利用卡尔曼滤波实现平滑的数据输出；</div>
+<div class="description-paragraph" id="p0045" num="0045">指纹地图的建立过程包括以下步骤：</div>
+<div class="description-paragraph" id="p0046" num="0046">1)对定位区域进行网格划分；</div>
+<div class="description-paragraph" id="p0047" num="0047">2)在每个网格内选取参考点；</div>
+<div class="description-paragraph" id="p0048" num="0048">3)在各参考点采集不同信号源的信号强度值和对应的固定ID值，经过处理后融合成指纹信息向量，每个参考点对应一组指纹信息向量；</div>
+<div class="description-paragraph" id="p0049" num="0049">4)将采集到指纹信息数据存入服务器中的数据库9，建立指纹地图；</div>
+<div class="description-paragraph" id="p0050" num="0050">步骤14、在线定位阶段，无人飞行器5实时采集不同电磁信号的场强形成信号强度向量，将信号强度向量与指纹地图中的信号强度向量进行匹配，得到对应的坐标信息，定位服务器12将位置坐标信息发送至地面控制中心10，进行坐标可视化显示；</div>
+<div class="description-paragraph" id="p0051" num="0051">步骤15、导航阶段，地面控制中心10通过航迹规划，将地面控制信息和导航数据发送给无人飞行器5，无人飞行器5对地面控制信息和导航数据进行解码生成控制指令，控制电力驱动调整飞行姿态实现自主导航功能。</div>
+<div class="description-paragraph" id="p0052" num="0052">地面电磁信号源11包括手机移动基站1、WIFI基站2、广播基站3和微波中继站4。</div>
+<div class="description-paragraph" id="p0053" num="0053">指纹特征信息包括不同信号源的场强RSSI值和每个信号源的固定ID，其中移动基站对应的是CID值，WIFI基站对应的是Mac值，广播基站和微波中继站对应的都是各自发射塔的ID。</div>
+<div class="description-paragraph" id="p0054" num="0054">在线定位阶段中，所述的指纹地图的位置坐标信息为相对坐标或转换后的绝对坐标。</div>
+<div class="description-paragraph" id="p0055" num="0055">如图2所示，一种基于电磁指纹信息的低空无人飞行器定位导航方法的系统结构主要包括：地面电磁信号源11、定位服务器12、地面控制中心10、无人飞行器5，地面电磁信号源11包括：手机移动基站1、WIFI基站2、广播基站3、微波中继站4，定位服务器12包括：指纹特征信息6、指纹信息融合7、指纹地图8和数据库9。</div>
+<div class="description-paragraph" id="p0056" num="0056">如图3所示，对指纹信息进行高斯滤波处理主要分两步完成：</div>
+<div class="description-paragraph" id="p0057" num="0057">步骤16：利用高斯滤波剔除部分误差较大的RSSI数据；</div>
+<div class="description-paragraph" id="p0058" num="0058">步骤17：利用卡尔曼滤波实现平滑的数据输出；</div>
+<div class="description-paragraph" id="p0059" num="0059">如图4所示，指纹地图的建立主要包括以下几个步骤：</div>
+<div class="description-paragraph" id="p0060" num="0060">步骤18：对定位区域进行网格均匀划分；</div>
+<div class="description-paragraph" id="p0061" num="0061">步骤19：在每个网格内选取适当的参考点；</div>
+<div class="description-paragraph" id="p0062" num="0062">步骤20：在每个参考点采集不同信号源的信号强度值和对应的固定ID值经过处理后融合成一组指纹信息向量；</div>
+<div class="description-paragraph" id="p0063" num="0063">步骤21：将采集到指纹信息数据存入服务器中的数据库9，建立指纹地图。</div>
+<div class="description-paragraph" id="p0064" num="0064">指纹匹配算法采用K近邻法；具体的，从最小距离开始选取K个参考点，然后以这K个参考点的坐标的平均值作为待定位点的实际位置坐标。通过公式可以求得每个参考点与待定位点之间的距离D<sub>i</sub>，将D<sub>i</sub>从小到大排序，选择最小的K个值，以公式(1)计算这K个参考点位置坐标的均值，即为待测点估算的位置坐标。</div>
+<div class="description-paragraph" id="p0065" num="0065">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0066" num="0066">式中(x<sub>i</sub>,y<sub>i</sub>)是指离待定位置坐标距离第i小的参考点位置坐标。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

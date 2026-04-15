@@ -1,0 +1,396 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120525253A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES503575162">
+<invention-title id="title1" lang="ZH">一种多能互补的低空飞行器供能方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空飞行器供能领域，具体来说，涉及一种多能互补的低空飞行器供能方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着航空技术的不断发展，低空飞行器在民用和军事领域的应用日益广泛，如物流配送、地理测绘、环境监测、农林植保以及军事侦察等，然而能源供应问题一直是限制低空飞行器发展的关键因素之一，早期低空飞行器主要依赖传统的燃油供能方式，这种方式虽然技术成熟，能提供较高的动力输出，但环境污染和能源消耗问题突出，随着环保意识的增强和能源危机的加剧，开始探索更加清洁、高效的能源替代方案。</div>
+<div class="description-paragraph" id="p0005" num="0003">在新能源探索过程中，纯电供能凭借其零排放、低噪音等优势受到关注，电池技术的发展，从铅酸电池到锂离子电池，能量密度逐步提升，使得纯电飞行器得以实现短距离飞行，但即便如此电池能量密度仍远低于燃油，且充电时间长，无法满足长时间、长距离的飞行任务。</div>
+<div class="description-paragraph" id="p0006" num="0004">氢能源作为一种清洁能源，其能量密度高、燃烧产物仅为水，被视为未来航空能源的重要发展方向，然而氢能源的制取、储存和运输成本高昂，加氢基础设施建设严重滞后，这些因素限制了氢能源在低空飞行器上的大规模应用。</div>
+<div class="description-paragraph" id="p0007" num="0005">综上所述，现有的单一供能方式都存在一定的局限性，难以满足低空飞行器日益增长的多样化需求和可持续发展要求，开发一种多能互补的供能方法，成为推动低空飞行器技术发展的关键。</div>
+<div class="description-paragraph" id="p0008" num="0006">在现有燃油-电能混合供能的低空飞行器技术的使用过程中，其主要包括燃油动力系统、电力系统和控制系统，燃油动力系统主要由燃油箱、燃油泵、航空发动机组成，燃油箱用于储存航空燃油，燃油泵负责将燃油从油箱输送至航空发动机，航空发动机通常为航空活塞发动机或小型涡轮发动机，它通过燃烧燃油产生机械能，是飞行器的主要动力来源，输出的动力通过传动装置带动螺旋桨或推进器转动，实现飞行器的前进动力供给。电力系统包括锂电池组、电机控制器和电机，锂电池组是电能的储存单元，为整个电力系统提供电能；电机控制器连接锂电池组和电机，负责控制电机的运转速度、扭矩等参数，实现对电机输出动力的精准调控；电机则是将电能转化为机械能的装置，其输出轴与飞行器的动力传动部件相连，在需要时辅助燃油发动机提供动力。控制系统一般由飞行控制计算机和传感器组成，传感器负责采集飞行器的飞行状态数据，如速度、高度、姿态等，以及能源系统的相关参数，如燃油余量、电池电量等，飞行控制计算机接收传感器传来的数据，根据预设的程序和算法，对燃油动力系统和电力系统进行协调控制，实现不同飞行阶段能源的切换和调配。</div>
+<div class="description-paragraph" id="p0009" num="0007">当飞行器准备起飞时，控制系统启动燃油发动机，燃油泵将燃油输送至发动机，发动机开始运转并逐斩提升功率，同时，控制系统检测电池电量和飞行参数，启动电机，电机在电机控制器的调控下开始工作，与燃油发动机协同为飞行器提供动力，帮助飞行器快速达到起飞速度并顺利升空；</div>
+<div class="description-paragraph" id="p0010" num="0008">飞行器进入巡航状态后，燃油发动机保持稳定的功率输出，维持飞行器的飞行速度和高度，此时控制系统根据飞行情况和能源状态进行监测，若遇到需要微调飞行姿态或应对突发气流等情况，控制系统会根据需求指令电机启动，利用电池储存的电能辅助提供动力，以确保飞行器的平稳飞行；当飞行器准备降落时，控制系统逐斩降低燃油发动机的功率，同时根据降落速度和高度要求，精确控制电机的输出扭矩，使飞行器缓慢减速；在接近地面时，主要依靠电机的精准控制实现平稳降落，避免因动力控制不当导致的降落事故。</div>
+<div class="description-paragraph" id="p0011" num="0009">但是上述燃油-电能混合供能的低空飞行器技术存在以下缺陷：</div>
+<div class="description-paragraph" id="p0012" num="0010">(1)、燃油供能环境污染严重，储存和运输存在安全隐患，燃油供能依赖燃油的燃烧来产生动力，燃油燃烧过程必然会发生化学反应生成多种有害气体，如一氧化碳、碳氢化合物、氮氧化物等，这是由于燃油中含有碳、氢、氮等元素，在燃烧不充分或高温高压等条件下就会产生这些污染物，而且燃油的储存需要特定的容器，运输过程也有严格要求，因为燃油具有易燃、易爆的特性，一旦储存容器出现泄漏或者运输过程中发生意外，就极易引发安全事故，所以燃油供能会导致环境污染和存在安全风险；</div>
+<div class="description-paragraph" id="p0013" num="0011">(2)、纯电供能续航里程短，充电时间长，目前电池技术发展受限，电池的能量密度无法在短时间内大幅提升；能量密度低就意味着在相同体积和重量下，电池所能储存的能量有限，这直接导致纯电供能的低空飞行器续航里程较短，同时电池的充电过程涉及到复杂的电化学过程，当前的技术使得这个过程效率不高，从而造成充电时间较长，影响了飞行器的使用效率；</div>
+<div class="description-paragraph" id="p0014" num="0012">(3)、氢能源供能生产、储存和运输成本高，基础设施缺乏，氢能源制取目前主要依赖化石燃料重整或电解水等方法，化石燃料重整需要消耗大量化石燃料且过程复杂，电解水则需要消耗大量电能，这都使得氢能源的生产成本居高不下；氢气具有低密度和高易燃性的特点，为了安全储存和运输氢气，需要特殊的高压容器和低温设备，这些设备的制造、维护成本都很高，导致储存和运输成本高昂，且由于氢能源应用还不够广泛，加氢站等基础设施建设滞后，难以满足氢能源飞行器的日常使用需求；</div>
+<div class="description-paragraph" id="p0015" num="0013">(4)、燃油-电能混合供能能源利用方式单一，无法充分发挥多种能源互补优势，能源利用效率有待提高，环保性不足；这种供能方式仅仅结合了燃油和电能两种能源，没有将太阳能、氢能源等清洁能源纳入供能体系，而太阳能是一种丰富且无亏染的能源，氢能源具有高能量密度和零排放的优势，未利用这些能源就无法充分发挥多种能源的互补优势，例如在阳光充足时不能利用太阳能，增加了对燃油和电能的依赖，在能源利用效率上无法达到最优，同时也不利于进一步降低污染物排放。</div>
+<div class="description-paragraph" id="p0016" num="0014">针对相关技术中的问题，目前尚未提出有效的解决方案。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0017">发明内容</div>
+<div class="description-paragraph" id="p0018" num="0015">针对相关技术中的问题，本发明提出一种多能互补的低空飞行器供能方法，以克服现有相关技术所存在的上述技术问题。</div>
+<div class="description-paragraph" id="p0019" num="0016">为此，本发明采用的具体技术方案如下：</div>
+<div class="description-paragraph" id="p0020" num="0017">一种多能互补的低空飞行器供能方法，该方法包括：</div>
+<div class="description-paragraph" id="p0021" num="0018">采集低空飞行器的飞行状态与能源状态，并对飞行状态与能源状态实施滤波处理后构建需求预测模型，预测低空飞行器飞行阶段的能源需求；</div>
+<div class="description-paragraph" id="p0022" num="0019">将能源需求与飞行阶段规则结合初始化能源分配比例，并利用目标优化算法与优化目标对能源分配比例进行优化，输出最优能源分配方案；</div>
+<div class="description-paragraph" id="p0023" num="0020">基于低空飞行器飞行范围内的环境信息，建立能源使用权重系数表与最优能源分配方案结合动态调整能源优先级，并根据能源优先级生成执行指令驱动能源存储设备，为低空飞行器供能。</div>
+<div class="description-paragraph" id="p0024" num="0021">优选的，采集低空飞行器的飞行状态与能源状态，并对飞行状态与能源状态实施滤波处理后构建需求预测模型，预测低空飞行器飞行阶段的能源需求包括：</div>
+<div class="description-paragraph" id="p0025" num="0022">基于传感器设备采集包含低空飞行器的飞行速度、飞行高度与飞行姿态的飞行状态数据，同时获取能源存储设备中能源状态数据，并对飞行状态数据与能源状态数据进行滤波与归一化处理；</div>
+<div class="description-paragraph" id="p0026" num="0023">根据飞行状态数据预测低空飞行器在起飞阶段的能源需求，并结合历史飞行数据分析低空飞行器处于巡航阶段时对应的能源需求；</div>
+<div class="description-paragraph" id="p0027" num="0024">利用飞行状态数据与历史飞行数据判断低空飞行器在降落阶段时的触地速度，并根据触地速度预测低空飞行器在降落阶段的能源需求。</div>
+<div class="description-paragraph" id="p0028" num="0025">优选的，将能源需求与飞行阶段规则结合初始化能源分配比例，并利用目标优化算法与优化目标对能源分配比例进行优化，输出最优能源分配方案包括：</div>
+<div class="description-paragraph" id="p0029" num="0026">基于低空飞行器在各飞行阶段的飞行需求与飞行阶段规则，初始化能源分配比例，生成低空飞行器在各飞行阶段的优化目标与约束条件；</div>
+<div class="description-paragraph" id="p0030" num="0027">将优化目标与约束条件整合为多目标优化函数，结合飞行阶段规则随机生成若干组能源分配方案作为个体，并评估个体之间的支配关系；</div>
+<div class="description-paragraph" id="p0031" num="0028">根据支配关系分析每个个体的对应解的支配计数，并将支配计数为零的解作为第一前沿，同时移除第一前沿重复过程获取前沿序列；</div>
+<div class="description-paragraph" id="p0032" num="0029">对于同一非支配层中的个体，按照目标空间中的每个目标进行排序，根据排序结果计算每个个体在目标空间的拥挤度，并选取前沿序列被拥挤度最大的解；</div>
+<div class="description-paragraph" id="p0033" num="0030">对解进行模拟二进制交叉与变异处理生成子代解与随机扰动解，并根据生成结果在达到最大迭代次数时，输出前沿解集，选择前沿解集中的最优解作为最优能源分配方案。</div>
+<div class="description-paragraph" id="p0034" num="0031">优选的，子代解的表达式为：</div>
+<div class="description-paragraph" id="p0035" num="0032">x<sub>child</sub>＝0.5·((1+β)·x<sub>parent1</sub>+(1-β)·x<sub>parent2</sub>)；</div>
+<div class="description-paragraph" id="p0036" num="0033">随机扰动解的表达式为：</div>
+<div class="description-paragraph" id="p0037" num="0034">x<sub>mutated</sub>＝x<sub>original</sub>+δ·(x<sub>max</sub>-x<sub>min</sub>)；</div>
+<div class="description-paragraph" id="p0038" num="0035">式中，x<sub>child</sub>表示子代解，β表示交叉分布参数，x<sub>p ar en t1</sub>表示第一组父代解，x<sub>parent2</sub>表示第二组父代解，x<sub>m u ta ted</sub>表示随机扰动解，x<sub>or ig inal</sub>表示当前需要进行变异解的参数值，δ表示扰动因子，x<sub>max</sub>表示当前需要进行变异解的最大参数值，x<sub>min</sub>表示当前需要进行变异解的最小参数值。</div>
+<div class="description-paragraph" id="p0039" num="0036">优选的，基于低空飞行器飞行范围内的环境信息，建立能源使用权重系数表与最优能源分配方案结合动态调整能源优先级，并根据能源优先级生成执行指令驱动能源存储设备，为低空飞行器供能包括：</div>
+<div class="description-paragraph" id="p0040" num="0037">在低空飞行器处集成多模态传感网络，采集飞行范围内的环境信息，根据低空飞行器的飞行任务类型预设能源优先级策略；</div>
+<div class="description-paragraph" id="p0041" num="0038">为飞行任务类型建立能源使用权重系数表，并设计模糊规则库，利用模糊规则库与环境信息计算模糊规则库中各规则的隶属度；</div>
+<div class="description-paragraph" id="p0042" num="0039">将环境信息作为模糊化输入、能源使用权重系数表作为直接输入与隶属度结合，获取最优能源分配方案的能源优先级动态调整结果；</div>
+<div class="description-paragraph" id="p0043" num="0040">基于低空飞行器的功率需求与能源优先级动态调整结果，生成能源设备切换指令，并根据指令编码技术将能源设备切换指令驱动能源存储设备，为低空飞行器供能。</div>
+<div class="description-paragraph" id="p0044" num="0041">优选的，基于低空飞行器的功率需求与能源优先级动态调整结果，生成能源设备切换指令，并根据指令编码技术将能源设备切换指令驱动能源存储设备，为低空飞行器供能包括：</div>
+<div class="description-paragraph" id="p0045" num="0042">根据能源优先级动态调整结果对应的能源分配比例与低空飞行器的总功率需求，计算各能源类型的能源功率分配结果；</div>
+<div class="description-paragraph" id="p0046" num="0043">基于能源功率分配结果生成能源设备指令映射结果，并采用二进制编码技术将能源设备指令映射结果转为能源设备切换指令；</div>
+<div class="description-paragraph" id="p0047" num="0044">将能源设备切换指令通过通信接口发送至能源存储设备执行器，并利用能源存储设备执行器驱动能源存储设备，为低空飞行器供能；</div>
+<div class="description-paragraph" id="p0048" num="0045">根据供能结果与控制规则生成低空飞行器在起飞阶段、巡航阶段与降落阶段的控制策略，驱动低空飞行器；</div>
+<div class="description-paragraph" id="p0049" num="0046">在低空飞行器处于降落阶段时，利用在线优化算法优化低空飞行器的飞行控制参数，实现低空飞行器降落时的平稳性。</div>
+<div class="description-paragraph" id="p0050" num="0047">优选的，能源设备指令映射结果包括燃油阀门开度、氢燃料电池开关控制及太阳能电路切换；</div>
+<div class="description-paragraph" id="p0051" num="0048">其中，燃油阀门开度的计算公式为：</div>
+<div class="description-paragraph" id="p0052" num="0049">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0053" num="0050">式中，α表示燃油阀门开度，Q<sub>target</sub>表示低空飞行器所需燃油流量，C<sub>v</sub>表示流量系数，ΔP表示阀门两端的压力差，ρ<sub>RY</sub>表示燃油密度。</div>
+<div class="description-paragraph" id="p0054" num="0051">优选的，在氢燃料电池开关控制的过程中，当氢能功率大于零时，则闭合氢燃料电池电路，当氢能功率小于或等于零时，则断开氢燃料电池电路；</div>
+<div class="description-paragraph" id="p0055" num="0052">在太阳能电路切换的过程中，当光照强度实际值大于或等于光照强度阈值，且太阳能实际功率大于或等于太阳能目标功率时，则太阳能电路闭合；</div>
+<div class="description-paragraph" id="p0056" num="0053">当光照强度实际值小于光照强度阈值，且太阳能实际功率小于太阳能目标功率时，则太阳能电路断开。</div>
+<div class="description-paragraph" id="p0057" num="0054">优选的，在低空飞行器处于降落阶段时，利用在线优化算法优化低空飞行器的飞行控制参数，实现低空飞行器降落时的平稳性包括：</div>
+<div class="description-paragraph" id="p0058" num="0055">获取低空飞行器处于降落阶段时的飞行状态数据与电机状态参数，并根据飞行状态数据计算低空飞行器在降落时的所需推力；</div>
+<div class="description-paragraph" id="p0059" num="0056">定义最小化触地冲击与姿态角变化为平稳目标函数，并获取平稳目标函数的加权形式，基于加权结果反推电机转速与扭矩组合；</div>
+<div class="description-paragraph" id="p0060" num="0057">根据反推结果设定低空飞行器降落平稳所需满足的约束条件，并基于约束条件与平稳目标函数建立优化函数；</div>
+<div class="description-paragraph" id="p0061" num="0058">利用在线优化算法设定初始值，通过自动微分工具分析优化函数的目标函数梯度，并将目标函数梯度与收敛阈值进行对比；</div>
+<div class="description-paragraph" id="p0062" num="0059">在比值结果满足要求时，输出最优电机转速与扭矩组合作为低空飞行器的飞行控制参数，实现低空飞行器降落时的平稳性。</div>
+<div class="description-paragraph" id="p0063" num="0060">优选的，低空飞行器在降落时的所需推力计算公式为：</div>
+<div class="description-paragraph" id="p0064" num="0061">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0065" num="0062">式中，F<sub>thrus t</sub>表示低空飞行器在降落时所需的推力，m表示低空飞行器的质量，a<sub>d es cen t</sub>表示低空飞行器下降加速度，F<sub>dr ag</sub>表示空气阻力，t表示时间，υ表示低空飞行器在t时刻的下降速度，ρ<sub>KQ</sub>表示空气密度，C<sub>d</sub>表示阻力系数，A表示低空飞行器的迎风面积，d表示低空飞行器在t时刻降落时的位移。</div>
+<div class="description-paragraph" id="p0066" num="0063">本发明的有益效果为：</div>
+<div class="description-paragraph" id="p0067" num="0064">1、本发明提出的一种多能互补的低空飞行器供能方法，综合运用燃油、电能、太阳能以及氢能源等多种能源形式，通过智能控制系统实现多种能源在不同飞行阶段和工况下的智能切换和协同工作，解决现有供能方式对单一能源的依赖问题，提高飞行器在不同环境和任务下的适应性，同时充分发挥各种能源的优势，如燃油的高能量密度、电能的即时响应和精确控制、太阳能的清洁可再生以及氢能源的高能量密度和零排放特性，避免单一能源的局限性，从而提高能源利用效率，降低能源消耗成本。</div>
+<div class="description-paragraph" id="p0068" num="0065">2、本发明利用太阳能和氢能源等清洁能源替代部分燃油的使用，符合绿色环保的发展趋势，推动低空飞行器行业的可持续发展，同时改善纯电供能续航短和充电慢的问题，通过多种能源的协同工作，为飞行器提供更稳定、持久的动力，提升飞行器的整体性能和使用效率。</div>
+<div class="description-paragraph" id="p0069" num="0066">3、本发明解决了低空飞行器供能对单一能源依赖的问题，通过多能互补，让飞行器在不同飞行阶段和工况下都能有合适能源供应，增强适应性，同时提高能源利用效率，利用多种能源特性，在起飞、巡航、降落等不同阶段合理搭配，实现能源高效利用，并且降低污染物排放，利用太阳能、氢能源等清洁能源，减少燃油使用，从而减少有害气体排放，推动低空飞行器行业绿色可持续发展，改善电池技术短板对飞行器的影响，结合其他能源，弥补纯电供能续航短和充电慢的问题，提升飞行器整体性能。</div>
+<div class="description-paragraph" id="p0070" num="0067">4、本发明通过多能互补的供能方式，有效解决了现有低空飞行器供能的诸多问题，在能源利用上，综合燃油、电能、太阳能与氢能源，避免了单一能源供能的局限，比如传统燃油供能污染环境且有安全风险，而本发明在巡航阶段阳光充足时启用太阳能，减少燃油消耗，降低污染；在太阳能不足时，氢能源燃料电池辅助供电，发挥其高能量密度与零排放优势，契合绿色环保趋势。</div>
+<div class="description-paragraph" id="p0071" num="0068">5、本发明从飞行器性能提升角度，智能切换和协同能源机制让飞行器在不同飞行阶段都能获得适配能源，起飞阶段燃油与电能协同，利用燃油高能量密度和电能即时响应特性，快速提供强大推力；降落阶段依靠电能精确控制，实现平稳降落，增强了飞行器在复杂工况下的适应性，提高了能源利用效率，延长了续航里程，全面提升了飞行器的整体性能，有力推动了低空飞行器行业的可持续发展。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0072">附图说明</div>
+<div class="description-paragraph" id="p0073" num="0069">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0074" num="0070">图1是根据本发明实施例的一种多能互补的低空飞行器供能方法的流程图；</div>
+<div class="description-paragraph" id="p0075" num="0071">图2是根据本发明实施例的一种多能互补的低空飞行器供能方法在具体应用时的流程示意图；</div>
+<div class="description-paragraph" id="p0076" num="0072">图3是根据本发明实施例的一种多能互补的低空飞行器供能方法的供能工作流程图；</div>
+<div class="description-paragraph" id="p0077" num="0073">图4是根据本发明实施例的一种多能互补的低空飞行器供能方法中电机驱动时序图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0078">具体实施方式</div>
+<div class="description-paragraph" id="p0079" num="0074">为进一步说明各实施例，本发明提供有附图，这些附图为本发明揭露内容的一部分，其主要用以说明实施例，并可配合说明书的相关描述来解释实施例的运作原理，配合参考这些内容，本领域普通技术人员应能理解其他可能的实施方式以及本发明的优点。</div>
+<div class="description-paragraph" id="p0080" num="0075">根据本发明的实施例，提供了一种多能互补的低空飞行器供能方法。</div>
+<div class="description-paragraph" id="p0081" num="0076">现结合附图和具体实施方式对本发明进一步说明，如图1所示，根据本发明实施例的多能互补的低空飞行器供能方法，该方法包括：</div>
+<div class="description-paragraph" id="p0082" num="0077">步骤S 1，采集低空飞行器的飞行状态与能源状态，并对飞行状态与能源状态实施滤波处理后构建需求预测模型，预测低空飞行器飞行阶段的能源需求。</div>
+<div class="description-paragraph" id="p0083" num="0078">在一个实施例中，采集低空飞行器的飞行状态与能源状态，并对飞行状态与能源状态实施滤波处理后构建需求预测模型，预测低空飞行器飞行阶段的能源需求包括：</div>
+<div class="description-paragraph" id="p0084" num="0079">基于传感器设备采集包含低空飞行器的飞行速度、飞行高度与飞行姿态的飞行状态数据，同时获取能源存储设备中能源状态数据，并对飞行状态数据与能源状态数据进行滤波与归一化处理；</div>
+<div class="description-paragraph" id="p0085" num="0080">根据飞行状态数据预测低空飞行器在起飞阶段的能源需求，并结合历史飞行数据分析低空飞行器处于巡航阶段时对应的能源需求；</div>
+<div class="description-paragraph" id="p0086" num="0081">利用飞行状态数据与历史飞行数据判断低空飞行器在降落阶段时的触地速度，并根据触地速度预测低空飞行器在降落阶段的能源需求。</div>
+<div class="description-paragraph" id="p0087" num="0082">步骤S2，将能源需求与飞行阶段规则结合初始化能源分配比例，并利用目标优化算法与优化目标对能源分配比例进行优化，输出最优能源分配方案。</div>
+<div class="description-paragraph" id="p0088" num="0083">在一个实施例中，将能源需求与飞行阶段规则结合初始化能源分配比例，并利用目标优化算法与优化目标对能源分配比例进行优化，输出最优能源分配方案包括：</div>
+<div class="description-paragraph" id="p0089" num="0084">基于低空飞行器在各飞行阶段的飞行需求与飞行阶段规则，初始化能源分配比例，生成低空飞行器在各飞行阶段的优化目标与约束条件；</div>
+<div class="description-paragraph" id="p0090" num="0085">将优化目标与约束条件整合为多目标优化函数，结合飞行阶段规则随机生成若干组能源分配方案作为个体，并评估个体之间的支配关系；</div>
+<div class="description-paragraph" id="p0091" num="0086">根据支配关系分析每个个体的对应解的支配计数，并将支配计数为零的解作为第一前沿，同时移除第一前沿重复过程获取前沿序列；</div>
+<div class="description-paragraph" id="p0092" num="0087">对于同一非支配层中的个体，按照目标空间中的每个目标进行排序，根据排序结果计算每个个体在目标空间的拥挤度，并选取前沿序列被拥挤度最大的解；</div>
+<div class="description-paragraph" id="p0093" num="0088">对解进行模拟二进制交叉与变异处理生成子代解与随机扰动解，并根据生成结果在达到最大迭代次数时，输出前沿解集，选择前沿解集中的最优解作为最优能源分配方案。</div>
+<div class="description-paragraph" id="p0094" num="0089">步骤S3，基于低空飞行器飞行范围内的环境信息，建立能源使用权重系数表与最优能源分配方案结合动态调整能源优先级，并根据能源优先级生成执行指令驱动能源存储设备，为低空飞行器供能。</div>
+<div class="description-paragraph" id="p0095" num="0090">在一个实施例中，基于低空飞行器飞行范围内的环境信息，建立能源使用权重系数表与最优能源分配方案结合动态调整能源优先级，并根据能源优先级生成执行指令驱动能源存储设备，为低空飞行器供能包括：</div>
+<div class="description-paragraph" id="p0096" num="0091">在低空飞行器处集成多模态传感网络，采集飞行范围内的环境信息，根据低空飞行器的飞行任务类型预设能源优先级策略；</div>
+<div class="description-paragraph" id="p0097" num="0092">为飞行任务类型建立能源使用权重系数表，并设计模糊规则库，利用模糊规则库与环境信息计算模糊规则库中各规则的隶属度；</div>
+<div class="description-paragraph" id="p0098" num="0093">将环境信息作为模糊化输入、能源使用权重系数表作为直接输入与隶属度结合，获取最优能源分配方案的能源优先级动态调整结果；</div>
+<div class="description-paragraph" id="p0099" num="0094">基于低空飞行器的功率需求与能源优先级动态调整结果，生成能源设备切换指令，并根据指令编码技术将能源设备切换指令驱动能源存储设备，为低空飞行器供能。</div>
+<div class="description-paragraph" id="p0100" num="0095">具体的，在基于低空飞行器的功率需求与能源优先级动态调整结果，生成能源设备切换指令，并根据指令编码技术将能源设备切换指令驱动能源存储设备，为低空飞行器供能时，可根据能源优先级动态调整结果对应的能源分配比例与低空飞行器的总功率需求，计算各能源类型的能源功率分配结果；基于能源功率分配结果生成能源设备指令映射结果，并采用二进制编码技术将能源设备指令映射结果转为能源设备切换指令；将能源设备切换指令通过通信接口发送至能源存储设备执行器，并利用能源存储设备执行器驱动能源存储设备，为低空飞行器供能；根据供能结果与控制规则生成低空飞行器在起飞阶段、巡航阶段与降落阶段的控制策略，驱动低空飞行器；在低空飞行器处于降落阶段时，利用在线优化算法优化低空飞行器的飞行控制参数，实现低空飞行器降落时的平稳性。</div>
+<div class="description-paragraph" id="p0101" num="0096">需要解释说明的是，能源设备指令映射结果包括燃油阀门开度、氢燃料电池开关控制及太阳能电路切换；在氢燃料电池开关控制的过程中，当氢能功率大于零时，则闭合氢燃料电池电路，当氢能功率小于或等于零时，则断开氢燃料电池电路。</div>
+<div class="description-paragraph" id="p0102" num="0097">具体的，在低空飞行器处于降落阶段时，利用在线优化算法优化低空飞行器的飞行控制参数，实现低空飞行器降落时的平稳性时，可获取低空飞行器处于降落阶段时的飞行状态数据与电机状态参数，并根据飞行状态数据计算低空飞行器在降落时的所需推力；定义最小化触地冲击与姿态角变化为平稳目标函数，并获取平稳目标函数的加权形式，基于加权结果反推电机转速与扭矩组合；根据反推结果设定低空飞行器降落平稳所需满足的约束条件，并基于约束条件与平稳目标函数建立优化函数；利用在线优化算法设定初始值，通过自动微分工具分析优化函数的目标函数梯度，并将目标函数梯度与收敛阈值进行对比；在比值结果满足要求时，输出最优电机转速与扭矩组合作为低空飞行器的飞行控制参数，实现低空飞行器降落时的平稳性。</div>
+<div class="description-paragraph" id="p0103" num="0098">为了方便理解本发明的上述技术方案，以下就本发明在实际过程中的工作原理或者操作方式进行详细说明。</div>
+<div class="description-paragraph" id="p0104" num="0099">如图2所示，在实际应用时，低空飞行器的供能过程主要由能源采集、能源转换、能源存储、能源分配与控制和负载组成，具体的：</div>
+<div class="description-paragraph" id="p0105" num="0100">能源采集包括太阳能采集和氢能源制取，分别负责采集太阳能和制取氢气；</div>
+<div class="description-paragraph" id="p0106" num="0101">能源转换包括燃油发动机发电、氢燃料电池发电和电机驱动，将不同形式的能源转换为电能或机械能；</div>
+<div class="description-paragraph" id="p0107" num="0102">能源存储包括电池组和氢能源存储，用于储存多余的能量；</div>
+<div class="description-paragraph" id="p0108" num="0103">能源分配与控制由中央控制器、传感器系统和执行器系统组成，负责对各种能源进行智能分配和控制；</div>
+<div class="description-paragraph" id="p0109" num="0104">负载包括飞行器的动力系统和其他用电设备，各方面之间通过电气连接和信号传输线进行连接，实现能量的传输和控制指令的传递。</div>
+<div class="description-paragraph" id="p0110" num="0105">整个工作流程主要包括起飞阶段、巡航阶段和降落阶段。在每个阶段，能源分配与控制根据飞行器的飞行状态和能源系统的运行参数，采取不同的控制策略，实现多种能源的智能切换和协同工作。</div>
+<div class="description-paragraph" id="p0111" num="0106">具体流程如下：</div>
+<div class="description-paragraph" id="p0112" num="0107">1、起飞阶段：启动燃油发动机发电单元和电池组，电机驱动单元调节电机转速和扭矩，实现飞行器起飞；</div>
+<div class="description-paragraph" id="p0113" num="0108">2、巡航阶段：根据天气情况，判断阳光是否充足，如果阳光充足，启动太阳能采集单元，同时调节燃油发动机发电单元的功率；如果阳光不足，关闭太阳能采集，启动氢燃料电池发电，辅助燃油发动机发电工作；</div>
+<div class="description-paragraph" id="p0114" num="0109">3、降落阶段：降低燃油发动机发电的功率，主要依靠电池组和电机驱动单元实现飞行器平稳降落。</div>
+<div class="description-paragraph" id="p0115" num="0110">能源分配与控制：能源分配与控制主要由中央控制器、传感器接口电路、执行器驱动电路和电源电路组成，传感器接口电路用于连接各种传感器，将传感器采集的模拟信号转换为数字信号，并传输给中央控制器；执行器驱动电路用于接收中央控制器发出的控制指令，驱动各种执行器(如开关、继电器和调节阀等)动作；电源电路为整个模块提供稳定的电源；中央控制器通过内部的控制算法和软件程序，对传感器采集的数据进行处理和分析，根据预设的规则和策略，发出控制指令，实现对能源系统的智能控制。</div>
+<div class="description-paragraph" id="p0116" num="0111">电机驱动单元时序：电机驱动单元的工作过程主要包括启动阶段、加速阶段、稳定运行阶段和减速阶段。</div>
+<div class="description-paragraph" id="p0117" num="0112">基于电机转速划分：启动阶段，电机从静止状态开始运转，转速较低，此阶段主要目标是让电机克服自身的惯性以及初始负载阻力开始转动，所以电机控制器向电机输出较低的电压和电流，确保电机缓慢平稳启动，避免过大冲击。随着电机转速逐渐上升，进入加速阶段，电机控制器通过逐渐增加输出电压和电流，为电机提供更大的驱动力，促使电机转速持续升高，以满足飞行器不断增加的动力需求。当电机转速达到并稳定在一个能够维持飞行器特定飞行状态所需的数值时，就进入了稳定运行阶段，此时电机控制器保持输出电压和电流稳定，让电机以恒定转速运转。在飞行器需要降低速度时，电机转速也需相应降低，电机控制器逐渐降低输出电压和电流，电机转速随之逐渐下降，这就是减速阶段。</div>
+<div class="description-paragraph" id="p0118" num="0113">在启动阶段，电机控制器接收到中央控制器发出的启动指令后，向电机输出较低的电压和电流，使电机缓慢启动；在加速阶段，电机控制器逐渐增加输出电压和电流，使电机的转速逐渐升高；在稳定运行阶段，电机控制器根据中央控制器的指令，保持输出电压和电流的稳定，使电机以恒定的转速运行；在减速阶段，电机控制器逐渐降低输出电压和电流，使电机的转速逐渐降低，直至停止。通过精确控制电机的时序，电机驱动单元可以实现对飞行器动力系统的精确控制。</div>
+<div class="description-paragraph" id="p0119" num="0114">需要解释说明的是，多能互补的低空飞行器供能方法主要由能源采集、能源转换、能源存储、能源分配与控制以及负载(即飞行器动力系统及其他用电设备)部分组成，各部分之间相互协作，共同完成能源的采集、转换、存储和分配，以满足飞行器的各种能量需求。</div>
+<div class="description-paragraph" id="p0120" num="0115">能源采集负责从不同的能源源中获取能量，主要包括太阳能采集和氢能源制取，太阳能采集由安装在飞行器表面的太阳能电池板组成；太阳能电池板采用高效的单晶硅或多晶硅电池片，具有较高的光电转换效率；当阳光照射到太阳能电池板上时，电池板中的半导体材料吸收光子能量，产生电子-空穴对，进而形成电流，太阳能电池板通过串联和并联的方式连接，以满足飞行器对电压和电流的需求；氢能源制取可采用多种方式制取氢气，例如电解水制氢或通过携带的小型重整器利用碳氢燃料重整制氢，在本实施中优先采用电解水制氢方式，其原理是利用电能将水分解为氢气和氧气；电解水制氢装置主要由电解槽、电源和控制系统组成，电源为电解槽提供直流电，在电解槽内，水分子在电极的作用下发生电解反应，产生氢气和氧气，制取的氢气被储存到氢能源存储中，以备后续使用。</div>
+<div class="description-paragraph" id="p0121" num="0116">能源转换将不同形式的能源转换为飞行器可以直接使用的电能或机械能，主要包括燃油发动机发电、氢燃料电池发电和电机驱动；燃油发动机发电由燃油发动机和发电机组成，燃油发动机采用航空专用的活塞发动机或涡轮发动机，具有较高的功率密度和可靠性；燃油发动机燃烧燃油产生机械能，带动发电机旋转，发电机将机械能转换为电能；发电机输出的交流电经过整流器转换为直流电，以便与其他电源进行整合；氢燃料电池发电由氢燃料电池堆和辅助系统组成，氢燃料电池堆是将氢气和氧气的化学能直接转换为电能的核心部件，其工作原理是氢气在阳极催化剂的作用下分解为质子和电子，质子通过质子交换膜到达阴极，电子则通过外电路流向阴极，形成电流；辅助系统包括氢气供应系统、空气供应系统、冷却系统和控制系统等，用于确保氢燃料电池堆的正常运行；电机驱动单元由电机和电机控制器组成，电机采用高效的永磁同步电机或直流无刷电机，具有较高的效率和功率密度。电机控制器根据能源分配与控制的指令，调节电机的转速和扭矩，驱动飞行器的螺旋桨或推进器旋转，为飞行器提供动力。</div>
+<div class="description-paragraph" id="p0122" num="0117">能源存储用于储存多余的能量，以备不时之需，主要包括电池组和氢能源存储，电池组采用锂离子电池或其他高性能电池，具有较高的能量密度和充放电效率；电池组通过充电控制器与太阳能电池板、燃油发动机发电和氢燃料电池发电相连，当这些电源输出的能量大于飞行器负载需求时，多余的能量被储存到电池组中；当飞行器负载需求大于电源输出能量时，电池组释放储存的能量，为飞行器提供补充动力；氢能源存储采用高压储氢罐或固态储氢材料储存氢气，高压储氢罐将氢气压缩到较高的压力，以提高氢气的储存密度；固态储氢材料则通过物理或化学吸附的方式储存氢气，具有较高的安全性和储存效率；氢能源存储通过氢气供应系统与氢燃料电池发电相连，为氢燃料电池堆提供氢气。</div>
+<div class="description-paragraph" id="p0123" num="0118">能源分配与控制是整个供能系统的核心，负责根据飞行器的飞行阶段、工况和能源状态，对各种能源进行智能分配和控制；能源分配与控制主要由中央控制器、传感器系统和执行器系统组成，中央控制器采用高性能的微处理器或工控机，运行专门的控制算法和软件程序。中央控制器接收传感器系统采集的各种数据，包括飞行器的飞行速度、高度、姿态、能源剩余量等，根据预设的规则和策略，计算出最佳的能源分配方案，并向执行器系统发出控制指令；传感器系统包括各种类型的传感器，用于实时监测飞行器的飞行状态和能源系统的运行参数，例如速度传感器用于测量飞行器的飞行速度，高度传感器用于测量飞行器的飞行高度，姿态传感器用于测量飞行器的姿态角度，电量传感器用于测量电池组的电量，氢气传感器用于测量氢能源存储单元中的氢气压力和浓度等。执行器系统包括各种开关、继电器和调节阀等，用于执行中央控制器发出的控制指令，例如通过控制开关和继电器的通断，实现不同能源之间的切换和连接；通过调节调节阀的开度，控制燃油、氢气和空气的流量，以实现对燃油发动机和氢燃料电池的功率调节。</div>
+<div class="description-paragraph" id="p0124" num="0119">中央处理器的控制指令生成与方案制定过程分为以下步骤：</div>
+<div class="description-paragraph" id="p0125" num="0120">步骤一、实时数据采集与预处理；</div>
+<div class="description-paragraph" id="p0126" num="0121">传感器系统采集飞行状态(速度、高度、姿态)和能源状态(电池电量、氢气储量、太阳能输入功率等)，数据经滤波(使用卡尔曼滤波消除传感器噪声)和归一化处理后(将不同量纲的数据统一映射到0至1区间)输入中央控制器，同时从飞行器数据库中调取历史飞行数据，包括飞行阶段划分(起飞、巡航、降落)、能源消耗量(燃油、电能、氢能)、环境条件等。</div>
+<div class="description-paragraph" id="p0127" num="0122">步骤二、状态分析与需求预测；</div>
+<div class="description-paragraph" id="p0128" num="0123">基于当前数据和历史信息，预测未来飞行阶段的能源需求，具体的：</div>
+<div class="description-paragraph" id="p0129" num="0124">起飞阶段需求为：</div>
+<div class="description-paragraph" id="p0130" num="0125">E<sub>takeoff</sub>＝o<sub>1</sub>·v<sup>2</sup>+o<sub>2</sub>·j+o<sub>3</sub>·θ；</div>
+<div class="description-paragraph" id="p0131" num="0126">式中，E<sub>ta keoff</sub>表示起飞阶段能源需求，o<sub>1</sub>、o<sub>2</sub>、o<sub>3</sub>表示回归系数，v表示飞行速度，h表示飞行高度，θ表示俯仰角。</div>
+<div class="description-paragraph" id="p0132" num="0127">巡航阶段需求为：</div>
+<div class="description-paragraph" id="p0133" num="0128">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0134" num="0129">式中，E<sub>cruise</sub>表示巡航阶段能源需求，ρ<sub>KQ</sub>表示空气密度，C<sub>d</sub>表示阻力系数，A表示迎风面积，P<sub>solar</sub>表示太阳能输入功率，η<sub>solar</sub>表示太阳能转换效率。</div>
+<div class="description-paragraph" id="p0135" num="0130">降落阶段需求为：</div>
+<div class="description-paragraph" id="p0136" num="0131">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0137" num="0132">式中，E<sub>land</sub>表示降落阶段能源需求，m表示飞行器质量，g表示重力加速度，v<sub>land</sub>表示触地速度，h表示飞行高度。</div>
+<div class="description-paragraph" id="p0138" num="0133">步骤三、多目标优化决策；</div>
+<div class="description-paragraph" id="p0139" num="0134">结合飞行阶段，通过优化算法生成最优能源分配方案，在此过程中根据预设规则库(飞行阶段规则)，初始化能源分配比例，减少优化算法的搜索时间，确保各阶段能源分配符合整体任务需求，避免阶段间资源冲突，预先满足部分约束，减少优化过程中的调整，具体如下：</div>
+<div class="description-paragraph" id="p0140" num="0135">起飞阶段：燃油(60％)+电池(30％)+氢能(10％)；</div>
+<div class="description-paragraph" id="p0141" num="0136">巡航阶段：太阳能(50％)+氢能(30％)+电池(20％)；</div>
+<div class="description-paragraph" id="p0142" num="0137">降落阶段：电池(70％)+氢能(30％)；</div>
+<div class="description-paragraph" id="p0143" num="0138">同时定义优化目标：</div>
+<div class="description-paragraph" id="p0144" num="0139">起飞阶段：以推力最大化为目标，约束为电机功率和燃油容量，具体目标为：</div>
+<div class="description-paragraph" id="p0145" num="0140">f<sub>1</sub>＝max F<sub>thruet</sub>＝k·ω·τ；</div>
+<div class="description-paragraph" id="p0146" num="0141">约束为：</div>
+<div class="description-paragraph" id="p0147" num="0142">ωτ≤P<sub>max</sub>，E<sub>fuel</sub>≤E<sub>fuel，max</sub>；</div>
+<div class="description-paragraph" id="p0148" num="0143">式中，F<sub>thruet</sub>表示电机推力，k表示电机-螺旋桨效率常数，ω表示电机转速，τ表示电机扭矩(N·m)，P<sub>max</sub>表示最大允许功率，E<sub>fuel</sub>表示燃油消耗量，E<sub>fuel，max</sub>表示燃油最大允许消耗量。</div>
+<div class="description-paragraph" id="p0149" num="0144">巡航阶段：以能耗最小化为目标，优先使用太阳能，具体的目标定义为：</div>
+<div class="description-paragraph" id="p0150" num="0145">f<sub>2</sub>＝min(α·E<sub>fuel</sub>+β·E<sub>H2</sub>)；</div>
+<div class="description-paragraph" id="p0151" num="0146">约束为：</div>
+<div class="description-paragraph" id="p0152" num="0147">P<sub>solar</sub>≥0.5P<sub>toal</sub>；</div>
+<div class="description-paragraph" id="p0153" num="0148">式中，E<sub>fuel</sub>表示燃油消耗量，E<sub>H2</sub>表示氢能消耗量，P<sub>solar</sub>表示太阳能输入功率，P<sub>total</sub>表示飞行器总需求功率。</div>
+<div class="description-paragraph" id="p0154" num="0149">降落阶段：以最小化触地冲击力和姿态角变化为目标，具体为：</div>
+<div class="description-paragraph" id="p0155" num="0150">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0156" num="0151">约束为v<sub>land</sub>≤1.2m/s，Δθ≤5°；</div>
+<div class="description-paragraph" id="p0157" num="0152">式中，F<sub>impact</sub>表示触地冲击力(N)，Δθ表示姿态角变化，<span class="patent-image-not-available"></span>与<span class="patent-image-not-available"></span>表示权重系数，m表示飞行器质量(kg)，v<sub>land</sub>表示降落速度(m/s)。</div>
+<div class="description-paragraph" id="p0158" num="0153">将目标函数和约束整合为多目标优化问题：min(-f<sub>1</sub>，f<sub>2</sub>，f<sub>3</sub>)；</div>
+<div class="description-paragraph" id="p0159" num="0154">使用遗传算法(NSGA-II)生成最优解集，具体步骤如下：</div>
+<div class="description-paragraph" id="p0160" num="0155">(1)随机生成N个个体(能源分配方案)，例如：</div>
+<div class="description-paragraph" id="p0161" num="0156">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0162" num="0157">式中，x<sub>fuel</sub>、x<sub>H2</sub>、x<sub>solar</sub>分别表示燃油、氢能、太阳能占比。</div>
+<div class="description-paragraph" id="p0163" num="0158">(2)非支配排序：</div>
+<div class="description-paragraph" id="p0164" num="0159">支配关系中解A支配解B，当且仅当A在所有目标上不劣于B，且至少在一个目标上严格更优；</div>
+<div class="description-paragraph" id="p0165" num="0160">排序方法中计算每个解的支配计数(被多少解支配)，将非支配解(支配计数为0)归为第一前沿(Front1)，移除Front1的解，重复过程得到第二前沿(Front2)、第三前沿(Front3)。</div>
+<div class="description-paragraph" id="p0166" num="0161">(3)拥挤度计算：</div>
+<div class="description-paragraph" id="p0167" num="0162">拥挤度计算公式为：</div>
+<div class="description-paragraph" id="p0168" num="0163">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0169" num="0164">其中，C<sub>rowding Distance</sub>[j]表示拥挤度的解，j表示解的索引，i表示目标函数的索引，M表示目标函数的总数，f<sub>i</sub> <sup>(j+1)</sup>和f<sub>i</sub> <sup>(j-1)</sup>表示在第i个目标函数上，解j的相邻两个解的适应度值，f<sub>i</sub> <sup>max</sup>和f<sub>i</sub> <sup>min</sup>表示第i个目标函数的最大值和最小值。</div>
+<div class="description-paragraph" id="p0170" num="0165">(4)选择操作：优先选择前沿等级高的解(Frontl＞Front2＞...)，同一前沿内选择拥挤度大的解。</div>
+<div class="description-paragraph" id="p0171" num="0166">(5)通过交叉、变异生成新解：</div>
+<div class="description-paragraph" id="p0172" num="0167">交叉：模拟二进制交叉，生成子代解：</div>
+<div class="description-paragraph" id="p0173" num="0168">x<sub>child</sub>＝0.5·((1+β)·x<sub>parent1</sub>+(1-β)·x<sub>parent2</sub>)；</div>
+<div class="description-paragraph" id="p0174" num="0169">多项式变异，随机扰动解：</div>
+<div class="description-paragraph" id="p0175" num="0170">x<sub>mutated</sub>＝x<sub>original</sub>+δ·(x<sub>max</sub>-x<sub>min</sub>)；</div>
+<div class="description-paragraph" id="p0176" num="0171">式中，x<sub>ch ild</sub>表示子代解，β表示交叉分布参数，x<sub>p ar en t1</sub>表示第一组父代解，x<sub>parent2</sub>表示第二组父代解，x<sub>m u ta ted</sub>表示随机扰动解，x<sub>or ig inal</sub>表示当前需要进行变异解的参数值，δ表示扰动因子，x<sub>max</sub>表示当前需要进行变异解的最大参数值，x<sub>min</sub>表示当前需要进行变异解的最小参数值。</div>
+<div class="description-paragraph" id="p0177" num="0172">(6)迭代至收敛：</div>
+<div class="description-paragraph" id="p0178" num="0173">达到最大迭代次数或目标函数变化率＜1％，输出前沿解集，选择前沿中的最优解。</div>
+<div class="description-paragraph" id="p0179" num="0174">步骤四、动态优先级调整；</div>
+<div class="description-paragraph" id="p0180" num="0175">在此步骤中根据环境参数和任务类型动态调整能源优先级，具体如下：</div>
+<div class="description-paragraph" id="p0181" num="0176">(1)环境数据采集：在飞行器上集成多模态传感器网络，实时采集风速、温度、湿度、光照强度、气压等环境参数，并通过高速通信传输至中央控制器。</div>
+<div class="description-paragraph" id="p0182" num="0177">(2)任务需求输入：根据飞行任务类型(紧急救援类、巡航监测类、货物运输类、训练任务类)预设能源优先级策略，具体的：</div>
+<div class="description-paragraph" id="p0183" num="0178">紧急救援类：需高功率、快速响应(优先级：氢燃料电池＞燃油＞电池＞太阳能)；</div>
+<div class="description-paragraph" id="p0184" num="0179">巡航监测类：需长续航、低噪音(优先级：太阳能＞氢燃料电池＞电池＞燃油)；</div>
+<div class="description-paragraph" id="p0185" num="0180">货物运输类：需稳定输出、高负载(优先级：燃油＞氢燃料电池＞电池＞太阳能)；</div>
+<div class="description-paragraph" id="p0186" num="0181">训练任务类：需节能、低成本(优先级：太阳能＞电池＞氢燃料电池＞燃油)。</div>
+<div class="description-paragraph" id="p0187" num="0182">为每类任务建立能源使用权重系数表，通过飞行器操控界面输入任务类型，中央控制器调用对应的权重系数表，如表1所示：</div>
+<div class="description-paragraph" id="p0188" num="0183">表1：权重系数表</div>
+<div class="description-paragraph" id="p0189" num="0184">
+<tables>
+<patent-tables>
+<table class="description-table" cols="5" width="100%">
+<tbody><tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">任务类型</td>
+<td class="description-td" morerows="1" rowspan="2">氢燃料电池</td>
+<td class="description-td" morerows="1" rowspan="2">燃油</td>
+<td class="description-td" morerows="1" rowspan="2">电池</td>
+<td class="description-td" morerows="1" rowspan="2">太阳能</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">紧急救援类</td>
+<td class="description-td" morerows="1" rowspan="2">0.4</td>
+<td class="description-td" morerows="1" rowspan="2">0.3</td>
+<td class="description-td" morerows="1" rowspan="2">0.2</td>
+<td class="description-td" morerows="1" rowspan="2">0.1</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">巡航监测类</td>
+<td class="description-td" morerows="1" rowspan="2">0.3</td>
+<td class="description-td" morerows="1" rowspan="2">0.1</td>
+<td class="description-td" morerows="1" rowspan="2">0.2</td>
+<td class="description-td" morerows="1" rowspan="2">0.4</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">货物运输类</td>
+<td class="description-td" morerows="1" rowspan="2">0.3</td>
+<td class="description-td" morerows="1" rowspan="2">0.4</td>
+<td class="description-td" morerows="1" rowspan="2">0.2</td>
+<td class="description-td" morerows="1" rowspan="2">0.1</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">训练任务类</td>
+<td class="description-td" morerows="1" rowspan="2">0.2</td>
+<td class="description-td" morerows="1" rowspan="2">0.1</td>
+<td class="description-td" morerows="1" rowspan="2">0.3</td>
+<td class="description-td" morerows="1" rowspan="2">0.4</td>
+</tr>
+</tbody></table>
+</patent-tables>
+</tables>
+</div>
+<div class="description-paragraph" id="p0190" num="0185">(3)动态优先级计算：中央控制器内置模糊逻辑算法，结合实时环境数据和任务需求，动态生成能源使用优先级表。</div>
+<div class="description-paragraph" id="p0191" num="0186">输入变量定义：环境参数(模糊化输入)，具体包括风速分为{低(0-5m/s)、中(5-15m/s)、高(＞15m/s)}；光照强度分为{弱(0-200W/m<sup>2</sup>)，中(200-600W/m<sup>2</sup>)，强(＞600W/m<sup>2</sup>)}；温度分为{低温(＜0℃)，常温(0～30℃)，高温(＞30℃)}；湿度分为{低(＜30％)，中(30％-70％)，高(＞70％)}；</div>
+<div class="description-paragraph" id="p0192" num="0187">任务需求(直接输入)：任务类型对应的权重系数表；</div>
+<div class="description-paragraph" id="p0193" num="0188">输出变量定义为能源优先级调整系数(ΔW)，其中各能源类型的权重修正值，范围[-0.2至+0.2]。</div>
+<div class="description-paragraph" id="p0194" num="0189">模糊规则库设计：</div>
+<div class="description-paragraph" id="p0195" num="0190">规则1：IF风速＝高AND温度＝低温THEN氢燃料电池ΔW＝+0.1，燃油ΔW＝+0.05，太阳能ΔW＝-0.15；</div>
+<div class="description-paragraph" id="p0196" num="0191">规则2：IF光照强度＝强AND任务类型＝巡航监测THEN太阳能ΔW＝+0.2，燃油ΔW＝-0.1；</div>
+<div class="description-paragraph" id="p0197" num="0192">规则3：IF温度＝高温AND湿度＝高THEN氢燃料电池ΔW＝-0.1，电池ΔW＝+0.1；</div>
+<div class="description-paragraph" id="p0198" num="0193">规则4：IF温度＝低温AND风速＝低(＜5m/s)THEN氢燃料电池ΔW＝+0.05，电池ΔW＝+0.2，燃油ΔW＝-0.1；</div>
+<div class="description-paragraph" id="p0199" num="0194">规则5：IF温度＝高温AND光照强度＝强THEN氢燃料电池ΔW＝-0.1，太阳能ΔW＝+0.2，电池ΔW＝+0.05；</div>
+<div class="description-paragraph" id="p0200" num="0195">规则6：IF光照强度＝弱AND温度＝低温THEN氢燃料电池ΔW＝+0.2，太阳能ΔW＝-0.2，燃油ΔW＝+0.1；</div>
+<div class="description-paragraph" id="p0201" num="0196">规则7：IF湿度＝高AND风速＝高THEN氢燃料电池ΔW＝+0.2，太阳能ΔW＝-0.2，燃油ΔW＝+0.2；</div>
+<div class="description-paragraph" id="p0202" num="0197">规则8：IF温度＝高温AND湿度＝低THEN氢燃料电池ΔW＝-0.1，太阳能ΔW＝+0.2，电池ΔW＝+0.1；</div>
+<div class="description-paragraph" id="p0203" num="0198">模糊推理与去模糊化的过程中求取隶属度函数：</div>
+<div class="description-paragraph" id="p0204" num="0199">1、风速公式与参数范围：</div>
+<div class="description-paragraph" id="p0205" num="0200">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0206" num="0201">式中，v表示实际风速测量值，μ<sub>L</sub>(v)、μ<sub>M</sub>(v)、μ<sub>H</sub>(v)分别表示风速属于“低”“中”“高”的隶属度，“低”的参数范围为0至10，“中”的参数范围为3至17，“高”的参数范围为大于等于10。</div>
+<div class="description-paragraph" id="p0207" num="0202">2、温度公式与参数范围：</div>
+<div class="description-paragraph" id="p0208" num="0203">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0209" num="0204">式中，T表示实际温度测量值，μ<sub>C</sub>(T))、μ<sub>N</sub>(T)、μ<sub>H</sub>(T))分别表示温度属于“低温”、“常温”、“高温”的隶属度，其中“低温”的参数范围为(-∞，5]，“常温”的参数范围为[0，30]，“高温”的参数范围为大于等于25。</div>
+<div class="description-paragraph" id="p0210" num="0205">3、光照强度公式与参数范围：</div>
+<div class="description-paragraph" id="p0211" num="0206">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0212" num="0207">式中，S表示实际光照强度测量值，μ<sub>W</sub>(S)、μ<sub>M</sub>(S)、μ<sub>S</sub>(S)分别表示光照强度属于“弱”、“中”“、强”的隶属度，其中“弱”的参数范围为[0，300]，“中”的参数范围为[200，600]，“强”的参数范围为大于等于500。</div>
+<div class="description-paragraph" id="p0213" num="0208">4、湿度公式与参数范围：</div>
+<div class="description-paragraph" id="p0214" num="0209">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0215" num="0210">式中，H表示实际湿度测量值，μ<sub>L</sub>(H)、μ<sub>M</sub>(H)、μ<sub>H</sub>(H)分别表示湿度属于“低”、“中”、“高”的隶属度，其中湿度属于“低”的参数范围为[0，40]，属于“中”的参数范围为[30，70]，属于“高”的参数范围为大于等于60。</div>
+<div class="description-paragraph" id="p0216" num="0211">规则激活与加权平均：</div>
+<div class="description-paragraph" id="p0217" num="0212">对匹配的规则进行激活，计算每条规则的输出值(ΔW)，按隶属度加权平均，输出公式为：</div>
+<div class="description-paragraph" id="p0218" num="0213">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0219" num="0214">式中，e表示能源类型，ΔW<sub>e</sub>表示能源类型e的权重修正值，μb表示第b条规则的隶属度，ΔW<sub>be</sub>表示第b条规则对能源e的修正值，将任务预设权重系数与ΔW叠加，生成动态优先级表。</div>
+<div class="description-paragraph" id="p0220" num="0215">(4)实时切换控制：根据优先级表，通过执行器系统实现能源模块的快速切换，确保动力输出的连续性和稳定性。</div>
+<div class="description-paragraph" id="p0221" num="0216">其可解决现有技术中能源切换延迟问题，提升飞行器在复杂环境下的响应速度，同时通过环境适配优化能源组合与任务驱动的多能互补控制，显著提升飞行器在复杂场景下的能源利用效率。</div>
+<div class="description-paragraph" id="p0222" num="0217">(5)控制指令生成与执行：</div>
+<div class="description-paragraph" id="p0223" num="0218">将优化结果转化为执行器指令，实现能源切换与功率调节。</div>
+<div class="description-paragraph" id="p0224" num="0219">1、根据飞行器当前总功率需求P<sub>total</sub>，按优化后的能源分配比例(例如燃油40％、氢能30％、太阳能30％)，计算各能源类型的功率分配：P<sub>fuel</sub>＝0.4*P<sub>total</sub>；P<sub>H2</sub>＝0.3*P<sub>total</sub>；P<sub>solar</sub>＝0.3*P<sub>total</sub>；</div>
+<div class="description-paragraph" id="p0225" num="0220">2、执行器指令映射：</div>
+<div class="description-paragraph" id="p0226" num="0221">燃油阀门开度调节，首先计算所需燃油流量：</div>
+<div class="description-paragraph" id="p0227" num="0222">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0228" num="0223">其中，Q<sub>target</sub>表示所需燃油流量；P<sub>target</sub>表示目标功率，HV表示燃油热值，η表示系统效率。</div>
+<div class="description-paragraph" id="p0229" num="0224">计算阀门开度：</div>
+<div class="description-paragraph" id="p0230" num="0225">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0231" num="0226">式中，α表示燃油阀门开度，Q<sub>target</sub>表示低空飞行器所需燃油流量，C<sub>v</sub>表示流量系数，ΔP表示阀门两端的压力差，ρ<sub>RY</sub>表示燃油密度。</div>
+<div class="description-paragraph" id="p0232" num="0227">氢燃料电池开关控制：</div>
+<div class="description-paragraph" id="p0233" num="0228">若P<sub>H2</sub>＞0，闭合氢燃料电池电路；否则断开；</div>
+<div class="description-paragraph" id="p0234" num="0229">太阳能电路切换：</div>
+<div class="description-paragraph" id="p0235" num="0230">光照充足时的电路闭合：在太阳能电路切换的过程中，当S<sub>light</sub>大于或等于S<sub>threshold</sub>，且P<sub>solar，real</sub>大于或等于P<sub>solar，target</sub>时，则太阳能电路闭合；当S<sub>ligh t</sub>小于S<sub>threshold</sub>，且P<sub>solar，rea</sub>小于P<sub>solar，targe</sub>t时，则太阳能电路断开。</div>
+<div class="description-paragraph" id="p0236" num="0231">其中，S<sub>light</sub>表示光照强度实际值；S<sub>threshold</sub>表示光照强度阈值(200W/m<sup>2</sup>)；P<sub>solar，real</sub>表示太阳能实际功率；P<sub>solar，target</sub>表示优化算法分配的太阳能目标功率。</div>
+<div class="description-paragraph" id="p0237" num="0232">3、指令编码：</div>
+<div class="description-paragraph" id="p0238" num="0233">将映射后的控制信号转换为适合在中央控制器与执行器之间传输的指令格式，常见的指令编码方式有二进制编码、ASCII编码等，对于简单的开关控制指令，可用一个二进制位来表示开关的通断状态(例如，用“1”表示开关闭合，“0”表示开关断开)，对于调节阀开度等复杂的控制指令，可以采用ASCII编码，将调节阀开度值转换为ASCII字符串，然后在字符串前后添加起始符、结束符和校验码等信息，组成完整的指令帧。</div>
+<div class="description-paragraph" id="p0239" num="0234">4、指令发送与执行：</div>
+<div class="description-paragraph" id="p0240" num="0235">指令通过通信接口(如串口、CAN总线等)发送给执行器，执行器接收到指令后，解析指令并执行相应的动作，负载主要包括飞行器的动力系统(如螺旋桨或推进器)和其他用电设备(如航电系统、照明系统等)。动力系统需要较大的功率来驱动飞行器飞行，其他用电设备则根据其功能需求消耗不同的电量。能源分配与控制模块根据负载的需求，合理分配各种能源，确保飞行器的正常运行。</div>
+<div class="description-paragraph" id="p0241" num="0236">如图3与图4所示，工作流程及控制策略具体实施方案如下：</div>
+<div class="description-paragraph" id="p0242" num="0237">A、起飞阶段，飞行器需要较大的动力来克服重力和空气阻力，实现快速起飞，此时，能源分配与控制采取以下控制策略：</div>
+<div class="description-paragraph" id="p0243" num="0238">步骤1：同时启动燃油发动机发电单元和电池组，燃油发动机发电单元提供主要的电力支持，电池组作为辅助电源，补充额外的能量；</div>
+<div class="description-paragraph" id="p0244" num="0239">步骤2：电机驱动单元根据中央控制器的指令，调节电机的转速和扭矩，使飞行器的螺旋桨或推进器产生足够的推力；</div>
+<div class="description-paragraph" id="p0245" num="0240">步骤3：传感器系统实时监测飞行器的起飞状态和能源系统的运行参数，中央控制器根据监测数据动态调整能源分配方案，确保起飞过程的顺利进行。</div>
+<div class="description-paragraph" id="p0246" num="0241">B、巡航阶段，飞行器的飞行状态相对稳定，对动力的需求相对较小。能源分配与控制模块根据不同的天气和能源状态采取以下控制策略：</div>
+<div class="description-paragraph" id="p0247" num="0242">阳光充足时，步骤1启动太阳能采集，太阳能电池板将太阳能转换为电能，一部分电能直接供给飞行器的负载，另一部分电能通过充电控制器储存到电池组中；步骤2燃油发动机发电保持较低的功率运行，为飞行器提供基本的动力支持；步骤3中央控制器根据太阳能电池板的输出功率和飞行器的负载需求，动态调节燃油发动机的功率，以实现能源的高效利用；</div>
+<div class="description-paragraph" id="p0248" num="0243">阳光不足时，步骤1关闭太阳能采集，主要依靠燃油发动机发电和氢燃料电池发电为飞行器提供动力；步骤2氢燃料电池发电根据飞行器的负载需求和氢能源存储中的氢气剩余量，调节输出功率，辅助燃油发动机发电工作；步骤3电池组作为备用电源，在能源供应不足时提供补充能量。</div>
+<div class="description-paragraph" id="p0249" num="0244">C、降落阶段，飞行器需要精确控制动力输出，实现平稳降落，能源分配与控制模块采取以下控制策略：</div>
+<div class="description-paragraph" id="p0250" num="0245">步骤1逐斩降低燃油发动机发电单元的功率，主要依靠电池组和电机驱动单元为飞行器提供动力；步骤2电机驱动单元根据中央控制器的指令，精确调节电机的转速和扭矩，使飞行器的螺旋桨或推进器产生合适的推力，确保降落过程的平稳性。</div>
+<div class="description-paragraph" id="p0251" num="0246">降落阶段电机转速与扭矩的优化控制方法，具体包括以下步骤：</div>
+<div class="description-paragraph" id="p0252" num="0247">(1)参数采集：利用传感器系统采集实时数据，速度传感器用于测量飞行器实时下降速度v(m/s)；高度传感器用于测量飞行器当前高度h(m)；姿态传感器用于测量飞行器俯仰角θ、横滚角<span class="patent-image-not-available"></span>偏航角ψ；电机参数传感器用于实时监测电机转速ω(rad/s)、扭矩τ(N·m)、温度等。</div>
+<div class="description-paragraph" id="p0253" num="0248">(2)实时控制：中央控制器根据实时传感器数据(速度、高度、姿态)动态计算所需推力F<sub>thrust</sub>，并反推最优的(ω，τ)组合。</div>
+<div class="description-paragraph" id="p0254" num="0249">其中，低空飞行器在降落时的所需推力计算公式为：</div>
+<div class="description-paragraph" id="p0255" num="0250">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0256" num="0251">式中，F<sub>thrus t</sub>表示低空飞行器在降落时所需的推力，m表示低空飞行器的质量，a<sub>d es cen t</sub>表示低空飞行器下降加速度，F<sub>dr ag</sub>表示空气阻力，t表示时间，υ表示低空飞行器在t时刻的下降速度，ρ<sub>KQ</sub>表示空气密度(实时测量或查表，kg/m<sup>3</sup>)，C<sub>d</sub>表示阻力系数(通过风洞实验标定)，A表示低空飞行器的迎风面积，d表示低空飞行器在t时刻降落时的位移。</div>
+<div class="description-paragraph" id="p0257" num="0252">反推最优电机转速(ω)与扭矩(τ)组合的过程中，目标函数定义时在降落阶段，目标函数旨在最小化触地冲击力F<sub>impact</sub>和姿态角变化Δθ，其加权形式为：</div>
+<div class="description-paragraph" id="p0258" num="0253">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0259" num="0254">式中，F<sub>impact</sub>表示触地冲击力(N)，Δθ表示姿态角变化，<span class="patent-image-not-available"></span>与<span class="patent-image-not-available"></span>表示权重系数，触地冲击力为：</div>
+<div class="description-paragraph" id="p0260" num="0255">F<sub>impact</sub>＝m·v<sub>land</sub>；</div>
+<div class="description-paragraph" id="p0261" num="0256">降落速度v<sub>land</sub>由动力学方程积分得到：</div>
+<div class="description-paragraph" id="p0262" num="0257">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0263" num="0258">下降加速度a<sub>descent</sub>与电机推力相关：</div>
+<div class="description-paragraph" id="p0264" num="0259">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0265" num="0260">电机推力：</div>
+<div class="description-paragraph" id="p0266" num="0261">F<sub>thrust</sub>＝k·τ·ω；</div>
+<div class="description-paragraph" id="p0267" num="0262">式中，v<sub>land</sub>表示降落速度(m/s)，a<sub>descent</sub>表示下降加速度(m/s2)；t<sub>0</sub>表示降落开始时间(s)，t<sub>land</sub>表示降落结束时间(s)；F<sub>thrus t</sub>表示电机推力(N)；m表示飞行器质量(kg)；g表示重力加速度(9.81m/s2)，F<sub>drag</sub>表示空气阻力(N)；k表示电机-螺旋桨效率常数(通过台架实验标定)，ω表示电机转速(rad/s)，τ表示电机扭矩(N·m)。</div>
+<div class="description-paragraph" id="p0268" num="0263">姿态角变化：</div>
+<div class="description-paragraph" id="p0269" num="0264">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0270" num="0265">式中，<span class="patent-image-not-available"></span>表示电机推力对推力分布方向的偏导数，y表示推力分布方向，ζ表示比例系数。</div>
+<div class="description-paragraph" id="p0271" num="0266">为确保降落平稳性，需满足以下约束：</div>
+<div class="description-paragraph" id="p0272" num="0267">下降加速度限制(a<sub>max</sub>＝0.5m/s<sup>2</sup>)：</div>
+<div class="description-paragraph" id="p0273" num="0268">|a<sub>descent</sub>|≤a<sub>max</sub>；</div>
+<div class="description-paragraph" id="p0274" num="0269">触地冲击力限制：F<sub>impact</sub>≤F<sub>safe</sub>(F<sub>safe</sub>＝1.2·m·g)；</div>
+<div class="description-paragraph" id="p0275" num="0270">姿态角稳定性：Δθ≤θ<sub>max</sub>(θ<sub>max</sub>＝5°)；</div>
+<div class="description-paragraph" id="p0276" num="0271">满足电机功率限制ω*τ≤P<sub>max</sub>(P<sub>max</sub>为电机最大功率)。</div>
+<div class="description-paragraph" id="p0277" num="0272">(3)建立优化问题：</div>
+<div class="description-paragraph" id="p0278" num="0273">最小化触地冲击力F<sub>impact</sub>和姿态角变化Δθ：</div>
+<div class="description-paragraph" id="p0279" num="0274">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0280" num="0275">其中，F<sub>impact</sub>表示触地冲击力(N)，Δθ表示姿态角变化；<span class="patent-image-not-available"></span>与<span class="patent-image-not-available"></span>表示权重系数。</div>
+<div class="description-paragraph" id="p0281" num="0276">(4)在线优化算法(梯度下降)：</div>
+<div class="description-paragraph" id="p0282" num="0277">初始化：设定初始值ω<sub>0</sub>与τ<sub>0</sub>(当前运行值)，计算目标函数梯度；</div>
+<div class="description-paragraph" id="p0283" num="0278">梯度计算通过自动微分(Autograd)工具，目标函数梯度计算公式：</div>
+<div class="description-paragraph" id="p0284" num="0279">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0285" num="0280">式中，<span class="patent-image-not-available"></span>表示目标函数梯度；<span class="patent-image-not-available"></span>表示目标函数对电机转速ω的偏导数；<span class="patent-image-not-available"></span>表示目标函数对电机扭矩τ的偏导数。</div>
+<div class="description-paragraph" id="p0286" num="0281">更新函数：</div>
+<div class="description-paragraph" id="p0287" num="0282">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0288" num="0283">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0289" num="0284">其中，n表示迭代的步数(即第n次迭代，ω<sub>n</sub>表示第n次迭代后的参数值，ω<sub>n+1</sub>表示第n+1次迭代更新后的参数值，c表示梯度下降学习率，c＝0.01，终止条件是当目标函数变化量<span class="patent-image-not-available"></span>(ε表示收敛阈值)或达到最大迭代次数。</div>
+<div class="description-paragraph" id="p0290" num="0285">通过上述步骤，中央控制器能够基于实时传感器数据动态计算所需推力和目标函数的梯度，并驱动优化算法(梯度下降)快速收敛至最优的(ω，τ)组合，确保飞行器降落的平稳性与安全性。</div>
+<div class="description-paragraph" id="p0291" num="0286">以上所述仅为本发明的较佳实施例而已，并不用以限制本发明，凡在本发明的精神和原则之内，所作的任何修改、等同替换、改进等，均应包含在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

@@ -1,0 +1,283 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120220475A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES498262943">
+<invention-title id="title1" lang="ZH">一种高速公路与空域协同的低空飞行器航线规划方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及路径规划领域，具体来说，涉及一种高速公路与空域协同的低空飞行器航线规划方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空飞行器的不断发展，低空经济已经成为一种战略性新兴经济产业，而利用高速公路的路网资源布设低空飞行器，不仅能共享基础设施、降低成本，还能提升运输效率、促进区域经济发展。但是，目前低空飞行器的航线规划方法未考虑高速公路的拓扑结构，如车辆交通流量、路网密度和服务设施分布等。</div>
+<div class="description-paragraph" id="p0005" num="0003">传统人工势场法在路径规划中存在局部极小值陷阱、动态障碍物适应性差等问题，且未充分利用地面基础设施(如高速公路)与低空空域的协同关系。现有技术难以在复杂空域环境中高效生成兼顾安全性与效率的航线。</div>
+<div class="description-paragraph" id="p0006" num="0004">具体来说，现有低空飞行器航线规划方法存在以下问题：</div>
+<div class="description-paragraph" id="p0007" num="0005">(1)空域孤立规划：传统低空航线依赖空域障碍物信息，未利用地面高速公路网络的导航价值，导致路径冗余且资源浪费。</div>
+<div class="description-paragraph" id="p0008" num="0006">(2)动态适应性差：现有势场法对动态障碍物(如其他飞行器、突发气象区)建模不足，易陷入局部极小值或避障失效。</div>
+<div class="description-paragraph" id="p0009" num="0007">(3)未充分利用高速公路路网与低空空域的协同关系，导致规划结果效率低、冲突风险高。</div>
+<div class="description-paragraph" id="p0010" num="0008">针对相关技术中的问题，目前尚未提出有效的解决方案。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0011">发明内容</div>
+<div class="description-paragraph" id="p0012" num="0009">针对相关技术中的问题，本发明提出一种高速公路与空域协同的低空飞行器航线规划方法，以克服现有相关技术所存在的上述技术问题。</div>
+<div class="description-paragraph" id="p0013" num="0010">为此，本发明采用的具体技术方案如下：</div>
+<div class="description-paragraph" id="p0014" num="0011">一种高速公路与空域协同的低空飞行器航线规划方法，包括：</div>
+<div class="description-paragraph" id="p0015" num="0012">基于决策树算法对空域层级进行初步分类和规则提取，并通过贝叶斯网络建立包含空域层级间概率依赖关系的贝叶斯网络模型，以优化各空域层级间的分类精度；</div>
+<div class="description-paragraph" id="p0016" num="0013">通过动态势场更新机制，更新斥力场参数；在每个空域层级内，计算高速公路引力场、静态斥力场及动态斥力场，并融合得到每个空域层级的综合势场值；</div>
+<div class="description-paragraph" id="p0017" num="0014">利用贪婪策略和优先级规则，并结合空域层级的综合势场值，获取飞行器航线的初始路径；</div>
+<div class="description-paragraph" id="p0018" num="0015">根据人工势场局部优化算法和动态冲突检测机制，对飞行器航线的初始路径进行调整，得到飞行器航线路径。</div>
+<div class="description-paragraph" id="p0019" num="0016">进一步的，基于决策树算法对空域层级进行初步分类和规则提取，并通过贝叶斯网络建立包含空域层级间概率依赖关系的贝叶斯网络模型，以优化各空域层级间的分类精度包括：</div>
+<div class="description-paragraph" id="p0020" num="0017">获取原始空域的数据特征集，包括空域物理特征、气象特征、飞行器操作特征及空域管理特征；</div>
+<div class="description-paragraph" id="p0021" num="0018">使用决策树算法，基于数据特征集中的特征，递归地划分数据，生成决策树模型，并利用交叉验证法评估决策树模型性能，以优化决策树模型；</div>
+<div class="description-paragraph" id="p0022" num="0019">通过决策树模型对原始空域的新数据特征集进行预测，以实现初步的空域层级分类；遍历决策树模型的每条路径，通过从根节点到叶节点，提取条件关系形式的分类规则；</div>
+<div class="description-paragraph" id="p0023" num="0020">基于条件关系形式的分类规则，并结合最大似然估计法计算的条件概率表，构建包含空域层级间概率依赖关系的贝叶斯网络模型；</div>
+<div class="description-paragraph" id="p0024" num="0021">将初步分类结果输入贝叶斯网络模型，根据贝叶斯网络中的概率依赖关系，调整初步的空域层级分类结果。</div>
+<div class="description-paragraph" id="p0025" num="0022">进一步的，遍历决策树模型的每条路径，通过从根节点到叶节点，提取条件关系形式的分类规则包括：</div>
+<div class="description-paragraph" id="p0026" num="0023">从决策树模型的根节点开始，通过递归函数来遍历决策树模型的每个节点，直到到达叶节点；每个非叶节点包含条件，每个叶节点包含类别标签；</div>
+<div class="description-paragraph" id="p0027" num="0024">在递归过程中，记录每条路径上的所有条件，并在到达叶节点时，记录叶节点对应的类别标签，形成条件关系形式的分类规则；</div>
+<div class="description-paragraph" id="p0028" num="0025">形成条件关系形式的分类规则之后还包括：</div>
+<div class="description-paragraph" id="p0029" num="0026">合并相似的分类规则，以减少规则集的复杂性；应用剪枝技术去除分类规则中的过拟合部分。</div>
+<div class="description-paragraph" id="p0030" num="0027">进一步的，基于条件关系形式的分类规则，并结合最大似然估计法计算的条件概率表，构建包含空域层级间概率依赖关系的贝叶斯网络模型包括：</div>
+<div class="description-paragraph" id="p0031" num="0028">获取条件关系形式的分类规则，并根据条件关系形式的分类规则中的条件和结论部分定义贝叶斯网络的变量节点，根据条件关系形式的分类规则中的因果关系定义变量节点之间的边；</div>
+<div class="description-paragraph" id="p0032" num="0029">使用最大似然估计来计算每个变量节点的条件概率表，并为每个变量节点填充条件概率表；</div>
+<div class="description-paragraph" id="p0033" num="0030">通过变量节点、变量节点之间的边及条件概率表，融合得到包含空域层级间概率依赖关系的贝叶斯网络模型。</div>
+<div class="description-paragraph" id="p0034" num="0031">进一步的，通过动态势场更新机制，更新斥力场参数包括：</div>
+<div class="description-paragraph" id="p0035" num="0032">根据飞行器任务的紧急度，调整高速公路引力场计算时的引力强度系数；根据飞行器任务续航时长，调整高速公路引力场计算时的衰减半径。</div>
+<div class="description-paragraph" id="p0036" num="0033">进一步的，计算高速公路引力场、静态斥力场及动态斥力场，并融合得到每个空域层级的综合势场包括：</div>
+<div class="description-paragraph" id="p0037" num="0034">通过高速公路引力场计算公式，计算高速公路引力场强度；</div>
+<div class="description-paragraph" id="p0038" num="0035">获取静态障碍物的几何中心坐标、高度及边界信息，并将空域划分为三维网格；计算每个三维网格中心到所有静态障碍物的最小距离；</div>
+<div class="description-paragraph" id="p0039" num="0036">当三维网格中心到所有静态障碍物的最小距离小于或等于静态障碍物安全距离时，则利用静态斥力场计算公式，计算静态障碍物的静态斥力值强度；当出现多个静态障碍物叠加区域时，取多个静态斥力值中的最大值作为最终的静态斥力值强度；</div>
+<div class="description-paragraph" id="p0040" num="0037">获取动态障碍物的位置、速度、航向及预计持续时间，并计算飞行器与动态障碍物预测轨迹之间的最小距离；</div>
+<div class="description-paragraph" id="p0041" num="0038">利用动态斥力场计算公式，计算动态障碍物的动态斥力值强度，并叠加至空域网格，同时，将过时的动态障碍物的动态斥力场衰减至零；</div>
+<div class="description-paragraph" id="p0042" num="0039">通过对高速公路引力场强度、静态斥力场强度及动态斥力场强度进行加权求和的方式，得到每个空域层级的综合势场值。</div>
+<div class="description-paragraph" id="p0043" num="0040">进一步的，高速公路引力场计算公式为：</div>
+<div class="description-paragraph" id="p0044" num="0041">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0045" num="0042">静态斥力场计算公式为：</div>
+<div class="description-paragraph" id="p0046" num="0043">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0047" num="0044">动态斥力场计算公式为：</div>
+<div class="description-paragraph" id="p0048" num="0045">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0049" num="0046">式中，d(x，y)为飞行器到车道中心线的水平距离；</div>
+<div class="description-paragraph" id="p0050" num="0047">ΔU<sub>i</sub>为第i个高速公路关键节点的引力增量r<sub>i</sub>为第i个高速公路关键节点的影响半径；</div>
+<div class="description-paragraph" id="p0051" num="0048">N为高速公路关键节点的总数量；</div>
+<div class="description-paragraph" id="p0052" num="0049">P为飞行器当前的三维位置坐标，P<sub>i</sub>为第i个高速公路关键节点的三维坐标；</div>
+<div class="description-paragraph" id="p0053" num="0050">k<sub>road</sub>为引力强度系数，σ为衰减半径；</div>
+<div class="description-paragraph" id="p0054" num="0051">d<sub>obs</sub>为飞行器当前位置到障碍物表面的最近三维欧氏距离；</div>
+<div class="description-paragraph" id="p0055" num="0052">d<sub>safe</sub>为静态障碍物安全距离；</div>
+<div class="description-paragraph" id="p0056" num="0053">k<sub>static</sub>为静态斥力强度系数；</div>
+<div class="description-paragraph" id="p0057" num="0054">k<sub>dvnamic</sub>为动态斥力强度系数；</div>
+<div class="description-paragraph" id="p0058" num="0055">v<sub>rel</sub>为飞行器与动态障碍物速度矢量的模长差；</div>
+<div class="description-paragraph" id="p0059" num="0056">d<sub>proj</sub>为飞行器与动态障碍物预测轨迹之间的最小距离；</div>
+<div class="description-paragraph" id="p0060" num="0057">t<sub>obs</sub>为障碍物状态更新时间戳；τ为时间衰减常数；</div>
+<div class="description-paragraph" id="p0061" num="0058">x、y及z分别为表示飞行器当前位置的三维空间坐标，t为当前时间戳。</div>
+<div class="description-paragraph" id="p0062" num="0059">进一步的，利用贪婪策略和优先级规则，并结合空域层级的综合势场值，获取飞行器航线的初始路径包括：</div>
+<div class="description-paragraph" id="p0063" num="0060">通过高速公路引力场中的路径节点，生成路径骨架，并利用A*算法连接路径节点，得到初步路径；</div>
+<div class="description-paragraph" id="p0064" num="0061">从飞行器的起点出发，通过迭代选择相邻三维网格中综合势场值最低的路径节点的方式，并结合预先设置的优先级规则，对初步路径进行优化后，得到飞行器航线的初始路径。</div>
+<div class="description-paragraph" id="p0065" num="0062">进一步的，根据人工势场局部优化算法和动态冲突检测机制，对飞行器航线的初始路径进行调整，得到飞行器航线路径包括：</div>
+<div class="description-paragraph" id="p0066" num="0063">以综合势场值逐步降低为原则，采用梯度下降法，迭代调整飞行器航线的初始路径中的路径节点位置；</div>
+<div class="description-paragraph" id="p0067" num="0064">将空域划分为时空网格，并预测飞行器与障碍物在未来的轨迹占用情况；</div>
+<div class="description-paragraph" id="p0068" num="0065">当同一时空网格内存在多个飞行器轨迹，且飞行器轨迹与障碍物的预测距离小于静态障碍物安全距离，则判定飞行器航线的当前路径为冲突状态，并按照预先设定的动态调整策略，对飞行器航线的当前路径进行调整，得到飞行器航线路径。</div>
+<div class="description-paragraph" id="p0069" num="0066">进一步的，以综合势场值逐步降低为原则，采用梯度下降法，迭代调整飞行器航线的初始路径中的路径节点位置包括：</div>
+<div class="description-paragraph" id="p0070" num="0067">利用节点位置调整公式调整飞行器航线的初始路径中的路径节点位置，且节点位置调整公式：</div>
+<div class="description-paragraph" id="p0071" num="0068">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0072" num="0069">式中，P<sub>i+1</sub>为第i+1次迭代时路径节点的三维坐标，P<sub>i</sub>为第i次迭代时路径节点的三维坐标；</div>
+<div class="description-paragraph" id="p0073" num="0070">η为学习率；<span class="patent-image-not-available"></span>为综合势场在节点P<sub>i</sub>处的梯度向量。</div>
+<div class="description-paragraph" id="p0074" num="0071">本发明的有益效果为：</div>
+<div class="description-paragraph" id="p0075" num="0072">(1)物理-信息空间耦合：通过高速公路与空域势场融合，将地面基础设施转化为空域导航资源，降低飞行耗能。</div>
+<div class="description-paragraph" id="p0076" num="0073">(2)多粒度障碍物建模：采用静态障碍物精确建模+动态障碍物实时预测的方法，可以兼顾安全性和计算效率。</div>
+<div class="description-paragraph" id="p0077" num="0074">(3)本发明通过改进人工势场模型，引入高速公路引力场与动态障碍物斥力场协同作用，实现低空飞行器航线的快速生成与动态优化。</div>
+<div class="description-paragraph" id="p0078" num="0075">(4)本发明充分发挥低空飞行器航线规划和地面交通基础设施的协同性，有效提高低空飞行器的航线的合理性和效率。</div>
+<div class="description-paragraph" id="p0079" num="0076">(5)本发明基于决策树和贝叶斯网络的组合方法，不仅优化低空飞行器航线规划中的空域层级分类，还简化了规则集，增强了模型的解释力和实用性，为低空飞行器航线规划提供了强有力的支持，使得飞行器在航线时，高度调整的更加精准和灵活，适用于飞行器当下的具体外部环境和飞行器任务要求。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0080">附图说明</div>
+<div class="description-paragraph" id="p0081" num="0077">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0082" num="0078">图1是根据本发明实施例的一种高速公路与空域协同的低空飞行器航线规划方法的流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0083">具体实施方式</div>
+<div class="description-paragraph" id="p0084" num="0079">为进一步说明各实施例，本发明提供有附图，这些附图为本发明揭露内容的一部分，其主要用以说明实施例，并可配合说明书的相关描述来解释实施例的运作原理，配合参考这些内容，本领域普通技术人员应能理解其他可能的实施方式以及本发明的优点，图中的组件并未按比例绘制，而类似的组件符号通常用来表示类似的组件。</div>
+<div class="description-paragraph" id="p0085" num="0080">根据本发明的实施例，提供了一种高速公路与空域协同的低空飞行器航线规划方法。</div>
+<div class="description-paragraph" id="p0086" num="0081">现结合附图和具体实施方式对本发明进一步说明，如图1所示，根据本发明实施例的高速公路与空域协同的低空飞行器航线规划方法，包括：</div>
+<div class="description-paragraph" id="p0087" num="0082">S 1、基于决策树算法对空域层级进行初步分类和规则提取，并通过贝叶斯网络建立包含空域层级间概率依赖关系的贝叶斯网络模型，以优化各空域层级间的分类精度。</div>
+<div class="description-paragraph" id="p0088" num="0083">S2、通过动态势场更新机制，更新斥力场参数；在每个空域层级内，计算高速公路引力场、静态斥力场及动态斥力场，并融合得到每个空域层级的综合势场值。</div>
+<div class="description-paragraph" id="p0089" num="0084">S3、利用贪婪策略和优先级规则，并结合空域层级的综合势场值，获取飞行器航线的初始路径。</div>
+<div class="description-paragraph" id="p0090" num="0085">S4、根据人工势场局部优化算法和动态冲突检测机制，对飞行器航线的初始路径进行调整，得到飞行器航线路径。</div>
+<div class="description-paragraph" id="p0091" num="0086">在一个实施例中，基于决策树算法对空域层级进行初步分类和规则提取，并通过贝叶斯网络建立包含空域层级间概率依赖关系的贝叶斯网络模型，以优化各空域层级间的分类精度包括：</div>
+<div class="description-paragraph" id="p0092" num="0087">获取原始空域的数据特征集，包括空域物理特征、气象特征、飞行器操作特征及空域管理特征。</div>
+<div class="description-paragraph" id="p0093" num="0088">其中，空域物理特征：如地理坐标、海拔高度等。</div>
+<div class="description-paragraph" id="p0094" num="0089">气象特征：如温度、湿度、风速等。</div>
+<div class="description-paragraph" id="p0095" num="0090">飞行器操作特征：例如速度、航向、载重量等。</div>
+<div class="description-paragraph" id="p0096" num="0091">空域管理特征：如管制区域边界、飞行限制区等。</div>
+<div class="description-paragraph" id="p0097" num="0092">使用决策树算法，基于数据特征集中的特征，递归地划分数据，生成决策树模型，并利用交叉验证法评估决策树模型性能，以优化决策树模型。</div>
+<div class="description-paragraph" id="p0098" num="0093">通过决策树模型对原始空域的新数据特征集进行预测，以实现初步的空域层级分类；遍历决策树模型的每条路径，通过从根节点到叶节点，提取条件关系形式的分类规则。</div>
+<div class="description-paragraph" id="p0099" num="0094">基于条件关系形式的分类规则，并结合最大似然估计法计算的条件概率表，构建包含空域层级间概率依赖关系的贝叶斯网络模型。</div>
+<div class="description-paragraph" id="p0100" num="0095">将初步分类结果输入贝叶斯网络模型，根据贝叶斯网络中的概率依赖关系，调整初步的空域层级分类结果。</div>
+<div class="description-paragraph" id="p0101" num="0096">需要说明的是，使用决策树算法基于上述特征集中的信息递归地划分数据。目标是生成决策树模型，该模型能够根据输入的特征预测出相应的空域层级类别。为了确保模型的有效性和避免过拟合，通常会采用交叉验证的方法来评估和优化模型性能。</div>
+<div class="description-paragraph" id="p0102" num="0097">利用生成的决策树模型对新的空域数据进行预测，从而实现初步的空域层级分类。同时，遍历决策树的每一条路径(从根节点到叶节点)，从中提取出条件关系形式(IF-THEN)的分类规则。这些规则本质上描述了在特定条件下如何确定空域的层级归属。</div>
+<div class="description-paragraph" id="p0103" num="0098">基于得到的分类规则以及最大似然估计法计算的条件概率表，构建一个贝叶斯网络模型。这个模型不仅包含了变量节点之间的因果关系(由分类规则定义)，还考虑了变量之间概率依赖性的量化表示(通过条件概率表)。</div>
+<div class="description-paragraph" id="p0104" num="0099">将通过决策树模型获得的初步分类结果作为输入，应用到构建好的贝叶斯网络模型中。依据贝叶斯网络中的概率依赖关系，进一步调整和优化最初的空域层级分类结果。这样做可以更准确地反映实际情况下的不确定性因素，提高分类的精确度。</div>
+<div class="description-paragraph" id="p0105" num="0100">在一个实施例中，遍历决策树模型的每条路径，通过从根节点到叶节点，提取条件关系形式的分类规则包括：</div>
+<div class="description-paragraph" id="p0106" num="0101">从决策树模型的根节点开始，通过递归函数来遍历决策树模型的每个节点，直到到达叶节点；每个非叶节点包含条件，每个叶节点包含类别标签。</div>
+<div class="description-paragraph" id="p0107" num="0102">在递归过程中，记录每条路径上的所有条件，并在到达叶节点时，记录叶节点对应的类别标签，形成条件关系形式的分类规则。例如，″如果温度＜20度且湿度＞80％，则为空域层级A″。</div>
+<div class="description-paragraph" id="p0108" num="0103">形成条件关系形式的分类规则之后还包括：</div>
+<div class="description-paragraph" id="p0109" num="0104">合并相似的分类规则，以减少规则集的复杂性；应用剪枝技术去除分类规则中的过拟合部分。</div>
+<div class="description-paragraph" id="p0110" num="0105">递归函数是在其定义或实现中直接或间接调用自身的函数。在遍历决策树模型的过程中，递归函数通过从根节点开始逐步深入每个分支直到叶节点，来记录路径上的所有条件，并最终形成分类规则。</div>
+<div class="description-paragraph" id="p0111" num="0106">定义一个递归函数extract_rules，该函数接收两个参数：当前处理的节点和到目前为止累积的条件列表(conditions)。初始调用时，conditions为空列表。这个列表随着递归过程而动态增长。每进入一个新的分支，就将该分支的条件添加到列表中。当到达叶节点时，累积的条件列表包含了从根节点到该叶节点路径上的所有条件。</div>
+<div class="description-paragraph" id="p0112" num="0107">通过剪枝技术(如预剪枝或后剪枝)，在一定程度上去除那些对整体分类贡献不大但增加了模型复杂度的部分。在规则提取阶段，考虑移除那些过于特定或者基于少量样本生成的规则，从而提高规则集的稳定性和准确性。</div>
+<div class="description-paragraph" id="p0113" num="0108">在一个实施例中，基于条件关系形式的分类规则，并结合最大似然估计法计算的条件概率表，构建包含空域层级间概率依赖关系的贝叶斯网络模型包括：</div>
+<div class="description-paragraph" id="p0114" num="0109">获取条件关系形式的分类规则，并根据条件关系形式的分类规则中的条件和结论部分定义贝叶斯网络的变量节点，根据条件关系形式的分类规则中的因果关系定义变量节点之间的边。</div>
+<div class="description-paragraph" id="p0115" num="0110">使用最大似然估计来计算每个变量节点的条件概率表，并为每个变量节点填充条件概率表。</div>
+<div class="description-paragraph" id="p0116" num="0111">通过变量节点、变量节点之间的边及条件概率表，融合得到包含空域层级间概率依赖关系的贝叶斯网络模型。</div>
+<div class="description-paragraph" id="p0117" num="0112">例如，″温度＜20度″、″湿度＞80％″等可以作为变量节点。″温度&lt;20度″和″湿度＞80％″导致″空域层级A″，这表明存在因果关系，从而在相应的变量节点之间建立有向边。</div>
+<div class="description-paragraph" id="p0118" num="0113">最大似然估计是一种参数估计方法，用于估算给定数据集下模型参数的最佳值。即在给定其父节点的状态时，该节点取不同状态的概率。</div>
+<div class="description-paragraph" id="p0119" num="0114">首先收集数据：首先需要一个足够大的数据集，其中包含了所有相关变量的历史观测值。</div>
+<div class="description-paragraph" id="p0120" num="0115">计算概率：对于每个变量节点，基于其父节点的状态组合，计算该节点处于各个可能状态的概率。具体来说，就是统计在不同的父节点状态下，子节点出现各种状态的频率，然后将这些频率转化为概率。</div>
+<div class="description-paragraph" id="p0121" num="0116">例如，有一个变量节点″空域层级A″，其父节点是″温度＜20度″和″湿度＞80％″。计算当″温度＜20度＝true″且″湿度＞80％＝true″时，″空域层级A＝true″的概率；以及当这两个条件为其他组合时，″空域层级A＝true″或″false″的概率。这通过统计训练数据集中满足这些条件的实例数并除以总数来完成。</div>
+<div class="description-paragraph" id="p0122" num="0117">在一个实施例中，通过动态势场更新机制，更新斥力场参数包括：</div>
+<div class="description-paragraph" id="p0123" num="0118">根据飞行器任务的紧急度，调整高速公路引力场计算时的引力强度系数。</div>
+<div class="description-paragraph" id="p0124" num="0119">根据飞行器任务续航时长，调整高速公路引力场计算时的衰减半径。</div>
+<div class="description-paragraph" id="p0125" num="0120">在一个实施例中，计算高速公路引力场、静态斥力场及动态斥力场，并融合得到每个空域层级的综合势场包括：</div>
+<div class="description-paragraph" id="p0126" num="0121">通过高速公路引力场计算公式，计算高速公路引力场强度。</div>
+<div class="description-paragraph" id="p0127" num="0122">获取静态障碍物的几何中心坐标、高度及边界信息，并将空域划分为三维网格；计算每个三维网格中心到所有静态障碍物的最小距离。</div>
+<div class="description-paragraph" id="p0128" num="0123">当三维网格中心到所有静态障碍物的最小距离小于或等于静态障碍物安全距离时，则利用静态斥力场计算公式，计算静态障碍物的静态斥力值强度；当出现多个静态障碍物叠加区域时，取多个静态斥力值中的最大值作为最终的静态斥力值强度。</div>
+<div class="description-paragraph" id="p0129" num="0124">获取动态障碍物的位置、速度、航向及预计持续时间，并计算飞行器与动态障碍物预测轨迹之间的最小距离。</div>
+<div class="description-paragraph" id="p0130" num="0125">利用动态斥力场计算公式，计算动态障碍物的动态斥力值强度，并叠加至空域网格，同时，将过时的动态障碍物的动态斥力场衰减至零。</div>
+<div class="description-paragraph" id="p0131" num="0126">通过对高速公路引力场强度、静态斥力场强度及动态斥力场强度进行加权求和的方式，得到每个空域层级的综合势场值。</div>
+<div class="description-paragraph" id="p0132" num="0127">在一个实施例中，高速公路引力场计算公式为：</div>
+<div class="description-paragraph" id="p0133" num="0128">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0134" num="0129">静态斥力场计算公式为：</div>
+<div class="description-paragraph" id="p0135" num="0130">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0136" num="0131">动态斥力场计算公式为：</div>
+<div class="description-paragraph" id="p0137" num="0132">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0138" num="0133">式中，d(x，y)为飞行器到车道中心线的水平距离；ΔU<sub>i</sub>为第i个高速公路关键节点的引力增量r<sub>i</sub>为第i个高速公路关键节点的影响半径；N为高速公路关键节点的总数量；P为飞行器当前的三维位置坐标，P<sub>i</sub>为第i个高速公路关键节点的三维坐标；k<sub>road</sub>为引力强度系数，σ为衰减半径；d<sub>obs</sub>为飞行器当前位置到障碍物表面的最近三维欧氏距离；d<sub>safe</sub>为静态障碍物安全距离；k<sub>static</sub>为静态斥力强度系数；k<sub>dynamic</sub>为动态斥力强度系数；v<sub>rel</sub>为飞行器与动态障碍物速度矢量的模长差；d<sub>proj</sub>为飞行器与动态障碍物预测轨迹之间的最小距离；t<sub>obs</sub>为障碍物状态更新时间戳；τ为时间衰减常数；x、y及z分别为表示飞行器当前位置的三维空间坐标，t为当前时间戳。</div>
+<div class="description-paragraph" id="p0139" num="0134">在一个实施例中，利用贪婪策略和优先级规则，并结合空域层级的综合势场值，获取飞行器航线的初始路径包括：</div>
+<div class="description-paragraph" id="p0140" num="0135">通过高速公路引力场中的路径节点，生成路径骨架，并利用A*算法连接路径节点，得到初步路径。</div>
+<div class="description-paragraph" id="p0141" num="0136">从飞行器的起点出发，通过迭代选择相邻三维网格中综合势场值最低的路径节点的方式，并结合预先设置的优先级规则，对初步路径进行优化后，得到飞行器航线的初始路径。</div>
+<div class="description-paragraph" id="p0142" num="0137">在一个实施例中，根据人工势场局部优化算法和动态冲突检测机制，对飞行器航线的初始路径进行调整，得到飞行器航线路径包括：</div>
+<div class="description-paragraph" id="p0143" num="0138">以综合势场值逐步降低为原则，采用梯度下降法，迭代调整飞行器航线的初始路径中的路径节点位置。</div>
+<div class="description-paragraph" id="p0144" num="0139">将空域划分为时空网格，并预测飞行器与障碍物在未来的轨迹占用情况。</div>
+<div class="description-paragraph" id="p0145" num="0140">当同一时空网格内存在多个飞行器轨迹，且飞行器轨迹与障碍物的预测距离小于静态障碍物安全距离，则判定飞行器航线的当前路径为冲突状态，并按照预先设定的动态调整策略，对飞行器航线的当前路径进行调整，得到飞行器航线路径。</div>
+<div class="description-paragraph" id="p0146" num="0141">在一个实施例中，以综合势场值逐步降低为原则，采用梯度下降法，迭代调整飞行器航线的初始路径中的路径节点位置包括：</div>
+<div class="description-paragraph" id="p0147" num="0142">利用节点位置调整公式调整飞行器航线的初始路径中的路径节点位置，且节点位置调整公式：</div>
+<div class="description-paragraph" id="p0148" num="0143">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0149" num="0144">式中，P<sub>i+1</sub>为第i+1次迭代时路径节点的三维坐标，P<sub>i</sub>为第i次迭代时路径节点的三维坐标；η为学习率；<span class="patent-image-not-available"></span>为综合势场在节点P<sub>i</sub>处的梯度向量。</div>
+<div class="description-paragraph" id="p0150" num="0145">为了方便理解本发明的上述技术方案，以下就本发明在实际过程中的工作原理进行详细说明。</div>
+<div class="description-paragraph" id="p0151" num="0146">一：空域-高速公路协同数据采集与预处理</div>
+<div class="description-paragraph" id="p0152" num="0147">1.数据输入</div>
+<div class="description-paragraph" id="p0153" num="0148">(1)地面数据</div>
+<div class="description-paragraph" id="p0154" num="0149">高速公路车道中心线GIS坐标，关键节点(服务区、立交桥等)的三维位置信息。</div>
+<div class="description-paragraph" id="p0155" num="0150">(2)空域数据</div>
+<div class="description-paragraph" id="p0156" num="0151">静态障碍物(建筑物、山体等)的三维Bounding Box或点云数据，动态障碍物(其他飞行器、气象区等)的实时状态(位置、速度、走向等)。</div>
+<div class="description-paragraph" id="p0157" num="0152">(3)空域管制信息</div>
+<div class="description-paragraph" id="p0158" num="0153">禁飞区、临时管制区的位置与有效时间等。</div>
+<div class="description-paragraph" id="p0159" num="0154">二：空域-地面协同势场建模</div>
+<div class="description-paragraph" id="p0160" num="0155">1.高速公路引力场生成</div>
+<div class="description-paragraph" id="p0161" num="0156">(1)引力场源：高速公路车道中心线映射为低空引力线，引力强度随距离衰减，引力场计算公式：</div>
+<div class="description-paragraph" id="p0162" num="0157">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0163" num="0158">其中，d(x，y)为飞行器到车道中心线的水平距离；ΔU<sub>i</sub>为第i个节点的引力增量，一般100≤ΔU<sub>i</sub>≤300；r<sub>i</sub>为第i个节点的影响半径，一般200m≤r<sub>i</sub>≤800m；N为高速公路关键节点(服务区、立交桥等)的总数量；P＝(x,y，z)为飞行器当前的三维位置坐标；P<sub>i</sub>为第i个关键节点(如服务区)的三维坐标；k<sub>road</sub>为引力强度系数，控制高速公路车道中心线对飞行器的吸引力大小，取值范围一般为100≤k<sub>road</sub>≤200，值越大表示引力越强；σ为衰减半径，控制引力场随距离的衰减速率，取值范围通常为100m≤σ≤500m。</div>
+<div class="description-paragraph" id="p0164" num="0159">2.静态斥力场建模</div>
+<div class="description-paragraph" id="p0165" num="0160">(1)静态斥力场用于建模固定障碍物(如建筑物、山体、高压线塔等)，其强度与障碍物距离成反比，且在安全距离内生效，静态斥力场计算公式：</div>
+<div class="description-paragraph" id="p0166" num="0161">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0167" num="0162">其中，d<sub>obs</sub>为飞行器当前位置到障碍物表面的最近三维欧氏距离(单位：米)；</div>
+<div class="description-paragraph" id="p0168" num="0163">d<sub>safe</sub>为静态障碍物安全距离，与障碍物高度正相关，公式为：</div>
+<div class="description-paragraph" id="p0169" num="0164">d<sub>safe</sub>＝α·h<sub>obs</sub>+β；</div>
+<div class="description-paragraph" id="p0170" num="0165">h<sub>obs</sub>为障碍物高度；α为高度影响系数，一般取0.3-0.5范围，建筑物高度越高取值越大；β为基础安全距离，一般取20-50m范围；k<sub>static</sub>为静态斥力强度系数，一般取100-500，根据障碍物危险等级调整。</div>
+<div class="description-paragraph" id="p0171" num="0166">(2)技术实现流程</div>
+<div class="description-paragraph" id="p0172" num="0167">1)障碍物数据输入</div>
+<div class="description-paragraph" id="p0173" num="0168">从空域管制数据库加载障碍物三维模型(Bounding Box或点云数据)。</div>
+<div class="description-paragraph" id="p0174" num="0169">提取障碍物的几何中心坐标、高度及边界信息。</div>
+<div class="description-paragraph" id="p0175" num="0170">2)空间离散化</div>
+<div class="description-paragraph" id="p0176" num="0171">将空域划分为三维网格(如50m×50m×20m)，计算每个网格中心到所有障碍物的最小距离d<sub>obs</sub>。</div>
+<div class="description-paragraph" id="p0177" num="0172">3)斥力场赋值</div>
+<div class="description-paragraph" id="p0178" num="0173">若d<sub>obs</sub>≤d<sub>safe</sub>，按静态斥力场计算公式计算斥力值。</div>
+<div class="description-paragraph" id="p0179" num="0174">对多个障碍物叠加区域，取最大值作为最终斥力场强度。</div>
+<div class="description-paragraph" id="p0180" num="0175">3.动态斥力场建模</div>
+<div class="description-paragraph" id="p0181" num="0176">动态斥力场用于建模时变障碍物(如其他飞行器、突发气象区)，其强度与障碍物运动状态及预测风险相关，动态斥力场计算公式为：</div>
+<div class="description-paragraph" id="p0182" num="0177">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0183" num="0178">其中，k<sub>dynamic</sub>为动态斥力强度系数，控制斥力场整体幅值，取值范围一般为200-800；v<sub>rel</sub>为相对速度，飞行器与障碍物速度矢量的模长差；d<sub>proj</sub>为预测最小接近距离，基于当前状态预测未来t<sub>pred</sub>秒内飞行器与障碍物的最小距离。t<sub>obs</sub>为障碍物状态更新时间戳；τ为时间衰减常数，控制斥力场随时间衰减的速率，值越小衰减越快；x、y、z分别为表示飞行器当前位置的三维空间坐标；t为当前时间戳。</div>
+<div class="description-paragraph" id="p0184" num="0179">技术实现流程</div>
+<div class="description-paragraph" id="p0185" num="0180">(1)动态障碍物数据输入：</div>
+<div class="description-paragraph" id="p0186" num="0181">实时接收ADS-B信号、空管雷达数据或气象预警信息。</div>
+<div class="description-paragraph" id="p0187" num="0182">解析障碍物位置、速度、航向及预计持续时间(如雷暴移动路径)。</div>
+<div class="description-paragraph" id="p0188" num="0183">例如，从气象雷达、卫星图像以及地面观测站获取最新的气象数据。将这些数据输入到数值天气预报模型中，生成短期至中期的天气预报。由气象专家或智能系统分析模型输出的结果，确定雷暴的具体路径及其预计到达各个位置的时间点。基于上述分析，发布准确的预警信息给相关方，告知他们雷暴的预计影响时间和建议采取的预防措施。在整个过程中持续监控天气变化，并根据最新数据调整预测，确保信息的准确性。通过这些技术获得较为精确的障碍物(如雷暴)的预计持续时间，从而为低空飞行器航线规划等应用场景提供重要支持。</div>
+<div class="description-paragraph" id="p0189" num="0184">(2)轨迹预测与风险计算</div>
+<div class="description-paragraph" id="p0190" num="0185">轨迹预测：预测未来t<sub>pred</sub>秒(一般5-15S)内的轨迹。</div>
+<div class="description-paragraph" id="p0191" num="0186">最小接近距离：计算飞行器与障碍物预测轨迹之间的最小距离d<sub>proj</sub>。</div>
+<div class="description-paragraph" id="p0192" num="0187">例如，从气象部门获取最新的雷暴位置、速度和方向信息，同时从飞行控制系统获取飞行器的速度、高度和计划路线。使用数值天气预报模型预测雷暴在未来数小时内的移动路径。将飞行器和雷暴的预测路径输入到计算程序中，找出两者之间最小的距离。</div>
+<div class="description-paragraph" id="p0193" num="0188">(3)斥力场更新</div>
+<div class="description-paragraph" id="p0194" num="0189">按公式计算动态斥力值，并叠加至空域网格。</div>
+<div class="description-paragraph" id="p0195" num="0190">对过时障碍物[(t-t<sub>obs</sub>)＞τ]自动衰减斥力场至零。</div>
+<div class="description-paragraph" id="p0196" num="0191">4.协同势场融合与高度分层</div>
+<div class="description-paragraph" id="p0197" num="0192">(1)势场叠加规则</div>
+<div class="description-paragraph" id="p0198" num="0193">综合势场计算：</div>
+<div class="description-paragraph" id="p0199" num="0194">U<sub>total</sub>(x，y，z，t)＝w<sub>att</sub>·U<sub>att</sub>+w<sub>rep</sub>·(U<sub>rep-static</sub>+U<sub>rep-dynamic</sub>)；</div>
+<div class="description-paragraph" id="p0200" num="0195">其中，w<sub>att</sub>、w<sub>rep</sub>分别为引力与斥力权重系数，默认w<sub>att</sub>＝1.0，w<sub>rep</sub>＝1.2。</div>
+<div class="description-paragraph" id="p0201" num="0196">(2)空域高度分层策略</div>
+<div class="description-paragraph" id="p0202" num="0197">分层定义：</div>
+<div class="description-paragraph" id="p0203" num="0198">将低空空域按高度划分为多个层级(例如：0-50m为禁飞层，50-100m为低空物流层，100-200m为高速交通层)。</div>
+<div class="description-paragraph" id="p0204" num="0199">收集原始空域的数据特征集，并训练决策树模型，并利用交叉验证法评估模型性能。比如，使用10折交叉验证来确保模型的泛化能力，并通过调整参数(如最大深度、最小样本分裂数等)优化模型以避免过拟合。</div>
+<div class="description-paragraph" id="p0205" num="0200">从根节点开始递归遍历每条路径直至叶节点，记录每个非叶节点的条件及叶节点对应的类别标签。例如，″如果当前飞行高度＞50米且＜100米，则为空域层级B(低空物流层)″。</div>
+<div class="description-paragraph" id="p0206" num="0201">提取规则：根据遍历结果形成具体规则，如″如果能见度＞5公里且飞行高度在50-100米之间，则推荐为低空物流层″。</div>
+<div class="description-paragraph" id="p0207" num="0202">合并相似规则：识别出具有相似条件但不同类别标签的规则，并尝试合并它们简化规则集。</div>
+<div class="description-paragraph" id="p0208" num="0203">剪枝：去除那些过于具体或对整体分类贡献不大的分支，减少过拟合的风险。</div>
+<div class="description-paragraph" id="p0209" num="0204">根据提取出的分类规则，将各个条件(如能见度、飞行高度等)作为变量节点，并依据因果关系建立节点间的有向边。例如，″能见度″影响是否适合″低空物流层″的决定。</div>
+<div class="description-paragraph" id="p0210" num="0205">计算条件概率表：对于每个变量节点，使用最大似然估计法基于训练数据计算其条件概率表。例如，计算当″能见度＞5公里＝true″时，″飞行高度在50-100米＝true″的条件下，″属于低空物流层＝true″的概率。</div>
+<div class="description-paragraph" id="p0211" num="0206">构建网络：结合所有变量节点、它们之间的边以及相应的条件概率表，构建最终的贝叶斯网络模型。该模型不仅反映了各变量间的关系，还量化了这些关系的概率依赖性。</div>
+<div class="description-paragraph" id="p0212" num="0207">将初步分类结果输入到构建好的贝叶斯网络模型中，利用模型中的概率依赖关系进一步调整和细化各空域层级的分类结果。例如，对于一个新输入的飞行任务，如果初步分类建议为“低空物流层”，但贝叶斯网络分析显示，在当前气象条件下存在较高的不确定性，可能需要重新评估或选择更安全的飞行高度区间。</div>
+<div class="description-paragraph" id="p0213" num="0208">分层势场计算：</div>
+<div class="description-paragraph" id="p0214" num="0209">每层独立计算引力与斥力场，避免跨层干扰；飞行器切换高度层时，需满足垂直势场梯度连续(如从100m层降至80m层时，需确保下方无高斥力障碍物)。</div>
+<div class="description-paragraph" id="p0215" num="0210">5.动态势场更新机制</div>
+<div class="description-paragraph" id="p0216" num="0211">实时数据接入：</div>
+<div class="description-paragraph" id="p0217" num="0212">(1)通过5G/卫星链路接入实时气象数据(风速、降雨)、空域管制指令、其他飞行器状态。</div>
+<div class="description-paragraph" id="p0218" num="0213">(2)更新动态障碍物斥力场参数(位置、速度、预测轨迹)。</div>
+<div class="description-paragraph" id="p0219" num="0214">自适应参数调整：</div>
+<div class="description-paragraph" id="p0220" num="0215">(1)根据任务紧急度自动调节k<sub>road</sub>，比如紧急任务，则可提高k<sub>road</sub>的值，使引力强，飞行路径贴近高速公路；降低k<sub>road</sub>的值，则引力弱，允许更大偏离高速公路，以规避障碍。</div>
+<div class="description-paragraph" id="p0221" num="0216">(2)根据能耗限制调节σ，比如长续航任务时提高σ值，从而扩大引力场作用范围，减少偏航能耗。</div>
+<div class="description-paragraph" id="p0222" num="0217">三：初始路径生成</div>
+<div class="description-paragraph" id="p0223" num="0218">1.路径骨架构建</div>
+<div class="description-paragraph" id="p0224" num="0219">沿高速公路引力场选取关键节点(如每5公里一个节点)，生成初始路径骨架；通过A*算法连接节点，避开静态斥力场高值区域。A*算法又称A星算法，是启发式搜索算法中的一种。</div>
+<div class="description-paragraph" id="p0225" num="0220">2.启发式路径扩展</div>
+<div class="description-paragraph" id="p0226" num="0221">贪婪策略：从起点出发，迭代选择相邻网格中综合势场值最低的节点。</div>
+<div class="description-paragraph" id="p0227" num="0222">优先级规则：紧急任务飞行器优先使用低空层(50-100米)，长续航任务飞行器优先沿高速公路引力场飞行。</div>
+<div class="description-paragraph" id="p0228" num="0223">四：路径动态优化与冲突消解</div>
+<div class="description-paragraph" id="p0229" num="0224">1.人工势场局部优化</div>
+<div class="description-paragraph" id="p0230" num="0225">梯度下降法：沿初始路径迭代调整节点位置，使路径势场值逐步降低；节点位置调整公式：</div>
+<div class="description-paragraph" id="p0231" num="0226">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0232" num="0227">其中，P<sub>i+1</sub>为第i+1次迭代时路径节点的三维坐标，P<sub>i</sub>为第i次迭代时路径节点的三维坐标。η为学习率(步长因子)。<span class="patent-image-not-available"></span>为综合势场在节点P<sub>i</sub>处的梯度向量，表征势场变化最快的方向速率。</div>
+<div class="description-paragraph" id="p0233" num="0228">2.动态冲突检测</div>
+<div class="description-paragraph" id="p0234" num="0229">时空立方体模型：将空域划分为时空网格(比如：空间网格50m×50m×20m，时间分辨率1-5秒)；预测飞行器与障碍物在未来30s内的轨迹占用情况。</div>
+<div class="description-paragraph" id="p0235" num="0230">例如，对于每个时间点获取飞行器和障碍物的位置。记录这些位置，形成一个轨迹集合。在知道飞行器和障碍物的位置后，即可计算飞行器与障碍物之间的距离，如果飞行器与障碍物之间的距离小于安全阈值，则认为存在潜在冲突。</div>
+<div class="description-paragraph" id="p0236" num="0231">冲突判定条件：同一时空网格内存在多个飞行器轨迹；飞行器轨迹与障碍物的预测距离d<sub>proj</sub>＜d<sub>safe</sub>。</div>
+<div class="description-paragraph" id="p0237" num="0232">3.动态调整策略</div>
+<div class="description-paragraph" id="p0238" num="0233">水平避障：向相邻空域走廊偏移(优先选择势场值较低的走廊)。</div>
+<div class="description-paragraph" id="p0239" num="0234">垂直避障：切换至空闲高度层(如从100米层爬升至150米层)。</div>
+<div class="description-paragraph" id="p0240" num="0235">时序避障：切换至空闲高度层(如从100米层爬升至150米层)。</div>
+<div class="description-paragraph" id="p0241" num="0236">综上所述，本发明通过高速公路与空域势场融合，将地面基础设施转化为空域导航资源，降低飞行耗能。采用静态障碍物精确建模+动态障碍物实时预测的方法，可以兼顾安全性和计算效率。通过改进人工势场模型，引入高速公路引力场与动态障碍物斥力场协同作用，实现低空飞行器航线的快速生成与动态优化。充分发挥低空飞行器航线规划和地面交通基础设施的协同性，有效提高低空飞行器的航线的合理性和效率。基于决策树和贝叶斯网络的组合方法，不仅优化低空飞行器航线规划中的空域层级分类，还简化了规则集，增强了模型的解释力和实用性，为低空飞行器航线规划提供了强有力的支持，使得飞行器在航线时，高度调整的更加精准和灵活，适用于飞行器当下的具体外部环境和飞行器任务要求。</div>
+<div class="description-paragraph" id="p0242" num="0237">以上所述仅为本发明的较佳实施例而已，并不用以限制本发明，凡在本发明的精神和原则之内，所作的任何修改、等同替换、改进等，均应包含在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

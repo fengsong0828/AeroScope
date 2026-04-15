@@ -1,0 +1,45 @@
+{
+    "patent_id": "CN117314161A",
+    "title": "CN117314161A - 低空智联网中低空飞行器全生命周期安全风险评估方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Yunnan University YNU",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN117314161A/zh",
+    "citations": [],
+    "cited_by": [
+        {
+            "Publication Number": "CN118070679A (zh) *",
+            "Priority Date": "2024-04-17",
+            "Publication Date": "2024-05-24",
+            "Assignee": "中国人民解放军海军航空大学",
+            "Title": "一种飞行器降落评估系统及评估方法",
+            "Link": "https://patents.google.com/patent/CN118070679A/zh"
+        },
+        {
+            "Publication Number": "CN119738719A (zh) *",
+            "Priority Date": "2025-01-02",
+            "Publication Date": "2025-04-01",
+            "Assignee": "中移信息技术有限公司",
+            "Title": "低空飞行器的电池状态监控方法、装置、电子设备、介质及程序产品",
+            "Link": "https://patents.google.com/patent/CN119738719A/zh"
+        },
+        {
+            "Publication Number": "CN119780004A (zh) *",
+            "Priority Date": "2025-01-08",
+            "Publication Date": "2025-04-08",
+            "Assignee": "中国农业大学",
+            "Title": "一种基于系留热气球与无人机系统的稻瘟病监测诊断方法",
+            "Link": "https://patents.google.com/patent/CN119780004A/zh"
+        },
+        {
+            "Publication Number": "CN120106396A (zh) *",
+            "Priority Date": "2025-04-30",
+            "Publication Date": "2025-06-06",
+            "Assignee": "江苏信江数字科技有限公司",
+            "Title": "基于机器学习的低空飞行器风险管理方法及系统",
+            "Link": "https://patents.google.com/patent/CN120106396A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:31:06"
+}

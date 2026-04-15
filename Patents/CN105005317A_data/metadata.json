@@ -1,0 +1,142 @@
+{
+    "patent_id": "CN105005317A",
+    "title": "CN105005317A - 一种低空飞行器机载交互设备 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Chongqing Sailewei Aviation Technology Co Ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN105005317A/zh",
+    "citations": [
+        {
+            "Publication Number": "US20050230563A1 (en) *",
+            "Priority Date": "2004-02-21",
+            "Publication Date": "2005-10-20",
+            "Assignee": "Corcoran James J Iii",
+            "Title": "Automatic formation flight control system",
+            "Link": "https://patents.google.com/patent/US20050230563A1/en"
+        },
+        {
+            "Publication Number": "CN101533106A (zh) *",
+            "Priority Date": "2009-03-23",
+            "Publication Date": "2009-09-16",
+            "Assignee": "民航数据通信有限责任公司",
+            "Title": "提取气象数据的方法和装置",
+            "Link": "https://patents.google.com/patent/CN101533106A/zh"
+        },
+        {
+            "Publication Number": "CN103337199A (zh) *",
+            "Priority Date": "2013-06-17",
+            "Publication Date": "2013-10-02",
+            "Assignee": "西南民族大学",
+            "Title": "一种适用于机载防撞系统的多维机动防撞方法",
+            "Link": "https://patents.google.com/patent/CN103337199A/zh"
+        },
+        {
+            "Publication Number": "CN104670509A (zh) *",
+            "Priority Date": "2013-11-26",
+            "Publication Date": "2015-06-03",
+            "Assignee": "空中客车运营简化股份公司",
+            "Title": "航空电子系统,特别是飞行器的飞行管理系统",
+            "Link": "https://patents.google.com/patent/CN104670509A/zh"
+        },
+        {
+            "Publication Number": "CN104008673A (zh) *",
+            "Priority Date": "2014-06-06",
+            "Publication Date": "2014-08-27",
+            "Assignee": "中国航空无线电电子研究所",
+            "Title": "分布式通用航空服务站系统",
+            "Link": "https://patents.google.com/patent/CN104008673A/zh"
+        },
+        {
+            "Publication Number": "CN104318809A (zh) *",
+            "Priority Date": "2014-10-11",
+            "Publication Date": "2015-01-28",
+            "Assignee": "中国电子科技集团公司第二十八研究所",
+            "Title": "一种带3g功能的便携ads-b机载系统",
+            "Link": "https://patents.google.com/patent/CN104318809A/zh"
+        },
+        {
+            "Publication Number": "CN104536353A (zh) *",
+            "Priority Date": "2015-01-09",
+            "Publication Date": "2015-04-22",
+            "Assignee": "西安应用光学研究所",
+            "Title": "一种用于机载光电系统的综合显控装置",
+            "Link": "https://patents.google.com/patent/CN104536353A/zh"
+        },
+        {
+            "Publication Number": "CN205158140U (zh) *",
+            "Priority Date": "2015-07-29",
+            "Publication Date": "2016-04-13",
+            "Assignee": "重庆赛乐威航空科技有限公司",
+            "Title": "一种低空飞行器机载交互设备",
+            "Link": "https://patents.google.com/patent/CN205158140U/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN108475445A (zh) *",
+            "Priority Date": "2016-01-06",
+            "Publication Date": "2018-08-31",
+            "Assignee": "通用电气航空系统有限公司",
+            "Title": "多源飞行器数据的自动化融合和分析的方法和系统",
+            "Link": "https://patents.google.com/patent/CN108475445A/zh"
+        },
+        {
+            "Publication Number": "US11926436B2 (en)",
+            "Priority Date": "2016-01-06",
+            "Publication Date": "2024-03-12",
+            "Assignee": "GE Aviation Systems Taleris Limited",
+            "Title": "Automated fusion and analysis of multiple sources of aircraft data",
+            "Link": "https://patents.google.com/patent/US11926436B2/en"
+        },
+        {
+            "Publication Number": "CN107783997A (zh) *",
+            "Priority Date": "2016-08-26",
+            "Publication Date": "2018-03-09",
+            "Assignee": "阿里巴巴集团控股有限公司",
+            "Title": "推荐信息处理方法、装置、设备、系统及交通工具",
+            "Link": "https://patents.google.com/patent/CN107783997A/zh"
+        },
+        {
+            "Publication Number": "CN108710405A (zh) *",
+            "Priority Date": "2017-12-07",
+            "Publication Date": "2018-10-26",
+            "Assignee": "中国航空工业集团公司西安航空计算技术研究所",
+            "Title": "一种松耦合一体化飞行显示器",
+            "Link": "https://patents.google.com/patent/CN108710405A/zh"
+        },
+        {
+            "Publication Number": "CN109559565A (zh) *",
+            "Priority Date": "2018-11-30",
+            "Publication Date": "2019-04-02",
+            "Assignee": "南京恒嘉坤科技有限公司",
+            "Title": "即时实现在线飞行审批的飞行汽车空中管制平台",
+            "Link": "https://patents.google.com/patent/CN109559565A/zh"
+        },
+        {
+            "Publication Number": "CN110723310A (zh) *",
+            "Priority Date": "2019-09-24",
+            "Publication Date": "2020-01-24",
+            "Assignee": "蚌埠和能信息科技有限公司",
+            "Title": "一种对飞行器测试信号分路处理设备",
+            "Link": "https://patents.google.com/patent/CN110723310A/zh"
+        },
+        {
+            "Publication Number": "CN111210667A (zh) *",
+            "Priority Date": "2019-12-27",
+            "Publication Date": "2020-05-29",
+            "Assignee": "中国民用航空飞行学院",
+            "Title": "民航航班安保风险预警系统",
+            "Link": "https://patents.google.com/patent/CN111210667A/zh"
+        },
+        {
+            "Publication Number": "CN112530207A (zh) *",
+            "Priority Date": "2020-11-27",
+            "Publication Date": "2021-03-19",
+            "Assignee": "湖南傲英创视信息科技有限公司",
+            "Title": "机场鸟情监控方法及系统",
+            "Link": "https://patents.google.com/patent/CN112530207A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:33:20"
+}

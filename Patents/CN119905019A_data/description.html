@@ -1,0 +1,191 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119905019A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES493667284">
+<invention-title id="title1" lang="ZH">一种低空飞行器空中交通管理方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及飞行器空中交通管理技术领域，具体涉及一种低空飞行器空中交通管理方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空飞行器空中交通管理是指对在低空空域内(通常指地面至1000米高度范围内)飞行的各种飞行器(如无人机、空中出租车、飞行器等)进行协调、调度、监控和管控的技术和管理方法。随着低空飞行器的使用越来越广泛，特别是在物流、快递、农业、无人机表演等领域，低空飞行器的数量激增，空中交通流量和复杂性也随之增加。因此，低空空域的安全管理和高效调度显得尤为重要。低空飞行器空中交通管理系统通常涉及飞行器的实时定位、飞行路径规划、碰撞预防、空域划分、飞行流量控制以及与其他飞行器和地面控制中心的通信协调等环节。其核心目标是确保在低空空域内，飞行器能够安全、有序地飞行，避免发生碰撞、干扰或其他安全隐患，并最大化空域的利用效率，尤其在无人机表演等场景中，需精确协同多个飞行器，确保表演的顺利与安全进行。</div>
+<div class="description-paragraph" id="p0005" num="0003">现有技术存在以下不足：</div>
+<div class="description-paragraph" id="p0006" num="0004">现有技术中，无人机群组在飞行表演时，空中交通管理系统通常依据风速数据预测未来的风速变化，并据此设定固定的飞行速度。然而，由于不同区域的风速存在差异，风速变化可能导致无人机的飞行轨迹偏离，尤其在群组飞行时，部分无人机可能受到不同程度的风速影响。固定的飞行速度无法适应这些变化，因此未能及时调整速度和路径会带来严重后果。</div>
+<div class="description-paragraph" id="p0007" num="0005">在开放空域中，不同高度和位置的风速差异常见，某些区域可能突发阵风或气流湍流，导致个别无人机的飞行轨迹发生偏离。如果群组中的无人机无法根据风速变化及时调整飞行状态，可能导致群体间相对距离的打破和队形错乱，进而增加碰撞的风险。特别是在群组飞行速度未能适应局部风速时，整体稳定性下降，飞行器无法保持安全间距。若某架无人机因风速变化偏离轨迹，可能与邻近飞行器发生碰撞，造成损害或导致失控。</div>
+<div class="description-paragraph" id="p0008" num="0006">在所述背景技术部分公开的上述信息仅用于加强对本公开的背景的理解，因此它可以包括不构成对本领域普通技术人员已知的现有技术的信息。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0009">发明内容</div>
+<div class="description-paragraph" id="p0010" num="0007">本发明的目的是提供一种低空飞行器空中交通管理方法及系统，通过实时监控无人机飞行状态并结合风速、气流等外部扰动，能动态调整偏离轨迹的无人机路径与速度，有效防止因风速变化导致的轨迹偏离，从而保持飞行队形稳定，避免相对距离过近或错乱，减少碰撞风险。同时，深度学习模型对飞行一致性偏差进行智能化评估，识别偏离轨迹的无人机，并在偏差超过阈值时及时调整路径，确保飞行安全，防止因轨迹偏差引发的碰撞，保障群体飞行的稳定与安全，以解决上述背景技术中的问题。</div>
+<div class="description-paragraph" id="p0011" num="0008">为了实现上述目的，本发明提供如下技术方案：一种低空飞行器空中交通管理方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0012" num="0009">在飞行表演开始前，交通管理系统根据预设的飞行计划和表演需求，制定每架无人机的飞行路径、速度、航向和队形；</div>
+<div class="description-paragraph" id="p0013" num="0010">在飞行表演过程中，实时监测每架无人机的飞行状态参数，为后续的飞行数据分析和调整提供基础数据；</div>
+<div class="description-paragraph" id="p0014" num="0011">对实时获取的飞行数据进行预处理，确保后续特征提取和分析的准确性和可靠性；</div>
+<div class="description-paragraph" id="p0015" num="0012">从预处理后的飞行数据中提取出反映当前无人机偏离预定轨迹的关键特征，在检测窗口下，对提取的关键特征进行分析，量化无人机群组的飞行一致性，评估整体飞行状态是否保持预定的队形和协调性；</div>
+<div class="description-paragraph" id="p0016" num="0013">将量化后的飞行一致性特征输入预先训练好的深度学习模型，智能化评估每架无人机的飞行状态变化；</div>
+<div class="description-paragraph" id="p0017" num="0014">根据深度学习模型的评估结果，将当前无人机的飞行状态划分为预定轨迹飞行和偏离轨迹飞行；</div>
+<div class="description-paragraph" id="p0018" num="0015">对于处于预定轨迹飞行状态的无人机，继续以预设的飞行速度进行表演，确保其稳定飞行；</div>
+<div class="description-paragraph" id="p0019" num="0016">针对被评估为偏离轨迹飞行的无人机，基于深度学习模型的预测结果，动态调整其飞行速度，使其重新回归预定轨迹，避免碰撞事故的发生。</div>
+<div class="description-paragraph" id="p0020" num="0017">优选的，从预处理后的飞行数据中提取出反映当前无人机偏离预定轨迹的关键特征，提取的特征包括无人机飞行路径弯曲程度和无人机飞行过程中动态平衡状态，在检测窗口下，对提取的无人机飞行路径弯曲程度和无人机飞行过程中动态平衡状态进行分析，分别生成航迹曲率变化因子和动态平衡偏差因子，通过航迹曲率变化因子和动态平衡偏差因子量化无人机群组的飞行一致性，评估整体飞行状态是否保持预定的队形和协调性。</div>
+<div class="description-paragraph" id="p0021" num="0018">优选的，将无人机飞行路径弯曲程度在检测窗口下进行分析生成航迹曲率变化因子的具体步骤如下：</div>
+<div class="description-paragraph" id="p0022" num="0019">首先从无人机的飞行轨迹中提取连续路径点，将获取的路径点标定为p<sub>i</sub>，p<sub>i</sub>＝{p<sub>1</sub>、p<sub>2</sub>、p<sub>3</sub>、……、p<sub>n</sub>}，其中，p<sub>i</sub>是第i个路径点，n是路径点总数，每个路径点p<sub>i</sub>＝{x<sub>i</sub>、y<sub>i</sub>、z<sub>i</sub>}，{x<sub>i</sub>、y<sub>i</sub>、z<sub>i</sub>}是第i个路径点的三维坐标位置，计算任意两个相邻路径点之间的方向向量，通过方向向量计算局部曲率，计算表达式如下：</div>
+<div class="description-paragraph" id="p0023" num="0020"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0024" num="0021">式中，<span class="patent-image-not-available"></span>是路径点p<sub>i</sub>和路径点p<sub>i+1</sub>之间的方向向量，<span class="patent-image-not-available"></span>是路径点p<sub>i</sub>和路径点p<sub>i-1</sub>之间的方向向量，|·|是方向向量的模，κ<sub>i</sub>是局部曲率；</div>
+<div class="description-paragraph" id="p0025" num="0022">为考虑时间维度的变化，通过每对相邻的路径点的时间间隔将局部曲率κ<sub>i</sub>按照时间间隔进行归一化，得到时间加权的曲率变化量，计算表达式如下：</div>
+<div class="description-paragraph" id="p0026" num="0023"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0027" num="0024">式中，κ<sub>i+1</sub>是下一路径点的局部曲率，Δt<sub>i</sub>，<sub>i+1</sub>是相邻路径点的时间间隔，表示路径点p<sub>i</sub>和路径点p<sub>i+1</sub>之间的时间差，Δk<sub>i</sub>是曲率变化量；</div>
+<div class="description-paragraph" id="p0028" num="0025">为进一步反映全程飞行过程中航迹曲率的变化，对曲率变化量进行加权求和，生成航迹曲率变化因子，生成公式如下：</div>
+<div class="description-paragraph" id="p0029" num="0026"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0030" num="0027">式中，Trajectory<sub>Curvature</sub>是航迹曲率变化因子，w<sub>i</sub>是路径段权重因子，用于加权每个路径段对总曲率变化因子的贡献。</div>
+<div class="description-paragraph" id="p0031" num="0028">优选的，将无人机飞行过程中动态平衡状态在检测窗口下进行分析生成动态平衡偏差因子的具体步骤如下：</div>
+<div class="description-paragraph" id="p0032" num="0029">首先，分析无人机的飞行姿态变化，通过计算姿态的变化幅度，得出无人机在飞行过程中的姿态偏差，计算表达式如下：</div>
+<div class="description-paragraph" id="p0033" num="0030">Δθ<sub>j</sub>(t)＝|θ<sub>j</sub>(t)-θ<sub>j</sub> <sup>ref</sup>(t)|</div>
+<div class="description-paragraph" id="p0034" num="0031">，式中，θ<sub>j</sub>(t)是在时刻t时，无人机的第j个姿态角，θ<sub>j</sub> <sup>ref</sup>(t)是无人机在时刻t遵循的预定轨迹上的第j个姿态角，Δθ<sub>j</sub>(t)是姿态偏差，表示无人机在时刻t的第j个姿态角的偏差值，|θ<sub>j</sub>(t)-θ<sub>j</sub> <sup>ref</sup>(t)|是在时刻t时，无人机的第j个姿态角θ<sub>j</sub>(t)和无人机在时刻t遵循的预定轨迹上的第j个姿态角θ<sub>j</sub> <sup>ref</sup>(t)的绝对偏差；</div>
+<div class="description-paragraph" id="p0035" num="0032">在获取无人机姿态偏差后，计算偏差的变化趋势，即姿态变化速率，计算表达式如下：</div>
+<div class="description-paragraph" id="p0036" num="0033"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0037" num="0034">式中，<span class="patent-image-not-available"></span>是姿态偏差变化速率，Δt是时间间隔，θ<sub>j</sub>(t-Δt)是前一时刻的姿态偏差；</div>
+<div class="description-paragraph" id="p0038" num="0035">外部扰动会直接影响无人机的飞行稳定性，为准确反映外部扰动对动态平衡的影响，通过环境数据对姿态偏差进行补偿，计算出受扰动影响后的真实动态平衡状态，计算表达式如下：</div>
+<div class="description-paragraph" id="p0039" num="0036">Δθ<sub>comp</sub>(t)＝Δθ<sub>j</sub>(t)-f(W(t),A(t))，</div>
+<div class="description-paragraph" id="p0040" num="0037">式中，f(W(t),A(t))是外部扰动补偿函数，W(t)是风速数据，A(t)是气流数据，Δθ<sub>comp</sub>(t)是补偿后的姿态偏差；</div>
+<div class="description-paragraph" id="p0041" num="0038">最后，根据补偿后的姿态偏差生成动态平衡偏差因子，生成公式如下：</div>
+<div class="description-paragraph" id="p0042" num="0039"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0043" num="0040">式中，Dynamic<sub>Balance</sub>是动态平衡偏差因子，T是时间窗口总时长，<span class="patent-image-not-available"></span>是姿态偏差变化速率绝对值。</div>
+<div class="description-paragraph" id="p0044" num="0041">优选的，对提取的特征进行分析后，将经过分析后生成的航迹曲率变化因子和动态平衡偏差因子输入至预先训练好的深度学习模型中，通过深度学习模型生成飞行一致性偏差指数，通过飞行一致性偏差能化评估每架无人机的飞行状态变化。</div>
+<div class="description-paragraph" id="p0045" num="0042">优选的，将通过预先训练好的深度学习模型对每架无人机的飞行状态变化进行智能化评估时生成的飞行一致性偏差指数与预先设定的飞行一致性偏差指数参考阈值进行比对分析，对当前无人机飞行状态进行划分，划分步骤如下：</div>
+<div class="description-paragraph" id="p0046" num="0043">若飞行一致性偏差指数大于预先设定的飞行一致性偏差指数参考阈值，则将当前无人机飞行状态划分为偏离轨迹飞行；</div>
+<div class="description-paragraph" id="p0047" num="0044">若飞行一致性偏差指数小于等于预先设定的飞行一致性偏差指数参考阈值，则将当前无人机飞行状态划分为预定轨迹飞行。</div>
+<div class="description-paragraph" id="p0048" num="0045">优选的，针对被评估为偏离轨迹飞行的无人机，基于深度学习模型的预测结果，动态调整其飞行速度，使其重新回归预定轨迹，避免碰撞事故的发生的具体步骤如下：</div>
+<div class="description-paragraph" id="p0049" num="0046">确认无人机偏离轨迹后，通过深度学习模型进行飞行速度的动态预测调整，综合历史飞行数据、当前的飞行状态以及外部环境，预测飞行速度，以确保无人机能够回归预定轨迹，表达式如下：</div>
+<div class="description-paragraph" id="p0050" num="0047"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0051" num="0048">式中，V<sub>preset</sub>是无人机预设速度，Flight<sub>Consistency</sub>是飞行一致性偏差指数，Flight<sub>ref</sub>是飞行一致性偏差指数参考阈值，Flight<sub>max</sub>是飞行一致性偏差指数最大值，ΔV<sub>max</sub>是最大飞行速度调整幅度，V<sub>adjusted</sub>是调整后的飞行速度；</div>
+<div class="description-paragraph" id="p0052" num="0049">除飞行速度的调整，飞行路径的修正也是恢复预定轨迹的关键步骤，根据深度学习模型的预测结果，调整无人机的航向和飞行路径，以确保其朝预定方向飞行，计算表达式如下：</div>
+<div class="description-paragraph" id="p0053" num="0050"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0054" num="0051">式中，θ<sub>preset</sub>是预设的航向角度，λ是航向调整权重因子，用于控制航向调整的灵敏度，Δθ<sub>max</sub>是最大航向调整角度，θ<sub>adjusted</sub>是调整后的航向角度；</div>
+<div class="description-paragraph" id="p0055" num="0052">通过实时获取无人机的飞行数据并与预设的轨迹进行比较，不断更新飞行一致性偏差指数Flight<sub>Consistency</sub>，并基于反馈结果修正飞行器的状态，避免因系统滞后而导致调整过度或者调整不足，采用反馈控制策略，确保调整过程中的平滑过渡，公式如下：</div>
+<div class="description-paragraph" id="p0056" num="0053">F<sub>feedback</sub>＝α<sub>adjust</sub>·V<sub>adjusted</sub>+β<sub>adjust</sub>·θ<sub>adjusted</sub> </div>
+<div class="description-paragraph" id="p0057" num="0054">，式中，α<sub>adjust</sub>是飞行速度调整权重因子，β<sub>adjust</sub>是航向角度调整权重因子，F<sub>feedback</sub>是反馈修正值。</div>
+<div class="description-paragraph" id="p0058" num="0055">一种低空飞行器空中交通管理系统，包括飞行计划与路径设定模块、实时飞行状态监测模块、飞行数据预处理模块、特征提取与一致性分析模块、智能化评估模块、飞行状态分类模块、稳定飞行维持模块以及动态调整与轨迹回归模块；</div>
+<div class="description-paragraph" id="p0059" num="0056">飞行计划与路径设定模块，在飞行表演开始前，交通管理系统根据预设的飞行计划和表演需求，制定每架无人机的飞行路径、速度、航向和队形；</div>
+<div class="description-paragraph" id="p0060" num="0057">实时飞行状态监测模块，在飞行表演过程中，实时监测每架无人机的飞行状态参数，为后续的飞行数据分析和调整提供基础数据；</div>
+<div class="description-paragraph" id="p0061" num="0058">飞行数据预处理模块，对实时获取的飞行数据进行预处理，确保后续特征提取和分析的准确性和可靠性；</div>
+<div class="description-paragraph" id="p0062" num="0059">特征提取与一致性分析模块，从预处理后的飞行数据中提取出反映当前无人机偏离预定轨迹的关键特征，在检测窗口下，对提取的关键特征进行分析，量化无人机群组的飞行一致性，评估整体飞行状态是否保持预定的队形和协调性；</div>
+<div class="description-paragraph" id="p0063" num="0060">智能化评估模块，将量化后的飞行一致性特征输入预先训练好的深度学习模型，智能化评估每架无人机的飞行状态变化；</div>
+<div class="description-paragraph" id="p0064" num="0061">飞行状态分类模块，根据深度学习模型的评估结果，将当前无人机的飞行状态划分为预定轨迹飞行和偏离轨迹飞行；</div>
+<div class="description-paragraph" id="p0065" num="0062">稳定飞行维持模块，对于处于预定轨迹飞行状态的无人机，继续以预设的飞行速度进行表演，确保其稳定飞行；</div>
+<div class="description-paragraph" id="p0066" num="0063">动态调整与轨迹回归模块，针对被评估为偏离轨迹飞行的无人机，基于深度学习模型的预测结果，动态调整其飞行速度，使其重新回归预定轨迹，避免碰撞事故的发生。</div>
+<div class="description-paragraph" id="p0067" num="0064">在上述技术方案中，本发明提供的技术效果和优点：</div>
+<div class="description-paragraph" id="p0068" num="0065">本发明通过实时监控无人机的飞行状态并结合风速数据、气流湍流等外部扰动，能够动态调整偏离轨迹的无人机的飞行路径和速度。这种调整能有效地防止无人机因无法适应风速变化而导致的轨迹偏离，从而避免群体飞行中的相对距离过近或队形错乱现象。通过精确控制无人机的飞行状态，能够保持群组的稳定性，确保各个无人机之间保持安全间距，显著降低因飞行轨迹偏差引发的碰撞风险。</div>
+<div class="description-paragraph" id="p0069" num="0066">本发明通过深度学习模型对飞行一致性偏差进行智能化评估，可以快速识别出偏离预定轨迹的无人机，并基于偏差调整飞行参数。当飞行一致性偏差指数超过设定阈值时，自动识别出潜在的碰撞风险，并对偏离轨迹的无人机进行精准的路径调整。这一机制确保了及时发现飞行中的异常行为，防止无人机之间因为偏离轨迹而产生碰撞风险，从而保障群体飞行的安全。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0070">附图说明</div>
+<div class="description-paragraph" id="p0071" num="0067">为了更清楚地说明本申请实施例或现有技术中的技术方案，下面将对实施例中所需要使用的附图作简单的介绍，显而易见地，下面描述中的附图仅仅是本发明中记载的一些实施例，对于本领域普通技术人员来讲，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0072" num="0068">图1为本发明一种低空飞行器空中交通管理方法的方法流程图。</div>
+<div class="description-paragraph" id="p0073" num="0069">图2为本发明一种低空飞行器空中交通管理系统的模块示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0074">具体实施方式</div>
+<div class="description-paragraph" id="p0075" num="0070">现在将参考附图更全面地描述示例实施方式。然而，示例实施方式能够以多种形式实施，且不应被理解为限于在此阐述的范例；相反，提供这些示例实施方式使得本公开的描述将更加全面和完整，并将示例实施方式的构思全面地传达给本领域的技术人员。</div>
+<div class="description-paragraph" id="p0076" num="0071">本发明提供了如图1所示的一种低空飞行器空中交通管理方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0077" num="0072">在飞行表演开始前，交通管理系统根据预设的飞行计划和表演需求，制定每架无人机的飞行路径、速度、航向和队形；</div>
+<div class="description-paragraph" id="p0078" num="0073">这一步骤确保所有无人机在表演开始时具备明确的飞行指令和协调的行动计划。</div>
+<div class="description-paragraph" id="p0079" num="0074">根据表演的主题、场地环境和观众需求，设计详细的飞行路径和队形。例如，设计无人机在空中形成特定图案(如字母、图形)或执行特定动作(如旋转、上下波动)。为每架无人机设定初始飞行速度和航向，以确保整个群组能够协同一致地执行预定的飞行动作。通过交通管理系统，确保每架无人机在表演开始时处于正确的位置，避免初始阶段的碰撞风险。</div>
+<div class="description-paragraph" id="p0080" num="0075">在飞行表演过程中，实时监测每架无人机的飞行状态参数，为后续的飞行数据分析和调整提供基础数据；</div>
+<div class="description-paragraph" id="p0081" num="0076">每架无人机配备高精度传感器(如GPS、惯性测量单元IMU、气压计等)实时采集飞行数据。通过无线通信技术(如Wi-F i、4G/5G、专用通信频段)将采集到的数据实时传输到空中交通管理系统。确保所有无人机的数据在时间上同步，以便于后续的整体分析和协调调整。</div>
+<div class="description-paragraph" id="p0082" num="0077">对实时获取的飞行数据进行预处理，确保后续特征提取和分析的准确性和可靠性；</div>
+<div class="description-paragraph" id="p0083" num="0078">对实时获取的飞行数据进行清洗和格式化的目的是确保后续特征提取和分析的准确性与可靠性。在数据清洗过程中，需要移除或修正由于传感器故障、通信干扰等因素造成的异常数据点，以避免这些异常值影响分析结果。数据格式化则是将来自不同传感器和设备的飞行数据统一成一致的格式，便于后续处理和分析。而时间同步则确保所有数据按照时间顺序排列，保持数据的时序一致性，从而避免因时间偏差导致的分析误差，确保飞行数据在时空维度上的精确性。</div>
+<div class="description-paragraph" id="p0084" num="0079">从预处理后的飞行数据中提取出反映当前无人机偏离预定轨迹的关键特征，在检测窗口下，对提取的关键特征进行分析，量化无人机群组的飞行一致性，评估整体飞行状态是否保持预定的队形和协调性；</div>
+<div class="description-paragraph" id="p0085" num="0080">从预处理后的飞行数据中提取出反映当前无人机偏离预定轨迹的关键特征，提取的特征包括无人机飞行路径弯曲程度和无人机飞行过程中动态平衡状态，在检测窗口下，对提取的无人机飞行路径弯曲程度和无人机飞行过程中动态平衡状态进行分析，分别生成航迹曲率变化因子和动态平衡偏差因子，通过航迹曲率变化因子和动态平衡偏差因子量化无人机群组的飞行一致性，评估整体飞行状态是否保持预定的队形和协调性。</div>
+<div class="description-paragraph" id="p0086" num="0081">无人机飞行路径弯曲程度越大，通常表明当前无人机偏离了预定轨迹。在飞行过程中，飞行路径的弯曲度(曲率)通常反映了飞行器的航向变化程度。当外部因素如风速或气流变化发生时，尤其是风速差异较大的情况下，飞行器可能会被迫改变航向以应对这些扰动。如果无人机在遭遇突如其来的阵风或气流湍流时没有及时调整其飞行姿态和速度，它的飞行轨迹就会发生不规则的偏移，从而导致路径弯曲程度增大。特别是在群组飞行中，一架无人机的过度弯曲可能会打破群体的队形，造成飞行器间的距离变得过近或错乱，这增加了碰撞的风险。风速变化或不稳定的气流通常会影响飞行器的稳定性，尤其是在飞行过程中无人机需要不断调整其航向来维持稳定飞行。如果这些调整无法快速或精准地完成，飞行路径的曲率就会急剧增大，反映出飞行器未能按照预定航线飞行。</div>
+<div class="description-paragraph" id="p0087" num="0082">将无人机飞行路径弯曲程度在检测窗口下进行分析生成航迹曲率变化因子的具体步骤如下：</div>
+<div class="description-paragraph" id="p0088" num="0083">首先从无人机的飞行轨迹中提取连续路径点，将获取的路径点标定为p<sub>i</sub>，p<sub>i</sub>＝{p<sub>1</sub>、p<sub>2</sub>、p<sub>3</sub>、……、p<sub>n</sub>}，其中，p<sub>i</sub>是第i个路径点，n是路径点总数，每个路径点p<sub>i</sub>＝{x<sub>i</sub>、y<sub>i</sub>、z<sub>i</sub>}，{x<sub>i</sub>、y<sub>i</sub>、z<sub>i</sub>}是第i个路径点的三维坐标位置，计算任意两个相邻路径点之间的方向向量，通过方向向量计算局部曲率，计算表达式如下：</div>
+<div class="description-paragraph" id="p0089" num="0084"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0090" num="0085">式中，<span class="patent-image-not-available"></span>是路径点p<sub>i</sub>和路径点p<sub>i+1</sub>之间的方向向量，代表从路径点p<sub>i</sub>到路径点p<sub>i+1</sub>的方向，<span class="patent-image-not-available"></span>是路径点p<sub>i</sub>和路径点p<sub>i-1</sub>之间的方向向量，代表从路径点p<sub>i</sub>到路径点p<sub>i-1</sub>的方向，|·|是方向向量的模，κ<sub>i</sub>是局部曲率，表示路径点p<sub>i</sub>附近的局部曲率，衡量了路径在该点的弯曲程度；</div>
+<div class="description-paragraph" id="p0091" num="0086">该步骤计算的是路径的弯曲程度，反映了路径在某一点的局部变化。当无人机航向发生剧烈转变时，局部曲率会增大，指示飞行器偏离预定路径。</div>
+<div class="description-paragraph" id="p0092" num="0087">方向向量的模|·|也称为向量的大小或长度，向量的模反映了该向量的大小或强度。在航迹曲率的计算中，模的作用是衡量两个方向向量之间的几何关系，以确保曲率的计算能够反映路径的实际弯曲程度。具体来说，当计算路径弯曲度时，向量的模用于归一化方向向量的大小，以去除路径长度的影响，从而确保曲率仅与路径的形状和弯曲程度有关，而不受路径本身长度或尺寸的干扰。通过将向量模进行标准化，可以确保曲率计算仅反映路径的弯曲变化，而不依赖于飞行路径的尺度，这对于评估无人机的轨迹偏离程度尤为重要。</div>
+<div class="description-paragraph" id="p0093" num="0088">为考虑时间维度的变化，通过每对相邻的路径点的时间间隔将局部曲率κ<sub>i</sub>按照时间间隔进行归一化，得到时间加权的曲率变化量，计算表达式如下：</div>
+<div class="description-paragraph" id="p0094" num="0089"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0095" num="0090">式中，κ<sub>i+1</sub>是下一路径点的局部曲率，Δt<sub>i</sub>，<sub>i+1</sub>是相邻路径点的时间间隔，表示路径点p<sub>i</sub>和路径点p<sub>i+1</sub>之间的时间差，Δκ<sub>i</sub>是曲率变化量，表示路径点p<sub>i</sub>和路径点p<sub>i+1</sub>之间的曲率变化量，是两个路径点之间路径弯曲程度的变化；</div>
+<div class="description-paragraph" id="p0096" num="0091">该步骤反映了飞行器路径变化的速度。如果曲率的变化非常剧烈，并且这种变化发生在短时间内，那么Δκ<sub>i</sub>的值将会较大，表示飞行器可能由于外部因素(如风速变化)，迅速偏离预定航迹。通过引入时间差异，可以精准地评估无人机在短时间内的动态变化，从而提高对突发事件的反应能力。</div>
+<div class="description-paragraph" id="p0097" num="0092">为进一步反映全程飞行过程中航迹曲率的变化，对曲率变化量进行加权求和，生成航迹曲率变化因子，生成公式如下：</div>
+<div class="description-paragraph" id="p0098" num="0093"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0099" num="0094">式中，Trajectory<sub>Curvature</sub>是航迹曲率变化因子，w<sub>i</sub>是路径段权重因子，用于加权每个路径段对总曲率变化因子的贡献。</div>
+<div class="description-paragraph" id="p0100" num="0095">通过加权求和，得到整个飞行过程中曲率变化的综合度量。如果航迹曲率变化因子Trajectory<sub>Curvature</sub>值较大，说明在飞行过程中无人机经历了较大幅度的路径偏移，进一步验证无人机的轨迹偏离情况。有助于整个飞行过程中偏离的趋势进行全面分析。</div>
+<div class="description-paragraph" id="p0101" num="0096">将无人机飞行路径弯曲程度在检测窗口下进行分析后生成的航迹曲率变化因子表现值越大，通常表明当前无人机偏离预定轨迹，反之则说明无人机处于预定轨迹。航迹曲率是衡量飞行路径弯曲程度的一个关键指标，当无人机的飞行路径出现急剧的转向或弯曲时，曲率值会增大。外部因素如风速变化、气流湍流等可能导致飞行器偏离原定航线，从而使得航迹的曲率发生较大变化。此时，航迹曲率变化因子的表现值会显著增加，反映出飞行器正在经历不稳定的飞行状态，偏离了设定的飞行轨迹。而当航迹曲率变化因子的数值较小或保持稳定时，说明飞行器的路径变化较为平缓，通常能够较好地维持预定轨迹，偏离的程度较低。</div>
+<div class="description-paragraph" id="p0102" num="0097">无人机飞行过程中平衡状态出现剧烈波动通常表明飞行器已经偏离预定轨迹。飞行器的平衡状态主要依赖于其姿态控制系统来维持飞行稳定性，包括俯仰、滚转和偏航等角度。当外部因素，如风速变化或气流湍流，影响无人机时，它可能会导致无人机的飞行姿态发生剧烈波动，表现为飞行器的俯仰角、滚转角或偏航角的快速变化。这些变化表明无人机正在调整其飞行姿态以应对环境扰动，可能导致飞行器从原定路径上偏离。特别是在强阵风或不稳定气流的情况下，飞行器的平衡控制系统必须迅速做出反应，以避免飞行器的过度偏离。然而，如果外部扰动过强或控制系统反应不足，飞行器的姿态可能难以恢复到稳定状态，导致航迹的持续偏离。这种姿态的剧烈波动不仅影响飞行稳定性，还可能导致与其他无人机或障碍物发生碰撞。因此，平衡状态的剧烈波动是飞行器偏离预定轨迹的重要信号，尤其是在外部气流变化剧烈的环境中。</div>
+<div class="description-paragraph" id="p0103" num="0098">将无人机飞行过程中动态平衡状态在检测窗口下进行分析生成动态平衡偏差因子的具体步骤如下：</div>
+<div class="description-paragraph" id="p0104" num="0099">首先，分析无人机的飞行姿态(如俯仰角、滚转角、偏航角)变化，通过计算姿态的变化幅度，得出无人机在飞行过程中的姿态偏差，计算表达式如下：</div>
+<div class="description-paragraph" id="p0105" num="0100">Δθ<sub>j</sub>(t)＝|θ<sub>j</sub>(t)-θ<sub>j</sub> <sup>ref</sup>(t)|</div>
+<div class="description-paragraph" id="p0106" num="0101">，式中，θ<sub>j</sub>(t)是在时刻t时，无人机的第j个姿态角，θ<sub>j</sub> <sup>ref</sup>(t)是无人机在时刻t遵循的预定轨迹上的第j个姿态角，Δθ<sub>j</sub>(t)是姿态偏差，表示无人机在时刻t的第j个姿态角的偏差值，|θ<sub>j</sub>(t)-θ<sub>j</sub> <sup>ref</sup>(t)|是在时刻t时，无人机的第j个姿态角θ<sub>j</sub>(t)和无人机在时刻t遵循的预定轨迹上的第j个姿态角θ<sub>j</sub> <sup>ref</sup>(t)的绝对偏差；</div>
+<div class="description-paragraph" id="p0107" num="0102">该步骤通过计算姿态的瞬时偏差量化了飞行器在每一时刻的动态平衡状态。如果偏差值较大，意味着无人机在此时段内未能维持稳定姿态，表明无人机可能正在偏离预定轨迹。</div>
+<div class="description-paragraph" id="p0108" num="0103">在获取无人机姿态偏差后，计算偏差的变化趋势，即姿态变化速率，通过分析姿态偏差的时间变化，可以识别飞行器是否持续保持不稳定状态，或是否能够迅速恢复稳定，计算表达式如下：</div>
+<div class="description-paragraph" id="p0109" num="0104"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0110" num="0105">式中，<span class="patent-image-not-available"></span>是姿态偏差变化速率，表示在时间t时刻，无人机姿态偏差的瞬时变化率，通常用于度量偏差变化的速度，Δt是时间间隔，θ<sub>j</sub>(t-Δt)是前一时刻的姿态偏差，表示无人机在前一时刻(t-Δt)的第j个姿态角的偏差；</div>
+<div class="description-paragraph" id="p0111" num="0106">该步骤帮助分析姿态偏差是否在加剧，若<span class="patent-image-not-available"></span>值显著增大，说明无人机的姿态偏差有加速的趋势，无人机可能在持续偏离预定轨迹，表明需要进行动态调整。</div>
+<div class="description-paragraph" id="p0112" num="0107">外部扰动，如风速变化、气流湍流等，会直接影响无人机的飞行稳定性，为准确反映外部扰动对动态平衡的影响，通过环境数据(如实时风速和气流信息)对姿态偏差进行补偿，计算出受扰动影响后的真实动态平衡状态，计算表达式如下：</div>
+<div class="description-paragraph" id="p0113" num="0108">Δθ<sub>comp</sub>(t)＝Δθ<sub>j</sub>(t)-f(W(t),A(t))</div>
+<div class="description-paragraph" id="p0114" num="0109">，式中，f(W(t),A(t))是外部扰动补偿函数，用于根据实时的环境数据(如风速和气流)对姿态偏差进行调整，W(t)是风速数据，表示在时间t时刻无人机所在位置的风速数据，风速是一个矢量，包含了风的大小和方向，A(t)是气流数据，表示在时间t时刻无人机所在位置的气流数据，气流是空气流动的状态，通常包括湍流、上升气流、下降气流等，Δθ<sub>comp</sub>(t)是补偿后的姿态偏差，是经过外部扰动补偿后的姿态偏差，表示无人机在时间t时刻与参考轨迹的偏差，已经扣除了风速和气流等外部扰动的影响；</div>
+<div class="description-paragraph" id="p0115" num="0110">最后，根据补偿后的姿态偏差生成动态平衡偏差因子，该因子能够综合考虑飞行器的姿态变化、变化速率以及外部扰动对飞行稳定性的影响，生成公式如下：</div>
+<div class="description-paragraph" id="p0116" num="0111"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0117" num="0112">式中，Dynamic<sub>Balance</sub>是动态平衡偏差因子，T是时间窗口总时长，<span class="patent-image-not-available"></span>是姿态偏差变化速率绝对值。</div>
+<div class="description-paragraph" id="p0118" num="0113">将无人机飞行过程中动态平衡状态在检测窗口下进行分析后生成的动态平衡偏差因子表现值越大，表明当前无人机偏离预定轨迹。动态平衡偏差因子主要衡量无人机飞行过程中其姿态的稳定性，特别是俯仰、滚转和偏航角的变化。当无人机的飞行姿态出现较大波动或剧烈变化时，说明它受到了外部扰动(如风速变化或气流湍流)的影响，飞行控制系统未能有效保持飞行稳定性，导致飞行器从预定轨迹上偏离。这种偏差通常会导致飞行器的航向和路径不再与原定轨迹一致，因此，动态平衡偏差因子的数值增加，反映出飞行器的姿态控制失常，偏离了预期的航线。反之，如果动态平衡偏差因子的表现值较小，说明飞行器的姿态控制稳定，未受到外部扰动或已成功补偿这些扰动，因此飞行器维持了与预定轨迹一致的飞行状态。</div>
+<div class="description-paragraph" id="p0119" num="0114">将量化后的飞行一致性特征输入预先训练好的深度学习模型，智能化评估每架无人机的飞行状态变化；</div>
+<div class="description-paragraph" id="p0120" num="0115">对提取的特征进行分析后，将经过分析后生成的航迹曲率变化因子和动态平衡偏差因子输入至预先训练好的深度学习模型中，通过深度学习模型生成飞行一致性偏差指数，通过飞行一致性偏差能化评估每架无人机的飞行状态变化。</div>
+<div class="description-paragraph" id="p0121" num="0116">预先训练好的深度学习模型指的是在无人机群组飞行表演系统中，使用大量飞行数据和相关飞行状态特征(如航迹曲率变化因子和动态平衡偏差因子)对深度学习模型进行训练，确保该模型能够在实际飞行过程中进行实时预测和评估。训练过程通常涉及使用历史飞行数据，包括各种飞行状态(如飞行一致性、飞行轨迹和飞行器姿态等)以及环境数据(如风速、气流变化等)，来教会深度学习模型识别并理解飞行过程中可能导致偏离轨迹的模式和特征。在训练时，模型会通过监督学习(Supervised Learning)的方法，学习如何将输入的飞行数据特征映射到对应的飞行状态(如是否偏离轨迹、飞行稳定性等)，并通过反向传播算法不断调整其参数，以最小化预测值与实际飞行结果之间的误差。这种方式能够使深度学习模型获得处理复杂非线性关系的能力，并能够应对飞行过程中不断变化的环境因素。</div>
+<div class="description-paragraph" id="p0122" num="0117">经过训练的深度学习模型能够对新的飞行数据进行实时评估，特别是在实际飞行表演中，模型能够根据实时输入的航迹曲率变化因子和动态平衡偏差因子等特征，智能评估无人机的飞行状态是否符合预定轨迹和飞行一致性要求。如果模型评估出飞行状态发生了偏差，它会输出一个飞行一致性偏差指数，这个指数用于量化当前飞行器的飞行一致性。飞行一致性偏差指数越高，意味着飞行器的飞行状态与预定轨迹的偏差越大，反之则表示飞行器的状态稳定，保持在预定航迹范围内。这种基于深度学习模型的智能评估系统能够实时、动态地调整飞行策略，确保群体飞行的稳定性和安全性。通过深度学习的自我调整和优化，系统能够适应不同的飞行环境和变化因素，从而更好地应对复杂的飞行表演任务，避免无人机发生碰撞或其他飞行事故。</div>
+<div class="description-paragraph" id="p0123" num="0118">深度学习模型在此不做限定，能够实现将航迹曲率变化因子Trajectory<sub>Curvature</sub>和动态平衡偏差因子Dynamic<sub>Balance</sub>进行综合分析生成飞行一致性偏差指数Flight<sub>Consistency</sub>的深度学习模型均可，为实现本发明的技术方案，本发明提供一种具体的生成方式；</div>
+<div class="description-paragraph" id="p0124" num="0119">飞行一致性偏差指数Flight<sub>Consistency</sub>生成公式如下：</div>
+<div class="description-paragraph" id="p0125" num="0120"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0126" num="0121">式中，f<sub>a</sub>、f<sub>b</sub>为航迹曲率变化因子Trajectory<sub>Curvature</sub>和动态平衡偏差因子Dynamic<sub>Balance</sub>预设比例系数，且f<sub>a</sub>、f<sub>b</sub>均大于0。</div>
+<div class="description-paragraph" id="p0127" num="0122">由飞行一致性偏差指数可知，将无人机飞行路径弯曲程度在检测窗口下进行分析后生成的航迹曲率变化因子表现值越大，将无人机飞行过程中动态平衡状态在检测窗口下进行分析后生成的动态平衡偏差因子表现值越大，则通过预先训练好的深度学习模型对每架无人机的飞行状态变化进行智能化评估时生成的飞行一致性偏差指数表现值越大，则表明当前无人机处于偏离预定轨迹飞行，反之，则表明当前无人机在预定轨迹上飞行。</div>
+<div class="description-paragraph" id="p0128" num="0123">根据深度学习模型的评估结果，将当前无人机的飞行状态划分为预定轨迹飞行和偏离轨迹飞行；</div>
+<div class="description-paragraph" id="p0129" num="0124">将通过预先训练好的深度学习模型对每架无人机的飞行状态变化进行智能化评估时生成的飞行一致性偏差指数与预先设定的飞行一致性偏差指数参考阈值进行比对分析，对当前无人机飞行状态进行划分，划分步骤如下：</div>
+<div class="description-paragraph" id="p0130" num="0125">若飞行一致性偏差指数大于预先设定的飞行一致性偏差指数参考阈值，则将当前无人机飞行状态划分为偏离轨迹飞行；</div>
+<div class="description-paragraph" id="p0131" num="0126">若飞行一致性偏差指数小于等于预先设定的飞行一致性偏差指数参考阈值，则将当前无人机飞行状态划分为预定轨迹飞行。</div>
+<div class="description-paragraph" id="p0132" num="0127">预定轨迹飞行指的是无人机在飞行过程中严格遵循系统设定的飞行路径和航向，按照预定的飞行计划保持稳定的飞行状态。偏离轨迹飞行是指无人机在飞行过程中，由于外部环境(如风速变化、气流湍流)原因，导致其无法准确沿着预定航线飞行，出现了明显的偏航、失速或路径偏离等情况。</div>
+<div class="description-paragraph" id="p0133" num="0128">对于处于预定轨迹飞行状态的无人机，继续以预设的飞行速度进行表演，确保其稳定飞行；</div>
+<div class="description-paragraph" id="p0134" num="0129">对于处于预定轨迹飞行状态的无人机，继续以预设的飞行速度进行表演的目的是确保飞行器能够稳定地保持在预定的飞行路径上，避免因速度调整或不必要的干预而导致轨迹的偏离或不稳定。预设的飞行速度通常是在考虑了无人机性能、气象条件以及任务要求的基础上精确计算的，能够保证飞行器在不同环境下的平稳运行。通过维持固定速度，无人机能够在群体飞行中与其他无人机保持一致的飞行状态，确保队形稳定，减少与其他无人机发生碰撞的风险，并提升表演的协调性和精确度。此外，保持一致的飞行速度还可以帮助系统在评估和调整其他飞行器的状态时提供参考数据，使得空中交通管理系统能够更有效地进行实时调整和优化。</div>
+<div class="description-paragraph" id="p0135" num="0130">针对被评估为偏离轨迹飞行的无人机，基于深度学习模型的预测结果，动态调整其飞行速度，使其重新回归预定轨迹，避免碰撞事故的发生；</div>
+<div class="description-paragraph" id="p0136" num="0131">针对被评估为偏离轨迹飞行的无人机，基于深度学习模型的预测结果，动态调整其飞行速度，使其重新回归预定轨迹，避免碰撞事故的发生的具体步骤如下：</div>
+<div class="description-paragraph" id="p0137" num="0132">确认无人机偏离轨迹后，通过深度学习模型进行飞行速度的动态预测调整，综合历史飞行数据、当前的飞行状态以及外部环境(如风速和气流扰动)，预测飞行速度，以确保无人机能够回归预定轨迹，表达式如下：</div>
+<div class="description-paragraph" id="p0138" num="0133"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0139" num="0134">式中，V<sub>preset</sub>是无人机预设速度，Flight<sub>Consistency</sub>是飞行一致性偏差指数，Flight<sub>ref</sub>是飞行一致性偏差指数参考阈值，Flight<sub>max</sub>是飞行一致性偏差指数最大值，ΔV<sub>max</sub>是最大飞行速度调整幅度，由深度学习模型根据历史飞行数据和外部环境变化预测得出，V<sub>adjusted</sub>是调整后的飞行速度；</div>
+<div class="description-paragraph" id="p0140" num="0135">通过这一公式，根据飞行一致性偏差指数Flight<sub>Consistency</sub>的变化来动态调整飞行速度，确保无人机逐步回到预定航线。</div>
+<div class="description-paragraph" id="p0141" num="0136">除飞行速度的调整，飞行路径的修正也是恢复预定轨迹的关键步骤，根据深度学习模型的预测结果，调整无人机的航向和飞行路径，以确保其朝预定方向飞行，调整幅度根据飞行一致性偏差指数Flight<sub>Consistency</sub>与飞行一致性偏差指数参考阈值Flight<sub>ref</sub>的差值进行动态调整，确保过大的修正不会导致飞行器姿态剧烈波动，计算表达式如下：</div>
+<div class="description-paragraph" id="p0142" num="0137"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0143" num="0138">式中，θ<sub>preset</sub>是预设的航向角度，λ是航向调整权重因子，用于控制航向调整的灵敏度，Δθ<sub>max</sub>是最大航向调整角度，θ<sub>adjusted</sub>是调整后的航向角度；</div>
+<div class="description-paragraph" id="p0144" num="0139">通过这个调整，飞行器的航向可以更精确地指向预定轨迹，并与调整后的飞行速度相匹配，以确保群组飞行的一致性。</div>
+<div class="description-paragraph" id="p0145" num="0140">通过实时获取无人机的飞行数据并与预设的轨迹进行比较，不断更新飞行一致性偏差指数Flight<sub>Consistency</sub>，并基于反馈结果修正飞行器的状态，避免因系统滞后而导致调整过度或者调整不足，采用反馈控制策略，确保调整过程中的平滑过渡，公式如下：</div>
+<div class="description-paragraph" id="p0146" num="0141">F<sub>feedback</sub>＝α<sub>adjust</sub>·V<sub>adjusted</sub>+β<sub>adjust</sub>·θ<sub>adjusted</sub> </div>
+<div class="description-paragraph" id="p0147" num="0142">，式中，α<sub>adjust</sub>是飞行速度调整权重因子，β<sub>adjust</sub>是航向角度调整权重因子，F<sub>feedback</sub>是反馈修正值，用于动态评估飞行状态的修正效果。</div>
+<div class="description-paragraph" id="p0148" num="0143">这个反馈机制确保了无人机在回归预定轨迹时的精度和稳定性，避免过度调整导致的飞行不稳定，确保无人机逐步回归并稳定在预定轨迹上，减少碰撞风险。</div>
+<div class="description-paragraph" id="p0149" num="0144">飞行速度调整权重因子α<sub>adjust</sub>是一个决定飞行速度调整对整体反馈修正值(F<sub>feedback</sub>)贡献的比例系数。它表明在飞行速度与航向角度调整中，飞行速度的调整在修正飞行轨迹时的相对重要性。当α<sub>adjust</sub>的值较高时，系统会更加依赖飞行速度的调整来实现轨迹修正，特别是在风速变化较大或无人机飞行速度波动较显著时，这样可以通过快速改变飞行速度来迅速恢复到预定轨迹。反之，较低的α<sub>adjust</sub>表示飞行速度的调整对反馈修正的影响较小，更多地依赖航向角度的修正。</div>
+<div class="description-paragraph" id="p0150" num="0145">航向角度调整权重因子β<sub>adjust</sub>决定了航向角度调整对整体反馈修正值F<sub>feedback</sub>)的贡献程度。它反映了在轨迹修正过程中，航向的调整相对于飞行速度的调整的重要性。当β<sub>adjust</sub>较大时，系统倾向于通过调整航向角度来回归预定轨迹，特别是在飞行路径发生较大弯曲时，系统会优先考虑改变航向角度以恢复飞行方向。较小的β<sub>adjust</sub>表示飞行器更依赖于飞行速度的调整来纠正轨迹，航向角度的调整作用相对较弱。</div>
+<div class="description-paragraph" id="p0151" num="0146">针对被评估为偏离轨迹飞行的无人机，基于深度学习模型的预测结果动态调整飞行速度，主要作用是通过精确的速度调控使无人机重新回归预定轨迹，从而避免由于飞行轨迹偏离导致的碰撞事故。无人机在复杂的飞行环境中，可能会受到风速变化、气流扰动、航向调整等多种因素的影响，导致飞行路径发生偏移。当飞行一致性偏差指数Flight<sub>Consistency</sub>超过预定的参考阈值时，识别出无人机的飞行状态发生异常，需立即采取措施进行修正。此时，基于深度学习模型的预测结果，可以根据飞行器当前的状态信息(如航向角、速度、路径曲率等)和外部环境因素(如风速、气流等)智能预测出调整飞行速度的最佳方案。</div>
+<div class="description-paragraph" id="p0152" num="0147">深度学习模型通过对历史数据的学习和训练，能够识别复杂的飞行状态模式，并结合实时飞行数据进行动态调整。通过调整飞行速度，可以精确控制无人机的飞行轨迹，避免路径过度偏离或飞行速度过快或过慢导致的稳定性问题。此外，动态调整飞行速度还能够确保群体飞行中其他无人机的相对距离得以维持，避免因单个无人机的偏离而引发整体飞行队形错乱和碰撞风险。该步骤的核心作用是通过对无人机飞行状态的智能评估和实时响应，确保无人机群体能够协调一致地完成飞行表演，确保安全性并避免可能发生的飞行事故。</div>
+<div class="description-paragraph" id="p0153" num="0148">本发明通过实时监控无人机的飞行状态并结合风速数据、气流湍流等外部扰动，能够动态调整偏离轨迹的无人机的飞行路径和速度。这种调整能有效地防止无人机因无法适应风速变化而导致的轨迹偏离，从而避免群体飞行中的相对距离过近或队形错乱现象。通过精确控制无人机的飞行状态，能够保持群组的稳定性，确保各个无人机之间保持安全间距，显著降低因飞行轨迹偏差引发的碰撞风险。</div>
+<div class="description-paragraph" id="p0154" num="0149">本发明通过深度学习模型对飞行一致性偏差进行智能化评估，可以快速识别出偏离预定轨迹的无人机，并基于偏差调整飞行参数。当飞行一致性偏差指数超过设定阈值时，自动识别出潜在的碰撞风险，并对偏离轨迹的无人机进行精准的路径调整。这一机制确保了及时发现飞行中的异常行为，防止无人机之间因为偏离轨迹而产生碰撞风险，从而保障群体飞行的安全。</div>
+<div class="description-paragraph" id="p0155" num="0150">本发明提供了如图2所示的一种低空飞行器空中交通管理系统，包括飞行计划与路径设定模块、实时飞行状态监测模块、飞行数据预处理模块、特征提取与一致性分析模块、智能化评估模块、飞行状态分类模块、稳定飞行维持模块以及动态调整与轨迹回归模块；</div>
+<div class="description-paragraph" id="p0156" num="0151">飞行计划与路径设定模块，在飞行表演开始前，交通管理系统根据预设的飞行计划和表演需求，制定每架无人机的飞行路径、速度、航向和队形；</div>
+<div class="description-paragraph" id="p0157" num="0152">实时飞行状态监测模块，在飞行表演过程中，实时监测每架无人机的飞行状态参数，为后续的飞行数据分析和调整提供基础数据；</div>
+<div class="description-paragraph" id="p0158" num="0153">飞行数据预处理模块，对实时获取的飞行数据进行预处理，确保后续特征提取和分析的准确性和可靠性；</div>
+<div class="description-paragraph" id="p0159" num="0154">特征提取与一致性分析模块，从预处理后的飞行数据中提取出反映当前无人机偏离预定轨迹的关键特征，在检测窗口下，对提取的关键特征进行分析，量化无人机群组的飞行一致性，评估整体飞行状态是否保持预定的队形和协调性；</div>
+<div class="description-paragraph" id="p0160" num="0155">智能化评估模块，将量化后的飞行一致性特征输入预先训练好的深度学习模型，智能化评估每架无人机的飞行状态变化；</div>
+<div class="description-paragraph" id="p0161" num="0156">飞行状态分类模块，根据深度学习模型的评估结果，将当前无人机的飞行状态划分为预定轨迹飞行和偏离轨迹飞行；</div>
+<div class="description-paragraph" id="p0162" num="0157">稳定飞行维持模块，对于处于预定轨迹飞行状态的无人机，继续以预设的飞行速度进行表演，确保其稳定飞行；</div>
+<div class="description-paragraph" id="p0163" num="0158">动态调整与轨迹回归模块，针对被评估为偏离轨迹飞行的无人机，基于深度学习模型的预测结果，动态调整其飞行速度，使其重新回归预定轨迹，避免碰撞事故的发生。</div>
+<div class="description-paragraph" id="p0164" num="0159">本发明实施例提供的一种低空飞行器空中交通管理方法，通过上述一种低空飞行器空中交通管理系统来实现，一种低空飞行器空中交通管理系统的具体方法和流程详见上述一种低空飞行器空中交通管理方法的实施例，此处不再赘述。</div>
+<div class="description-paragraph" id="p0165" num="0160">上述公式均是去量纲取其数值计算，公式是由采集大量数据进行软件模拟得到最近真实情况的一个公式，公式中的预设参数由本领域的技术人员根据实际情况进行设置。</div>
+<div class="description-paragraph" id="p0166" num="0161">以上只通过说明的方式描述了本发明的某些示范性实施例，毋庸置疑，对于本领域的普通技术人员，在不偏离本发明的精神和范围的情况下，可以用各种不同的方式对所描述的实施例进行修正。因此，上述附图和描述在本质上是说明性的，不应理解为对本发明权利要求保护范围的限制。</div>
+<div class="description-paragraph" id="p0167" num="0162">需要说明的是，在本文中，如若存在第一和第二等之类的关系术语仅仅用来将一个实体或者操作与另一个实体或操作区分开来，而不一定要求或者暗示这些实体或操作之间存在任何这种实际的关系或者顺序。而且，术语“包括”、“包含”或者其任何其他变体意在涵盖非排他性的包含，从而使得包括一系列要素的过程、方法、物品或者设备不仅包括那些要素，而且还包括没有明确列出的其他要素，或者是还包括为这种过程、方法、物品或者设备所固有的要素。在没有更多限制的情况下，由语句“包括一个……”限定的要素，并不排除在包括要素的过程、方法、物品或者设备中还存在另外的相同要素。</div>
+<div class="description-paragraph" id="p0168" num="0163">应理解，在本申请的各种实施例中，上述各过程的序号的大小并不意味着执行顺序的先后，各过程的执行顺序应以其功能和内在逻辑确定，而不应对本申请实施例的实施过程构成任何限定。</div>
+<div class="description-paragraph" id="p0169" num="0164">本领域普通技术人员可以意识到，结合本文中所公开的实施例描述的各示例的单元及算法步骤，能够以电子硬件，或者计算机软件和电子硬件的结合来实现。这些功能究竟以硬件还是软件方式来执行，取决于技术方案的特定应用和设计约束条件。专业技术人员可以对每个特定的应用来使用不同方法来实现所描述的功能，但是这种实现不应认为超出本申请的范围。</div>
+<div class="description-paragraph" id="p0170" num="0165">所属领域的技术人员可以清楚地了解到，为描述的方便和简洁，上述描述的系统、装置和单元的具体工作过程，可以参考前述方法实施例中的对应过程，在此不再赘述。</div>
+<div class="description-paragraph" id="p0171" num="0166">所述作为分离部件说明的单元可以是或者也可以不是物理上分开的，作为单元显示的部件可以是或者也可以不是物理单元，即可以位于一个地方，或者也可以分布到多个网络单元上。可以根据实际的需要选择其中的部分或者全部单元来实现本实施例方案的目的。</div>
+<div class="description-paragraph" id="p0172" num="0167">另外，在本申请各个实施例中的各功能单元可以集成在一个处理单元中，也可以是各个单元单独物理存在，也可以两个或两个以上单元集成在一个单元中。</div>
+<div class="description-paragraph" id="p0173" num="0168">以上所述，仅为本申请的具体实施方式，但本申请的保护范围并不局限于此，任何熟悉本技术领域的技术人员在本申请揭露的技术范围内，可轻易想到变化或替换，都应涵盖在本申请的保护范围之内。因此，本申请的保护范围应以所述权利要求的保护范围为准。</div>
+<div class="description-paragraph" id="p0174" num="0169">以上只通过说明的方式描述了本发明的某些示范性实施例，毋庸置疑，对于本领域的普通技术人员，在不偏离本发明的精神和范围的情况下，可以用各种不同的方式对所描述的实施例进行修正。因此，上述附图和描述在本质上是说明性的，不应理解为对本发明权利要求保护范围的限制。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

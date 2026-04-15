@@ -1,0 +1,150 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120279929A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES498878555">
+<invention-title id="title1" lang="ZH">一种应用于低空飞行器的轻量化语音增强方法及其模型</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于语音增强技术领域，具体涉及一种应用于低空飞行器的轻量化语音增强方法及其模型。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">现有的语音增强技术主要基于深度神经网络，多尺度卷积降噪方法混合神经网络结构，这些方法在PC端或服务器环境下虽能实现较高的语音质量，但在低空飞行器应用场景中存在局限性。具体而言，现有模型的参数量和计算量过大，远超机载嵌入式处理器的实时处理能力，导致部署困难；同时，现有方案，如基于WFST的实时语音增强算法，在嵌入式平台上的处理延迟通常超过80ms，无法满足航空通信对低延迟(&lt;20ms)的严格要求；此外，传统语音增强方法虽对稳态噪声有效，但对低空飞行器特有的非平稳噪声，如旋翼谐波、气流脉冲噪声的适应性不足，在信噪比剧烈波动的环境下性能显著下降；</div>
+<div class="description-paragraph" id="p0005" num="0003">因此，现有技术难以在低空飞行器的高噪声、低算力及严苛实时性要求条件下实现高效可靠的语音增强，亟需一种轻量化、低延迟且噪声鲁棒性强的优化方案。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本发明的目的在于提供一种应用于低空飞行器的轻量化语音增强方法及其模型，旨在解决现有语音增强技术在机载嵌入式环境下的高计算复杂度、高延迟及噪声鲁棒性不足等问题。</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明采用的技术方案如下：一种应用于低空飞行器的轻量化语音增强方法，包括如下步骤：</div>
+<div class="description-paragraph" id="p0009" num="0006">S1，通过麦克风采集低空飞行器环境下的带噪语音信号，带噪语音信号来源于低空飞行器飞行时与地面语音声源距离在100米范围内所产生的语音,或在低空飞行器飞行过程中座舱内进行语音交流时所产生的语音；</div>
+<div class="description-paragraph" id="p0010" num="0007">S2，将采集到的带噪语音信号输入至轻量化语音增强模型，利用预处理模块对带噪语音信号进行预处理，得到时频特征；</div>
+<div class="description-paragraph" id="p0011" num="0008">S3，将时频特征输入坐标注意力模块，提取空间分布特征,并进行自适应加权，得到加权语音信号；</div>
+<div class="description-paragraph" id="p0012" num="0009">S4，将加权语音信号输入时间卷积模块，提取瞬态特征与稳态特征，输出优化特征信号；</div>
+<div class="description-paragraph" id="p0013" num="0010">S5，将优化时间特征信号通过小规模可分离卷积模块处理，得到增强语音特征；</div>
+<div class="description-paragraph" id="p0014" num="0011">S6，将增强语音特征输入至掩码计算模块，对增强语音特征进行掩码计算，生成增强语音频谱，并通过逆短时傅里叶变换还原为时域语音信号。</div>
+<div class="description-paragraph" id="p0015" num="0012">进一步的，S2中，利用预处理模块对带噪语音信号进行预处理，预处理过程包括：</div>
+<div class="description-paragraph" id="p0016" num="0013">S201，对带噪语音信号进行预加重处理；</div>
+<div class="description-paragraph" id="p0017" num="0014">S202，将预加重后的音频信号分成若干帧，每帧设定固定长度和帧移，得到分帧后的数据；</div>
+<div class="description-paragraph" id="p0018" num="0015">S203,对分帧后的数据添加窗函数，所述窗函数为汉宁窗，窗长度设置为10ms；</div>
+<div class="description-paragraph" id="p0019" num="0016">S204,对每一帧信号进行短时傅里叶变换，将信号从时域转换到频域，提取幅度谱和相位谱特征；</div>
+<div class="description-paragraph" id="p0020" num="0017">S205,将每帧的短时傅里叶变换结果按时间维度堆叠，生成包含时频特征的声谱图。</div>
+<div class="description-paragraph" id="p0021" num="0018">进一步的，S3中，所述坐标注意力模块，具体包括：</div>
+<div class="description-paragraph" id="p0022" num="0019">S301，沿时间轴对输入的时频特征<span class="patent-image-not-available"></span>进行全局平均池化，得到只随通道和频率变化的第一聚合特征<span class="patent-image-not-available"></span>其计算公式为：</div>
+<div class="description-paragraph" id="p0023" num="0020">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0024" num="0021">其中S，<span class="patent-image-not-available"></span>表示由C、T、F共同构成的数据维度，C为通道数，T为时间帧数，F为频率点数,S(c,t,f)表示第c个通道在第t帧、第f个频率点上的特征值，<span class="patent-image-not-available"></span>表示T＝1时的数据维度；</div>
+<div class="description-paragraph" id="p0025" num="0022">S302，沿频率轴对所述时频特征<span class="patent-image-not-available"></span>进行全局平均池化，得到只随通道和时间帧变化的第二聚合特征<span class="patent-image-not-available"></span>其计算公式为：</div>
+<div class="description-paragraph" id="p0026" num="0023">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0027" num="0024">S303，将第一聚合特征<span class="patent-image-not-available"></span>与第二聚合特征<span class="patent-image-not-available"></span>在空间维度上拼接后，得到融合特征<span class="patent-image-not-available"></span>并对融合特征施加一维卷积操作，依次进行批归一化及ReLU激活，通过通道压缩比r生成中间特征<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0028" num="0025">S304，将中间特征在空间维度上分割为时间方向分量<span class="patent-image-not-available"></span>和频率方向分量<span class="patent-image-not-available"></span>分别对时间方向分量和频率方向分量施加一维卷积及Sigmoid激活函数，生成时间注意力权重<span class="patent-image-not-available"></span>和频率注意力权重<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0029" num="0026">S305，将所述时间注意力权重W<sub>t</sub>与频率注意力权重W<sub>f</sub>作用于输入时频特征，分别对时间和频率维度进行加权，生成加权语音信号<span class="patent-image-not-available"></span>其中<span class="patent-image-not-available"></span>表示逐元素相乘。</div>
+<div class="description-paragraph" id="p0030" num="0027">进一步的，S4中，通过时间卷积模块提取瞬态特征与稳态特征，具体过程包括：</div>
+<div class="description-paragraph" id="p0031" num="0028">S401，接收输入的加权语音信号S<sub>weighted</sub>对应的特征矩阵<span class="patent-image-not-available"></span>其中C为通道数，N为序列的特征维度；</div>
+<div class="description-paragraph" id="p0032" num="0029">S402，在多尺度膨胀卷积层，使用一组具有递增膨胀率的卷积核[S1,S2,S3,S4]，分别对输入特征矩阵X进行因果膨胀卷积，多尺度输出特征矩阵<span class="patent-image-not-available"></span>输入特征矩阵的计算公式为：</div>
+<div class="description-paragraph" id="p0033" num="0030">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0034" num="0031">其中，<span class="patent-image-not-available"></span>表示核大小为S<sub>i</sub>的一维卷积操作，S<sub>i</sub>表示第i个卷积核；</div>
+<div class="description-paragraph" id="p0035" num="0032">S403，对输出的多尺度特征矩阵X<sub>1</sub>,X<sub>2</sub>,X<sub>3</sub>,X<sub>4</sub>在时间维度上进行对齐，保留相同的时间步长T<sub>align</sub>＝T-S<sub>max</sub>+1，其中S<sub>max</sub>＝max(S<sub>1</sub>,S<sub>2</sub>,S<sub>3</sub>,S<sub>4</sub>)，在时间维度上进行对齐的具体操作为X<sub>i</sub>[:,:,-T<sub>align</sub>:]＝X<sub>i</sub>[:,:,(T-S<sub>max</sub>+1):]，从而使得所有特征矩阵具有相同的时间步长，其中，S<sub>max</sub>为S<sub>1</sub>、S<sub>2</sub>、S<sub>3</sub>、S<sub>4</sub>中的最大卷积核，其中T<sub>align</sub>表示对齐后的时间帧数，X<sub>i</sub>[:,:,-T<sub>align</sub>:]表示在时间维度上，只保留最后(T-S<sub>max</sub>+1)个时间步；</div>
+<div class="description-paragraph" id="p0036" num="0033">S404，将对齐后的特征矩阵X<sub>1</sub>,X<sub>2</sub>,X<sub>3</sub>,X<sub>4</sub>在通道维度上进行拼接，得到融合后的特征矩阵<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0037" num="0034">S405，对融合特征矩阵X<sub>L</sub>依次施加两层全连接层和ReLU非线性激活函数，得到中间特征矩阵X<sub>mid</sub>；</div>
+<div class="description-paragraph" id="p0038" num="0035">S406，中间特征矩阵X<sub>mid</sub>分别通过两组并行的膨胀多尺度卷积层生成两路特征输出，一路经过tanh激活函数，作为滤波器特征矩阵X<sub>tanh</sub>，另一路经过Sigmoid激活函数，作为门控特征矩阵X<sub>sigmoid</sub>，随后两路特征矩阵结合门控机制，计算最终的时间卷积输出矩阵Y＝tanh(X<sub>tanh</sub>)⊙σ(X<sub>sigmoid</sub>)；其中⊙表示逐元素相乘操作，X<sub>tanh</sub>为经过tanh激活函数的滤波器特征矩阵，X<sub>sigmoid</sub>为经过Sigmoid激活函数的门控特征矩阵，tanh()表示tanh激活函数，σ()表示Sigmoid激活函数；</div>
+<div class="description-paragraph" id="p0039" num="0036">S407，时间卷积模块输出特征矩阵Y包含提取的瞬态特征与稳态特征，作为优化特征信号用于后续处理。</div>
+<div class="description-paragraph" id="p0040" num="0037">进一步的，S5中，小规模可分离卷积，具体包括；</div>
+<div class="description-paragraph" id="p0041" num="0038">S501，接收时间卷积模块输出的优化特征信号对应的特征矩阵<span class="patent-image-not-available"></span>其中，C</div>
+<div class="description-paragraph" id="p0042" num="0039">为通道数，T为时间帧数，F为频率点数；</div>
+<div class="description-paragraph" id="p0043" num="0040">S502，对特征矩阵Y中每个通道单独进行卷积操作，提取该通道内时间和频率特征,第c个通道的输出Y<sub>d</sub>(c,t,f)为：</div>
+<div class="description-paragraph" id="p0044" num="0041">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0045" num="0042">其中，Kd深度卷积核,尺寸为k<sub>d,t</sub>×k<sub>d,f</sub>，k<sub>d,t</sub>表示卷积核在时间维度上的尺寸，k<sub>d,f</sub>表示在频率维度上的尺寸，i,j分别为卷积核在时间和频率方向的索引；</div>
+<div class="description-paragraph" id="p0046" num="0043">S503，将S502的深度卷积输出Yd采用1×1卷积核K<sub>p</sub>，对各通道输出进行线性组合，实现跨通道信息融合及通道压缩；</div>
+<div class="description-paragraph" id="p0047" num="0044">具体操作为，对于每个时间帧和频率点计算得到输出Y<sub>p</sub>(t,f)如下：</div>
+<div class="description-paragraph" id="p0048" num="0045">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0049" num="0046">其中K<sub>p</sub>(c)为对应通道的卷积权重；该步骤将通道数从压缩为较低的数值，根据设定的通道压缩比，最终输出通道数为C/r；</div>
+<div class="description-paragraph" id="p0050" num="0047">S504，对S503步骤得到的输出Y<sub>p</sub>依次施加批归一化和使用ReLU激活函数激活，生成最终的输出特征矩阵，该矩阵作为经过小规模可分离卷积处理后的增强语音特征。</div>
+<div class="description-paragraph" id="p0051" num="0048">进一步的，S5中，掩码计算模块，具体包括：</div>
+<div class="description-paragraph" id="p0052" num="0049">S601,根据增强后的特征图生成语音掩码值；</div>
+<div class="description-paragraph" id="p0053" num="0050">S602,利用语音掩码对噪声抑制后的时频特征进行调整；</div>
+<div class="description-paragraph" id="p0054" num="0051">S603,将调整后的时频特征通过逆短时傅里叶变换还原为清晰的时域语音信号。</div>
+<div class="description-paragraph" id="p0055" num="0052">进一步的，一种应用于低空飞行器的轻量化语音增强模型，引用应用于低空飞行器的轻量化语音增强方法，具体为：</div>
+<div class="description-paragraph" id="p0056" num="0053">包括预处理模块、坐标注意力模块、时间卷积模块、可分离卷积模块和掩码计算模块；</div>
+<div class="description-paragraph" id="p0057" num="0054">轻量化语音增强模型的输入为麦克风采集到的带噪语音信号；</div>
+<div class="description-paragraph" id="p0058" num="0055">预处理模块与坐标注意力模块相连接，坐标注意力模块与时间卷积模块相连接，时间卷积模块与小规模可分离卷积模块相连接，小规模可分离卷积模块与掩码计算模块相连接；</div>
+<div class="description-paragraph" id="p0059" num="0056">经过掩码模块得到输出的时域语音信号，作为轻量化语音增强模型的输出，时域语音信号通过音频播放设备进行播放。</div>
+<div class="description-paragraph" id="p0060" num="0057">本发明达到的技术效果如下：本发明能够有效提升在低空飞行器强噪声环境下的语音清晰度和自然度，同时满足低空飞行器对实时性和轻量化的要求，适用于低空飞行器的语音通信和指令识别场景。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0061">附图说明</div>
+<div class="description-paragraph" id="p0062" num="0058">图1为本发明的结构示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0063">具体实施方式</div>
+<div class="description-paragraph" id="p0064" num="0059">以下对本发明及其实施方式进行了描述，这种描述没有限制性，实际的实施方式并不局限于此。总而言之如果本领域的普通技术人员受其启示，在不脱离本发明创造宗旨的情况下，不经创造性的设计出与该技术方案相似的结构方式及实施例，均应属于本发明的保护范围。</div>
+<div class="description-paragraph" id="p0065" num="0060">本发明采用技术方案为：一种应用于低空飞行器的轻量化语音增强方法，包括如下步骤：</div>
+<div class="description-paragraph" id="p0066" num="0061">S1，通过麦克风采集低空飞行器环境下的带噪语音信号，带噪语音信号来源于低空飞行器飞行时与地面语音声源距离在100米范围内所产生的语音,或在低空飞行器飞行过程中座舱内进行语音交流时所产生的语音；</div>
+<div class="description-paragraph" id="p0067" num="0062">S2，将采集到的带噪语音信号输入至轻量化语音增强模型，利用预处理模块对带噪语音信号进行预处理，得到时频特征；</div>
+<div class="description-paragraph" id="p0068" num="0063">S3，将时频特征输入坐标注意力模块，提取空间分布特征,并进行自适应加权，得到加权语音信号；</div>
+<div class="description-paragraph" id="p0069" num="0064">S4，将加权语音信号输入时间卷积模块，提取瞬态特征与稳态特征，输出优化特征信号；</div>
+<div class="description-paragraph" id="p0070" num="0065">S5，将优化时间特征信号通过小规模可分离卷积模块处理，得到增强语音特征；</div>
+<div class="description-paragraph" id="p0071" num="0066">S6，将增强语音特征输入至掩码计算模块，对增强语音特征进行掩码计算，生成增强语音频谱，并通过逆短时傅里叶变换还原为时域语音信号。</div>
+<div class="description-paragraph" id="p0072" num="0067">进一步的，S2中，利用预处理模块对带噪语音信号进行预处理，预处理过程包括：</div>
+<div class="description-paragraph" id="p0073" num="0068">S201，对带噪语音信号进行预加重处理；</div>
+<div class="description-paragraph" id="p0074" num="0069">S202，将预加重后的音频信号分成若干帧，每帧设定固定长度和帧移，得到分帧后的数据；</div>
+<div class="description-paragraph" id="p0075" num="0070">S203,对分帧后的数据添加窗函数，所述窗函数为汉宁窗，窗长度设置为10ms；</div>
+<div class="description-paragraph" id="p0076" num="0071">S204,对每一帧信号进行短时傅里叶变换，将信号从时域转换到频域，提取幅度谱和相位谱特征；</div>
+<div class="description-paragraph" id="p0077" num="0072">S205,将每帧的短时傅里叶变换结果按时间维度堆叠，生成包含时频特征的声谱图。</div>
+<div class="description-paragraph" id="p0078" num="0073">进一步的，S3中，所述坐标注意力模块，具体包括：</div>
+<div class="description-paragraph" id="p0079" num="0074">S301，沿时间轴对输入的时频特征<span class="patent-image-not-available"></span>进行全局平均池化，得到只随通道和频率变化的第一聚合特征<span class="patent-image-not-available"></span>其计算公式为：</div>
+<div class="description-paragraph" id="p0080" num="0075">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0081" num="0076">其中S，<span class="patent-image-not-available"></span>表示由C、T、F共同构成的数据维度，C为通道数，T为时间帧数，F为频率点数,S(c,t,f)表示第c个通道在第t帧、第f个频率点上的特征值，<span class="patent-image-not-available"></span>表示T＝1时的数据维度；</div>
+<div class="description-paragraph" id="p0082" num="0077">S302，沿频率轴对所述时频特征<span class="patent-image-not-available"></span>进行全局平均池化，得到只随通道和时间帧变化的第二聚合特征<span class="patent-image-not-available"></span>其计算公式为：</div>
+<div class="description-paragraph" id="p0083" num="0078">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0084" num="0079">S303，将第一聚合特征<span class="patent-image-not-available"></span>与第二聚合特征<span class="patent-image-not-available"></span>在空间维度上拼接后，得到融合特征<span class="patent-image-not-available"></span>并对融合特征施加一维卷积操作，依次进行批归一化及ReLU激活，通过通道压缩比r生成中间特征<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0085" num="0080">S304，将中间特征在空间维度上分割为时间方向分量<span class="patent-image-not-available"></span>和频率方向分量<span class="patent-image-not-available"></span>分别对时间方向分量和频率方向分量施加一维卷积及Sigmoid激活函数，生成时间注意力权重<span class="patent-image-not-available"></span>和频率注意力权重<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0086" num="0081">S305，将所述时间注意力权重W<sub>t</sub>与频率注意力权重W<sub>f</sub>作用于输入时频特征，分别对时间和频率维度进行加权，生成加权语音信号<span class="patent-image-not-available"></span>其中<span class="patent-image-not-available"></span>表示逐元素相乘。</div>
+<div class="description-paragraph" id="p0087" num="0082">进一步的，S4中，通过时间卷积模块提取瞬态特征与稳态特征，具体过程包括：</div>
+<div class="description-paragraph" id="p0088" num="0083">S401，接收输入的加权语音信号S<sub>weighted</sub>对应的特征矩阵<span class="patent-image-not-available"></span>其中C为通道数，N为序列的特征维度；</div>
+<div class="description-paragraph" id="p0089" num="0084">S402，在多尺度膨胀卷积层，使用一组具有递增膨胀率的卷积核[S1,S2,S3,S4]，分别对输入特征矩阵X进行因果膨胀卷积，多尺度输出特征矩阵<span class="patent-image-not-available"></span>输入特征矩阵的计算公式为：</div>
+<div class="description-paragraph" id="p0090" num="0085">X<sub>i</sub>＝Conv<sub>1×Si</sub>(X),i∈{1,2,3,4}</div>
+<div class="description-paragraph" id="p0091" num="0086">其中，<span class="patent-image-not-available"></span>表示核大小为S<sub>i</sub>的一维卷积操作，S<sub>i</sub>表示第i个卷积核；</div>
+<div class="description-paragraph" id="p0092" num="0087">S403，对输出的多尺度特征矩阵X<sub>1</sub>,X<sub>2</sub>,X<sub>3</sub>,X<sub>4</sub>在时间维度上进行对齐，保留相同的时间步长T<sub>align</sub>＝T-S<sub>max</sub>+1，其中S<sub>max</sub>＝max(S<sub>1</sub>,S<sub>2</sub>,S<sub>3</sub>,S<sub>4</sub>)，在时间维度上进行对齐的具体操作为X<sub>i</sub>[:,:,-T<sub>align</sub>:]＝X<sub>i</sub>[:,:,(T-S<sub>max</sub>+1):]，从而使得所有特征矩阵具有相同的时间步长，其中，S<sub>max</sub>为S<sub>1</sub>、S<sub>2</sub>、S<sub>3</sub>、S<sub>4</sub>中的最大卷积核，其中T<sub>align</sub>表示对齐后的时间帧数，X<sub>i</sub>[:,:,-T<sub>align</sub>:]表示在时间维度上，只保留最后(T-S<sub>max</sub>+1)个时间步；</div>
+<div class="description-paragraph" id="p0093" num="0088">S404，将对齐后的特征矩阵X<sub>1</sub>,X<sub>2</sub>,X<sub>3</sub>,X<sub>4</sub>在通道维度上进行拼接，得到融合后的特征矩阵<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0094" num="0089">S405，对融合特征矩阵X<sub>L</sub>依次施加两层全连接层和ReLU非线性激活函数，得到中间特征矩阵X<sub>mid</sub>；</div>
+<div class="description-paragraph" id="p0095" num="0090">S406，中间特征矩阵X<sub>mid</sub>分别通过两组并行的膨胀多尺度卷积层生成两路特征输出，一路经过tanh激活函数，作为滤波器特征矩阵X<sub>tanh</sub>，另一路经过Sigmoid激活函数，作为门控特征矩阵X<sub>sigmoid</sub>，随后两路特征矩阵结合门控机制，计算最终的时间卷积输出矩阵Y＝tanh(X<sub>tanh</sub>)⊙σ(X<sub>sigmoid</sub>)；其中⊙表示逐元素相乘操作，X<sub>tanh</sub>为经过tanh激活函数的滤波器特征矩阵，X<sub>sigmoid</sub>为经过Sigmoid激活函数的门控特征矩阵，tanh()表示tanh激活函数，σ()表示Sigmoid激活函数；</div>
+<div class="description-paragraph" id="p0096" num="0091">S407，时间卷积模块输出特征矩阵Y包含提取的瞬态特征与稳态特征，作为优化特征信号用于后续处理。</div>
+<div class="description-paragraph" id="p0097" num="0092">进一步的，S5中，小规模可分离卷积，具体包括；</div>
+<div class="description-paragraph" id="p0098" num="0093">S501，接收时间卷积模块输出的优化特征信号对应的特征矩阵<span class="patent-image-not-available"></span>其中，C为通道数，T为时间帧数，F为频率点数；</div>
+<div class="description-paragraph" id="p0099" num="0094">S502，对特征矩阵Y中每个通道单独进行卷积操作，提取该通道内时间和频率特征,第c个通道的输出Y<sub>d</sub>(c,t,f)为：</div>
+<div class="description-paragraph" id="p0100" num="0095">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0101" num="0096">其中，Kd深度卷积核,尺寸为k<sub>d,t</sub>×k<sub>d,f</sub>，k<sub>d,t</sub>表示卷积核在时间维度上的尺寸，k<sub>d,f</sub>表示在频率维度上的尺寸，i,j分别为卷积核在时间和频率方向的索引；</div>
+<div class="description-paragraph" id="p0102" num="0097">S503，将S502的深度卷积输出Yd采用1×1卷积核K<sub>p</sub>，对各通道输出进行线性组合，实现跨通道信息融合及通道压缩；</div>
+<div class="description-paragraph" id="p0103" num="0098">具体操作为，对于每个时间帧和频率点计算得到输出Y<sub>p</sub>(t,f)如下：</div>
+<div class="description-paragraph" id="p0104" num="0099">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0105" num="0100">其中K<sub>p</sub>(c)为对应通道的卷积权重；该步骤将通道数从压缩为较低的数值，根据设定的通道压缩比，最终输出通道数为C/r；</div>
+<div class="description-paragraph" id="p0106" num="0101">S504，对S503步骤得到的输出Y<sub>p</sub>依次施加批归一化和使用ReLU激活函数激活，生成最终的输出特征矩阵，该矩阵作为经过小规模可分离卷积处理后的增强语音特征。</div>
+<div class="description-paragraph" id="p0107" num="0102">进一步的，S5中，掩码计算模块，具体包括：</div>
+<div class="description-paragraph" id="p0108" num="0103">S601,根据增强后的特征图生成语音掩码值；</div>
+<div class="description-paragraph" id="p0109" num="0104">S602,利用语音掩码对噪声抑制后的时频特征进行调整；</div>
+<div class="description-paragraph" id="p0110" num="0105">S603,将调整后的时频特征通过逆短时傅里叶变换还原为清晰的时域语音信号。</div>
+<div class="description-paragraph" id="p0111" num="0106">进一步的，一种应用于低空飞行器的轻量化语音增强模型，引用应用于低空飞行器的轻量化语音增强方法，具体为：</div>
+<div class="description-paragraph" id="p0112" num="0107">包括预处理模块、坐标注意力模块、时间卷积模块、可分离卷积模块和掩码计算模块；</div>
+<div class="description-paragraph" id="p0113" num="0108">轻量化语音增强模型的输入为麦克风采集到的带噪语音信号；</div>
+<div class="description-paragraph" id="p0114" num="0109">预处理模块与坐标注意力模块相连接，坐标注意力模块与时间卷积模块相连接，时间卷积模块与小规模可分离卷积模块相连接，小规模可分离卷积模块与掩码计算模块相连接；</div>
+<div class="description-paragraph" id="p0115" num="0110">经过掩码模块得到输出的时域语音信号，作为轻量化语音增强模型的输出，时域语音信号通过音频播放设备进行播放。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

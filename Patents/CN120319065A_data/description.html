@@ -1,0 +1,189 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120319065A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES499585287">
+<invention-title id="title1" lang="ZH">基于高度分层的低空飞行器航线划设方法与设备、介质</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空飞行器飞行保障技术领域，特别涉及一种基于高度分层的低空飞行器航线划设方法与设备、介质。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着无人机性能逐步提高，城市空中交通需求日益增长，城市低空航路航线划设研究已成为热点问题。城市空中交通是以垂直起降、点对点运输为主的全新交通系统，适用于城市内、城际间空中快速运输。城市低空航路航线是城市空中交通的重要组成部分，对于保障城市低空无人机运行安全、有序和高效至关重要。</div>
+<div class="description-paragraph" id="p0005" num="0003">目前低空飞行器航线划设还未形成完善的标准和方案，需要结合城市及城际的低空运行环境，借鉴城市地面交通经验，将城市地面交通先进技术理念引入低空飞行器航线划设。低空飞行航线是三维化的，而城市地面交通是二维化的，城市地面交通先进技术在低空飞行航线划设方面的应用需要进行一定的改进与适配。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本发明旨在至少解决现有技术中存在的技术问题之一。为此，本发明提出一种基于高度分层的低空飞行器航线划设方法，能够基于高度分层思想，将数字三维底图降维为二维联通图，可以快速应用成熟的二维航线规划算法进行航线设计，降低了航线设计的复杂度与难度，后期可以更好地引入地面车辆自动驾驶的技术研究成果，同时，高度分层思想可以将不同任务类型的低空飞行器安排在不同的高度层，各高度层互不干扰，便于分层监控、分层调度、分层管理。</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明还提出一种用于实现上述基于高度分层的低空飞行器航线划设方法的计算机设备与计算机可读存储介质。</div>
+<div class="description-paragraph" id="p0009" num="0006">根据本发明的第一方面实施例的基于高度分层的低空飞行器航线划设方法，包括：</div>
+<div class="description-paragraph" id="p0010" num="0007">对低空空域模型进行以高度为基础的分层，得到若干个高度层；</div>
+<div class="description-paragraph" id="p0011" num="0008">将包括地形信息的数字三维底图导入分层后的所述低空空域模型；</div>
+<div class="description-paragraph" id="p0012" num="0009">基于所述数字三维底图，针对每个所述高度层分别生成对应的二维联通图；</div>
+<div class="description-paragraph" id="p0013" num="0010">采用二维航线规划算法对所述二维联通图进行航线规划，分别生成对应的二维航线；</div>
+<div class="description-paragraph" id="p0014" num="0011">根据所述高度层和所述二维航线生成三维航线。</div>
+<div class="description-paragraph" id="p0015" num="0012">根据本发明的一些实施例，所述对低空空域模型进行以高度为基础的分层，得到若干个高度层，包括：</div>
+<div class="description-paragraph" id="p0016" num="0013">将低空空域限制高度的最小值与最大值之间的空间作为低空空域模型；</div>
+<div class="description-paragraph" id="p0017" num="0014">对低空空域模型进行以高度为基础的分层，得到若干个高度层，相邻所述高度层之间保持高度安全距离，所述高度层根据飞行器需求划定。</div>
+<div class="description-paragraph" id="p0018" num="0015">根据本发明的一些实施例，所述数字三维底图包括若干个网格化的三维坐标点，用于表征城市建筑物及地形的高度和位置。</div>
+<div class="description-paragraph" id="p0019" num="0016">根据本发明的一些实施例，所述基于所述数字三维底图，针对每个所述高度层分别生成对应的二维联通图，包括：</div>
+<div class="description-paragraph" id="p0020" num="0017">基于所述数字三维底图的地形高程数据，针对每个所述高度层分别设置联通区和不可通行区域；</div>
+<div class="description-paragraph" id="p0021" num="0018">基于所述数字三维底图的人口密度与设施分布情况，针对每个所述高度层分别设置不可通行区域；</div>
+<div class="description-paragraph" id="p0022" num="0019">基于所述不可通行区域和所述联通区，形成对应高度层的所述二维联通图。</div>
+<div class="description-paragraph" id="p0023" num="0020">根据本发明的一些实施例，所述基于所述数字三维底图的地形高程数据，针对每个所述高度层分别设置联通区和不可通行区域，包括：</div>
+<div class="description-paragraph" id="p0024" num="0021">逐一检查每个所述三维坐标点的高程值与高度层的高度，若所述高程值高于所述高度层的高度达到安全裕度，则将所述三维坐标点设置为联通区；</div>
+<div class="description-paragraph" id="p0025" num="0022">若所述高程值高于所述高度层的高度未达到安全裕度，则将所述三维坐标点设置为不可通行区域。</div>
+<div class="description-paragraph" id="p0026" num="0023">根据本发明的一些实施例，所述采用二维航线规划算法对所述二维联通图进行航线规划，分别生成对应的二维航线，包括：</div>
+<div class="description-paragraph" id="p0027" num="0024">初始化设置，设置若干个起点坐标、若干个终点坐标、第一矩阵和第二矩阵；所述第一矩阵包括：变量点位置坐标、估价值、路径值；所述第二矩阵包括：节点位置以及所述节点的子节点位置；其中，所述估价值用于表示所述变量点到所述终点的最佳路径的估计代价，所述路径值用于表示所述起点到所述变量点的实际代价；</div>
+<div class="description-paragraph" id="p0028" num="0025">计算所述起点的所述估价值和所述路径值，得到起点估价值和起点路径值，将所述起点坐标、所述起点估价值和所述起点路径值加入所述第一矩阵中；</div>
+<div class="description-paragraph" id="p0029" num="0026">寻找所述第一矩阵中所述估价值最小的点，并将所述估价值最小的点设置为当前节点；</div>
+<div class="description-paragraph" id="p0030" num="0027">若所述当前节点为所述终点，则根据所述第二矩阵回溯路径并结束流程，若所述当前节点不为所述终点，则搜索所述当前节点的子节点；</div>
+<div class="description-paragraph" id="p0031" num="0028">判断所述子节点是否位于所述二维联通图的联通区，若不位于则舍去所述子节点；</div>
+<div class="description-paragraph" id="p0032" num="0029">判断所述子节点是否在所述第一矩阵中，若不在则将所述子节点加入到所述第一矩阵；</div>
+<div class="description-paragraph" id="p0033" num="0030">计算从所述当前节点到所述子节点的路径值，得到节点路径值；</div>
+<div class="description-paragraph" id="p0034" num="0031">若所述节点路径值不小于所述子节点的原路径值，则舍去所述子节点，若所述节点路径值小于所述子节点的原路径值，则更新所述子节点的估价值和路径值；</div>
+<div class="description-paragraph" id="p0035" num="0032">将所述当前节点保存为所述子节点的父节点，将所述父节点及对应的子节点保存至所述第二矩阵，返回步骤：寻找所述第一矩阵中所述估价值最小的点，并将所述估价值最小的点设置为当前节点。</div>
+<div class="description-paragraph" id="p0036" num="0033">根据本发明的一些实施例，所述根据所述第二矩阵回溯路径并结束流程，包括：</div>
+<div class="description-paragraph" id="p0037" num="0034">在所述第二矩阵中搜索，从所述终点开始，分别查找对应的父节点直至起点，形成所述二维航线。</div>
+<div class="description-paragraph" id="p0038" num="0035">根据本发明的一些实施例，所述根据所述高度层和所述二维航线生成三维航线，包括：</div>
+<div class="description-paragraph" id="p0039" num="0036">在所述二维航线的路径节点坐标数组中加入对应的所述高度层的高度，形成所述三维航线。</div>
+<div class="description-paragraph" id="p0040" num="0037">根据本发明第二方面实施例的计算机设备，包括：</div>
+<div class="description-paragraph" id="p0041" num="0038">一个或多个处理器；</div>
+<div class="description-paragraph" id="p0042" num="0039">存储器；</div>
+<div class="description-paragraph" id="p0043" num="0040">一个或多个程序，其中所述一个或多个程序被存储在所述存储器中，并且被配置为由所述一个或多个处理器执行，所述程序被处理器执行时实现如上述实施例中任一项所述的基于高度分层的低空飞行器航线划设方法的步骤。</div>
+<div class="description-paragraph" id="p0044" num="0041">根据本发明第三方面实施例的计算机可读存储介质，其上存储有计算机程序，所述计算机程序被处理器执行时实现如上述实施例中任一项所述的基于高度分层的低空飞行器航线划设方法的步骤。</div>
+<div class="description-paragraph" id="p0045" num="0042">根据本发明实施例的基于高度分层的低空飞行器航线划设方法，至少具有如下有益效果：通过基于高度分层思想，将低空空域资源分为多个高度层，随后引入数字三维底图，基于数字三维底图的地形高程数据、禁飞区、威胁区，生成每个高度层的二维联通图，从而将三维立体低空空域分解为若干个二维平面区域，随后采用成熟的二维航线规划算法针对每个二维平面区域分别进行航线规划，最后将规划好的二维航线结合对应的高度信息生成三维航线，从而降低了航线设计的复杂度与难度，还可以更好地引入地面车辆自动驾驶的技术研究成果，方便将地面车辆自动驾驶线路规划的经验应用于低空飞行器的路径规划、航线规划领域，同时，将低空空域的空间资源进行高度分层的方法，还可以将不同任务类型的低空飞行器安排在不同的高度层，使得各个高度层互不干扰，便于分层监控、分层调度、分层管理。</div>
+<div class="description-paragraph" id="p0046" num="0043">本发明的附加方面和优点将在下面的描述中部分给出，部分将从下面的描述中变得明显，或通过本发明的实践了解到。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0047">附图说明</div>
+<div class="description-paragraph" id="p0048" num="0044">下面结合附图和实施例对本发明做进一步的说明，其中：</div>
+<div class="description-paragraph" id="p0049" num="0045">图1为本发明实施例的基于高度分层的低空飞行器航线划设方法的整体流程图；</div>
+<div class="description-paragraph" id="p0050" num="0046">图2为本发明实施例的基于高度分层的低空飞行器航线划设方法的二维航线规划详细流程图；</div>
+<div class="description-paragraph" id="p0051" num="0047">图3为本发明实施例的基于高度分层的低空飞行器航线划设方法的高度分层示意图；</div>
+<div class="description-paragraph" id="p0052" num="0048">图4为本发明实施例的基于高度分层的低空飞行器航线划设方法的二维联通图的示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0053">具体实施方式</div>
+<div class="description-paragraph" id="p0054" num="0049">下面详细描述本发明的实施例，实施例的示例在附图中示出，其中自始至终相同或类似的标号表示相同或类似的元件或具有相同或类似功能的元件。下面通过参考附图描述的实施例是示例性的，仅用于解释本发明，而不能理解为对本发明的限制。</div>
+<div class="description-paragraph" id="p0055" num="0050">在本发明的描述中，需要理解的是，涉及到方位描述，例如上、下、前、后、左、右等指示的方位或位置关系为基于附图所示的方位或位置关系，仅是为了便于描述本发明和简化描述，而不是指示或暗示所指的装置或元件必须具有特定的方位、以特定的方位构造和操作，因此不能理解为对本发明的限制。</div>
+<div class="description-paragraph" id="p0056" num="0051">在本发明的描述中，若干的含义是一个以上，多个的含义是两个以上，大于、小于、超过等理解为不包括本数，以上、以下、以内等理解为包括本数。如果有描述到第一、第二只是用于区分技术特征为目的，而不能理解为指示或暗示相对重要性或者隐含指明所指示的技术特征的数量或者隐含指明所指示的技术特征的先后关系。</div>
+<div class="description-paragraph" id="p0057" num="0052">本发明的描述中，除非另有明确的限定，设置、安装、连接等词语应做广义理解，所属技术领域技术人员可以结合技术方案的具体内容合理确定上述词语在本发明中的具体含义。</div>
+<div class="description-paragraph" id="p0058" num="0053">本发明的描述中，参考术语“一个实施例”、“一些实施例”、“示意性实施例”、“示例”、“具体示例”、或“一些示例”等的描述意指结合该实施例或示例描述的具体特征、结构、材料或者特点包含于本发明的至少一个实施例或示例中。在本说明书中，对上述术语的示意性表述不一定指的是相同的实施例或示例。而且，描述的具体特征、结构、材料或者特点可以在任何的一个或多个实施例或示例中以合适的方式结合。</div>
+<div class="description-paragraph" id="p0059" num="0054">下面结合附图1-4，详细描述本发明的基于高度分层的低空飞行器航线划设方法与设备。</div>
+<div class="description-paragraph" id="p0060" num="0055">参照图1和图2，本发明提出了一种基于高度分层的低空飞行器航线划设方法，包括：</div>
+<div class="description-paragraph" id="p0061" num="0056">S100：对低空空域模型进行以高度为基础的分层，得到若干个高度层；</div>
+<div class="description-paragraph" id="p0062" num="0057">S200：将包括地形信息的数字三维底图导入分层后的低空空域模型；</div>
+<div class="description-paragraph" id="p0063" num="0058">S300：基于数字三维底图，针对每个高度层分别生成对应的二维联通图；</div>
+<div class="description-paragraph" id="p0064" num="0059">S400：采用二维航线规划算法对二维联通图进行航线规划，分别生成对应的二维航线；</div>
+<div class="description-paragraph" id="p0065" num="0060">S500：根据高度层和二维航线生成三维航线。</div>
+<div class="description-paragraph" id="p0066" num="0061">具体地，在本实施例中，步骤S100的低空空域高度分层具体为：将低空空域资源[h<sub>min</sub>,h<sub>max</sub>]分为N个高度层{h<sub>1</sub>,h<sub>2</sub>,h<sub>3</sub>,.......,h<sub>N</sub>},h<sub>i</sub>∈[h<sub>min</sub>,h<sub>max</sub>]，其中h<sub>min</sub>为该低空空域限制高度的最小值，h<sub>max</sub>为该低空空域限制高度的最大值；高度层的设置考虑低空飞行器的航线需求，从高到低安排通航运输类低空飞行器、行业应用类低空飞行器、消费应用类低空飞行器；每种类别低空飞行器可安排多个高度层，依据低空飞行器需求划定；每个高度层之间的高度差需要保持安全高度距离，即相邻两个高度层之间高度差需要超过高度安全距离|h<sub>i+1</sub>-h<sub>i</sub>|&gt;h<sub>safe</sub>其中，h<sub>i+1</sub>与h<sub>i</sub>为相邻的两个高度层高度，h<sub>safe</sub>为要求的高度安全距离，高度分层示意图如图3所示。</div>
+<div class="description-paragraph" id="p0067" num="0062">步骤S200的引入数字三维底图具体为：根据低空空域范围，导入数字三维底图，数字三维底图包含一系列位置和高程序列，为一系列网格化的三维坐标点(XX,YY,HH)，表示城市建筑物高度和地形高度，XX与YY表征平面位置，HH为高程，表征城市建筑物高度和地形高度。数字三维底图的数学表述形式为</div>
+<div class="description-paragraph" id="p0068" num="0063">H＝{h(x,y)|x＝1,2,...,X<sub>max</sub>；y＝1,2,...,Y<sub>max</sub>}；</div>
+<div class="description-paragraph" id="p0069" num="0064">其中，h(x,y)为网格坐标采样点(x,y)的高程值；X<sub>max</sub>和Y<sub>max</sub>为地图的尺度。</div>
+<div class="description-paragraph" id="p0070" num="0065">步骤S300的生成二维联通图具体为：对于每一高度层h<sub>i</sub>，基于地形高程数据、禁飞区、威胁区，生成该高度层的二维联通图，分以下两步进行：</div>
+<div class="description-paragraph" id="p0071" num="0066">(1)基于地形高程数据设置联通区：对于每个网格坐标采样点(x,y)，逐一检查其高程值h(x,y)与高度层h<sub>i</sub>的高度，考虑一定的安全裕度，若其高程值h(x,y)高于高度层h<sub>i</sub>的高度达到一定的距离h<sub>0</sub>，即h(x,y)-h<sub>i</sub>&gt;h<sub>0</sub>，则将该网格坐标采样点(x,y)设为联通区，设置L(x,y)＝1，表示可通行；否则，设置L(x,y)＝0，表示不可通行；</div>
+<div class="description-paragraph" id="p0072" num="0067">(2)基于威胁设置联通区：根据地面人口密度、设施分布设置禁飞区与威胁区，即为不可通行区域，对于每个网格坐标采样点(x,y)，若其位于禁飞区与威胁区外面，则将该网格坐标采样点(x,y)设为联通区，设置L(x,y)＝1，表示可通行；否则，设置L(x,y)＝0，表示不可通行。</div>
+<div class="description-paragraph" id="p0073" num="0068">最终生成如图4所示形式的二维联通图。</div>
+<div class="description-paragraph" id="p0074" num="0069">步骤S400的二维航线规划具体为：基于二维联通图，采用成熟的二维航线规划算法进行航线规划，如可采用A*算法进行航线规划，步骤如下：</div>
+<div class="description-paragraph" id="p0075" num="0070">步骤1，初始化设置，设置起点为start＝(xs,ys)，终点为goal＝(xg,yg)；设置openlist，closelist列表为空，openlist＝{x,y,a，g},为四列矩阵，其中前两列x,y为该点的位置，第三列a为该点的估价值，即该点到终点的最佳路径的估计代价，第4列为路径值，即起点到该点的实际代价；closelist＝{xp,yp,xc,yc}，为四列矩阵，前两列为节点位置，后两列为该节点的子节点位置。</div>
+<div class="description-paragraph" id="p0076" num="0071">步骤2，计算起点的估价值a,与路径值g，将起点加入openlist，计算公式如下：</div>
+<div class="description-paragraph" id="p0077" num="0072">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0078" num="0073">g＝0；</div>
+<div class="description-paragraph" id="p0079" num="0074">步骤3，对openlist第三列从小到大排序，寻找openlist中a值最小的节点，作为当前要处理的节点，称为当前节点T<sub>temp</sub>；</div>
+<div class="description-paragraph" id="p0080" num="0075">步骤4，如果当前节点T<sub>temp</sub>为终点，则结束搜索，否则转到步骤5；</div>
+<div class="description-paragraph" id="p0081" num="0076">步骤5，搜索T<sub>temp</sub>的子节点，按搜索方向获取T<sub>temp</sub>的子节点，搜索方向为前、后、左、右共4个方向，按搜索步长每个方向搜索一步获取相邻的节点，作为T<sub>temp</sub>的子节点T<sub>child</sub>，计算公式如下：</div>
+<div class="description-paragraph" id="p0082" num="0077">T<sub>child</sub>＝T<sub>temp</sub>+dir*step</div>
+<div class="description-paragraph" id="p0083" num="0078">其中，dir为搜索方向，如(0,1)表示向右搜索，step为步长。</div>
+<div class="description-paragraph" id="p0084" num="0079">步骤6，判断子节点T<sub>child</sub>的联通性，根据二维联通图，若L(x<sub>child</sub>,y<sub>child</sub>)＝1，则该子节点为联通区，则转到步骤7，否则，舍去该子节点。</div>
+<div class="description-paragraph" id="p0085" num="0080">步骤7，根据T<sub>child</sub>的位置，在openlist前两列查找，如果T<sub>child</sub>不在openlist，则将T<sub>child</sub>加入openlist，设置T<sub>child</sub>的路径值g＝inf，否则转到步骤8；</div>
+<div class="description-paragraph" id="p0086" num="0081">步骤8，计算从T<sub>temp</sub>到T<sub>child</sub>的路径值g<sub>child</sub>，计算公式如下：</div>
+<div class="description-paragraph" id="p0087" num="0082">g<sub>child</sub>＝g<sub>temp</sub>+dis(T<sub>temp</sub>,T<sub>child</sub>)；</div>
+<div class="description-paragraph" id="p0088" num="0083">其中，g<sub>temp</sub>为T<sub>temp</sub>的路径值，dis(T<sub>temp</sub>,T<sub>child</sub>)为T<sub>temp</sub>到T<sub>child</sub>的距离。</div>
+<div class="description-paragraph" id="p0089" num="0084">步骤9，判断从T<sub>temp</sub>到T<sub>child</sub>的路径值优劣，若从T<sub>temp</sub>到T<sub>child</sub>的路径值g<sub>child</sub>比原来保存的该子节点路径值g<sub>old</sub>小，原来保存的该子节点路径值g<sub>old</sub>可从openlist对应的子节点第四列获取，则从当前节点到该子节点的路径更优，即g<sub>child</sub>&lt;g<sub>old</sub>。</div>
+<div class="description-paragraph" id="p0090" num="0085">步骤10，若从T<sub>temp</sub>到T<sub>child</sub>的路径更优，则更新该子节点的估价值a，路径值g,否则，舍去该子节点，计算公式如下：</div>
+<div class="description-paragraph" id="p0091" num="0086">g＝g<sub>child</sub> </div>
+<div class="description-paragraph" id="p0092" num="0087">a＝g<sub>child</sub>+heuristic(child,goal)；</div>
+<div class="description-paragraph" id="p0093" num="0088">其中，heuristic(child,goal)＝|x<sub>child</sub>-x<sub>goal</sub>|+|y<sub>child</sub>-y<sub>goal</sub>|。</div>
+<div class="description-paragraph" id="p0094" num="0089">步骤11，保存T<sub>temp</sub>为T<sub>child</sub>的父节点，与T<sub>child</sub>一起对应保存，保存至closelsit，前两列保存T<sub>temp</sub>，后两列保存T<sub>child</sub>，然后返回步骤3进行循环。</div>
+<div class="description-paragraph" id="p0095" num="0090">步骤12，在closelist搜索，从终点开始，查找对应的父节点，直至起点，则为规划好的二维航线。形式如下：</div>
+<div class="description-paragraph" id="p0096" num="0091">P<sub>2</sub>＝{(x<sub>1</sub>,y<sub>1</sub>),(x<sub>2</sub>,y<sub>2</sub>),...(x<sub>m</sub>,y<sub>m</sub>)}。</div>
+<div class="description-paragraph" id="p0097" num="0092">步骤S500的三维航线生成具体为：结合高度层h<sub>i</sub>，得到三维航线，形式如下：</div>
+<div class="description-paragraph" id="p0098" num="0093">P<sub>3</sub>＝{(x<sub>1</sub>,y<sub>1</sub>,h<sub>i</sub>),(x<sub>2</sub>,y<sub>2</sub>,h<sub>i</sub>),...(x<sub>m</sub>,y<sub>m</sub>,h<sub>i</sub>)}。</div>
+<div class="description-paragraph" id="p0099" num="0094">通过基于高度分层思想，将低空空域资源分为多个高度层，随后引入数字三维底图，基于数字三维底图的地形高程数据、禁飞区、威胁区，生成每个高度层的二维联通图，从而将三维立体低空空域分解为若干个二维平面区域，随后采用成熟的二维航线规划算法针对每个二维平面区域分别进行航线规划，最后将规划好的二维航线结合对应的高度信息生成三维航线，从而降低了航线设计的复杂度与难度，还可以更好地引入地面车辆自动驾驶的技术研究成果，方便将地面车辆自动驾驶线路规划的经验应用于低空飞行器的路径规划、航线规划领域，同时，将低空空域的空间资源进行高度分层的方法，还可以将不同任务类型的低空飞行器安排在不同的高度层，使得各个高度层互不干扰，便于分层监控、分层调度、分层管理。</div>
+<div class="description-paragraph" id="p0100" num="0095">参照图3，进一步地，在本发明的一些实施例中，步骤S100：对低空空域模型进行以高度为基础的分层，得到若干个高度层，包括：</div>
+<div class="description-paragraph" id="p0101" num="0096">1.1将低空空域限制高度的最小值与低空空域限制高度的最大值之间的空间作为低空空域模型；</div>
+<div class="description-paragraph" id="p0102" num="0097">1.2对低空空域模型进行以高度为基础的分层，得到若干个高度层，相邻高度层之间保持高度安全距离，高度层根据飞行器需求划定。</div>
+<div class="description-paragraph" id="p0103" num="0098">具体地，在本实施例中，步骤S100的低空空域高度分层具体为：将低空空域资源[h<sub>min</sub>,h<sub>max</sub>]分为N个高度层{h<sub>1</sub>,h<sub>2</sub>,h<sub>3</sub>,.......,h<sub>N</sub>},h<sub>i</sub>∈[h<sub>min</sub>,h<sub>max</sub>]，其中h<sub>min</sub>为该低空空域限制高度的最小值，h<sub>max</sub>为该低空空域限制高度的最大值；高度层的设置考虑低空飞行器的航线需求，从高到低安排通航运输类低空飞行器、行业应用类低空飞行器、消费应用类低空飞行器；每种类别低空飞行器可安排多个高度层，依据低空飞行器需求划定；每个高度层之间的高度差需要保持安全高度距离，即相邻两个高度层之间高度差需要超过高度安全距离|h<sub>i+1</sub>-h<sub>i</sub>|&gt;h<sub>safe</sub>其中，h<sub>i+1</sub>与h<sub>i</sub>为相邻的两个高度层高度，h<sub>safe</sub>为要求的高度安全距离，高度分层示意图如图3所示。将低空空域的空间资源进行高度分层的方法，还可以将不同任务类型的低空飞行器安排在不同的高度层，使得各个高度层互不干扰，便于分层监控、分层调度、分层管理。</div>
+<div class="description-paragraph" id="p0104" num="0099">进一步地，在本发明的一些实施例中，数字三维底图包括若干个网格化的三维坐标点，用于表征城市建筑物及地形的高度和位置。</div>
+<div class="description-paragraph" id="p0105" num="0100">具体地，在本实施例中，数字三维底图包含一系列位置和高程序列，为一系列网格化的三维坐标点(XX,YY,HH)，表示城市建筑物高度和地形高度，XX与YY表征平面位置，HH为高程，表征城市建筑物高度和地形高度。数字三维底图的数学表述形式为</div>
+<div class="description-paragraph" id="p0106" num="0101">H＝{h(x,y)|x＝1,2,...,X<sub>max</sub>；y＝1,2,...,Y<sub>max</sub>}；</div>
+<div class="description-paragraph" id="p0107" num="0102">其中，h(x,y)为网格坐标采样点(x,y)的高程值；X<sub>max</sub>和Y<sub>max</sub>为地图的尺度。</div>
+<div class="description-paragraph" id="p0108" num="0103">参照图4，进一步地，在本发明的一些实施例中，步骤S300：基于数字三维底图，针对每个高度层分别生成对应的二维联通图，包括：</div>
+<div class="description-paragraph" id="p0109" num="0104">3.1基于数字三维底图的地形高程数据，针对每个高度层分别设置联通区和不可通行区域；</div>
+<div class="description-paragraph" id="p0110" num="0105">3.2基于数字三维底图的人口密度与设施分布情况，针对每个高度层分别设置不可通行区域；</div>
+<div class="description-paragraph" id="p0111" num="0106">3.3基于不可通行区域和联通区，形成对应高度层的二维联通图。</div>
+<div class="description-paragraph" id="p0112" num="0107">具体地，在本实施例中，步骤S300的生成二维联通图具体为：对于每一高度层h<sub>i</sub>，基于地形高程数据、禁飞区、威胁区，生成该高度层的二维联通图，分以下两步进行：</div>
+<div class="description-paragraph" id="p0113" num="0108">(1)基于地形高程数据设置联通区：对于每个网格坐标采样点(x,y)，逐一检查其高程值h(x,y)与高度层h<sub>i</sub>的高度，考虑一定的安全裕度，若其高程值h(x,y)高于高度层h<sub>i</sub>的高度达到一定的距离h<sub>0</sub>，即h(x,y)-h<sub>i</sub>&gt;h<sub>0</sub>，则将该网格坐标采样点(x,y)设为联通区，设置L(x,y)＝1，表示可通行；否则，设置L(x,y)＝0，表示不可通行；</div>
+<div class="description-paragraph" id="p0114" num="0109">(2)基于威胁设置联通区：根据地面人口密度、设施分布设置禁飞区与威胁区，即为不可通行区域，对于每个网格坐标采样点(x,y)，若其位于禁飞区与威胁区外面，则将该网格坐标采样点(x,y)设为联通区，设置L(x,y)＝1，表示可通行；否则，设置L(x,y)＝0，表示不可通行。</div>
+<div class="description-paragraph" id="p0115" num="0110">最终生成如图4所示形式的二维联通图。</div>
+<div class="description-paragraph" id="p0116" num="0111">进一步地，在本发明的一些实施例中，步骤3.1：基于数字三维底图的地形高程数据，针对每个高度层分别设置联通区和不可通行区域，包括：</div>
+<div class="description-paragraph" id="p0117" num="0112">3.1.1逐一检查每个三维坐标点的高程值与高度层的高度；</div>
+<div class="description-paragraph" id="p0118" num="0113">3.1.2若高程值高于高度层的高度达到安全裕度，则将三维坐标点设置为联通区；</div>
+<div class="description-paragraph" id="p0119" num="0114">3.1.3若高程值高于高度层的高度未达到安全裕度，则将三维坐标点设置为不可通行区域。具体地，在本实施例中，步骤3.1为基于地形高程数据设置联通区：对于每个网格坐标采样点(x,y)，逐一检查其高程值h(x,y)与高度层h<sub>i</sub>的高度，考虑一定的安全裕度，若其高程值h(x,y)高于高度层h<sub>i</sub>的高度达到一定的距离h<sub>0</sub>，即h(x,y)-h<sub>i</sub>&gt;h<sub>0</sub>，则将该网格坐标采样点(x,y)设为联通区，设置L(x,y)＝1，表示可通行；否则，设置L(x,y)＝0，表示不可通行。</div>
+<div class="description-paragraph" id="p0120" num="0115">进一步地，在本发明的一些实施例中，步骤S400：采用二维航线规划算法对二维联通图进行航线规划，分别生成对应的二维航线，包括：</div>
+<div class="description-paragraph" id="p0121" num="0116">4.1初始化设置，设置若干个起点坐标start、若干个终点坐标goal、第一矩阵openlist和第二矩阵closelist；第一矩阵包括：变量点位置坐标、估价值、路径值；第二矩阵包括：节点位置以及节点的子节点位置；其中，估价值用于表示变量点到终点的最佳路径的估计代价，路径值用于表示起点到变量点的实际代价；</div>
+<div class="description-paragraph" id="p0122" num="0117">4.2计算起点的估价值和路径值，得到起点估价值和起点路径值，将起点坐标、起点估价值和起点路径值加入第一矩阵中；</div>
+<div class="description-paragraph" id="p0123" num="0118">4.3寻找第一矩阵中估价值最小的点，并将估价值最小的点设置为当前节点；</div>
+<div class="description-paragraph" id="p0124" num="0119">4.4若当前节点为终点，则根据第二矩阵回溯路径并结束流程，若当前节点不为终点，则搜索当前节点的子节点；</div>
+<div class="description-paragraph" id="p0125" num="0120">4.5判断子节点是否位于二维联通图的联通区，若不位于则舍去子节点；</div>
+<div class="description-paragraph" id="p0126" num="0121">4.6判断子节点是否在第一矩阵中，若不在则将子节点加入到第一矩阵；</div>
+<div class="description-paragraph" id="p0127" num="0122">4.7计算从当前节点到子节点的路径值，得到节点路径值；</div>
+<div class="description-paragraph" id="p0128" num="0123">4.8若节点路径值不小于子节点的原路径值，则舍去子节点，若节点路径值小于子节点的原路径值，则更新子节点的估价值和路径值；</div>
+<div class="description-paragraph" id="p0129" num="0124">4.9将当前节点保存为子节点的父节点，将父节点及对应的子节点保存至第二矩阵，返回步骤：寻找第一矩阵中估价值最小的点，并将估价值最小的点设置为当前节点。</div>
+<div class="description-paragraph" id="p0130" num="0125">具体地，在本实施例中，步骤S400的二维航线规划具体为：基于二维联通图，采用成熟的二维航线规划算法进行航线规划，如可采用A*算法进行航线规划，步骤如下：</div>
+<div class="description-paragraph" id="p0131" num="0126">步骤1，初始化设置，设置起点为start＝(xs,ys)，终点为goal＝(xg,yg)；设置openlist，closelist列表为空，openlist＝{x,y,a，g},为四列矩阵，其中前两列x,y为该点的位置，第三列a为该点的估价值，即该点到终点的最佳路径的估计代价，第4列为路径值，即起点到该点的实际代价；closelist＝{xp,yp,xc,yc}，为四列矩阵，前两列为节点位置，后两列为该节点的子节点位置。其中，openlist即为第一矩阵，closelist即为第二矩阵。</div>
+<div class="description-paragraph" id="p0132" num="0127">步骤2，计算起点的估价值a,与路径值g，将起点加入openlist，计算公式如下：</div>
+<div class="description-paragraph" id="p0133" num="0128">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0134" num="0129">g＝0。</div>
+<div class="description-paragraph" id="p0135" num="0130">步骤3，对openlist第三列从小到大排序，寻找openlist中a值最小的节点，作为当前要处理的节点，称为当前节点T<sub>temp</sub>；</div>
+<div class="description-paragraph" id="p0136" num="0131">步骤4，如果当前节点T<sub>temp</sub>为终点，则结束搜索，转到步骤12，否则转到步骤5；</div>
+<div class="description-paragraph" id="p0137" num="0132">步骤5，搜索T<sub>temp</sub>的子节点，按搜索方向获取T<sub>temp</sub>的子节点，搜索方向为前、后、左、右共4个方向，按搜索步长每个方向搜索一步获取相邻的节点，作为T<sub>temp</sub>的子节点T<sub>child</sub>，计算公式如下：</div>
+<div class="description-paragraph" id="p0138" num="0133">T<sub>child</sub>＝T<sub>temp</sub>+dir*step；</div>
+<div class="description-paragraph" id="p0139" num="0134">其中，dir为搜索方向，如(0,1)表示向右搜索，step为步长。</div>
+<div class="description-paragraph" id="p0140" num="0135">步骤6，判断子节点T<sub>child</sub>的联通性，根据二维联通图，若L(x<sub>child</sub>,y<sub>child</sub>)＝1，则该子节点为联通区，则转到步骤7，否则，舍去该子节点。</div>
+<div class="description-paragraph" id="p0141" num="0136">步骤7，根据T<sub>child</sub>的位置，在openlist前两列查找，如果T<sub>child</sub>不在openlist，则将T<sub>child</sub>加入openlist，设置T<sub>child</sub>的路径值g＝inf，否则转到步骤8。</div>
+<div class="description-paragraph" id="p0142" num="0137">步骤8，计算从T<sub>temp</sub>到T<sub>child</sub>的路径值g<sub>child</sub>，计算公式如下：</div>
+<div class="description-paragraph" id="p0143" num="0138">g<sub>child</sub>＝g<sub>temp</sub>+dis(T<sub>temp</sub>,T<sub>child</sub>)；</div>
+<div class="description-paragraph" id="p0144" num="0139">其中，g<sub>temp</sub>为T<sub>temp</sub>的路径值，dis(T<sub>temp</sub>,T<sub>child</sub>)为T<sub>temp</sub>到T<sub>child</sub>的距离。</div>
+<div class="description-paragraph" id="p0145" num="0140">步骤9，判断从T<sub>temp</sub>到T<sub>child</sub>的路径值优劣，若从T<sub>temp</sub>到T<sub>child</sub>的路径值g<sub>child</sub>比原来保存的该子节点路径值g<sub>old</sub>小，原来保存的该子节点路径值g<sub>old</sub>可从openlist对应的子节点第四列获取，则从当前节点到该子节点的路径更优，即g<sub>child</sub>&lt;g<sub>old</sub>。</div>
+<div class="description-paragraph" id="p0146" num="0141">步骤10，若从T<sub>temp</sub>到T<sub>child</sub>的路径更优，则更新该子节点的估价值a，路径值g,否则，舍去该子节点，计算公式如下：</div>
+<div class="description-paragraph" id="p0147" num="0142">g＝g<sub>child</sub> </div>
+<div class="description-paragraph" id="p0148" num="0143">a＝g<sub>child</sub>+heuristic(child,goal)；</div>
+<div class="description-paragraph" id="p0149" num="0144">其中，heuristic(child,goal)＝|x<sub>child</sub>-x<sub>goal</sub>|+|y<sub>child</sub>-y<sub>goal</sub>|。</div>
+<div class="description-paragraph" id="p0150" num="0145">步骤11，保存T<sub>temp</sub>为T<sub>child</sub>的父节点，与T<sub>child</sub>一起对应保存，保存至closelsit，前两列保存T<sub>temp</sub>，后两列保存T<sub>child</sub>，然后返回步骤3进行循环。</div>
+<div class="description-paragraph" id="p0151" num="0146">步骤12，在closelist搜索，从终点开始，查找对应的父节点，直至起点，则为规划好的二维航线。形式如下：</div>
+<div class="description-paragraph" id="p0152" num="0147">P<sub>2</sub>＝{(x<sub>1</sub>,y<sub>1</sub>),(x<sub>2</sub>,y<sub>2</sub>),...(x<sub>m</sub>,y<sub>m</sub>)}；</div>
+<div class="description-paragraph" id="p0153" num="0148">通过采用成熟的二维航线规划算法针对每个二维平面区域分别进行航线规划，从而降低了航线设计的复杂度与难度，还可以更好地引入地面车辆自动驾驶的技术研究成果，方便将地面车辆自动驾驶线路规划(即平面线路规划)的经验应用于低空飞行器的路径规划、航线规划领域。</div>
+<div class="description-paragraph" id="p0154" num="0149">进一步地，在本发明的一些实施例中，步骤4.4的根据第二矩阵回溯路径并结束流程，包括：</div>
+<div class="description-paragraph" id="p0155" num="0150">在第二矩阵中搜索，从终点开始，分别查找对应的父节点直至起点，形成二维航线。</div>
+<div class="description-paragraph" id="p0156" num="0151">具体地，在本实施例中，步骤4.4具体为：在closelist搜索，从终点开始，查找对应的父节点，直至起点，则为规划好的二维航线，即步骤12。形式如下：</div>
+<div class="description-paragraph" id="p0157" num="0152">P<sub>2</sub>＝{(x<sub>1</sub>,y<sub>1</sub>),(x<sub>2</sub>,y<sub>2</sub>),...(x<sub>m</sub>,y<sub>m</sub>)}。</div>
+<div class="description-paragraph" id="p0158" num="0153">进一步地，在本发明的一些实施例中，步骤S500：根据高度层和二维航线生成三维航线，包括：</div>
+<div class="description-paragraph" id="p0159" num="0154">在二维航线的路径节点坐标数组中加入对应的高度层的高度，形成三维航线。</div>
+<div class="description-paragraph" id="p0160" num="0155">具体地，在本实施例中，步骤S500的三维航线生成具体为：结合高度层h<sub>i</sub>，得到三维航线，形式如下：</div>
+<div class="description-paragraph" id="p0161" num="0156">P<sub>3</sub>＝{(x<sub>1</sub>,y<sub>1</sub>,h<sub>i</sub>),(x<sub>2</sub>,y<sub>2</sub>,h<sub>i</sub>),...(x<sub>m</sub>,y<sub>m</sub>,h<sub>i</sub>)}。</div>
+<div class="description-paragraph" id="p0162" num="0157">本发明还提出了一种计算机设备，包括：</div>
+<div class="description-paragraph" id="p0163" num="0158">一个或多个处理器；</div>
+<div class="description-paragraph" id="p0164" num="0159">存储器；</div>
+<div class="description-paragraph" id="p0165" num="0160">一个或多个程序，其中一个或多个程序被存储在存储器中，并且被配置为由一个或多个处理器执行，程序被处理器执行时实现如上述实施例中任一项的基于高度分层的低空飞行器航线划设方法的步骤。</div>
+<div class="description-paragraph" id="p0166" num="0161">本领域普通技术人员可以理解，实现上述实施例的全部或部分步骤可以通过硬件来完成，也可以通过程序来指令相关的硬件完成，所述的程序可以存储于一种计算机可读存储介质中。在本发明的上下文中，所述计算机可读介质可以被认为是有形的且非暂时性的。非暂时性有形计算机可读介质的非限制性示例包括非易失性存储器电路(例如闪存电路、可擦除可编程只读存储器电路或掩膜只读存储器电路)、易失性存储器电路(例如静态随机存取存储器电路或动态随机存取存储器电路)、磁存储介质(例如模拟或数字磁带或硬盘驱动器)和光存储介质(例如CD、DVD或蓝光光盘)等。用于实施本发明的方法的程序代码可以采用一个或多个编程语言的任何组合来编写。这些程序代码可以提供给通用计算机、专用计算机或其他可编程数据处理装置的处理器或控制器，使得程序代码当由处理器或控制器执行时使流程图和/或框图中所规定的功能/操作被实施。程序代码可以完全在机器上执行、部分地在机器上执行，作为独立软件包部分地在机器上执行且部分地在远程机器上执行或完全在远程机器或服务器上执行。</div>
+<div class="description-paragraph" id="p0167" num="0162">此外，虽然采用特定次序描绘了各操作，但是这应当理解为要求这样操作以所示出的特定次序或以顺序次序执行，或者要求所有图示的操作应被执行以取得期望的结果。在一定环境下，多任务和并行处理可能是有利的。同样地，虽然在上面论述中包含了若干具体实现细节，但是这些不应当被解释为对本发明的范围的限制。在单独的实施例的上下文中描述的某些特征还可以组合地实现在单个实现中。相反地，在单个实现的上下文中描述的各种特征也可以单独地或以任何合适的子组合的方式实现在多个实现中。</div>
+<div class="description-paragraph" id="p0168" num="0163">本发明还提出了一种计算机可读存储介质，其上存储有计算机程序，计算机程序被处理器执行时实现如上述实施例中任一项的基于高度分层的低空飞行器航线划设方法的步骤。上面结合附图对本发明实施例作了详细说明，但是本发明不限于上述实施例，在所属技术领域普通技术人员所具备的知识范围内，还可以在不脱离本发明宗旨的前提下作出各种变化。此外，在不冲突的情况下，本发明的实施例及实施例中的特征可以相互组合。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

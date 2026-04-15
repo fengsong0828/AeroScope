@@ -1,0 +1,309 @@
+{
+    "patent_id": "CN1953547A",
+    "title": "CN1953547A - 无人飞行器对地面移动目标的低空跟踪系统及方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "University of Shanghai for Science and Technology",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN1953547A/zh",
+    "citations": [],
+    "cited_by": [
+        {
+            "Publication Number": "CN101615294B (zh) *",
+            "Priority Date": "2008-06-26",
+            "Publication Date": "2012-01-18",
+            "Assignee": "睿致科技股份有限公司",
+            "Title": "一种多重对象追踪的方法",
+            "Link": "https://patents.google.com/patent/CN101615294B/zh"
+        },
+        {
+            "Publication Number": "CN101561493B (zh) *",
+            "Priority Date": "2009-05-26",
+            "Publication Date": "2012-05-23",
+            "Assignee": "上海大学",
+            "Title": "基于双飞行机器人对有源目标的定位方法与系统",
+            "Link": "https://patents.google.com/patent/CN101561493B/zh"
+        },
+        {
+            "Publication Number": "CN102156481B (zh) *",
+            "Priority Date": "2011-01-24",
+            "Publication Date": "2013-06-05",
+            "Assignee": "广州嘉崎智能科技有限公司",
+            "Title": "无人飞行器的智能追踪控制方法及系统",
+            "Link": "https://patents.google.com/patent/CN102156481B/zh"
+        },
+        {
+            "Publication Number": "CN102156481A (zh) *",
+            "Priority Date": "2011-01-24",
+            "Publication Date": "2011-08-17",
+            "Assignee": "广州嘉崎智能科技有限公司",
+            "Title": "无人飞行器的智能追踪控制方法及系统",
+            "Link": "https://patents.google.com/patent/CN102156481A/zh"
+        },
+        {
+            "Publication Number": "CN102324198A (zh) *",
+            "Priority Date": "2011-09-28",
+            "Publication Date": "2012-01-18",
+            "Assignee": "哈尔滨工业大学",
+            "Title": "基于极坐标靶标及三轴转台的飞行器姿态跟踪控制教学实验装置",
+            "Link": "https://patents.google.com/patent/CN102324198A/zh"
+        },
+        {
+            "Publication Number": "CN102324198B (zh) *",
+            "Priority Date": "2011-09-28",
+            "Publication Date": "2013-03-13",
+            "Assignee": "哈尔滨工业大学",
+            "Title": "基于极坐标靶标及三轴转台的飞行器姿态跟踪控制教学实验装置",
+            "Link": "https://patents.google.com/patent/CN102324198B/zh"
+        },
+        {
+            "Publication Number": "US12332645B2 (en)",
+            "Priority Date": "2013-04-19",
+            "Publication Date": "2025-06-17",
+            "Assignee": "Sony Group Corporation",
+            "Title": "Flying camera and a system",
+            "Link": "https://patents.google.com/patent/US12332645B2/en"
+        },
+        {
+            "Publication Number": "CN114615433A (zh) *",
+            "Priority Date": "2013-04-19",
+            "Publication Date": "2022-06-10",
+            "Assignee": "索尼公司",
+            "Title": "飞行相机和由飞行相机执行的方法",
+            "Link": "https://patents.google.com/patent/CN114615433A/zh"
+        },
+        {
+            "Publication Number": "US11953904B2 (en)",
+            "Priority Date": "2013-04-19",
+            "Publication Date": "2024-04-09",
+            "Assignee": "Sony Group Corporation",
+            "Title": "Flying camera and a system",
+            "Link": "https://patents.google.com/patent/US11953904B2/en"
+        },
+        {
+            "Publication Number": "US12038748B2 (en)",
+            "Priority Date": "2013-04-19",
+            "Publication Date": "2024-07-16",
+            "Assignee": "Sony Group Corporation",
+            "Title": "Flying camera and a system",
+            "Link": "https://patents.google.com/patent/US12038748B2/en"
+        },
+        {
+            "Publication Number": "CN103336529A (zh) *",
+            "Priority Date": "2013-06-27",
+            "Publication Date": "2013-10-02",
+            "Assignee": "深圳市沈氏彤创航天模型有限公司",
+            "Title": "模型飞行增稳器无线设置调节参数的方法和装置",
+            "Link": "https://patents.google.com/patent/CN103336529A/zh"
+        },
+        {
+            "Publication Number": "CN103336529B (zh) *",
+            "Priority Date": "2013-06-27",
+            "Publication Date": "2016-05-11",
+            "Assignee": "深圳市沈氏彤创航天模型有限公司",
+            "Title": "模型飞行增稳器无线设置调节参数的方法和装置",
+            "Link": "https://patents.google.com/patent/CN103336529B/zh"
+        },
+        {
+            "Publication Number": "CN103501424B (zh) *",
+            "Priority Date": "2013-09-25",
+            "Publication Date": "2017-03-29",
+            "Assignee": "成都航天通信设备有限责任公司",
+            "Title": "Tdma+tdd制式高速图传系统及通信控制方法和工作方法",
+            "Link": "https://patents.google.com/patent/CN103501424B/zh"
+        },
+        {
+            "Publication Number": "CN103501424A (zh) *",
+            "Priority Date": "2013-09-25",
+            "Publication Date": "2014-01-08",
+            "Assignee": "成都航天通信设备有限责任公司",
+            "Title": "Tdma+tdd制式高速图传系统及通信控制方法和工作方法",
+            "Link": "https://patents.google.com/patent/CN103501424A/zh"
+        },
+        {
+            "Publication Number": "CN103587708B (zh) *",
+            "Priority Date": "2013-11-14",
+            "Publication Date": "2016-05-25",
+            "Assignee": "上海大学",
+            "Title": "超小型无人旋翼飞行器野外定点零盲区自主软着陆方法",
+            "Link": "https://patents.google.com/patent/CN103587708B/zh"
+        },
+        {
+            "Publication Number": "CN103587708A (zh) *",
+            "Priority Date": "2013-11-14",
+            "Publication Date": "2014-02-19",
+            "Assignee": "上海大学",
+            "Title": "超小型无人旋翼飞行器野外定点零盲区自主软着陆方法",
+            "Link": "https://patents.google.com/patent/CN103587708A/zh"
+        },
+        {
+            "Publication Number": "CN104777847A (zh) *",
+            "Priority Date": "2014-01-13",
+            "Publication Date": "2015-07-15",
+            "Assignee": "中南大学",
+            "Title": "基于机器视觉和超宽带定位技术的无人机目标追踪系统",
+            "Link": "https://patents.google.com/patent/CN104777847A/zh"
+        },
+        {
+            "Publication Number": "US11217112B2 (en)",
+            "Priority Date": "2014-09-30",
+            "Publication Date": "2022-01-04",
+            "Assignee": "SZ DJI Technology Co., Ltd.",
+            "Title": "System and method for supporting simulated movement",
+            "Link": "https://patents.google.com/patent/US11217112B2/en"
+        },
+        {
+            "Publication Number": "CN107077113A (zh) *",
+            "Priority Date": "2014-10-27",
+            "Publication Date": "2017-08-18",
+            "Assignee": "深圳市大疆创新科技有限公司",
+            "Title": "无人飞行器飞行显示",
+            "Link": "https://patents.google.com/patent/CN107077113A/zh"
+        },
+        {
+            "Publication Number": "CN105278362A (zh) *",
+            "Priority Date": "2015-01-16",
+            "Publication Date": "2016-01-27",
+            "Assignee": "深圳一电科技有限公司",
+            "Title": "无人侦查系统的控制方法、装置及系统",
+            "Link": "https://patents.google.com/patent/CN105278362A/zh"
+        },
+        {
+            "Publication Number": "CN104796611A (zh) *",
+            "Priority Date": "2015-04-20",
+            "Publication Date": "2015-07-22",
+            "Assignee": "零度智控（北京）智能科技有限公司",
+            "Title": "移动终端遥控无人机实现智能飞行拍摄的方法及系统",
+            "Link": "https://patents.google.com/patent/CN104796611A/zh"
+        },
+        {
+            "Publication Number": "CN105245846A (zh) *",
+            "Priority Date": "2015-10-12",
+            "Publication Date": "2016-01-13",
+            "Assignee": "西安斯凯智能科技有限公司",
+            "Title": "一种多无人机协同跟踪的拍摄系统及拍摄方法",
+            "Link": "https://patents.google.com/patent/CN105245846A/zh"
+        },
+        {
+            "Publication Number": "CN105222761A (zh) *",
+            "Priority Date": "2015-10-29",
+            "Publication Date": "2016-01-06",
+            "Assignee": "哈尔滨工业大学",
+            "Title": "借助虚拟现实及双目视觉技术实现的第一人称沉浸式无人机驾驶系统及驾驶方法",
+            "Link": "https://patents.google.com/patent/CN105222761A/zh"
+        },
+        {
+            "Publication Number": "CN106713845A (zh) *",
+            "Priority Date": "2015-11-16",
+            "Publication Date": "2017-05-24",
+            "Assignee": "南京三宝弘正视觉技术有限公司",
+            "Title": "无人机连接型监控cctv装置及基于其的图像拍摄方法",
+            "Link": "https://patents.google.com/patent/CN106713845A/zh"
+        },
+        {
+            "Publication Number": "CN106713845B (zh) *",
+            "Priority Date": "2015-11-16",
+            "Publication Date": "2019-07-30",
+            "Assignee": "南京三宝弘正视觉科技有限公司",
+            "Title": "无人机连接型监控cctv装置及基于其的图像拍摄方法",
+            "Link": "https://patents.google.com/patent/CN106713845B/zh"
+        },
+        {
+            "Publication Number": "CN105549605B (zh) *",
+            "Priority Date": "2015-12-16",
+            "Publication Date": "2018-08-17",
+            "Assignee": "深圳市中航佳智能科技有限公司",
+            "Title": "一种实现无人机盯飞的方法",
+            "Link": "https://patents.google.com/patent/CN105549605B/zh"
+        },
+        {
+            "Publication Number": "CN105549605A (zh) *",
+            "Priority Date": "2015-12-16",
+            "Publication Date": "2016-05-04",
+            "Assignee": "深圳市中航佳智能科技有限公司",
+            "Title": "一种实现无人机盯飞的方法",
+            "Link": "https://patents.google.com/patent/CN105549605A/zh"
+        },
+        {
+            "Publication Number": "CN105759839A (zh) *",
+            "Priority Date": "2016-03-01",
+            "Publication Date": "2016-07-13",
+            "Assignee": "深圳市大疆创新科技有限公司",
+            "Title": "无人机视觉跟踪方法、装置以及无人机",
+            "Link": "https://patents.google.com/patent/CN105759839A/zh"
+        },
+        {
+            "Publication Number": "CN108292141A (zh) *",
+            "Priority Date": "2016-03-01",
+            "Publication Date": "2018-07-17",
+            "Assignee": "深圳市大疆创新科技有限公司",
+            "Title": "用于目标跟踪的方法和系统",
+            "Link": "https://patents.google.com/patent/CN108292141A/zh"
+        },
+        {
+            "Publication Number": "CN105652891B (zh) *",
+            "Priority Date": "2016-03-02",
+            "Publication Date": "2018-06-29",
+            "Assignee": "中山大学",
+            "Title": "一种旋翼无人机移动目标自主跟踪装置及其控制方法",
+            "Link": "https://patents.google.com/patent/CN105652891B/zh"
+        },
+        {
+            "Publication Number": "CN105652891A (zh) *",
+            "Priority Date": "2016-03-02",
+            "Publication Date": "2016-06-08",
+            "Assignee": "中山大学",
+            "Title": "一种旋翼无人机移动目标自主跟踪装置及其控制方法",
+            "Link": "https://patents.google.com/patent/CN105652891A/zh"
+        },
+        {
+            "Publication Number": "WO2017185503A1 (zh) *",
+            "Priority Date": "2016-04-29",
+            "Publication Date": "2017-11-02",
+            "Assignee": "高鹏",
+            "Title": "目标跟踪方法和装置",
+            "Link": "https://patents.google.com/patent/WO2017185503A1/zh"
+        },
+        {
+            "Publication Number": "CN106843278A (zh) *",
+            "Priority Date": "2016-11-24",
+            "Publication Date": "2017-06-13",
+            "Assignee": "腾讯科技（深圳）有限公司",
+            "Title": "一种飞行器跟踪方法、装置及飞行器",
+            "Link": "https://patents.google.com/patent/CN106843278A/zh"
+        },
+        {
+            "Publication Number": "CN107426289B (zh) *",
+            "Priority Date": "2017-05-26",
+            "Publication Date": "2018-06-01",
+            "Assignee": "中国人民解放军火箭军工程大学",
+            "Title": "一种巡飞无人机跟踪目标选取同步方法",
+            "Link": "https://patents.google.com/patent/CN107426289B/zh"
+        },
+        {
+            "Publication Number": "CN107426289A (zh) *",
+            "Priority Date": "2017-05-26",
+            "Publication Date": "2017-12-01",
+            "Assignee": "中国人民解放军火箭军工程大学",
+            "Title": "一种巡飞无人机跟踪目标选取同步装置及方法",
+            "Link": "https://patents.google.com/patent/CN107426289A/zh"
+        },
+        {
+            "Publication Number": "CN108803633A (zh) *",
+            "Priority Date": "2018-07-25",
+            "Publication Date": "2018-11-13",
+            "Assignee": "安康学院",
+            "Title": "一种基于移动通信网络的无人机低空监控系统",
+            "Link": "https://patents.google.com/patent/CN108803633A/zh"
+        },
+        {
+            "Publication Number": "CN114296479A (zh) *",
+            "Priority Date": "2021-12-30",
+            "Publication Date": "2022-04-08",
+            "Assignee": "哈尔滨工业大学",
+            "Title": "一种基于图像的无人机对地面车辆跟踪方法及系统",
+            "Link": "https://patents.google.com/patent/CN114296479A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:43:16"
+}

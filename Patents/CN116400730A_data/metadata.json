@@ -1,0 +1,126 @@
+{
+    "patent_id": "CN116400730A",
+    "title": "CN116400730A - 一种飞行器低空飞行范围标定方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shenzhen Xiyue Wisdom Data Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN116400730A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN105571588A (zh) *",
+            "Priority Date": "2016-03-10",
+            "Publication Date": "2016-05-11",
+            "Assignee": "赛度科技（北京）有限责任公司",
+            "Title": "一种无人机三维空中航路地图构建及其航路显示方法",
+            "Link": "https://patents.google.com/patent/CN105571588A/zh"
+        },
+        {
+            "Publication Number": "CN108062872A (zh) *",
+            "Priority Date": "2016-11-09",
+            "Publication Date": "2018-05-22",
+            "Assignee": "波音公司",
+            "Title": "用于无人空中交通工具的飞行范围限制系统和方法",
+            "Link": "https://patents.google.com/patent/CN108062872A/zh"
+        },
+        {
+            "Publication Number": "CN108089591A (zh) *",
+            "Priority Date": "2016-11-22",
+            "Publication Date": "2018-05-29",
+            "Assignee": "菜鸟智能物流控股有限公司",
+            "Title": "区域安全系数的标定及其航线规划、飞行方法和相关设备",
+            "Link": "https://patents.google.com/patent/CN108089591A/zh"
+        },
+        {
+            "Publication Number": "CN107240153A (zh) *",
+            "Priority Date": "2017-06-16",
+            "Publication Date": "2017-10-10",
+            "Assignee": "千寻位置网络有限公司",
+            "Title": "基于dsm的无人机飞行安全区域计算显示方法",
+            "Link": "https://patents.google.com/patent/CN107240153A/zh"
+        },
+        {
+            "Publication Number": "CN109976375A (zh) *",
+            "Priority Date": "2017-12-27",
+            "Publication Date": "2019-07-05",
+            "Assignee": "冯登超",
+            "Title": "一种基于三维数字化空中走廊的城市低空空域交通管理平台",
+            "Link": "https://patents.google.com/patent/CN109976375A/zh"
+        },
+        {
+            "Publication Number": "CN110262556A (zh) *",
+            "Priority Date": "2019-07-12",
+            "Publication Date": "2019-09-20",
+            "Assignee": "黑梭智慧技术(北京)有限公司",
+            "Title": "快递物流无人飞行器航线设计方法和装置",
+            "Link": "https://patents.google.com/patent/CN110262556A/zh"
+        },
+        {
+            "Publication Number": "CN115185300A (zh) *",
+            "Priority Date": "2022-08-18",
+            "Publication Date": "2022-10-14",
+            "Assignee": "广东电网有限责任公司",
+            "Title": "无人机巡视航线安全检测方法、装置、设备及存储介质",
+            "Link": "https://patents.google.com/patent/CN115185300A/zh"
+        },
+        {
+            "Publication Number": "CN116774724A (zh) *",
+            "Priority Date": "2023-05-17",
+            "Publication Date": "2023-09-19",
+            "Assignee": "北京锐士装备科技有限公司",
+            "Title": "一种无人机飞行区域控制方法及系统",
+            "Link": "https://patents.google.com/patent/CN116774724A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN116880565A (zh) *",
+            "Priority Date": "2023-08-11",
+            "Publication Date": "2023-10-13",
+            "Assignee": "深圳市喜悦智慧数据有限公司",
+            "Title": "一种低空飞行器智能巡航控制系统及其方法",
+            "Link": "https://patents.google.com/patent/CN116880565A/zh"
+        },
+        {
+            "Publication Number": "CN118295430A (zh) *",
+            "Priority Date": "2024-02-29",
+            "Publication Date": "2024-07-05",
+            "Assignee": "江铃汽车股份有限公司",
+            "Title": "一种车载无人机的飞行覆盖范围的取样方法及装置",
+            "Link": "https://patents.google.com/patent/CN118295430A/zh"
+        },
+        {
+            "Publication Number": "CN118587937A (zh) *",
+            "Priority Date": "2024-05-16",
+            "Publication Date": "2024-09-03",
+            "Assignee": "中国南方航空股份有限公司",
+            "Title": "一种考虑高度的航路规划方法、装置及设备",
+            "Link": "https://patents.google.com/patent/CN118587937A/zh"
+        },
+        {
+            "Publication Number": "CN118248006A (zh) *",
+            "Priority Date": "2024-05-27",
+            "Publication Date": "2024-06-25",
+            "Assignee": "国科星图(深圳)数字技术产业研发中心有限公司",
+            "Title": "路空协同低空航路规划方法及其系统",
+            "Link": "https://patents.google.com/patent/CN118248006A/zh"
+        },
+        {
+            "Publication Number": "CN119557645A (zh) *",
+            "Priority Date": "2024-11-26",
+            "Publication Date": "2025-03-04",
+            "Assignee": "北京疆泰科技有限公司",
+            "Title": "一种翼装飞行路线信息的处理方法及装置",
+            "Link": "https://patents.google.com/patent/CN119557645A/zh"
+        },
+        {
+            "Publication Number": "CN119557645B (zh) *",
+            "Priority Date": "2024-11-26",
+            "Publication Date": "2025-09-23",
+            "Assignee": "北京疆泰科技有限公司",
+            "Title": "一种翼装飞行路线信息的处理方法及装置",
+            "Link": "https://patents.google.com/patent/CN119557645B/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:22:42"
+}

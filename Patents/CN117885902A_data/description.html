@@ -1,0 +1,189 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN117885902A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES459456420">
+<invention-title id="title1" lang="ZH">一种应用于低空飞行器的综合视景显示系统及方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及飞行安全技术领域，是基于导航设备、高程地形数据、传感器设备等数据综合处理后，进行智能化视景显示与提示，为飞行员在超低空贴地飞行时提实时地形态势感知与信息提示，起到保障飞行安全的目的；具体涉及一种应用于低空飞行器的综合视景显示系统及方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">本节中的陈述仅提供与本公开相关的背景信息，并且可能不构成现有技术。</div>
+<div class="description-paragraph" id="p0005" num="0003">随着飞行器在各领域的应用，飞行员执行复杂任务飞行需要时，对前方地理信息三维感知至关重要，尤其执行超低空飞行任务时。超低空飞行时飞行器离地面近，飞行的空域情况复杂，飞行员面临巨大的飞行安全隐患。</div>
+<div class="description-paragraph" id="p0006" num="0004">现有的合成视景技术在飞行器应用不计其数，现有的合成视景技术都是通过加载存储卡的地形数据和绘制算法将三维地形进行渲染显示，如合成视景(SVS)，或增加外部传感器视频与合成视景进行融合叠加，如增强型合成视景(EVS)；无论是合成视景(SVS)或增强型合成视景(EVS)由于依赖于静态地形数据，或至少叠加外部视频信息，并没有对多源信息进行融合处理后再进行智能化安全信息提示和规划。</div>
+<div class="description-paragraph" id="p0007" num="0005">现有的合成视景技术在飞行器高空空域或离地面一定安全高度空域能给飞行员提供前视地形、障碍物等信息感知，并发出提示信息，飞行员有反应时间操控飞行器，保障安全飞行，现有合成视景技术基本都是在显示算法上优化或在物理平台上进行迭代更新。并不能在特殊飞行领域实际解决飞行安全问题，飞行员在超低空空域飞行，如飞行高度30米或甚至更低飞行高度执行任务时，当前方出现危险地形或障碍物信息，贴地飞行的高度已无法保证飞行员有足够判断飞行的反应时间和高度进行安全驾驶。现有的合成视景技术无法满足飞行器在超低空领域飞行的需求。</div>
+<div class="description-paragraph" id="p0008" num="0006">目前国内外针对超低空飞行时，在前方地形提示仍然实用合成视景(SVS)或增强型合成视景(EVS)技术。固定翼通用飞机如佳明航电系统加装是一般合成视景系统，直升机如美国先进的阿帕奇直升机低空作战时使用增强型合成视景(EVS)技术与无人机协同方式实现低空领域飞行。无论是合成视景(SVS)还是增强型合成视景(EVS)都完全依赖于高精度准确的地形数据库，在超低空飞行时可容错的安全飞行高度差，由于地形精度有限，不能完全达到实际地理地形于视景的显示地形分毫不差，此外，还缺乏智能化信息提示，一旦出现紧急情况飞行员没有足够时间反应和控制飞行器。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0009">发明内容</div>
+<div class="description-paragraph" id="p0010" num="0007">本发明的目的在于：针对现有技术中存在的问题，提供了一种应用于低空飞行器的综合视景显示系统及方法，结合了航路规划技术、多源信息融合技术、贴地告警技术、综合显示控制技术、传感器视频技术、智能控制技术等；将视景信息、障碍物信息、图形符号信息、视频信息等进行综合控制显示，并智能化推荐规划的安全通道或飞行位置信息等，在超低空飞行过程减轻飞行员飞行大脑判断负载，保障了在超低空空域的飞行安全，从而解决了上述问题。</div>
+<div class="description-paragraph" id="p0011" num="0008">本发明的技术方案如下：</div>
+<div class="description-paragraph" id="p0012" num="0009">一种应用于低空飞行器的综合视景显示系统，包括：</div>
+<div class="description-paragraph" id="p0013" num="0010">综合数据处理模块，所述综合数据处理模块将导航传感器发送的数据进行处理，得到导航数据和同步时间T；所述导航数据，包括：经度纬度高度数据LLH、飞行器姿态S、速度V；</div>
+<div class="description-paragraph" id="p0014" num="0011">多源信息融合模块，所述综合数据处理模块基于雷达传感器发送的数据、导航数据和同步时间T，通过融合算法得到融合障碍物目标坐标；</div>
+<div class="description-paragraph" id="p0015" num="0012">航路规划模块，所述航路规划模块基于设置的航路点信息、同步时间T、融合障碍物目标坐标和导航数据，通过航路规划算法得到安全航路；</div>
+<div class="description-paragraph" id="p0016" num="0013">贴地告警模块，所述贴地告警模块基于导航数据、同步时间T、融合障碍物目标坐标和安全航路，通过告警算法生成安全提示信息；</div>
+<div class="description-paragraph" id="p0017" num="0014">视频智能控制模块，所述视频智能控制模块基于视频传感器发送的数据、气相传感器发送的数据，进行视频输出模式的抉择，并完成视频输出；</div>
+<div class="description-paragraph" id="p0018" num="0015">综合视景显示与控制模块，所述综合视景显示与控制模块基于导航数据、同步时间T、安全航路、安全提示信息和视频，生成最终的综合视景；所述综合视景显示与控制模块提供人机交互界面，可实现控制参数输入和综合视景的显示。</div>
+<div class="description-paragraph" id="p0019" num="0016">进一步地，所述综合数据处理模块，包括：</div>
+<div class="description-paragraph" id="p0020" num="0017">消息订阅模块，所述消息订阅模块通过消息订阅方式，订阅导航传感器消息；</div>
+<div class="description-paragraph" id="p0021" num="0018">消息分类模块，所述消息分类模块将导航传感器消息进行分类，分为：经纬度原始数据、飞行器姿态数据、飞行器速度数据、GPS授时数据；</div>
+<div class="description-paragraph" id="p0022" num="0019">经纬高解算模块，所述经纬高解算模块对经纬度原始数据进行解算，将其转换成可通过程序处理的高精度浮点和小数格式数据，从而获取到经度纬度高度数据LLH；</div>
+<div class="description-paragraph" id="p0023" num="0020">姿态解算模块，所述姿态解算模块对飞行器姿态数据进行解算，获取到飞行器姿态S；</div>
+<div class="description-paragraph" id="p0024" num="0021">速度解算模块，所述速度解算模块对飞行器速度数据进行解算，将其换算成可通过程序处理的统一格式速度V；</div>
+<div class="description-paragraph" id="p0025" num="0022">GPS时间处理模块，所述GPS时间处理模块对GPS授时数据进行处理，将GPS时间解算成统一的北京时间，获取到同步时间T。</div>
+<div class="description-paragraph" id="p0026" num="0023">进一步地，所述多源信息融合模块，包括：</div>
+<div class="description-paragraph" id="p0027" num="0024">障碍物数据库，所述障碍物数据库中储存有障碍物的位置信息；</div>
+<div class="description-paragraph" id="p0028" num="0025">障碍物信息处理模块，所述障碍物信息处理模块获取雷达传感器发送的障碍物目标，经过障碍物信息处理，处理障碍物目标雷达回波信息，并通过障碍物特征提取方法对障碍物目标进行提取，获取雷达目标障碍物目标P1(x<sub>P1</sub>,y<sub>P1</sub>,z<sub>P1</sub>)；</div>
+<div class="description-paragraph" id="p0029" num="0026">经纬高信息处理模块，所述经纬高信息处理模块根据经度纬度高度数据LLH查询障碍物数据库中存储的对应位置的障碍物，提取到数据库障碍物目标P2(x<sub>P2</sub>,y<sub>P2</sub>,z<sub>P2</sub>)；</div>
+<div class="description-paragraph" id="p0030" num="0027">所述融合算法对雷达目标障碍物目标P1(x<sub>P1</sub>,y<sub>P1</sub>,z<sub>P1</sub>)和数据库障碍物目标P2(x<sub>P2</sub>,y<sub>P2</sub>,z<sub>P2</sub>)进行融合，对不符合条件的目标进行剔除，对符合条件的目标进行融合处理，同时将同步时间T作为参数输入融合算法，获取到融合障碍物目标P(x,y,z,t)＝f(P<sub>1</sub>(x<sub>P1</sub>,y<sub>P1</sub>,z<sub>P1</sub>),P<sub>2</sub>(x<sub>P2</sub>,y<sub>P2</sub>,z<sub>P2</sub>),T)；融合障碍物目标P(x,y,z,t)的信息特征包括：x：经度，y：纬度，z：高度，t:同步时间戳。</div>
+<div class="description-paragraph" id="p0031" num="0028">进一步地，所述航路规划模块，包括：</div>
+<div class="description-paragraph" id="p0032" num="0029">地形数据库，所述地形数据库中储存有地形数据；</div>
+<div class="description-paragraph" id="p0033" num="0030">地形与障碍物目标数据计算模块，所述地形与障碍物目标数据计算模块基于经度纬度高度数据LLH，从地形数据库中提取出地形数据，并基于地形数据和融合障碍物目标坐标进行计算处理；</div>
+<div class="description-paragraph" id="p0034" num="0031">航路点位置计算模块，所述航路点位置计算模块收由综合视景显示与控制模块设置的随机航路点信息，对航路点位置进行计算；</div>
+<div class="description-paragraph" id="p0035" num="0032">将地形与障碍物目标数据计算模块的计算结果、航路点位置计算模块的计算结果和同步时间T作为航路规划算法的输入，由航路规划算法输出安全航路信息。</div>
+<div class="description-paragraph" id="p0036" num="0033">进一步地，所述贴地告警模块，包括：地形障碍物处理模块、安全航路点处理模块、告警计算模块和信息生成模块；所述地形障碍物处理模块和安全航路点处理模块对地形数据和融合障碍物目标坐标进行处理后传送给告警计算模块，由告警计算模块完成计算后将信息传送至信息生成模块，由信息生成模块对信息处理后生成安全提示信息，所述安全提示信息，包括：安全管道、提示图符、告警文字。</div>
+<div class="description-paragraph" id="p0037" num="0034">进一步地，所述视频智能控制模块，包括：</div>
+<div class="description-paragraph" id="p0038" num="0035">气象处理模块，所述气象处理模块对气象雷达数据进行处理后获取到初步的天气信息；</div>
+<div class="description-paragraph" id="p0039" num="0036">视频控制模块，所述视频控制模块基于天气信息和同步时间T，对视频信号进行综合处理，可对视频输出模式进行智能抉择，选择单一视频源进行输出或者多路视频融合后进行输出；同时计算出当前视频状态参数信息Pa。</div>
+<div class="description-paragraph" id="p0040" num="0037">进一步地，所述综合视景显示与控制模块，包括：</div>
+<div class="description-paragraph" id="p0041" num="0038">三维地形数据库，所述三维地形数据库中储存有三维地形数据；</div>
+<div class="description-paragraph" id="p0042" num="0039">控制接口，所述控制接口用于控制参数的输入；</div>
+<div class="description-paragraph" id="p0043" num="0040">综合计算模块，所述综合计算模块通过经度纬度高度数据LLH对三维地形数据库中的三维地形数据进行提取，获取到三维地形数据；对融合障碍物目标坐标、安全航路和安全提示信息进行综合计算，获取到图形信息；</div>
+<div class="description-paragraph" id="p0044" num="0041">图形场景绘制模块，所述图形场景绘制模块基于三维地形数据和图形信息，进行图形场景绘制；</div>
+<div class="description-paragraph" id="p0045" num="0042">视频显示控制模块，所述视频显示控制模块将视频与图形场景进行叠加融合处理，生成最终的综合视景；</div>
+<div class="description-paragraph" id="p0046" num="0043">综合视景输出模块，所述综合视景输出模块负责综合视景的输出。</div>
+<div class="description-paragraph" id="p0047" num="0044">一种应用于低空飞行器的综合视景显示方法，基于上述的一种应用于低空飞行器的综合视景显示系统，包括：</div>
+<div class="description-paragraph" id="p0048" num="0045">步骤S1：将导航传感器发送的数据进行处理，得到导航数据和同步时间T；所述导航数据，包括：经度纬度高度数据LLH、飞行器姿态S、速度V；</div>
+<div class="description-paragraph" id="p0049" num="0046">步骤S2：基于雷达传感器发送的数据、导航数据和同步时间T，通过融合算法得到融合障碍物目标坐标；</div>
+<div class="description-paragraph" id="p0050" num="0047">步骤S3：基于设置的航路点信息、同步时间T、融合障碍物目标坐标和导航数据，通过航路规划算法得到安全航路；</div>
+<div class="description-paragraph" id="p0051" num="0048">步骤S4：基于导航数据、同步时间T、融合障碍物目标坐标和安全航路，通过告警算法生成安全提示信息；</div>
+<div class="description-paragraph" id="p0052" num="0049">步骤S5：基于视频传感器发送的数据、气相传感器发送的数据，进行视频输出模式的抉择，并完成视频输出；</div>
+<div class="description-paragraph" id="p0053" num="0050">步骤S6：基于导航数据、同步时间T、安全航路、安全提示信息和视频，生成最终的综合视景。</div>
+<div class="description-paragraph" id="p0054" num="0051">进一步地，所述步骤S1，包括：</div>
+<div class="description-paragraph" id="p0055" num="0052">步骤S11：通过消息订阅方式，订阅导航传感器消息；</div>
+<div class="description-paragraph" id="p0056" num="0053">步骤S12：将导航传感器消息进行分类，分为：经纬度原始数据、飞行器姿态数据、飞行器速度数据、GPS授时数据；</div>
+<div class="description-paragraph" id="p0057" num="0054">步骤S13：对经纬度原始数据进行解算，将其转换成可通过程序处理的高精度浮点和小数格式数据，从而获取到经度纬度高度数据LLH；</div>
+<div class="description-paragraph" id="p0058" num="0055">步骤S14：对飞行器姿态数据进行解算，获取到飞行器姿态S；</div>
+<div class="description-paragraph" id="p0059" num="0056">步骤S15：对飞行器速度数据进行解算，将其换算成可通过程序处理的统一格式速度V；</div>
+<div class="description-paragraph" id="p0060" num="0057">步骤S16：对GPS授时数据进行处理，将GPS时间解算成统一的北京时间，获取到同步时间T；</div>
+<div class="description-paragraph" id="p0061" num="0058">所述步骤S2，包括：</div>
+<div class="description-paragraph" id="p0062" num="0059">步骤S21：获取雷达传感器发送的障碍物目标，经过障碍物信息处理，处理障碍物目标雷达回波信息，并通过障碍物特征提取方法对障碍物目标进行提取，获取雷达目标障碍物目标P1(x<sub>P1</sub>,y<sub>P1</sub>,z<sub>P1</sub>)；</div>
+<div class="description-paragraph" id="p0063" num="0060">步骤S22：根据经度纬度高度数据LLH查询障碍物数据库中存储的对应位置的障碍物，提取到数据库障碍物目标P2(x<sub>P2</sub>,y<sub>P2</sub>,z<sub>P2</sub>)；</div>
+<div class="description-paragraph" id="p0064" num="0061">步骤S23：对雷达目标障碍物目标P1(x<sub>P1</sub>,y<sub>P1</sub>,z<sub>P1</sub>)和数据库障碍物目标P2(x<sub>P2</sub>,y<sub>P2</sub>,z<sub>P2</sub>)进行融合，对不符合条件的目标进行剔除，对符合条件的目标进行融合处理，同时将同步时间T作为参数输入融合算法，获取到融合障碍物目标P(x,y,z,t)；</div>
+<div class="description-paragraph" id="p0065" num="0062">所述步骤S3，包括：</div>
+<div class="description-paragraph" id="p0066" num="0063">步骤S31：基于经度纬度高度数据LLH，从地形数据库中提取出地形数据，并基于地形数据和融合障碍物目标坐标进行计算处理；</div>
+<div class="description-paragraph" id="p0067" num="0064">步骤S32：基于随机航路点信息，对航路点位置进行计算；</div>
+<div class="description-paragraph" id="p0068" num="0065">步骤S33：将步骤S31和步骤S32的计算结果和同步时间T作为航路规划算法的输入，由航路规划算法输出安全航路信息；</div>
+<div class="description-paragraph" id="p0069" num="0066">所述步骤S4，包括：</div>
+<div class="description-paragraph" id="p0070" num="0067">通过地形障碍物处理模块和安全航路点处理模块对地形数据和融合障碍物目标坐标进行处理后传送给告警计算模块，由告警计算模块完成计算后将信息传送至信息生成模块，由信息生成模块对信息处理后生成安全提示信息；</div>
+<div class="description-paragraph" id="p0071" num="0068">所述步骤S5，包括：</div>
+<div class="description-paragraph" id="p0072" num="0069">步骤S51：对气象雷达数据进行处理后获取到初步的天气信息；</div>
+<div class="description-paragraph" id="p0073" num="0070">步骤S52：基于天气信息和同步时间T，对视频信号进行综合处理，可对视频输出模式进行智能抉择，选择单一视频源进行输出或者多路视频融合后进行输出；同时计算出当前视频状态参数信息Pa；</div>
+<div class="description-paragraph" id="p0074" num="0071">所述步骤S6，包括：</div>
+<div class="description-paragraph" id="p0075" num="0072">步骤S61：通过经度纬度高度数据LLH对三维地形数据库中的三维地形数据进行提取，获取到三维地形数据；</div>
+<div class="description-paragraph" id="p0076" num="0073">步骤S62：对融合障碍物目标坐标、安全航路和安全提示信息进行综合计算，获取到图形信息；</div>
+<div class="description-paragraph" id="p0077" num="0074">步骤S63：基于三维地形数据和图形信息，进行图形场景绘制；</div>
+<div class="description-paragraph" id="p0078" num="0075">步骤S64：将视频与图形场景进行叠加融合处理，生成最终的综合视景。</div>
+<div class="description-paragraph" id="p0079" num="0076">进一步地，所述步骤S63，包括：</div>
+<div class="description-paragraph" id="p0080" num="0077">将视频输出和视频状态参数信息Pa输入至视频显示控制模块中，获取到最终需要显示的视频信息；</div>
+<div class="description-paragraph" id="p0081" num="0078">并将该视频信息与图形场景进行叠加融合处理，生成最终的综合视景。</div>
+<div class="description-paragraph" id="p0082" num="0079">与现有的技术相比本发明的有益效果是：</div>
+<div class="description-paragraph" id="p0083" num="0080">1、一种应用于低空飞行器的综合视景显示系统及方法，通过应用多项技术，解决了飞行器在超低空空域飞行时，最大程度保障飞行安全作用。</div>
+<div class="description-paragraph" id="p0084" num="0081">2、一种应用于低空飞行器的综合视景显示系统及方法，将高精度地形数据应用在航路规划任务、多源信息融合任务、贴地告警任务中，信息经过综合控制任务处理后，与外部传感器视频进行融合，最后通过综合视景窗口进行显示与控制，同时地，智能化推荐安全飞行区域和安全飞行信息给飞行员。</div>
+<div class="description-paragraph" id="p0085" num="0082">3、一种应用于低空飞行器的综合视景显示系统及方法，通过推荐安全区域和安全信息推送，飞行员不需要花费过多时间进行飞行控制判断，低空飞行中减轻了飞行员任务负担，增强了飞行安全性。无论在固定翼飞行器还是直升机超低空飞行领域都具备了广泛应用价值。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0086">附图说明</div>
+<div class="description-paragraph" id="p0087" num="0083">图1为一种应用于低空飞行器的综合视景显示系统控制流程图；</div>
+<div class="description-paragraph" id="p0088" num="0084">图2为综合数据处理模块控制流程图；</div>
+<div class="description-paragraph" id="p0089" num="0085">图3为多源信息融合模块控制流程图；</div>
+<div class="description-paragraph" id="p0090" num="0086">图4为航路规划模块控制流程图；</div>
+<div class="description-paragraph" id="p0091" num="0087">图5为贴地告警模块控制流程图；</div>
+<div class="description-paragraph" id="p0092" num="0088">图6为视频智能控制模块控制流程图；</div>
+<div class="description-paragraph" id="p0093" num="0089">图7为综合视景显示与控制模块流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0094">具体实施方式</div>
+<div class="description-paragraph" id="p0095" num="0090">需要说明的是，术语“第一”和“第二”等之类的关系术语仅仅用来将一个实体或者操作与另一个实体或操作区分开来，而不一定要求或者暗示这些实体或操作之间存在任何这种实际的关系或者顺序。而且，术语“包括”、“包含”或者其任何其他变体意在涵盖非排他性的包含，从而使得包括一系列要素的过程、方法、物品或者设备不仅包括那些要素，而且还包括没有明确列出的其他要素，或者是还包括为这种过程、方法、物品或者设备所固有的要素。在没有更多限制的情况下，由语句“包括一个……”限定的要素，并不排除在包括所述要素的过程、方法、物品或者设备中还存在另外的相同要素。</div>
+<div class="description-paragraph" id="p0096" num="0091">下面结合实施例对本发明的特征和性能作进一步的详细描述。</div>
+<div class="description-paragraph" id="p0097" num="0092">实施例一</div>
+<div class="description-paragraph" id="p0098" num="0093">请参阅图1，一种应用于低空飞行器的综合视景显示系统，包括：</div>
+<div class="description-paragraph" id="p0099" num="0094">综合数据处理模块，所述综合数据处理模块将导航传感器发送的数据进行处理，得到导航数据和同步时间T；所述导航数据，包括：经度纬度高度数据LLH、飞行器姿态S、速度V；</div>
+<div class="description-paragraph" id="p0100" num="0095">多源信息融合模块，所述综合数据处理模块基于雷达传感器发送的数据、导航数据和同步时间T，通过融合算法得到融合障碍物目标坐标；</div>
+<div class="description-paragraph" id="p0101" num="0096">航路规划模块，所述航路规划模块基于设置的航路点信息、同步时间T、融合障碍物目标坐标和导航数据，通过航路规划算法得到安全航路；</div>
+<div class="description-paragraph" id="p0102" num="0097">贴地告警模块，所述贴地告警模块基于导航数据、同步时间T、融合障碍物目标坐标和安全航路，通过告警算法生成安全提示信息；</div>
+<div class="description-paragraph" id="p0103" num="0098">视频智能控制模块，所述视频智能控制模块基于视频传感器发送的数据、气相传感器发送的数据，进行视频输出模式的抉择，并完成视频输出；</div>
+<div class="description-paragraph" id="p0104" num="0099">综合视景显示与控制模块，所述综合视景显示与控制模块基于导航数据、同步时间T、安全航路、安全提示信息和视频，生成最终的综合视景；所述综合视景显示与控制模块提供人机交互界面，可实现控制参数输入和综合视景的显示。</div>
+<div class="description-paragraph" id="p0105" num="0100">在本实施例中，具体的，请参阅图2，所述综合数据处理模块，包括：</div>
+<div class="description-paragraph" id="p0106" num="0101">消息订阅模块，所述消息订阅模块通过消息订阅方式，订阅导航传感器消息；</div>
+<div class="description-paragraph" id="p0107" num="0102">消息分类模块，所述消息分类模块将导航传感器消息进行分类，分为：经纬度原始数据、飞行器姿态数据、飞行器速度数据、GPS授时数据；</div>
+<div class="description-paragraph" id="p0108" num="0103">经纬高解算模块，所述经纬高解算模块对经纬度原始数据进行解算，将其转换成可通过程序处理的高精度浮点和小数格式数据，从而获取到经度纬度高度数据LLH(x<sub>LLH</sub>,y<sub>LLH</sub>,z<sub>LLH</sub>)；</div>
+<div class="description-paragraph" id="p0109" num="0104">姿态解算模块，所述姿态解算模块对飞行器姿态数据进行解算，获取到飞行器姿态S(x<sub>S</sub>,y<sub>S</sub>,z<sub>S</sub>)；</div>
+<div class="description-paragraph" id="p0110" num="0105">速度解算模块，所述速度解算模块对飞行器速度数据进行解算，将其换算成可通过程序处理的统一格式速度V；</div>
+<div class="description-paragraph" id="p0111" num="0106">GPS时间处理模块，所述GPS时间处理模块对GPS授时数据进行处理，将GPS时间解算成统一的北京时间，获取到同步时间T。</div>
+<div class="description-paragraph" id="p0112" num="0107">由此通过综合数据处理后获得数据有：</div>
+<div class="description-paragraph" id="p0113" num="0108">经度纬度高度数据LLH(x<sub>LLH</sub>,y<sub>LLH</sub>,z<sub>LLH</sub>),飞行器姿态S(x<sub>S</sub>,y<sub>S</sub>,z<sub>S</sub>),速度V,同步时间T。</div>
+<div class="description-paragraph" id="p0114" num="0109">在本实施例中，具体的，请参阅图3，所述多源信息融合模块，包括：</div>
+<div class="description-paragraph" id="p0115" num="0110">障碍物数据库，所述障碍物数据库中储存有障碍物的位置信息；</div>
+<div class="description-paragraph" id="p0116" num="0111">障碍物信息处理模块，所述障碍物信息处理模块获取雷达传感器发送的障碍物目标，经过障碍物信息处理，处理障碍物目标雷达回波信息，并通过障碍物特征提取方法对障碍物目标进行提取，获取雷达目标障碍物目标P1(x<sub>P1</sub>,y<sub>P1</sub>,z<sub>P1</sub>)；</div>
+<div class="description-paragraph" id="p0117" num="0112">经纬高信息处理模块，所述经纬高信息处理模块根据经度纬度高度数据LLH查询障碍物数据库中存储的对应位置的障碍物，提取到数据库障碍物目标P2(x<sub>P2</sub>,y<sub>P2</sub>,z<sub>P2</sub>)；</div>
+<div class="description-paragraph" id="p0118" num="0113">所述融合算法对雷达目标障碍物目标P1(x<sub>P1</sub>,y<sub>P1</sub>,z<sub>P1</sub>)和数据库障碍物目标P2(x<sub>P2</sub>,y<sub>P2</sub>,z<sub>P2</sub>)进行融合，对不符合条件的目标进行剔除，对符合条件的目标进行融合处理，同时将同步时间T作为参数输入融合算法，获取到融合障碍物目标P(x,y,z,t)＝f(P<sub>1</sub>(x<sub>P1</sub>,y<sub>P1</sub>,z<sub>P1</sub>),P<sub>2</sub>(x<sub>P2</sub>,y<sub>P2</sub>,z<sub>P2</sub>),T)；融合障碍物目标P(x,y,z,t)的信息特征包括：x：经度，y：纬度，z：高度，t:同步时间戳。</div>
+<div class="description-paragraph" id="p0119" num="0114">在本实施例中，具体的，请参阅图4，所述航路规划模块，包括：</div>
+<div class="description-paragraph" id="p0120" num="0115">地形数据库，所述地形数据库中储存有地形数据；</div>
+<div class="description-paragraph" id="p0121" num="0116">地形与障碍物目标数据计算模块，所述地形与障碍物目标数据计算模块基于经度纬度高度数据LLH，从地形数据库中提取出地形数据，并基于地形数据和融合障碍物目标坐标进行计算处理；</div>
+<div class="description-paragraph" id="p0122" num="0117">航路点位置计算模块，所述航路点位置计算模块收由综合视景显示与控制模块设置的随机航路点信息，对航路点位置进行计算；</div>
+<div class="description-paragraph" id="p0123" num="0118">将地形与障碍物目标数据计算模块的计算结果、航路点位置计算模块的计算结果和同步时间T作为航路规划算法的输入，由航路规划算法输出安全航路信息。</div>
+<div class="description-paragraph" id="p0124" num="0119">在本实施例中，具体的，请参阅图5，所述贴地告警模块，包括：地形障碍物处理模块、安全航路点处理模块、告警计算模块和信息生成模块；所述地形障碍物处理模块和安全航路点处理模块对地形数据和融合障碍物目标坐标进行处理后传送给告警计算模块，由告警计算模块完成计算后将信息传送至信息生成模块，由信息生成模块对信息处理后生成安全提示信息，所述安全提示信息，包括：安全管道、提示图符、告警文字。</div>
+<div class="description-paragraph" id="p0125" num="0120">在本实施例中，具体的，请参阅图6，所述视频智能控制模块，包括：</div>
+<div class="description-paragraph" id="p0126" num="0121">气象处理模块，所述气象处理模块对气象雷达数据进行处理后获取到初步的天气信息；</div>
+<div class="description-paragraph" id="p0127" num="0122">视频控制模块，所述视频控制模块基于天气信息和同步时间T，对视频信号进行综合处理，可对视频输出模式进行智能抉择，选择单一视频源进行输出或者多路视频融合后进行输出；同时计算出当前视频状态参数信息Pa。</div>
+<div class="description-paragraph" id="p0128" num="0123">在本实施例中，具体的，请参阅图7，所述综合视景显示与控制模块，包括：</div>
+<div class="description-paragraph" id="p0129" num="0124">三维地形数据库，所述三维地形数据库中储存有三维地形数据；</div>
+<div class="description-paragraph" id="p0130" num="0125">控制接口，所述控制接口用于控制参数的输入；即飞行员通过控制发送控制命令到控制接口，通过控制接口对综合视景显示控制任务中的图形处理进行参数控制，飞行员发送的控制参数指令作为图形处理中的综合计算、图形场景绘制、视频显示控制的输入参数；</div>
+<div class="description-paragraph" id="p0131" num="0126">综合计算模块，所述综合计算模块通过经度纬度高度数据LLH对三维地形数据库中的三维地形数据进行提取，获取到三维地形数据；对融合障碍物目标坐标、安全航路和安全提示信息进行综合计算，获取到图形信息；</div>
+<div class="description-paragraph" id="p0132" num="0127">图形场景绘制模块，所述图形场景绘制模块基于三维地形数据和图形信息，进行图形场景绘制；</div>
+<div class="description-paragraph" id="p0133" num="0128">视频显示控制模块，所述视频显示控制模块将视频与图形场景进行叠加融合处理，生成最终的综合视景；</div>
+<div class="description-paragraph" id="p0134" num="0129">综合视景输出模块，所述综合视景输出模块负责综合视景的输出。</div>
+<div class="description-paragraph" id="p0135" num="0130">在本实施例中，基于上述的一种应用于低空飞行器的综合视景显示系统，还提出了一种应用于低空飞行器的综合视景显示方法，具体包括如下步骤：</div>
+<div class="description-paragraph" id="p0136" num="0131">步骤S1：将导航传感器发送的数据进行处理，得到导航数据和同步时间T；所述导航数据，包括：经度纬度高度数据LLH、飞行器姿态S、速度V；</div>
+<div class="description-paragraph" id="p0137" num="0132">步骤S2：基于雷达传感器发送的数据、导航数据和同步时间T，通过融合算法得到融合障碍物目标坐标；</div>
+<div class="description-paragraph" id="p0138" num="0133">步骤S3：基于设置的航路点信息、同步时间T、融合障碍物目标坐标和导航数据，通过航路规划算法得到安全航路；</div>
+<div class="description-paragraph" id="p0139" num="0134">步骤S4：基于导航数据、同步时间T、融合障碍物目标坐标和安全航路，通过告警算法生成安全提示信息；</div>
+<div class="description-paragraph" id="p0140" num="0135">步骤S5：基于视频传感器发送的数据、气相传感器发送的数据，进行视频输出模式的抉择，并完成视频输出；</div>
+<div class="description-paragraph" id="p0141" num="0136">步骤S6：基于导航数据、同步时间T、安全航路、安全提示信息和视频，生成最终的综合视景。</div>
+<div class="description-paragraph" id="p0142" num="0137">在本实施例中，具体的，所述步骤S1，包括：</div>
+<div class="description-paragraph" id="p0143" num="0138">步骤S11：通过消息订阅方式，订阅导航传感器消息；</div>
+<div class="description-paragraph" id="p0144" num="0139">步骤S12：将导航传感器消息进行分类，分为：经纬度原始数据、飞行器姿态数据、飞行器速度数据、GPS授时数据；</div>
+<div class="description-paragraph" id="p0145" num="0140">步骤S13：对经纬度原始数据进行解算，将其转换成可通过程序处理的高精度浮点和小数格式数据，从而获取到经度纬度高度数据LLH；</div>
+<div class="description-paragraph" id="p0146" num="0141">步骤S14：对飞行器姿态数据进行解算，获取到飞行器姿态S；</div>
+<div class="description-paragraph" id="p0147" num="0142">步骤S15：对飞行器速度数据进行解算，将其换算成可通过程序处理的统一格式速度V；</div>
+<div class="description-paragraph" id="p0148" num="0143">步骤S16：对GPS授时数据进行处理，将GPS时间解算成统一的北京时间，获取到同步时间T；</div>
+<div class="description-paragraph" id="p0149" num="0144">所述步骤S2，包括：</div>
+<div class="description-paragraph" id="p0150" num="0145">步骤S21：获取雷达传感器发送的障碍物目标，经过障碍物信息处理，处理障碍物目标雷达回波信息，并通过障碍物特征提取方法对障碍物目标进行提取，获取雷达目标障碍物目标P1(x<sub>P1</sub>,y<sub>P1</sub>,z<sub>P1</sub>)；</div>
+<div class="description-paragraph" id="p0151" num="0146">步骤S22：根据经度纬度高度数据LLH查询障碍物数据库中存储的对应位置的障碍物，提取到数据库障碍物目标P2(x<sub>P2</sub>,y<sub>P2</sub>,z<sub>P2</sub>)；</div>
+<div class="description-paragraph" id="p0152" num="0147">步骤S23：对雷达目标障碍物目标P1(x<sub>P1</sub>,y<sub>P1</sub>,z<sub>P1</sub>)和数据库障碍物目标P2(x<sub>P2</sub>,y<sub>P2</sub>,z<sub>P2</sub>)进行融合，对不符合条件的目标进行剔除，对符合条件的目标进行融合处理，同时将同步时间T作为参数输入融合算法，获取到融合障碍物目标P(x,y,z,t)；</div>
+<div class="description-paragraph" id="p0153" num="0148">所述步骤S3，包括：</div>
+<div class="description-paragraph" id="p0154" num="0149">步骤S31：基于经度纬度高度数据LLH，从地形数据库中提取出地形数据，并基于地形数据和融合障碍物目标坐标进行计算处理；</div>
+<div class="description-paragraph" id="p0155" num="0150">步骤S32：基于随机航路点信息，对航路点位置进行计算；</div>
+<div class="description-paragraph" id="p0156" num="0151">步骤S33：将步骤S31和步骤S32的计算结果和同步时间T作为航路规划算法的输入，由航路规划算法输出安全航路信息；</div>
+<div class="description-paragraph" id="p0157" num="0152">所述步骤S4，包括：</div>
+<div class="description-paragraph" id="p0158" num="0153">通过地形障碍物处理模块和安全航路点处理模块对地形数据和融合障碍物目标坐标进行处理后传送给告警计算模块，由告警计算模块完成计算后将信息传送至信息生成模块，由信息生成模块对信息处理后生成安全提示信息；</div>
+<div class="description-paragraph" id="p0159" num="0154">所述步骤S5，包括：</div>
+<div class="description-paragraph" id="p0160" num="0155">步骤S51：对气象雷达数据进行处理后获取到初步的天气信息；</div>
+<div class="description-paragraph" id="p0161" num="0156">步骤S52：基于天气信息和同步时间T，对视频信号进行综合处理，可对视频输出模式进行智能抉择，选择单一视频源进行输出或者多路视频融合后进行输出；同时计算出当前视频状态参数信息Pa；</div>
+<div class="description-paragraph" id="p0162" num="0157">所述步骤S6，包括：</div>
+<div class="description-paragraph" id="p0163" num="0158">步骤S61：通过经度纬度高度数据LLH对三维地形数据库中的三维地形数据进行提取，获取到三维地形数据；</div>
+<div class="description-paragraph" id="p0164" num="0159">步骤S62：对融合障碍物目标坐标、安全航路和安全提示信息进行综合计算，获取到图形信息；</div>
+<div class="description-paragraph" id="p0165" num="0160">步骤S63：基于三维地形数据和图形信息，进行图形场景绘制；</div>
+<div class="description-paragraph" id="p0166" num="0161">步骤S64：将视频与图形场景进行叠加融合处理，生成最终的综合视景。</div>
+<div class="description-paragraph" id="p0167" num="0162">在本实施例中，具体的，所述步骤S63，包括：</div>
+<div class="description-paragraph" id="p0168" num="0163">将视频输出和视频状态参数信息Pa输入至视频显示控制模块中，获取到最终需要显示的视频信息；</div>
+<div class="description-paragraph" id="p0169" num="0164">并将该视频信息与图形场景进行叠加融合处理，生成最终的综合视景。</div>
+<div class="description-paragraph" id="p0170" num="0165">即本实施例针对飞行器在低空领域飞行时提供一种安全性更高、智能化程度更高的综合视景；其使用多源信息融合技术将数据库障碍物与雷达传感器障碍物进行目标融合，通过融合两种以上的信息源，基于融合障碍物目标特征理论方法，保障了地表障碍物可靠性，融合后的障碍物准确性可高达98.5％，比起单一数据源障碍物目标准确率(85％)，雷达传感器目标准确率(80％)。融合后的障碍物目标准确率提高了10％-20％；首次使用同步时间T机制协调功能任务对数据信息处理的同步，以消除数据信息传输过程的时间差。从外部传感器数据送至各功能任务存在时间差，会导致读取的地形数据和障碍物数据存在误差，进而导致处理后的数据误差变大。引入同步时间T保证各功能模块处理数据于同一时刻，消除了时间戳误差，提高了数据精准可靠性。首次将融合障碍物目标、地形数据作为输入参数，结合航路规划与贴地告警，规划出一条低空安全飞行航路，推荐应飞的安全位置、发出提示飞行符号、告警信息等。低空飞行时使用推荐的安全管道、预警提示、飞行指示符等指示信息，飞行员不用过多观察地形和飞行判断，只要根据安全管道与飞行指示符飞行即可，保证了飞行安全同时极大程度减轻了飞行员心里压力，进一步提示了飞行安全。在合成视景与外视频融合过程中，首次设计视频智能控制对外视频进行控制处理，根据实际天气等因素智能化选择视频与合成视景图形进行融合显示，外部视频传感器(一般是雷达)通过发送不同波段的电磁波，在不同外部环境下传感器波段回传图像精度不一样，智能化选择一路高清晰度的视频与合成视景图形进行融合，提高了综合视景显示精度和效果。综合视景显示与控制任务通过图形驱动对综合视景图形、安全管道、障碍物目标、航路信息、飞行指示符进行综合显示。传统合成视景或障碍物融合在超低空飞行危险性太高，飞行员基本只能通过目视前方进行判断驾驶，遇到恶劣天气无法查看前方时，容易出现危险事故。本发明采用多项技术提高障碍物目标和视景融合精度，保障了后续符号提示信息、全管道、航路信息的正确性，从而保证了飞行安全性，本发明对于飞行器在低空空域应用具有很高实用性。</div>
+<div class="description-paragraph" id="p0171" num="0166">以上所述实施例仅表达了本申请的具体实施方式，其描述较为具体和详细，但并不能因此而理解为对本申请保护范围的限制。应当指出的是，对于本领域的普通技术人员来说，在不脱离本申请技术方案构思的前提下，还可以做出若干变形和改进，这些都属于本申请的保护范围。</div>
+<div class="description-paragraph" id="p0172" num="0167">提供本背景技术部分是为了大体上呈现本发明的上下文，当前所署名的发明人的工作、在本背景技术部分中所描述的程度上的工作以及本部分描述在申请时尚不构成现有技术的方面，既非明示地也非暗示地被承认是本发明的现有技术。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

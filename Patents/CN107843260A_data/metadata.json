@@ -1,0 +1,134 @@
+{
+    "patent_id": "CN107843260A",
+    "title": "CN107843260A - 一种基于电磁指纹信息的低空无人飞行器定位导航方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shanghai University of Engineering Science",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN107843260A/zh",
+    "citations": [
+        {
+            "Publication Number": "US20130205196A1 (en) *",
+            "Priority Date": "2010-10-11",
+            "Publication Date": "2013-08-08",
+            "Assignee": "Visoft Ltd.",
+            "Title": "Location-based mobile application marketplace system",
+            "Link": "https://patents.google.com/patent/US20130205196A1/en"
+        },
+        {
+            "Publication Number": "CN106888504A (zh) *",
+            "Priority Date": "2015-12-11",
+            "Publication Date": "2017-06-23",
+            "Assignee": "南开大学",
+            "Title": "基于fm与dtmb信号的室内位置指纹定位方法",
+            "Link": "https://patents.google.com/patent/CN106888504A/zh"
+        },
+        {
+            "Publication Number": "CN105933975A (zh) *",
+            "Priority Date": "2016-04-11",
+            "Publication Date": "2016-09-07",
+            "Assignee": "南京邮电大学",
+            "Title": "一种基于WiFi指纹的精度改善的室内定位方法",
+            "Link": "https://patents.google.com/patent/CN105933975A/zh"
+        },
+        {
+            "Publication Number": "CN105792356A (zh) *",
+            "Priority Date": "2016-04-22",
+            "Publication Date": "2016-07-20",
+            "Assignee": "西安理工大学",
+            "Title": "一种基于wifi的位置指纹定位方法",
+            "Link": "https://patents.google.com/patent/CN105792356A/zh"
+        },
+        {
+            "Publication Number": "CN106954190A (zh) *",
+            "Priority Date": "2017-05-11",
+            "Publication Date": "2017-07-14",
+            "Assignee": "桂林电子科技大学",
+            "Title": "一种基于指数映射域的wifi室内定位方法",
+            "Link": "https://patents.google.com/patent/CN106954190A/zh"
+        },
+        {
+            "Publication Number": "CN107071902A (zh) *",
+            "Priority Date": "2017-05-11",
+            "Publication Date": "2017-08-18",
+            "Assignee": "桂林电子科技大学",
+            "Title": "一种基于混合滤波和幂指数映射wifi室内定位方法",
+            "Link": "https://patents.google.com/patent/CN107071902A/zh"
+        },
+        {
+            "Publication Number": "CN107271951A (zh) *",
+            "Priority Date": "2017-06-06",
+            "Publication Date": "2017-10-20",
+            "Assignee": "上海工程技术大学",
+            "Title": "基于WiFi指纹定位的无人机导航系统及其导航方法",
+            "Link": "https://patents.google.com/patent/CN107271951A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN109302674A (zh) *",
+            "Priority Date": "2018-12-21",
+            "Publication Date": "2019-02-01",
+            "Assignee": "桂林电子科技大学",
+            "Title": "一种基于多重滤波的WiFi室内定位方法",
+            "Link": "https://patents.google.com/patent/CN109302674A/zh"
+        },
+        {
+            "Publication Number": "CN109302674B (zh) *",
+            "Priority Date": "2018-12-21",
+            "Publication Date": "2020-08-04",
+            "Assignee": "桂林电子科技大学",
+            "Title": "一种基于多重滤波的WiFi室内定位方法",
+            "Link": "https://patents.google.com/patent/CN109302674B/zh"
+        },
+        {
+            "Publication Number": "CN109597429A (zh) *",
+            "Priority Date": "2018-12-28",
+            "Publication Date": "2019-04-09",
+            "Assignee": "飞智控（天津）科技有限公司",
+            "Title": "一站多机式无人机植保作业控制方法",
+            "Link": "https://patents.google.com/patent/CN109597429A/zh"
+        },
+        {
+            "Publication Number": "CN110418407A (zh) *",
+            "Priority Date": "2019-08-27",
+            "Publication Date": "2019-11-05",
+            "Assignee": "成都市东信德科技有限公司",
+            "Title": "基于神经网络的异常行李蓝牙定位方法及其系统",
+            "Link": "https://patents.google.com/patent/CN110418407A/zh"
+        },
+        {
+            "Publication Number": "CN111397602A (zh) *",
+            "Priority Date": "2020-04-16",
+            "Publication Date": "2020-07-10",
+            "Assignee": "成都中科微信息技术研究院有限公司",
+            "Title": "一种宽频电磁指纹与组合导航融合的高精度定位方法与设备",
+            "Link": "https://patents.google.com/patent/CN111397602A/zh"
+        },
+        {
+            "Publication Number": "CN113115254A (zh) *",
+            "Priority Date": "2021-03-23",
+            "Publication Date": "2021-07-13",
+            "Assignee": "中国联合网络通信集团有限公司",
+            "Title": "无人机定位方法及服务器",
+            "Link": "https://patents.google.com/patent/CN113115254A/zh"
+        },
+        {
+            "Publication Number": "CN113115254B (zh) *",
+            "Priority Date": "2021-03-23",
+            "Publication Date": "2022-12-23",
+            "Assignee": "中国联合网络通信集团有限公司",
+            "Title": "无人机定位方法及服务器",
+            "Link": "https://patents.google.com/patent/CN113115254B/zh"
+        },
+        {
+            "Publication Number": "CN117562033A (zh) *",
+            "Priority Date": "2023-11-03",
+            "Publication Date": "2024-02-20",
+            "Assignee": "中国农业科学院烟草研究所(中国烟草总公司青州烟草研究所)",
+            "Title": "一种植保无人机的智能定位及施药方法、系统及介质",
+            "Link": "https://patents.google.com/patent/CN117562033A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:25:27"
+}

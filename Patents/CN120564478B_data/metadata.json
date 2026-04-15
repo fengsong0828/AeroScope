@@ -1,0 +1,29 @@
+{
+    "patent_id": "CN120564478B",
+    "title": "CN120564478B - 面向低空多飞行器混合起降场的协同航迹规划方法及系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Beidou Fuxi Information Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120564478B/zh",
+    "citations": [
+        {
+            "Publication Number": "CN116518974A (zh) *",
+            "Priority Date": "2023-04-28",
+            "Publication Date": "2023-08-01",
+            "Assignee": "中国人民解放军93209部队",
+            "Title": "一种基于空域网格的无冲突航路规划方法",
+            "Link": "https://patents.google.com/patent/CN116518974A/zh"
+        },
+        {
+            "Publication Number": "CN118857296A (zh) *",
+            "Priority Date": "2024-07-04",
+            "Publication Date": "2024-10-29",
+            "Assignee": "甘肃诚海电子信息科技有限公司",
+            "Title": "系统定位精度限制下的智能飞行器航迹规划方法及系统",
+            "Link": "https://patents.google.com/patent/CN118857296A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:40:54"
+}

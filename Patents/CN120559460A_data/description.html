@@ -1,0 +1,270 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120559460A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES504191244">
+<invention-title id="title1" lang="ZH">一种低空飞行器专用电机故障检测方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及电机故障检测技术领域，特别是指一种低空飞行器专用电机故障检测方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着无人机技术的迅速发展，低空飞行器在民用、商业、科研等多个领域的应用愈加广泛。作为低空飞行器的核心部件之一，专用电机承担着飞行器的动力输出、稳定控制以及任务执行等关键功能，因此对电机的稳定性和可靠性提出了更高的要求。</div>
+<div class="description-paragraph" id="p0005" num="0003">然而，在复杂的飞行环境中，电机的故障可能对低空飞行器的安全性和稳定性产生重大影响，甚至可能导致飞行器的坠落。因此，低空飞行器电机的实时监控与故障检测显得尤为重要。</div>
+<div class="description-paragraph" id="p0006" num="0004">在现有技术中，传统的电机故障检测方法大多依赖于单一传感器的数据进行监测，无法充分利用多传感器数据的优势，在面对复杂环境和多故障模式时，单一传感器方法往往难以做到准确和全面地检测电机的潜在故障，且容易受到噪声的干扰，导致误判或漏判。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">为了解决现有技术中传统的电机故障检测方法大多依赖于单一传感器的数据进行监测，无法充分利用多传感器数据的优势，在面对复杂环境和多故障模式时，单一传感器方法往往难以做到准确和全面地检测电机的潜在故障，且容易受到噪声的干扰，导致误判或漏判的技术问题，本发明提供了一种低空飞行器专用电机故障检测方法及系统。</div>
+<div class="description-paragraph" id="p0009" num="0006">本发明实施例提供的技术方案如下：</div>
+<div class="description-paragraph" id="p0010" num="0007">第一方面：</div>
+<div class="description-paragraph" id="p0011" num="0008">本发明实施例提供了一种低空飞行器专用电机故障检测方法，包括：</div>
+<div class="description-paragraph" id="p0012" num="0009">S1：获取待检测低空飞行器专用电机在工作状态下的多种传感器数据；</div>
+<div class="description-paragraph" id="p0013" num="0010">S2：根据各种传感器数据，对待检测低空飞行器专用电机进行初步检测，初步判断待检测低空飞行器专用电机是否处于故障状态；若是，进入S3，否则，返回S1；</div>
+<div class="description-paragraph" id="p0014" num="0011">S3：根据各种传感器数据，构建图数据结构；</div>
+<div class="description-paragraph" id="p0015" num="0012">S4：构建电机故障检测模型；</div>
+<div class="description-paragraph" id="p0016" num="0013">S5：将各种传感器数据和图数据结构输入至电机故障检测模型，对待检测低空飞行器专用电机进行精细检测，精细判断待检测低空飞行器专用电机是否处于故障状态；若是，输出待检测低空飞行器专用电机的故障类别，否则，返回S1。</div>
+<div class="description-paragraph" id="p0017" num="0014">第二方面：</div>
+<div class="description-paragraph" id="p0018" num="0015">本发明实施例提供了一种低空飞行器专用电机故障检测系统，包括：</div>
+<div class="description-paragraph" id="p0019" num="0016">处理器；</div>
+<div class="description-paragraph" id="p0020" num="0017">存储器，所述存储器上存储有计算机可读指令，所述计算机可读指令被所述处理器执行时，实现如第一方面所述的低空飞行器专用电机故障检测方法。</div>
+<div class="description-paragraph" id="p0021" num="0018">第三方面：</div>
+<div class="description-paragraph" id="p0022" num="0019">本发明实施例提供了一种计算机可读存储介质，其上存储有计算机程序，该程序被处理器执行时实现如第一方面所述的低空飞行器专用电机故障检测方法。</div>
+<div class="description-paragraph" id="p0023" num="0020">本发明实施例提供的技术方案带来的有益效果至少包括：</div>
+<div class="description-paragraph" id="p0024" num="0021">在本发明实施例中，通过根据各种传感器数据，构建图数据结构，并将各种传感器数据和图数据结构输入至电机故障检测模型，对待检测低空飞行器专用电机进行精细检测，不再依赖于单一传感器的数据进行监测，能够充分利用多传感器数据的优势，在面对复杂环境和多故障模式时，可以做到准确和全面地检测电机的潜在故障，且不容易受到噪声的干扰，降低了误判或漏判的现象发生。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0025">附图说明</div>
+<div class="description-paragraph" id="p0026" num="0022">为了更清楚地说明本发明实施例中的技术方案，下面将对实施例描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0027" num="0023">图1为本发明实施例提供的一种低空飞行器专用电机故障检测方法的流程示意图；</div>
+<div class="description-paragraph" id="p0028" num="0024">图2为本发明实施例提供的一种低空飞行器专用电机故障检测方法的结构示意图；</div>
+<div class="description-paragraph" id="p0029" num="0025">图3为本发明实施例提供的一种低空飞行器专用电机故障检测系统的结构示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0030">具体实施方式</div>
+<div class="description-paragraph" id="p0031" num="0026">下面结合附图，对本发明中的技术方案进行描述。</div>
+<div class="description-paragraph" id="p0032" num="0027">在本发明实施例中，“示例地”、“例如”等词用于表示作例子、例证或说明。本发明中被描述为“示例”的任何实施例或设计方案不应被解释为比其它实施例或设计方案更优选或更具优势。确切而言，使用示例的一词旨在以具体方式呈现概念。此外，在本发明实施例中，“和/或”所表达的含义可以是两者都有，或者可以是两者任选其一。</div>
+<div class="description-paragraph" id="p0033" num="0028">本发明实施例中，“图像”，“图片”有时可以混用，应当指出的是，在不强调其区别时，其所要表达的含义是一致的。“的(of)”，“相应的（corresponding，relevant）”和“对应的(corresponding)”有时可以混用，应当指出的是，在不强调其区别时，其所要表达的含义是一致的。</div>
+<div class="description-paragraph" id="p0034" num="0029">本发明实施例中，有时候下标如W<sub>1</sub>可能会被写为非下标的形式如W1，在不强调其区别时，其所要表达的含义是一致的。</div>
+<div class="description-paragraph" id="p0035" num="0030">为使本发明要解决的技术问题、技术方案和优点更加清楚，下面将结合附图及具体实施例进行详细描述。</div>
+<div class="description-paragraph" id="p0036" num="0031">参考说明书附图1，示出了本发明实施例提供的一种低空飞行器专用电机故障检测方法的流程示意图。</div>
+<div class="description-paragraph" id="p0037" num="0032">参考说明书附图2，示出了本发明实施例提供的一种低空飞行器专用电机故障检测方法的结构示意图。</div>
+<div class="description-paragraph" id="p0038" num="0033">本发明实施例提供了一种低空飞行器专用电机故障检测方法，该方法可由低空飞行器专用电机故障检测设备实现，该低空飞行器专用电机故障检测设备可以是终端或服务器。低空飞行器专用电机故障检测方法的处理流程可以包括如下的步骤：</div>
+<div class="description-paragraph" id="p0039" num="0034">S1：获取待检测低空飞行器专用电机在工作状态下的多种传感器数据。</div>
+<div class="description-paragraph" id="p0040" num="0035">可选地，传感器数据包括：多个时间采样点下的电机温度、电机转速、电机电流、电机电压、电机位置角度、电机振动以及电机扭矩。</div>
+<div class="description-paragraph" id="p0041" num="0036">需要说明的是，电机温度指的是电机内部或外部部件的温度，反映了电机的工作负荷和热损耗情况。</div>
+<div class="description-paragraph" id="p0042" num="0037">需要说明的是，电机转速指的是电机转子每分钟的旋转次数，反映了电机输出的运动速度。</div>
+<div class="description-paragraph" id="p0043" num="0038">需要说明的是，电机电流指的是电机运行时消耗的电流大小，反映了电机的负载情况和功率需求。</div>
+<div class="description-paragraph" id="p0044" num="0039">需要说明的是，电机电压指的是施加在电机上的电压大小，反映了电机的供电状态。</div>
+<div class="description-paragraph" id="p0045" num="0040">需要说明的是，电机位置角度指的是电机转子的当前位置，反映了电机在执行特定任务时的位置精度。</div>
+<div class="description-paragraph" id="p0046" num="0041">需要说明的是，电机振动指的是电机在运行过程中产生的振动幅度，反映了电机运行的平衡性。</div>
+<div class="description-paragraph" id="p0047" num="0042">需要说明的是，电机扭矩指的是电机输出的旋转力矩，反映了电机的工作能力和负载能力。</div>
+<div class="description-paragraph" id="p0048" num="0043">在一种可能的实施方式中，S1具体为：</div>
+<div class="description-paragraph" id="p0049" num="0044">通过温度传感器、转速传感器、电流传感器、电压传感器、绝对式光电编码器、振动传感器以及扭矩传感器，依次获取待检测低空飞行器专用电机在工作状态下的电机温度、电机转速、电机电流、电机电压、电机位置角度、电机振动以及电机扭矩。</div>
+<div class="description-paragraph" id="p0050" num="0045">具体地，通过温度传感器获取待检测低空飞行器专用电机在工作状态下的电机温度。通过电流传感器获取待检测低空飞行器专用电机在工作状态下的电机电流。通过电压传感器获取待检测低空飞行器专用电机在工作状态下的电机电压。通过绝对式光电编码器获取待检测低空飞行器专用电机在工作状态下的电机位置角度。通过振动传感器获取待检测低空飞行器专用电机在工作状态下的电机振动。通过扭矩传感器获取待检测低空飞行器专用电机在工作状态下的电机扭矩。</div>
+<div class="description-paragraph" id="p0051" num="0046">在本发明实施例中，通过多传感器数据采集的方式，能够全面、精准地监控电机的各项关键指标，提升故障诊断的准确性、可靠性和鲁棒性。在复杂环境下工作时，多传感器数据的融合能够有效地弥补单一传感器的不足，提供更全面的信息，有助于在故障发生前及时采取措施，避免设备损坏和停机，确保低空飞行器的安全性和稳定性。</div>
+<div class="description-paragraph" id="p0052" num="0047">S2：根据各种传感器数据，对待检测低空飞行器专用电机进行初步检测，初步判断待检测低空飞行器专用电机是否处于故障状态。若是，进入S3，否则，返回S1。</div>
+<div class="description-paragraph" id="p0053" num="0048">可选地，初步检测的过程包括两种可能的实施方式：一种是基于电机温度的统计方法，通过计算电机温度的均值和标准差来判断是否超过设定的温度阈值。另一种是基于MSET算法的状态估计方法，通过构建记忆矩阵并计算状态残差来判断电机是否处于故障状态。在实际应用过程中，可以根据具体需求选择其一。</div>
+<div class="description-paragraph" id="p0054" num="0049">需要说明的是，MSET（多元状态估计技术，Multivariate State EstimationTechnique）是一种基于多维时间序列数据的非线性分析方法，旨在通过对设备的正常运行数据进行建模，预测和估计系统在不同工作状态下的行为。MSET算法通过构建“记忆矩阵”来捕捉设备的正常运行特征，并利用这些特征来估算设备在实际运行中的状态。该方法通常应用于状态监测和故障检测，通过比较估算状态与实际状态的残差，来判断设备是否存在故障或异常。MSET算法具有较强的抗噪能力，能够处理复杂的非线性系统，并且能有效地识别出设备的潜在故障。</div>
+<div class="description-paragraph" id="p0055" num="0050">需要说明的是，记忆矩阵（Memory Matrix）是一种用于存储和表示系统历史状态数据的矩阵结构，通常用于多元状态估计（MSET）算法中。在记忆矩阵中，每一行表示系统在不同时间点下的一个传感器数据样本，每一列表示一个特定的传感器特征。通过将设备在正常工作状态下的历史数据组织成矩阵，记忆矩阵能够捕捉系统的动态行为和特征，为后续的状态估计和故障检测提供基础。记忆矩阵的作用是通过学习设备的正常运行模式，为设备状态的预测和异常检测提供参考，从而帮助准确地判断设备是否存在故障。</div>
+<div class="description-paragraph" id="p0056" num="0051">在本发明实施例中，通过采用两种不同的检测方式（电机温度统计方法和MSET算法），本发明能够提供更高的检测灵活性、准确性和鲁棒性。基于温度的统计方法简单且快速，适用于常规故障检测，而MSET算法则提供了一种综合的、多维数据的分析方法，能够应对复杂环境中的故障检测任务。两者相结合，能够在不同应用场景下有效识别故障、提高诊断精度，并减少误报，提高系统的稳定性和可靠性。</div>
+<div class="description-paragraph" id="p0057" num="0052">在其中一种可能的实施方式中，S2具体包括子步骤S201A至S204A：</div>
+<div class="description-paragraph" id="p0058" num="0053">S201A：根据电机温度，计算电机温度均值。</div>
+<div class="description-paragraph" id="p0059" num="0054">可选地，根据以下公式，计算电机温度均值：</div>
+<div class="description-paragraph" id="p0060" num="0055">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0061" num="0056">其中，<span class="patent-image-not-available"></span>表示电机温度均值，M表示时间采样点总数，T<sub>m</sub>表示第m个时间采样点下的电机温度。</div>
+<div class="description-paragraph" id="p0062" num="0057">S202A：根据电机温度均值，计算电机温度标准差。</div>
+<div class="description-paragraph" id="p0063" num="0058">可选地，根据以下公式，计算电机温度标准差：</div>
+<div class="description-paragraph" id="p0064" num="0059">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0065" num="0060">其中，σ<sub>T</sub>表示电机温度标准差。</div>
+<div class="description-paragraph" id="p0066" num="0061">S203A：根据电机温度均值和电机温度标准差，计算电机温度阈值。</div>
+<div class="description-paragraph" id="p0067" num="0062">可选地，根据以下公式，计算电机温度阈值：</div>
+<div class="description-paragraph" id="p0068" num="0063">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0069" num="0064">其中，T<sub>threshold</sub>表示电机温度阈值。</div>
+<div class="description-paragraph" id="p0070" num="0065">S204A：对待检测低空飞行器专用电机进行初步检测，初步判断当前电机温度是否大于或者等于电机温度阈值。若是，确定待检测低空飞行器专用电机处于故障状态。否则，确定待检测低空飞行器专用电机不处于故障状态。</div>
+<div class="description-paragraph" id="p0071" num="0066">在本发明实施例中，通过计算电机温度的均值和标准差，并结合设定的温度阈值，可以迅速判断电机是否处于异常温度状态，从而提前发现潜在的电机故障风险。该方法不仅简便直观，便于实现和部署，还能够自动化地进行故障判断，减少人工干预，降低人为错误的风险。通过实时监测电机温度，系统能够及时预警，确保低空飞行器的安全性和稳定性，并有效延长电机的使用寿命，降低维护成本。此方法特别适用于复杂环境下的温度异常检测，具有较强的适应性和鲁棒性，有助于保障设备的长期可靠运行。</div>
+<div class="description-paragraph" id="p0072" num="0067">在其中另一种可能的实施方式中，S2具体包括子步骤S201B至S207B：</div>
+<div class="description-paragraph" id="p0073" num="0068">S201B：通过MSET算法，构建基于各种传感器数据的记忆矩阵。</div>
+<div class="description-paragraph" id="p0074" num="0069">可选地，根据以下公式，构建基于各种传感器数据的记忆矩阵：</div>
+<div class="description-paragraph" id="p0075" num="0070">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0076" num="0071">其中，R表示记忆矩阵，r<sub>n</sub>(m)表示第n个传感器获取的第m个时间采样点下的传感器数据，其中，n=1,2,…,N，N表示传感器总数。</div>
+<div class="description-paragraph" id="p0077" num="0072">S202B：根据记忆矩阵，计算状态估计值。</div>
+<div class="description-paragraph" id="p0078" num="0073">可选地，根据以下公式，计算状态估计值：</div>
+<div class="description-paragraph" id="p0079" num="0074">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0080" num="0075">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0081" num="0076">其中，R<sub>est</sub>(m)表示第m个时间采样点下的状态估计值，<span class="patent-image-not-available"></span>表示非线性相似性运算符，R<sub>obs</sub>(m)表示第m个时间采样点下的状态实际值，<sup>T</sup>表示转置运算。</div>
+<div class="description-paragraph" id="p0082" num="0077">S203B：根据状态估计值，计算状态残差值。</div>
+<div class="description-paragraph" id="p0083" num="0078">可选地，根据以下公式，计算状态残差值：</div>
+<div class="description-paragraph" id="p0084" num="0079">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0085" num="0080">其中，E<sub>m</sub>表示第m个时间采样点下的状态残差值，dist( )表示欧几里得距离运算。</div>
+<div class="description-paragraph" id="p0086" num="0081">S204B：根据状态残差值，计算状态残差均值。</div>
+<div class="description-paragraph" id="p0087" num="0082">可选地，根据以下公式，计算状态残差均值：</div>
+<div class="description-paragraph" id="p0088" num="0083">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0089" num="0084">其中，<span class="patent-image-not-available"></span>表示状态残差均值。</div>
+<div class="description-paragraph" id="p0090" num="0085">S205B：根据状态残差均值，计算状态残差标准差。</div>
+<div class="description-paragraph" id="p0091" num="0086">可选地，根据以下公式，计算状态残差标准差：</div>
+<div class="description-paragraph" id="p0092" num="0087">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0093" num="0088">其中，σ<sub>E</sub>表示状态残差标准差。</div>
+<div class="description-paragraph" id="p0094" num="0089">S206B：根据状态残差均值和状态残差标准差，计算电机故障阈值。</div>
+<div class="description-paragraph" id="p0095" num="0090">可选地，根据以下公式，计算电机故障阈值：</div>
+<div class="description-paragraph" id="p0096" num="0091">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0097" num="0092">其中，E<sub>threshold</sub>表示电机故障阈值。</div>
+<div class="description-paragraph" id="p0098" num="0093">S207B：对待检测低空飞行器专用电机进行初步检测，初步判断当前状态残差值是否大于或者等于电机故障阈值。若是，确定待检测低空飞行器专用电机处于故障状态。否则，确定待检测低空飞行器专用电机不处于故障状态。</div>
+<div class="description-paragraph" id="p0099" num="0094">在本发明实施例中，采用MSET算法进行故障检测，通过构建基于多种传感器数据的记忆矩阵，结合状态估计和残差分析，能够精确地估算电机的正常工作状态，并及时识别偏离正常状态的故障或异常。该方法具有较强的抗噪能力，能够处理复杂的非线性系统，并且通过计算状态残差和设定故障阈值，提供早期预警，有效防止故障扩大。与传统的单一传感器方法相比，MSET算法通过综合多维数据，提升了故障检测的准确性和鲁棒性，适应复杂环境变化，提高了低空飞行器的运行安全性、系统可靠性及智能化水平，进一步减少了维护成本和停机时间。</div>
+<div class="description-paragraph" id="p0100" num="0095">S3：根据各种传感器数据，构建图数据结构。</div>
+<div class="description-paragraph" id="p0101" num="0096">需要说明的是，图数据结构（Graph Data Structure）是一种用于表示对象及其关系的数学结构，由节点（Vertex）和边（Edge）组成，其中节点代表个体对象，边则描述节点之间的关系或关联强度。与传统的线性或矩阵数据不同，图数据能够灵活建模复杂的非欧式空间关系，如社交网络、传感器网络、交通系统等。在图数据结构中，节点可以包含多维特征，边可以带有权重信息，用以量化节点间的相似性、距离或交互强度。通过单层图、多层图或超图（如超邻接矩阵）扩展，图数据结构能够在多粒度、多尺度上捕捉数据的局部与全局关系，成为处理复杂关联型数据的重要工具，广泛应用于图神经网络、知识图谱、结构化数据分析等领域。</div>
+<div class="description-paragraph" id="p0102" num="0097">在本发明实施例中，采用图数据结构能够全面提升多传感器数据处理的深度和灵活性，充分发挥图神经网络（GCN）等技术的优势，增强低空飞行器电机故障检测系统的准确性、鲁棒性和可扩展性，尤其在复杂环境和数据模式下表现出色。</div>
+<div class="description-paragraph" id="p0103" num="0098">在一种可能的实施方式中，S3具体包括子步骤S301至S303：</div>
+<div class="description-paragraph" id="p0104" num="0099">S301：分别构建多个基于单一传感器数据的单层图数据结构。</div>
+<div class="description-paragraph" id="p0105" num="0100">可选地，根据以下公式，分别构建多个基于单一传感器数据的单层图数据结构：</div>
+<div class="description-paragraph" id="p0106" num="0101">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0107" num="0102">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0108" num="0103">其中，<span class="patent-image-not-available"></span>表示第n个传感器获取的第m个时间采样点与第<span class="patent-image-not-available"></span>个时间采样点下的传感器数据之间的余弦相似度即单层图数据结构中的边的权重，cos( )表示余弦函数，F( )表示傅里叶变换，<span class="patent-image-not-available"></span>表示第n个传感器获取的第<span class="patent-image-not-available"></span>个时间采样点下的传感器数据，ε<sub>n</sub>表示基于第n个传感器获取的传感器数据构建的单层图数据结构中的边的阈值，num( )表示边的数量。</div>
+<div class="description-paragraph" id="p0109" num="0104">需要说明的是，本领域技术人员可以根据实际需要设置单层图数据结构中的边的阈值的大小，本发明在此不做限定。</div>
+<div class="description-paragraph" id="p0110" num="0105">S302：构建基于所有传感器数据结合的多层图数据结构。</div>
+<div class="description-paragraph" id="p0111" num="0106">可选地，根据以下公式，构建基于所有传感器数据结合的多层图数据结构：</div>
+<div class="description-paragraph" id="p0112" num="0107">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0113" num="0108">其中，<span class="patent-image-not-available"></span>表示第n个传感器与第<span class="patent-image-not-available"></span>个传感器获取的第m个时间采样点下的传感器数据之间的余弦相似度即多层图数据结构中的边的权重，<span class="patent-image-not-available"></span>表示第<span class="patent-image-not-available"></span>传感器获取的第m个时间采样点下的传感器数据，T表示传感器位置拓扑。</div>
+<div class="description-paragraph" id="p0114" num="0109">S303：根据各个单层图数据结构和多层图数据结构，构建图数据结构。</div>
+<div class="description-paragraph" id="p0115" num="0110">可选地，图数据结构具体为：</div>
+<div class="description-paragraph" id="p0116" num="0111">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0117" num="0112">其中，a表示超邻接矩阵即图数据结构。</div>
+<div class="description-paragraph" id="p0118" num="0113">在本发明实施例中，通过构建基于单一传感器数据的单层图和基于多传感器数据融合的多层图，并形成超邻接矩阵的图数据结构，能够全面捕捉传感器数据的时间演化特性与多源关联信息。该方法有效增强了数据的结构化表征能力，提升了故障特征提取的准确性与鲁棒性，能够更敏感地识别潜在异常。同时，图数据结构天然适配图卷积网络处理，促进特征信息在节点间高效传播，显著提升故障检测模型的性能。此外，该结构具有良好的可扩展性，便于适应不同传感器组合和工况变化，提升了系统的普适性与实用性。</div>
+<div class="description-paragraph" id="p0119" num="0114">S4：构建电机故障检测模型。</div>
+<div class="description-paragraph" id="p0120" num="0115">可选地，S4具体为：结合一维卷积神经网络和图卷积网络，构建电机故障检测模型。</div>
+<div class="description-paragraph" id="p0121" num="0116">需要说明的是，一维卷积神经网络（1D-CNN，1-Dimensional ConvolutionalNeural Network）是一种针对一维数据（如时间序列、语音信号、传感器数据等）设计的深度神经网络。其核心思想是通过在时间轴上滑动卷积核（滤波器），提取数据中的局部特征和模式。1D-CNN能够有效捕捉信号的局部依赖性与周期性变化，具有参数共享、特征自动提取、计算高效等优点，广泛应用于时序分析、故障检测、金融预测等领域。相比传统手工特征工程，1D-CNN能够通过端到端学习方式自动从原始数据中提取有用特征，提升模型性能和泛化能力。</div>
+<div class="description-paragraph" id="p0122" num="0117">需要说明的是，图卷积网络（GCN，Graph Convolutional Network）是一种针对图结构数据进行深度学习的神经网络。与传统神经网络处理规则网格数据（如图像、时间序列）不同，GCN能够直接在图中节点及其邻居结构上定义卷积操作，捕捉节点间复杂的关系和拓扑信息。通过在节点及其邻居间聚合、更新特征，GCN可以有效提取局部与全局结构特征，适用于社交网络分析、分子结构预测、交通流量预测等任务。在电机故障检测等场景中，GCN能够充分利用多传感器数据之间的内在关联性，提升检测模型对复杂关系的建模能力和鲁棒性。</div>
+<div class="description-paragraph" id="p0123" num="0118">在本发明实施例中，通过结合一维卷积神经网络和图卷积网络，实现了时间序列特征与结构化关系特征的深度融合，不仅提升了低空飞行器专用电机故障检测的准确性、鲁棒性与实时性，还增强了模型的适应性和扩展能力，具有显著的工程应用价值和产业推广潜力。</div>
+<div class="description-paragraph" id="p0124" num="0119">S5：将各种传感器数据和图数据结构输入至电机故障检测模型，对待检测低空飞行器专用电机进行精细检测，精细判断待检测低空飞行器专用电机是否处于故障状态。若是，输出待检测低空飞行器专用电机的故障类别，否则，返回S1。</div>
+<div class="description-paragraph" id="p0125" num="0120">可选地，故障类别包括无故障、电机过热故障、电机电流异常故障、电机电压异常故障以及电机振动异常故障。</div>
+<div class="description-paragraph" id="p0126" num="0121">在本发明实施例中，通过将传感器数据和图数据结构共同输入深度学习模型进行精细故障检测和细分分类，不仅大幅提升了故障检测的准确率和实时性，还实现了故障类型的智能识别和定位，支持动态监测与闭环反馈，显著增强了低空飞行器电机系统的安全性、可靠性与运维智能化水平，具有重要的工程应用价值和商业潜力。</div>
+<div class="description-paragraph" id="p0127" num="0122">在一种可能的实施方式中，S5中的将各种传感器数据和图数据结构输入至电机故障检测模型，对待检测低空飞行器专用电机进行精细检测具体包括子步骤S501至S510：</div>
+<div class="description-paragraph" id="p0128" num="0123">S501：将各种传感器数据输入至一维卷积神经网络，输出第一特征向量。</div>
+<div class="description-paragraph" id="p0129" num="0124">S502：将图数据结构输入至图卷积网络，输出第二特征向量。</div>
+<div class="description-paragraph" id="p0130" num="0125">S503：将第一特征向量和第二特征向量进行拼接，得到综合特征向量。</div>
+<div class="description-paragraph" id="p0131" num="0126">可选地，综合特征向量具体为：</div>
+<div class="description-paragraph" id="p0132" num="0127">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0133" num="0128">其中，<span class="patent-image-not-available"></span>表示综合特征向量，<span class="patent-image-not-available"></span>表示实数集，B表示传感器数据总数，OC表示一维卷积神经网络的通道数，M表示特征维度，<span class="patent-image-not-available"></span>表示第一特征向量，<span class="patent-image-not-available"></span>表示第二特征向量。</div>
+<div class="description-paragraph" id="p0134" num="0129">S504：根据综合特征向量，通过前馈神经网络，计算通道注意力值。</div>
+<div class="description-paragraph" id="p0135" num="0130">需要说明的是，前馈神经网络（FNN）是一种最基础且广泛应用的人工神经网络结构，信息在网络中单向流动，从输入层经过一个或多个隐藏层，最终到达输出层，中间不存在反馈或循环连接。每一层由若干神经元组成，神经元通过加权求和和非线性激活函数处理输入信息，实现数据的逐层特征变换和抽象。FNN具有结构简单、易于训练、适合处理静态输入数据等特点，广泛应用于分类、回归、特征提取等任务中。通过增加网络层数和节点数，前馈神经网络能够逼近任意复杂的函数关系，具备强大的拟合能力和表达能力，是现代深度学习模型的基本构建模块之一。</div>
+<div class="description-paragraph" id="p0136" num="0131">可选地，根据以下公式，通过前馈神经网络，计算通道注意力值：</div>
+<div class="description-paragraph" id="p0137" num="0132">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0138" num="0133">其中，e<sub>c</sub>表示神经网络中第c个通道的通道注意力值，LeakyReLU( )表示LeakyReLU激活函数，<span class="patent-image-not-available"></span>表示前馈神经网络的权重矩阵，<span class="patent-image-not-available"></span>表示神经网络中第c个通道的综合特征向量。</div>
+<div class="description-paragraph" id="p0139" num="0134">S505：对注意力得分进行归一化处理，得到通道注意力系数。</div>
+<div class="description-paragraph" id="p0140" num="0135">可选地，根据以下公式，对注意力得分进行归一化处理，得到通道注意力系数：</div>
+<div class="description-paragraph" id="p0141" num="0136">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0142" num="0137">其中，α<sub>c</sub>表示神经网络中第c个通道的通道注意力系数，softmax( )表示softmax激活函数，exp( )表示指数函数。</div>
+<div class="description-paragraph" id="p0143" num="0138">S506：根据通道注意力系数，对综合特征向量进行加权融合，得到第一融合特征向量。</div>
+<div class="description-paragraph" id="p0144" num="0139">可选地，根据以下公式，对综合特征向量进行加权融合，得到第一融合特征向量：</div>
+<div class="description-paragraph" id="p0145" num="0140">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0146" num="0141">其中，<span class="patent-image-not-available"></span>表示第一融合特征向量。</div>
+<div class="description-paragraph" id="p0147" num="0142">S507：根据第一融合特征向量，通过通道注意力机制，确定第二融合特征向量。</div>
+<div class="description-paragraph" id="p0148" num="0143">需要说明的是，通道注意力机制（Channel Attention Mechanism）是一种提升神经网络特征表达能力的注意力机制，旨在根据不同通道（即特征图）对最终任务的重要性进行加权调整。它通过学习每个通道的重要性系数，动态增强关键特征、抑制冗余或无关特征，使模型能够自适应地关注更有意义的信息。典型实现方式包括全局平均池化、全连接层压缩与激活、再扩展生成通道权重系数。通道注意力机制可以有效提高网络对关键信息的感知能力，增强模型的表达性与判别力，广泛应用于图像分类、目标检测、时间序列分析等深度学习任务中。</div>
+<div class="description-paragraph" id="p0149" num="0144">可选地，根据以下公式，通过通道注意力机制，确定第二融合特征向量：</div>
+<div class="description-paragraph" id="p0150" num="0145">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0151" num="0146">其中，<span class="patent-image-not-available"></span>表示第二融合特征向量，CAM( 通道注意力机制。</div>
+<div class="description-paragraph" id="p0152" num="0147">S508：将第一融合特征向量输入至图卷积网络，输出各个故障类别的第一初始预测概率。</div>
+<div class="description-paragraph" id="p0153" num="0148">S509：将第二融合特征向量输入至一维卷积神经网络，输出各个故障类别的第二初始预测概率。</div>
+<div class="description-paragraph" id="p0154" num="0149">S510：根据各个故障类别的第一初始预测概率和第二初始预测概率，计算各个故障类别的最终预测概率，并选取最终预测概率最高的故障类别输出，完成对待检测低空飞行器专用电机的精细检测。</div>
+<div class="description-paragraph" id="p0155" num="0150">在本发明实施例中，结合一维卷积神经网络与图卷积网络构建故障检测模型，利用前馈神经网络和通道注意力机制进行特征加权优化。通过时序特征与结构特征的深度融合，提升故障检测的准确性与鲁棒性。双路径预测与信息熵加权融合策略增强了模型的风险感知与可靠性。动态监测机制支持实时故障预警，有效降低误报和漏报。整体方法具备自适应性强、可扩展性好、计算高效等优点，能够实现低空飞行器电机故障的精准识别和分类，显著提升系统的安全性、稳定性及智能运维水平。</div>
+<div class="description-paragraph" id="p0156" num="0151">在一种可能的实施方式中，S510具体包括子步骤S5101至S5106：</div>
+<div class="description-paragraph" id="p0157" num="0152">S5101：将各个故障类别的第一初始预测概率和第二初始预测概率进行融合，得到融合初始预测概率。</div>
+<div class="description-paragraph" id="p0158" num="0153">可选地，融合初始预测概率具体为：</div>
+<div class="description-paragraph" id="p0159" num="0154">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0160" num="0155">其中，P<sub>mn</sub>表示第n个传感器获取的第m个时间采样点下的传感器数据的融合初始预测概率，<span class="patent-image-not-available"></span>表示一维卷积神经网络输出的第n个传感器获取的第m个时间采样点下的传感器数据的第二初始预测概率，<span class="patent-image-not-available"></span>表示图卷积神经网络输出的第n个传感器获取的第m个时间采样点下的传感器数据的第一初始预测概率。</div>
+<div class="description-paragraph" id="p0161" num="0156">S5102：对融合初始预测概率进行归一化处理。</div>
+<div class="description-paragraph" id="p0162" num="0157">可选地，根据以下公式，对融合初始预测概率进行归一化处理：</div>
+<div class="description-paragraph" id="p0163" num="0158">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0164" num="0159">其中，<span class="patent-image-not-available"></span>表示第n个传感器获取的第m个时间采样点下的传感器数据属于第b个故障类别的融合初始预测概率，P<sub>mnb</sub>表示第n个传感器获取的第m个时间采样点下的传感器数据属于第b个故障类别的融合初始预测概率，<span class="patent-image-not-available"></span>表示故障类别总数。</div>
+<div class="description-paragraph" id="p0165" num="0160">S5103：根据归一化处理后的融合初始预测概率，计算信息熵。</div>
+<div class="description-paragraph" id="p0166" num="0161">可选地，根据以下公式，计算信息熵：</div>
+<div class="description-paragraph" id="p0167" num="0162">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0168" num="0163">其中，<span class="patent-image-not-available"></span>表示归一化处理后的第n个传感器获取的第m个时间采样点下的传感器数据的信息熵。</div>
+<div class="description-paragraph" id="p0169" num="0164">S5104：对信息熵进行归一化处理，得到故障风险权重。</div>
+<div class="description-paragraph" id="p0170" num="0165">可选地，根据以下公式，对融合初始预测概率进行归一化处理：</div>
+<div class="description-paragraph" id="p0171" num="0166">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0172" num="0167">其中，ω<sub>mn</sub>表示归一化处理后的第n个传感器获取的第m个时间采样点下的传感器数据的故障风险权重。</div>
+<div class="description-paragraph" id="p0173" num="0168">S5105：根据故障风险权重和归一化处理后的融合初始预测概率，计算各个故障类别的最终预测概率。</div>
+<div class="description-paragraph" id="p0174" num="0169">可选地，根据以下公式，计算各个故障类别的最终预测概率：</div>
+<div class="description-paragraph" id="p0175" num="0170">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0176" num="0171">其中，<span class="patent-image-not-available"></span>表示第m个时间采样点下属于第b个故障类别的最终预测概率。</div>
+<div class="description-paragraph" id="p0177" num="0172">S5106：选取最终预测概率最高的故障类别输出，完成对待检测低空飞行器专用电机的精细检测。</div>
+<div class="description-paragraph" id="p0178" num="0173">在本发明实施例中，通过融合一维卷积神经网络与图卷积网络的初始预测概率，并引入基于信息熵的动态加权策略，能够综合不同模型的特征提取优势，提升故障检测的准确性与稳定性。信息熵用于感知预测不确定性，赋予更确定的预测结果更高权重，从而增强系统的鲁棒性与风险预警能力。该方法不仅提升了最终预测概率的可信度和判别性，还具备良好的自适应性和扩展性，显著提高低空飞行器电机健康监测系统的智能化水平与安全保障能力。</div>
+<div class="description-paragraph" id="p0179" num="0174">参考说明书附图3，示出了本发明提供的一种低空飞行器专用电机故障检测系统的结构示意图。</div>
+<div class="description-paragraph" id="p0180" num="0175">本发明还提供一种低空飞行器专用电机故障检测系统20，应用于上述的低空飞行器专用电机故障检测方法，包括：</div>
+<div class="description-paragraph" id="p0181" num="0176">处理器201；</div>
+<div class="description-paragraph" id="p0182" num="0177">存储器202，所述存储器202上存储有计算机可读指令，所述计算机可读指令被所述处理器201执行时，实现如方法实施例所述的低空飞行器专用电机故障检测方法。</div>
+<div class="description-paragraph" id="p0183" num="0178">本发明提供的低空飞行器专用电机故障检测系统20能够执行上述的低空飞行器专用电机故障检测方法，并实现相同或相似的技术效果，为避免重复，本发明不再赘述。</div>
+<div class="description-paragraph" id="p0184" num="0179">本发明实施例还提供一种计算机可读存储介质，其上存储有计算机程序，该程序被处理器执行时实现如方法实施例所述的低空飞行器专用电机故障检测方法。</div>
+<div class="description-paragraph" id="p0185" num="0180">本发明提供的一种计算机可读存储介质可以实现上述方法实施例的低空飞行器专用电机故障检测方法的步骤和效果，为避免重复，本发明不再赘述。</div>
+<div class="description-paragraph" id="p0186" num="0181">本发明实施例提供的技术方案带来的有益效果至少包括：</div>
+<div class="description-paragraph" id="p0187" num="0182">在本发明实施例中，通过根据各种传感器数据，构建图数据结构，并将各种传感器数据和图数据结构输入至电机故障检测模型，对待检测低空飞行器专用电机进行精细检测，不再依赖于单一传感器的数据进行监测，能够充分利用多传感器数据的优势，在面对复杂环境和多故障模式时，可以做到准确和全面地检测电机的潜在故障，且不容易受到噪声的干扰，降低了误判或漏判的现象发生。</div>
+<div class="description-paragraph" id="p0188" num="0183">应理解，在本发明实施例中的处理器可以是中央处理单元（central processingunit，CPU），该处理器还可以是其他通用处理器、数字信号处理器（digital signalprocessor，DSP）、专用集成电路（application specific integrated circuit，ASIC）、现成可编程门阵列（field programmable gate array，FPGA）或者其他可编程逻辑器件、分立门或者晶体管逻辑器件、分立硬件组件等。通用处理器可以是微处理器或者该处理器也可以是任何常规的处理器等。</div>
+<div class="description-paragraph" id="p0189" num="0184">还应理解，本发明实施例中的存储器可以是易失性存储器或非易失性存储器，或可包括易失性和非易失性存储器两者。其中，非易失性存储器可以是只读存储器（read-only memory，ROM）、可编程只读存储器（programmable ROM，PROM）、可擦除可编程只读存储器（erasable PROM，EPROM）、电可擦除可编程只读存储器（electrically EPROM，EEPROM）或闪存。易失性存储器可以是随机存取存储器（random access memory，RAM），其用作外部高速缓存。通过示例性但不是限制性说明，许多形式的随机存取存储器（random accessmemory，RAM）可用，例如静态随机存取存储器（static RAM，SRAM）、动态随机存取存储器（DRAM）、同步动态随机存取存储器（synchronous DRAM，SDRAM）、双倍数据速率同步动态随机存取存储器（double data rate SDRAM，DDR SDRAM）、增强型同步动态随机存取存储器（enhanced SDRAM，ESDRAM）、同步连接动态随机存取存储器（synchlink DRAM，SLDRAM）和直接内存总线随机存取存储器（direct rambus RAM，DR RAM）。</div>
+<div class="description-paragraph" id="p0190" num="0185">上述实施例，可以全部或部分地通过软件、硬件（如电路）、固件或其他任意组合来实现。当使用软件实现时，上述实施例可以全部或部分地以计算机程序产品的形式实现。所述计算机程序产品包括一个或多个计算机指令或计算机程序。在计算机上加载或执行所述计算机指令或计算机程序时，全部或部分地产生按照本发明实施例所述的流程或功能。所述计算机可以为通用计算机、专用计算机、计算机网络、或者其他可编程装置。所述计算机指令可以存储在计算机可读存储介质中，或者从一个计算机可读存储介质向另一个计算机可读存储介质传输，例如，所述计算机指令可以从一个网站站点、计算机、服务器或数据中心通过有线（例如红外、无线、微波等）方式向另一个网站站点、计算机、服务器或数据中心进行传输。所述计算机可读存储介质可以是计算机能够存取的任何可用介质或者是包含一个或多个可用介质集合的服务器、数据中心等数据存储设备。所述可用介质可以是磁性介质（例如，软盘、硬盘、磁带）、光介质（例如，DVD）、或者半导体介质。半导体介质可以是固态硬盘。</div>
+<div class="description-paragraph" id="p0191" num="0186">应理解，本文中术语“和/或”，仅仅是一种描述关联对象的关联关系，表示可以存在三种关系，例如，A和/或B，可以表示：单独存在A，同时存在A和B，单独存在B这三种情况，其中A,B可以是单数或者复数。另外，本文中字符“/”，一般表示前后关联对象是一种“或”的关系，但也可能表示的是一种“和/或”的关系，具体可参考前后文进行理解。</div>
+<div class="description-paragraph" id="p0192" num="0187">本发明中，“至少一个”是指一个或者多个，“多个”是指两个或两个以上。“以下至少一项(个)”或其类似表达，是指的这些项中的任意组合，包括单项（个）或复数项（个）的任意组合。例如，a,b,或c中的至少一项（个），可以表示：a,b,c,a-b,a-c,b-c,或a-b-c，其中a,b,c可以是单个，也可以是多个。</div>
+<div class="description-paragraph" id="p0193" num="0188">应理解，在本发明的各种实施例中，上述各过程的序号的大小并不意味着执行顺序的先后，各过程的执行顺序应以其功能和内在逻辑确定，而不应对本发明实施例的实施过程构成任何限定。</div>
+<div class="description-paragraph" id="p0194" num="0189">本领域普通技术人员可以意识到，结合本文中所公开的实施例描述的各示例的单元及算法步骤，能够以电子硬件、或者计算机软件和电子硬件的结合来实现。这些功能究竟以硬件还是软件方式来执行，取决于技术方案的特定应用和设计约束条件。专业技术人员可以对每个特定的应用来使用不同方法来实现所描述的功能，但是这种实现不应认为超出本发明的范围。</div>
+<div class="description-paragraph" id="p0195" num="0190">所属领域的技术人员可以清楚地了解到，为描述的方便和简洁，上述描述的设备、装置和单元的具体工作过程，可以参考前述方法实施例中的对应过程，在此不再赘述。</div>
+<div class="description-paragraph" id="p0196" num="0191">在本发明所提供的几个实施例中，应该理解到，所揭露的设备、装置和方法，可以通过其它的方式实现。例如，以上所描述的装置实施例仅仅是示意性的，例如，所述单元的划分，仅仅为一种逻辑功能划分，实际实现时可以有另外的划分方式，例如多个单元或组件可以结合或者可以集成到另一个设备，或一些特征可以忽略，或不执行。另一点，所显示或讨论的相互之间的耦合或直接耦合或通信连接可以是通过一些接口，装置或单元的间接耦合或通信连接，可以是电性，机械或其它的形式。</div>
+<div class="description-paragraph" id="p0197" num="0192">所述作为分离部件说明的单元可以是或者也可以不是物理上分开的，作为单元显示的部件可以是或者也可以不是物理单元，即可以位于一个地方，或者也可以分布到多个网络单元上。可以根据实际的需要选择其中的部分或者全部单元来实现本实施例方案的目的。</div>
+<div class="description-paragraph" id="p0198" num="0193">另外，在本发明各个实施例中的各功能单元可以集成在一个处理单元中，也可以是各个单元单独物理存在，也可以两个或两个以上单元集成在一个单元中。</div>
+<div class="description-paragraph" id="p0199" num="0194">所述功能如果以软件功能单元的形式实现并作为独立的产品销售或使用时，可以存储在一个计算机可读取存储介质中。基于这样的理解，本发明的技术方案本质上或者说对现有技术做出贡献的部分或者该技术方案的部分可以以软件产品的形式体现出来，该计算机软件产品存储在一个存储介质中，包括若干指令用以使得一台计算机设备（可以是个人计算机，服务器，或者网络设备等）执行本发明各个实施例所述方法的全部或部分步骤。而前述的存储介质包括：U盘、移动硬盘、只读存储器（read-only memory，ROM）、随机存取存储器（random access memory，RAM）、磁碟或者光盘等各种可以存储程序代码的介质。</div>
+<div class="description-paragraph" id="p0200" num="0195">以上所述，仅为本发明的具体实施方式，但本发明的保护范围并不局限于此，任何熟悉本技术领域的技术人员在本发明揭露的技术范围内，可轻易想到变化或替换，都应涵盖在本发明的保护范围之内。因此，本发明的保护范围应以所述权利要求的保护范围为准。</div>
+<div class="description-paragraph" id="p0201" num="0196">有以下几点需要说明：</div>
+<div class="description-paragraph" id="p0202" num="0197">（1）本发明实施例附图只涉及到与本发明实施例涉及到的结构，其他结构可参考通常设计。</div>
+<div class="description-paragraph" id="p0203" num="0198">（2）为了清晰起见，在用于描述本发明的实施例的附图中，层或区域的厚度被放大或缩小，即这些附图并非按照实际的比例绘制。可以理解，当诸如层、膜、区域或基板之类的元件被称作位于另一元件“上”或“下”时，该元件可以“直接”位于另一元件“上”或“下”或者可以存在中间元件。</div>
+<div class="description-paragraph" id="p0204" num="0199">（3）在不冲突的情况下，本发明的实施例及实施例中的特征可以相互组合以得到新的实施例。</div>
+<div class="description-paragraph" id="p0205" num="0200">以上，仅为本发明的具体实施方式，但本发明的保护范围并不局限于此，本发明的保护范围应以权利要求的保护范围为准。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

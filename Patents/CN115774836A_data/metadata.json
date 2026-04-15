@@ -1,0 +1,54 @@
+{
+    "patent_id": "CN115774836A",
+    "title": "CN115774836A - 一种低空载人飞行器准确轨迹绘制方法、装置及介质 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Zhejiang Lab",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN115774836A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN105589471A (zh) *",
+            "Priority Date": "2016-01-22",
+            "Publication Date": "2016-05-18",
+            "Assignee": "深圳市为有视讯有限公司",
+            "Title": "无人机飞行轨迹绘制方法、装置以及系统",
+            "Link": "https://patents.google.com/patent/CN105589471A/zh"
+        },
+        {
+            "Publication Number": "CN107144280A (zh) *",
+            "Priority Date": "2017-05-10",
+            "Publication Date": "2017-09-08",
+            "Assignee": "深圳市沃特沃德股份有限公司",
+            "Title": "识别定位点的方法和装置",
+            "Link": "https://patents.google.com/patent/CN107144280A/zh"
+        },
+        {
+            "Publication Number": "US20210295714A1 (en) *",
+            "Priority Date": "2018-09-30",
+            "Publication Date": "2021-09-23",
+            "Assignee": "Moutong Science And Technology Co., Ltd",
+            "Title": "Methods and apparatuses of generating a unmanned aerial vehicle migration trajectory, electronic devices and storage mediums",
+            "Link": "https://patents.google.com/patent/US20210295714A1/en"
+        },
+        {
+            "Publication Number": "CN111522035A (zh) *",
+            "Priority Date": "2020-06-04",
+            "Publication Date": "2020-08-11",
+            "Assignee": "深圳市华德安科技有限公司",
+            "Title": "定位轨迹的生成方法、设备及可读存储介质",
+            "Link": "https://patents.google.com/patent/CN111522035A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN117589173A (zh) *",
+            "Priority Date": "2023-11-21",
+            "Publication Date": "2024-02-23",
+            "Assignee": "中航信移动科技有限公司",
+            "Title": "一种飞行轨迹绘制方法、电子设备及存储介质",
+            "Link": "https://patents.google.com/patent/CN117589173A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:30:22"
+}

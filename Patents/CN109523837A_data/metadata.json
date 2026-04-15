@@ -1,0 +1,142 @@
+{
+    "patent_id": "CN109523837A",
+    "title": "CN109523837A - 一种低空飞行器安全管控系统及方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Hunan Yuzheng Intelligent Technology Co Ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN109523837A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN101156189A (zh) *",
+            "Priority Date": "2005-04-04",
+            "Publication Date": "2008-04-02",
+            "Assignee": "法国空中巴士公司",
+            "Title": "用于辅助机场内飞机地面导航的方法和装置",
+            "Link": "https://patents.google.com/patent/CN101156189A/zh"
+        },
+        {
+            "Publication Number": "CN104932525A (zh) *",
+            "Priority Date": "2015-05-28",
+            "Publication Date": "2015-09-23",
+            "Assignee": "深圳一电科技有限公司",
+            "Title": "无人机的控制方法、装置、地面控制系统及无人机",
+            "Link": "https://patents.google.com/patent/CN104932525A/zh"
+        },
+        {
+            "Publication Number": "CN105722031A (zh) *",
+            "Priority Date": "2016-03-30",
+            "Publication Date": "2016-06-29",
+            "Assignee": "冯基洲",
+            "Title": "无人机",
+            "Link": "https://patents.google.com/patent/CN105722031A/zh"
+        },
+        {
+            "Publication Number": "CN105913693A (zh) *",
+            "Priority Date": "2016-06-06",
+            "Publication Date": "2016-08-31",
+            "Assignee": "北京威胜通达科技有限公司",
+            "Title": "一种飞行安全管控服务的方法",
+            "Link": "https://patents.google.com/patent/CN105913693A/zh"
+        },
+        {
+            "Publication Number": "CN106054909A (zh) *",
+            "Priority Date": "2016-06-28",
+            "Publication Date": "2016-10-26",
+            "Assignee": "江苏中科院智能科学技术应用研究院",
+            "Title": "一种适用小型无人机的飞控设备",
+            "Link": "https://patents.google.com/patent/CN106054909A/zh"
+        },
+        {
+            "Publication Number": "CN106297417A (zh) *",
+            "Priority Date": "2016-09-27",
+            "Publication Date": "2017-01-04",
+            "Assignee": "南京航空航天大学",
+            "Title": "一种无人机飞行服务与监管系统及方法",
+            "Link": "https://patents.google.com/patent/CN106297417A/zh"
+        },
+        {
+            "Publication Number": "CN106781705A (zh) *",
+            "Priority Date": "2016-12-13",
+            "Publication Date": "2017-05-31",
+            "Assignee": "胡良",
+            "Title": "一种无人机预警管控方法及系统",
+            "Link": "https://patents.google.com/patent/CN106781705A/zh"
+        },
+        {
+            "Publication Number": "CN106710315A (zh) *",
+            "Priority Date": "2016-12-30",
+            "Publication Date": "2017-05-24",
+            "Assignee": "广州激速智能航空科技有限公司",
+            "Title": "行业无人机管控系统及方法",
+            "Link": "https://patents.google.com/patent/CN106710315A/zh"
+        },
+        {
+            "Publication Number": "CN106898161A (zh) *",
+            "Priority Date": "2017-02-28",
+            "Publication Date": "2017-06-27",
+            "Assignee": "农芯科技（北京）有限责任公司",
+            "Title": "一种飞行器辅助驾驶系统和方法",
+            "Link": "https://patents.google.com/patent/CN106898161A/zh"
+        },
+        {
+            "Publication Number": "WO2018157310A1 (zh) *",
+            "Priority Date": "2017-02-28",
+            "Publication Date": "2018-09-07",
+            "Assignee": "深圳市大疆创新科技有限公司",
+            "Title": "控制无人飞行器飞行的方法和设备、限飞区生成方法和设备",
+            "Link": "https://patents.google.com/patent/WO2018157310A1/zh"
+        },
+        {
+            "Publication Number": "CN209460949U (zh) *",
+            "Priority Date": "2018-12-29",
+            "Publication Date": "2019-10-01",
+            "Assignee": "湖南宇正智能科技有限公司",
+            "Title": "一种低空飞行器安全管控系统",
+            "Link": "https://patents.google.com/patent/CN209460949U/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN112648992A (zh) *",
+            "Priority Date": "2020-03-18",
+            "Publication Date": "2021-04-13",
+            "Assignee": "鉴真防务技术(上海)有限公司",
+            "Title": "基于云平台校验无人机飞行态势定位方法及其定位系统",
+            "Link": "https://patents.google.com/patent/CN112648992A/zh"
+        },
+        {
+            "Publication Number": "CN111341155A (zh) *",
+            "Priority Date": "2020-03-20",
+            "Publication Date": "2020-06-26",
+            "Assignee": "中国人民解放军空军研究院战略预警研究所",
+            "Title": "飞行情报系统间航线传输与处理系统",
+            "Link": "https://patents.google.com/patent/CN111341155A/zh"
+        },
+        {
+            "Publication Number": "CN111341155B (zh) *",
+            "Priority Date": "2020-03-20",
+            "Publication Date": "2021-08-17",
+            "Assignee": "中国人民解放军空军研究院战略预警研究所",
+            "Title": "飞行情报系统间航线传输与处理系统",
+            "Link": "https://patents.google.com/patent/CN111341155B/zh"
+        },
+        {
+            "Publication Number": "CN114489141A (zh) *",
+            "Priority Date": "2022-02-16",
+            "Publication Date": "2022-05-13",
+            "Assignee": "广东汇天航空航天科技有限公司",
+            "Title": "一种控制方法、装置、飞行器和介质",
+            "Link": "https://patents.google.com/patent/CN114489141A/zh"
+        },
+        {
+            "Publication Number": "CN119471727A (zh) *",
+            "Priority Date": "2025-01-15",
+            "Publication Date": "2025-02-18",
+            "Assignee": "北京航空航天大学",
+            "Title": "内置三维电子围栏的无人机卫星导航芯片及其工作方法",
+            "Link": "https://patents.google.com/patent/CN119471727A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:34:24"
+}

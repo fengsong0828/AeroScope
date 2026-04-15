@@ -1,0 +1,37 @@
+{
+    "patent_id": "CN102088569B",
+    "title": "CN102088569B - 低空无人飞行器序列图像拼接方法和系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Capital Normal University",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN102088569B/zh",
+    "citations": [
+        {
+            "Publication Number": "CN101556692A (zh) *",
+            "Priority Date": "2008-04-09",
+            "Publication Date": "2009-10-14",
+            "Assignee": "西安盛泽电子有限公司",
+            "Title": "基于特征点邻域伪Zernike矩的图像拼接方法",
+            "Link": "https://patents.google.com/patent/CN101556692A/zh"
+        },
+        {
+            "Publication Number": "CN101567051A (zh) *",
+            "Priority Date": "2009-06-03",
+            "Publication Date": "2009-10-28",
+            "Assignee": "复旦大学",
+            "Title": "一种基于特征点的图像配准方法",
+            "Link": "https://patents.google.com/patent/CN101567051A/zh"
+        },
+        {
+            "Publication Number": "CN101621634A (zh) *",
+            "Priority Date": "2009-07-24",
+            "Publication Date": "2010-01-06",
+            "Assignee": "北京工业大学",
+            "Title": "动态前景分离的大幅面视频拼接方法",
+            "Link": "https://patents.google.com/patent/CN101621634A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:19:59"
+}

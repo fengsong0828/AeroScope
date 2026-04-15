@@ -1,0 +1,184 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120567546A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES504199330">
+<invention-title id="title1" lang="ZH">一种面向低空飞行器的数据安全共享方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本申请属于低空经济数据安全技术领域，涉及 技术，具体是一种面向低空飞行器的数据安全共享方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空经济快速发展，低空飞行器在物流、农业、应急等领域的应用日益广泛，其运行过程中产生的海量数据成为支撑安全管控与高效运营的核心要素，例如飞行轨迹、气象信息、地理信息等。然而，当前低空数据共享仍面临挑战，数据采集、传输与存储过程中存在安全隐患，如飞行器与地面站间的通信链路易受窃取或篡改，威胁隐私保护与空域安全。为此，亟需构建数据共享方法，实现低空飞行全链条数据的可信共享与合规应用，为低空经济规模化发展提供基础支撑。</div>
+<div class="description-paragraph" id="p0005" num="0003">现有技术在低空飞行器的数据安全共享方法中，往往忽略了飞行器数据的重要性会随着飞行器的状态发生不同程度的改变，使得存在一些数据未能及时采取措施导致数据在传输过程中被篡改或窃取，导致数据安全共享的效率和准确度较低；因为，对于面向低空飞行器的数据安全共享方法仍需进一步的改进。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本申请旨在至少解决现有技术中存在的技术问题之一；为此，本申请提出了一种面向低空飞行器的数据安全共享方法及系统，用于解决现有技术忽略了飞行器数据的重要性会随着飞行器的状态发生不同程度的改变，使得存在一些数据未能及时采取措施导致数据在传输过程中被篡改或窃取，导致数据安全共享的效率和准确度较低的技术问题。</div>
+<div class="description-paragraph" id="p0008" num="0005">为实现上述目的，本申请的第一方面提供了一种面向低空飞行器的数据安全共享方法，包括：</div>
+<div class="description-paragraph" id="p0009">实时获取飞行器数据；所述飞行器数据是指低空飞行器在整个工作过程中出现的数据；</div>
+<div class="description-paragraph" id="p0010">根据飞行器数据生成数据敏感度；</div>
+<div class="description-paragraph" id="p0011">根据数据敏感度对飞行器数据进行加密得到密文；</div>
+<div class="description-paragraph" id="p0012">获取加密时的密钥，根据加密时的密钥生成若干加密密钥分片；</div>
+<div class="description-paragraph" id="p0013">根据飞行器数据对密文和加密密钥分片进行传输；</div>
+<div class="description-paragraph" id="p0014">根据密文和加密密钥分片进行解密操作得到解密后的飞行器数据。</div>
+<div class="description-paragraph" id="p0015" num="0006">本申请通过上述步骤，依据飞行器数据的变化动态调整各数据参数的重要性，并自适应地挑选最适合的加密算法来加密这些参数；同时，在验证加密数据时设置相应的验证机制，确保数据安全共享的完整性和准确性，提升了数据安全共享方法的效率和准确度。</div>
+<div class="description-paragraph" id="p0016" num="0007">进一步的，所述根据飞行器数据生成数据敏感度，包括：</div>
+<div class="description-paragraph" id="p0017">获取飞行器数据和敏感标签；所述飞行器数据包括若干参数；所述敏感标签包括固定标签和动态标签；</div>
+<div class="description-paragraph" id="p0018">提取若干参数中的固定敏感参数，以及提取若干参数中的动态敏感参数及其对应的若干影响参数；</div>
+<div class="description-paragraph" id="p0019">将固定标签及其对应的固定敏感参数输入至敏感判别模型中得到固定标签对应的固定敏感度；</div>
+<div class="description-paragraph" id="p0020">将动态标签及其对应的动态敏感参数和若干影响参数输入至敏感判别模型中得到动态标签对应的动态敏感度；</div>
+<div class="description-paragraph" id="p0021">所述数据敏感度包括固定敏感度和动态敏感度；</div>
+<div class="description-paragraph" id="p0022">所述敏感判别模型通过人工智能模型进行构建。</div>
+<div class="description-paragraph" id="p0023" num="0008">进一步的，所述敏感判别模型通过人工智能模型进行构建，包括：</div>
+<div class="description-paragraph" id="p0024">获取固定标签对应的若干历史固定敏感参数和历史固定敏感度，及动态标签对应的若干历史动态敏感参数、历史若干影响参数和历史动态敏感度；</div>
+<div class="description-paragraph" id="p0025">将固定标签对应的若干历史固定敏感参数和历史固定敏感度划分为固定标签对应的训练数据、验证数据以及测试数据；并对固定标签对应的训练数据、验证数据以及测试数据进行数据预处理得到固定标签对应的训练集、验证集以及测试集；</div>
+<div class="description-paragraph" id="p0026">选择一个人工智能模型作为固定标签对应的基础模型；</div>
+<div class="description-paragraph" id="p0027">通过固定标签对应的训练集训练固定标签对应的基础模型，并在固定标签对应的验证集上调整学习率和其他超参数得到固定标签对应的预训练模型；</div>
+<div class="description-paragraph" id="p0028">通过对固定标签对应的预训练模型在固定标签对应的测试集上进行验证，最终得到输入为固定标签及其对应的固定敏感参数、输出为固定标签对应的固定敏感度的敏感判别模型；</div>
+<div class="description-paragraph" id="p0029">将动态标签对应的若干历史动态敏感参数、历史若干影响参数和历史动态敏感度划分为动态标签对应的训练数据、验证数据以及测试数据；并对动态标签对应的训练数据、验证数据以及测试数据进行数据预处理得到动态标签对应的训练集、验证集以及测试集；</div>
+<div class="description-paragraph" id="p0030">选择一个人工智能模型作为动态标签对应的基础模型；</div>
+<div class="description-paragraph" id="p0031">通过动态标签对应的训练集训练动态标签对应的基础模型，并在动态标签对应的验证集上调整学习率和其他超参数得到动态标签对应的预训练模型；</div>
+<div class="description-paragraph" id="p0032">通过对动态标签对应的预训练模型在动态标签对应的测试集上进行验证，最终得到输入为动态标签及其对应的动态敏感参数和若干影响参数、输出为动态标签对应的动态敏感度的敏感判别模型。</div>
+<div class="description-paragraph" id="p0033" num="0009">进一步的，所述根据数据敏感度对飞行器数据进行加密得到密文，包括：</div>
+<div class="description-paragraph" id="p0034">获取数据敏感度和飞行器数据；所述数据敏感度包括固定敏感度和动态敏感度；所述飞行器数据包括若干参数；</div>
+<div class="description-paragraph" id="p0035">根据数据敏感度在加密算法表中选择数据敏感度对应的敏感度加密算法；所述加密算法表由专家根据加密算法对数据敏感度对应的飞行器数据进行加密时产生的效果进行构建；</div>
+<div class="description-paragraph" id="p0036">根据敏感度加密算法和飞行器数据生成敏感度加密算法对应的密钥更新周期；</div>
+<div class="description-paragraph" id="p0037">获取当前时刻飞行器数据中参数对应的数据敏感度；</div>
+<div class="description-paragraph" id="p0038">获取上一时刻飞行器数据中参数对应的上时刻数据敏感度；</div>
+<div class="description-paragraph" id="p0039">判断所述数据敏感度与所述上时刻数据敏感度是否一致；</div>
+<div class="description-paragraph" id="p0040">是，获取当前时刻与最近一次密钥更新时刻之间的时间差值；判断时间差值是否小于数据敏感度对应的密钥更新周期；是，采用上一时刻飞行器数据中参数使用的密钥对飞行器数据中参数进行加密得到密文；否，采用飞行器数据中参数更新后的密钥对飞行器数据中参数进行加密得到密文；</div>
+<div class="description-paragraph" id="p0041">否，选择当前时刻飞行器数据中参数对应的敏感度加密算法对应的密钥对飞行器数据中参数进行加密得到密文。</div>
+<div class="description-paragraph" id="p0042" num="0010">本申请通过对参数的数据敏感度进行自适应的选择加密算法，并且在参数数据敏感度发生变化时自动选择合适的加密算法进行加密，同时动态调整所有加密算法对应的密钥更新周期；同时，在加密时，判断密钥加密时的密钥是否在密钥更新周期范围内，动态权重合适的密钥进行加密，提高飞行器数据的安全性。</div>
+<div class="description-paragraph" id="p0043" num="0011">进一步的，所述根据敏感度加密算法和飞行器数据生成敏感度加密算法对应的密钥更新周期，包括：</div>
+<div class="description-paragraph" id="p0044">获取敏感度加密算法和飞行器数据；</div>
+<div class="description-paragraph" id="p0045">根据敏感度加密算法选择其对应的初始密钥更新周期CMGZ；</div>
+<div class="description-paragraph" id="p0046">提取飞行器数据中动态敏感参数对应的动态敏感度属于高敏感度范围的参数数量变化量CSB；</div>
+<div class="description-paragraph" id="p0047">提取所述参数数量变化量对应的参数数量变化率CSL；</div>
+<div class="description-paragraph" id="p0048">根据参数数量变化量CSB、参数数量变化率CSL分别与数据敏感度对应的密钥更新周期之间的非线性关系构建周期计算函数ZJF(CSB，CSL)；</div>
+<div class="description-paragraph" id="p0049">周期计算函数满足以下公式：</div>
+<div class="description-paragraph" id="p0050"> <span class="patent-image-not-available"></span>；其中，i表示为数据敏感度对应的编号，α表示为综合敏感系数，β表示为非线性放大指数，α∈(0，1)，β≥1，具体数值根据经验设置，本实施例中将α设置为0.05，β设置为1.5；</div>
+<div class="description-paragraph" id="p0051">将参数数量变化量和参数数量变化率代入周期计算函数计算得到各个敏感度加密算法对应的密钥更新周期。</div>
+<div class="description-paragraph" id="p0052" num="0012">进一步的，所述根据加密后的密钥生成若干加密密钥分片，包括：</div>
+<div class="description-paragraph" id="p0053">获取共享方数据和加密时的密钥；所述共享方数据是指飞行器数据与之共享的接收方的数据；</div>
+<div class="description-paragraph" id="p0054">通过门限秘密共享方法对加密时的密钥生成N个密钥分片，并定义M/N规则，M/N规则是指至少有M个密钥分片合成密钥；其中，M和N均为正整数，且M&lt;N；</div>
+<div class="description-paragraph" id="p0055">提取N个共享方数据对应的N个分片公钥；</div>
+<div class="description-paragraph" id="p0056">将密钥分片与分片公钥一一对应进行密钥分片加密操作得到N个加密密钥分片。</div>
+<div class="description-paragraph" id="p0057" num="0013">进一步的，所述根据飞行器数据对密文和加密密钥分片进行传输，包括：</div>
+<div class="description-paragraph" id="p0058">获取飞行器数据、共享方数据、密文以及密文对应的若干加密密钥分片；</div>
+<div class="description-paragraph" id="p0059">提取密文对应的数据敏感度；</div>
+<div class="description-paragraph" id="p0060">对数据敏感度按照降序操作得到密文传输队列；</div>
+<div class="description-paragraph" id="p0061">提取飞行器数据中的传输参数；所述传输参数是指飞行器数据在进行数据传输时传输路径的相关数据；</div>
+<div class="description-paragraph" id="p0062">按照密文传输队列的先后顺序将密文和密文对应的若干加密密钥分片选择多个传输路径进行传输。</div>
+<div class="description-paragraph" id="p0063" num="0014">本申请通过对飞行器数据中与数据传输相关参数的分析，将各参数的数据敏感度作为确定传输优先级的依据，在传输条件不佳的情况下，能够优先保障高敏感度、高重要性数据的传输，从而有效提升了飞行器数据在传输过程中的效率与可靠性。</div>
+<div class="description-paragraph" id="p0064" num="0015">进一步的，所述根据密文和加密密钥分片进行解密操作得到解密后的飞行器数据，包括：</div>
+<div class="description-paragraph" id="p0065">获取密文、加密密钥分片和共享方数据；密文和若干加密密钥分片是对应的，即若干加密密钥分片是对明文进行加密时所使用的密钥进行门限秘密共享方法后并与分片公钥进行加密得到的加密密钥分片；所述共享方数据包括共享方ID和私钥；</div>
+<div class="description-paragraph" id="p0066">通过私钥对加密密钥分片进行解密操作得到密钥分片；</div>
+<div class="description-paragraph" id="p0067">当共享方ID发出请求解密信号时，获取其他共享方ID提供的密钥分片；</div>
+<div class="description-paragraph" id="p0068">根据密钥分片和密文生成解密后的飞行器数据。</div>
+<div class="description-paragraph" id="p0069" num="0016">进一步的，所述根据密钥分片和密文生成解密后的飞行器数据，包括：</div>
+<div class="description-paragraph" id="p0070">获取密文和若干密钥分片；所述若干密钥分片是指发出请求解密信号的共享方ID收到的密钥分片；</div>
+<div class="description-paragraph" id="p0071">提取若干密钥分片对应的分片数量FS；</div>
+<div class="description-paragraph" id="p0072">判断FS是否大于等于M；</div>
+<div class="description-paragraph" id="p0073">是，对若干密钥分片进行门限秘密共享方法得到重组后的密钥；</div>
+<div class="description-paragraph" id="p0074">通过密钥对密文进行解密操作得到解密后的飞行器数据；</div>
+<div class="description-paragraph" id="p0075">否，生成解密条件不符告警信号。</div>
+<div class="description-paragraph" id="p0076" num="0017">本申请通过将飞行器数据中若干参数对应的密钥进行分片并以各个共享方独有的公钥进行加密，在传输后使用对应的私钥进行解密，在需要对加密的数据进行解密时，需要通过多个共享方的支持才能完成数据解密，最大可能保证了数据共享的安全性。</div>
+<div class="description-paragraph" id="p0077" num="0018">本发明的另一方面提供了一种面向低空飞行器的数据安全共享系统，包括：数据采集模块、数据分析模块和预警模块；所述数据采集模块与数据分析模块呈电性和/或通信连接；所述数据分析模块与预警模块呈电性和/或通信连接；</div>
+<div class="description-paragraph" id="p0078">所述数据采集模块：通过数据采集设备获取飞行器数据；所述飞行器数据是指低空飞行器在整个工作过程中出现的数据；</div>
+<div class="description-paragraph" id="p0079">所述数据分析模块：根据飞行器数据生成数据敏感度；根据数据敏感度对飞行器数据进行加密得到密文；获取加密时的密钥，根据加密时的密钥生成若干加密密钥分片；根据飞行器数据对密文和加密密钥分片进行传输；根据密文和加密密钥分片进行解密操作得到解密后的飞行器数据；</div>
+<div class="description-paragraph" id="p0080">所述预警模块：根据告警信号做出提示。</div>
+<div class="description-paragraph" id="p0081" num="0019">与现有技术相比，本申请的有益效果是：</div>
+<div class="description-paragraph" id="p0082">1、本申请通过根据飞行器数据生成数据敏感度；根据数据敏感度对飞行器数据进行加密得到密文；获取加密时的密钥，根据加密时的密钥生成若干加密密钥分片；根据飞行器数据对密文和加密密钥分片进行传输；根据密文和加密密钥分片进行解密操作得到解密后的飞行器数据，以飞行器数据中的数据变化情况动态调整各个数据参数的重要性，并自适应选择合适的加密算法对参数进行加密，同时对加密后的数据进行在验证时设置验证机制，保证的数据安全共享的完整性和准确性，提高了数据安全共享方法的效率和准确度。</div>
+<div class="description-paragraph" id="p0083" num="0020">2、本申请通过预先训练的敏感判别模型对飞行器数据中的各个参数进行敏感度判别，尤其是一些参数随着其他参数的变化影响导致该参数的数据敏感度也会随着变化，在这种情况下，需要通过敏感判别模型准确判别各个受影响参数的敏感度，为后续参数的加密算法的选择以及密钥更新周期的自适应提供准确的数据支持。</div>
+<div class="description-paragraph" id="p0084" num="0021">3、本申请通过对飞行器数据中若干参数对应的数据敏感度进行分析，以高敏感度范围内参数数量的变化量和变化率作为影响密钥更新周期的影响因子，使得在飞行器数据中高敏感度参数越多的情况下，降低所有算法对应的密钥更新周期，提高飞行器数据的安全性。</div>
+<div class="description-paragraph" id="p0085" num="0022">4、本申请通过分析飞行器数据中有关于数据传输的相关参数，以各个参数对应的数据敏感度作为传输优先级的判定标准，能够在传输效果不佳时尽可能保证重要数据的优先传输，提高了飞行器数据在数据传输时的效率。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0086">附图说明</div>
+<div class="description-paragraph" id="p0087" num="0023">为了更清楚地说明本申请实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本申请的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0088" num="0024">图1为本申请的一种面向低空飞行器的数据安全共享方法流程图；</div>
+<div class="description-paragraph" id="p0089">图2为本申请的一种面向低空飞行器的数据安全共享系统原理示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0090">具体实施方式</div>
+<div class="description-paragraph" id="p0091" num="0025">下面将结合实施例对本申请的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本申请一部分实施例，而不是全部的实施例。基于本申请中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其它实施例，都属于本申请保护的范围。</div>
+<div class="description-paragraph" id="p0092" num="0026">请参阅图1，本申请第一方面实施例提供了一种面向低空飞行器的数据安全共享方法，包括：</div>
+<div class="description-paragraph" id="p0093">实时获取飞行器数据；飞行器数据是指低空飞行器在整个工作过程中出现的数据；</div>
+<div class="description-paragraph" id="p0094">根据飞行器数据生成数据敏感度；数据敏感度是指飞行器数据中各个参数的重要程度；</div>
+<div class="description-paragraph" id="p0095">根据数据敏感度对飞行器数据进行加密得到密文；</div>
+<div class="description-paragraph" id="p0096">获取加密时的密钥，根据加密时的密钥生成若干加密密钥分片；加密密钥分片是指密文对应的密钥经过分片的密钥；</div>
+<div class="description-paragraph" id="p0097">根据飞行器数据对密文和加密密钥分片进行传输；</div>
+<div class="description-paragraph" id="p0098">根据密文和加密密钥分片进行解密操作得到解密后的飞行器数据。</div>
+<div class="description-paragraph" id="p0099" num="0027">本实施例中的根据飞行器数据生成数据敏感度，包括：</div>
+<div class="description-paragraph" id="p0100">获取飞行器数据和敏感标签；飞行器数据包括若干参数；敏感标签包括固定标签和动态标签；固定标签是指飞行器数据中的若干参数在整个工作过程中保持不变的参数对应的标签，动态标签是指飞行器数据中的若干参数在整个工作过程中会发生变化的参数对应的标签；</div>
+<div class="description-paragraph" id="p0101">提取若干参数中的固定敏感参数，以及提取若干参数中的动态敏感参数及其对应的若干影响参数；固定敏感参数是指固定标签对应的参数，动态敏感参数是指动态标签对应的参数，影响参数是指影响动态敏感参数使得动态敏感参数对应的敏感度发生变化的参数；</div>
+<div class="description-paragraph" id="p0102">将固定标签及其对应的固定敏感参数输入至敏感判别模型中得到固定标签对应的固定敏感度；</div>
+<div class="description-paragraph" id="p0103">将动态标签及其对应的动态敏感参数和若干影响参数输入至敏感判别模型中得到动态标签对应的动态敏感度；</div>
+<div class="description-paragraph" id="p0104">数据敏感度包括固定敏感度和动态敏感度；</div>
+<div class="description-paragraph" id="p0105">敏感判别模型通过人工智能模型进行构建。</div>
+<div class="description-paragraph" id="p0106" num="0028">本实施例利用预先训练的敏感判别模型，对飞行器数据中的各项参数进行敏感度分析与判断，特别是对于某些参数，其敏感程度会随着其他相关参数的变化而发生动态改变的情况，此时更需要依赖该模型对受影响参数的敏感性进行精准识别，从而为后续加密算法的选择及密钥更新周期的自适应调整提供准确可靠的数据支撑。</div>
+<div class="description-paragraph" id="p0107" num="0029">本实施例中的敏感判别模型通过人工智能模型进行构建，包括：</div>
+<div class="description-paragraph" id="p0108">获取固定标签对应的若干历史固定敏感参数和历史固定敏感度，及动态标签对应的若干历史动态敏感参数、历史若干影响参数和历史动态敏感度；</div>
+<div class="description-paragraph" id="p0109">将固定标签对应的若干历史固定敏感参数和历史固定敏感度划分为固定标签对应的训练数据、验证数据以及测试数据；并对固定标签对应的训练数据、验证数据以及测试数据进行数据预处理得到固定标签对应的训练集、验证集以及测试集；训练集、测试集和验证集之间的比例为7：2：1；</div>
+<div class="description-paragraph" id="p0110">选择一个人工智能模型作为固定标签对应的基础模型；人工智能模型包括神经网络模型等；</div>
+<div class="description-paragraph" id="p0111">通过固定标签对应的训练集训练固定标签对应的基础模型，并在固定标签对应的验证集上调整学习率和其他超参数得到固定标签对应的预训练模型；</div>
+<div class="description-paragraph" id="p0112">通过对固定标签对应的预训练模型在固定标签对应的测试集上进行验证，最终得到输入为固定标签及其对应的固定敏感参数、输出为固定标签对应的固定敏感度的敏感判别模型；</div>
+<div class="description-paragraph" id="p0113">将动态标签对应的若干历史动态敏感参数、历史若干影响参数和历史动态敏感度划分为动态标签对应的训练数据、验证数据以及测试数据；并对动态标签对应的训练数据、验证数据以及测试数据进行数据预处理得到动态标签对应的训练集、验证集以及测试集；训练集、测试集和验证集之间的比例为7：2：1；</div>
+<div class="description-paragraph" id="p0114">选择一个人工智能模型作为动态标签对应的基础模型；人工智能模型包括神经网络模型等；</div>
+<div class="description-paragraph" id="p0115">通过动态标签对应的训练集训练动态标签对应的基础模型，并在动态标签对应的验证集上调整学习率和其他超参数得到动态标签对应的预训练模型；</div>
+<div class="description-paragraph" id="p0116">通过对动态标签对应的预训练模型在动态标签对应的测试集上进行验证，最终得到输入为动态标签及其对应的动态敏感参数和若干影响参数、输出为动态标签对应的动态敏感度的敏感判别模型。</div>
+<div class="description-paragraph" id="p0117" num="0030">本实施例中的根据数据敏感度对飞行器数据进行加密得到密文，包括：</div>
+<div class="description-paragraph" id="p0118">获取数据敏感度和飞行器数据；数据敏感度包括固定敏感度和动态敏感度；飞行器数据包括若干参数；</div>
+<div class="description-paragraph" id="p0119">根据数据敏感度在加密算法表中选择数据敏感度对应的敏感度加密算法；加密算法表由专家根据加密算法对数据敏感度对应的飞行器数据进行加密时产生的效果进行构建；本实施例中将数据敏感度分为3个等级，分别是L3、L2和L1等级，L3等级表示为数据敏感度最高等级；本实施例对于L3等级的参数采用SM9标识加密算法，对于L2等级的参数采用AES-256-GCM加密算法，对于L1等级的参数采用PRESENT-80加密算法；</div>
+<div class="description-paragraph" id="p0120">根据敏感度加密算法和飞行器数据生成敏感度加密算法对应的密钥更新周期；密钥更新周期是指一个加密算法的密钥在什么时间内需要更新的时长；</div>
+<div class="description-paragraph" id="p0121">获取当前时刻飞行器数据中参数对应的数据敏感度；</div>
+<div class="description-paragraph" id="p0122">获取上一时刻飞行器数据中参数对应的上时刻数据敏感度；</div>
+<div class="description-paragraph" id="p0123">判断数据敏感度与上时刻数据敏感度是否一致；判断敏感度是否保持一致就能知道参数对应的加密算法有没有进行更换，一旦参数的数据敏感度发生变化，则需要更换加密算法对参数进行重新加密；</div>
+<div class="description-paragraph" id="p0124">是，获取当前时刻与最近一次密钥更新时刻之间的时间差值；判断时间差值是否小于数据敏感度对应的密钥更新周期；是，采用上一时刻飞行器数据中参数使用的密钥对飞行器数据中参数进行加密得到密文；否，采用飞行器数据中参数更新后的密钥对飞行器数据中参数进行加密得到密文；即在数据敏感度未发生变化时，判断此刻数据进行加密时密钥需不需要使用更新后的密钥，如果不用更新后的密钥则用上一时刻加密的密钥进行加密；</div>
+<div class="description-paragraph" id="p0125">否，选择当前时刻飞行器数据中参数对应的敏感度加密算法对应的密钥对飞行器数据中参数进行加密得到密文。</div>
+<div class="description-paragraph" id="p0126" num="0031">本实施例根据参数的数据敏感度，自适应地选择合适的加密算法，并在参数敏感度发生变化时，自动切换至匹配的加密算法进行加密处理；同时，动态调整所有加密算法对应的密钥更新周期，在加密过程中，还会判断当前所用密钥是否处于有效的更新周期范围内，并根据权重动态选取适当的密钥进行加密，从而全面提升飞行器数据的安全性与防护水平。</div>
+<div class="description-paragraph" id="p0127" num="0032">本实施例中的根据敏感度加密算法和飞行器数据生成敏感度加密算法对应的密钥更新周期，包括：</div>
+<div class="description-paragraph" id="p0128">获取敏感度加密算法和飞行器数据；</div>
+<div class="description-paragraph" id="p0129">根据敏感度加密算法选择其对应的初始密钥更新周期CMGZ；本实施例中每个敏感度加密算法均对应初始密钥更新周期，例如，将L3等级使用的SM9标识加密算法的初始密钥更新周期设置为1小时，在其他实施例中可以设置为2小时甚至是24小时，将L1等级使用的PRESENT-80加密算法的初始密钥更新周期设置为10小时；</div>
+<div class="description-paragraph" id="p0130">提取飞行器数据中动态敏感参数对应的动态敏感度属于高敏感度范围的参数数量变化量CSB；高敏感度范围根据经验设置，本实施例中采用了L3、L2和L1三个等级，将L2和L3等级作为高敏感度范围；参数数据变化量是指在飞行器工作过程中高敏感度对应的参数的增加量，例如，飞行器理论的高敏感度的参数为2个，在工作过程中，某一时刻，高敏感度的参数达到了5个，那么参数数量变化量为3个；</div>
+<div class="description-paragraph" id="p0131">提取参数数量变化量对应的参数数量变化率CSL；参数数量变化率是指飞行器工作过程中高敏感度对应的参数数量的变化率，例如飞行器理论的高敏感度的参数为2个，在工作过程中，某一时刻，高敏感度的参数达到了5个，那么参数数量变化率为1.5；同理，飞行器理论的高敏感度的参数为1个，在工作过程中，某一时刻，高敏感度的参数达到了4个，那么参数数量变化率为3；在相同的参数数量变化量的基础上，参数数量变化率较大时各个数据的安全性会比参数数量变化率较小时更为重要；</div>
+<div class="description-paragraph" id="p0132">根据参数数量变化量CSB、参数数量变化率CSL分别与数据敏感度对应的密钥更新周期之间的非线性关系构建周期计算函数ZJF(CSB，CSL)；</div>
+<div class="description-paragraph" id="p0133">周期计算函数满足以下公式：</div>
+<div class="description-paragraph" id="p0134"> <span class="patent-image-not-available"></span>；其中，i表示为数据敏感度对应的编号，α表示为综合敏感系数，β表示为非线性放大指数，α∈(0，1)，β≥1，具体数值根据经验设置，本实施例中将α设置为0.05，β设置为1.5；高敏感度范围中的参数数量变化量和参数数量变化率越大，说明参数需要被高度保护，因为需要减小密钥更新周期保护参数的安全性；</div>
+<div class="description-paragraph" id="p0135">将参数数量变化量和参数数量变化率代入周期计算函数计算得到各个敏感度加密算法对应的密钥更新周期。</div>
+<div class="description-paragraph" id="p0136" num="0033">本实施例通过对飞行器数据中各项参数的敏感度进行分析，将高敏感度范围内参数的数量变化量及其变化率作为影响密钥更新周期的关键因子，当飞行器数据中高敏感度参数数量增加时，自动缩短所有加密算法对应的密钥更新周期，从而提升数据整体的安全性与动态防护能力。</div>
+<div class="description-paragraph" id="p0137" num="0034">本实施例中的根据加密后的密钥生成若干加密密钥分片，包括：</div>
+<div class="description-paragraph" id="p0138">获取共享方数据和加密时的密钥；共享方数据是指飞行器数据与之共享的接收方的数据；</div>
+<div class="description-paragraph" id="p0139">通过门限秘密共享方法对加密时的密钥生成N个密钥分片，并定义M/N规则，M/N规则是指至少有M个密钥分片合成密钥；其中，M和N均为正整数，且M&lt;N；M和N的具体取值根据经验设置，本实施例中共设置有3个共享方，将N设置为3，M设置为2，即至少存在2个密钥分片即可得到完整的密钥用于对密文进行解密；</div>
+<div class="description-paragraph" id="p0140">提取N个共享方数据对应的N个分片公钥；分片公钥用于对密钥分片进行加密；</div>
+<div class="description-paragraph" id="p0141">将密钥分片与分片公钥一一对应进行密钥分片加密操作得到N个加密密钥分片。</div>
+<div class="description-paragraph" id="p0142" num="0035">本实施例中的根据飞行器数据对密文和加密密钥分片进行传输，包括：</div>
+<div class="description-paragraph" id="p0143">获取飞行器数据、共享方数据、密文以及密文对应的若干加密密钥分片；</div>
+<div class="description-paragraph" id="p0144">提取密文对应的数据敏感度；由于密文是对飞行器数据中若干参数进行加密的，每个参数可能采取不同的加密算法和密钥更新周期，所以每个密文都能得到其对应参数的数据敏感度；</div>
+<div class="description-paragraph" id="p0145">对数据敏感度按照降序操作得到密文传输队列；降序操作是为了按照数据敏感度的大小进行传输，即将高敏感度对应的密文和若干加密密钥分片进行传输；</div>
+<div class="description-paragraph" id="p0146">提取飞行器数据中的传输参数；传输参数是指飞行器数据在进行数据传输时传输路径的相关数据；本实施例中的传输路径存在多种，例如5G、LoRa、卫星三种路径传输方式；</div>
+<div class="description-paragraph" id="p0147">按照密文传输队列的先后顺序将密文和密文对应的若干加密密钥分片选择多个传输路径进行传输。</div>
+<div class="description-paragraph" id="p0148" num="0036">本实施例中的根据密文和加密密钥分片进行解密操作得到解密后的飞行器数据，包括：</div>
+<div class="description-paragraph" id="p0149">获取密文、加密密钥分片和共享方数据；密文和若干加密密钥分片是对应的，即若干加密密钥分片是对明文进行加密时所使用的密钥进行门限秘密共享方法后并与分片公钥进行加密得到的加密密钥分片；共享方数据包括共享方ID和私钥；</div>
+<div class="description-paragraph" id="p0150">通过私钥对加密密钥分片进行解密操作得到密钥分片；每个共享方都会收到密文和其指定的加密密钥分片，在收到加密密钥分片时使用分片公钥对应的私钥对加密密钥分片进行解密即可得到密钥分片，此时的密钥分片是明文，其中包含着对应的指向需要解密的密文相关标识数据，通过密文相关标识数据即可知道该密钥分片用于解密什么时间点、什么参数的密文；</div>
+<div class="description-paragraph" id="p0151">当共享方ID发出请求解密信号时，获取其他共享方ID提供的密钥分片；本实施例中设置了3个共享方，在任一共享方需要对密文进行解密时，需要对另外的共享方发出请求解密信号，在其他共享方收到信号后会考虑是否把相应的密钥分片发送给发出信号的共享方，如果共享方收到的密钥分片达不到解密的最低标准，则无法进行解密；</div>
+<div class="description-paragraph" id="p0152">根据密钥分片和密文生成解密后的飞行器数据。</div>
+<div class="description-paragraph" id="p0153" num="0037">本实施例中的根据密钥分片和密文生成解密后的飞行器数据，包括：</div>
+<div class="description-paragraph" id="p0154">获取密文和若干密钥分片；若干密钥分片是指发出请求解密信号的共享方ID收到的密钥分片；</div>
+<div class="description-paragraph" id="p0155">提取若干密钥分片对应的分片数量FS；</div>
+<div class="description-paragraph" id="p0156">判断FS是否大于等于M；</div>
+<div class="description-paragraph" id="p0157">是，对若干密钥分片进行门限秘密共享方法得到重组后的密钥；本实施例中共享方收到2个密钥分片后，可以通过拉格朗日插值法即可得到重组后的密钥；</div>
+<div class="description-paragraph" id="p0158">通过密钥对密文进行解密操作得到解密后的飞行器数据；</div>
+<div class="description-paragraph" id="p0159">否，生成解密条件不符告警信号。</div>
+<div class="description-paragraph" id="p0160" num="0038">本实施例通过对飞行器数据中若干参数对应的密钥进行分片处理，并采用各共享方独有的公钥对分片后的密钥进行加密，传输后再使用对应的私钥进行解密，当需要解密加密数据时，必须获得多个共享方的协同支持才能完成数据解密过程，从而最大程度地保障了数据共享的安全性与可靠性。</div>
+<div class="description-paragraph" id="p0161" num="0039">请参阅图2，本申请的另一方面实施例提供了一种面向低空飞行器的数据安全共享系统，包括：数据采集模块、数据分析模块和预警模块；数据采集模块与数据分析模块呈电性和/或通信连接；数据分析模块与预警模块呈电性和/或通信连接；</div>
+<div class="description-paragraph" id="p0162">数据采集模块：通过数据采集设备获取飞行器数据；飞行器数据是指低空飞行器在整个工作过程中出现的数据；数据采集设备包括若干传感器等；</div>
+<div class="description-paragraph" id="p0163">数据分析模块：根据飞行器数据生成数据敏感度；根据数据敏感度对飞行器数据进行加密得到密文；获取加密时的密钥，根据加密时的密钥生成若干加密密钥分片；根据飞行器数据对密文和加密密钥分片进行传输；根据密文和加密密钥分片进行解密操作得到解密后的飞行器数据；</div>
+<div class="description-paragraph" id="p0164">预警模块：根据告警信号做出提示。</div>
+<div class="description-paragraph" id="p0165" num="0040">上述公式中的部分数据是去除量纲取其数值计算，公式是由采集的大量数据经过软件模拟得到最接近真实情况的一个公式；公式中的预设参数和预设阈值由本领域的技术人员根据实际情况设定或者通过大量数据模拟获得。</div>
+<div class="description-paragraph" id="p0166" num="0041">本申请的工作原理：通过实时获取飞行器数据；根据飞行器数据生成数据敏感度；根据数据敏感度对飞行器数据进行加密得到密文；获取加密时的密钥，根据加密时的密钥生成若干加密密钥分片；根据飞行器数据对密文和加密密钥分片进行传输；根据密文和加密密钥分片进行解密操作得到解密后的飞行器数据，以飞行器数据中的数据变化情况动态调整各个数据参数的重要性，并自适应选择合适的加密算法对参数进行加密，同时对加密后的数据进行在验证时设置验证机制，保证的数据安全共享的完整性和准确性，提高了数据安全共享方法的效率和准确度，避免了现有技术忽略了飞行器数据的重要性会随着飞行器的状态发生不同程度的改变，使得存在一些数据未能及时采取措施导致数据在传输过程中被篡改或窃取，导致数据安全共享的效率和准确度较低的问题。</div>
+<div class="description-paragraph" id="p0167" num="0042">以上实施例仅用以说明本申请的技术方法而非限制，尽管参照较佳实施例对本申请进行了详细说明，本领域的普通技术人员应当理解，可以对本申请的技术方法进行修改或等同替换，而不脱离本申请技术方法的精神和范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

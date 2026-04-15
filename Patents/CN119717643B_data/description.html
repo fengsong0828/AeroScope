@@ -1,0 +1,257 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119717643B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES513018738">
+<invention-title id="title1" lang="ZH">一种低空载人飞行器的节能控制方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及飞行器总体技术领域，尤其涉及一种低空载人飞行器的节能控制方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">目前，在临近空间运行的飞行器中，小型吸气式发动机或冲压发动机常被用作飞行动力装置。这类发动机由于其结构紧凑、尺寸小、推力有限，被用于满足飞行器在远程飞行和机动性能方面的需求。然而，由于发动机本身工作时间较短，燃料消耗较大，导致飞行器在执行任务时续航能力受到限制，难以实现高效长时间飞行。</div>
+<div class="description-paragraph" id="p0005" num="0003">在一种现有技术中，飞行器的控制方法主要针对固定翼飞机或直升机进行设计。例如，固定翼飞行器通过动力系统提供推力，在升力和重力的平衡下实现稳定飞行；而直升机则通过旋翼系统的转速和迎角调节，完成飞行方向和姿态的控制。这些控制方法通过调整动力输出和空气动力参数，实现飞行器在爬升、平飞和降落阶段的飞行任务。然而，这些技术的设计思路主要基于常规飞行器，针对低空载人飞行器的特殊工作模式和动力需求未进行有效适配，尤其是新型飞行器所采用的小型吸气式发动机或多喷管式发动机。</div>
+<div class="description-paragraph" id="p0006" num="0004">现有技术中存在控制环节之间相互独立，飞行器的节能性能较差，功耗较高的问题。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明提供了一种低空载人飞行器的节能控制方法及系统，以实现了飞行器在不同飞行模式下的闭环节能控制，降低飞行器功耗。</div>
+<div class="description-paragraph" id="p0009" num="0006">第一方面，为了解决上述技术问题，本发明提供了一种低空载人飞行器的节能控制方法，包括：</div>
+<div class="description-paragraph" id="p0010" num="0007">获取大气特征数据和飞行器特征数据；其中，所述大气特征数据包括标准大气压、标准大气压的特征高度、海平面标准温度、环境温度递减率、标准大气密度和比气体常数；所述飞行器特征数据包括飞行器高度、实时速度、实时质量、升力系数和阻力系数；</div>
+<div class="description-paragraph" id="p0011" num="0008">根据所述大气特征数据和所述飞行器特征数据，进行环境特征计算，得到实时大气压和实时温度；</div>
+<div class="description-paragraph" id="p0012" num="0009">根据所述大气特征数据、所述飞行器特征数据、所述实时大气压和所述实时温度，进行密度计算，得到实时密度；</div>
+<div class="description-paragraph" id="p0013" num="0010">根据所述实时密度和所述飞行器特征数据，进行面积计算，得到迎风面积；</div>
+<div class="description-paragraph" id="p0014" num="0011">根据所述迎风面积、所述实时密度和所述飞行器特征数据，进行质量计算，得到调整质量；</div>
+<div class="description-paragraph" id="p0015" num="0012">根据所述飞行器特征数据、所述调整质量、所述迎风面积和所述实时密度，进行速度计算，得到最佳速度；</div>
+<div class="description-paragraph" id="p0016" num="0013">根据所述最佳速度、所述实时密度、所述迎风面积和所述飞行器特征数据，进行计算，得到实时功率和飞行器升力，并根据所述实时功率和所述飞行器升力进行节能控制操作。</div>
+<div class="description-paragraph" id="p0017" num="0014">优选地，所述实时大气压的计算公式为：</div>
+<div class="description-paragraph" id="p0018" num="0015">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0019" num="0016">其中，P<sub>0</sub>为标准大气压；H为飞行器高度；H<sub>0</sub>为标准大气压的特征高度；P为实时大气压；</div>
+<div class="description-paragraph" id="p0020" num="0017">所述实时温度的计算公式为：</div>
+<div class="description-paragraph" id="p0021" num="0018">T＝T<sub>0</sub>-Γ·H</div>
+<div class="description-paragraph" id="p0022" num="0019">其中，T为实时温度；H为飞行器高度；T<sub>0</sub>为海平面标准温度；Γ为环境温度递减率。</div>
+<div class="description-paragraph" id="p0023" num="0020">优选地，所述实时密度的计算公式为：</div>
+<div class="description-paragraph" id="p0024" num="0021">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0025" num="0022">其中，ρ<sub>0</sub>为标准大气密度；T为实时温度；P为实时大气压；T为实时温度；R为比气体常数；ρ为实时密度。</div>
+<div class="description-paragraph" id="p0026" num="0023">优选地，所述迎风面积的计算公式为：</div>
+<div class="description-paragraph" id="p0027" num="0024">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0028" num="0025">其中，ρ为实时密度；V为实时速度；S为迎风面积；m为实时质量；C<sub>L</sub>为升力系数；g为重力加速度。</div>
+<div class="description-paragraph" id="p0029" num="0026">优选地，所述调整质量的计算公式为：</div>
+<div class="description-paragraph" id="p0030" num="0027">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0031" num="0028">其中，V为实时速度；S为迎风面积；m<sub>add</sub>为调整质量；C<sub>L</sub>为升力系数；ρ为实时密度；g为重力加速度。</div>
+<div class="description-paragraph" id="p0032" num="0029">优选地，所述最佳速度的计算公式为：</div>
+<div class="description-paragraph" id="p0033" num="0030">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0034" num="0031">其中，其中，S为迎风面积；m<sub>add</sub>为调整质量；C<sub>L</sub>为升力系数；ρ为实时密度；g为重力加速度；V<sub>max</sub>为最佳速度。</div>
+<div class="description-paragraph" id="p0035" num="0032">优选地，所述实时功率的计算公式为：</div>
+<div class="description-paragraph" id="p0036" num="0033">P<sub>n</sub>＝0.5·S·ρ·V<sub>max</sub> <sup>3</sup>·C<sub>D</sub> </div>
+<div class="description-paragraph" id="p0037" num="0034">其中，C<sub>D</sub>为阻力系数；ρ为实时密度；V<sub>max</sub>为最佳速度；P<sub>n</sub>为实时功率；S为迎风面积；</div>
+<div class="description-paragraph" id="p0038" num="0035">所述飞行器升力的计算公式为：</div>
+<div class="description-paragraph" id="p0039" num="0036">L＝0.5·S·ρ·V<sub>max</sub> <sup>2</sup>·C<sub>L</sub> </div>
+<div class="description-paragraph" id="p0040" num="0037">其中，C<sub>L</sub>为升力系数；ρ为实时密度；V<sub>max</sub>为最佳速度；L为飞行器升力；S为迎风面积。</div>
+<div class="description-paragraph" id="p0041" num="0038">优选地，所述根据所述实时功率和所述飞行器升力进行节能控制操作，包括：</div>
+<div class="description-paragraph" id="p0042" num="0039">对于爬升模式，当所述飞行器升力大于飞行器重力时，进行降低升力系数和调整迎角操作；当所述实时功率大于爬升功率阈值时，进行降低飞行器发动机推力输出操作；</div>
+<div class="description-paragraph" id="p0043" num="0040">对于平飞模式，当所述飞行器升力与飞行器重力不平衡时，进行动态调整升力系数操作；当所述实时功率超过平飞功率阈值时，进行动态调整飞行速度和发动机推力输出操作；</div>
+<div class="description-paragraph" id="p0044" num="0041">对于降落模式，当所述飞行器升力大于飞行器重力时，进行降低升力系数和调整迎角操作；当所述实时功率大于降落风阻功率阈值时，进行降低飞行器发动机推力输出操作。</div>
+<div class="description-paragraph" id="p0045" num="0042">第二方面，本发明提供了一种低空载人飞行器的节能控制系统，包括：</div>
+<div class="description-paragraph" id="p0046" num="0043">特征数据获取模块，用于获取大气特征数据和飞行器特征数据；其中，所述大气特征数据包括标准大气压、标准大气压的特征高度、海平面标准温度、环境温度递减率、标准大气密度和比气体常数；所述飞行器特征数据包括飞行器高度、实时速度、实时质量、升力系数和阻力系数；</div>
+<div class="description-paragraph" id="p0047" num="0044">环境特征计算模块，用于根据所述大气特征数据和所述飞行器特征数据，进行环境特征计算，得到实时大气压和实时温度；</div>
+<div class="description-paragraph" id="p0048" num="0045">实时密度计算模块，用于根据所述大气特征数据、所述飞行器特征数据、所述实时大气压和所述实时温度，进行密度计算，得到实时密度；</div>
+<div class="description-paragraph" id="p0049" num="0046">迎风面积计算模块，用于根据所述实时密度和所述飞行器特征数据，进行面积计算，得到迎风面积；</div>
+<div class="description-paragraph" id="p0050" num="0047">调整质量计算模块，用于根据所述迎风面积、所述实时密度和所述飞行器特征数据，进行质量计算，得到调整质量；</div>
+<div class="description-paragraph" id="p0051" num="0048">最佳速度计算模块，用于根据所述飞行器特征数据、所述调整质量、所述迎风面积和所述实时密度，进行速度计算，得到最佳速度；</div>
+<div class="description-paragraph" id="p0052" num="0049">节能控制操作模块，用于根据所述最佳速度、所述实时密度、所述迎风面积和所述飞行器特征数据，进行计算，得到实时功率和飞行器升力，并根据所述实时功率和所述飞行器升力进行节能控制操作</div>
+<div class="description-paragraph" id="p0053" num="0050">第三方面，本发明还提供了一种电子设备，包括处理器、存储器以及存储在所述存储器中且被配置为由所述处理器执行的计算机程序，所述处理器执行所述计算机程序时实现上述中任意一项所述的低空载人飞行器的节能控制方法。</div>
+<div class="description-paragraph" id="p0054" num="0051">第四方面，本发明还提供了一种计算机可读存储介质，所述计算机可读存储介质包括存储的计算机程序，其中，在所述计算机程序运行时控制所述计算机可读存储介质所在设备执行上述中任意一项所述的低空载人飞行器的节能控制方法。</div>
+<div class="description-paragraph" id="p0055" num="0052">相比于现有技术，本发明提供了一种低空载人飞行器的节能控制方法及系统，通过优化飞行器的能量管理和控制策略，降低飞行器的功耗，提高飞行器的续航能力和飞行效率。本发明通过获取大气特征数据和飞行器特征数据，包括标准大气压、标准温度、实时高度、实时速度、实时质量、升力系数和阻力系数等关键参数，进行动态环境特征计算，实时获得飞行高度下的大气压和温度。随后，基于大气特征数据和飞行器数据，通过密度计算得到实时大气密度，为进一步的能量计算提供基础。在此基础上，本发明通过迎风面积计算和质量调整计算，根据实时大气密度和飞行器速度动态调整迎风面积和飞行器质量，确保飞行器在不同飞行模式(爬升、平飞、降落)下能够维持最佳的空气动力特性。通过最佳速度计算，本发明确定了飞行器在不同工况下的最佳飞行速度，减少空气阻力和能量消耗。此外，本发明根据最佳速度、实时密度和迎风面积，通过功率和升力计算，评估实时所需功率和飞行器产生的升力，并在不同飞行模式下进行节能控制操作。在爬升模式下，若飞行器升力过高或功率超出阈值，系统自动降低升力系数和发动机推力输出，减少能量浪费；在平飞模式下，通过动态调整升力系数，确保升力与重力平衡，维持稳定平飞状态；在降落模式下，通过控制升力系数和发动机推力输出，降低能耗，确保飞行器平稳降落。</div>
+<div class="description-paragraph" id="p0056" num="0053">通过上述方法，本发明实现了飞行器在不同飞行模式下的闭环节能控制，降低飞行器功耗，提高低空载人飞行器的续航能力和飞行效率。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0057">附图说明</div>
+<div class="description-paragraph" id="p0058" num="0054">图1是本发明第一实施例提供的低空载人飞行器的节能控制方法流程示意图；</div>
+<div class="description-paragraph" id="p0059" num="0055">图2是本发明第二实施例提供的低空载人飞行器的节能控制系统结构示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0060">具体实施方式</div>
+<div class="description-paragraph" id="p0061" num="0056">下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有作出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0062" num="0057">参照图1，本发明第一实施例提供了低空载人飞行器的节能控制方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0063" num="0058">S11，获取大气特征数据和飞行器特征数据；其中，所述大气特征数据包括标准大气压、标准大气压的特征高度、海平面标准温度、环境温度递减率、标准大气密度和比气体常数；所述飞行器特征数据包括飞行器高度、实时速度、实时质量、升力系数和阻力系数；</div>
+<div class="description-paragraph" id="p0064" num="0059">S12，根据所述大气特征数据和所述飞行器特征数据，进行环境特征计算，得到实时大气压和实时温度；</div>
+<div class="description-paragraph" id="p0065" num="0060">S13，根据所述大气特征数据、所述飞行器特征数据、所述实时大气压和所述实时温度，进行密度计算，得到实时密度；</div>
+<div class="description-paragraph" id="p0066" num="0061">S14，根据所述实时密度和所述飞行器特征数据，进行面积计算，得到迎风面积；</div>
+<div class="description-paragraph" id="p0067" num="0062">S15，根据所述迎风面积、所述实时密度和所述飞行器特征数据，进行质量计算，得到调整质量；</div>
+<div class="description-paragraph" id="p0068" num="0063">S16，根据所述飞行器特征数据、所述调整质量、所述迎风面积和所述实时密度，进行速度计算，得到最佳速度；</div>
+<div class="description-paragraph" id="p0069" num="0064">S17，根据所述最佳速度、所述实时密度、所述迎风面积和所述飞行器特征数据，进行计算，得到实时功率和飞行器升力，并根据所述实时功率和所述飞行器升力进行节能控制操作。</div>
+<div class="description-paragraph" id="p0070" num="0065">在步骤S11中，需要获取大气特征数据和飞行器特征数据；其中，所述大气特征数据包括标准大气压、标准大气压的特征高度、海平面标准温度、环境温度递减率、标准大气密度和比气体常数；所述飞行器特征数据包括飞行器高度、实时速度、实时质量、升力系数和阻力系数，包括：</div>
+<div class="description-paragraph" id="p0071" num="0066">在一个具体的实施例中，标准大气压是国际标准大气模型中定义的海平面处的标准压力，取固定值：</div>
+<div class="description-paragraph" id="p0072" num="0067">P<sub>0</sub>＝101325Pa</div>
+<div class="description-paragraph" id="p0073" num="0068">需要说明的是，标准大气压作为计算实时大气压的基准，通过结合飞行器高度和特征长度，利用大气压随高度呈指数衰减的关系推算飞行高度下的实时大气压。</div>
+<div class="description-paragraph" id="p0074" num="0069">在一个具体的实施例中，标准大气压的特征高度是大气压力随高度变化的特征常数，由标准大气模型给出，取固定值：</div>
+<div class="description-paragraph" id="p0075" num="0070">H<sub>0</sub>＝8434.5m</div>
+<div class="description-paragraph" id="p0076" num="0071">需要说明的是，标准大气压的特征高度用于计算实时大气压，确定不同飞行高度下的大气压值。它描述了大气压变化的速度，保证了大气特征数据的准确性。</div>
+<div class="description-paragraph" id="p0077" num="0072">在一个具体的实施例中，海平面标准温度是标准大气模型中定义的海平面温度，取固定值：</div>
+<div class="description-paragraph" id="p0078" num="0073">T<sub>0</sub>＝288.15K(15°C)</div>
+<div class="description-paragraph" id="p0079" num="0074">需要说明的是，海平面标准温度结合环境温度递减率和飞行器高度，用于计算实时温度。温度是影响空气密度的重要因素，后续空气动力学参数(如升力、阻力)都依赖于温度计算结果。</div>
+<div class="description-paragraph" id="p0080" num="0075">在一个具体的实施例中，环境温度递减率是大气温度随高度线性递减的速率，取固定值：</div>
+<div class="description-paragraph" id="p0081" num="0076">Γ＝0.0065K/m</div>
+<div class="description-paragraph" id="p0082" num="0077">需要说明的是，环境温度递减率与海平面标准温度和飞行器高度共同决定实时温度。</div>
+<div class="description-paragraph" id="p0083" num="0078">在一个具体的实施例中，标准大气密度是海平面处标准状态下的空气密度，取固定值：</div>
+<div class="description-paragraph" id="p0084" num="0079">ρ<sub>0</sub>＝1.225kg/m<sup>3</sup> </div>
+<div class="description-paragraph" id="p0085" num="0080">需要说明的是，标准大气密度是计算飞行高度下实时密度的基准值，结合实时温度和实时大气压，通过公式计算得到实时密度。实时密度是空气动力学参数(如迎风面积、升力、阻力)计算的核心数据。</div>
+<div class="description-paragraph" id="p0086" num="0081">在一个具体的实施例中，比气体常数是空气的理想气体常数，取固定值：</div>
+<div class="description-paragraph" id="p0087" num="0082">R＝287J/(kg·K)</div>
+<div class="description-paragraph" id="p0088" num="0083">需要说明的是，比气体常数是结合实时温度和实时大气压通过理想气体状态方程计算空气的实时密度。空气密度对飞行器的升力和阻力特性具有直接影响。</div>
+<div class="description-paragraph" id="p0089" num="0084">在一个具体的实施例中，飞行器高度通过高度传感器(如气压高度计、激光测距仪或GPS系统)实时测量。</div>
+<div class="description-paragraph" id="p0090" num="0085">需要说明的是，飞行器高度是计算实时大气压、实时温度和实时密度的关键参数。高度变化直接影响大气环境特性，进而影响空气动力学参数和飞行器功率需求。</div>
+<div class="description-paragraph" id="p0091" num="0086">在一个具体的实施例中，实时速度通过飞行器上的空速管、GPS速度传感器或惯性导航系统实时获取飞行器的速度。</div>
+<div class="description-paragraph" id="p0092" num="0087">需要说明的是，实时速度是迎风面积、飞行器功率和飞行器升力计算的输入参数。速度的大小直接决定空气动力特性和飞行能量消耗。</div>
+<div class="description-paragraph" id="p0093" num="0088">在一个具体的实施例中，实时质量是通过飞行器载荷监测系统(如燃油流量计、负载传感器)实时估算飞行器的当前质量。</div>
+<div class="description-paragraph" id="p0094" num="0089">需要说明的是，实时质量是计算迎风面积、飞行器功率和最佳速度的输入参数，影响飞行器在不同模式(爬升、平飞、降落)下的能量平衡和控制策略。</div>
+<div class="description-paragraph" id="p0095" num="0090">在一个具体的实施例中，升力系数主要与飞行器的翼型、迎角(攻角)以及飞行状态相关。初始值由飞行器的气动设计参数确定，基于风洞试验或数值仿真分析获得特定飞行状态下的升力系数。在实际飞行过程中，飞行器配备的姿态传感器(如迎角传感器、角速度传感器)可以实时监测飞行器的迎角变化，结合飞行器飞行状态(如爬升、平飞或降落模式)动态调整升力系数。通过飞控系统的反馈调整，确保飞行器在不同飞行模式下维持所需的升力，满足飞行稳定性和能量最优控制要求。例如，在平飞模式下，维持适中迎角以降低阻力，同时满足升力与重力平衡。</div>
+<div class="description-paragraph" id="p0096" num="0091">需要说明的是，升力系数的初始值在飞行器设计阶段通过风洞试验或计算流体力学仿真(CFD)获得。例如，在风洞测试中，通过改变飞行器的迎角(攻角)，测得不同迎角下的升力系数，并绘制出升力系数与迎角的关系曲线，作为飞行器气动设计的参考。在实际飞行过程中，飞行器利用迎角传感器和姿态传感器实时监测当前迎角，通过飞控系统动态查找升力系数数据库，调整升力系数以满足当前飞行状态。例如，在爬升模式中，系统会通过调整升降舵角度增大迎角，使升力系数达到目标值，提供足够的升力克服重力，确保稳定爬升。</div>
+<div class="description-paragraph" id="p0097" num="0092">在一个具体的实施例中，阻力系数主要由飞行器的气动外形、迎风面积、表面光滑度及飞行状态决定。初始设计值通过风洞试验或数值仿真分析得到，具体针对飞行器在不同速度和攻角下的阻力特性。实际飞行中，阻力系数可以通过飞行器的空气动力反馈系统动态调整，传感器实时监测飞行速度、气流扰动及飞行器姿态变化，从而计算瞬时阻力大小并修正阻力系数。在节能控制过程中，通过优化迎风面积和飞行姿态，尽量减少阻力系数带来的空气阻力。例如，在平飞模式下，降低迎角和优化姿态可以有效减少阻力系数，从而降低功率消耗，提高飞行器的能效。</div>
+<div class="description-paragraph" id="p0098" num="0093">需要说明的是，阻力系数的初始值通过飞行器设计阶段的风洞试验或仿真分析确定，测量飞行器在不同速度和迎角下的空气阻力特性。在实际飞行中，飞行器配备的速度传感器和加速度传感器可实时测量飞行速度和阻力，通过空气阻力公式反向计算出当前的阻力系数。系统还可通过优化飞行姿态和迎角来动态降低阻力系数。例如，在平飞模式下，系统检测到迎角过大导致阻力系数增加，便自动调整机翼姿态，减小迎角，从而降低空气阻力，提升飞行器的节能性能。</div>
+<div class="description-paragraph" id="p0099" num="0094">在步骤S12中，需要根据所述大气特征数据和所述飞行器特征数据，进行环境特征计算，得到实时大气压和实时温度，包括：</div>
+<div class="description-paragraph" id="p0100" num="0095">在一个具体的实施例中，实时大气压是通过大气压随高度呈指数衰减的特性进行计算的，公式为：</div>
+<div class="description-paragraph" id="p0101" num="0096">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0102" num="0097">其中，P<sub>0</sub>为标准大气压(取固定值101325Pa)；H为飞行器高度；H<sub>0</sub>为标准大气压的特征高度(8434.5m8)；P为实时大气压；</div>
+<div class="description-paragraph" id="p0103" num="0098">需要说明的是，实时大气压的获取为后续空气密度计算提供了必要的输入，它反映了高度变化对空气稀薄程度的影响，从而影响飞行器空气动力学特性的计算精度，如升力和阻力的实际表现。</div>
+<div class="description-paragraph" id="p0104" num="0099">具体地，系统首先通过传感器实时采集当前飞行器高度，将数据传送至控制系统进行计算。系统利用指数关系公式进行实时大气压计算。例如，当飞行器处于5000m高度时，系统代入参数计算：</div>
+<div class="description-paragraph" id="p0105" num="0100">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0106" num="0101">这表明随着飞行高度增加，大气压逐渐降低。实时大气压是空气动力学计算(如密度、阻力和升力)的重要输入参数，能够帮助系统动态分析飞行器在不同高度下的飞行环境，从而为迎风面积、功率需求等计算提供基础数据。</div>
+<div class="description-paragraph" id="p0107" num="0102">在一个具体的实施例中，实时温度的计算基于海平面标准温度随飞行高度线性递减的规律，计算公式为：</div>
+<div class="description-paragraph" id="p0108" num="0103">T＝T<sub>0</sub>-Γ·H</div>
+<div class="description-paragraph" id="p0109" num="0104">其中，T为实时温度；H为飞行器高度；T<sub>0</sub>为海平面标准温度(288.15K，约15℃)；Γ为环境温度递减率(0.0065K/m)。</div>
+<div class="description-paragraph" id="p0110" num="0105">需要说明的是，实时温度的获取直接影响空气密度计算结果，因为温度降低会导致空气密度增加，这对飞行器的升力、阻力、功率需求等空气动力学参数计算起到支撑作用。</div>
+<div class="description-paragraph" id="p0111" num="0106">具体地，系统通过高度传感器获取飞行器当前高度，将高度数据输入温度公式进行实时计算。例如，当飞行器上升到5000m高度时，系统进行计算：</div>
+<div class="description-paragraph" id="p0112" num="0107">T＝288.15-(0.0065·5000)＝288.15-32.5＝255.65K</div>
+<div class="description-paragraph" id="p0113" num="0108">换算为摄氏温度为-17.5℃。实时温度是影响空气密度计算的重要参数，因为温度的降低会导致空气密度增加，从而影响飞行器的空气动力学性能。通过实时温度数据，系统可以动态调整升力、阻力和功率需求等参数。例如，在温度较低时，空气密度增大，飞行器在相同速度下所需的功率会相应增加，系统可据此优化推力控制策略，确保飞行器在不同高度下实现最佳节能状态。</div>
+<div class="description-paragraph" id="p0114" num="0109">在步骤S13中，需要根据所述大气特征数据、所述飞行器特征数据、所述实时大气压和所述实时温度，进行密度计算，得到实时密度，包括：</div>
+<div class="description-paragraph" id="p0115" num="0110">在一个具体的实施例中，通过以下公式计算所述实时密度：</div>
+<div class="description-paragraph" id="p0116" num="0111">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0117" num="0112">其中，ρ<sub>0</sub>为标准大气密度；T为实时温度；P为实时大气压；T为实时温度；R为比气体常数；ρ为实时密度。</div>
+<div class="description-paragraph" id="p0118" num="0113">具体地，首先接收通过步骤S12计算得到的实时温度和实时大气压，同时调用标准大气压、标准大气密度和比气体常数等固定值。将这些参数代入密度计算公式计算，系统自动将接收到的温度与标准温度288.15K比值进行修正，结合实时大气压和标准大气压的比例关系，动态计算当前高度下的空气密度。例如，当飞行器处于5000m高度，系统将温度T＝255.65K和气压P＝54019Pa代入公式，计算得出实时密度ρ≈0.736kg/m<sup>3</sup>。最终，系统将计算得到的密度数据传输至下一步(如迎风面积、升力、阻力的计算模块)，为后续的空气动力学分析和节能控制操作提供输入。</div>
+<div class="description-paragraph" id="p0119" num="0114">需要说明的是，实时密度是飞行器所处环境下空气稀薄程度的动态表示，是计算升力、阻力和功率需求等空气动力学参数的关键因素。根据空气动力学公式，实时密度影响飞行器的升力与阻力，低密度环境下需要更高的速度或迎角来维持升力平衡，从而增加能耗。</div>
+<div class="description-paragraph" id="p0120" num="0115">在步骤S14中，需要根据所述实时密度和所述飞行器特征数据，进行面积计算，得到迎风面积，包括：</div>
+<div class="description-paragraph" id="p0121" num="0116">在一个具体的实施例中，迎风面积是通过实时密度和飞行器特征数据(包括实时质量、实时速度、升力系数和重力加速度)动态计算得到的，具体公式如下：</div>
+<div class="description-paragraph" id="p0122" num="0117">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0123" num="0118">其中，ρ为实时密度；V为实时速度；S为迎风面积；m为实时质量；C<sub>L</sub>为升力系数；g为重力加速度。</div>
+<div class="description-paragraph" id="p0124" num="0119">需要说明的是，系统通过高度传感器和速度传感器实时获取飞行器的高度与速度数据，通过姿态传感器(如迎角传感器)实时监测飞行器的迎角，确定升力系数。同时，实时密度来自前一步骤S13的计算结果，实时质量由飞行器的载荷监测系统实时测量并更新。将这些参数代入公式中，系统可动态计算出飞行器当前的迎风面积。例如，当飞行器质量500kg，密度ρ≈0.736kg/m<sup>3</sup>，速度V＝50m/s，升力系数CL＝0.8时，计算得到的迎风面积为3.34m<sup>2</sup>。</div>
+<div class="description-paragraph" id="p0125" num="0120">在一个具体的实施例中，迎风面积代表飞行器与气流接触的有效面积，是影响空气动力特性的重要参数。通过实时计算迎风面积，系统能够评估飞行器在当前状态下产生的升力和阻力。迎风面积越大，飞行器受到的空气阻力越大，所需的推力和功率也随之增加；迎风面积越小，空气阻力减少，有助于降低能量消耗。因此，在不同的飞行模式下，系统会根据实时密度、速度和质量等参数动态调整迎风面积，平衡飞行器的升力与阻力。例如，在爬升模式中，系统通过增大升力系数CL和迎角来增大迎风面积，产生足够的升力以支撑飞行器爬升；而在平飞模式下，系统会维持一个合理的迎风面积，减少阻力，实现稳定飞行。</div>
+<div class="description-paragraph" id="p0126" num="0121">在步骤S15中，需要根据所述迎风面积、所述实时密度、所述飞行器特征数据，进行质量计算，得到调整质量，包括：</div>
+<div class="description-paragraph" id="p0127" num="0122">在一个具体的实施例中，系统需要根据所述迎风面积、实时密度和飞行器特征数据(包括实时速度、升力系数和重力加速度)进行质量计算，得到飞行器的调整质量。调整质量反映了当前飞行状态下，飞行器所需的质量平衡状态，有助于维持飞行器的稳定飞行和动态能量管理。其计算公式如下：</div>
+<div class="description-paragraph" id="p0128" num="0123">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0129" num="0124">其中，V为实时速度；S为迎风面积；m<sub>add</sub>为调整质量；C<sub>L</sub>为升力系数；ρ为实时密度；g为重力加速度。</div>
+<div class="description-paragraph" id="p0130" num="0125">需要说明的是，调整质量反映了飞行器在当前气动条件下需要平衡的质量状态，确保飞行器的升力与重力平衡，维持稳定飞行。例如，在高密度、低速度的情况下，系统会根据实际状态重新调整计算质量，从而优化飞行器姿态。实时调整质量的计算为飞行器动态能量管理提供依据。通过与实际质量进行对比，系统可以判断当前状态下飞行器的负载情况，动态调整推力输出，减少能量消耗，提升节能效果。在爬升、平飞和降落模式中，调整质量的计算有助于系统控制飞行器的升力需求。例如，在爬升模式中，系统根据当前气动条件计算出所需调整质量，确保产生足够的升力支持飞行器的爬升。</div>
+<div class="description-paragraph" id="p0131" num="0126">在步骤S16中，需要根据所述飞行器特征数据、所述调整质量、所述迎风面积和所述实时密度，进行速度计算，得到最佳速度，包括：</div>
+<div class="description-paragraph" id="p0132" num="0127">在一个具体的实施例中，系统根据飞行器特征数据、调整质量、迎风面积和实时密度，进行速度计算，得到当前飞行状态下的最佳速度。最佳速度表示飞行器在当前环境条件下能够维持稳定飞行、能量消耗最小的速度值。计算公式如下：</div>
+<div class="description-paragraph" id="p0133" num="0128">所述最佳速度的计算公式为：</div>
+<div class="description-paragraph" id="p0134" num="0129">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0135" num="0130">其中，其中，S为迎风面积；m<sub>add</sub>为调整质量；C<sub>L</sub>为升力系数；ρ为实时密度；g为重力加速度；V<sub>max</sub>为最佳速度。</div>
+<div class="description-paragraph" id="p0136" num="0131">需要说明的是，最佳速度使飞行器的升力与重力达到动态平衡，确保飞行器在当前状态下的稳定飞行，尤其是在不同飞行模式(如爬升、平飞、降落)中有效控制姿态。通过计算最佳速度，系统能够动态调整飞行器的速度，确保在最小能量消耗的情况下产生所需的升力，降低燃料或电力的消耗，提升节能效果。</div>
+<div class="description-paragraph" id="p0137" num="0132">具体地，在爬升模式，系统根据最佳速度提供爬升所需的速度调整，确保足够升力支持飞行器稳定上升；在平飞模式，系统维持最佳速度，实现飞行器升力与重力平衡，同时减少空气阻力，保持最小能耗；在降落模式，系统根据最佳速度逐步降低速度，优化阻力与升力的平衡，确保飞行器平稳着陆。</div>
+<div class="description-paragraph" id="p0138" num="0133">在步骤S17中，需要根据所述最佳速度、所述实时密度、所述迎风面积和所述飞行器特征数据，进行计算，得到实时功率和飞行器升力，并根据所述实时功率和所述飞行器升力进行节能控制操作，包括：</div>
+<div class="description-paragraph" id="p0139" num="0134">在一个具体的实施例中，系统根据最佳速度、实时密度、迎风面积和飞行器特征数据，进行实时功率和飞行器升力的计算。通过计算结果，系统在爬升、平飞和降落三种飞行模式下动态执行节能控制操作，优化能量管理策略，确保飞行器在不同状态下实现最优飞行性能与最低功率消耗。</div>
+<div class="description-paragraph" id="p0140" num="0135">具体地，所述实时功率的计算公式为：</div>
+<div class="description-paragraph" id="p0141" num="0136">P<sub>n</sub>＝0.5·S·ρ·V<sub>max</sub> <sup>3</sup>·C<sub>D</sub> </div>
+<div class="description-paragraph" id="p0142" num="0137">其中，C<sub>D</sub>为阻力系数；ρ为实时密度；V<sub>max</sub>为最佳速度；P<sub>n</sub>为实时功率；S为迎风面积；</div>
+<div class="description-paragraph" id="p0143" num="0138">所述飞行器升力的计算公式为：</div>
+<div class="description-paragraph" id="p0144" num="0139">L＝0.5·S·ρ·V<sub>max</sub> <sup>2</sup>·C<sub>L</sub> </div>
+<div class="description-paragraph" id="p0145" num="0140">其中，C<sub>L</sub>为升力系数；ρ为实时密度；V<sub>max</sub>为最佳速度；L为飞行器升力；S为迎风面积。</div>
+<div class="description-paragraph" id="p0146" num="0141">在一个具体的实施例中，在爬升模式中，飞行器需要产生足够的升力以克服重力实现上升，但过大的升力或功率消耗会导致不必要的能量浪费。因此，系统采取以下控制策略，当所述飞行器升力大于飞行器重力时，系统进行降低升力系数操作或调整迎角，以减少不必要的升力输出，优化空气动力分布，防止能量浪费。例如，若系统检测到升力大于1.2倍飞行器重力，则动态降低迎角，使升力系数回到目标值，保证飞行器平稳爬升；当所述实时功率大于爬升功率阈值时，系统通过调整发动机推力输出，降低不必要的功率消耗。系统在满足升力需求的同时，逐步优化推力输出，以达到节能效果。</div>
+<div class="description-paragraph" id="p0147" num="0142">需要说明的是，爬升功率阈值的具体设置根据飞行器的最大允许功率、飞行任务需求和安全性能限制进行动态设定，由设计阶段的理论计算和实际飞行测试相结合来确定。系统会预设一个安全阈值，例如飞行器发动机的最大输出功率为100kW，为了避免发动机长期处于高负荷状态引起过热或寿命缩短，爬升功率阈值可设置为0.8倍的最大输出功率，即80kW。在实际飞行中，系统通过实时监测飞行器的功率消耗，与设定的阈值进行比较，当实时功率超过80kW时，系统会自动降低发动机推力输出，并通过优化升力系数和迎角，减少不必要的升力，确保功率消耗处于安全范围内。例如，在某次爬升过程中，系统检测到功率达到85kW，超过设定的阈值，此时系统动态调整发动机推力输出至78kW，同时微调迎角，平衡升力与功耗，从而实现爬升过程中的节能与安全控制。</div>
+<div class="description-paragraph" id="p0148" num="0143">需要说明的是，在爬升模式中，飞行器需要克服重力产生足够的升力实现上升。当系统检测到升力不足时，系统通过增大迎角来提高升力系数，从而增加空气动力升力。具体操作是通过控制升降舵向下偏转，使飞行器机头略微抬高，从而增大迎角。增大迎角使机翼上下表面的气流速度差增大，从而提高升力，帮助飞行器顺利爬升。但为了避免迎角过大引起气流分离和失速，系统会将迎角控制在合理范围(如不超过15°)。</div>
+<div class="description-paragraph" id="p0149" num="0144">在一个具体的实施例中，在平飞模式中，飞行器需要维持稳定的水平飞行状态，保证升力与重力平衡，同时减少能量消耗。系统具体执行以下控制操作，当所述飞行器升力与飞行器重力不平衡时，系统动态调整升力系数，使升力与重力相等。通过姿态控制，保持飞行器在最优迎角下稳定飞行。例如，若检测到飞行器升力小于飞行器重力，系统增加迎角以提高升力系数，确保升力恢复到平衡状态；当实时功率超过平飞功率阈值时，系统根据实际情况动态调整飞行速度和发动机推力输出，以将功率消耗控制在最小值。通过优化速度与推力匹配关系，系统实现平飞状态下的最低能耗。</div>
+<div class="description-paragraph" id="p0150" num="0145">需要说明的是，平飞功率阈值的具体设置主要依据飞行器的巡航功率需求、设计飞行速度和安全余量进行确定，确保飞行器在平飞状态下维持稳定飞行且功耗最小。例如，假设飞行器在设计最佳巡航速度50m/s下，其功率需求通过理论计算为60kW。为了留出一定的安全余量，系统将平飞功率阈值设定为1.1倍的功率需求，即66kW。在实际飞行过程中，系统通过实时监测飞行器的功率消耗，当实时功率超过阈值66kW时，系统会动态调整飞行速度和发动机推力输出，降低功率消耗。例如，若系统检测到飞行器功率达到70kW，超过设定的平飞功率阈值，系统将适度降低飞行速度至48m/s，同时优化推力输出，确保功率回落至65kW范围内，从而实现节能控制，维持稳定的平飞状态。</div>
+<div class="description-paragraph" id="p0151" num="0146">需要说明的是，在平飞模式中，飞行器的升力需要与重力保持平衡，同时减少空气阻力以实现节能飞行。此时，系统通过微调迎角，会略微减小迎角，以维持飞行器的最优气动效率。具体操作是通过控制升降舵微小上调，使迎角保持在2-5°的最佳范围，确保升力与重力相等，同时空气阻力最小。</div>
+<div class="description-paragraph" id="p0152" num="0147">在一个具体的实施例中，在降落模式中，飞行器需要逐渐降低高度并平稳着陆，系统通过以下操作实现安全降落与能量优化，当所述飞行器升力大于飞行器重力时，系统进行降低升力系数和调整迎角操作，逐步减小升力，确保飞行器平稳下降，避免出现升力过大导致降落不稳定；当所述实时功率大于降落风阻功率阈值时，系统通过降低发动机推力输出，减少能量消耗，确保飞行器以合适的速度完成降落过程。系统同时配合飞行姿态调整，优化着陆滑行距离，提升降落的安全性与稳定性。</div>
+<div class="description-paragraph" id="p0153" num="0148">需要说明的是，降落风阻功率阈值的设置主要基于飞行器在降落过程中所需的减速功率需求、飞行速度和安全着陆要求进行确定，确保飞行器在降落阶段能够平稳减速且功率消耗保持在安全范围内。例如，假设飞行器的设计着陆速度30m/s，此时的风阻功率通过计算得出为40kW。为了保证安全余量，系统将降落风阻功率阈值设定为1.2倍风阻功率，即48kW。在实际降落过程中，系统实时监测飞行器的功率消耗，当功率超过设定阈值48kW时，系统会动态降低发动机推力输出，并通过调整迎角和升力系数，减小飞行器的速度和风阻。例如，当系统检测到功率达到50kW，系统立即降低发动机推力至45kW，并适度调整迎角，确保飞行器平稳减速，功率回落至设定阈值内，最终实现安全着陆和能量消耗最小化。</div>
+<div class="description-paragraph" id="p0154" num="0149">需要说明的是，在降落模式中，飞行器需要降低升力，实现高度和速度的平稳下降，确保安全着陆。系统通过减小迎角，即控制升降舵向上偏转，使飞行器机头下压，迎角减小，从而降低升力系数。减小迎角会使飞行器的升力逐渐小于重力，帮助飞行器平稳下降，同时减少不必要的空气阻力，优化减速效果。</div>
+<div class="description-paragraph" id="p0155" num="0150">综上所述，本发明提供了一种低空载人飞行器的节能控制方法及系统，通过优化飞行器的能量管理和控制策略，降低飞行器的功耗，提高飞行器的续航能力和飞行效率。本发明通过获取大气特征数据和飞行器特征数据，包括标准大气压、标准温度、实时高度、实时速度、实时质量、升力系数和阻力系数等关键参数，进行动态环境特征计算，实时获得飞行高度下的大气压和温度。随后，基于大气特征数据和飞行器数据，通过密度计算得到实时大气密度，为进一步的能量计算提供基础。在此基础上，本发明通过迎风面积计算和质量调整计算，根据实时大气密度和飞行器速度动态调整迎风面积和飞行器质量，确保飞行器在不同飞行模式(爬升、平飞、降落)下能够维持最佳的空气动力特性。通过最佳速度计算，本发明确定了飞行器在不同工况下的最佳飞行速度，减少空气阻力和能量消耗。此外，本发明根据最佳速度、实时密度和迎风面积，通过功率和升力计算，评估实时所需功率和飞行器产生的升力，并在不同飞行模式下进行节能控制操作。在爬升模式下，若飞行器升力过高或功率超出阈值，系统自动降低升力系数和发动机推力输出，减少能量浪费；在平飞模式下，通过动态调整升力系数，确保升力与重力平衡，维持稳定平飞状态；在降落模式下，通过控制升力系数和发动机推力输出，降低能耗，确保飞行器平稳降落。</div>
+<div class="description-paragraph" id="p0156" num="0151">通过上述方法，本发明实现了飞行器在不同飞行模式下的闭环节能控制，降低飞行器功耗，提高低空载人飞行器的续航能力和飞行效率。</div>
+<div class="description-paragraph" id="p0157" num="0152">参照图2，本发明第二实施例提供了一种低空载人飞行器的节能控制系统，包括：</div>
+<div class="description-paragraph" id="p0158" num="0153">特征数据获取模块，用于获取大气特征数据和飞行器特征数据；其中，所述大气特征数据包括标准大气压、标准大气压的特征高度、海平面标准温度、环境温度递减率、标准大气密度和比气体常数；所述飞行器特征数据包括飞行器高度、实时速度、实时质量、升力系数和阻力系数；</div>
+<div class="description-paragraph" id="p0159" num="0154">环境特征计算模块，用于根据所述大气特征数据和所述飞行器特征数据，进行环境特征计算，得到实时大气压和实时温度；</div>
+<div class="description-paragraph" id="p0160" num="0155">实时密度计算模块，用于根据所述大气特征数据、所述飞行器特征数据、所述实时大气压和所述实时温度，进行密度计算，得到实时密度；</div>
+<div class="description-paragraph" id="p0161" num="0156">迎风面积计算模块，用于根据所述实时密度和所述飞行器特征数据，进行面积计算，得到迎风面积；</div>
+<div class="description-paragraph" id="p0162" num="0157">调整质量计算模块，用于根据所述迎风面积、所述实时密度和所述飞行器特征数据，进行质量计算，得到调整质量；</div>
+<div class="description-paragraph" id="p0163" num="0158">最佳速度计算模块，用于根据所述飞行器特征数据、所述调整质量、所述迎风面积和所述实时密度，进行速度计算，得到最佳速度；</div>
+<div class="description-paragraph" id="p0164" num="0159">节能控制操作模块，用于根据所述最佳速度、所述实时密度、所述迎风面积和所述飞行器特征数据，进行计算，得到实时功率和飞行器升力，并根据所述实时功率和所述飞行器升力进行节能控制操作。</div>
+<div class="description-paragraph" id="p0165" num="0160">优选地，所述特征数据获取模块，具体用于获取大气特征数据和飞行器特征数据；其中，所述大气特征数据包括标准大气压、标准大气压的特征高度、海平面标准温度、环境温度递减率、标准大气密度和比气体常数；所述飞行器特征数据包括飞行器高度、实时速度、实时质量、升力系数和阻力系数。</div>
+<div class="description-paragraph" id="p0166" num="0161">优选地，所述环境特征计算模块，具体用于根据所述大气特征数据和所述飞行器特征数据，进行环境特征计算，得到实时大气压和实时温度，包括：</div>
+<div class="description-paragraph" id="p0167" num="0162">所述实时大气压的计算公式为：</div>
+<div class="description-paragraph" id="p0168" num="0163">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0169" num="0164">其中，P<sub>0</sub>为标准大气压；H为飞行器高度；H<sub>0</sub>为标准大气压的特征高度；P为实时大气压；</div>
+<div class="description-paragraph" id="p0170" num="0165">所述实时温度的计算公式为：</div>
+<div class="description-paragraph" id="p0171" num="0166">T＝T<sub>0</sub>-Γ·H</div>
+<div class="description-paragraph" id="p0172" num="0167">其中，T为实时温度；H为飞行器高度；T<sub>0</sub>为海平面标准温度；Γ为环境温度递减率。</div>
+<div class="description-paragraph" id="p0173" num="0168">优选地，所述实时密度计算模块，具体用于根据所述大气特征数据、所述飞行器特征数据、所述实时大气压和所述实时温度，进行密度计算，得到实时密度，包括：</div>
+<div class="description-paragraph" id="p0174" num="0169">所述实时密度的计算公式为：</div>
+<div class="description-paragraph" id="p0175" num="0170">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0176" num="0171">其中，ρ<sub>0</sub>为标准大气密度；T为实时温度；P为实时大气压；T为实时温度；R为比气体常数；ρ为实时密度。</div>
+<div class="description-paragraph" id="p0177" num="0172">优选地，所述迎风面积计算模块，具体用于根据所述实时密度和所述飞行器特征数据，进行面积计算，得到迎风面积，包括：</div>
+<div class="description-paragraph" id="p0178" num="0173">所述迎风面积的计算公式为：</div>
+<div class="description-paragraph" id="p0179" num="0174">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0180" num="0175">其中，ρ为实时密度；V为实时速度；S为迎风面积；m为实时质量；C<sub>L</sub>为升力系数；g为重力加速度。</div>
+<div class="description-paragraph" id="p0181" num="0176">优选地，所述调整质量计算模块，具体用于根据所述迎风面积、所述实时密度、所述飞行器特征数据，进行质量计算，得到调整质量，包括：</div>
+<div class="description-paragraph" id="p0182" num="0177">所述调整质量的计算公式为：</div>
+<div class="description-paragraph" id="p0183" num="0178">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0184" num="0179">其中，V为实时速度；S为迎风面积；m<sub>add</sub>为调整质量；C<sub>L</sub>为升力系数；ρ为实时密度；g为重力加速度。</div>
+<div class="description-paragraph" id="p0185" num="0180">优选地，所述最佳速度计算模块，具体用于根据所述飞行器特征数据、所述调整质量、所述迎风面积和所述实时密度，进行速度计算，得到最佳速度，包括：</div>
+<div class="description-paragraph" id="p0186" num="0181">所述最佳速度的计算公式为：</div>
+<div class="description-paragraph" id="p0187" num="0182">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0188" num="0183">其中，其中，S为迎风面积；m<sub>add</sub>为调整质量；C<sub>L</sub>为升力系数；ρ为实时密度；g为重力加速度；V<sub>max</sub>为最佳速度。</div>
+<div class="description-paragraph" id="p0189" num="0184">优选地，所述节能控制操作模块，具体用于根据所述最佳速度、所述实时密度、所述迎风面积和所述飞行器特征数据，进行计算，得到实时功率和飞行器升力，并根据所述实时功率和所述飞行器升力进行节能控制操作，包括：</div>
+<div class="description-paragraph" id="p0190" num="0185">所述实时功率的计算公式为：</div>
+<div class="description-paragraph" id="p0191" num="0186">P<sub>n</sub>＝0.5·S·ρ·V<sub>max</sub> <sup>3</sup>·C<sub>D</sub> </div>
+<div class="description-paragraph" id="p0192" num="0187">其中，C<sub>D</sub>为阻力系数；ρ为实时密度；V<sub>max</sub>为最佳速度；P<sub>n</sub>为实时功率；S为迎风面积；</div>
+<div class="description-paragraph" id="p0193" num="0188">所述飞行器升力的计算公式为：</div>
+<div class="description-paragraph" id="p0194" num="0189">L＝0.5·S·ρ·V<sub>max</sub> <sup>2</sup>·C<sub>L</sub> </div>
+<div class="description-paragraph" id="p0195" num="0190">其中，C<sub>L</sub>为升力系数；ρ为实时密度；V<sub>max</sub>为最佳速度；L为飞行器升力；S为迎风面积。</div>
+<div class="description-paragraph" id="p0196" num="0191">所述根据所述实时功率和所述飞行器升力进行节能控制操作，包括：</div>
+<div class="description-paragraph" id="p0197" num="0192">对于爬升模式，当所述飞行器升力大于飞行器重力时，进行降低升力系数和调整迎角操作；当所述实时功率大于爬升功率阈值时，进行降低飞行器发动机推力输出操作；</div>
+<div class="description-paragraph" id="p0198" num="0193">对于平飞模式，当所述飞行器升力与飞行器重力不平衡时，进行动态调整升力系数操作；当所述实时功率超过平飞功率阈值时，进行动态调整飞行速度和发动机推力输出操作；</div>
+<div class="description-paragraph" id="p0199" num="0194">对于降落模式，当所述飞行器升力大于飞行器重力时，进行降低升力系数和调整迎角操作；当所述实时功率大于降落风阻功率阈值时，进行降低飞行器发动机推力输出操作。</div>
+<div class="description-paragraph" id="p0200" num="0195">需要说明的是，本发明实施例提供的一种低空载人飞行器的节能控制系统用于执行上述实施例的一种低空载人飞行器的节能控制方法的所有流程步骤，两者的工作原理和有益效果一一对应，因而不再赘述。</div>
+<div class="description-paragraph" id="p0201" num="0196">本发明实施例还提供了一种电子设备。该电子设备包括：处理器、存储器以及存储在所述存储器中并可在所述处理器上运行的计算机程序，例如实时密度计算程序。所述处理器执行所述计算机程序时实现上述各个低空载人飞行器的节能控制方法实施例中的步骤，例如图1所示的步骤S11。或者，所述处理器执行所述计算机程序时实现上述各装置实施例中各模块/单元的功能，例如环境特征计算模块。</div>
+<div class="description-paragraph" id="p0202" num="0197">示例性的，所述计算机程序可以被分割成一个或多个模块/单元，所述一个或者多个模块/单元被存储在所述存储器中，并由所述处理器执行，以完成本发明。所述一个或多个模块/单元可以是能够完成特定功能的一系列计算机程序指令段，该指令段用于描述所述计算机程序在所述电子设备中的执行过程。</div>
+<div class="description-paragraph" id="p0203" num="0198">所述电子设备可以是桌上型计算机、笔记本、掌上电脑及智能平板等计算设备。所述电子设备可包括，但不仅限于，处理器、存储器。本领域技术人员可以理解，上述部件仅仅是电子设备的示例，并不构成对电子设备的限定，可以包括比上述更多或更少的部件，或者组合某些部件，或者不同的部件，例如所述电子设备还可以包括输入输出设备、网络接入设备、总线等。</div>
+<div class="description-paragraph" id="p0204" num="0199">所称处理器可以是中央处理单元(Central Processing Unit，CPU)，还可以是其他通用处理器、数字信号处理器(Digital Signal Processor，DSP)、专用集成电路(Application Specific Integrated Circuit，ASIC)、现成可编程门阵列(Field-Programmable Gate Array，FPGA)或者其他可编程逻辑器件、分立门或者晶体管逻辑器件、分立硬件组件等。通用处理器可以是微处理器或者该处理器也可以是任何常规的处理器等，所述处理器是所述电子设备的控制中心，利用各种接口和线路连接整个电子设备的各个部分。</div>
+<div class="description-paragraph" id="p0205" num="0200">所述存储器可用于存储所述计算机程序和/或模块，所述处理器通过运行或执行存储在所述存储器内的计算机程序和/或模块，以及调用存储在存储器内的数据，实现所述电子设备的各种功能。所述存储器可主要包括存储程序区和存储数据区，其中，存储程序区可存储操作系统、至少一个功能所需的应用程序(比如声音播放功能、图像播放功能等)等；存储数据区可存储根据手机的使用所创建的数据(比如音频数据、电话本等)等。此外，存储器可以包括高速随机存取存储器，还可以包括非易失性存储器，例如硬盘、内存、插接式硬盘，智能存储卡(Smart Media Card,SMC)，安全数字(Secure Digital,SD)卡，闪存卡(Flash Card)、至少一个磁盘存储器件、闪存器件、或其他易失性固态存储器件。</div>
+<div class="description-paragraph" id="p0206" num="0201">其中，所述电子设备集成的模块/单元如果以软件功能单元的形式实现并作为独立的产品销售或使用时，可以存储在一个计算机可读取存储介质中。基于这样的理解，本发明实现上述实施例方法中的全部或部分流程，也可以通过计算机程序来指令相关的硬件来完成，所述的计算机程序可存储于一计算机可读存储介质中，该计算机程序在被处理器执行时，可实现上述各个方法实施例的步骤。其中，所述计算机程序包括计算机程序代码，所述计算机程序代码可以为源代码形式、对象代码形式、可执行文件或某些中间形式等。所述计算机可读介质可以包括：能够携带所述计算机程序代码的任何实体或装置、记录介质、U盘、移动硬盘、磁碟、光盘、计算机存储器、只读存储器(ROM，Read-Only Memory)、随机存取存储器(RAM，Random Access Memory)、电载波信号、电信信号以及软件分发介质等。需要说明的是，所述计算机可读介质包含的内容可以根据司法管辖区内立法和专利实践的要求进行适当的增减，例如在某些司法管辖区，根据立法和专利实践，计算机可读介质不包括电载波信号和电信信号。</div>
+<div class="description-paragraph" id="p0207" num="0202">需说明的是，以上所描述的装置实施例仅仅是示意性的，其中所述作为分离部件说明的单元可以是或者也可以不是物理上分开的，作为单元显示的部件可以是或者也可以不是物理单元，即可以位于一个地方，或者也可以分布到多个网络单元上。可以根据实际的需要选择其中的部分或者全部模块来实现本实施例方案的目的。另外，本发明提供的装置实施例附图中，模块之间的连接关系表示它们之间具有通信连接，具体可以实现为一条或多条通信总线或信号线。本领域普通技术人员在不付出创造性劳动的情况下，即可以理解并实施。</div>
+<div class="description-paragraph" id="p0208" num="0203">以上所述的具体实施例，对本发明的目的、技术方案和有益效果进行了进一步的详细说明，应当理解，以上所述仅为本发明的具体实施例而已，并不用于限定本发明的保护范围。特别指出，对于本领域技术人员来说，凡在本发明的精神和原则之内，所做的任何修改、等同替换、改进等，均应包含在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

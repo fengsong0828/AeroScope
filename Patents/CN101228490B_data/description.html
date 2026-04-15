@@ -1,0 +1,217 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN101228490B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES400233508">
+<invention-title id="tilte1" lang="ZH">用于保障飞行器的低空自动飞行的方法、设备和飞行器
+	</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001" num="0001">本发明涉及用于保障飞行器的低空自动飞行的方法和设备，该飞行器沿着低空飞行轨迹被(自动地)引导，该低空飞行轨迹包括侧向轨迹和垂直轨迹。</div>
+<div class="description-paragraph" id="p0002" num="0002">虽然并不唯一，但本发明更特别地应用于军事运输飞机，其具有低推力/重量比和高惯性，而且其操纵时间一般较慢。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003" num="0003">在本发明的范围内，措辞“低空飞行”的意思是沿着允许飞行器尽可能接近沿其所飞越的地形而行的飞行轨迹(在低海拔高度)的飞行，特别是使得免于被精确定位。例如像这样的低空飞行轨迹因此最普遍地位于距地形最低的预定高度上，例如500英尺(约150米)。</div>
+<div class="description-paragraph" id="p0004" num="0004">因为这个对地面的接近性，相对于所要跟随的飞行轨迹，在沿着所述飞行轨迹制导飞行器时，飞行器的任何向下垂直偏差(超过某一安全界限)具有与飞越的地形碰撞的重大危险(直接与地面或与位于所述地面上的建筑物或要素碰撞)。当然，这种危险的存在是不可接受的(或者除非每飞行小时的出现的概率小于预定的安全目标)。</div>
+<div class="description-paragraph" id="p0005" num="0005">本发明的目的在于保障飞行器(沿飞行轨迹被自动地引导，该飞行轨迹包括侧向轨迹和垂直轨迹)的低空飞行，以便使得飞行器极不可能与飞越的地形发生任何碰撞。</div>
+<div class="description-paragraph" id="p0006" num="0006">本发明更特别地应用于自主式的自动飞行，也就是完全根据导航、飞行管理和制导系统以及根据数字地形数据库实施的自动飞行，无需借助任何向前发射的设备，例如雷达。众所周知，例如像这样的自主式自动飞行可能遭遇到一整套误差，特别有关于：</div>
+<div class="description-paragraph" id="p0007" num="0007">-导航：由机载导航系统给出的位置并不恰好是飞行器的实际位置；</div>
+<div class="description-paragraph" id="p0008" num="0008">-制导：自动驾驶仪使导航系统所给出的位置受控于飞行管理系统所计算的轨迹。该从属作用具有固有的性能，该固有的性能传递自动驾驶仪的功能以在要求的轨迹上引导飞行器。制导误差也可存在于借助于飞行指挥仪的飞行中，驾驶员必须手动地按照该飞行指挥仪操作；</div>
+<div class="description-paragraph" id="p0009" num="0009">-飞行轨迹：这个轨迹的准确度取决于所使用的计算机的算法和处理器的准确度，以及特别可能的飞越的地形的数字模型的误差(也就是与所使用的数字地形数据库有关的误差)。</div>
+<div class="description-paragraph" id="p0010" num="0010">应当理解：监控飞行器的预计位置和计算的飞行器必须跟随的低空飞行轨迹之间的偏差，以使得可能检测过量的垂直偏差，这不能考虑到特别是导航误差以及与所使用的数字地形数据库有关的误差的影响。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0011" num="0011">本发明的目的在于弥补这些缺点。本发明涉及用于保障飞行器的低空自动自主飞行的特别有效的方法，该飞行器因此沿着低空飞行轨迹被引导(自动地并以自主的方式)。</div>
+<div class="description-paragraph" id="p0012" num="0012">为此，根据本发明，所述方法的特征在于：</div>
+<div class="description-paragraph" id="p0013" num="0013">A/在所述低空飞行时，以自动且重复的方式实施下述一系列连续的操作：</div>
+<div class="description-paragraph" id="p0014" num="0014">a)根据至少飞行器所跟随的所述低空飞行轨迹的当前海拔高度，以及根据飞行器的导航误差、飞行器的制导误差和计算所述飞行轨迹中的误差来确定当前阈值；</div>
+<div class="description-paragraph" id="p0015" num="0015">b)测量在飞越的地形上方的飞行器的当前实际高度；以及</div>
+<div class="description-paragraph" id="p0016" num="0016">c)比较这个测量的当前实际高度和所述当前阈值；以及</div>
+<div class="description-paragraph" id="p0017" num="0017">B/如果所述当前实际高度变得小于或等于所述当前阈值，那么就发出警报信号(可听和/或可视)。</div>
+<div class="description-paragraph" id="p0018" num="0018">因此，根据本发明，通过监控飞行器的当前实际高度(也就是通过以重复的方式测量该高度并将其与所述预定的阈值进行比较)，能够检测任何过量的向下垂直偏差。这样的校验是特别有效的，因为其不考虑预计的高度，而是飞行器的当前实际高度，也就是关于实际地形的实际高度。</div>
+<div class="description-paragraph" id="p0019" num="0019">此外，如下所述，所述阈值被确定以便计入例如在低空自动自主飞行时易于出现的各种误差。</div>
+<div class="description-paragraph" id="p0020" num="0020">在一个优选的实施例中，在步骤A/a)中，借助下述表达式(1)来计算所述阈值H0：</div>
+<div class="description-paragraph" id="p0021" num="0021">
+<maths>
+<math>
+<mrow>
+<mi>H</mi>
+<mn>0</mn>
+<mo>=</mo>
+<mi>Z</mi>
+<mn>1</mn>
+<mo>-</mo>
+<mi>Zmoy</mi>
+<mo>-</mo>
+<mrow>
+<mo>(</mo>
+<munder>
+<mi>&amp;Sigma;</mi>
+<mi>i</mi>
+</munder>
+<mi>Li</mi>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0022" num="0022">其中：</div>
+<div class="description-paragraph" id="p0023" num="0023">-Z1表示所述飞行轨迹(计算的)当前海拔高度，其对应于飞行器的当前侧向位置，也就是该海拔高度对应于飞行器的当前侧向位置向计算的飞行轨迹上的正交投影；</div>
+<div class="description-paragraph" id="p0024" num="0024">-Zmoy表示在飞行器下面的数字地形的平均海拔高度，其来源于数字地形数据库；以及</div>
+<div class="description-paragraph" id="p0025" num="0025">-数值Li表示至少导航和制导误差以及与所述数字地形数据库有关的误差的边界，该数值被用来计算所述低空飞行轨迹。每个边界表达的事实是：相应的误差不以比目标概率更大的概率大于该边界。在该情况下，目标概率是：对其来说，警报信号不会在低空飞行时被发出。</div>
+<div class="description-paragraph" id="p0026" num="0026">此外，当飞行器所飞越的地形大致平坦时：</div>
+<div class="description-paragraph" id="p0027" num="0027">-Z1表示预定的警戒高度HG，例如500英尺(大约150米)；以及</div>
+<div class="description-paragraph" id="p0028" num="0028">-Zmoy被视为零，</div>
+<div class="description-paragraph" id="p0029" num="0029">以便获得用于计算阈值H0的简化的表达式，即</div>
+<div class="description-paragraph" id="p0030" num="0030"> <maths> <math> <mrow> <mi>H</mi> <mn>0</mn> <mo>=</mo> <mi>HG</mi> <mo>-</mo> <mrow> <mo>(</mo> <munder> <mi>&amp;Sigma;</mi> <mi>i</mi> </munder> <mi>Li</mi> <mo>)</mo> </mrow> <mo>.</mo> </mrow> </math> </maths>  </div>
+<div class="description-paragraph" id="p0031" num="0031">此外，有利地，在步骤A/b)中，借助无线电测高计来测量所述实际高度。</div>
+<div class="description-paragraph" id="p0032" num="0032">另外，在步骤B/中，如果所述当前实际高度变得小于或等于所述当前阈值，除了发出警报信号以外，低空飞行也被中断，而且飞行器被控制(自动且手动地)使得增大其海拔高度以便将其带到安全海拔高度(在可能返回到如果被证明是可能的低空飞行之前)。</div>
+<div class="description-paragraph" id="p0033" num="0033">本发明也涉及用于保障飞行器的低空飞行的设备，该飞行器沿着(低空)飞行轨迹被自动地(以自主的方式)引导。</div>
+<div class="description-paragraph" id="p0034" num="0034">根据本发明，这个设备的特征在于其包括：</div>
+<div class="description-paragraph" id="p0035" num="0035">-第一装置，用于根据至少飞行器所跟随的所述低空飞行轨迹(预先计算的)的当前海拔高度，以及根据导航误差、制导误差和计算飞行轨迹中的误差来确定当前阈值。该计算飞行轨迹中的误差主要取决于和所使用的数字地形数据库有关的误差，其来源于从地面装载的文件或例如借助地面的地图测绘模式的雷达在飞行器上制作的文件；</div>
+<div class="description-paragraph" id="p0036" num="0036">-第二装置，特别是至少一个无线电测高计，用于在沿着所述飞行轨迹的低空飞行时测量在飞越的地形上方的飞行器的当前实际高度；</div>
+<div class="description-paragraph" id="p0037" num="0037">-第三装置，被连接到所述第一和第二装置，用于比较所述当前实际高度和所述当前阈值；以及</div>
+<div class="description-paragraph" id="p0038" num="0038">-第四装置，被连接到所述第三装置，如果所述当前实际高度变得小于或等于所述当前阈值，则发出警报信号。</div>
+<div class="description-paragraph" id="p0039" num="0039">此外，在一个特殊的实施例中，根据本发明的设备还包括第五装置，当所述当前实际高度变得小于或等于所述当前阈值时，用于控制飞行器以便增大其海拔高度并将其带到安全海拔高度。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0040" num="0040">附图的图示将阐明本发明可被具体实施的方式。在这些图示中，同样的附图标记指示相同的元件。</div>
+<div class="description-paragraph" id="p0041" num="0041">图1是根据本发明的设备的示意图；以及</div>
+<div class="description-paragraph" id="p0042" num="0042">图2是在垂直平面内示意地图示出被考虑用于本发明的实施的主要特征。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0043" num="0043">根据本发明示意地表示在图1中的设备1被用来保障例如运输飞机、战斗机或直升机的飞行器A的低空飞行。</div>
+<div class="description-paragraph" id="p0044" num="0044">所述设备1配有标准的驾驶系统2，该驾驶系统被携带在飞行器A上并包括：</div>
+<div class="description-paragraph" id="p0045" num="0045">-例如飞行管理系统的装置，用于确定飞行轨迹T0，该飞行轨迹包括限定在水平面内的轨迹TL和限定在垂直面内的垂直轨迹TV(或飞行剖面图)。为了能够实施低空飞行，(低空)飞行轨迹T0必须允许飞行器A尽可能接近地遵循被飞越的地形TA行进(在对应于驾驶员所选择的警戒高度的距地面的最小高度上)；以及</div>
+<div class="description-paragraph" id="p0046" num="0046">-例如自动驾驶仪的制导装置，用于沿着所述飞行轨迹T0引导飞行器A。这个制导装置确定了驾驶飞行器A的指令，该指令使得飞行器跟随所述飞行轨迹T0。这些驾驶指令被发送到用于驱动受控构件的装置，例如飞行器A的控制舵(方向舵、升降舵等)。</div>
+<div class="description-paragraph" id="p0047" num="0047">根据本发明，因此被用来保障沿着低空飞行轨迹T0被自动引导的飞行器A的低空飞行的所述设备1包括：</div>
+<div class="description-paragraph" id="p0048" num="0048">-装置3，根据至少飞行器A所跟随的所述低空飞行轨迹T0的当前海拔高度Z1(也就是下文所述的在飞行器A的预计的当前位置P2上的海拔高度)，以及根据飞行器A的导航误差、飞行器A的制导误差和计算所述飞行轨迹T0中的误差来确定当前阈值H0；</div>
+<div class="description-paragraph" id="p0049" num="0049">-装置4，用于测量(以重复的方式)在飞越的实际地形TA上方的飞行器A的当前实际高度RA；</div>
+<div class="description-paragraph" id="p0050" num="0050">-装置5，分别经过线路6和7连接到所述装置3和4，并被用来比较(以重复的方式)所述当前实际高度RA和所述当前阈值H0；以及</div>
+<div class="description-paragraph" id="p0051" num="0051">-装置8，经过线路9连接到所述装置5，而且一旦所述测量的飞行器A的当前实际高度RA变得小于或等于所述计算的当前阈值H0，装置8就被用来发出警报信号。</div>
+<div class="description-paragraph" id="p0052" num="0052">在一个特殊的实施例中：</div>
+<div class="description-paragraph" id="p0053" num="0053">-所述装置4包括至少一个无线电测高计，也就是无线电导航仪器，其被安装在飞行器A上并使用无线电波在地面(实际地形TA)上的反射，该反射的目的在于确定在所述地面(实际地形TA)上方的飞行器A的实际高度RA；以及</div>
+<div class="description-paragraph" id="p0054" num="0054">-所述装置8被形成使得能够发出可视类型和/或可听类型的警报信号。</div>
+<div class="description-paragraph" id="p0055" num="0055">根据本发明的设备1也包括装置10，其经过线路11连接到所述装置5，并被形成用于：当飞行器A的当前实际高度RA变得小于或等于所述当前阈值H0时，以增大飞行器的海拔高度的方法来控制飞行器A，并将该飞行器带到预定的安全海拔高度。</div>
+<div class="description-paragraph" id="p0056" num="0056">在一个优选的实施例中，所述装置10是自动驾驶装置，并包括例如前述的自动驾驶系统2。然而，这些装置10也可包括标准的手动驾驶装置。</div>
+<div class="description-paragraph" id="p0057" num="0057">本发明更特别地应用于自主式的自动飞行，也就是完全根据机载携带的导航、飞行管理和制导系统以及数字地形数据库实施的自动飞行，无需借助任何向前发射的设备，例如雷达。</div>
+<div class="description-paragraph" id="p0058" num="0058">根据本发明的设备1通过监控飞行器A的当前高度RA(也就是通过以重复的方式测量该高度并将其与以重复方式计算的所述预定阈值H0进行比较)，能够检测任何过量的向下垂直偏差。这样的校验是特别有效的，因为其考虑飞行器A的实际当前高度RA而不是估计的高度。这个高度RA是实际的，因为其是相对于实际地形TA测量的高度，而不是相对于预计的地形计算的高度，如下文参照图2进行的详述。</div>
+<div class="description-paragraph" id="p0059" num="0059">此外，也如下文所述，所述阈值H0被确定以便计入在低空自动自主飞行时易于出现的各种误差。此外，该阈值相对于预先计算的基准被计算，所以根据本发明的方法被称作“无线电测高计的高度的相关性”方法(即：在高度RA和预先计算的飞行轨迹T0所表示的飞行设定点之间的关联)。</div>
+<div class="description-paragraph" id="p0060" num="0060">已知，这样的自动自主式的飞行可能遭遇到垂直平面内和侧向平面内的一整套瞬时误差，特别有关于：</div>
+<div class="description-paragraph" id="p0061" num="0061">-导航误差PEE：由机载导航系统给出的位置并不恰好是飞行器A的实际位置；</div>
+<div class="description-paragraph" id="p0062" num="0062">-制导误差FTE：自动驾驶系统2的制导装置控制导航系统所给出在飞行管理系统所计算的飞行轨迹T0上的位置。该控制作用具有固有的性能，该固有的性能翻译制导装置(例如自动驾驶仪)的高度从而在要求的飞行轨迹T0上引导飞行器。制导误差也可存在于借助于飞行指挥仪的飞行中，驾驶员必须手动地遵循该飞行指挥仪；以及</div>
+<div class="description-paragraph" id="p0063" num="0063">-飞行轨迹误差PDE：该飞行轨迹的准确度取决于所使用的计算机的算法和处理器的准确度，而且也特别取决于可能的飞越的地形的数字模型误差(也就是与用来计算飞行轨迹T0的数字地形数据库有关的误差DTDBE)。</div>
+<div class="description-paragraph" id="p0064" num="0064">应当理解：各种误差的总和定义出总的系统误差TSE。</div>
+<div class="description-paragraph" id="p0065" num="0065">在一个优选的实施例中，所述装置3借助下述表达式(1)来计算所述当前阈值H0：</div>
+<div class="description-paragraph" id="p0066" num="0066">
+<maths>
+<math>
+<mrow>
+<mi>H</mi>
+<mn>0</mn>
+<mo>=</mo>
+<mi>Z</mi>
+<mn>1</mn>
+<mo>-</mo>
+<mi>Zmoy</mi>
+<mo>-</mo>
+<mrow>
+<mo>(</mo>
+<munder>
+<mi>&amp;Sigma;</mi>
+<mi>i</mi>
+</munder>
+<mi>Li</mi>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0067" num="0067">-Z1表示沿着所述飞行器A所跟随的所述飞行轨迹T0的当前高度，也就是在下文所述的位置P2上的高度，即：该飞行轨迹T0的高度对应于飞行器A的估算的当前侧向位置；</div>
+<div class="description-paragraph" id="p0068" num="0068">-Zmoy表示在下文所述的实际位置P1上，在飞行器A下面的数字地形的平均高度。这个数字地形PT来源于数字地形数据库，如下文所述；以及</div>
+<div class="description-paragraph" id="p0069" num="0069">-数值Li表示至少：</div>
+<div class="description-paragraph" id="p0070" num="0070">·垂直导航误差PEEz的边界；</div>
+<div class="description-paragraph" id="p0071" num="0071">·垂直制导误差PTEz的边界；以及</div>
+<div class="description-paragraph" id="p0072" num="0072">·与数字地形数据库有关的垂直误差DTDBEz的边界，其被用来计算所述低空飞行轨迹T0。</div>
+<div class="description-paragraph" id="p0073" num="0073">返回到图2以便适当地阐释本发明的特征，在图中的垂直平面内示出了：</div>
+<div class="description-paragraph" id="p0074" num="0074">-所谓的实际飞行器A，也就是被示出在该飞行器的实际位置P1上；</div>
+<div class="description-paragraph" id="p0075" num="0075">-如所计算那样的飞行轨迹T0的垂直轨迹TV；</div>
+<div class="description-paragraph" id="p0076" num="0076">-称为估算的飞行器A0，也就是示出在如所计算那样的所述飞行轨迹T0上该飞行器的预计位置P2上。位置P1和P2对应于同一时刻；</div>
+<div class="description-paragraph" id="p0077" num="0077">-环绕飞行轨迹T0限定的飞行通道CV(在这种情况下是垂直轨迹TV)，具有上边界CV1和下边界CV2；</div>
+<div class="description-paragraph" id="p0078" num="0078">-例如来源于所使用的数字地形数据库的地形剖面PT；</div>
+<div class="description-paragraph" id="p0079" num="0079">-根据所述地形剖面PT计算的过滤的地形剖面PTF，如下文所述；</div>
+<div class="description-paragraph" id="p0080" num="0080">-根据所述过滤的地形剖面PTF，借助例如500英尺(大约150米)的警戒高度HG的向上平移而获得的过滤的地形TF；以及</div>
+<div class="description-paragraph" id="p0081" num="0081">-实际地形TA，也就是物理地形。</div>
+<div class="description-paragraph" id="p0082" num="0082">可操作地，侧向轨迹TL首先被操作员限定(直接或经过自动路由器系统)。沿着这个侧向轨迹TL，在过滤的地形TF的上方计算低空飞行的垂直轨迹TV，根据过滤的地形剖面PTF获得该过滤的地形TF。根据地形剖面PT确定该过滤的地形剖面PTF，该地形剖面PT以下述方式来源于数字地形数据库：对于沿着侧向轨迹TL的每个横坐标，相应的地形海拔在提取表面下是PT(也就是从数字地形数据库提取的)的最高海拔，该提取表面完全侧向地对应于飞行走廊的宽度加上轨迹的每侧的对应于概率目标的误差PDE的边界。该提取表面于是纵向地计入纵向误差。</div>
+<div class="description-paragraph" id="p0083" num="0083">因此，在本发明的范围内，当一方面当前实际位置P1(实际飞行器A的)和另一方面所计算的轨迹TV的对应位置P2之间的垂直偏差大于警报阈值时，则发出警报信号，也就是当：</div>
+<div class="description-paragraph" id="p0084" num="0084">高度RA≤限定的海拔高度-在实际飞行器A下面的数字地形的平均高度-(误差FTEz、PEEz、DTDBEz的边界的总和)时</div>
+<div class="description-paragraph" id="p0085" num="0085">其中：</div>
+<div class="description-paragraph" id="p0086" num="0086">-限定的海拔高度是位置P2的高度Z1；</div>
+<div class="description-paragraph" id="p0087" num="0087">-误差FTEz、PEEz和DTDBEz是前述误差FTE、PEE和DTDBE的垂直分量；</div>
+<div class="description-paragraph" id="p0088" num="0088">-误差FTEz、PEEz和DTDBEz的边界是所述误差的边界：设定的概率是用于通道CV(10<sup>-3</sup>、10<sup>-4</sup>/hdv等)的对应于最大可容许调整的偏移概率，hdv表示飞行小时；</div>
+<div class="description-paragraph" id="p0089" num="0089">-在飞行器A下面的数字地形的平均海拔高度是所选误差PEE的边界的圆周内的平均海拔高度(对应于所选的最大概率)，其以飞行器A的预计的侧向位置为中心，并给出与上文的垂直误差相同的偏移概率。</div>
+<div class="description-paragraph" id="p0090" num="0090">在平坦的地形上，在下述条件成立时发出警报信号：</div>
+<div class="description-paragraph" id="p0091" num="0091">高度RA≤警戒高度HG-(误差FTEz、PEEz、DTDBEz的边界的总和)。</div>
+<div class="description-paragraph" id="p0092" num="0092">特别地，当飞行器A所飞越的地形TA大致平坦时，根据本发明可设计出：</div>
+<div class="description-paragraph" id="p0093" num="0093">-在所述表达式(1)中，Z1表示警戒高度HG；以及</div>
+<div class="description-paragraph" id="p0094" num="0094">-Zmoy被视为零，</div>
+<div class="description-paragraph" id="p0095" num="0095">以便获得简化的表达式，用于计算阈值H0，即：</div>
+<div class="description-paragraph" id="p0096" num="0096">
+<maths>
+<math>
+<mrow>
+<mi>H</mi>
+<mn>0</mn>
+<mo>=</mo>
+<mi>HG</mi>
+<mo>-</mo>
+<mrow>
+<mo>(</mo>
+<munder>
+<mi>&amp;Sigma;</mi>
+<mi>i</mi>
+</munder>
+<mi>Li</mi>
+<mo>)</mo>
+</mrow>
+<mo>.</mo>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0097" num="0097">在下文中，系统故障被考虑进来，该系统故障以概率Pj发生，并以相同的概率引起向上或向下的偏差dj。</div>
+<div class="description-paragraph" id="p0098" num="0098">如果带有或不带有系统故障的向下偏差大于一般500英尺(一般150米)的警戒高度HG，那么飞行器A撞击地面(实际地形TA)，而且没有警报信号被装置8发出。</div>
+<div class="description-paragraph" id="p0099" num="0099">此外，从发出警报信号的时刻起，假设飞行器A的机组人员能够控制由于该故障引起的偏差，因此在该操纵中的高度的损失小于500英尺减去警报阈值：</div>
+<div class="description-paragraph" id="p0100" num="0100"> <maths> <math> <mrow> <mi>P</mi> <mo>=</mo> <mfrac> <mn>1</mn> <mn>2</mn> </mfrac> <mi>P</mi> <mrow> <mo>(</mo> <mo>|</mo> <mi>TSEz</mi> <mo>&amp;PlusMinus;</mo> <mi>dj</mi> <mo>|</mo> <mo>&gt;</mo> <mi>d</mi> <mo>)</mo> </mrow> <mo>&amp;CenterDot;</mo> <mi>P</mi> </mrow> </math> </maths>(未被发出的警报信号)</div>
+<div class="description-paragraph" id="p0101" num="0101">同时：</div>
+<div class="description-paragraph" id="p0102" num="0102">P(|TSEz±dj|＞d)＝Pj[1-P(0≤TSEz≤d-dj)-P(0≤TSEz≤d+dj)]</div>
+<div class="description-paragraph" id="p0103" num="0103">+(1-Pj)[1-2.P(0≤TSEz≤d)]</div>
+<div class="description-paragraph" id="p0104" num="0104">应当理解：d表示警戒高度HG的值，一般由飞行器A的驾驶员选定。</div>
+<div class="description-paragraph" id="p0105" num="0105">先前的概率必须小于选定的安全目标，例如10<sup>-9</sup>/hdv。可以看到：P(未被发出的警报信号)＜1时，TSEz≥500英尺(或TSEz≥(500-dj))的概率可大于10<sup>-9</sup>/hdv，因为必须将其与通道CV出口的未检测的概率相结合。</div>
+<div class="description-paragraph" id="p0106" num="0106">在存在系统故障时，警报的阈值(阈值H0)因此也取决于飞行器A的恢复能力。</div>
+<div class="description-paragraph" id="p0107" num="0107">根据例子，如果：</div>
+<div class="description-paragraph" id="p0108" num="0108">-在90％时PDEz≈30米</div>
+<div class="description-paragraph" id="p0109" num="0109">-在99.99999％时PEEz≈70米；</div>
+<div class="description-paragraph" id="p0110" num="0110">-在95％时PSEz≈60英尺，</div>
+<div class="description-paragraph" id="p0111" num="0111">假设所述误差是高斯型的，那么，</div>
+<div class="description-paragraph" id="p0112" num="0112">-TSEz的总标准偏差δ＝80英尺(大约24米)，因此在95％时TSEz＝1.960×80≈150英尺(大约45米)；</div>
+<div class="description-paragraph" id="p0113" num="0113">-P(未被发出的警报信号)：必须与在飞行器A处的操作可用性的目标相一致。</div>
+<div class="description-paragraph" id="p0114" num="0114">如果考虑以概率(例如)Pj＝10<sup>-5</sup>/hdv和dj＝300英尺(大约90米)发生的系统故障，那么在没有警报信号的情况下，飞行器A撞击地面TA的概率大约为6.2·10<sup>-8</sup>/hdv。</div>
+<div class="description-paragraph" id="p0115" num="0115">但是如果设置了警报信号，该警报信号不被发出的概率只须≤1.6·10<sup>-2</sup>/hdv，所以撞击地面的概率≤10<sup>-9</sup>/hdv[假设一旦发出警报信号启动恢复操作时的高度的损失小于200英尺(大约60米)(200＝500-300)]。</div>
+<div class="description-paragraph" id="p0116" num="0116">这个1.6·10<sup>-2</sup>/hdv的目标充分地在当前系统的能力范围内。</div>
+<div class="description-paragraph" id="p0117" num="0117">因此，对于实施本发明来说，在地上已经：</div>
+<div class="description-paragraph" id="p0118" num="0118">-预计基本误差(导航、制导、数字地形数据库等)，从而使得能够在高斯型误差的情况下确定每个误差的标准偏差，然后确定总误差的标准偏差(除系统故障之外)；</div>
+<div class="description-paragraph" id="p0119" num="0119">-限定将在安全考虑中计入的至少一个系统故障及其发生的概率和其引起的垂直偏差；</div>
+<div class="description-paragraph" id="p0120" num="0120">-在出现该系统故障时的恢复操作时求出高度的损失值；以及</div>
+<div class="description-paragraph" id="p0121" num="0121">-规定以与地面碰撞的不会超过的概率的形式所要求的安全等级，也就是总偏差大于或等于可选择的最小警戒高度(一般500英尺)的概率的形式下所要求的安全等级，之后，</div>
+<div class="description-paragraph" id="p0122" num="0122">只需：</div>
+<div class="description-paragraph" id="p0123" num="0123">-根据可使用的目标(因为警报信号和轨迹跟踪性能而中断任务的最大概率)以及安全条件(撞击地面的概率)来定义阈值H0；以及</div>
+<div class="description-paragraph" id="p0124" num="0124">-使得符合该阈值的过调量的非检测的概率目标，以便符合整体的安全目标。</div>
+<div class="description-paragraph" id="p0125" num="0125">应当理解：飞行器A的机组人员必须知晓：根据本发明的设备1能够发出警报信号，而飞行器A的实际高度RA远大于警戒高度HG。该情况可一般出现在飞行轨迹T0陷入山谷的槽中，但飞行器A可与之充分地偏转时，以便发出警报信号。</div>
+<div class="description-paragraph" id="p0126" num="0126">一般地，可以验证该飞行轨迹T0：</div>
+<div class="description-paragraph" id="p0127" num="0127">-相对于飞行器A的爬升性能是宜于飞行的；</div>
+<div class="description-paragraph" id="p0128" num="0128">-相对于最大可容许的载荷系数是可调整的；</div>
+<div class="description-paragraph" id="p0129" num="0129">-仍然位于过滤的地形PTF上方的警戒高度上。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

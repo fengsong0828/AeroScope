@@ -1,0 +1,199 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119760753B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES498399021">
+<invention-title id="title1" lang="ZH">低空智能飞行器数据安全保护方法、系统、介质及服务器</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本申请涉及保护数据安全的技术领域，尤其是涉及低空智能飞行器数据安全保护方法、系统、介质及服务器。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空智能飞行器技术的迅猛发展，这类飞行器在航拍、农业监测、紧急救援、货物运输乃至休闲娱乐等多个领域展现出了前所未有的广泛应用潜力，极大地提升了工作效率和生活质量。然而，在充分享受这些高科技产物所带来的便捷与效益的同时，一个不容忽视的问题——数据安全问题，正逐渐浮出水面，成为制约低空智能飞行器进一步发展的关键因素之一。</div>
+<div class="description-paragraph" id="p0005" num="0003">由于低空智能飞行器在执行任务时，往往搭载着广角高清摄像头、传感器等先进设备，能够实时捕捉并传输大量的地面图像、视频及其他敏感信息。这些信息若被不当使用或泄露，可能对个人、企业乃至社会稳定构成严重威胁。特别是在一些特殊时期或敏感区域，为了维护公共安全、保护重要设施或应对特定事件，会设立有禁飞区域。</div>
+<div class="description-paragraph" id="p0006" num="0004">虽然低空智能飞行器在接收到禁飞指令后会遵守规定，不再进入这些被明确划定的禁飞区域，但是即使低空智能飞行器本身不越界，低空智能飞行器在接近禁飞边界时仍有可能拍摄到边缘区域甚至是禁飞区域内禁止拍摄的内容，使得低空智能飞行器在远离目标区域时就能捕捉到清晰的图像。一旦这些包含禁飞区域的图片被非法获取、传播或恶意篡改，后果将不堪设想。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">为了提高低空智能飞行器的内部数据的安全性，本申请提供了低空智能飞行器数据安全保护方法、系统、介质及服务器。</div>
+<div class="description-paragraph" id="p0009" num="0006">第一方面，本申请提供了低空智能飞行器数据安全保护方法，采用如下的技术方案：</div>
+<div class="description-paragraph" id="p0010" num="0007">低空智能飞行器数据安全保护方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0011" num="0008">数据采集：获取低空智能飞行器存储的内部数据；</div>
+<div class="description-paragraph" id="p0012" num="0009">第一判断：判断内部数据是否包含有图像数据，若是，则执行建系的步骤；若否，则执行第二存储的步骤；</div>
+<div class="description-paragraph" id="p0013" num="0010">建系：以图像数据中任意一个像素点作为坐标原点建立坐标系；</div>
+<div class="description-paragraph" id="p0014" num="0011">第一获取：获取图像数据中每个像素点的坐标值和像素值；</div>
+<div class="description-paragraph" id="p0015" num="0012">建栈：建立与像素值的类别数量相同的堆栈；</div>
+<div class="description-paragraph" id="p0016" num="0013">第一存储：将像素值相同的像素点的坐标值压入堆栈，记录每个堆栈对应的像素值；</div>
+<div class="description-paragraph" id="p0017" num="0014">第二存储：将内部数据存储在预设的数据库中；</div>
+<div class="description-paragraph" id="p0018" num="0015">用户验证：验证用户身份是否合法，若是，则执行反馈的步骤；若否，则执行告警的步骤；</div>
+<div class="description-paragraph" id="p0019" num="0016">反馈：将每个堆栈对应的像素值和/或内部数据反馈给用户；</div>
+<div class="description-paragraph" id="p0020" num="0017">告警：发出告警信号。</div>
+<div class="description-paragraph" id="p0021" num="0018">本申请首先获取了低空智能飞行器存储的内部数据，之后判断内部数据是否存在图像数据，如果存在，则建立坐标系，以获取每个像素点的坐标值和像素值，之后建立与像素值的类别数量相同的堆栈，进而方便地存储和管理具有相同像素值的像素点的坐标值，有助于对这些像素点进行快速访问和处理，堆栈的使用也提高了图像数据处理的灵活性和效率。随后，本申请将与像素值相同的坐标值按照预设顺序压入堆栈，并记录每个堆栈对应的像素值，反之，则对内部数据进行存储，在用户身份验证通过后，才会向该用户反馈正确的数据，通过采用上述技术方案，本申请实现了对像素点的分类存储和管理，进而实现了对图像数据的隐藏，提高了低空智能飞行器内部图像数据的安全性。</div>
+<div class="description-paragraph" id="p0022" num="0019">可选地，在执行数据采集的步骤之后，执行第一判断的步骤之前，还包括：</div>
+<div class="description-paragraph" id="p0023" num="0020">聚类：采用K-Means聚类算法对所述内部数据进行聚类，获得每个内部数据的类别标签；</div>
+<div class="description-paragraph" id="p0024" num="0021">第一计算：对同一个类别标签下的内部数据进行去均值处理，获得一次处理后的内部数据；对一次处理后的内部数据进行方差归一化处理，获得二次处理后的内部数据，记为第一数据；</div>
+<div class="description-paragraph" id="p0025" num="0022">构建矩阵：基于第一数据构建协方差矩阵，所述协方差矩阵第p行第q列元素<span class="patent-image-not-available"></span>的计算公式如下：</div>
+<div class="description-paragraph" id="p0026" num="0023"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0027" num="0024">其中，<span class="patent-image-not-available"></span>为第k<sub>1</sub>个类别标签下第p个第一数据的值；<span class="patent-image-not-available"></span>为第k<sub>1</sub>个类别标签下所有第一数据的均值；<span class="patent-image-not-available"></span>为第k<sub>2</sub>个类别标签下的第q个第一数据的值；<span class="patent-image-not-available"></span>为第k<sub>2</sub>个类别标签下所有第一数据的均值；n为类别标签的数量；</div>
+<div class="description-paragraph" id="p0028" num="0025">第二计算：对协方差矩阵进行特征值分解，获得最大的特征值与对应的特征向量；</div>
+<div class="description-paragraph" id="p0029" num="0026">第三计算：将第一数据与所述的特征向量进行乘积运算，获得运算结果，将运算结果更新为内部数据。</div>
+<div class="description-paragraph" id="p0030" num="0027">本申请首先对同一个类别标签下的内部数据进行去均值处理，以消除同一个类别标签下内部数据中的均值偏移，使得内部数据更加集中和易于分析，方差归一化处理则进一步消除了内部数据在不同维度上的量纲差异，使得内部数据在不同维度上具有可比性，进而提高后续数据分析的准确性和稳定性。随后，本申请基于二次处理后的内部数据构建协方差矩阵，以量化不同的二次处理后的内部数据之间的相关性和依赖性，之后对协方差矩阵进行特征值分解，获得特征值和对应的特征向量，之后将二次处理后的内部数据与特征向量进行乘积运算，从而将二次处理后的内部数据映射到特征向量所表示的空间中。本申请能够在保留内部数据中的主要信息的同时，隐藏原始的内部数据，即使非法用户获取了降维后的第一数据，也无法获知第一数据的原始维度，从而进一步提高了内部数据的安全性。</div>
+<div class="description-paragraph" id="p0031" num="0028">可选地，在执行第一获取的步骤之后，执行建栈的步骤之前，还包括：</div>
+<div class="description-paragraph" id="p0032" num="0029">第四计算：计算图像数据中所有像素值的方差；</div>
+<div class="description-paragraph" id="p0033" num="0030">第二判断：判断所述方差是否等于零，若是，则执行建栈的步骤；若否，则执行图像分割的步骤；</div>
+<div class="description-paragraph" id="p0034" num="0031">图像分割：采用区域增长算法对图像数据进行分割，获得多个分割块；</div>
+<div class="description-paragraph" id="p0035" num="0032">第三判断：基于八邻域像素值判断分割块是否存在噪声点，若是，则将噪声点处的像素值修改为所述噪声点的八邻域像素值的平均值；若否，则执行图像更新的步骤；</div>
+<div class="description-paragraph" id="p0036" num="0033">图像更新：分别将每个分割块更新为图像数据，并执行第四计算的步骤。</div>
+<div class="description-paragraph" id="p0037" num="0034">本申请首先计算了图像数据中所有像素值的方差，方差为零表示图像数据中的像素值都相同或均匀变化，即图像为单色图像或均匀图像。随后，本申请通过判断方差是否等于零，以识别当前的图像是否为单色图像或均匀图像，当方差不为零时，表明当前图像为不均匀图像，即可能存在噪声点，需要进一步进行图像分割，以判断是否的确存在噪声点。随后，本申请采用区域增长算法对图像数据进行分割，以获得多个具有相似像素值的分割块，进而对图像中的不同区域进行单独处理和分析，之后基于八邻域像素值判断当前分割块是否存在噪声点，若是，则将噪声点处的像素值修改为其八邻域像素点像素值的平均值，从而平滑图像。通过图像分割和噪声处理，本申请能够减少图像中的噪声和干扰，提高图像的质量和可用性。</div>
+<div class="description-paragraph" id="p0038" num="0035">可选地，在执行图像分割的步骤之后，执行第三判断的步骤之前，还包括：</div>
+<div class="description-paragraph" id="p0039" num="0036">第四判断：判断分割块内像素点的数量是否为一，若是，则执行第三判断的步骤；若否，则执行图像更新的步骤。</div>
+<div class="description-paragraph" id="p0040" num="0037">本申请通过判断分割块内像素点的数量是否为一，若是，则意味着该分割块为单色块，并直接执行第三判断的步骤，以减少图像分割的步骤的执行次数，从而提高整体处理效率，本申请通过先筛选掉只包含一个像素点的分割块，可以优化计算资源的分配，使得更多的资源可以集中在处理较大的、包含更多有用信息的分割块上，进而提高处理效率。</div>
+<div class="description-paragraph" id="p0041" num="0038">可选地，在执行第一判断的步骤之后，执行第二存储的步骤之前，还包括：</div>
+<div class="description-paragraph" id="p0042" num="0039">第二获取：获取内部数据的聚类结果，基于聚类结果获取n个聚类中心；</div>
+<div class="description-paragraph" id="p0043" num="0040">建库：构建n个数据子库，将第i个数据子库记为第i数据子库；</div>
+<div class="description-paragraph" id="p0044" num="0041">第五计算：依次计算第j个聚类中心与剩余的聚类中心的欧几里得距离，获得n-1个欧几里得距离；计算n-1个欧几里得距离的和，记为第二数据；</div>
+<div class="description-paragraph" id="p0045" num="0042">第一排序：将n个第二数据按照预设顺序进行排列，将排列后的结果记为第二数据序列；</div>
+<div class="description-paragraph" id="p0046" num="0043">关联：将第二数据序列中的第二数据与拥有相同序号的数据子库进行关联，获得关联结果；</div>
+<div class="description-paragraph" id="p0047" num="0044">第三存储：根据关联结果将内部数据存储至对应的数据子库中。</div>
+<div class="description-paragraph" id="p0048" num="0045">本申请首先获取了内部数据的聚类结果，并基于聚类结果获取了n个聚类中心，随后，本申请构建了n个数据子库，便于分类存储低空智能飞行器的内部数据。随后，本申请计算了各聚类中心之间的欧几里得距离，并且分别计算了每个聚类中心到剩余聚类中心的欧几里得距离的和，记为第二数据，将n个第二数据按照预设顺序进行排列。随后，本申请将第二数据序列中的第二数据与拥有相同序号的数据子库进行关联，实现了内部数据与数据子库的对应，便于后续的内部数据存储和访问。随后，本申请根据关联结果将内部数据存储至对应的数据子库中，实现了数据的分类存储，进而有助于加快数据检索速度，提高数据处理效率，本申请通过动态细粒度的数据存储方式，增强了数据的安全性。</div>
+<div class="description-paragraph" id="p0049" num="0046">可选地，在执行第三存储的步骤之后，所述方法还包括：</div>
+<div class="description-paragraph" id="p0050" num="0047">第一加密：采用对称加密算法对第i数据子库内存储的内部数据进行加密，获得第i加密数据，采用第i加密数据更新第i数据子库内存储的内部数据；</div>
+<div class="description-paragraph" id="p0051" num="0048">第二加密：采用非对称加密算法对第i加密数据与第i+1数据子库内存储的内部数据进行加密，获得第i+1加密数据，采用第i+1加密数据更新第i+1数据子库内存储的内部数据；</div>
+<div class="description-paragraph" id="p0052" num="0049">第五判断：判断i+1是否等于n，若否，则执行迭代的步骤；</div>
+<div class="description-paragraph" id="p0053" num="0050">迭代：将第i+1数据子库作为新的第i数据子库，将第i+1加密数据作为新的第i加密数据，执行第二加密的步骤，直至满足预设的停止条件。</div>
+<div class="description-paragraph" id="p0054" num="0051">本申请采用对称加密算法对第i数据子库内存储的内部数据进行加密，能够提高第i数据子库内存储的内部数据的安全性，使得加密后的内部数据即使被非法获取，也难以被解密和篡改，从而保护了内部数据的隐私和完整性。随后，本申请采用非对称加密算法对第i加密数据与第i+1数据子库内存储的内部数据进行加密，进一步增强了数据的安全性，使用不同的加密算法可以增加数据被破解的难度，提高数据保护的层次性。随后，通过执行第五判断的步骤，本申请可以检查是否所有的内部数据都已经完成了加密处理。如果还有未加密的内部数据，则通过迭代的步骤继续执行加密过程，直到所有内部数据都被加密为止，进而减少数据泄露的风险。通过采用上述方案，本申请进一步增强了低空智能飞行器内部数据的安全性，本申请采用的多层次、多算法的加密方式提高了数据保护的强度，使得内部数据即使在被非法获取的情况下也难以被解密和篡改。</div>
+<div class="description-paragraph" id="p0055" num="0052">可选地，在执行关联的步骤之后，执行第一存储的步骤之前，还包括：</div>
+<div class="description-paragraph" id="p0056" num="0053">数据筛选：识别内部数据中的敏感数据与非敏感数据；</div>
+<div class="description-paragraph" id="p0057" num="0054">第二排序：将各个簇内的敏感数据按照采集时间先后顺序进行排序，获得n个敏感数据序列；</div>
+<div class="description-paragraph" id="p0058" num="0055">计算距离：分别计算第a个敏感数据序列与剩余敏感数据序列的距离矩阵，根据距离矩阵计算累计距离矩阵；</div>
+<div class="description-paragraph" id="p0059" num="0056">确定序列：基于累计距离矩阵，利用动态路径规划算法获取与第a个敏感数据序列相似度最大的敏感数据序列，记为相似数据序列；</div>
+<div class="description-paragraph" id="p0060" num="0057">结合：将第a个敏感数据序列的敏感数据与相似数据序列所对应的非敏感数据结合，获得结合后的数据，将结合后的数据更新为内部数据。</div>
+<div class="description-paragraph" id="p0061" num="0058">本申请首先识别了内部数据中的敏感数据与非敏感数据，随后，将各个簇内的敏感数据按照时间先后顺序进行排序，以揭示数据的时序特征和变化趋势，便于后续的数据分析和挖掘。随后，本申请通过计算第a个敏感数据序列与剩余敏感数据序列的距离矩阵，并根据距离矩阵计算累计距离矩阵，进而量化第a个敏感数据序列与剩余敏感数据序列之间的相似性。随后，本申请根据累计距离矩阵获取与第a个敏感数据序列相似度最大的敏感数据序列（即相似数据序列），之后将第a个敏感数据序列的敏感数据与相似数据序列所对应的非敏感数据结合，并更新为内部数据，有助于在保护敏感数据的同时，更好的利用其他数据序列的非敏感数据隐藏第a个数据序列的敏感数据，进一步提高了数据安全。</div>
+<div class="description-paragraph" id="p0062" num="0059">第二方面，本申请提供了低空智能飞行器数据安全保护系统，采用如下的技术方案：</div>
+<div class="description-paragraph" id="p0063" num="0060">低空智能飞行器数据安全保护系统，包括：</div>
+<div class="description-paragraph" id="p0064" num="0061">数据采集模块，用于获取低空智能飞行器存储的内部数据；</div>
+<div class="description-paragraph" id="p0065" num="0062">第一判断模块，用于判断所述内部数据是否包含有图像数据，如果包含图像数据，则触发建系模块；反之，则触发第二存储模块；</div>
+<div class="description-paragraph" id="p0066" num="0063">建系模块，用于以图像数据中任意一个像素点作为坐标原点建立坐标系；</div>
+<div class="description-paragraph" id="p0067" num="0064">第一获取模块，用于获取图像数据中每个像素点的坐标值和像素值；</div>
+<div class="description-paragraph" id="p0068" num="0065">建栈模块，用于建立与像素值的类别数量相同的堆栈；</div>
+<div class="description-paragraph" id="p0069" num="0066">第一存储模块，用于将像素值相同的像素点的坐标值压入堆栈，记录每个堆栈对应的像素值；</div>
+<div class="description-paragraph" id="p0070" num="0067">第二存储模块，用于将内部数据存储在预设的数据库中；</div>
+<div class="description-paragraph" id="p0071" num="0068">用户验证模块，用于验证用户身份是否合法，如果合法，则触发反馈模块；反之，则触发告警模块；</div>
+<div class="description-paragraph" id="p0072" num="0069">反馈模块，用于将每个堆栈对应的像素值和/或内部数据反馈给用户；</div>
+<div class="description-paragraph" id="p0073" num="0070">告警模块，用于发出告警信号。</div>
+<div class="description-paragraph" id="p0074" num="0071">本申请通过对图像数据的一系列处理，实现了对飞行器内部数据的分类存储和处理，提高了飞行器内部图像数据的安全性。</div>
+<div class="description-paragraph" id="p0075" num="0072">第三方面，本申请提供了一种计算机可读存储介质，其上存储有计算机程序，所述计算机程序在被处理器处理时，用于实现所述的方法。</div>
+<div class="description-paragraph" id="p0076" num="0073">第四方面，本申请提供了一种服务器，所述服务器上加载有所述的系统，所述服务器包括：处理器，以及与所述处理器通信连接的存储器；</div>
+<div class="description-paragraph" id="p0077" num="0074">所述存储器内设置有所述的计算机可读存储介质，所述计算机可读存储介质上存储有计算机程序；</div>
+<div class="description-paragraph" id="p0078" num="0075">所述处理器处理所述计算机可读存储介质上存储的计算机程序时，以实现所述的方法。</div>
+<div class="description-paragraph" id="p0079" num="0076">综上所述，本申请包括以下至少一种有益技术效果：</div>
+<div class="description-paragraph" id="p0080" num="0077">1.本申请首先获取了低空智能飞行器存储的内部数据，之后判断内部数据是否存在图像数据，如果存在，则建立坐标系，以获取每个像素点的坐标值和像素值，之后建立与像素值的类别数量相同的堆栈，进而方便地存储和管理具有相同像素值的像素点的坐标值，有助于对这些像素点进行快速访问和处理，堆栈的使用也提高了图像数据处理的灵活性和效率。</div>
+<div class="description-paragraph" id="p0081" num="0078">2.本申请将与像素值相同的坐标值按照预设顺序压入堆栈，并记录每个堆栈对应的像素值，反之，则对内部数据进行存储，在用户身份验证通过后，才会向该用户反馈正确的数据，通过采用上述技术方案，本申请实现了对像素点的分类存储和管理，进而实现了对图像数据的隐藏，提高了低空智能飞行器内部图像数据的安全性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0082">附图说明</div>
+<div class="description-paragraph" id="p0083" num="0079">图1是本申请实施例1的流程图；</div>
+<div class="description-paragraph" id="p0084" num="0080">图2是本申请实施例2的流程图；</div>
+<div class="description-paragraph" id="p0085" num="0081">图3是本申请实施例3的流程图；</div>
+<div class="description-paragraph" id="p0086" num="0082">图4是本申请实施例4的流程图；</div>
+<div class="description-paragraph" id="p0087" num="0083">图5是本申请实施例5的流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0088">具体实施方式</div>
+<div class="description-paragraph" id="p0089" num="0084">以下结合图1至图5对本申请作进一步详细说明。</div>
+<div class="description-paragraph" id="p0090" num="0085">实施例1：本实施例公开了低空智能飞行器数据安全保护方法，参照图1，所述方法包括：S1数据采集、S2第一判断、S3图像存储、S4第二存储和S5合法验证，首先采集内部数据，之后判断内部数据是否含图像数据。若含图像数据，则选取图像中任一像素点作为原点建系，获取各像素的坐标与像素值，并建立与像素值类别数相等的堆栈存储相同像素值的坐标信息；若不含图像数据，则直接将内部数据存储于预设数据库。此外，本实施例还包含用户身份验证环节，合法用户可获得数据反馈，非法用户则触发告警信号，本实施例包括如下步骤：</div>
+<div class="description-paragraph" id="p0091" num="0086">S1数据采集，从飞行器中获取存储的内部数据，所述内部数据包括飞行参数、传感器读数、设备状态信息以及采集的图像数据等。</div>
+<div class="description-paragraph" id="p0092" num="0087">S2第一判断，判断所述内部数据是否包含有图像数据，若是，则执行S3图像存储；反之，则执行S4第二存储。</div>
+<div class="description-paragraph" id="p0093" num="0088">S3图像存储，包括S31建系、S32第一获取、S33建栈和S34第一存储。</div>
+<div class="description-paragraph" id="p0094" num="0089">S31建系，选择图像数据中的一个任意像素点作为坐标原点。这个坐标原点可以是图像的左上角、中心或其他位置的任意一个像素点。</div>
+<div class="description-paragraph" id="p0095" num="0090">确定坐标轴的方向，本实施例中选择水平方向为横轴，垂直方向为纵轴，形成直角坐标系。</div>
+<div class="description-paragraph" id="p0096" num="0091">在直角坐标系中，每个像素点都有一个唯一的坐标值，用于标识其在图像数据中的位置。</div>
+<div class="description-paragraph" id="p0097" num="0092">在其他实施例中，也可以选择其他方向作为横轴和纵轴，只要能够确定图像数据中每个像素点有唯一的坐标值即可。</div>
+<div class="description-paragraph" id="p0098" num="0093">S32第一获取，遍历图像数据中的每个像素点，获取每个像素点的坐标值和像素值。</div>
+<div class="description-paragraph" id="p0099" num="0094">S33建栈，统计图像数据中不同像素值的种类数量，对于每种不同的像素值，建立一个对应的堆栈，该堆栈用于存储具有相同像素值的像素点的坐标值。每个堆栈中存储的元素表示具有该像素值的像素点在图像中的位置。</div>
+<div class="description-paragraph" id="p0100" num="0095">S34第一存储，对于图像数据中的每个像素点，根据其像素值找到对应的堆栈，将像素值相同的像素点的坐标值压入同一个堆栈，并记录每个堆栈对应的像素值。</div>
+<div class="description-paragraph" id="p0101" num="0096">S4第二存储，将内部数据存储在预设的数据库中。</div>
+<div class="description-paragraph" id="p0102" num="0097">S5合法验证，包括S51用户验证、S52反馈和S53告警。</div>
+<div class="description-paragraph" id="p0103" num="0098">S51用户验证，验证用户身份是否合法，若是，则执行S52反馈；若否，则执行S53告警。</div>
+<div class="description-paragraph" id="p0104" num="0099">所述用户身份合法性验证可以是通过输入用户名和密码、使用生物识别技术或其他身份验证方法来实现，所述用户身份合法的标准为：用户成功通过验证。</div>
+<div class="description-paragraph" id="p0105" num="0100">S52反馈，将每个堆栈对应的像素值和/或内部数据反馈给用户。</div>
+<div class="description-paragraph" id="p0106" num="0101">S53告警，发出告警信号。</div>
+<div class="description-paragraph" id="p0107" num="0102">本实施例实现了对低空智能飞行器（以下简称为“飞行器”）存储的内部数据，进行安全存储的功能，加强了对飞行器内部数据的管理和防护，提高了内部数据的安全性。</div>
+<div class="description-paragraph" id="p0108" num="0103">实施例2：参照图2，本实施例与实施例1的不同之处在于，在执行S1数据采集之后，执行S2第一判断之前，还包括：</div>
+<div class="description-paragraph" id="p0109" num="0104">S61聚类，在获取到内部数据后，采用K-Means聚类算法对这些内部数据进行处理，K-Means聚类算法是一种无监督学习算法，用于将数据点划分为n个簇（每个簇的中心成为一个聚类中心），在聚类之后，可以得到每个内部数据的类别标签。</div>
+<div class="description-paragraph" id="p0110" num="0105">S62第一计算，对同一个类别标签下的内部数据进行去均值处理，获得一次处理后的内部数据；对一次处理后的内部数据进行方差归一化处理，获得二次处理后的内部数据，记为第一数据。</div>
+<div class="description-paragraph" id="p0111" num="0106">去均值处理是指从每个内部数据中减去该类别下所有内部数据的均值，以消除内部数据的偏移量。方差归一化是指将去均值处理后的内部数据除以该内部数据的标准差，以将内部数据缩放在统一的尺度上。</div>
+<div class="description-paragraph" id="p0112" num="0107">S63构建矩阵，基于第一数据构建协方差矩阵，所述协方差矩阵第p行第q列元素<span class="patent-image-not-available"></span>的计算公式如下：</div>
+<div class="description-paragraph" id="p0113" num="0108"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0114" num="0109">其中，<span class="patent-image-not-available"></span>为第k<sub>1</sub>个类别标签下第p个第一数据的值；<span class="patent-image-not-available"></span>为第k<sub>1</sub>个类别标签下所有第一数据的均值；<span class="patent-image-not-available"></span>为第k<sub>2</sub>个类别标签下的第q个第一数据的值；<span class="patent-image-not-available"></span>为第k<sub>2</sub>个类别标签下所有第一数据的均值；n为类别标签的数量。</div>
+<div class="description-paragraph" id="p0115" num="0110">S64第二计算，对协方差矩阵进行特征值分解，获得最大的特征值与对应的特征向量。</div>
+<div class="description-paragraph" id="p0116" num="0111">S65第三计算，将第一数据与所述的特征向量进行乘积运算，获得运算结果，将运算结果更新为内部数据。</div>
+<div class="description-paragraph" id="p0117" num="0112">本实施例获取了每个内部数据的标签，并对不同类别标签下的数据进行降维处理，在减少处理数量的同时，对每个内部数据进行了伪装，提高了内部数据的安全性。</div>
+<div class="description-paragraph" id="p0118" num="0113">实施例3：参照图3，本实施例与实施例1的不同之处在于，在执行S32第一获取之后，执行S33建栈之前，还包括：</div>
+<div class="description-paragraph" id="p0119" num="0114">S71第四计算，计算图像数据中所有像素值的方差。</div>
+<div class="description-paragraph" id="p0120" num="0115">S72第二判断，判断所述方差是否等于零，若是，则表明当前图像是单色图像或均匀图像，之后执行S33建栈；若否，则表明当前图形是不均匀图像，之后执行S73图像分割。</div>
+<div class="description-paragraph" id="p0121" num="0116">S73图像分割，采用区域增长算法对图像数据进行分割，获得多个分割块。</div>
+<div class="description-paragraph" id="p0122" num="0117">S74第四判断，判断分割块内像素点的数量是否为一，若是，则表明当前分割块已经分割到最小分割块，无法继续分割，之后执行S75第三判断，判断当前分割块内是否存在噪声点；若否，则表明当前分割块还可以继续分割，之后执行S76图像更新。</div>
+<div class="description-paragraph" id="p0123" num="0118">S75第三判断，基于当前分割块的八邻域像素值判断分割块内是否存在噪声点，若是，则将噪声点处的像素值修改为八邻域像素值的平均值；若否，则执行S76图像更新。</div>
+<div class="description-paragraph" id="p0124" num="0119">S76图像更新，分别将每个分割块更新为图像数据，并执行S71第四计算，直至将所有分割块均更新完毕后执行S33建栈。</div>
+<div class="description-paragraph" id="p0125" num="0120">本实施例首先计算了图像数据中所有像素值的方差，判断方差是否为零以确定图像是否为单色图像或均匀图像，若是则执行建栈操作，否则进行图像分割；图像分割采用区域增长算法获得多个分割块，接着判断分割块内像素点数量，若为一则表明已分割到最小块并判断是否存在噪声点，存在则修改噪声点像素值为八邻域平均值，否则更新图像数据并重复计算方差等步骤，直至所有分割块更新完毕执行建栈。通过图像分割和噪声处理，本实施例能够减少图像中的噪声和干扰，提高图像的质量和可用性。</div>
+<div class="description-paragraph" id="p0126" num="0121">实施例4：参照图4，本实施例与实施例2的不同之处在于，在执行S2第一判断之后，执行S4第二存储之前，还包括：</div>
+<div class="description-paragraph" id="p0127" num="0122">S81第二获取，获取S61聚类中对内部数据的聚类结果，基于聚类结果获取n个聚类中心。</div>
+<div class="description-paragraph" id="p0128" num="0123">S82建库，根据K-Means聚类得到的n个聚类中心，构建n个数据子库，每个数据子库用于存储与相应聚类中心相关联的内部数据，将第i个数据子库记为第i数据子库（i=1, 2,..., n）。</div>
+<div class="description-paragraph" id="p0129" num="0124">S83第五计算，对于每个聚类中心，计算它与剩余聚类中心之间的欧几里得距离，获得n-1个欧几里得距离（因为每个聚类中心都与其他n-1个距离中心有距离）。</div>
+<div class="description-paragraph" id="p0130" num="0125">将这些欧几里得距离的数值相加，得到一个总和，将所述总和记为第二数据，本过程将对每个聚类中心重复进行，最终得到n个第二数据。</div>
+<div class="description-paragraph" id="p0131" num="0126">S84第一排序，将得到的n个第二数据按照预设顺序进行排列。所述预设顺序基于实际需求进行设定，如从小到大或从大到小排序，排序后的结果被称为第二数据序列。</div>
+<div class="description-paragraph" id="p0132" num="0127">S85关联，将第二数据序列中的每个第二数据与拥有相同序号的数据子库进行关联，获得关联结果。例如，将第二数据序列序号为一的第二数据与第一个数据子库关联，序号为二的第二数据与第二个数据子库关联，以此类推，直至每个数据子库都与一个的第二数据相关联。</div>
+<div class="description-paragraph" id="p0133" num="0128">S86第三存储，由于每个数据子库都与一个指定的第二数据相关联，该第二数据对应一个指定的聚类中心，该聚类中心又对应一种指定的内部数据，因此，通过关联结果能够将内部数据存储到对应的数据子库中。</div>
+<div class="description-paragraph" id="p0134" num="0129">以下以具体的案例对本实施例的进行阐述。</div>
+<div class="description-paragraph" id="p0135" num="0130">假设一个低空智能飞行器（以下简称为飞行器）记录了大量的飞行数据，包括飞行高度、速度、温度、压力等参数，以及各个传感器的读数和设备状态信息。</div>
+<div class="description-paragraph" id="p0136" num="0131">S1数据采集，从飞行器中采集了1000条内部数据记录，每条记录都包含了飞行参数（如高度、速度）、传感器读数（如温度、压力）和设备状态信息（如发动机状态）。</div>
+<div class="description-paragraph" id="p0137" num="0132">经S61聚类采用K-Means聚类算法对这些内部数据进行处理（设定n=5，即将内部数据划分为5个簇），得到了5个聚类中心，每个聚类中心都代表了一组具有相似特征的内部数据的平均值。</div>
+<div class="description-paragraph" id="p0138" num="0133">S81第二获取，获取内部数据的聚类结果，获得5个聚类中心。</div>
+<div class="description-paragraph" id="p0139" num="0134">S82建库，根据K-Means聚类得到的5个聚类中心，构建了5个对应的数据子库。</div>
+<div class="description-paragraph" id="p0140" num="0135">每个数据子库将用于存储与相应聚类中心相关联的数据点，为了方便管理和引用，将第i个数据子库记为第i数据子库（i=1, 2, 3, 4, 5）。</div>
+<div class="description-paragraph" id="p0141" num="0136">S83第一计算，对于每个聚类中心（例如第一个聚类中心），计算它与剩余4个聚类中心之间的欧几里得距离，得到4个欧几里得距离的值，之后将这4个欧几里得距离的值相加，得到一个总和，将所述总和记为第二数据。</div>
+<div class="description-paragraph" id="p0142" num="0137">本步骤对5个聚类中心都进行了计算，最终得到了5个第二数据。</div>
+<div class="description-paragraph" id="p0143" num="0138">S84第一排序，将得到的5个第二数据按照从小到大的顺序进行排列，得到了一个有序的数据序列，即第二数据序列。</div>
+<div class="description-paragraph" id="p0144" num="0139">S85关联，将第二数据序列中的每个第二数据与拥有相同序号的数据子库进行关联。例如，第二数据序列为：高度数据、速度数据、温度数据、压力数据、发动机状态数据；高度数据所对应的第二数据与第一数据子库进行了关联，速度数据所对应的第二数据与第二数据子库进行了关联，温度数据所对应的第二数据与第三数据子库进行了关联，压力数据所对应的第二数据与第四数据子库进行了关联，发动机状态数据所对应的第二数据与第五数据子库进行了关联。</div>
+<div class="description-paragraph" id="p0145" num="0140">S86第三存储，根据关联结果，将原始的内部数据存储到对应的数据子库中。例如，高度数据存储在第一数据子库，速度数据数据存储在第二数据子库，温度数据数据存储在第三数据子库，压力数据数据存储在第四数据子库，发动机状态数据数据存储在第五数据子库。</div>
+<div class="description-paragraph" id="p0146" num="0141">本实施例涉及从飞行器中获取内部数据（如飞行参数、传感器读数、设备状态信息等），采用K-Means聚类算法处理这些内部数据，得到n个聚类中心，构建n个数据子库，每个数据子库与相应的聚类中心相关联。然后，计算每个聚类中心与其他聚类中心的欧几里得距离，并计算这些欧几里得距离的和，得到n个第二数据，之后将第二数据进行排序，形成第二数据序列。根据第二数据序列中的第二数据所处的位置与数据子库的序号进行关联，最后根据关联结果将内部数据存储到对应的数据子库中，实现数据的动态化存储和高效管理，进而提高低空智能飞行器的内部数据的安全性。</div>
+<div class="description-paragraph" id="p0147" num="0142">实施例5：参照图5，本实施例与实施例4的不同之处在于，在执行S85关联的步骤之后，在执行S86第三存储之前，所述方法还包括：</div>
+<div class="description-paragraph" id="p0148" num="0143">S91数据筛选，对从飞行器的内部数据进行深入分析，以识别出其中的敏感数据和非敏感数据。</div>
+<div class="description-paragraph" id="p0149" num="0144">对敏感数据的识别方法可以是基于数据特性和用途的识别方法、基于预设的规则的识别方法或基于机器学习模型的识别方法。</div>
+<div class="description-paragraph" id="p0150" num="0145">例如，基于数据特性和用途的识别过程为：首先，对飞行器内部数据进行详细分类，如飞行参数、人员信息、系统状态数据等。之后根据数据的特性和用途，初步判断哪些数据可能属于敏感数据，哪些属于非敏感数据。之后分析数据的具体内容，如：是否包含个人隐私信息（如姓名、身份证号、联系方式等）、飞行器运营数据（如飞行计划等）或飞行器安全数据（如故障记录、维修记录等）。最后，根据数据的敏感程度，将其划分为敏感数据和非敏感数据。</div>
+<div class="description-paragraph" id="p0151" num="0146">例如，基于机器学习算法的识别过程为：利用已有的敏感数据和非敏感数据样本训练一个监督学习模型。通过训练后的监督学习模型对内部数据进行识别，判断其是否包含有敏感数据。</div>
+<div class="description-paragraph" id="p0152" num="0147">例如，基于规则的识别过程为：</div>
+<div class="description-paragraph" id="p0153" num="0148">首先，制定敏感数据识别规则：根据飞行器内部数据的特性和用途，制定一套敏感数据识别规则，所述识别规则可以包括数据的内容、格式、存储位置等方面的要求。</div>
+<div class="description-paragraph" id="p0154" num="0149">之后应用识别规则：将识别规则应用于飞行器内部数据，通过匹配和筛选的方式，识别出敏感数据。</div>
+<div class="description-paragraph" id="p0155" num="0150">S92第二排序，在每个簇内，将敏感数据按照采集时间的先后顺序进行排序，以获得n个敏感数据序列，每个敏感数据序列对应了一个聚类中心。</div>
+<div class="description-paragraph" id="p0156" num="0151">S93计算距离，对于第a个敏感数据序列，本步骤将计算它与剩余敏感数据序列之间的距离矩阵，距离矩阵中的每个元素代表两个敏感数据序列对应样本之间的某种距离度量（如欧几里得距离、曼哈顿距离等）。所述对应样本可以是在各个敏感数据序列中处于相同序号的样本，也可以是，各个敏感数据序列中采集时间相同的样本。</div>
+<div class="description-paragraph" id="p0157" num="0152">基于单个距离矩阵，本步骤会进一步计算累计距离矩阵，累计距离矩阵反映了敏感数据序列之间的整体相似性或差异性。</div>
+<div class="description-paragraph" id="p0158" num="0153">S94确定序列，根据累计距离矩阵，本步骤能够通过动态路径规划算法找出与第a个敏感数据序列相似度最大的敏感数据序列，记为相似数据序列。</div>
+<div class="description-paragraph" id="p0159" num="0154">S95结合，将第a个敏感数据序列的敏感数据与相似数据序列所对应的非敏感数据进行合并处理，以获得伪装后的第a个数据序列，伪装后的第a个敏感数据序列将被更新为内部数据，之后执行S86第三存储将这些内部数据存储至对应的数据子库中。</div>
+<div class="description-paragraph" id="p0160" num="0155">S96第一加密，采用对称加密算法对第i数据子库内存储的内部数据进行加密处理，获得第i加密数据与i次加密后的密钥，采用第i加密数据更新第i数据子库内存储的内部数据。</div>
+<div class="description-paragraph" id="p0161" num="0156">S97第二加密，在S96第一加密的基础上，采用非对称加密算法对第i加密数据与第i+1数据子库内存储的内部数据进行加密处理，获得第i+1加密数据与i+1次加密后的密钥，采用第i+1加密数据更新第i+1数据子库内存储的内部数据。</div>
+<div class="description-paragraph" id="p0162" num="0157">S98第五判断，判断i+1是否等于n，若是，则不进行后续处理；若否，则说明还有未加密的内部数据，需要执行S99迭代，继续加密。</div>
+<div class="description-paragraph" id="p0163" num="0158">S99迭代，将第i+1数据子库作为新的第i数据子库，并执行S96第一加密。这个过程将持续进行，直到满足预设的停止条件（如所有数据子库都已加密、达到最大迭代次数等）。</div>
+<div class="description-paragraph" id="p0164" num="0159">在用户调用相关数据时，首先会验证用户身份，之后从最后一个数据子库开始逆向迭代使用相应解密算法和密钥进行解密，直至所有数据子库解密完成，随后进行数据重组与验证，识别并保护敏感数据。</div>
+<div class="description-paragraph" id="p0165" num="0160">本实施例首先识别了内部数据中的敏感数据，之后将当前数据序列中的敏感数据与相似数据序列中的非敏感数据进行结合，获得伪装后的当前数据序列，之后将伪装后的当前数据序列更新到当前数据序列存储的数据子库中，之后采用迭代加密的方式，存储所有的伪装后的当前数据序列，以提高内部数据的安全性。</div>
+<div class="description-paragraph" id="p0166" num="0161">实施例6：本实施例公开了低空智能飞行器数据安全保护系统，所述系统包括：</div>
+<div class="description-paragraph" id="p0167" num="0162">数据采集模块，负责从飞行器中收集存储的内部数据。这些数据包括但不限于飞行参数（如速度、高度、航向等）、传感器数据（如温度、压力、湿度等）、系统日志、故障诊断信息等。</div>
+<div class="description-paragraph" id="p0168" num="0163">第一判断模块，用于根据预设规则判断所述内部数据是否包含有图像数据，如果包含图像数据，则触发建系模块；反之，则触发第二存储模块。</div>
+<div class="description-paragraph" id="p0169" num="0164">建系模块，用于以图像数据中任意一个像素点作为坐标原点建立坐标系。</div>
+<div class="description-paragraph" id="p0170" num="0165">第一获取模块，用于获取图像数据中每个像素点的坐标值和像素值。</div>
+<div class="description-paragraph" id="p0171" num="0166">建栈模块，用于建立与像素值的类别数量相同的堆栈，每个堆栈负责存储一类像素值。</div>
+<div class="description-paragraph" id="p0172" num="0167">第一存储模块，用于将像素值相同的像素点的坐标值压入堆栈，记录每个堆栈对应的像素值。</div>
+<div class="description-paragraph" id="p0173" num="0168">第二存储模块，用于将内部数据存储在预设的数据库中。</div>
+<div class="description-paragraph" id="p0174" num="0169">用户验证模块，用于验证用户身份是否合法，如果合法，则触发反馈模块；反之，则触发告警模块。</div>
+<div class="description-paragraph" id="p0175" num="0170">反馈模块，用于将每个堆栈对应的像素值和/或内部数据反馈给用户。</div>
+<div class="description-paragraph" id="p0176" num="0171">告警模块，用于发出告警信号。</div>
+<div class="description-paragraph" id="p0177" num="0172">本实施例通过对内部数据进行分析，判断内部数据是否包含图像数据，如果包含图像数据，则对图像数据进行存储，反之则对内部数据进行存储，之后在用户调用数据时，对用户身份进行验证，若验证通过，则反馈相关数据，反之则执行告警，本申请采用堆栈的方式对图像数据进行存储，当用户身份验证通过时，才会反馈堆栈所对应的像素值，提高了图像数据的安全性。</div>
+<div class="description-paragraph" id="p0178" num="0173">实施例7：本实施例提供了一种计算机可读存储介质，其上存储有计算机程序，所述计算机程序在被处理器处理时，用于实现所述的方法。</div>
+<div class="description-paragraph" id="p0179" num="0174">实施例8：本实施例提供一种服务器，所述服务器上加载有所述的系统，所述服务器包括：处理器，以及与所述处理器通信连接的存储器；</div>
+<div class="description-paragraph" id="p0180" num="0175">所述存储器内设置有所述的计算机可读存储介质，所述计算机可读存储介质上存储有计算机程序；</div>
+<div class="description-paragraph" id="p0181" num="0176">所述处理器处理所述计算机可读存储介质上存储的计算机程序时，以实现所述的方法。</div>
+<div class="description-paragraph" id="p0182" num="0177">以上均为本申请的较佳实施例，并非依此限制本申请的保护范围，故：凡依本申请的结构、形状、原理所做的等效变化，均应涵盖于本申请的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

@@ -1,0 +1,149 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN112466161A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES289236700">
+<invention-title id="title1" lang="ZH">一种基于多样环境因素的低空飞行器避撞能力评估方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="n0001">本发明涉及飞行控制技术领域，特别涉及一种基于多样环境因素的低空飞行器避撞能力评估方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="n0002">近年来，不少研究者纷纷从自动避撞、路径规划和避撞算法等多个领域来提升低空飞行器的避撞能力，但尽管如此低空飞行器的失事率并没有明显的下降，相反却有所增长。其次，虽然大多数研究者提出了很好的低空飞行器避撞的算法，但多数在理想的环境中实现的，并没有很好的将低空飞行器自身的性能与环境因素相结合，导致大多数算法不适用于普通低空飞行器的实际飞行。此外，随着我国低空空域的开放，低空飞行器的发展极为迅速，在繁多的低空飞行器中不乏有避撞性能和飞行稳定性差的飞行器，这将严重威胁到公共安全。</div>
+<div class="description-paragraph" id="p0005" num="n0003">中国发明专利(CN201610318074.9)公开了一种多机会和下的飞机防撞方法，改方法的缺陷在于：</div>
+<div class="description-paragraph" id="p0006" num="n0004">1、未将飞机的运行限制因素纳入考虑，形成的策略存在不能有效执行的风险。；</div>
+<div class="description-paragraph" id="p0007" num="n0005">2、针对空-空进行避撞策略分析，执行避撞策略时未考虑空域环境；</div>
+<div class="description-paragraph" id="p0008" num="n0006">3、基于空域内所有飞行器的运行数据执行避撞策略，对于未知风险的紧急避撞能力较差。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0009">发明内容</div>
+<div class="description-paragraph" id="p0010" num="n0007">本发明针对现有技术的缺陷，提供了一种基于多样环境因素的低空飞行器避撞能力评估方法，解决了现有技术中存在的缺陷。</div>
+<div class="description-paragraph" id="p0011" num="n0008">为了实现以上发明目的，本发明采取的技术方案如下：</div>
+<div class="description-paragraph" id="p0012" num="n0009">一种基于多样环境因素的低空飞行器避撞能力评估方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0013" num="n0010">1)建立半球体障碍物模型，比较障碍物高度H与低空飞行器最大飞行高度H<sub>max</sub>的大小；</div>
+<div class="description-paragraph" id="p0014" num="n0011">2)H＜H<sub>max</sub>时，选择爬升越障进行避障；当H≥H<sub>max</sub>选择侧面绕障的方式进行避撞；</div>
+<div class="description-paragraph" id="p0015" num="n0012">爬升越障：</div>
+<div class="description-paragraph" id="p0016" num="n0013">1.设低空飞行器采取避撞措施时所在位置O(xo，yo，zo)与障碍物中线的距离为避撞缓冲区，长度设为D；</div>
+<div class="description-paragraph" id="p0017" num="n0014">2.计算低空飞行器避撞过程中最大仰角为α，α＝kD；避撞过程中，距障碍物的最近距离为L<sub>min</sub>；</div>
+<div class="description-paragraph" id="p0018" num="n0015">3.得出无人机的避撞能力计算公式：</div>
+<div class="description-paragraph" id="p0019" num="n0016">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/8c/32/2f/0b2d5b35ced515/BDA0002803583770000021.png"><img alt="Figure BDA0002803583770000021" class="patent-full-image" file="BDA0002803583770000021.GIF" he="94" height="376" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_0.png" wi="700" width="2800"/></a></div>
+</div>
+<div class="description-paragraph" id="p0020" num="n0017">S—避障能力，值越大避障能力越强；</div>
+<div class="description-paragraph" id="p0021" num="n0018">δ—仰角影响权重系数；</div>
+<div class="description-paragraph" id="p0022" num="n0019">β—最小距离影响权重系数；</div>
+<div class="description-paragraph" id="p0023" num="n0020">ω—速度影响权重系数；</div>
+<div class="description-paragraph" id="p0024" num="n0021">v<sub>t</sub>—距障碍物最近时的空速；</div>
+<div class="description-paragraph" id="p0025" num="n0022">K—避撞缓冲区长度与越障最大仰角的关系系数；</div>
+<div class="description-paragraph" id="p0026" num="n0023">D—避撞缓冲区长度。</div>
+<div class="description-paragraph" id="p0027" num="n0024">侧面绕障：</div>
+<div class="description-paragraph" id="p0028" num="n0025">1.设低空飞行器在A(xo,yo)处采取避撞措施，并以最小转弯半径采取避撞措施；</div>
+<div class="description-paragraph" id="p0029" num="n0026">2.低空飞行器以最小转弯半径采取避撞措施，形成的弧形轨迹距障碍物的最近距离为L<sub>min</sub>，障碍物上距避撞轨迹的最近点为P(xp，yp)；</div>
+<div class="description-paragraph" id="p0030" num="n0027">3.P<sub>O</sub>为实际避撞区域，长度为D<sub>0</sub>；</div>
+<div class="description-paragraph" id="p0031" num="n0028">4.得到绕障避障能力评估方法：</div>
+<div class="description-paragraph" id="p0032" num="n0029">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/ba/e1/55/0f9f8293e1d5c1/BDA0002803583770000031.png"><img alt="Figure BDA0002803583770000031" class="patent-full-image" file="BDA0002803583770000031.GIF" he="100" height="400" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_1.png" wi="700" width="2800"/></a></div>
+</div>
+<div class="description-paragraph" id="p0033" num="n0030">S—避障能力，值越大避障能力越强；</div>
+<div class="description-paragraph" id="p0034" num="n0031">R—避障过程中低空低空飞行器选用的最小转弯半径；</div>
+<div class="description-paragraph" id="p0035" num="n0032">λ—半径影响权重系数；</div>
+<div class="description-paragraph" id="p0036" num="n0033">D—避障过程中的最大缓冲区；</div>
+<div class="description-paragraph" id="p0037" num="n0034">D<sub>0</sub>—避障过程中的实际缓冲区；</div>
+<div class="description-paragraph" id="p0038" num="n0035">μ—缓冲区影响权重系数。</div>
+<div class="description-paragraph" id="p0039" num="n0036">3)基于式1，式2得出避撞能力S的大小，用于评价低空飞行器的避撞能力</div>
+<div class="description-paragraph" id="p0040" num="n0037">紧急避撞：</div>
+<div class="description-paragraph" id="p0041" num="n0038">1.设具有碰撞风险的低空飞行器A,B，紧急避撞临界值为R，速度为V<sub>A</sub>,V<sub>B</sub>；</div>
+<div class="description-paragraph" id="p0042" num="n0039">2.得到紧急避撞公式：</div>
+<div class="description-paragraph" id="p0043" num="n0040">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/f1/dc/75/da77f32b190e73/BDA0002803583770000032.png"><img alt="Figure BDA0002803583770000032" class="patent-full-image" file="BDA0002803583770000032.GIF" he="77" height="308" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_2.png" wi="700" width="2800"/></a></div>
+</div>
+<div class="description-paragraph" id="p0044" num="n0041">E—避障能力，值越大避障能力越强；</div>
+<div class="description-paragraph" id="p0045" num="n0042">δ—方位角角影响权重系数；</div>
+<div class="description-paragraph" id="p0046" num="n0043">K—紧急避撞区边界值与方位角的关系系数；</div>
+<div class="description-paragraph" id="p0047" num="n0044">D—紧急避撞区边界值；</div>
+<div class="description-paragraph" id="p0048" num="n0045">β—距离影响权重系数；</div>
+<div class="description-paragraph" id="p0049" num="n0046">ω—速度影响权重系数；</div>
+<div class="description-paragraph" id="p0050" num="n0047">Δv—临界状态下空速差，Δv＝|V<sub>A</sub>sinα<sub>A</sub>-V<sub>B</sub>sinα<sub>B</sub>|。α<sub>A</sub>为A低空飞行器的方向角，α<sub>B</sub>为B低空飞行器的方向角。</div>
+<div class="description-paragraph" id="p0051" num="n0048">与现有技术相比，本发明的优点在于：</div>
+<div class="description-paragraph" id="p0052" num="n0049">1、将低空飞行器的运行限制因素纳入分析，对形成低空避撞能力数据化；</div>
+<div class="description-paragraph" id="p0053" num="n0050">2、将障碍物影响因素纳入分析，可基于障碍物的实际特点，对低空飞行器的空-地避撞能力进行评估；</div>
+<div class="description-paragraph" id="p0054" num="n0051">3、将相邻空域威胁飞行器的微观运行状态纳入分析，实现低空飞行器空-空紧急避撞能力的评估；</div>
+<div class="description-paragraph" id="p0055" num="n0052">4.为低空飞行器安全性检测提供理论指导；</div>
+<div class="description-paragraph" id="p0056" num="n0053">5.可提高低空飞行器碰撞预警设备的准确性；</div>
+<div class="description-paragraph" id="p0057" num="n0054">6.低空飞行器可根据避撞风险的高低，选择适当的避撞策略。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0058">附图说明</div>
+<div class="description-paragraph" id="p0059" num="n0055">图1是本发明实施例低空飞行器避撞能力评估方法流程图；</div>
+<div class="description-paragraph" id="p0060" num="n0056">图2是本发明实施例避撞缓冲区示意图；</div>
+<div class="description-paragraph" id="p0061" num="n0057">图3是本发明实施例越障避障示意图；</div>
+<div class="description-paragraph" id="p0062" num="n0058">图4是本发明实施例绕障避障示意图；</div>
+<div class="description-paragraph" id="p0063" num="n0059">图5是本发明实施例紧急避撞示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0064">具体实施方式</div>
+<div class="description-paragraph" id="p0065" num="n0060">为使本发明的目的、技术方案及优点更加清楚明白，以下根据附图并列举实施例，对本发明做进一步详细说明。</div>
+<div class="description-paragraph" id="p0066" num="n0061">如图1所示，一种基于多样环境因素的低空飞行器避撞能力评估方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0067" num="n0062">1)建立半球体障碍物模型，比较障碍物高度H与低空飞行器最大飞行高度H<sub>max</sub>的大小；</div>
+<div class="description-paragraph" id="p0068" num="n0063">2)H＜H<sub>max</sub>时，选择爬升越障进行避障；当H≥H<sub>max</sub>选择侧面绕障的方式进行避撞；</div>
+<div class="description-paragraph" id="p0069" num="n0064">爬升越障：</div>
+<div class="description-paragraph" id="p0070" num="n0065">1.设低空飞行器采取避撞措施时所在位置O(xo，yo，zo)与障碍物中线的距离为避撞缓冲区，长度设为D。如图2；</div>
+<div class="description-paragraph" id="p0071" num="n0066">2.计算低空飞行器避撞过程中最大仰角为α<sub>max</sub>，；避撞过程中，距障碍物的最近距离为L<sub>min</sub>；如图3</div>
+<div class="description-paragraph" id="p0072" num="n0067">3.得出无人机的避撞能力计算公式：</div>
+<div class="description-paragraph" id="p0073" num="n0068">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/42/1e/6d/04f52e1b1ff5d3/BDA0002803583770000051.png"><img alt="Figure BDA0002803583770000051" class="patent-full-image" file="BDA0002803583770000051.GIF" he="101" height="404" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_3.png" wi="700" width="2800"/></a></div>
+</div>
+<div class="description-paragraph" id="p0074" num="n0069">S—避障能力，值越大避障能力越强δ—仰角影响权重系数；</div>
+<div class="description-paragraph" id="p0075" num="n0070">β—最小距离影响权重系数；</div>
+<div class="description-paragraph" id="p0076" num="n0071">ω—速度影响权重系数；</div>
+<div class="description-paragraph" id="p0077" num="n0072">v<sub>t</sub>—距障碍物最近时的空速；</div>
+<div class="description-paragraph" id="p0078" num="n0073">K—避撞缓冲区长度与越障最大仰角的关系系数；</div>
+<div class="description-paragraph" id="p0079" num="n0074">D—避撞缓冲区长度。</div>
+<div class="description-paragraph" id="p0080" num="n0075">评估实例：</div>
+<div class="description-paragraph" id="p0081" num="n0076">A、B两架固定翼低空物流飞行器最大航行高度均Hmax＝3000m。对高度H＝2500m的山体障碍进行避撞，并对两架飞行器的避撞能力进行评估。实验中，设定飞行器飞行高度为2000m。已知飞行器选择越障的方式进行避撞，两架飞行器避撞过程中的飞行影响参数如下：</div>
+<div class="description-paragraph" id="p0082" num="n0077">A:α<sub>max</sub>＝π/12，δ＝0.2，β＝0.15，ω＝0.5，v<sub>t</sub>＝300km/h，D＝1km，L<sub>min</sub>＝100m，ω＝0.1。</div>
+<div class="description-paragraph" id="p0083" num="n0078">B：α<sub>max</sub>＝π/6，δ＝0.3，β＝0.2，ω＝0.4，v<sub>t</sub>＝300km/h，D＝1km，L<sub>min</sub>＝100m，ω＝0.1。</div>
+<div class="description-paragraph" id="p0084" num="n0079">可得S<sub>A</sub>＝69.03；</div>
+<div class="description-paragraph" id="p0085" num="n0080">可得S<sub>B</sub>＝55.22；</div>
+<div class="description-paragraph" id="p0086" num="n0081">可得低空飞行器A避撞能力较强。</div>
+<div class="description-paragraph" id="p0087" num="n0082">侧面绕障：</div>
+<div class="description-paragraph" id="p0088" num="n0083">1.设低空飞行器在A(xo,yo)处采取避撞措施，并以最小转弯半径采取避撞措施。</div>
+<div class="description-paragraph" id="p0089" num="n0084">2.低空飞行器以最小转弯半径采取避撞措施，形成的弧形轨迹距障碍物的最近距离为L<sub>min</sub>，障碍物上距避撞轨迹的最近点为P(x<sub>p</sub>，y<sub>p</sub>)；(如图4)</div>
+<div class="description-paragraph" id="p0090" num="n0085">3.P<sub>O</sub>为实际避撞区域，长度为D<sub>0</sub>；(如图4)</div>
+<div class="description-paragraph" id="p0091" num="n0086">4.得到绕障避障能力评估方法：</div>
+<div class="description-paragraph" id="p0092" num="n0087">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/7b/6c/98/37e0fa207eaf3d/BDA0002803583770000061.png"><img alt="Figure BDA0002803583770000061" class="patent-full-image" file="BDA0002803583770000061.GIF" he="97" height="388" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_4.png" wi="700" width="2800"/></a></div>
+</div>
+<div class="description-paragraph" id="p0093" num="n0088">S—避障能力，值越大避障能力越强；</div>
+<div class="description-paragraph" id="p0094" num="n0089">R—避障过程中低空飞行器选用的最小转弯半径；</div>
+<div class="description-paragraph" id="p0095" num="n0090">λ—半径影响权重系数；</div>
+<div class="description-paragraph" id="p0096" num="n0091">D—避障过程中的最大缓冲区；</div>
+<div class="description-paragraph" id="p0097" num="n0092">D<sub>0</sub>—避障过程中的实际缓冲区；</div>
+<div class="description-paragraph" id="p0098" num="n0093">μ—缓冲区影响权重系数；</div>
+<div class="description-paragraph" id="p0099" num="n0094">v<sub>t</sub>—距障碍物最近时的空速；</div>
+<div class="description-paragraph" id="p0100" num="n0095">R<sub>min</sub>—低空飞行器的最小转弯半径。</div>
+<div class="description-paragraph" id="p0101" num="n0096">评估实例：</div>
+<div class="description-paragraph" id="p0102" num="n0097">A、B两架固定翼低空物流飞行器最大航行高度均H<sub>max</sub>＝3000m。对高度H＝3500m的山体障碍进行避撞，并对两架飞行器的避撞能力进行评估。实验中，设定飞行器飞行高度为2000m。已知飞行器选择绕障的方式进行避撞，两架飞行器避撞过程中的飞行影响参数如下：</div>
+<div class="description-paragraph" id="p0103" num="n0098">A：R＝200m，R<sub>min</sub>＝100m，λ＝0.2，μ＝0.27，ω＝0.5，v<sub>t</sub>＝300km/h，D＝800，D<sub>0</sub>＝1000m，L<sub>min</sub>＝120m，β＝0.15；</div>
+<div class="description-paragraph" id="p0104" num="n0099">B：R＝200m，R<sub>min</sub>＝150m，λ＝0.5，μ＝0.18，ω＝0.4，v<sub>t</sub>＝300km/h，D＝800，D<sub>0</sub>＝1000m，L<sub>min</sub>＝120m，β＝0.2；</div>
+<div class="description-paragraph" id="p0105" num="n0100">可得S<sub>A</sub>＝8.33；</div>
+<div class="description-paragraph" id="p0106" num="n0101">可得S<sub>B</sub>＝8.67；</div>
+<div class="description-paragraph" id="p0107" num="n0102">可得低空飞行器B避撞能力较强。</div>
+<div class="description-paragraph" id="p0108" num="n0103">3)基于式1，式2得出避撞能力S的大小，用于评价低空飞行器的避撞能力</div>
+<div class="description-paragraph" id="p0109" num="n0104">紧急避撞：</div>
+<div class="description-paragraph" id="p0110" num="n0105">1.设具有碰撞风险的低空飞行器A,B，紧急避撞临界值为R，速度为V<sub>A</sub>,V<sub>B</sub>；(如图5)</div>
+<div class="description-paragraph" id="p0111" num="n0106">2.得到紧急避撞公式：</div>
+<div class="description-paragraph" id="p0112" num="n0107">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/f2/ab/74/07ef52d62c9c59/BDA0002803583770000081.png"><img alt="Figure BDA0002803583770000081" class="patent-full-image" file="BDA0002803583770000081.GIF" he="76" height="304" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_5.png" wi="700" width="2800"/></a></div>
+</div>
+<div class="description-paragraph" id="p0113" num="n0108">E—避障能力，值越大避障能力越强；</div>
+<div class="description-paragraph" id="p0114" num="n0109">δ—方位角角影响权重系数；</div>
+<div class="description-paragraph" id="p0115" num="n0110">K—紧急避撞区边界值与方位角的关系系数；</div>
+<div class="description-paragraph" id="p0116" num="n0111">R—紧急避撞区边界值；</div>
+<div class="description-paragraph" id="p0117" num="n0112">β—距离影响权重系数；</div>
+<div class="description-paragraph" id="p0118" num="n0113">ω—速度影响权重系数；</div>
+<div class="description-paragraph" id="p0119" num="n0114">Δv—临界状态下空速差，Δv＝|V<sub>A</sub>sinα<sub>A</sub>-V<sub>B</sub>sinα<sub>B</sub>|。α<sub>A</sub>为A低空飞行器的方向角，α<sub>B</sub>为B低空飞行器的方向角。</div>
+<div class="description-paragraph" id="p0120" num="n0115">本领域的普通技术人员将会意识到，这里所述的实施例是为了帮助读者理解本发明的实施方法，应被理解为本发明的保护范围并不局限于这样的特别陈述和实施例。本领域的普通技术人员可以根据本发明公开的这些技术启示做出各种不脱离本发明实质的其它各种具体变形和组合，这些变形和组合仍然在本发明的保护范围内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

@@ -1,0 +1,200 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119503135A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES488404548">
+<invention-title id="title1" lang="ZH">用于低空飞行器的GPS同步涡轮发电调节方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及飞行器技术领域，尤其涉及用于低空飞行器的GPS同步涡轮发电调节方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空飞行器在复杂环境中执行任务时，对能源管理和飞行性能的要求极为苛刻，涡轮发电系统作为飞行器的核心能量供应装置，必须能够适应飞行过程中所面临的多变地形、复杂气流以及极端环境条件，为了保证飞行任务的顺利执行，飞行器需要具备高效的发电能力，并能够根据任务需求动态调节发电功率和电能分配，随着飞行任务的复杂性增加，确保飞行器在多变环境下稳定运行并提高能源利用效率，已成为低空飞行器技术中的关键挑战。</div>
+<div class="description-paragraph" id="p0005" num="0003">现有的飞行器涡轮发电系统在应对复杂地形和极端环境时存在显著不足，一方面，传统系统缺乏动态地形预测和环境适应能力，导致发电功率无法与实际环境变化同步调节，容易出现能量浪费或发电不足的情况，另一方面，现有技术在电能分配方面缺乏智能化的调节机制，难以根据任务优先级合理分配电能，影响了任务关键设备的正常运行，此外，面对高温、低压、强风等极端环境，现有系统无法及时调整发电模式，导致设备性能下降或故障，影响飞行器的整体稳定性和任务完成率。</div>
+<div class="description-paragraph" id="p0006" num="0004">本发明旨在解决上述问题，提出一种用于低空飞行器的GPS同步涡轮发电调节方法，增强飞行器的环境适应能力，延长设备寿命并提高任务的可靠性和效率。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明提供了用于低空飞行器的GPS同步涡轮发电调节方法，以解决飞行器的环境适应能力差的问题。</div>
+<div class="description-paragraph" id="p0009" num="0006">用于低空飞行器的GPS同步涡轮发电调节方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0010" num="0007">S1，飞行参数采集：通过低空飞行器上的GPS单元，实时获取飞行器的飞行参数，包括位置信息、速度信息及飞行高度；</div>
+<div class="description-paragraph" id="p0011" num="0008">S2，动态地形预测能量调节：基于飞行器的位置信息和地形数据库，提前分析飞行器前方区域的地形变化，预测地形对气流和涡轮发电的影响，当预测到地形复杂性增加（如山地、峡谷、城市高楼等）时，自动调整涡轮发电机的转速和输出功率，具体包括：</div>
+<div class="description-paragraph" id="p0012" num="0009">S21，地形数据分析：通过GPS获取飞行器的实时位置信息，并结合地形数据库中的地形数据，分析飞行器前方区域的地形特征，包括地形的高度变化、地势起伏及建筑物的密集度；</div>
+<div class="description-paragraph" id="p0013" num="0010">S22，气流变化预测：基于地形特征的分析结果，结合飞行器当前的飞行速度和气流监测数据，预测地形变化引起的局部气流变化；</div>
+<div class="description-paragraph" id="p0014" num="0011">S23，发电功率与转速调节：根据地形和气流变化的预测结果，自动调节涡轮发电机的转速和输出功率；</div>
+<div class="description-paragraph" id="p0015" num="0012">S3，极端环境自适应涡轮调节：通过环境传感器实时监测飞行器所处区域的环境参数，包括气温、气压、湿度、风速，结合环境数据，自动选择最适合的涡轮发电模式（如高风速模式、低温低负载模式等）；</div>
+<div class="description-paragraph" id="p0016" num="0013">S4，发电与电能分配优化：结合飞行任务的优先级和飞行器的实时能量需求，根据极端环境条件调整涡轮发电功率，将产生的电能分配给飞行器的各个设备；</div>
+<div class="description-paragraph" id="p0017" num="0014">S5，电能状态反馈与自适应调节：实时监测飞行器的电能状态，包括电池剩余电量和当前设备的用电情况，当检测到电能不足时，动态调整涡轮发电机的工作状态，增加或减少发电功率以维持飞行器电能平衡。</div>
+<div class="description-paragraph" id="p0018" num="0015">可选的，所述S1中的飞行参数采集包括：</div>
+<div class="description-paragraph" id="p0019" num="0016">S11，GPS位置信息获取：通过飞行器上的GPS单元，实时获取飞行器的位置信息，包括经度、纬度和高度；</div>
+<div class="description-paragraph" id="p0020" num="0017">S12，速度信息获取：通过飞行器上的惯性导航单元（INS）实时获取飞行器的速度信息，包括水平速度和垂直速度；</div>
+<div class="description-paragraph" id="p0021" num="0018">S13，飞行高度采集：通过GPS单元获取飞行器的海拔（相对于海平面），用于提供飞行器的绝对高度信息。</div>
+<div class="description-paragraph" id="p0022" num="0019">可选的，所述S21中的地形数据分析包括：</div>
+<div class="description-paragraph" id="p0023" num="0020">S211，地形特征分析：通过GPS获取飞行器的位置信息，并结合地形数据库中的地形数据，对地形的高度变化、地势起伏及建筑物的密集度进行分析，具体包括：</div>
+<div class="description-paragraph" id="p0024" num="0021">高度变化分析：通过GPS获取飞行器的海拔<span class="patent-image-not-available"></span>，并结合地形数据库中的地形数据，计算前方区域内地形高度的变化；</div>
+<div class="description-paragraph" id="p0025" num="0022">地势起伏分析：地势起伏<span class="patent-image-not-available"></span>是衡量前方区域地形表面变化的程度，通过分析区域内的高度变化计算得出；</div>
+<div class="description-paragraph" id="p0026" num="0023">建筑物密集度分析：建筑物密集度<span class="patent-image-not-available"></span>衡量建筑物在区域内的分布情况；</div>
+<div class="description-paragraph" id="p0027" num="0024">S212，地形复杂度分析：基于地形特征的分析结果，计算地形复杂度<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0028" num="0025">S213，地形预测窗口计算：根据飞行器的速度<span class="patent-image-not-available"></span>和当前地形复杂度<span class="patent-image-not-available"></span>计算地形预测窗口<span class="patent-image-not-available"></span>，用于判断前方区域的影响。</div>
+<div class="description-paragraph" id="p0029" num="0026">可选的，所述S22中的气流变化预测包括：</div>
+<div class="description-paragraph" id="p0030" num="0027">S221，飞行速度与气流监测数据结合：通过气流传感器实时监测飞行器周围的气流数据<span class="patent-image-not-available"></span>（包括风速和风向），结合飞行器的当前飞行速度<span class="patent-image-not-available"></span>、地形特征，作为气流变化预测的输入变量；</div>
+<div class="description-paragraph" id="p0031" num="0028">S222，气流变化预测：气流变化预测基于局部气流模型，结合飞行器速度和地形特征，计算局部气流变化<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0032" num="0029">可选的，所述S23中的发电功率与转速调节包括：</div>
+<div class="description-paragraph" id="p0033" num="0030">S231，发电机转速与功率自动调节：根据地形和气流变化的预测结果，自动调整涡轮发电机的转速<span class="patent-image-not-available"></span>和输出功率<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0034" num="0031">S232，自适应优化：当地形复杂性超过复杂度阈值或气流波动超过波动阈值时，自动降低涡轮转速以减少发电功率，当气流稳定且地形平缓时，提高转速和功率输出，以提高发电效率并满足飞行器的能源需求。</div>
+<div class="description-paragraph" id="p0035" num="0032">可选的，所述S3中的极端环境自适应涡轮调节包括：</div>
+<div class="description-paragraph" id="p0036" num="0033">S31，环境参数监测与分析：实时监测飞行器所处区域的环境参数，包括气温、气压、湿度和风速，并将实时环境参数与预设的环境标准进行对比，分析当前环境是否属于极端条件，包括高温、低压、强风或高湿度；</div>
+<div class="description-paragraph" id="p0037" num="0034">S32，自适应发电模式选择：基于环境参数监测与分析的结果，自动选择最适合当前环境的涡轮发电模式。</div>
+<div class="description-paragraph" id="p0038" num="0035">可选的，所述S31中的环境参数监测与分析包括：</div>
+<div class="description-paragraph" id="p0039" num="0036">S311，环境参数实时监测：通过飞行器上的环境传感器，实时监测飞行器所处区域的环境参数，包括气温、气压、湿度和风速；</div>
+<div class="description-paragraph" id="p0040" num="0037">S312，环境标准对比与极端条件分析：将实时监测到的环境参数与预设的环境标准进行对比，分析当前环境是否符合极端条件的阈值，预设的极端条件包括：</div>
+<div class="description-paragraph" id="p0041" num="0038">高温：当气温超过预设高温阈值时，判定为高温环境；</div>
+<div class="description-paragraph" id="p0042" num="0039">低压：当气压低于预设低压阈值时，判定为低压环境；</div>
+<div class="description-paragraph" id="p0043" num="0040">强风：当风速超过预设强风阈值时，判定为强风环境；</div>
+<div class="description-paragraph" id="p0044" num="0041">高湿度：当湿度超过预设高湿度阈值时，判定为高湿度环境。</div>
+<div class="description-paragraph" id="p0045" num="0042">可选的，所述S32中的自适应发电模式选择包括：</div>
+<div class="description-paragraph" id="p0046" num="0043">S321，高温环境发电模式：当检测到高温条件（气温超过预设高温阈值）时，自动进入散热保护模式，在散热保护模式下，通过降低涡轮发电机的转速<span class="patent-image-not-available"></span>来减少设备的热量积累；</div>
+<div class="description-paragraph" id="p0047" num="0044">S322，低压环境增压补偿模式：当飞行器进入低压环境（气压低于预设低压阈值）时，自动启动增压补偿模式，在低压环境下，空气密度降低，导致发电效率下降，通过增加涡轮发电机的转速<span class="patent-image-not-available"></span>来弥补空气稀薄对发电效率的影响；</div>
+<div class="description-paragraph" id="p0048" num="0045">S323，强风环境稳定控制模式：当风速超过强风阈值时，进入稳定控制模式，在强风环境下，降低涡轮发电机的转速，同时通过减少负载压力来抵抗强风对涡轮叶片和发电机的冲击；</div>
+<div class="description-paragraph" id="p0049" num="0046">S324，高湿度环境防护运行模式：当湿度超过预设的高湿度阈值时，启动防护运行模式，应对高湿环境中出现的设备潮湿和电气短路风险，同时，激活保护功能，包括增加绝缘防护和涡轮叶片的防潮措施。</div>
+<div class="description-paragraph" id="p0050" num="0047">可选的，所述S4中的发电与电能分配优化包括：</div>
+<div class="description-paragraph" id="p0051" num="0048">S41，飞行任务优先级与能量需求分析：根据飞行任务的优先级<span class="patent-image-not-available"></span>和飞行器各设备的实时能量需求<span class="patent-image-not-available"></span>，计算每个设备的电能分配权重<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0052" num="0049">S42，极端环境下的功率调节：当飞行器进入极端环境（高温、低压、强风或高湿度）时，分析当前的环境参数，自动调节发电机的功率输出；</div>
+<div class="description-paragraph" id="p0053" num="0050">S43，电能分配给设备：根据每个设备的分配权重<span class="patent-image-not-available"></span>，将总发电功率<span class="patent-image-not-available"></span>分配给各个设备；</div>
+<div class="description-paragraph" id="p0054" num="0051">S44，电能存储与管理：当飞行器发电量超过当前任务的电能需求时，将多余的电能存储到备用电池中。</div>
+<div class="description-paragraph" id="p0055" num="0052">可选的，所述S5中的电能状态反馈与自适应调节包括：</div>
+<div class="description-paragraph" id="p0056" num="0053">S51，电能状态实时监测：通过传感器实时监测飞行器的电能状态，包括电池的剩余电量<span class="patent-image-not-available"></span>和当前各设备的用电情况<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0057" num="0054">S52，电能不足检测：当检测到电池剩余电量低于安全阈值或设备的用电需求超过当前供电能力时，认为电能不足；</div>
+<div class="description-paragraph" id="p0058" num="0055">S53，自适应发电功率调节：当检测到电能不足时，自动调整涡轮发电机的功率输出<span class="patent-image-not-available"></span>，以维持电能平衡。</div>
+<div class="description-paragraph" id="p0059" num="0056">本发明的有益效果：</div>
+<div class="description-paragraph" id="p0060" num="0057">本发明，通过动态地形预测能量调节和极端环境自适应涡轮调节，实现了涡轮发电机在复杂地形和恶劣环境下的高效运行，通过实时监测地形、气流和环境参数，系统能够根据环境变化智能调整发电功率，优化气流的利用率，减少能量损耗，在地形复杂或气流波动较大时，系统能够自动降低发电功率，以确保设备安全，在环境条件较为平稳时，系统则提高功率输出，提升发电效率，这种高效的发电功率调节方式有效延长了飞行器的续航时间，并减少了能源浪费。</div>
+<div class="description-paragraph" id="p0061" num="0058">本发明，通过结合飞行任务的优先级和设备的能量需求，动态调整电能的分配策略，系统优先为任务关键设备供电，确保这些设备在任务执行过程中始终有足够的电能支持，通过合理分配电能并存储多余电能，飞行器能够在完成高优先级任务的同时，保证其他设备的正常运行，这种智能化的电能分配方式有效避免了因电能分配不当而导致任务中断的问题，提高了任务执行的可靠性和效率。</div>
+<div class="description-paragraph" id="p0062" num="0059">本发明，通过实时监测飞行器的环境参数，并自动选择最适合的涡轮发电模式，确保系统在极端环境下仍能高效运行，针对高温、低压、强风和高湿度等不同的环境条件，系统能够快速调整发电机的工作状态，保护设备免受环境影响，防止性能下降，通过精准的环境识别和调节，极大提升了飞行器在复杂气候条件下的适应性，延长了设备使用寿命，并保证了飞行任务的安全和稳定性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0063">附图说明</div>
+<div class="description-paragraph" id="p0064" num="0060">为了更清楚地说明本发明或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0065" num="0061">图1为本发明实施例的调节方法流程示意图；</div>
+<div class="description-paragraph" id="p0066" num="0062">图2为本发明实施例的动态地形预测能量调节示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0067">具体实施方式</div>
+<div class="description-paragraph" id="p0068" num="0063">下面结合附图和具体实施例对本发明进行详细描述。同时在这里做以说明的是，为了使实施例更加详尽，下面的实施例为最佳、优选实施例，对于一些公知技术本领域技术人员也可采用其他替代方式而进行实施；而且附图部分仅是为了更具体的描述实施例，而并不旨在对本发明进行具体的限定。</div>
+<div class="description-paragraph" id="p0069" num="0064">需要指出的是，在说明书中提到“一个实施例”、“实施例”、“示例性实施例”、“一些实施例”等指示所述的实施例可以包括特定特征、结构或特性，但未必每个实施例都包括该特定特征、结构或特性。另外，在结合实施例描述特定特征、结构或特性时，结合其它实施例（无论是否明确描述）实现这种特征、结构或特性应在相关领域技术人员的知识范围内。</div>
+<div class="description-paragraph" id="p0070" num="0065">通常，可以至少部分从上下文中的使用来理解术语。例如，至少部分取决于上下文，本文中使用的术语“一个或多个”可以用于描述单数意义的任何特征、结构或特性，或者可以用于描述复数意义的特征、结构或特性的组合。另外，术语“基于”可以被理解为不一定旨在传达一组排他性的因素，而是可以替代地，至少部分地取决于上下文，允许存在不一定明确描述的其他因素。</div>
+<div class="description-paragraph" id="p0071" num="0066">如图1-图2所示，用于低空飞行器的GPS同步涡轮发电调节方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0072" num="0067">S1，飞行参数采集：通过低空飞行器上的GPS单元，实时获取飞行器的飞行参数，包括位置信息、速度信息及飞行高度；</div>
+<div class="description-paragraph" id="p0073" num="0068">S2，动态地形预测能量调节：基于飞行器的位置信息和地形数据库，提前分析飞行器前方区域的地形变化，预测地形对气流和涡轮发电的影响，当预测到地形复杂性增加（如山地、峡谷、城市高楼等）时，自动调整涡轮发电机的转速和输出功率，优化气流利用率，减少能量损耗，具体包括：</div>
+<div class="description-paragraph" id="p0074" num="0069">S21，地形数据分析：通过GPS获取飞行器的实时位置信息，并结合地形数据库中的地形数据，分析飞行器前方区域的地形特征，包括地形的高度变化、地势起伏及建筑物的密集度；</div>
+<div class="description-paragraph" id="p0075" num="0070">S22，气流变化预测：基于地形特征的分析结果，结合飞行器当前的飞行速度和气流监测数据，预测地形变化引起的局部气流变化，例如，可以预测山脉区域的上升气流或峡谷中的强劲风流，通过这种气流预测，系统能够提前判断未来几秒至几分钟内气流的变化趋势；</div>
+<div class="description-paragraph" id="p0076" num="0071">S23，发电功率与转速调节：根据地形和气流变化的预测结果，自动调节涡轮发电机的转速和输出功率；</div>
+<div class="description-paragraph" id="p0077" num="0072">S3，极端环境自适应涡轮调节：通过环境传感器实时监测飞行器所处区域的环境参数，包括气温、气压、湿度、风速，结合环境数据，自动选择最适合的涡轮发电模式（如高风速模式、低温低负载模式等），确保涡轮发电机在极端环境下的发电效率和稳定性；</div>
+<div class="description-paragraph" id="p0078" num="0073">S4，发电与电能分配优化：结合飞行任务的优先级和飞行器的实时能量需求，根据极端环境条件调整涡轮发电功率，将产生的电能分配给飞行器的各个设备，优先为任务关键设备供电，多余电能存储至备用电池；</div>
+<div class="description-paragraph" id="p0079" num="0074">S5，电能状态反馈与自适应调节：实时监测飞行器的电能状态，包括电池剩余电量和当前设备的用电情况，当检测到电能不足时，动态调整涡轮发电机的工作状态，增加或减少发电功率以维持飞行器电能平衡；</div>
+<div class="description-paragraph" id="p0080" num="0075">通过上述内容，实现了对涡轮发电机的精确控制与优化，能够根据飞行器所处的地形和极端环境动态调整发电功率，并通过合理分配电能，确保关键任务设备的电力需求得到优先保障，进而提升发电效率、延长飞行器续航时间，并在复杂或恶劣环境下保持飞行器的稳定运行，通过全方位的智能调节，提高了能源管理的灵活性与可靠性。</div>
+<div class="description-paragraph" id="p0081" num="0076">S1中的飞行参数采集包括：</div>
+<div class="description-paragraph" id="p0082" num="0077">S11，GPS位置信息获取：通过飞行器上的GPS单元，实时获取飞行器的位置信息，包括经度、纬度和高度；</div>
+<div class="description-paragraph" id="p0083" num="0078">S12，速度信息获取：通过飞行器上的惯性导航单元（INS）实时获取飞行器的速度信息，包括水平速度和垂直速度；</div>
+<div class="description-paragraph" id="p0084" num="0079">S13，飞行高度采集：通过GPS单元获取飞行器的海拔（相对于海平面），用于提供飞行器的绝对高度信息；</div>
+<div class="description-paragraph" id="p0085" num="0080">通过上述内容，实时获取飞行器的位置信息、速度信息和飞行高度，为系统提供了全面的飞行状态数据，通过GPS获取经度、纬度和海拔确保飞行器位置的精准定位，通过INS实时获取水平和垂直速度则为飞行状态的调节提供了动态信息，同时，飞行高度采集通过GPS单元准确监控飞行器的绝对高度，为飞行器的能源调节、任务执行和环境适应提供了精确的基础数据，从而提升了系统的智能化调节能力和任务执行效率。</div>
+<div class="description-paragraph" id="p0086" num="0081">S21中的地形数据分析包括：</div>
+<div class="description-paragraph" id="p0087" num="0082">S211，地形特征分析：通过GPS获取飞行器的位置信息，并结合地形数据库中的地形数据，对地形的高度变化、地势起伏及建筑物的密集度进行分析，具体包括：</div>
+<div class="description-paragraph" id="p0088" num="0083">高度变化分析：通过GPS获取飞行器的海拔<span class="patent-image-not-available"></span>，并结合地形数据库中的地形数据，计算前方区域内地形高度的变化，表示为：</div>
+<div class="description-paragraph" id="p0089" num="0084"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0090" num="0085">其中，<span class="patent-image-not-available"></span>是地形数据库中前方区域的地形高度，<span class="patent-image-not-available"></span>是飞行器的当前高度，高度变化<span class="patent-image-not-available"></span>用于评估飞行器前方的地形起伏；</div>
+<div class="description-paragraph" id="p0091" num="0086">地势起伏分析：地势起伏<span class="patent-image-not-available"></span>是衡量前方区域地形表面变化的程度，通过分析区域内的高度变化计算得出，表示为：</div>
+<div class="description-paragraph" id="p0092" num="0087"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0093" num="0088">其中，<span class="patent-image-not-available"></span>是区域内第<span class="patent-image-not-available"></span>点的高度值，<span class="patent-image-not-available"></span>是该区域的平均高度，<span class="patent-image-not-available"></span>为
+采样点的数量，<span class="patent-image-not-available"></span>用于评估前方区域地形的复杂性；
+</div>
+<div class="description-paragraph" id="p0094" num="0089">建筑物密集度分析：建筑物密集度<span class="patent-image-not-available"></span>衡量建筑物在区域内的分布情况，表示为：</div>
+<div class="description-paragraph" id="p0095" num="0090"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0096" num="0091">其中，<span class="patent-image-not-available"></span>是建筑物占地的总面积，<span class="patent-image-not-available"></span>是该区域的总面积，<span class="patent-image-not-available"></span>用于判断建筑物对飞行器的影响；</div>
+<div class="description-paragraph" id="p0097" num="0092">S212，地形复杂度分析：基于地形特征的分析结果，计算地形复杂度<span class="patent-image-not-available"></span>，表示为：</div>
+<div class="description-paragraph" id="p0098" num="0093"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0099" num="0094">其中，<span class="patent-image-not-available"></span>是地势起伏复杂度，<span class="patent-image-not-available"></span>是建筑物密集度复杂度，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>是权重；</div>
+<div class="description-paragraph" id="p0100" num="0095"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0101" num="0096"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0102" num="0097">其中，<span class="patent-image-not-available"></span>为预设的最大地势起伏值，用于标准化地势起伏，<span class="patent-image-not-available"></span>为预设的建筑物最大密集度，用于归一化建筑物密集度；</div>
+<div class="description-paragraph" id="p0103" num="0098">S213，地形预测窗口计算：根据飞行器的速度<span class="patent-image-not-available"></span>和当前地形复杂度<span class="patent-image-not-available"></span>计算地形预测窗口<span class="patent-image-not-available"></span>，用于判断前方区域的影响，表示为：</div>
+<div class="description-paragraph" id="p0104" num="0099"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0105" num="0100">其中，<span class="patent-image-not-available"></span>是飞行器的速度，<span class="patent-image-not-available"></span>是时间窗口，<span class="patent-image-not-available"></span>是地形复杂度的最大值；</div>
+<div class="description-paragraph" id="p0106" num="0101">通过上述内容，能够更准确地预测飞行环境的复杂性，并及时调整飞行器的发电功率和飞行高度，能够应对多种复杂地形场景，优化飞行器的能量利用，提高飞行安全性，并有效减少因地形复杂性导致的能量浪费。</div>
+<div class="description-paragraph" id="p0107" num="0102">S22中的气流变化预测包括：</div>
+<div class="description-paragraph" id="p0108" num="0103">S221，飞行速度与气流监测数据结合：通过气流传感器实时监测飞行器周围的气流数据<span class="patent-image-not-available"></span>（包括风速和风向），结合飞行器的当前飞行速度<span class="patent-image-not-available"></span>、地形特征，作为气流变化预测的输入变量；</div>
+<div class="description-paragraph" id="p0109" num="0104">S222，气流变化预测：气流变化预测基于局部气流模型，结合飞行器速度和地形特征，计算局部气流变化<span class="patent-image-not-available"></span>，表示为：</div>
+<div class="description-paragraph" id="p0110" num="0105"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0111" num="0106">其中，<span class="patent-image-not-available"></span>是预测的局部气流变化量，<span class="patent-image-not-available"></span>是地形高度变化，影响上升气流或下降气流，<span class="patent-image-not-available"></span>是地势起伏，描述地形的崎岖程度，影响气流的稳定性，<span class="patent-image-not-available"></span>是建筑物密集度，建筑物越密集，对气流的干扰越大，<span class="patent-image-not-available"></span>是飞行器的飞行速度，较高速度时气流变化较为显著，<span class="patent-image-not-available"></span>是当前的气流速度，<span class="patent-image-not-available"></span>是经验系数，通过实验或模拟确定；</div>
+<div class="description-paragraph" id="p0112" num="0107">通过上述内容，能够提前识别可能影响飞行稳定性和涡轮发电效率的气流变化，进而实时调整发电功率和飞行高度，确保飞行器在复杂地形和气流环境中依然高效运行，提升了飞行器的能源管理效率，同时增强了在多变气流中的飞行稳定性与安全性。</div>
+<div class="description-paragraph" id="p0113" num="0108">S23中的发电功率与转速调节包括：</div>
+<div class="description-paragraph" id="p0114" num="0109">S231，发电机转速与功率自动调节：根据地形和气流变化的预测结果，自动调整涡轮发电机的转速<span class="patent-image-not-available"></span>和输出功率<span class="patent-image-not-available"></span>，表示为：</div>
+<div class="description-paragraph" id="p0115" num="0110"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0116" num="0111"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0117" num="0112">其中，<span class="patent-image-not-available"></span>是涡轮发电机的额定转速，<span class="patent-image-not-available"></span>是气流变化预测量，<span class="patent-image-not-available"></span>是当前气流速度，<span class="patent-image-not-available"></span>是地形复杂度，<span class="patent-image-not-available"></span>是地形复杂度的最大值，<span class="patent-image-not-available"></span>是经验系数，用于调节输出功率的变化幅度；</div>
+<div class="description-paragraph" id="p0118" num="0113">S232，自适应优化：当地形复杂性超过复杂度阈值或气流波动超过波动阈值时，自动降低涡轮转速以减少发电功率，当气流稳定且地形平缓时，提高转速和功率输出，以提高发电效率并满足飞行器的能源需求；</div>
+<div class="description-paragraph" id="p0119" num="0114">复杂度阈值用于判断地形变化是否超出了所能稳定运行的范围，根据地形复杂度<span class="patent-image-not-available"></span>和地形适应能力<span class="patent-image-not-available"></span>设定，表示为：</div>
+<div class="description-paragraph" id="p0120" num="0115"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0121" num="0116">其中，<span class="patent-image-not-available"></span>为复杂度阈值，<span class="patent-image-not-available"></span>是地形复杂度的最大允许值，<span class="patent-image-not-available"></span>是系统设定的最大地形复杂性波动百分比；</div>
+<div class="description-paragraph" id="p0122" num="0117">波动阈值用于检测当前气流速度变化是否超过能够稳定发电的限值，该阈值基于实时气流监测数据和系统耐受的最大波动值<span class="patent-image-not-available"></span>进行设定，表示为：</div>
+<div class="description-paragraph" id="p0123" num="0118"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0124" num="0119">其中，<span class="patent-image-not-available"></span>是当前环境下的平均气流速度，<span class="patent-image-not-available"></span>是系统设定的最大允许气流波动百分比；</div>
+<div class="description-paragraph" id="p0125" num="0120">通过上述内容，结合地形复杂度和气流变化的实时预测结果，自动调整发电机的转速和输出功率，确保了系统在地形复杂性增加或气流波动剧烈时自动降低发电功率，以减少能量消耗，避免发电效率的损失，而在气流稳定且地形平缓时，系统能够提高转速和功率输出，提升发电效率并满足飞行器的能量需求，提高了发电系统的整体效能，使飞行器在各种复杂环境中都能够高效、安全地运行，延长飞行器的续航时间并优化能源利用。</div>
+<div class="description-paragraph" id="p0126" num="0121">S3中的极端环境自适应涡轮调节包括：</div>
+<div class="description-paragraph" id="p0127" num="0122">S31，环境参数监测与分析：实时监测飞行器所处区域的环境参数，包括气温、气压、湿度和风速，并将实时环境参数与预设的环境标准进行对比，分析当前环境是否属于极端条件，包括高温、低压、强风或高湿度；</div>
+<div class="description-paragraph" id="p0128" num="0123">S32，自适应发电模式选择：基于环境参数监测与分析的结果，自动选择最适合当前环境的涡轮发电模式；</div>
+<div class="description-paragraph" id="p0129" num="0124">通过上述内容，能够精准识别极端条件，并自动选择最适合当前环境的发电模式，能够根据环境变化灵活调节发电机的工作状态，确保在恶劣条件下维持高效的发电效率，避免因环境波动导致的性能下降，提高了飞行器的环境适应能力，延长了系统的使用寿命，同时优化了能源管理，保证飞行器在各种气候条件下都能稳定运行。</div>
+<div class="description-paragraph" id="p0130" num="0125">S31中的环境参数监测与分析包括：</div>
+<div class="description-paragraph" id="p0131" num="0126">S311，环境参数实时监测：通过飞行器上的环境传感器，实时监测飞行器所处区域的环境参数，包括气温、气压、湿度和风速；</div>
+<div class="description-paragraph" id="p0132" num="0127">S312，环境标准对比与极端条件分析：将实时监测到的环境参数与预设的环境标准进行对比，分析当前环境是否符合极端条件的阈值，预设的极端条件包括：</div>
+<div class="description-paragraph" id="p0133" num="0128">高温：当气温超过预设高温阈值时，判定为高温环境；</div>
+<div class="description-paragraph" id="p0134" num="0129">低压：当气压低于预设低压阈值时，判定为低压环境；</div>
+<div class="description-paragraph" id="p0135" num="0130">强风：当风速超过预设强风阈值时，判定为强风环境；</div>
+<div class="description-paragraph" id="p0136" num="0131">高湿度：当湿度超过预设高湿度阈值时，判定为高湿度环境；</div>
+<div class="description-paragraph" id="p0137" num="0132">高温阈值<span class="patent-image-not-available"></span>用于判断飞行器是否处于高温环境，根据飞行器的操作标准和设备耐受温度来设定，表示为：</div>
+<div class="description-paragraph" id="p0138" num="0133"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0139" num="0134">其中，<span class="patent-image-not-available"></span>是飞行器正常工作的温度上限（通常为<span class="patent-image-not-available"></span>或<span class="patent-image-not-available"></span>），<span class="patent-image-not-available"></span>是高温安全裕度，表示设备能承受的额外温度；</div>
+<div class="description-paragraph" id="p0140" num="0135">低压阈值<span class="patent-image-not-available"></span>用于判断飞行器是否处于低压环境，根据飞行器在不同高度的气压变化来设定，表示为：</div>
+<div class="description-paragraph" id="p0141" num="0136"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0142" num="0137">其中，<span class="patent-image-not-available"></span>是标准海平面气压（通常为1013hPa），<span class="patent-image-not-available"></span>是飞行器当前的高度差（相对于海平面），<span class="patent-image-not-available"></span>是设定的最大高度；</div>
+<div class="description-paragraph" id="p0143" num="0138">强风阈值<span class="patent-image-not-available"></span>用于判断飞行器是否处于强风环境，表示为：</div>
+<div class="description-paragraph" id="p0144" num="0139"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0145" num="0140">其中，<span class="patent-image-not-available"></span>是飞行器安全操作的风速上限，<span class="patent-image-not-available"></span>是飞行器能够承受的额外风速；</div>
+<div class="description-paragraph" id="p0146" num="0141">高湿度阈值<span class="patent-image-not-available"></span>用于判断飞行器是否处于高湿度环境，根据飞行器内部设备的湿度耐受性来设置，表示为：</div>
+<div class="description-paragraph" id="p0147" num="0142"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0148" num="0143">其中，<span class="patent-image-not-available"></span>是设备能够承受的正常湿度上限，<span class="patent-image-not-available"></span>是高湿度的安全裕度；</div>
+<div class="description-paragraph" id="p0149" num="0144">通过上述内容，能够精准识别飞行器所处的环境状况，根据预设的高温、低压、强风和高湿度阈值，对环境进行分析，自动判断是否处于极端条件下，能够及时、准确地反馈环境变化，确保系统在复杂和恶劣环境中仍能高效、安全地运行，提高了飞行器的环境适应能力，增强了发电系统的稳定性，确保飞行任务在各种气候条件下都能顺利完成。</div>
+<div class="description-paragraph" id="p0150" num="0145">S32中的自适应发电模式选择包括：</div>
+<div class="description-paragraph" id="p0151" num="0146">S321，高温环境发电模式：当检测到高温条件（气温超过预设高温阈值）时，自动进入散热保护模式，在散热保护模式下，通过降低涡轮发电机的转速<span class="patent-image-not-available"></span>来减少设备的热量积累，防止过热；</div>
+<div class="description-paragraph" id="p0152" num="0147">S322，低压环境增压补偿模式：当飞行器进入低压环境（气压低于预设低压阈值）时，自动启动增压补偿模式，在低压环境下，空气密度降低，导致发电效率下降，通过增加涡轮发电机的转速<span class="patent-image-not-available"></span>来弥补空气稀薄对发电效率的影响；</div>
+<div class="description-paragraph" id="p0153" num="0148">S323，强风环境稳定控制模式：当风速超过强风阈值时，进入稳定控制模式，在强风环境下，为避免过高的转速和过度振动，降低涡轮发电机的转速，以确保设备在风力干扰下稳定运行，同时通过减少负载压力来抵抗强风对涡轮叶片和发电机的冲击，保持安全的发电功率输出；</div>
+<div class="description-paragraph" id="p0154" num="0149">S324，高湿度环境防护运行模式：当湿度超过预设的高湿度阈值时，启动防护运行模式，应对高湿环境中出现的设备潮湿和电气短路风险，在防护运行模式下，通过降低发电机的功率输出，减少湿气对设备的侵蚀，同时，激活保护功能，包括增加绝缘防护和涡轮叶片的防潮措施，确保在湿度降低到安全水平之前，发电设备仍能安全运行；</div>
+<div class="description-paragraph" id="p0155" num="0150">通过上述内容，能够根据实时环境条件自动调整涡轮发电机的运行状态，可以在恶劣环境下有效保护设备，防止过热、气压不足、强风振动和湿气侵蚀，延长设备寿命，确保在极端环境中仍能安全、稳定地运行，提高了飞行器的环境适应性和能源利用率，从而提升任务完成的可靠性。</div>
+<div class="description-paragraph" id="p0156" num="0151">S4中的发电与电能分配优化包括：</div>
+<div class="description-paragraph" id="p0157" num="0152">S41，飞行任务优先级与能量需求分析：根据飞行任务的优先级<span class="patent-image-not-available"></span>和飞行器各设备的实时能量需求<span class="patent-image-not-available"></span>，计算每个设备的电能分配权重<span class="patent-image-not-available"></span>，表示为：</div>
+<div class="description-paragraph" id="p0158" num="0153"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0159" num="0154">其中，<span class="patent-image-not-available"></span>是电能分配权重，<span class="patent-image-not-available"></span>表示任务的优先级，较高优先级任务获得更高权重，<span class="patent-image-not-available"></span>是设备的能量需求，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>为权重系数；</div>
+<div class="description-paragraph" id="p0160" num="0155">S42，极端环境下的功率调节：当飞行器进入极端环境（高温、低压、强风或高湿度）时，分析当前的环境参数，自动调节发电机的功率输出，表示为：</div>
+<div class="description-paragraph" id="p0161" num="0156"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0162" num="0157">其中，<span class="patent-image-not-available"></span>是经过环境调整后的功率输出，<span class="patent-image-not-available"></span>是环境参数的偏差（如气温、气压等）与标准值的差异，<span class="patent-image-not-available"></span>是可以承受的最大环境偏差，当环境条件恶劣时，会降低发电功率，以避免设备受损；</div>
+<div class="description-paragraph" id="p0163" num="0158">S43，电能分配给设备：根据每个设备的分配权重<span class="patent-image-not-available"></span>，将总发电功率<span class="patent-image-not-available"></span>分配给各个设备，每个设备的电能分配量<span class="patent-image-not-available"></span>表示为：</div>
+<div class="description-paragraph" id="p0164" num="0159"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0165" num="0160">其中，<span class="patent-image-not-available"></span>是分配给某设备的电能，<span class="patent-image-not-available"></span>是所有设备的电能权重总和，<span class="patent-image-not-available"></span>是发电机的总输出功率；</div>
+<div class="description-paragraph" id="p0166" num="0161">S44，电能存储与管理：当飞行器发电量超过当前任务的电能需求时，将多余的电能存储到备用电池中，电池的充电功率<span class="patent-image-not-available"></span>表示为：</div>
+<div class="description-paragraph" id="p0167" num="0162"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0168" num="0163">其中，<span class="patent-image-not-available"></span>是存储到备用电池中的电能，<span class="patent-image-not-available"></span>是发电机的总功率输出，<span class="patent-image-not-available"></span>是当前任务的所有设备所消耗的电能总和；</div>
+<div class="description-paragraph" id="p0169" num="0164">通过上述内容，确保电能能够合理分配至各个关键设备，确保任务关键设备优先获得电能供应，避免因能源不足导致任务中断，同时在极端环境下，通过智能调节发电功率，优化能源利用效率，能够实时响应环境变化和任务需求，提升飞行器的续航能力和能源管理的灵活性，确保飞行任务的连续性与可靠性。</div>
+<div class="description-paragraph" id="p0170" num="0165">S5中的电能状态反馈与自适应调节包括：</div>
+<div class="description-paragraph" id="p0171" num="0166">S51，电能状态实时监测：通过传感器实时监测飞行器的电能状态，包括电池的剩余电量<span class="patent-image-not-available"></span>和当前各设备的用电情况<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0172" num="0167">S52，电能不足检测：当检测到电池剩余电量低于安全阈值或设备的用电需求超过当前供电能力时，认为电能不足；</div>
+<div class="description-paragraph" id="p0173" num="0168">安全阈值<span class="patent-image-not-available"></span>基于飞行任务的优先级、设备能量需求和飞行器的实际能量消耗情况来动态设定，表示为：</div>
+<div class="description-paragraph" id="p0174" num="0169"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0175" num="0170">其中，<span class="patent-image-not-available"></span>是设定的电量安全阈值，<span class="patent-image-not-available"></span>是当前设备的总能量需求，<span class="patent-image-not-available"></span>是任务优先级系数（通常在0到1之间），优先级越高，系数越大，<span class="patent-image-not-available"></span>是电量冗余系数，用于保证额外的电量储备，一般在<span class="patent-image-not-available"></span>至<span class="patent-image-not-available"></span>之间，<span class="patent-image-not-available"></span>是电池衰减系数（通常小于1，表示电池的剩余容量百分比）；</div>
+<div class="description-paragraph" id="p0176" num="0171">S53，自适应发电功率调节：当检测到电能不足时，自动调整涡轮发电机的功率输出<span class="patent-image-not-available"></span>，以维持电能平衡，表示为：</div>
+<div class="description-paragraph" id="p0177" num="0172"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0178" num="0173">其中，<span class="patent-image-not-available"></span>是调整后的发电机功率输出，<span class="patent-image-not-available"></span>是发电机的额定功率，<span class="patent-image-not-available"></span>是设备当前总能量需求，<span class="patent-image-not-available"></span>是电池剩余电量，<span class="patent-image-not-available"></span>是设备的用电需求，<span class="patent-image-not-available"></span>是发电机当前的供电能力，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>是调整系数；</div>
+<div class="description-paragraph" id="p0179" num="0174">通过上述内容，能够迅速调整涡轮发电机的功率输出，避免电量不足导致任务中断，结合任务优先级与设备需求，实现了动态、精准的发电调节，保证了关键设备的电能供应，延长了飞行器的续航时间，并提高了飞行任务的可靠性与效率。</div>
+<div class="description-paragraph" id="p0180" num="0175">本发明涵盖任何在本发明的精髓和范围上做的替代、修改、等效方法以及方案。为了使公众对本发明有彻底的了解，在以下本发明优选实施例中详细说明了具体的细节，而对本领域技术人员来说没有这些细节的描述也可以完全理解本发明。另外，为了避免对本发明的实质造成不必要的混淆，并没有详细说明众所周知的方法、过程、流程、元件和电路等。</div>
+<div class="description-paragraph" id="p0181" num="0176">以上所述仅是本发明的优选实施方式，应当指出，对于本技术领域的普通技术人员来说，在不脱离本发明原理的前提下，还可以作出若干改进和润饰，这些改进和润饰也应视为本发明的保护范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

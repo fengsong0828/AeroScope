@@ -1,0 +1,208 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN121113077A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES514456227">
+<invention-title id="title1" lang="ZH">一种基于改进的快速扩展随机树的固定翼飞行器的低空轨迹
+规划方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于固定翼飞行器低空轨迹规划技术领域，尤其涉及一种基于改进的快速扩展随机树的固定翼飞行器的低空轨迹规划方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">对于无人机低空飞行来讲，由于与地面相撞的风险增加，在设计低空飞行机动轨迹时，不但要考虑飞行任务的完成，还需要将飞行的安全性、可操作性和飞机本身的性能约束加以考虑，对于飞机的机动轨迹而言，需要根据战场的环境，确定飞行的高度、速度、方位，随着战场环境的变化调整机动轨迹，面对低空场景，利用山脊地形因素实现躲避地方雷达或快速脱离敌方导弹的机动轨迹的实现，能够确保飞机满足近地防撞等安全性需求。</div>
+<div class="description-paragraph" id="p0005" num="0003">在固定翼无人机低空复杂地形的轨迹规划中，现有基于传统RRT(快速扩展随机树)的算法主要存在两个问题：探索效率不足：在复杂地形约束下，算法探索可行路径的过程效率较低。路径冗余度高：生成的路径往往包含过多不必要的节点和转折，导致路径不够简洁。同时，针对低空场景中需满足固定翼无人机动力学约束(如最小转弯半径和最大爬升角)的3D-Dubins路径规划，现有方法在确保路径曲线光滑性和在复杂威胁环境中实现完全避障方面仍存在挑战。</div>
+<div class="description-paragraph" id="p0006" num="0004">因此，本发明旨在解决如何在低空复杂地形环境中，高效地生成满足固定翼无人机动力学约束(最小转弯半径、最大爬升角)且路径冗余度低、光滑可行，并能完全避开威胁区域的飞行轨迹。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">为解决上述技术问题，本发明提出了一种基于改进的快速扩展随机树的固定翼飞行器的低空轨迹规划方法，以解决上述现有技术存在的问题。</div>
+<div class="description-paragraph" id="p0009" num="0006">为实现上述目的，本发明提供了一种基于改进的快速扩展随机树的固定翼飞行器的低空轨迹规划方法，包括：</div>
+<div class="description-paragraph" id="p0010" num="0007">获取固定翼飞机低空运动的节点与规划空间，基于定义的节点初始化两棵随机生成树；</div>
+<div class="description-paragraph" id="p0011" num="0008">在所述规划空间内对两棵随机生成树进行协同扩展，直至两棵随机生成树之间的距离满足阈值要求，获得可行路径点集；</div>
+<div class="description-paragraph" id="p0012" num="0009">采用贪心算法对所述可行路径点集进行优化后连接获得2D路径；</div>
+<div class="description-paragraph" id="p0013" num="0010">对低空运动场景的高度进行级别划分，根据高度级别选取纵向Dubins连接策略将2D路径映射至三维空间，获得固定翼飞行器的最终低空轨迹并验证是否进入威胁区，若进入威胁区，则通过重复以上步骤重新进行路径规划。</div>
+<div class="description-paragraph" id="p0014" num="0011">可选的，节点类型包括起始节点、目标节点、扩展节点；所述起始节点属性包括起始点坐标、起始点三维坐标位置和起始点航向；目标节点属性包括目标点坐标、目标点三维坐标位置和目标点航向；所述规划空间为固定翼飞机低空运动的三维空间；所述三维空间包括雷达威胁区和山脉威胁区。</div>
+<div class="description-paragraph" id="p0015" num="0012">可选的，基于起始节点与目标节点分别初始化随机生成树。</div>
+<div class="description-paragraph" id="p0016" num="0013">可选的，获得可行路径点集的过程包括：</div>
+<div class="description-paragraph" id="p0017" num="0014">根据随机生成树当前节点的地形复杂度选择生成树扩展策略，基于生成树扩展策略在所述规划空间内对两棵随机生成树进行协同扩展，并在探索过程中基于节点碰撞障碍区的次数动态调整探索步长，直至两棵随机生成树之间的距离满足阈值要求，获得可行路径点集；其中，所述生成树扩展策略包括交替连接策略、人工势场法探索策略与随机探索策略。</div>
+<div class="description-paragraph" id="p0018" num="0015">可选的，所述交替连接策略包括：两棵随机生成树交替探索扩展，交替扩展过程中，将当前树的最新扩展节点作为另一棵树的参考扩展方向，通过地形复杂度函数动态计算交替频率，当两棵随机生成树的最近节点间距满足阈值要求且路径无障碍时，直接连接两树并终止扩展。</div>
+<div class="description-paragraph" id="p0019" num="0016">可选的，所述人工势场法探索策略包括：为目标节点建立引力势场函数，为障碍物建立斥力势场函数，引入距离矫正因子消除目标点附近的斥力震荡；计算当前节点所受的引力向量、斥力向量及合成向量，归一化后确定扩展方向；其中，斥力势场的作用范围限定为障碍物安全阈值距离内。</div>
+<div class="description-paragraph" id="p0020" num="0017">可选的，基于节点碰撞障碍区的次数动态调整探索步长的公式如下：</div>
+<div class="description-paragraph" id="p0021" num="0018">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0022" num="0019">式中，Δ<sub>step</sub>为探索过程中的步长，λ<sub>col</sub>为步长衰减时的系数，λ<sub>ncol</sub>为步长增长时的系数，n<sub>Tcol</sub>为探索过程中连续碰撞的次数阈值，n<sub>col</sub>为探索过程中连续碰撞的次数，sign(·)为符号函数，n<sub>ncol</sub>为连续探索成功无碰撞的次数，n<sub>Tncol</sub>为连续探索成功无碰撞的阈值。</div>
+<div class="description-paragraph" id="p0023" num="0020">可选的，对低空运动场景的高度进行级别划分，得到低高度场景、大高度场景与中高度场景。</div>
+<div class="description-paragraph" id="p0024" num="0021">可选的，低高度场景下采用直接投影法将二维路径转换为三维轨迹；中高度场景下通过在路径首尾插入特定圆弧段延长水平飞行距离；大高度场景下计算所需螺旋圈数并自适应调整转弯半径，并满足R<sup>*</sup>≥R<sub>min</sub>以确保动力学可行性。通过螺旋机动实现大幅度高度变化；其中，低空运动场景中满足飞行器性能约束和避障要求。</div>
+<div class="description-paragraph" id="p0025" num="0022">本发明还提供了一种计算机装置，包括：存储器、处理器以存储在存储器上并可在处理器上运行的计算机程序，所述处理器执行所述计算机程序以实现上述方法的步骤。</div>
+<div class="description-paragraph" id="p0026" num="0023">与现有技术相比，本发明具有如下优点和技术效果：</div>
+<div class="description-paragraph" id="p0027" num="0024">本发明对RRT算法进行了改进，融合了人工势场法、交替连接和自适应探索步长三种策略，能够高效生成规避山脉和雷达等威胁区的路径点集，显著加速了低空突防轨迹的规划过程。进一步引入的贪心算法有效精简了路径点集，减少了节点数量。</div>
+<div class="description-paragraph" id="p0028" num="0025">在获得精简路径点集的基础上，针对低空突防任务，细分为低、中、高三种飞行高度场景。固定翼无人机根据不同场景和自身运动学约束，选取相应的机动策略。通过三维Dubins路径算法连接路径点，最终生成一条光滑且满足运动学约束的突防轨迹。该轨迹可包含爬升、俯冲、盘旋上升/下降、左/右转弯等典型机动动作，确保无人机安全抵达目标点。</div>
+<div class="description-paragraph" id="p0029" num="0026">本发明不仅显著提升了RRT算法的效率(减少冗余节点、加速探索)，而且针对低空突防中光滑机动轨迹的生成，提出了基于高度进一步细分的机动策略选择方法，对固定翼无人机低空威胁规避的轨迹设计领域具有重要参考价值。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0030">附图说明</div>
+<div class="description-paragraph" id="p0031" num="0027">构成本申请的一部分的附图用来提供对本申请的进一步理解，本申请的示意性实施例及其说明用于解释本申请，并不构成对本申请的不当限定。在附图中：</div>
+<div class="description-paragraph" id="p0032" num="0028">图1为本发明实施例的效果图；</div>
+<div class="description-paragraph" id="p0033" num="0029">图2为本发明实施例的算法整体框架图；</div>
+<div class="description-paragraph" id="p0034" num="0030">图3为本发明实施例的交替探索策略示意图；</div>
+<div class="description-paragraph" id="p0035" num="0031">图4为本发明实施例的六种Dubins曲线示意图；</div>
+<div class="description-paragraph" id="p0036" num="0032">图5为本发明实施例的低空中中高度插入圆弧曲线示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0037">具体实施方式</div>
+<div class="description-paragraph" id="p0038" num="0033">需要说明的是，在不冲突的情况下，本申请中的实施例及实施例中的特征可以相互组合。下面将参考附图并结合实施例来详细说明本申请。</div>
+<div class="description-paragraph" id="p0039" num="0034">需要说明的是，在附图的流程图示出的步骤可以在诸如一组计算机可执行指令的计算机系统中执行，并且，虽然在流程图中示出了逻辑顺序，但是在某些情况下，可以以不同于此处的顺序执行所示出或描述的步骤。</div>
+<div class="description-paragraph" id="p0040" num="0035">实施例一</div>
+<div class="description-paragraph" id="p0041" num="0036">如图1-2所示，本实施例中提供一种基于改进的快速扩展随机树的固定翼飞行器的低空轨迹规划方法，能够有效避开雷达、山脉等威胁区，同时满足飞机的动力学约束，包括以下步骤：</div>
+<div class="description-paragraph" id="p0042" num="0037">步骤1：定义节点类型及规划空间。节点包含起始节点、目标点。规划空间指固定翼飞机低空运动的三维空间，低空是指飞行高度不大于2000m的飞行高度。</div>
+<div class="description-paragraph" id="p0043" num="0038">步骤2：初始化两棵随机生成树，第一棵树从起始节点开始扩展，第二棵树从目标节点开始扩展。</div>
+<div class="description-paragraph" id="p0044" num="0039">步骤3：根据当前节点的地形复杂度来选取生成树扩展策略，共分为1.交替连接策略，2.人工势场法探索策略，3.随机探索策略。在探索过程中根据节点碰撞障碍区次数自适应调整探索步长。</div>
+<div class="description-paragraph" id="p0045" num="0040">步骤4：判断两棵树之间的距离是否小于给定阈值，如果满足，则迭代结束；如果不满足，则返回步骤3进一步进行迭代。</div>
+<div class="description-paragraph" id="p0046" num="0041">步骤5：减少得到的可行路点集合中路点数量。通过贪心优化算法得到可行的路点集，新得到的路点集中包含更少的可行路点。</div>
+<div class="description-paragraph" id="p0047" num="0042">步骤6：将离散路点集连接起来。在水平平面用6种2D-Dubins曲线连接。</div>
+<div class="description-paragraph" id="p0048" num="0043">步骤7：将2D-Dubins曲线映射到3D空间中，即为2D-Dubins曲线添加高度信息。在添加高度信息的过程中，进一步将低空场景细分为低/中/高三种不同高度场景，依据最大爬升率选择不同的纵向Dubins连接策略。</div>
+<div class="description-paragraph" id="p0049" num="0044">步骤8：判断得到的光滑曲线是否进入威胁区，如果进入威胁区，则重新进行规划并返回步骤1。</div>
+<div class="description-paragraph" id="p0050" num="0045">在步骤1中，具体说明节点类型、属性及规划空间包含的内容。</div>
+<div class="description-paragraph" id="p0051" num="0046">步骤1.1：节点类型；</div>
+<div class="description-paragraph" id="p0052" num="0047">节点包含起始节点、目标节点和扩展过程中的节点。</div>
+<div class="description-paragraph" id="p0053" num="0048">步骤1.2：节点属性；</div>
+<div class="description-paragraph" id="p0054" num="0049">起始节点属性包括：起始点坐标、起始点三维坐标位置和目标点航向。目标节点属性包括：目标点坐标、目标点三维坐标位置和目标点航向。</div>
+<div class="description-paragraph" id="p0055" num="0050">步骤1.3：规划空间；</div>
+<div class="description-paragraph" id="p0056" num="0051">规划空间包括低空三维(X,Y,Z)空间边界。雷达威胁区和山脉威胁区模型。其中为了满足低空轨迹规划的要求，规划空间应在高度2km之下进行。</div>
+<div class="description-paragraph" id="p0057" num="0052">步骤1.4：定义策略选择概率：</div>
+<div class="description-paragraph" id="p0058" num="0053">在低空进行路径探索时，主要通过地形的复杂度变化来选取不同的探索策略，设计路径的探索策略如下：</div>
+<div class="description-paragraph" id="p0059" num="0054">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0060" num="0055">式中，G是路径探索的策略，f<sub>p</sub>是通过人工势场法探索的概率，f<sub>a</sub>是选用交替探索策略的概率，f<sub>r</sub>是随机探索策略的概率，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>为两个预定义的策略阈值。而地形的复杂度通过下式来计算：</div>
+<div class="description-paragraph" id="p0061" num="0056">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0062" num="0057">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0063" num="0058">式中，<span class="patent-image-not-available"></span>表示地形复杂度，且λ<sub>p</sub>是可调节的系数。如果P是当前的节点，<span class="patent-image-not-available"></span>反映了第k个障碍物到节点P的距离，S<sub>i</sub>(P)则描述了障碍物和节点P的位置关系，通过下式计算：</div>
+<div class="description-paragraph" id="p0064" num="0059">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0065" num="0060">式中，i为当前障碍物的索引，(x,y,z)为当前节点的坐标，(x<sub>o</sub>,y<sub>o</sub>,z<sub>o</sub>)是障碍物等效的球心，R<sub>u</sub>为障碍物的安全裕度，p,q,r用于控制等效包络椭球形状的指数参数，当p,q,r&gt;1时，对应轴的包络面会向中心凹陷；当p,q,r&lt;1时，对应包络面会更向外凸出。</div>
+<div class="description-paragraph" id="p0066" num="0061">在步骤2中，具体说明两棵树类型及树节点扩展方式。</div>
+<div class="description-paragraph" id="p0067" num="0062">步骤2需要初始化两棵树，第一棵树以起始节点开始扩展，第二棵树以目标节点开始扩展。扩展过程中首先根据步骤3中的探索策略在空间中采样得到新节点的扩展方向，然后树朝向新节点的方向按其步长进行扩展。</div>
+<div class="description-paragraph" id="p0068" num="0063">在步骤3中，具体的三种探索策略及自适应调整步长说明如下：</div>
+<div class="description-paragraph" id="p0069" num="0064">步骤3.1：交替连接策略；</div>
+<div class="description-paragraph" id="p0070" num="0065">在双树RRT算法的探索过程中，该算法会在探索的过程中生成两棵随机树，一棵树从起点出发，另一棵树从终点出发，通过两棵树的交替探索来完成最终的规划任务。简单来说就是在节点扩展的过程中，首先扩展树1，然后再扩展树2，两棵树的节点进行交替扩展。为了加快两棵树的连接，在交替探索的基础上进一步进行了修改，通过当前该树的最新所扩展的节点作为下一颗树迭代时节点扩展的方向，从而加快两棵树的连接。而交替的频率可以通过地形的复杂度来计算：</div>
+<div class="description-paragraph" id="p0071" num="0066">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0072" num="0067">式中，<span class="patent-image-not-available"></span>为地形复杂度，a<sub>x</sub>和a<sub>c</sub>是增益系数，最终得到向下舍入的n<sub>c</sub>。当地形环境简单时，交替探索的次数间隔就应该小一些，此时n<sub>c</sub>就更大一些；当地形环境复杂，在禁飞区密集区域时，交替探索的次数间隔就应该大一些，此时n<sub>c</sub>就的值更小。当两棵随机树接近到一定距离之后，两棵树可以直接连接且之间没有障碍物，如图3交替探索示意图中的<span class="patent-image-not-available"></span>可以直接连接，则两棵树将不再继续向下扩展<span class="patent-image-not-available"></span>都将不再进行扩展。</div>
+<div class="description-paragraph" id="p0073" num="0068">步骤3.2：人工势场法；</div>
+<div class="description-paragraph" id="p0074" num="0069">在得到目标节点之后，需要对障碍物和目标点建立人工势场，目标点建立吸引力势场，障碍物建立斥力势场，RRT*算法在两种势场(引力场、斥力场)的共同作用下进一步确定探索的方向，向目标点前进。这样不仅能够使得算法在路点探索的过程中，新目标点能够避开地形中存在的障碍物，而且能够保证随机树尽可能地朝目标点进行扩展。依靠这种思想，在节点探索的过程中，引入人工势场的概念。首先需要定义r<sub>min</sub>为当前节点到禁飞区之间的最短距离，R<sub>safe</sub>为斥力场的阈值，当新节点在障碍物斥力场的安全阈值之内时才存在斥力。</div>
+<div class="description-paragraph" id="p0075" num="0070">为了克服人工势场法可能存在斥力过大的问题，对人工势场函数添加距离矫正因子kd<sup>n</sup>(p,p<sub>target</sub>),n&gt;1，κ为增益系数。通过该函数，当接近目标点时，势场的排斥力迅速减少，逐渐趋于零，由此可以得到以下的势场函数：</div>
+<div class="description-paragraph" id="p0076" num="0071">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0077" num="0072">式中，p为当前节点，p<sub>target</sub>为目标节点，d(p,p<sub>target</sub>)为二者之间的距离。λ<sub>a</sub>为吸引力场的增益系数，λ<sub>1</sub>为飞机和目标位置之间的起始距离阈值，当接近目标时，吸引力势场减弱，λ<sub>r</sub>为斥力场因子。在得到势场函数之后，得到相应的力的表达式如下：</div>
+<div class="description-paragraph" id="p0078" num="0073">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0079" num="0074">得到二者的合力并归一化就能够测定最终的目标节点的力：</div>
+<div class="description-paragraph" id="p0080" num="0075">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0081" num="0076">步骤3.3：随机探索策略；</div>
+<div class="description-paragraph" id="p0082" num="0077">在规划空间中随机生成节点，得到当前扩展树朝向该节点的方向按最大扩展步长进行扩展，该策略为随机扩展生成树中的基本策略，在此不作详细阐述。</div>
+<div class="description-paragraph" id="p0083" num="0078">步骤3.4：自适应调整步长；</div>
+<div class="description-paragraph" id="p0084" num="0079">在路径探索的过程中，通过自适应探索步长来提高节点探索的效率。当在狭窄的路径中探索时，连续探索到障碍物会导致节点多次探索失败，此时调整步长为更小的步长，以便节点可以快速探索并通过狭窄的区域。而当节点到达障碍物较为稀疏的空旷区域时，连续成功的探索将调整探索步长为更大的步长，此时探索速度则会加快。由此我们就会得到一条在狭窄的障碍区直接的路点很密集，在空旷区域的节点较为稀疏的一条路径点。根据碰撞次数调整步长的公式如下：</div>
+<div class="description-paragraph" id="p0085" num="0080">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0086" num="0081">式中，Δ<sub>step</sub>为探索过程中的步长，λ<sub>col</sub>为步长衰减时的系数，λ<sub>ncol</sub>为步长增长时的系数，n<sub>Tcol</sub>为探索过程中连续碰撞的次数阈值，n<sub>col</sub>为探索过程中连续碰撞的次数，sign(·)为符号函数，n<sub>ncol</sub>为连续探索成功无碰撞的次数，n<sub>Tncol</sub>为连续探索成功无碰撞的阈值。</div>
+<div class="description-paragraph" id="p0087" num="0082">在步骤4中，节点探索步骤的终止条件。</div>
+<div class="description-paragraph" id="p0088" num="0083">判断两棵树之间的距离是否足够小，满足给定的阈值要求。如果满足，则两棵树完成节点扩展过程，如果不满足，返回步骤3继续进行节点探索扩展。</div>
+<div class="description-paragraph" id="p0089" num="0084">在步骤5中，使用贪心算法减少得到的可行路点集合中路点数量。</div>
+<div class="description-paragraph" id="p0090" num="0085">具体地，贪心算法详细说明如下：</div>
+<div class="description-paragraph" id="p0091" num="0086">步骤5.1：贪心算法初始化；</div>
+<div class="description-paragraph" id="p0092" num="0087">开始节点为路点集中的第一个节点，最终节点为路点集中的最后一个节点。</div>
+<div class="description-paragraph" id="p0093" num="0088">步骤5.2：贪心算法规则；</div>
+<div class="description-paragraph" id="p0094" num="0089">遍历所有的节点，如果起点和终点之间存在威胁区，终点向前调整；如果起点和终点之间没有威胁区，存储终点，将当前节点设置为新终点。</div>
+<div class="description-paragraph" id="p0095" num="0090">在步骤6中，详细阐述6种2D-Dubins曲线连接。</div>
+<div class="description-paragraph" id="p0096" num="0091">步骤6.1：Dubins路径详细说明；</div>
+<div class="description-paragraph" id="p0097" num="0092">在得到航路点之后，需要将航路点转换为避障的Dubins路径，在特定的位姿点下，无人机具备向左转和向右转的能力。传统Dubins路径可以通过转弯-直线-转弯三段连接起来，进一步地，Dubins路径也可以通过转弯-转弯-转弯三段曲线连接起来，此时每两段转弯曲线之间应该改变转向(向左转弯或向右转弯)。</div>
+<div class="description-paragraph" id="p0098" num="0093">步骤6.2：六种水平面内Dubins曲线详细说明；</div>
+<div class="description-paragraph" id="p0099" num="0094">6种Dubins曲线分别为RSR,RSL,LSL,LSR,RLR,LRL六种Dubins曲线，其中R代表右转弯，S代表直线飞行，L代表左转弯，具体六种水平面内的Dubins曲线如图4所示。</div>
+<div class="description-paragraph" id="p0100" num="0095">在步骤7中，将低空场景进一步细分为低/中/高三种不同的高度场景。</div>
+<div class="description-paragraph" id="p0101" num="0096">步骤7.1：低高度场景；</div>
+<div class="description-paragraph" id="p0102" num="0097">令z<sub>s</sub>为起始高度，z<sub>g</sub>为目标点高度，ΔH为爬升高度差，L<sub>2d</sub>(R<sub>min</sub>)为2D-Dubins的路径长度，<span class="patent-image-not-available"></span>为爬升角，故在满足如下等式时，称之为低高度场景：</div>
+<div class="description-paragraph" id="p0103" num="0098">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0104" num="0099">此时无须额外考虑螺旋上升或者螺旋下降的情况，所规划出的3D-Dubins曲线可视为将水平投影方向上规划出的2D-Dubins曲线进行一定角度γ和高度ΔH抬升后所得到的新曲线，其中ΔH的值为起始点与目标点高度差的绝对值。由于爬升角的最大值为<span class="patent-image-not-available"></span>因此可计算出两点间的高度差最大为<span class="patent-image-not-available"></span>为了规划出从起始点到终点的最短航迹，最佳爬升角γ<sup>*</sup>可由下式计算得出：</div>
+<div class="description-paragraph" id="p0105" num="0100">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0106" num="0101">综上，得到低高度场景下规划出的3D-Dubins航迹长度为：</div>
+<div class="description-paragraph" id="p0107" num="0102">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0108" num="0103">步骤7.2：大高度场景；</div>
+<div class="description-paragraph" id="p0109" num="0104">满足下式时，称为大高度场景：</div>
+<div class="description-paragraph" id="p0110" num="0105">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0111" num="0106">在大高度场景下，无人机的爬升角γ不能超过指定范围，起始点到终点的高度差远高于<span class="patent-image-not-available"></span>此时直接爬升不能满足其要求，由于合理的3D-Dubins曲线需始终满足下式：</div>
+<div class="description-paragraph" id="p0112" num="0107">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0113" num="0108">故通过增加水平方向上所规划出的2D-Dubins曲线长度，使得新规划的曲线长度L′<sub>2d</sub>(R<sub>min</sub>)能够达到<span class="patent-image-not-available"></span>即可满足条件。为了增大L<sub>2d</sub>(R<sub>min</sub>)的值且不影响所规划路径的平滑性，可在规划路径时添加额外的机动行为，如螺旋上升或者螺旋下降等。根据螺旋的长度不同分为大高度场景和中高度场景，当所需的螺旋圈数大于1的场景作为高空场景，此时满足起点和终点的高度差大于<span class="patent-image-not-available"></span>即：</div>
+<div class="description-paragraph" id="p0114" num="0109">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0115" num="0110">以起始点的高度低于终点的高度为例，规划出的3D-Dubins曲线需增加向上螺旋部分；同理，若起始点的高度高于终点的高度，那么规划出的3D-Dubins曲线需增加向下螺旋部分；设定k为满足高度差所需的最小螺旋圈数，满足以下条件：</div>
+<div class="description-paragraph" id="p0116" num="0111">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0117" num="0112">因此，通过上式推导出k值得计算公式如下：</div>
+<div class="description-paragraph" id="p0118" num="0113">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0119" num="0114">式中，<span class="patent-image-not-available"></span>表示向下取整。</div>
+<div class="description-paragraph" id="p0120" num="0115">由于k值为向下取整得出，k圈螺旋不足以满足实际所需航迹长度，因此R＝R<sub>min</sub>不再是最佳转弯半径，需要适当扩大转弯半径R的值，计算出最佳转弯半径R<sup>*</sup>的值，其满足下式：</div>
+<div class="description-paragraph" id="p0121" num="0116">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0122" num="0117">综上所述，大高度场景下所规划出的3D-Dubins航迹长度为：</div>
+<div class="description-paragraph" id="p0123" num="0118">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0124" num="0119">步骤7.3：中高度场景；</div>
+<div class="description-paragraph" id="p0125" num="0120">若满足下式，被称为中高度场景：</div>
+<div class="description-paragraph" id="p0126" num="0121">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0127" num="0122">中高度场景的高度介于低高度场景与大高度场景之间，在规划3D-Dubins路径时，既需要插入额外的机动行为以增加水平投影方向上2D-Dubins曲线的长度，然而又无须插入一整圈的螺旋机动，即所需的插入的曲线小于2πR<sub>min</sub>：</div>
+<div class="description-paragraph" id="p0128" num="0123">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0129" num="0124">为了保证所规划得到的航迹最短，令<span class="patent-image-not-available"></span>时，采取在2D-Dubins曲线路径的起始位置和末端位置插入圆弧的方式，增加规划得到的2D-Dubins曲线的长度，如图5所示。</div>
+<div class="description-paragraph" id="p0130" num="0125">设定所添加的圆弧角度为δ，以起始点处插入圆弧为例，有：</div>
+<div class="description-paragraph" id="p0131" num="0126">p<sub>i</sub>＝c<sub>s</sub>+R(δ)(p<sub>s</sub>-c<sub>s</sub>) (25)</div>
+<div class="description-paragraph" id="p0132" num="0127">如上式所示，起始段圆弧圆心坐标为c<sub>s</sub>,切点p<sub>i</sub>坐标(x<sub>i</sub>,y<sub>i</sub>,z<sub>i</sub>)，则可从(x<sub>i</sub>,y<sub>i</sub>,z<sub>i</sub>,ψ<sub>s</sub>+δ)到终点(x<sub>g</sub>,y<sub>g</sub>,z<sub>g</sub>,ψ<sub>g</sub>)绘制出标准的2D-Dubins路径，基于下式计算得到新规划的2D-Dubins曲线的总长度L′<sub>2d</sub>(δ)为：</div>
+<div class="description-paragraph" id="p0133" num="0128">L′<sub>2d</sub>(δ)＝δR<sub>min</sub>+L<sub>2d</sub>(p<sub>i</sub>,ψ<sub>s</sub>+δ,p<sub>g</sub>,ψ<sub>g</sub>) (26)</div>
+<div class="description-paragraph" id="p0134" num="0129">为了找到所插入圆弧的最优角度δ<sup>*</sup>，通过下式的零点求得：</div>
+<div class="description-paragraph" id="p0135" num="0130">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0136" num="0131">由此可得到最终规划而得的3D-Dubins路径长度如下式所示：</div>
+<div class="description-paragraph" id="p0137" num="0132">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0138" num="0133">本实施例还提供了一种计算机装置，包括：存储器、处理器以存储在存储器上并可在处理器上运行的计算机程序，所述处理器执行所述计算机程序以实现上述方法的步骤。</div>
+<div class="description-paragraph" id="p0139" num="0134">本发明对RRT算法进行了改进，融合了人工势场法、交替连接和自适应探索步长三种策略，能够高效生成规避山脉和雷达等威胁区的路径点集，显著加速了低空突防轨迹的规划过程。进一步引入的贪心算法有效精简了路径点集，减少了节点数量。</div>
+<div class="description-paragraph" id="p0140" num="0135">在获得精简路径点集的基础上，针对低空突防任务，细分为低、中、高三种飞行高度场景。固定翼无人机根据不同场景和自身运动学约束，选取相应的机动策略。通过三维Dubins路径算法连接路径点，最终生成一条光滑且满足运动学约束的突防轨迹。该轨迹可包含爬升、俯冲、盘旋上升/下降、左/右转弯等典型机动动作，确保无人机安全抵达目标点。</div>
+<div class="description-paragraph" id="p0141" num="0136">本发明不仅显著提升了RRT算法的效率(减少冗余节点、加速探索)，而且针对低空突防中光滑机动轨迹的生成，提出了基于高度进一步细分的机动策略选择方法，对固定翼无人机低空威胁规避的轨迹设计领域具有重要参考价值。</div>
+<div class="description-paragraph" id="p0142" num="0137">以上，仅为本申请较佳的具体实施方式，但本申请的保护范围并不局限于此，任何熟悉本技术领域的技术人员在本申请揭露的技术范围内，可轻易想到的变化或替换，都应涵盖在本申请的保护范围之内。因此，本申请的保护范围应该以权利要求的保护范围为准。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

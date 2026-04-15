@@ -1,0 +1,261 @@
+{
+    "patent_id": "CN201918032U",
+    "title": "CN201918032U - 一种飞行器低空飞行防撞的装置 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Tongji University",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN201918032U/zh",
+    "citations": [],
+    "cited_by": [
+        {
+            "Publication Number": "CN102568251A (zh) *",
+            "Priority Date": "2011-12-13",
+            "Publication Date": "2012-07-11",
+            "Assignee": "天利航空科技深圳有限公司",
+            "Title": "一种飞行器高压线防撞报警装置及飞行器",
+            "Link": "https://patents.google.com/patent/CN102568251A/zh"
+        },
+        {
+            "Publication Number": "RU2496120C2 (ru) *",
+            "Priority Date": "2011-12-30",
+            "Publication Date": "2013-10-20",
+            "Assignee": "Открытое акционерное общество \"Корпорация \"Фазотрон - научно-исследовательский институт радиостроения\"",
+            "Title": "Многофункциональная многодиапазонная масштабируемая радиолокационная система для летательных аппаратов",
+            "Link": "https://patents.google.com/patent/RU2496120C2/ru"
+        },
+        {
+            "Publication Number": "US9244459B2 (en)",
+            "Priority Date": "2012-03-07",
+            "Publication Date": "2016-01-26",
+            "Assignee": "Lockheed Martin Corporation",
+            "Title": "Reflexive response system for popup threat survival",
+            "Link": "https://patents.google.com/patent/US9244459B2/en"
+        },
+        {
+            "Publication Number": "US9030347B2 (en) *",
+            "Priority Date": "2012-05-03",
+            "Publication Date": "2015-05-12",
+            "Assignee": "Lockheed Martin Corporation",
+            "Title": "Preemptive signature control for vehicle survivability planning",
+            "Link": "https://patents.google.com/patent/US9030347B2/en"
+        },
+        {
+            "Publication Number": "US9240001B2 (en)",
+            "Priority Date": "2012-05-03",
+            "Publication Date": "2016-01-19",
+            "Assignee": "Lockheed Martin Corporation",
+            "Title": "Systems and methods for vehicle survivability planning",
+            "Link": "https://patents.google.com/patent/US9240001B2/en"
+        },
+        {
+            "Publication Number": "CN103344218A (zh) *",
+            "Priority Date": "2013-06-18",
+            "Publication Date": "2013-10-09",
+            "Assignee": "桂林理工大学",
+            "Title": "一种适用于低空无人机的高度测量系统及方法",
+            "Link": "https://patents.google.com/patent/CN103344218A/zh"
+        },
+        {
+            "Publication Number": "CN107111958B (zh) *",
+            "Priority Date": "2014-12-12",
+            "Publication Date": "2021-06-18",
+            "Assignee": "亚马逊技术股份有限公司",
+            "Title": "使用光、声和/或多光谱模式检测的商用和通用飞机规避方法及使用其的无人机",
+            "Link": "https://patents.google.com/patent/CN107111958B/zh"
+        },
+        {
+            "Publication Number": "CN107111958A (zh) *",
+            "Priority Date": "2014-12-12",
+            "Publication Date": "2017-08-29",
+            "Assignee": "亚马逊技术股份有限公司",
+            "Title": "使用光、声和/或多光谱模式检测的商用和通用飞机规避",
+            "Link": "https://patents.google.com/patent/CN107111958A/zh"
+        },
+        {
+            "Publication Number": "CN104682267A (zh) *",
+            "Priority Date": "2015-03-26",
+            "Publication Date": "2015-06-03",
+            "Assignee": "国家电网公司",
+            "Title": "基于多轴飞行器的输电线除障器",
+            "Link": "https://patents.google.com/patent/CN104682267A/zh"
+        },
+        {
+            "Publication Number": "CN104793630A (zh) *",
+            "Priority Date": "2015-05-13",
+            "Publication Date": "2015-07-22",
+            "Assignee": "沈阳飞羽航空科技有限公司",
+            "Title": "轻型飞机综合障碍回避系统",
+            "Link": "https://patents.google.com/patent/CN104793630A/zh"
+        },
+        {
+            "Publication Number": "US10822110B2 (en)",
+            "Priority Date": "2015-09-08",
+            "Publication Date": "2020-11-03",
+            "Assignee": "Lockheed Martin Corporation",
+            "Title": "Threat countermeasure assistance system",
+            "Link": "https://patents.google.com/patent/US10822110B2/en"
+        },
+        {
+            "Publication Number": "CN107783548A (zh) *",
+            "Priority Date": "2016-08-25",
+            "Publication Date": "2018-03-09",
+            "Assignee": "大连楼兰科技股份有限公司",
+            "Title": "基于多传感器信息融合技术的数据处理方法",
+            "Link": "https://patents.google.com/patent/CN107783548A/zh"
+        },
+        {
+            "Publication Number": "CN107783544A (zh) *",
+            "Priority Date": "2016-08-25",
+            "Publication Date": "2018-03-09",
+            "Assignee": "大连楼兰科技股份有限公司",
+            "Title": "一种控制单旋翼植保无人机避障飞行的方法",
+            "Link": "https://patents.google.com/patent/CN107783544A/zh"
+        },
+        {
+            "Publication Number": "CN107783106A (zh) *",
+            "Priority Date": "2016-08-25",
+            "Publication Date": "2018-03-09",
+            "Assignee": "大连楼兰科技股份有限公司",
+            "Title": "无人机与障碍物之间的数据融合方法",
+            "Link": "https://patents.google.com/patent/CN107783106A/zh"
+        },
+        {
+            "Publication Number": "CN107783548B (zh) *",
+            "Priority Date": "2016-08-25",
+            "Publication Date": "2021-02-26",
+            "Assignee": "大连楼兰科技股份有限公司",
+            "Title": "基于多传感器信息融合技术的数据处理方法",
+            "Link": "https://patents.google.com/patent/CN107783548B/zh"
+        },
+        {
+            "Publication Number": "CN107783106B (zh) *",
+            "Priority Date": "2016-08-25",
+            "Publication Date": "2021-02-26",
+            "Assignee": "大连楼兰科技股份有限公司",
+            "Title": "无人机与障碍物之间的数据融合方法",
+            "Link": "https://patents.google.com/patent/CN107783106B/zh"
+        },
+        {
+            "Publication Number": "CN107636551A (zh) *",
+            "Priority Date": "2016-09-22",
+            "Publication Date": "2018-01-26",
+            "Assignee": "深圳市大疆创新科技有限公司",
+            "Title": "一种飞行控制方法、装置及智能终端",
+            "Link": "https://patents.google.com/patent/CN107636551A/zh"
+        },
+        {
+            "Publication Number": "CN107636551B (zh) *",
+            "Priority Date": "2016-09-22",
+            "Publication Date": "2021-11-30",
+            "Assignee": "深圳市大疆创新科技有限公司",
+            "Title": "一种飞行控制方法、装置及智能终端",
+            "Link": "https://patents.google.com/patent/CN107636551B/zh"
+        },
+        {
+            "Publication Number": "CN106774405A (zh) *",
+            "Priority Date": "2016-12-30",
+            "Publication Date": "2017-05-31",
+            "Assignee": "华南农业大学",
+            "Title": "基于三级避障机制的果园植保无人机避障装置及方法",
+            "Link": "https://patents.google.com/patent/CN106774405A/zh"
+        },
+        {
+            "Publication Number": "CN106774405B (zh) *",
+            "Priority Date": "2016-12-30",
+            "Publication Date": "2019-09-10",
+            "Assignee": "华南农业大学",
+            "Title": "基于三级避障机制的果园植保无人机避障装置及方法",
+            "Link": "https://patents.google.com/patent/CN106774405B/zh"
+        },
+        {
+            "Publication Number": "CN106950564A (zh) *",
+            "Priority Date": "2017-04-01",
+            "Publication Date": "2017-07-14",
+            "Assignee": "荆州南湖机械股份有限公司",
+            "Title": "一种超低空盲区探测优化装置",
+            "Link": "https://patents.google.com/patent/CN106950564A/zh"
+        },
+        {
+            "Publication Number": "CN107544332A (zh) *",
+            "Priority Date": "2017-09-14",
+            "Publication Date": "2018-01-05",
+            "Assignee": "深圳市盛路物联通讯技术有限公司",
+            "Title": "数据处理方法及相关产品",
+            "Link": "https://patents.google.com/patent/CN107544332A/zh"
+        },
+        {
+            "Publication Number": "CN108924494A (zh) *",
+            "Priority Date": "2018-07-13",
+            "Publication Date": "2018-11-30",
+            "Assignee": "王新凤",
+            "Title": "基于地面的空中监测系统",
+            "Link": "https://patents.google.com/patent/CN108924494A/zh"
+        },
+        {
+            "Publication Number": "CN109445449B (zh) *",
+            "Priority Date": "2018-11-29",
+            "Publication Date": "2019-10-22",
+            "Assignee": "浙江大学",
+            "Title": "一种高亚音速无人机超低空飞行控制系统及方法",
+            "Link": "https://patents.google.com/patent/CN109445449B/zh"
+        },
+        {
+            "Publication Number": "CN109445449A (zh) *",
+            "Priority Date": "2018-11-29",
+            "Publication Date": "2019-03-08",
+            "Assignee": "浙江大学",
+            "Title": "一种高亚音速无人机超低空飞行控制系统及方法",
+            "Link": "https://patents.google.com/patent/CN109445449A/zh"
+        },
+        {
+            "Publication Number": "CN112026630A (zh) *",
+            "Priority Date": "2019-03-04",
+            "Publication Date": "2020-12-04",
+            "Assignee": "福州市长乐区三互信息科技有限公司",
+            "Title": "一种用于挂壁式冷藏集装箱的发电机组",
+            "Link": "https://patents.google.com/patent/CN112026630A/zh"
+        },
+        {
+            "Publication Number": "CN109866676B (zh) *",
+            "Priority Date": "2019-03-04",
+            "Publication Date": "2020-10-16",
+            "Assignee": "福州市长乐区三互信息科技有限公司",
+            "Title": "一种用于挂壁式冷藏集装箱的发电机组及其调节方法",
+            "Link": "https://patents.google.com/patent/CN109866676B/zh"
+        },
+        {
+            "Publication Number": "CN109866676A (zh) *",
+            "Priority Date": "2019-03-04",
+            "Publication Date": "2019-06-11",
+            "Assignee": "福建德普柯发电设备有限公司",
+            "Title": "一种用于挂壁式冷藏集装箱的发电机组及其调节方法",
+            "Link": "https://patents.google.com/patent/CN109866676A/zh"
+        },
+        {
+            "Publication Number": "WO2021082396A1 (zh) *",
+            "Priority Date": "2019-11-01",
+            "Publication Date": "2021-05-06",
+            "Assignee": "南京智慧航空研究院有限公司",
+            "Title": "基于低空空域限制条件的无人机飞行网络建模方法",
+            "Link": "https://patents.google.com/patent/WO2021082396A1/zh"
+        },
+        {
+            "Publication Number": "CN112804462A (zh) *",
+            "Priority Date": "2021-02-20",
+            "Publication Date": "2021-05-14",
+            "Assignee": "北京小米移动软件有限公司",
+            "Title": "多点对焦成像方法及装置、移动终端、存储介质",
+            "Link": "https://patents.google.com/patent/CN112804462A/zh"
+        },
+        {
+            "Publication Number": "CN112804462B (zh) *",
+            "Priority Date": "2021-02-20",
+            "Publication Date": "2024-04-26",
+            "Assignee": "北京小米移动软件有限公司",
+            "Title": "多点对焦成像方法及装置、移动终端、存储介质",
+            "Link": "https://patents.google.com/patent/CN112804462B/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:21:19"
+}

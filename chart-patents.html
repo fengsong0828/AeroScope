@@ -56,12 +56,12 @@
         .patent-item {
             background: white;
             border-radius: 12px;
-            padding: 24px; /* 增加内边距 */
+            padding: 16px; /* Compressed padding */
             border: 1px solid #e2e8f0;
             transition: all 0.2s ease;
             display: flex;
             flex-direction: column;
-            gap: 12px; /* 行间距 */
+            gap: 8px; /* Compressed gap */
             text-decoration: none;
             color: inherit;
         }
@@ -109,7 +109,7 @@
             gap: 15px;
             font-size: 0.85rem;
             color: #64748b;
-            padding-top: 15px;
+            padding-top: 10px; /* Compressed padding */
             border-top: 1px dashed #e2e8f0; /* 虚线分隔 */
             width: 100%;
         }
@@ -226,28 +226,14 @@
         <div class="standard-container filter-inner">
             <select id="filter-chain" class="filter-select" onchange="applyFiltersAndPagination()">
                 <option value="all">🔗 全产业链</option>
-                <option value="upstream">⚡ 上游</option>
-                <option value="midstream">✈️ 中游</option>
-                <option value="downstream">🏷️ 下游</option>
             </select>
 
             <select id="filter-type" class="filter-select" onchange="applyFiltersAndPagination()">
                 <option value="all">📄 所有类型</option>
-                <option value="invention">发明专利</option>
-                <option value="utility model">实用新型</option>
-                <option value="design">外观设计</option>
             </select>
 
             <select id="filter-category" class="filter-select" onchange="applyFiltersAndPagination()">
                 <option value="all">🏷️ 所有技术分类</option>
-                <option value="evtol">eVTOL技术</option>
-                <option value="battery">电池技术</option>
-                <option value="flight_control">飞控系统</option>
-                <option value="communication">通信技术</option>
-                <option value="navigation">导航技术</option>
-                <option value="materials">新型材料</option>
-                <option value="safety">安全系统</option>
-                <option value="energy">能源管理</option>
             </select>
 
             <select id="filter-year" class="filter-select" onchange="applyFiltersAndPagination()">
@@ -342,14 +328,39 @@
         
         let searchDebounceTimeout;
         let filterDebounceTimeout;
+
+    const filterOptions = {
+        chain: ['upstream', 'midstream', 'downstream', 'infrastructure'],
+        type: ['invention', 'utility model', 'design'],
+        category: ['evtol', 'battery', 'flight_control', 'communication', 'navigation', 'materials', 'safety', 'energy', 'avionics', 'infrastructure', 'ai']
+    };
+
+    document.addEventListener('DOMContentLoaded', async function() {
+        initFilterOptions();
+        checkUserLogin();
+        await fetchCompanies();
+        await fetchPatents();
+    });
+
+    function initFilterOptions() {
+        const createOption = (val, text) => {
+            const opt = document.createElement('option');
+            opt.value = val;
+            opt.textContent = text;
+            return opt;
+        };
+
+        const chainSel = document.getElementById('filter-chain');
+        if(chainSel) filterOptions.chain.forEach(k => chainSel.appendChild(createOption(k, t(k))));
+
+        const typeSel = document.getElementById('filter-type');
+        if(typeSel) filterOptions.type.forEach(k => typeSel.appendChild(createOption(k, t(k))));
+
+        const catSel = document.getElementById('filter-category');
+        if(catSel) filterOptions.category.forEach(k => catSel.appendChild(createOption(k, t(k))));
+    }
     
-        document.addEventListener('DOMContentLoaded', async function() {
-            checkUserLogin();
-            await fetchCompanies();
-            await fetchPatents();
-        });
-    
-        function debounceSearch() {
+    function debounceSearch() {
             clearTimeout(searchDebounceTimeout);
             searchDebounceTimeout = setTimeout(() => { applyFiltersAndPagination(); }, 300);
         }

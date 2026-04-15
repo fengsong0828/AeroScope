@@ -1,0 +1,119 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119107848A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES482241666">
+<invention-title id="title1" lang="ZH">基于Zigbee和边缘检测设备的低空飞行器预警系统及构建
+方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及无人机和安防技术领域，具体地，涉及一种基于Zigbee和边缘检测设备的低空飞行器预警系统及构建方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">在无人机探测技术领域，主要应用的探测工具涵盖雷达、光电探测装置以及频谱探测装置等类别。然而，每种技术均面临其特定的局限性。具体而言，雷达在应对低空、慢速、小型(简称“低慢小”)飞行目标时，因其探测高度的限制，常难以奏效。另一方面，光电探测设备则受限于其复杂的机械构造、庞大的体积与重量，使得其隐蔽性受到制约，无法实现单兵携带操作。此外，此类设备还需依赖通信电缆或光缆等外接设备以传输图像信息至大型计算单元，这一过程无形中增加了设备的暴露风险。</div>
+<div class="description-paragraph" id="p0005" num="0003">频谱探测设备在探测能力上亦存在局限，尤其是在面对采取无线电静默模式的飞行器时，其探测效能将大打折扣。例如，中国专利CN202311783381.0所公开的基于毫米波雷达的反无人机探测系统、方法及平台，虽然利用毫米波雷达进行探测，但其探测极限通常超过50米，因此在检测低空飞行器时面临挑战。又如，中国专利CN202311742635.4介绍了一种基于跟踪接力场景的光电引导跟踪探测方法及系统，该系统通过构建360度无死角探测平台，实现了全方位的检测能力。然而，这一系统对探测平台无遮挡性的要求，以及其较大的体积，均对其隐蔽性造成了不利影响。</div>
+<div class="description-paragraph" id="p0006" num="0004">再如，中国专利CN202310466356.3则展示了一种反无人机防御系统，该系统利用频谱技术对无人机进行探测。然而，一旦目标飞行器进入无线电静默状态，该系统的探测能力将受到严重制约，无法进行有效探测。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">针对现有技术中的缺陷，本发明的目的是提供一种基于Zigbee和边缘检测设备的低空飞行器预警系统及其构建方法。</div>
+<div class="description-paragraph" id="p0009" num="0006">根据本发明的一个方面，提供一种基于Zigbee和边缘检测设备的低空飞行器预警系统，包括光学探测子系统、目标检测子系统、通信子系统和情报汇总子系统；</div>
+<div class="description-paragraph" id="p0010" num="0007">所述光学探测子系统，获取外界图像信息，并将所述图像信息传输给所述目标检测子系统；所述外界图像信息包括低空和高空的图像信息；</div>
+<div class="description-paragraph" id="p0011" num="0008">所述目标检测子系统，接收所述图像信息，基于边缘检测设备检测所述图像信息的目标信息；</div>
+<div class="description-paragraph" id="p0012" num="0009">所述通信子系统，基于Zigbee通信网络，接收来自所述目标检测子系统的所述目标信息，并发送给所述情报汇总子系统；</div>
+<div class="description-paragraph" id="p0013" num="0010">所述情报汇总子系统，接收来自所述通信子系统的目标信息，并进行预警。</div>
+<div class="description-paragraph" id="p0014" num="0011">优选的，所述光学探测子系统，包括镜头模组和光学传感器模块；</div>
+<div class="description-paragraph" id="p0015" num="0012">所述光学探测子系统，包括图像采集模块和光学传感器模块；</div>
+<div class="description-paragraph" id="p0016" num="0013">所述图像采集模块捕捉飞行器的图像；</div>
+<div class="description-paragraph" id="p0017" num="0014">所述光学传感器模块采集环境光学信息，并生成所述图像的电信号，传输给所述目标检测子系统。</div>
+<div class="description-paragraph" id="p0018" num="0015">优选的，所述图像采集模块为摄像机，所述摄像机的镜头根据探高需求从镜头模组中选用；</div>
+<div class="description-paragraph" id="p0019" num="0016">所述镜头模组，包括：</div>
+<div class="description-paragraph" id="p0020" num="0017">4mm镜头，缩放系数为392，最大测距距离为15.68m；</div>
+<div class="description-paragraph" id="p0021" num="0018">6mm镜头，缩放系数为540，最大测距距离为21.6m；</div>
+<div class="description-paragraph" id="p0022" num="0019">8mm镜头，缩放系数为878，最大测距距离为35.12m；</div>
+<div class="description-paragraph" id="p0023" num="0020">12mm镜头，缩放系数为1275，最大测距距离为51m；</div>
+<div class="description-paragraph" id="p0024" num="0021">16mm镜头，缩放系数为1720，最大测距距离为68.8m。</div>
+<div class="description-paragraph" id="p0025" num="0022">其中，每个镜头的最大测距距离，是所述目标检测子系统能够检测出目标的最大距离。</div>
+<div class="description-paragraph" id="p0026" num="0023">优选的，所述目标检测子系统为芯片形式的具有目标检测功能的边缘检测设备；</div>
+<div class="description-paragraph" id="p0027" num="0024">所述边缘检测设备接收所述光学探测子系统的图像信息，从所述图像信息中识别出目标在图像中的位置信息，并用目标框将目标框出并提供目标框的尺寸信息；</div>
+<div class="description-paragraph" id="p0028" num="0025">其中，所述光学探测子系统的图像信息符合所述边缘检测设备能够检出目标信息的视野和目标成像尺寸要求。</div>
+<div class="description-paragraph" id="p0029" num="0026">优选的，所述通信子系统为包括信息采集终端、路由器和协调器；</div>
+<div class="description-paragraph" id="p0030" num="0027">所述信息采集终端接收来自目标检测子系统发来的信息，并发送给路由器；</div>
+<div class="description-paragraph" id="p0031" num="0028">所述路由器起到信息中继作用，接收所述信息采集终端发送来的信号，并转发给协调器；</div>
+<div class="description-paragraph" id="p0032" num="0029">所述协调器接收来自所述路由器的信息，并转发给所述情报汇总子系统。</div>
+<div class="description-paragraph" id="p0033" num="0030">所述路由器作为通信中继点，设置于所述信息采集终端和所述协调器之间；所述路由器与信息采集终端、所述协调器相互之间采用无线通信；</div>
+<div class="description-paragraph" id="p0034" num="0031">所述协调器负责通信信道的组建、维护和管理，与所述情报汇总子系统连接。</div>
+<div class="description-paragraph" id="p0035" num="0032">优选的，所述通信子系统为Zigbee通信网络，所述信息采集终端为Zigbee模块终端，所述路由器为Zigbee模块路由器，所述协调器为Zigbee模块协调器。</div>
+<div class="description-paragraph" id="p0036" num="0033">优选的，所述Zigbee模块终端和所述目标检测子系统的边缘检测设备通过串口连接；</div>
+<div class="description-paragraph" id="p0037" num="0034">所述目标检测子系统的边缘检测设备接收所述光学探测子系统的图像信息，并检测图像中的目标，若检测到目标，则将目标的位置信息、型号信息、检测置信度处理为字符串形式，通过串口发送至所述通信子系统的Zigbee模块终端。</div>
+<div class="description-paragraph" id="p0038" num="0035">优选的，所述情报汇总子系统为上位机程序，该程序能够显示每个探测点的探测信息：若无飞行器目标出现，则显示无目标；若出现飞行器目标则显示目标的位置、机型。</div>
+<div class="description-paragraph" id="p0039" num="0036">优选的，一个所述边缘检测设备和一个所述Zigbee模块终端作为一个整体部署在预警区域的单个探测点处；</div>
+<div class="description-paragraph" id="p0040" num="0037">所述Zigbee模块路由器作为通信中继站部署在所述探测点到情报中心的区域；</div>
+<div class="description-paragraph" id="p0041" num="0038">Zigbee模块协调器和上位机构成所述情报中心，位于后方，接收来自所述通信中继点发来的信号，并生成预警信息；</div>
+<div class="description-paragraph" id="p0042" num="0039">其中，所述预警区域内包含多个探测点，多个探测点的探测区域能够完全覆盖预警区域；所述探测点到情报中心的区域包含多个通信中继站，多个通信中继站能够维持整个通信网络畅通。</div>
+<div class="description-paragraph" id="p0043" num="0040">根据本发明的第二个方面，提供一种基于Zigbee和边缘检测设备的低空飞行器预警系统的构建方法，包括：</div>
+<div class="description-paragraph" id="p0044" num="0041">建立飞行器目标数据集，并对所述数据集进行训练，得到检测模型后部署在边缘检测设备上；</div>
+<div class="description-paragraph" id="p0045" num="0042">对镜头模组的每个镜头的缩放系数k进行标定，确定每个镜头的缩放系数和最大测距距离；</div>
+<div class="description-paragraph" id="p0046" num="0043">根据探高需求，从所述镜头模组中选用镜头安装于摄像机并固定边缘检测设备上；通过串口连接边缘检测设备与Zigbee模块终端；</div>
+<div class="description-paragraph" id="p0047" num="0044">搭建Zigbee通信网络，使Zigbee模块终端、Zigbee模块路由器、Zigbee模块协调器具备信号传输功能；</div>
+<div class="description-paragraph" id="p0048" num="0045">在预警区域建立多个探测点，即边缘检测设备和Zigbee模块终端；建立多个通信中继站，即Zigbee模块路由器，在后方建立情报汇总子系统，即Zigbee模块协调器；</div>
+<div class="description-paragraph" id="p0049" num="0046">编写上位机程序，能够显示每个检测点的探测信息：若无飞行器目标出现，则显示无目标；若出现飞行器目标则显示目标的位置和机型。</div>
+<div class="description-paragraph" id="p0050" num="0047">与现有技术相比，本发明实施例至少具有如下的一种有益效果：</div>
+<div class="description-paragraph" id="p0051" num="0048">本发明实施例中的基于Zigbee和边缘检测设备的低空飞行器预警系统，基于光学探测子系统，可以实现对不同高度低空飞行器目标的检测，解决了低空飞行器不易检测的问题。</div>
+<div class="description-paragraph" id="p0052" num="0049">本发明实施例中的基于Zigbee和边缘检测设备的低空飞行器预警系统，采用基于小型边缘AI设备的目标检测子系统，可以实现通过小型化设备探测飞行器目标的目的，解决传统飞行器探测设备体积大不易隐蔽的问题。</div>
+<div class="description-paragraph" id="p0053" num="0050">本发明实施例中的基于Zigbee和边缘检测设备的低空飞行器预警系统，采用Zigbee通信技术，可以实现探测设备的灵活快速部署，对多个区域的飞行器目标检测，解决了传统光电探测设备探测区域受限，部署速度慢的问题。</div>
+<div class="description-paragraph" id="p0054" num="0051">本发明实施例中的基于Zigbee和边缘检测设备的低空飞行器预警系统，该系统中的小型边缘人工智能设备具备处理大量图像数据信息的能力，并能从中提取关键信息。通过与Zigbee通信技术的结合，实现了对大量图像数据检测结果的有效传输。此举克服了Zigbee通信在数据传输速率上的限制，解决了其无法直接传输图像信息的难题。</div>
+<div class="description-paragraph" id="p0055" num="0052">本发明实施例中的基于Zigbee和边缘检测设备的低空飞行器预警系统，采取了多Zigbee模块组网的方式，以实现对区域内飞行器探测信息的全面收集，并将这些信息传输至情报子系统。该组网过程较为复杂，同时，情报子系统能够负责整合来自多个通信子系统的数据，可以克服单个Zigbee模块传输信息的能力有限的问题。</div>
+<div class="description-paragraph" id="p0056" num="0053">综上，本发明实施例提供一种快速部署、小型化、多点位部署、高隐蔽性的性能的系统，可探测低空飞行器并预警，克服了现有技术无法探测低空飞行器，隐蔽性差，部署不便的问题。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0057">附图说明</div>
+<div class="description-paragraph" id="p0058" num="0054">通过阅读参照以下附图对非限制性实施例所作的详细描述，本发明的其它特征、目的和优点将会变得更明显：</div>
+<div class="description-paragraph" id="p0059" num="0055">图1为本发明一实施例中的基于Zigbee和边缘检测设备的低空飞行器预警系统的结构示意图；</div>
+<div class="description-paragraph" id="p0060" num="0056">图2为本发明一优选实施例中的通信子系统和目标检测子系统的硬件连接示意图；</div>
+<div class="description-paragraph" id="p0061" num="0057">图3为本发明一优选实施例中的预警系统部署示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0062">具体实施方式</div>
+<div class="description-paragraph" id="p0063" num="0058">下面结合具体实施例对本发明进行详细说明。以下实施例将有助于本领域的技术人员进一步理解本发明，但不以任何形式限制本发明。应当指出的是，对本领域的普通技术人员来说，在不脱离本发明构思的前提下，还可以做出若干变形和改进。这些都属于本发明的保护范围。</div>
+<div class="description-paragraph" id="p0064" num="0059">图1所示，为本发明一实施例中的基于Zigbee和边缘检测设备的低空飞行器预警系统的结构示意图。</div>
+<div class="description-paragraph" id="p0065" num="0060">参照图1所示，本实施例中的基于Zigbee和边缘检测设备的低空飞行器预警系统，包括光学探测子系统、目标检测子系统、通信子系统和情报汇总子系统；光学探测子系统，获取外界图像信息，并将图像信息传输给目标检测子系统；外界图像信息包括低空和高空的图像信息；目标检测子系统，接收图像信息，基于边缘检测设备检测图像信息的目标信息；通信子系统，基于Zigbee通信网络，接收来自目标检测子系统的目标信息，并发送给情报汇总子系统；情报汇总子系统，接收来自通信子系统的目标信息，并进行预警。</div>
+<div class="description-paragraph" id="p0066" num="0061">上述实施例基于光学探测子系统，能够采集高空和低空图像，可以实现对不同高度低空飞行器目标的检测，解决了低空飞行器不易检测的问题。</div>
+<div class="description-paragraph" id="p0067" num="0062">为了能更好地实现对不同高度低空飞行器目标的检测，本发明一优选实施例中，光学探测子系统包含如下部分：图像采集模块、光学传感器模块。图像采集模块可以为摄像机，其镜头根据探高需求从镜头模组中选取一个或多个。光学传感器模块采集环境光学信息，并生成图像的电信号，传输给目标检测子系统。</div>
+<div class="description-paragraph" id="p0068" num="0063">镜头模组具有多种焦距的镜头模组，用于探测不同飞行高度的飞行器。进一步的，一些具体实施例中，镜头模组均为OV5640镜头，可任意替换安装，具体包括：</div>
+<div class="description-paragraph" id="p0069" num="0064">4mm镜头，缩放系数为392，最大测距距离为15.68m；</div>
+<div class="description-paragraph" id="p0070" num="0065">6mm镜头，缩放系数为540，最大测距距离为21.6m；</div>
+<div class="description-paragraph" id="p0071" num="0066">8mm镜头，缩放系数为878，最大测距距离为35.12m；</div>
+<div class="description-paragraph" id="p0072" num="0067">12mm镜头，缩放系数为1275，最大测距距离为51m；</div>
+<div class="description-paragraph" id="p0073" num="0068">16mm镜头，缩放系数为1720，最大测距距离为68.8m。</div>
+<div class="description-paragraph" id="p0074" num="0069">比如，在一应用场景下，需要对低空飞行器目标的检测最大测距距离为50m，则可以选用上述的12mm镜头，缩放系数为1275，最大测距距离为51m的镜头。</div>
+<div class="description-paragraph" id="p0075" num="0070">在上述实施例中，涉及了适用于不同探测高度的镜头模块，该模块能够侦测到在不同飞行高度飞行的低空飞行器。根据监测需求，可选择适当的镜头，以实现对不同飞行高度的监控与布防。</div>
+<div class="description-paragraph" id="p0076" num="0071">本发明一优选实施例中，提供了目标检测子系统的优选方案。本实施例中，目标检测子系统为芯片形式的具有目标检测功能的边缘检测设备。</div>
+<div class="description-paragraph" id="p0077" num="0072">边缘检测设备与光学探测子系统集成一体，具有体积小，隐蔽性强的特点。</div>
+<div class="description-paragraph" id="p0078" num="0073">光学检测子系统采集图像信息，边缘检测设备接收该图像信息，并从该图像信息中识别出目标在成像面上的位置信息，用目标框将目标框出并提供目标框的尺寸信息。</div>
+<div class="description-paragraph" id="p0079" num="0074">在大多数情况下，镜头的视场角越大，它能够覆盖的视野范围就越广，这意味着镜头能够捕捉到更多的场景信息。然而，随之而来的问题是，当视场角增大时，目标在成像平面上的尺寸会相应地变小。因此，对于上述实施例中的镜头，其焦距、缩放系数以及最大测量距离的设置并不是随意决定的，而是经过创新设计的。通过采用上述实施例中所设定的镜头来采集图像，可以确保图像的视野范围和目标成像的大小完全符合该边缘检测设备的具体要求。这样的设置使得设备能够迅速且准确地获得所需的目标信息。另外，上述探测距离，是在不同的镜头配置下，边缘检测设备能够检测到目标物体的最大距离。这一距离的设定充分考虑了视角的宽窄与目标检测效果之间的平衡，确保了在尽可能宽广的视野范围内，设备依然能够有效地检测到目标物体，从而满足实际应用中的需求。</div>
+<div class="description-paragraph" id="p0080" num="0075">边缘检测设备依赖于检测模型实现目标检测功能。因此，本发明的一个具体实施例中，边缘检测设备采用小型边缘AI设备Maix-Ⅲ，并在Maix-Ⅲ的开发板上部署由YOLOV8检测模型转换的.joint模型。通过将小型边缘设AI备Maix-Ⅲ与光学探测子系统进行集成，呈现出体积紧凑、隐蔽性能优越的特点。因此，本实施例中，采用基于小型边缘AI设备的目标检测子系统，可以实现通过小型化设备探测飞行器目标的目的，解决传统飞行器探测设备体积大不易隐蔽的问题。</div>
+<div class="description-paragraph" id="p0081" num="0076">本发明一优选实施例中，通信子系统为包括信息采集终端、路由器和协调器；其中，信息采集终端接收来自目标检测子系统发来的信息，并发送给路由器；路由器起到信息中继作用，接收信息采集终端发送来的信号，并转发给协调器；协调器接收来自路由器的信息，并转发给情报汇总子系统。</div>
+<div class="description-paragraph" id="p0082" num="0077">路由器作为通信中继点，设置于信息采集终端和协调器之间；路由器与信息采集终端、协调器相互之间采用无线通信；协调器负责通信信道的组建、维护和管理，与情报汇总子系统连接。</div>
+<div class="description-paragraph" id="p0083" num="0078">为了解决了传统光电探测设备探测区域受限，部署速度慢的问题，较佳的，在一实施例中，如图2所示，通信子系统为Zigbee通信网络，信息采集终端为Zigbee模块终端，路由器为Zigbee模块路由器，协调器为Zigbee模块协调器。</div>
+<div class="description-paragraph" id="p0084" num="0079">进一步的，一些具体实施例中，如图2所示，Zigbee模块终端和目标检测子系统的边缘检测设备通过串口连接；目标检测子系统的边缘检测设备接收图像信息，并检测图像中的目标，若检测到目标，则将目标的位置信息、型号信息、检测置信度处理为字符串形式，通过串口发送至通信子系统的Zigbee模块终端。采用Zigbee通信技术，可以实现探测设备的灵活快速部署，对多个区域的飞行器目标检测，解决了传统光电探测设备探测区域受限，部署速度慢的问题。</div>
+<div class="description-paragraph" id="p0085" num="0080">上述实施例中，目标检测功能由边缘检测设备完成，处理后的目标信息通过Zigbee通信网络传输至后方的情报中心，无需通过线缆将图像信息上传至大型处理单元，进一步减小了暴露风险。另外，边缘检测设备与Zigbee模块终端进行集成，同样具有体积紧凑、隐蔽性能优越、便于携带的特点。此外，该设计还赋予了极佳的便携性，既可由单兵个体轻松携带并部署，亦能无缝集成于单兵装备之上，提供单兵飞行器探测手段。</div>
+<div class="description-paragraph" id="p0086" num="0081">本发明一优选实施例中，情报汇总子系统为上位机程序，该程序能够显示每个探测点的探测信息：若无飞行器目标出现，则显示无目标；若出现飞行器目标则显示目标的位置、机型等关键信息。</div>
+<div class="description-paragraph" id="p0087" num="0082">本发明一优选实施例中，如图3所示，是系统的部署示意图。红色虚线圆圈内为预警区域，红色三角是设置的探测点，每个探测点部署一个边缘检测设备(带有镜头)和一个Zigbee终端模块，部署足够多的探测点使探测区域能够完全覆盖预警区域。在探测点到情报中心的区域，部署足够多的通信中继点维持整个通信网络的畅通。通信中继点部署Zigbee路由器模块进行通信中继。情报中心位于后方，由协调器和上位机组成，接收来自通信中继点发来的信号，并生成预警信息。</div>
+<div class="description-paragraph" id="p0088" num="0083">当有飞行器飞抵预警区域后，探测点处的边缘检测设备利用其上的摄像头拍摄到飞行器画面，并检测出飞行器信息。边缘检测设备随后将信息通过Zigbee终端模块发射至通信中继点处的Zigbee路由器模块，再由路由器将信息转发至情报中心处的Zigbee协调器，协调器将信息上传至上位机，并显示。</div>
+<div class="description-paragraph" id="p0089" num="0084">为提高系统的生存率，可以部署足够多的探测点和通信中继点。</div>
+<div class="description-paragraph" id="p0090" num="0085">本发明上述实施例中，同时采用小型边缘人工智能设备和Zigbee通信，小型边缘人工智能设备具备处理大量图像数据信息的能力，并能从中提取关键信息，通过与Zigbee通信技术的结合，实现了对大量图像数据检测结果的有效传输。</div>
+<div class="description-paragraph" id="p0091" num="0086">基于相同的发明构思，本发明的其他实施例中，还提供了一个基于Zigbee和边缘检测设备的低空飞行器预警系统的构建方法，具体包括如下步骤：</div>
+<div class="description-paragraph" id="p0092" num="0087">第一步：建立飞行器目标数据集，并对数据集进行训练，得到检测模型后部署在边缘检测设备上。</div>
+<div class="description-paragraph" id="p0093" num="0088">一些具体实施例中，通过互联网和实景拍摄获取20000张低空飞行中的飞行器图片，标记飞行器后作为数据集使用。对数据集进行训练，并得到YOLOV8检测模型，将模型转化为.joint模型部署在小型边缘AI设备Maix-Ⅲ开发板上。部署后，Maix-Ⅲ开发板便可具备无人机目标的检测功能。</div>
+<div class="description-paragraph" id="p0094" num="0089">第二步：镜头模组缩放系数标定。对镜头模组的每个镜头的缩放系数k进行标定，确定每个镜头的缩放系数和最大测距距离。以此匹配YOLOV8检测模型，保证目标检测效果。</div>
+<div class="description-paragraph" id="p0095" num="0090">第三步：根据探高需求，从所述镜头模组中选用镜头安装于摄像机并固定边缘检测设备上；通过串口连接边缘检测设备与Zigbee模块终端；使小型边缘AI设备能够向Zigbee模块(终端)发送飞行器目标的信息。</div>
+<div class="description-paragraph" id="p0096" num="0091">第四步：搭建Zigbee通信网络，使Zigbee模块终端、Zigbee模块路由器、Zigbee模块协调器具备信号传输功能。</div>
+<div class="description-paragraph" id="p0097" num="0092">一些具体实施例中，由Maix-Ⅲ开发板向Zigbee通信网络发送的信息，能够通过网络传输至作为情报汇总子系统的上位机。</div>
+<div class="description-paragraph" id="p0098" num="0093">第五步：在预警区域建立多个探测点，每个探测点包括边缘检测设备和Zigbee模块终端；建立多个通信中继站，通信中继站采用Zigbee模块路由器，在后方建立情报汇总子系统，情报汇总子系统包括Zigbee模块协调器；</div>
+<div class="description-paragraph" id="p0099" num="0094">第六步：编写上位机程序，作为情报汇总子系统，能够显示每个检测点的探测信息：若无飞行器目标出现，则显示无目标；若出现飞行器目标则显示目标的位置，机型等关键信息。</div>
+<div class="description-paragraph" id="p0100" num="0095">该构建过程实现了对多点位的迅速部署，构建的预警系统具备了小型化和高隐蔽性的显著特征。它能够有效地侦测并预警低空飞行器。此流程成功克服了当前技术中存在的无法侦测低空飞行器、隐蔽性不足以及部署困难等关键问题。</div>
+<div class="description-paragraph" id="p0101" num="0096">以上对本发明的具体实施例进行了描述。需要理解的是，本发明并不局限于上述特定实施方式，本领域技术人员可以在权利要求的范围内做出各种变形或修改，这并不影响本发明的实质内容。上述各优选特征在互不冲突的情况下，可以任意组合使用。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

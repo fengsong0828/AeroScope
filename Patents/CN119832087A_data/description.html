@@ -1,0 +1,152 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119832087A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES492545268">
+<invention-title id="title1" lang="ZH">一种用于低空飞行器的数据感知智能处理方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及数据处理技术领域，尤其涉及一种用于低空飞行器的数据感知智能处理方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">在当今的航空领域，低空飞行器的应用日益广泛，包括无人机、直升机、轻型飞机等。随着技术的不断发展，对低空飞行器的性能、安全性和智能化要求也越来越高。</div>
+<div class="description-paragraph" id="p0005" num="0003">随着无人机的迅猛发展，低空空域管控面临新的挑战和机遇，各国纷纷加大研发投入。</div>
+<div class="description-paragraph" id="p0006" num="0004">中国专利公开号：CN109739265B，公开了一种空中作业飞行器系统，包括：至少一个伴随飞行器，用于获取作业飞行器视野盲区内的补充环境信息；与伴随飞行器建立有数据连接的数据处理器，用于根据补充环境信息生成作业指令；与数据处理器建立有数据连接的作业飞行器，用于根据作业指令对作业对象执行空中作业或躲避障碍物；由此可见，上述技术方案存在以下问题：无法精准确定无人机的实际运行状况，无法在确定飞行器的运行异常时及时对飞行器的运行参数进行调节，导致数据处理效率低。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">为此，本发明提供一种用于低空飞行器的数据感知智能处理方法，用以克服现有技术中无法精准确定无人机的实际运行状况，无法在确定飞行器的运行异常时及时对飞行器的运行参数进行调节，导致数据处理效率低的问题。</div>
+<div class="description-paragraph" id="p0009" num="0006">为实现上述目的，本发明提供一种用于低空飞行器的数据感知智能处理方法，包括：</div>
+<div class="description-paragraph" id="p0010" num="0007">S1，控制飞行器周期性获取图像信息，在图像信息中建立坐标系，标定图像信息中的若干特征点，获取各特征点对应的坐标；</div>
+<div class="description-paragraph" id="p0011" num="0008">S2，基于各特征点在当前周期的坐标与在前一周期的坐标确定各特征点在两相邻周期中的变化距离；</div>
+<div class="description-paragraph" id="p0012" num="0009">S3，对各变化距离进行清洗；</div>
+<div class="description-paragraph" id="p0013" num="0010">S4，基于完成清洗的各变化距离确定平均映射参量，基于获取各特征点的坐标确定角度离散参量；</div>
+<div class="description-paragraph" id="p0014" num="0011">S5，基于平均映射参量和角度离散参量确定飞行器的运行是否合格，包括：</div>
+<div class="description-paragraph" id="p0015" num="0012">判定飞行器的运行不合格，并调节飞行器的前驱螺旋桨和后驱螺旋桨的转速比，或基于映射差异参量确定针对飞行器的处理方式，其中处理方式为调节所述S3的数据清洗标准或将飞行器各螺旋桨的转速调节至对应值；</div>
+<div class="description-paragraph" id="p0016" num="0013">或，判定飞行器的运行合格，并控制飞行器持续使用当前的运行参数运行。</div>
+<div class="description-paragraph" id="p0017" num="0014">进一步地，在所述S3，对各变化距离进行清洗的过程，包括：</div>
+<div class="description-paragraph" id="p0018" num="0015">若变化距离大于预设变化距离，则将单个变化距离筛除；</div>
+<div class="description-paragraph" id="p0019" num="0016">若变化距离小于等于预设变化距离，则将单个变化距离保留；</div>
+<div class="description-paragraph" id="p0020" num="0017">在所述S4中，基于完成清洗的各变化距离确定平均映射参量的过程，包括：</div>
+<div class="description-paragraph" id="p0021" num="0018">逐一确定各变化距离映射在坐标系Y轴上的长度，得到该变化距离对应的映射距离；</div>
+<div class="description-paragraph" id="p0022" num="0019">求解各映射距离的平均值，得到平均映射参量；</div>
+<div class="description-paragraph" id="p0023" num="0020">在所述S5中，基于平均映射参量确定飞行器的运行是否合格的过程，包括：</div>
+<div class="description-paragraph" id="p0024" num="0021">若平均映射参量小于等于第一预设平均映射参量，则判定飞行器的运行不合格，并基于平均映射参量将飞行器的前驱螺旋桨和后驱螺旋桨的转速比调节至对应值；</div>
+<div class="description-paragraph" id="p0025" num="0022">若平均映射参量小于等于第二预设平均映射参量且大于第一预设平均映射参量，则判定飞行器的运行合格；</div>
+<div class="description-paragraph" id="p0026" num="0023">若平均映射参量小于等于第三预设平均映射参量且大于第二预设平均映射参量，则基于角度离散参量确定飞行器的运行是否合格；</div>
+<div class="description-paragraph" id="p0027" num="0024">若平均映射参量大于第三预设平均映射参量，则判定飞行器的运行不合格，并基于映射差异参量确定针对飞行器的处理方式。</div>
+<div class="description-paragraph" id="p0028" num="0025">进一步地，基于平均映射参量将飞行器的后驱螺旋桨和前驱螺旋桨的转速比调节至对应值，其中：</div>
+<div class="description-paragraph" id="p0029" num="0026">基于平均映射参量确定的转速比的增加幅度与平均映射参量成反比。</div>
+<div class="description-paragraph" id="p0030" num="0027">进一步地，基于角度离散参量确定飞行器的运行是否合格的过程，包括：</div>
+<div class="description-paragraph" id="p0031" num="0028">获取特征点在当前周期的坐标与在前一周期的对应的坐标在同一坐标系内的连线与Y周的夹角，得到对应特征点的角度参量；</div>
+<div class="description-paragraph" id="p0032" num="0029">求解各特征点的角度参量的方差，得到角度离散参量；</div>
+<div class="description-paragraph" id="p0033" num="0030">若角度离散参量小于等于预设角度离散参量，则判定飞行器的运行不合格，并基于映射差异参量确定针对飞行器的处理方式；</div>
+<div class="description-paragraph" id="p0034" num="0031">若角度离散参量大于预设角度离散参量，则基于角度离散参量将飞行器各螺旋桨的转速调节至对应值。</div>
+<div class="description-paragraph" id="p0035" num="0032">进一步地，基于角度离散参量将飞行器各螺旋桨的转速调节至对应值，其中：</div>
+<div class="description-paragraph" id="p0036" num="0033">基于角度离散参量确定的飞行器各螺旋桨的转速的增加幅度与角度离散参量成正比。</div>
+<div class="description-paragraph" id="p0037" num="0034">进一步地，基于映射差异参量确定针对飞行器的处理方式的过程，包括：</div>
+<div class="description-paragraph" id="p0038" num="0035">将平均映射参量与第三预设平均映射参量的差值记为映射差异参量；</div>
+<div class="description-paragraph" id="p0039" num="0036">若映射差异参量小于等于第一预设映射差异参量，则基于飞行器在当前周期的高度与上一周期的高度的差值将第一预设平均映射参量、第二预设平均映射参量和第三预设平均映射参量调节至对应值；</div>
+<div class="description-paragraph" id="p0040" num="0037">若映射差异参量小于等于第二预设映射差异参量且大于第一预设映射差异参量，则基于所述S3中筛除的数据的数量确定针对飞行器的处理方式；</div>
+<div class="description-paragraph" id="p0041" num="0038">若映射差异参量大于第二预设映射差异参量，则基于各所述变化距离的方差将预设变化距离调节至对应值。</div>
+<div class="description-paragraph" id="p0042" num="0039">进一步地，基于飞行器在当前周期的高度与上一周期的高度的差值将第一预设平均映射参量、第二预设平均映射参量和第三预设平均映射参量调节至对应值，其中:</div>
+<div class="description-paragraph" id="p0043" num="0040">基于高度差值确定的第一预设平均映射参量、第二预设平均映射参量和第三预设平均映射参量的降低幅度与高度差值成正比。</div>
+<div class="description-paragraph" id="p0044" num="0041">进一步地，基于所述S3中筛除的数据的数量确定针对飞行器的处理方式的过程，包括：</div>
+<div class="description-paragraph" id="p0045" num="0042">若数据数量小于等于预设数据数量，则角度离散参量将飞行器各螺旋桨的转速调节至对应值；</div>
+<div class="description-paragraph" id="p0046" num="0043">若数据数量大于预设数据数量，则基于各所述变化距离的方差将预设变化距离调节至对应值。</div>
+<div class="description-paragraph" id="p0047" num="0044">进一步地，基于各所述变化距离的方差将预设变化距离调节至对应值，其中：</div>
+<div class="description-paragraph" id="p0048" num="0045">基于各所述变化距离的方差确定的预设变化距离的降低幅度与各所述变化距离的方差成正比。</div>
+<div class="description-paragraph" id="p0049" num="0046">与现有技术相比，本发明的有益效果在于，针对飞行器的数据进行流程化处理，获取各特征点的坐标信息，通过各个特征点的坐标信息变化情况确定飞行器的移动情况，以作为数据依据精准确定飞行器的实际运行状况，并在确定飞行器的运行异常时及时对飞行器的运行参数进行调节，提高了数据处理效率。</div>
+<div class="description-paragraph" id="p0050" num="0047">进一步地，对各变化距离进行清洗筛分，去除异常值，以提高数据的可靠性；确定平均映射参量，平均映射参量表征了飞行器在当前指令飞行速度下的实际飞行情况，在平均映射参量小于等于第一预设平均映射参量时，此情况下飞行器的移速过低，此时调节前后螺旋桨的转速比，以使后面转速高于前面转速，让飞行器向前倾斜，从而改变各螺旋桨与垂直方向的角度，以使各螺旋桨产生后推力；在平均映射参量小于等于第三预设平均映射参量且大于第二预设平均映射参量时，基于角度离散参量确定飞行器的运行是否合格，在角度离散参量大于预设角度离散参量时，此时各角度的离散大，此情况下飞行高度降低，且飞行器运行速度过快，此时飞行器存在坠落风险，统一增加各螺旋桨转速以保证无人机运行安全，进一步提高了数据处理效率。</div>
+<div class="description-paragraph" id="p0051" num="0048">进一步地，在确定飞行器的运行异常时，基于映射差异参量确定针对飞行器的处理方式，在映射差异参量小于等于第一预设映射差异参量时，此时差值小，由于飞行器飞行高度低于预设值，此时修正判定基准以重新持续监测飞行器的运行状况；在映射差异参量大于第二预设映射差异参量时，此时由于获取的数据量过低导致数据分析出现误差，此情况下调节数据清洗标准以增加数据分析量提高数据的分析精度；在映射差异参量小于等于第二预设映射差异参量且大于第一预设映射差异参量时，此时结合筛除的数据的数量综合确定针对飞行器的处理方式，在数据数量小于等于预设数据数量时，此时用于分析的数据量充足，此情况下由于飞行器坠落导致飞行器急速下降，此时针对各螺旋桨的转速进行调节，在保证飞行器精准运行的同时，进一步提高了数据处理效率。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0052">附图说明</div>
+<div class="description-paragraph" id="p0053" num="0049">图1为本发明实施例用于低空飞行器的数据感知智能处理方法的步骤流程图；</div>
+<div class="description-paragraph" id="p0054" num="0050">图2为本发明实施例基于平均映射参量确定飞行器的运行是否合格的逻辑判定图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0055">具体实施方式</div>
+<div class="description-paragraph" id="p0056" num="0051">为了使本发明的目的和优点更加清楚明白，下面结合实施例对本发明作进一步描述；应当理解，此处所描述的具体实施例仅仅用于解释本发明，并不用于限定本发明。</div>
+<div class="description-paragraph" id="p0057" num="0052">下面参照附图来描述本发明的优选实施方式。本领域技术人员应当理解的是，这些实施方式仅仅用于解释本发明的技术原理，并非在限制本发明的保护范围。</div>
+<div class="description-paragraph" id="p0058" num="0053">需要说明的是，在本发明的描述中，术语“上”、“下”、“左”、“右”、“内”、“外”等指示的方向或位置关系的术语是基于附图所示的方向或位置关系，这仅仅是为了便于描述，而不是指示或暗示所述装置或元件必须具有特定的方位、以特定的方位构造和操作，因此不能理解为对本发明的限制。</div>
+<div class="description-paragraph" id="p0059" num="0054">此外，还需要说明的是，在本发明的描述中，除非另有明确的规定和限定，术语“安装”、“相连”、“连接”应做广义理解，例如，可以是固定连接，也可以是可拆卸连接，或一体地连接；可以是机械连接，也可以是电连接；可以是直接相连，也可以通过中间媒介间接相连，可以是两个元件内部的连通。对于本领域技术人员而言，可根据具体情况理解上述术语在本发明中的具体含义。</div>
+<div class="description-paragraph" id="p0060" num="0055">请参阅图1以及图2所示，其分别为本发明实施例用于低空飞行器的数据感知智能处理方法的步骤流程图、基于平均映射参量确定飞行器的运行是否合格的逻辑判定图；本发明实施例一种用于低空飞行器的数据感知智能处理方法，包括：</div>
+<div class="description-paragraph" id="p0061" num="0056">S1，控制飞行器周期性获取图像信息，在图像信息中建立坐标系，标定图像信息中的若干特征点，获取各特征点对应的坐标；</div>
+<div class="description-paragraph" id="p0062" num="0057">S2，基于各特征点在当前周期的坐标与在前一周期的坐标确定各特征点在两相邻周期中的变化距离；</div>
+<div class="description-paragraph" id="p0063" num="0058">S3，对各变化距离进行清洗；</div>
+<div class="description-paragraph" id="p0064" num="0059">S4，基于完成清洗的各变化距离确定平均映射参量，基于获取各特征点的坐标确定角度离散参量；</div>
+<div class="description-paragraph" id="p0065" num="0060">S5，基于平均映射参量和角度离散参量确定飞行器的运行是否合格，包括：</div>
+<div class="description-paragraph" id="p0066" num="0061">判定飞行器的运行不合格，并调节飞行器的前驱螺旋桨和后驱螺旋桨的转速比，或基于映射差异参量确定针对飞行器的处理方式，其中处理方式为调节所述S3的数据清洗标准或将飞行器各螺旋桨的转速调节至对应值；</div>
+<div class="description-paragraph" id="p0067" num="0062">或，判定飞行器的运行合格，并控制飞行器持续使用当前的运行参数运行。</div>
+<div class="description-paragraph" id="p0068" num="0063">具体而言，对于确定图像信息中的特征点的具体方式不进行限定，可以通过Canny边缘检测算法，在检测到的边缘上选定若干显著的点作为特征点，或使用训练好的卷积神经网络提取图像的特征点，可以理解的是可以对图像信息中显著的可参照的特征进行标定即可，此不再赘述。</div>
+<div class="description-paragraph" id="p0069" num="0064">具体而言，针对飞行器的数据进行流程化处理，获取各特征点的坐标信息，通过各个特征点的坐标信息变化情况确定飞行器的移动情况，以作为数据依据精准确定飞行器的实际运行状况，并在确定飞行器的运行异常时及时对飞行器的运行参数进行调节，提高了数据处理效率。</div>
+<div class="description-paragraph" id="p0070" num="0065">具体而言，在所述S3，对各变化距离进行清洗的过程，包括：</div>
+<div class="description-paragraph" id="p0071" num="0066">若变化距离大于预设变化距离，则将单个变化距离筛除；</div>
+<div class="description-paragraph" id="p0072" num="0067">若变化距离小于等于预设变化距离，则将单个变化距离保留；</div>
+<div class="description-paragraph" id="p0073" num="0068">在所述S4中，基于完成清洗的各变化距离确定平均映射参量的过程，包括：</div>
+<div class="description-paragraph" id="p0074" num="0069">逐一确定各变化距离映射在坐标系Y轴上的长度，得到该变化距离对应的映射距离；</div>
+<div class="description-paragraph" id="p0075" num="0070">求解各映射距离的平均值，得到平均映射参量；</div>
+<div class="description-paragraph" id="p0076" num="0071">在所述S5中，基于平均映射参量确定飞行器的运行是否合格的过程，包括：</div>
+<div class="description-paragraph" id="p0077" num="0072">若平均映射参量小于等于第一预设平均映射参量，则判定飞行器的运行不合格，并基于平均映射参量将飞行器的前驱螺旋桨和后驱螺旋桨的转速比调节至对应值；</div>
+<div class="description-paragraph" id="p0078" num="0073">若平均映射参量小于等于第二预设平均映射参量且大于第一预设平均映射参量，则判定飞行器的运行合格；</div>
+<div class="description-paragraph" id="p0079" num="0074">若平均映射参量小于等于第三预设平均映射参量且大于第二预设平均映射参量，则基于角度离散参量确定飞行器的运行是否合格；</div>
+<div class="description-paragraph" id="p0080" num="0075">若平均映射参量大于第三预设平均映射参量，则判定飞行器的运行不合格，并基于映射差异参量确定针对飞行器的处理方式。</div>
+<div class="description-paragraph" id="p0081" num="0076">具体而言，第一预设平均映射参量S1在区间[0.6Q0，0.8Q0]内选取，第二预设平均映射参量S2在区间[0.95Q0，1.1Q0]内选取，第三预设平均映射参量S3在区间[1.3Q0，1.5Q0]内选取，Q0为对应飞行指令下各历史平均映射参量的均值，对应飞行指令为飞行速度。</div>
+<div class="description-paragraph" id="p0082" num="0077">具体而言，预设变化距离B0在区间[1.13J0，1.28J0]内选取，J0为相邻两周期的图像信息的各变化距离的平均值。</div>
+<div class="description-paragraph" id="p0083" num="0078">具体而言，基于平均映射参量将飞行器的后驱螺旋桨和前驱螺旋桨的转速比调节至对应值，其中：</div>
+<div class="description-paragraph" id="p0084" num="0079">基于平均映射参量确定的转速比的增加幅度与平均映射参量成反比。</div>
+<div class="description-paragraph" id="p0085" num="0080">本实施例中，可选地，</div>
+<div class="description-paragraph" id="p0086" num="0081">将平均映射参量与第一预设映射比对阈值和第二预设映射比对阈值进行比对；</div>
+<div class="description-paragraph" id="p0087" num="0082">若平均映射参量小于等于第一预设映射比对阈值，则将转速比调节至初始转比的1.3倍；</div>
+<div class="description-paragraph" id="p0088" num="0083">若平均映射参量小于等于第二预设映射比对阈值且大于所述第一预设映射比对阈值，则将转速比调节至初始转比的1.21倍；</div>
+<div class="description-paragraph" id="p0089" num="0084">若平均映射参量大于第二预设映射比对阈值，则将转速比调节至初始转比的1.11倍；</div>
+<div class="description-paragraph" id="p0090" num="0085">第一预设映射比对阈值取0.71S1，第二预设映射比对阈值取0.82S1。</div>
+<div class="description-paragraph" id="p0091" num="0086">具体而言，基于角度离散参量确定飞行器的运行是否合格的过程，包括：</div>
+<div class="description-paragraph" id="p0092" num="0087">获取特征点在当前周期的坐标与在前一周期的对应的坐标在同一坐标系内的连线与Y周的夹角，得到对应特征点的角度参量；</div>
+<div class="description-paragraph" id="p0093" num="0088">求解各特征点的角度参量的方差，得到角度离散参量；</div>
+<div class="description-paragraph" id="p0094" num="0089">若角度离散参量小于等于预设角度离散参量，则判定飞行器的运行不合格，并基于映射差异参量确定针对飞行器的处理方式；</div>
+<div class="description-paragraph" id="p0095" num="0090">若角度离散参量大于预设角度离散参量，则基于角度离散参量将飞行器各螺旋桨的转速调节至对应值。</div>
+<div class="description-paragraph" id="p0096" num="0091">具体而言，预设角度离散参量H0在区间[0.09J0，0.25J0]内选取，J0为获取的各角度离散参量的平均值。</div>
+<div class="description-paragraph" id="p0097" num="0092">具体而言，对各变化距离进行清洗筛分，去除异常值，以提高数据的可靠性；确定平均映射参量，平均映射参量表征了飞行器在当前指令飞行速度下的实际飞行情况，在平均映射参量小于等于第一预设平均映射参量时，此情况下飞行器的移速过低，此时调节前后螺旋桨的转速比，以使后面转速高于前面转速，让飞行器向前倾斜，从而改变各螺旋桨与垂直方向的角度，以使各螺旋桨产生后推力；在平均映射参量小于等于第三预设平均映射参量且大于第二预设平均映射参量时，基于角度离散参量确定飞行器的运行是否合格，在角度离散参量大于预设角度离散参量时，此时各角度的离散大，此情况下飞行高度降低，且飞行器运行速度过快，此时飞行器存在坠落风险，统一增加各螺旋桨转速以保证无人机运行安全，进一步提高了数据处理效率。</div>
+<div class="description-paragraph" id="p0098" num="0093">具体而言，基于角度离散参量将飞行器各螺旋桨的转速调节至对应值，其中：</div>
+<div class="description-paragraph" id="p0099" num="0094">基于角度离散参量确定的飞行器各螺旋桨的转速的增加幅度与角度离散参量成正比。</div>
+<div class="description-paragraph" id="p0100" num="0095">本实施例中，可选地，</div>
+<div class="description-paragraph" id="p0101" num="0096">将角度离散参量与第一预设离散比对阈值和第二预设离散比对阈值进行比对；</div>
+<div class="description-paragraph" id="p0102" num="0097">若角度离散参量小于等于第一预设离散比对阈值，则将飞行器各螺旋桨的转速调节至初始转速的1.11倍；</div>
+<div class="description-paragraph" id="p0103" num="0098">若角度离散参量小于等于第二预设离散比对阈值且大于所述第一预设离散比对阈值，则将飞行器各螺旋桨的转速调节至初始转速的1.21倍；</div>
+<div class="description-paragraph" id="p0104" num="0099">若角度离散参量大于第二预设离散比对阈值，则将飞行器各螺旋桨的转速调节至初始转速的1.28倍；</div>
+<div class="description-paragraph" id="p0105" num="0100">第一预设离散比对阈值取1.6H0，第二预设离散比对阈值取4.8H0。</div>
+<div class="description-paragraph" id="p0106" num="0101">具体而言，基于映射差异参量确定针对飞行器的处理方式的过程，包括：</div>
+<div class="description-paragraph" id="p0107" num="0102">将平均映射参量与第三预设平均映射参量的差值记为映射差异参量；</div>
+<div class="description-paragraph" id="p0108" num="0103">若映射差异参量小于等于第一预设映射差异参量，则基于飞行器在当前周期的高度与上一周期的高度的差值将第一预设平均映射参量、第二预设平均映射参量和第三预设平均映射参量调节至对应值；</div>
+<div class="description-paragraph" id="p0109" num="0104">若映射差异参量小于等于第二预设映射差异参量且大于第一预设映射差异参量，则基于所述S3中筛除的数据的数量确定针对飞行器的处理方式；</div>
+<div class="description-paragraph" id="p0110" num="0105">若映射差异参量大于第二预设映射差异参量，则基于各所述变化距离的方差将预设变化距离调节至对应值。</div>
+<div class="description-paragraph" id="p0111" num="0106">具体而言，第一预设映射差异参量取1.7S3，第二预设映射差异参量取2.3S3。</div>
+<div class="description-paragraph" id="p0112" num="0107">具体而言，基于飞行器在当前周期的高度与上一周期的高度的差值将第一预设平均映射参量、第二预设平均映射参量和第三预设平均映射参量调节至对应值，其中:</div>
+<div class="description-paragraph" id="p0113" num="0108">基于高度差值确定的第一预设平均映射参量、第二预设平均映射参量和第三预设平均映射参量的降低幅度与高度差值成正比。</div>
+<div class="description-paragraph" id="p0114" num="0109">本实施例中，可选地，</div>
+<div class="description-paragraph" id="p0115" num="0110">将高度差值与第一预设高度差值和第二预设高度差值进行比对；</div>
+<div class="description-paragraph" id="p0116" num="0111">若高度差值小于等于第一预设高度差值，则将第一预设平均映射参量调节至初始第一预设平均映射参量的0.91倍、第二预设平均映射参量调节至初始第二预设平均映射参量的0.91倍、第三预设平均映射参量调节至初始第三预设平均映射参量的0.91倍；</div>
+<div class="description-paragraph" id="p0117" num="0112">若高度差值小于等于第二预设高度差值且大于第一预设高度差值，则将第一预设平均映射参量调节至初始第一预设平均映射参量的0.83倍、第二预设平均映射参量调节至初始第二预设平均映射参量的0.83倍、第三预设平均映射参量调节至初始第三预设平均映射参量的0.83倍；</div>
+<div class="description-paragraph" id="p0118" num="0113">若高度差值大于第二预设高度差值，则将第一预设平均映射参量调节至初始第一预设平均映射参量的0.73倍、第二预设平均映射参量调节至初始第二预设平均映射参量的0.73倍、第三预设平均映射参量调节至初始第三预设平均映射参量的0.73倍；</div>
+<div class="description-paragraph" id="p0119" num="0114">第一预设高度差值取0.21U0，第二预设高度差值取0.34U0，U0为上一周期的高度。</div>
+<div class="description-paragraph" id="p0120" num="0115">具体而言，基于所述S3中筛除的数据的数量确定针对飞行器的处理方式的过程，包括：</div>
+<div class="description-paragraph" id="p0121" num="0116">若数据数量小于等于预设数据数量，则角度离散参量将飞行器各螺旋桨的转速调节至对应值；</div>
+<div class="description-paragraph" id="p0122" num="0117">若数据数量大于预设数据数量，则基于各所述变化距离的方差将预设变化距离调节至对应值。</div>
+<div class="description-paragraph" id="p0123" num="0118">预设数据数量在区间[0.2N0，0.27N0]内选取，N0为单个图像信息中标记的特征点的总数量。</div>
+<div class="description-paragraph" id="p0124" num="0119">具体而言，在确定飞行器的运行异常时，基于映射差异参量确定针对飞行器的处理方式，在映射差异参量小于等于第一预设映射差异参量时，此时差值小，由于飞行器飞行高度低于预设值，此时修正判定基准以重新持续监测飞行器的运行状况；在映射差异参量大于第二预设映射差异参量时，此时由于获取的数据量过低导致数据分析出现误差，此情况下调节数据清洗标准以增加数据分析量提高数据的分析精度；在映射差异参量小于等于第二预设映射差异参量且大于第一预设映射差异参量时，此时结合筛除的数据的数量综合确定针对飞行器的处理方式，在数据数量小于等于预设数据数量时，此时用于分析的数据量充足，此情况下由于飞行器坠落导致飞行器急速下降，此时针对各螺旋桨的转速进行调节，在保证飞行器精准运行的同时，进一步提高了数据处理效率。</div>
+<div class="description-paragraph" id="p0125" num="0120">具体而言，基于各所述变化距离的方差将预设变化距离调节至对应值，其中：</div>
+<div class="description-paragraph" id="p0126" num="0121">基于各所述变化距离的方差确定的预设变化距离的降低幅度与各所述变化距离的方差成正比。</div>
+<div class="description-paragraph" id="p0127" num="0122">本实施例中，可选地，</div>
+<div class="description-paragraph" id="p0128" num="0123">将各所述变化距离的方差记为变化方差；</div>
+<div class="description-paragraph" id="p0129" num="0124">将变化方差与第一预设变化方差的第二预设变化方差进行比对；</div>
+<div class="description-paragraph" id="p0130" num="0125">若变化方差小于等于第一预设变化方差，则将预设变化距离调节至初始预设变化距离的0.91倍；</div>
+<div class="description-paragraph" id="p0131" num="0126">若变化方差小于等于第二预设变化方差且大于第一预设变化方差，则将预设变化距离调节至初始预设变化距离的0.81倍；</div>
+<div class="description-paragraph" id="p0132" num="0127">若变化方差大于第二预设变化方差，则将预设变化距离调节至初始预设变化距离的0.75倍；</div>
+<div class="description-paragraph" id="p0133" num="0128">第一预设变化方差取4.59A0，第二预设变化方差取17.2A0，A0为获取的清洗数据前的各变化距离的平均值。</div>
+<div class="description-paragraph" id="p0134" num="0129">至此，已经结合附图所示的优选实施方式描述了本发明的技术方案，但是，本领域技术人员容易理解的是，本发明的保护范围显然不局限于这些具体实施方式。在不偏离本发明的原理的前提下，本领域技术人员可以对相关技术特征做出等同的更改或替换，这些更改或替换之后的技术方案都将落入本发明的保护范围之内。</div>
+<div class="description-paragraph" id="p0135" num="0130">以上所述仅为本发明的优选实施例，并不用于限制本发明；对于本领域的技术人员来说，本发明可以有各种更改和变化。凡在本发明的精神和原则之内，所作的任何修改、等同替换、改进等，均应包含在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

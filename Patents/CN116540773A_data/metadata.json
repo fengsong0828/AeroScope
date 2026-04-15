@@ -1,0 +1,69 @@
+{
+    "patent_id": "CN116540773A",
+    "title": "CN116540773A - 多低空飞行器自动编队控制系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shenzhen Xiyue Wisdom Data Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN116540773A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN105223964A (zh) *",
+            "Priority Date": "2015-09-28",
+            "Publication Date": "2016-01-06",
+            "Assignee": "沈阳航空航天大学",
+            "Title": "一种用于无人机编队飞行的控制系统",
+            "Link": "https://patents.google.com/patent/CN105223964A/zh"
+        },
+        {
+            "Publication Number": "CN105912017A (zh) *",
+            "Priority Date": "2016-04-20",
+            "Publication Date": "2016-08-31",
+            "Assignee": "合肥工业大学",
+            "Title": "一种无人机编队管理方法和无人机的控制系统",
+            "Link": "https://patents.google.com/patent/CN105912017A/zh"
+        },
+        {
+            "Publication Number": "CN107329492A (zh) *",
+            "Priority Date": "2017-08-18",
+            "Publication Date": "2017-11-07",
+            "Assignee": "上海顺砾智能科技有限公司",
+            "Title": "一种无人机集群的编队控制方法",
+            "Link": "https://patents.google.com/patent/CN107329492A/zh"
+        },
+        {
+            "Publication Number": "CN108227746A (zh) *",
+            "Priority Date": "2018-01-23",
+            "Publication Date": "2018-06-29",
+            "Assignee": "深圳市科卫泰实业发展有限公司",
+            "Title": "一种无人机集群控制系统及方法",
+            "Link": "https://patents.google.com/patent/CN108227746A/zh"
+        },
+        {
+            "Publication Number": "CN108521670A (zh) *",
+            "Priority Date": "2018-03-14",
+            "Publication Date": "2018-09-11",
+            "Assignee": "中国人民解放军国防科技大学",
+            "Title": "面向多机紧密编队飞行基于uwb通信与定位方法及一体化系统",
+            "Link": "https://patents.google.com/patent/CN108521670A/zh"
+        },
+        {
+            "Publication Number": "CN211528715U (zh) *",
+            "Priority Date": "2020-03-26",
+            "Publication Date": "2020-09-18",
+            "Assignee": "湖南科技大学",
+            "Title": "地雷识别探测系统",
+            "Link": "https://patents.google.com/patent/CN211528715U/zh"
+        },
+        {
+            "Publication Number": "CN111831008A (zh) *",
+            "Priority Date": "2020-06-18",
+            "Publication Date": "2020-10-27",
+            "Assignee": "航空工业信息中心",
+            "Title": "一种基于分布式架构的无人机编队协同控制系统及其方法",
+            "Link": "https://patents.google.com/patent/CN111831008A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:15:00"
+}

@@ -1,0 +1,61 @@
+{
+    "patent_id": "CN101228490B",
+    "title": "CN101228490B - 用于保障飞行器的低空自动飞行的方法、设备和飞行器 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Airbus SAS",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN101228490B/zh",
+    "citations": [
+        {
+            "Publication Number": "FR2325022A1 (fr) *",
+            "Priority Date": "1969-05-02",
+            "Publication Date": "1977-04-15",
+            "Assignee": "Gen Electric",
+            "Title": "Procede et appareil de controle de la trajectoire de vol d'un avion",
+            "Link": "https://patents.google.com/patent/FR2325022A1/fr"
+        },
+        {
+            "Publication Number": "DE4437451A1 (de) *",
+            "Priority Date": "1993-09-07",
+            "Publication Date": "1996-04-25",
+            "Assignee": "Sagem",
+            "Title": "Verfahren zur Korrektur der von einem Bord-Höhenmesser eines Luftfahrzeuges gelieferten Höhe über Normal-Null",
+            "Link": "https://patents.google.com/patent/DE4437451A1/de"
+        },
+        {
+            "Publication Number": "CN1140494A (zh) *",
+            "Priority Date": "1994-12-15",
+            "Publication Date": "1997-01-15",
+            "Assignee": "国家航空工业公司",
+            "Title": "为接近地面的飞机提供警报或报警信息的方法和装置",
+            "Link": "https://patents.google.com/patent/CN1140494A/zh"
+        },
+        {
+            "Publication Number": "FR2859177A1 (fr) *",
+            "Priority Date": "2003-08-30",
+            "Publication Date": "2005-03-04",
+            "Assignee": "Eads Deutschland Gmbh",
+            "Title": "Systeme et procede de guidage en vol a basse altitide, systeme d'alarme et generateur d'alarme pour le guidage en vol a basse altitude",
+            "Link": "https://patents.google.com/patent/FR2859177A1/fr"
+        },
+        {
+            "Publication Number": "FR2864269A1 (fr) *",
+            "Priority Date": "2003-12-19",
+            "Publication Date": "2005-06-24",
+            "Assignee": "Thales Sa",
+            "Title": "Procede d'aide a la navigation a basse altitude d'un aeronef",
+            "Link": "https://patents.google.com/patent/FR2864269A1/fr"
+        },
+        {
+            "Publication Number": "FR2864270A1 (fr) *",
+            "Priority Date": "2003-12-19",
+            "Publication Date": "2005-06-24",
+            "Assignee": "Thales Sa",
+            "Title": "Dispositif avance d'anti-collision terrain",
+            "Link": "https://patents.google.com/patent/FR2864270A1/fr"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:34:36"
+}

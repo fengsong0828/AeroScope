@@ -1,0 +1,37 @@
+{
+    "patent_id": "CN119906305A",
+    "title": "CN119906305A - 结合气象数据的低空飞行器智能涡轮发电控制方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Taizhou University",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN119906305A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN113785115A (zh) *",
+            "Priority Date": "2019-07-03",
+            "Publication Date": "2021-12-10",
+            "Assignee": "赛峰直升机发动机公司",
+            "Title": "用于飞行器的具有简化控制系统的涡轮发电机",
+            "Link": "https://patents.google.com/patent/CN113785115A/zh"
+        },
+        {
+            "Publication Number": "CN119503135A (zh) *",
+            "Priority Date": "2025-01-20",
+            "Publication Date": "2025-02-25",
+            "Assignee": "泰州学院",
+            "Title": "用于低空飞行器的gps同步涡轮发电调节方法",
+            "Link": "https://patents.google.com/patent/CN119503135A/zh"
+        },
+        {
+            "Publication Number": "CN119582661A (zh) *",
+            "Priority Date": "2025-02-06",
+            "Publication Date": "2025-03-07",
+            "Assignee": "泰州学院",
+            "Title": "适应不同飞行高度的智能微型涡轮发电控制系统",
+            "Link": "https://patents.google.com/patent/CN119582661A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:09:19"
+}

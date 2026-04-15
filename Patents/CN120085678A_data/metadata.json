@@ -1,0 +1,69 @@
+{
+    "patent_id": "CN120085678A",
+    "title": "CN120085678A - 一种基于自适应控制的低空飞行器稳定性增强系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Jiangsu Yunzhu Intelligent Technology Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120085678A/zh",
+    "citations": [
+        {
+            "Publication Number": "US20210055111A1 (en) *",
+            "Priority Date": "2019-08-25",
+            "Publication Date": "2021-02-25",
+            "Assignee": "The Boeing Company",
+            "Title": "Process and machine to predict and preempt an aerodynamic disturbance",
+            "Link": "https://patents.google.com/patent/US20210055111A1/en"
+        },
+        {
+            "Publication Number": "CN118551951A (zh) *",
+            "Priority Date": "2024-04-02",
+            "Publication Date": "2024-08-27",
+            "Assignee": "国器智眸(重庆)科技有限公司",
+            "Title": "一种基于融合型区块链的无人机动态管理控制方法及装置",
+            "Link": "https://patents.google.com/patent/CN118551951A/zh"
+        },
+        {
+            "Publication Number": "CN118963396A (zh) *",
+            "Priority Date": "2024-07-29",
+            "Publication Date": "2024-11-15",
+            "Assignee": "锐川机器人(深圳)有限公司",
+            "Title": "一种垂起无人机智能飞行控制系统及方法",
+            "Link": "https://patents.google.com/patent/CN118963396A/zh"
+        },
+        {
+            "Publication Number": "CN119203392A (zh) *",
+            "Priority Date": "2024-11-29",
+            "Publication Date": "2024-12-27",
+            "Assignee": "成都飞航智云科技有限公司",
+            "Title": "复杂气象环境下飞行器数字孪生态势推演与风险评估方法",
+            "Link": "https://patents.google.com/patent/CN119203392A/zh"
+        },
+        {
+            "Publication Number": "CN119885432A (zh) *",
+            "Priority Date": "2024-12-27",
+            "Publication Date": "2025-04-25",
+            "Assignee": "山东五洲和兴设计咨询有限公司",
+            "Title": "一种无人机验电设备的多场景适应方法",
+            "Link": "https://patents.google.com/patent/CN119885432A/zh"
+        },
+        {
+            "Publication Number": "CN119905020A (zh) *",
+            "Priority Date": "2025-01-15",
+            "Publication Date": "2025-04-29",
+            "Assignee": "江西省自然资源事业发展中心",
+            "Title": "一种低空飞行安全保障智能传感器",
+            "Link": "https://patents.google.com/patent/CN119905020A/zh"
+        },
+        {
+            "Publication Number": "CN119902559A (zh) *",
+            "Priority Date": "2025-01-16",
+            "Publication Date": "2025-04-29",
+            "Assignee": "北京品锐科技有限公司",
+            "Title": "一种数据驱动的无人机飞控系统实时缺陷预测系统及方法",
+            "Link": "https://patents.google.com/patent/CN119902559A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:08:40"
+}

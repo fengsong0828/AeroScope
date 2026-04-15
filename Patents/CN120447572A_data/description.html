@@ -1,0 +1,363 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120447572A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES501506376">
+<invention-title id="title1" lang="ZH">一种城区低空无人飞行器战术冲突探测化解路径优化方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及无人飞行器飞行安全技术领域，尤其涉及一种城区低空无人飞行器战术冲突探测化解路径优化方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">本部分提供的仅仅是与本公开相关的背景信息,其并不必然是现有技术。</div>
+<div class="description-paragraph" id="p0005" num="0003">近年来在全国多个大型城市相继获得低空飞行试点，使得我国城市交通往立体化方向发展迈出重要的一步，为城市空中交通(Urban Air Mobility,UAM)的发展提供了政策支持。由于城区空域的不断开放，无人飞行器(又称“无人机”)广泛应用于城市中的物流、航拍、交通检测等多类工作，其数量更是成指数倍增长。飞行器数量的不断增加势必导致城区内可用空域资源逐渐减少，飞行过程中难免发生飞行冲突，增大了空中碰撞事故发生的可能性，进而容易导致无人机坠毁，危及地面行人安全。</div>
+<div class="description-paragraph" id="p0006" num="0004">为了应对多架低空飞行器在同一有限空域内产生的飞行冲突，大量的科研学者开始着手研究飞行冲突探测与化解(Conflict Detection and Resolution,CD&amp;R)技术以确保飞行器面临冲突威胁后可以自主实现冲突化解。通常是每两架无人机之间判断是否发生冲突，若发生冲突则采取冲突化解措施。无人机飞行冲突探测化解的方法，大致分为两种：“战略级的全局航迹规划”以及“战术级的局部冲突探测与解脱”，而CD&amp;R通常指代后者，要求无人机可以在复杂多变环境中实时完成高效的冲突探测与化解。当无人机自主飞行不受操控时，必须给其赋予一个安全飞行策略，以防止无人机与各种固定和移动的障碍物发生碰撞。此外，在同一个有限的城市空域内存在大量无人机时，规避移动障碍物可能会导致飞行平稳性差，导致飞行方向上产生波动或振荡，即为“抖动”。需要提前考虑发生冲突甚至产生碰撞的风险程度，进而决定是否需要采取紧急的冲突化解措施。或可以在传统冲突化解方法基础上优化改进，得到更加平滑的安全飞行路径。同时尽可能在实现冲突化解的基础上缩短无人机飞行路径长度，减少空域资源的浪费。</div>
+<div class="description-paragraph" id="p0007" num="0005">因此，为确保无人机在复杂的城市环境中能够安全、稳定地飞行，研究出一种高效的飞行冲突探测化解算法显得尤为重要。目前针对无人机飞行的冲突探测化解的方法包括但不限于动态窗口法、人工势场法、速度障碍法和几何优化方法，尤其速度障碍法凭借着算法模型相对其他算法模型简单易于实现，得到学者的广泛应用。但在无人飞行器飞行过程中采用传统速度障碍法及其变体(互惠速度障碍法)会存在飞行抖动频发问题，且无法保证飞行冲突化解的飞行路径较短，没有考虑路径长度优化等问题，值得学者对其进一步优化。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0008">发明内容</div>
+<div class="description-paragraph" id="p0009" num="0006">发明目的：针对现有技术的不足，提供一种基于CCR-GDO-RVO(ConsiderCollision Risk-Gradient Descent Optimization-Reciprocal Velocity Obstacle)的城区低空无人飞行器战术冲突探测化解路径优化方法。解决针对无人飞行器采取速度障碍法在飞行过程容易产生剧烈抖动且没有考虑路径长度优化等问题。实现城区低空空域无人机飞行冲突探测和化解。</div>
+<div class="description-paragraph" id="p0010" num="0007">技术方案：一种城区低空无人飞行器战术冲突探测化解路径优化方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0011" num="0008">步骤1：每架无人机搭载小型广播式自动相关监视(Automatic DependentSurveillance-Broadcast,ADS-B)接收机持续地接收ADS-B报文并通过简洁的位置报告(Compact Position Reporting,CPR)解析出ADS-B经纬高坐标，进一步采取实时的坐标转换，以获得无人机的实时相对地面位置。</div>
+<div class="description-paragraph" id="p0012" num="0009">步骤1-1：获取ADS-B数据报文，所述数据包括无人机位置和无人机速度。</div>
+<div class="description-paragraph" id="p0013" num="0010">步骤1-2：解码ADS-B数据，对步骤1-1获取到的二进制ADS-B数据报文进行无人机经纬度、高度和速度的解码，通过对报文对应位的二进制转化为十进制获取高度和速度信息，通过对报文CPR解码获取经纬度信息，将ADS-B数据报文转换为可读的文本格式。</div>
+<div class="description-paragraph" id="p0014" num="0011">步骤1-3：将步骤1-2得到的解码处理后的ADS-B位置数据进行坐标转换，将无人机的ADS-B位置和参考位置的WGS-84椭球坐标转换为地心地固坐标(X,Y,Z)，通过所述地心地固坐标(X,Y,Z)计算出无人机相对地面固定参考点的东-北-天(East North Up,ENU)坐标(x,y,z)。</div>
+<div class="description-paragraph" id="p0015" num="0012">步骤2：根据无人机飞行速率和空域建筑布局，建立无人机的飞行保护区，并建立碰撞锥模型进行飞行冲突探测。</div>
+<div class="description-paragraph" id="p0016" num="0013">步骤2-1：建立无人飞行器的飞行保护区模型并确定飞行信息。</div>
+<div class="description-paragraph" id="p0017" num="0014">定义R<sup>3</sup>为三维实向量空间，无人机球形保护区集合V如下式所示：</div>
+<div class="description-paragraph" id="p0018" num="0015">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0019" num="0016">其中，d<sub>h</sub>表示无人机的球形飞行保护区半径。</div>
+<div class="description-paragraph" id="p0020" num="0017">设无人机A和无人机B在有限的城区低空空域内；通过ADS-B报文解析得到无人机A和无人机B的飞行速率分别为u<sub>1</sub>和u<sub>2</sub>，以无人机A为原点O作为地面固定参考点，直线AB作为x轴，向量AB方向为x轴正方向，通过右手定则建立三维空间坐标系，在三维球坐标系中，得到两架无人机的飞行速度v<sub>1</sub>和v<sub>2</sub>如下式所示：</div>
+<div class="description-paragraph" id="p0021" num="0018">v<sub>i</sub>＝(u<sub>i</sub>cosφ<sub>i</sub>sinθ<sub>i</sub>,u<sub>i</sub>sinφ<sub>i</sub>sinθ<sub>i</sub>,u<sub>i</sub>cosθ<sub>i</sub>),i∈1,2；</div>
+<div class="description-paragraph" id="p0022" num="0019">其中，φ<sub>i</sub>代表无人机飞行方向与x轴之间形成的正方向夹角；θ<sub>i</sub>代表无人机飞行方向与z轴之间形成的正方向夹角。</div>
+<div class="description-paragraph" id="p0023" num="0020">无人机A和无人机B对应保护区半径分别为<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0024" num="0021">设定无人机A或无人机B在第k个时间段Δt内飞行产生位移为<span class="patent-image-not-available"></span>则无人机在第k+1个时间段Δt内飞行产生位移如下式所示：</div>
+<div class="description-paragraph" id="p0025" num="0022">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0026" num="0023">定义最大速度约束v<sub>max</sub>和最大加速度约束a<sub>max</sub>限制无人机可用速度和加速度的大小，如下公式所示：</div>
+<div class="description-paragraph" id="p0027" num="0024">||v<sub>i</sub>||≤v<sub>max</sub>,i∈1,2；</div>
+<div class="description-paragraph" id="p0028" num="0025">||a<sub>i</sub>||≤a<sub>max</sub>,i∈1,2；</div>
+<div class="description-paragraph" id="p0029" num="0026">其中，||.||代表向量的模值或欧几里得距离，v<sub>i</sub>为第i架无人机的速度，a<sub>i</sub>为第i架无人机的加速度。</div>
+<div class="description-paragraph" id="p0030" num="0027">步骤2-2：采用碰撞锥模型得到飞行冲突探测区域。</div>
+<div class="description-paragraph" id="p0031" num="0028">在三维空间内，无人机A的飞行速度为v<sub>1</sub>，无人机B的飞行速度为v<sub>2</sub>，α为两无人机之间连线AB与速度障碍区边界之间的夹角，即碰撞锥顶角的一半，γ为两无人机之间连线AB与相对速度v<sub>R</sub>之间的夹角。</div>
+<div class="description-paragraph" id="p0032" num="0029">定义相对碰撞锥(Relative Collision Cone,RCC)模型，即无人机发生碰撞可能的相对速度v<sub>R</sub>＝v<sub>1</sub>-v<sub>2</sub>的速度集合，如下式所示：</div>
+<div class="description-paragraph" id="p0033" num="0030">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0034" num="0031">其中，<span class="patent-image-not-available"></span>为相对速度v<sub>R</sub>在无人机A质点处引出的射线；Sphere_B为无人机B的飞行安全保护区，且碰撞锥边界与Sphere_B相切。</div>
+<div class="description-paragraph" id="p0035" num="0032">步骤2-3：通过碰撞锥模型判断是否发生飞行冲突。</div>
+<div class="description-paragraph" id="p0036" num="0033">碰撞锥模型只考虑无人机之间的位置关系和当前的状态，以无人机B为参照点，无人机A相对于无人机B运动，若无人机A相对无人机B的运动速度在碰撞锥范围内，则两架无人机之间会发生飞行冲突，否则无飞行冲突。</div>
+<div class="description-paragraph" id="p0037" num="0034">基于碰撞锥模型对两架无人机飞行冲突探测有如下几何判断方法：当α&gt;γ时，两架无人机存在飞行冲突，反之不存在飞行冲突；α和γ的表达式如下式所示：</div>
+<div class="description-paragraph" id="p0038" num="0035">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0039" num="0036">其中D<sub>AB</sub>为无人机A和无人机B的相对距离，D<sub>AB</sub>为向量AB。</div>
+<div class="description-paragraph" id="p0040" num="0037">步骤3：采用互惠速度障碍(Reciprocal Velocity Obstacle,RVO)冲突探测算法确定冲突发生区域，赋予无人机可飞行速度，实现无人机飞行冲突化解。</div>
+<div class="description-paragraph" id="p0041" num="0038">步骤3-1：通过碰撞锥区域和无人机的飞行速度得到互惠速度障碍区域。</div>
+<div class="description-paragraph" id="p0042" num="0039">以两架无人机为例，对传统的速度障碍法进行双向迭代，得到互惠速度障碍法，互惠速度障碍冲突探测算法同时考虑无人机A和无人机B互惠运动，实现两架无人机共同承担避障责任，可得到A相对于B生成的RVO区域表达式：</div>
+<div class="description-paragraph" id="p0043" num="0040">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0044" num="0041">其中，<span class="patent-image-not-available"></span>代表闵可夫斯基和。</div>
+<div class="description-paragraph" id="p0045" num="0042">该区域内的无人机A下一时刻飞行速度v满足下式：</div>
+<div class="description-paragraph" id="p0046" num="0043">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0047" num="0044">其中t为未来某一飞行时刻，Sphere_B为无人机B的飞行安全保护区。</div>
+<div class="description-paragraph" id="p0048" num="0045">若存在n架无人机在空域内飞行，则对于无人机A来说飞行冲突化解速度集合可如下式所示：</div>
+<div class="description-paragraph" id="p0049" num="0046">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0050" num="0047">步骤3-2：赋予无人机可飞行速度，实现无人机飞行冲突化解。</div>
+<div class="description-paragraph" id="p0051" num="0048">为无人机A设定一个最优飞行速度<span class="patent-image-not-available"></span>如下式所示：</div>
+<div class="description-paragraph" id="p0052" num="0049">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0053" num="0050">其中，<span class="patent-image-not-available"></span>表示无人机A飞行的最优速率大小，根据无人机的型号和自身属性取值，不同类型无人机最优飞行速率不同，P<sub>1</sub>表示无人机A的当前位置，<span class="patent-image-not-available"></span>表示无人机A的终点位置。</div>
+<div class="description-paragraph" id="p0054" num="0051">无人机A选择RVO区域外最接近最优飞行速度的一个速度向量作为新的飞行速度<span class="patent-image-not-available"></span>如下式所示：</div>
+<div class="description-paragraph" id="p0055" num="0052">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0056" num="0053">其中，v是下一时刻无人机A的飞行速度集合。</div>
+<div class="description-paragraph" id="p0057" num="0054">步骤4：基于RVO算法通过进一步通过考虑碰撞风险的互惠速度障碍(ConsiderCollision Risk-Reciprocal Velocity Obstacle,CCR-RVO)冲突探测算法减小冲突发生区域，设置飞行安全保护区半径调节函数，调节保护区半径大小，根据保护调节后的保护区半径调整无人机飞行速度，调整无人机飞行冲突化解速度。</div>
+<div class="description-paragraph" id="p0058" num="0055">步骤4-1：根据两架无人机相对位置和速度来考虑两架无人机的碰撞风险，为无人机实时选择适宜的保护区半径。</div>
+<div class="description-paragraph" id="p0059" num="0056">根据保护区半径的实时变化来增大无人机每一时刻可选避障速度矢量范围。无人机之间的碰撞风险程度可以依据渐变色的碰撞锥区域评估，区域颜色随着无人机A与无人机B距离逐渐减小，碰撞锥区域的颜色逐渐由白到灰再变黑，此时对于两架无人机来说碰撞风险程度逐渐增高，发生碰撞的可能性也随之增大。</div>
+<div class="description-paragraph" id="p0060" num="0057">设置保护区半径变化比例系数k，且0&lt;k≤1，通过缩小下一飞行时刻的传统碰撞锥中的保护区半径，进而缩小RCC区域，此时生成的RVO区域即为考虑碰撞风险的互惠速度障碍区域；从而增大无人机可供选择的速度区域。</div>
+<div class="description-paragraph" id="p0061" num="0058">同理如果相对距离较近，则很快会发生碰撞，则下一飞行时刻扩大保护区半径，进而扩大RCC，缩小无人机可供选择的速度区域；当相对距离减小接近到保护区半径时，保护区半径仍为<span class="patent-image-not-available"></span>保持不变。</div>
+<div class="description-paragraph" id="p0062" num="0059">步骤4-2：调整无人机的飞行冲突化解速度。</div>
+<div class="description-paragraph" id="p0063" num="0060">无人机A扩大了可选飞行冲突化解速度集合范围。进而选择更优的飞行冲突化解速度，减少因传统算法速度障碍区域过大导致可选速度集较小，空域内无人机较多而产生抖动频发问题。</div>
+<div class="description-paragraph" id="p0064" num="0061">为无人机A设定一个最优飞行速度<span class="patent-image-not-available"></span>如下式所示：</div>
+<div class="description-paragraph" id="p0065" num="0062">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0066" num="0063">无人机A选择CCR-RVO区域外最接近最优飞行速度的一个速度向量作为无人机A新的飞行速度，如下式所示：</div>
+<div class="description-paragraph" id="p0067" num="0064">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0068" num="0065">同理得到无人机B的飞行冲突化解速度。</div>
+<div class="description-paragraph" id="p0069" num="0066">多架无人机飞行时，所述步骤4-2中无人机A的飞行冲突化解速度通过下式计算：</div>
+<div class="description-paragraph" id="p0070" num="0067">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0071" num="0068">其中n为空域内飞行的无人机数量。</div>
+<div class="description-paragraph" id="p0072" num="0069">进一步的，所述步骤4中设置保护区半径的具体方法为：</div>
+<div class="description-paragraph" id="p0073" num="0070">为保护区半径变化比例系数选择一个调节函数，该函数自变量为两无人机间距，因变量为比例系数，规定无人机与其他无人机或障碍物距离越小，k值越大，且随着碰撞风险增大，k值增长速率逐渐增大，即调节函数在k处斜率逐渐增大。反之间距越大，k值越小，且k值减小速率逐渐减小，即调节函数在k处斜率逐渐减小。</div>
+<div class="description-paragraph" id="p0074" num="0071">Sigmoid函数具备函数值随自变量的增大而增大，且自变量增大时，其对应函数点处斜率也在逐渐增加，且该函数曲线上的点斜率变化是连续的，Sigmoid函数表达式如下式所示：</div>
+<div class="description-paragraph" id="p0075" num="0072">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0076" num="0073">设置保护区半径变化比例系数k，且0&lt;k≤1，基于比例系数k的需求和Sigmoid函数特征选择保护区半径变化比例系数的调节函数，如下所示：</div>
+<div class="description-paragraph" id="p0077" num="0074">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0078" num="0075">函数保证了k值不小于m，即冲突探测过程中碰撞锥区域的保护区半径最小为m倍<span class="patent-image-not-available"></span>其中，0&lt;m&lt;1，2m+n＝2。相较于<span class="patent-image-not-available"></span>每架无人机在飞行过程中可选速度范围得以增大，保证无人机更加平稳地飞行。</div>
+<div class="description-paragraph" id="p0079" num="0076">步骤5：进一步优化无人机飞行速度以减小无人机从起始点到目标点的飞行路径长度。得到冲突化解并尽可能缩短无人飞行器飞行路径长度。</div>
+<div class="description-paragraph" id="p0080" num="0077">根据梯度下降算法(Gradient Descent Optimization,GDO)在步骤4的基础上对互惠速度障碍法实现无人机冲突化解飞行路径进行优化。</div>
+<div class="description-paragraph" id="p0081" num="0078">优化路径长度和碰撞避免之间存在一定的权衡。过于追求路径长度的优化可能导致碰撞风险增大，而过于注重避免碰撞可能会导致路径长度变长。</div>
+<div class="description-paragraph" id="p0082" num="0079">在探测到冲突后，根据实际场景调整梯度下降算法和RVO算法之间的权重，通过在优化的目标函数中引入一定的碰撞代价来平衡两者，整体目标函数为如下形式：</div>
+<div class="description-paragraph" id="p0083" num="0080">J(P)＝αL(P)+βC(P)；</div>
+<div class="description-paragraph" id="p0084" num="0081">其中，J(P)为整体优化目标函数，α和β分别为权重系数，用于平衡路径长度和碰撞代价，L(P)为当前时刻无人机飞行路径的总长度，C(P)为无人机的碰撞代价函数，P为无人机位置点，随时间和速度变化；</div>
+<div class="description-paragraph" id="p0085" num="0082">针对空域内的其中一架无人机，给出所优化的整体目标函数如下：</div>
+<div class="description-paragraph" id="p0086" num="0083">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0087" num="0084">其中N为该架无人机从起点到当前位置的总飞行时间，λ为平衡路径长度和碰撞代价的权重，CollisionCost(P<sub>i</sub>)为第i时刻该无人机碰撞代价函数，P<sub>i</sub>为无人机第i时刻飞行位置。其中第I架无人机在第i时刻碰撞代价函数如下式所示：</div>
+<div class="description-paragraph" id="p0088" num="0085">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0089" num="0086">其中M为空域内无人机架次，P<sub>I</sub>和P<sub>J</sub>分别是第I架无人机和第J架无人机在同一飞行时刻的位置，D<sub>AB(min)</sub>为两架无人机规定的最小安全距离，一般设置为<span class="patent-image-not-available"></span>v<sub>I</sub>和v<sub>J</sub>分别是第I架无人机和第J架无人机在同一飞行时刻的速度，v<sub>I</sub>和v<sub>J</sub>通过步骤4-2确定，v<sub>max</sub>是无人机的最大飞行速率，ξ为权重系数，ξ评估两架无人机相对速度对碰撞代价的影响程度。</div>
+<div class="description-paragraph" id="p0090" num="0087">J(P<sub>i</sub>)的取值可以改写为：</div>
+<div class="description-paragraph" id="p0091" num="0088">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0092" num="0089">上式为在位置域下得出所需优化的目标函数，将无人机每一飞行时间段固定为一个常数，得到对应的速度域下的目标函数：</div>
+<div class="description-paragraph" id="p0093" num="0090">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0094" num="0091">根据梯度下降算法，对飞行速度进行更新：</div>
+<div class="description-paragraph" id="p0095" num="0092">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0096" num="0093">其中<span class="patent-image-not-available"></span>代表对目标函数求解偏微分方程，η为每次速度更新调节率，η的取值范围为0.001～0.01。</div>
+<div class="description-paragraph" id="p0097" num="0094">由于设置的学习率固定，导致一直出于下降优化过程，但是直到无人机飞到目标点，得到的飞行路径无法保证最短。为了解决该问题，引入衰减系数，使得梯度下降过程中，学习率在逐步衰减，优化飞行速度，进而逐渐生成预期的飞行路径：</div>
+<div class="description-paragraph" id="p0098" num="0095">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0099" num="0096">其中i为衰减系数，即随着时间的增大，无人机的飞行路径越来越长，学习率的值也随之越来越小，进而保证速度更新幅度越来越慢得到可获取近似最短路径长度的飞行速度。直到飞到目标点生成最终路径。</div>
+<div class="description-paragraph" id="p0100" num="0097">无人机采取上式得到的速度作为下一飞行时刻速度可以保证冲突化解前提下最大化地缩小飞行路径长度。</div>
+<div class="description-paragraph" id="p0101" num="0098">进一步的，当步骤2-3中判断无需冲突化解时，沿直线航向飞往目标点。</div>
+<div class="description-paragraph" id="p0102" num="0099">当无人机无需冲突化解时，无人机会根据当前位置和目标点位置重新规划最优飞行速度方向和大小飞向目标点，避免无人机偏离预定航线。</div>
+<div class="description-paragraph" id="p0103" num="0100">采用上述技术方案所产生的有益效果在于：本发明提供的一种基于CCR-GDO-RVO的城区低空无人飞行器战术冲突探测化解算法，通过考虑每架无人机飞行速度方向及大小，判断是否存在飞行冲突，存在飞行冲突是否需要采取紧急避碰措施，对考虑碰撞风险后的速度进行二次优化减小每架无人机飞行路径长度，保障无人机更为安全平稳飞行，并提高飞行效率，占用更少空域资源。</div>
+<div class="description-paragraph" id="p0104" num="0101">本发明的原理是：</div>
+<div class="description-paragraph" id="p0105" num="0102">无人机搭载ADS-B接收机获取ADS-B报文，经报文解析可以获得无人机的飞行经纬度、高度和速度等信息。通过地心地固坐标转换和东-北-天坐标转换得到无人机相对地面固定参考点的三维坐标位置。构造无人机球形保护区，构建碰撞锥模型，通过位置和相对速度判断是否存在飞行冲突。通过碰撞锥模型和飞行速度得到互惠速度障碍区域，选择该区域外的速度可实现冲突化解。考虑碰撞风险程度，赋予一个调节函数对互惠速度障碍区域的无人机保护区半径进行实时调整，得到考虑碰撞风险的互惠速度障碍区域，选择该区域外的一个无人机接近最优的飞行速度作为冲突化解速度。利用梯度下降算法原理思路来优化上一步得到的冲突化解速度中的无人机飞行冲突化解速度。无飞行冲突时，无人机按照计算得到的最优飞行速度方向和大小飞向目标点，避免无人机偏离预定航线。</div>
+<div class="description-paragraph" id="p0106" num="0103">本发明与现有技术相比，显著优点是：</div>
+<div class="description-paragraph" id="p0107" num="0104">根据碰撞风险程度赋予调节函数来实时调整无人机保护区半径，扩大无人机飞行可选区域，进而选择更优飞行速度，减少由传统速度障碍法及其变体(互惠速度障碍法)导致的飞行抖动频发问题，且无法保证飞行冲突化解的飞行路径较短，没有考虑路径长度优化等问题。</div>
+<div class="description-paragraph" id="p0108" num="0105">根据梯度下降算法原理思路，对飞行速度进一步优化，在保证冲突化解的前提下，缩短无人机飞行路径，对无人机飞行路径进行优化，减少空域资源的浪费。</div>
+<div class="description-paragraph" id="p0109" num="0106">无人机无需冲突化解时，会根据当前位置和目标点位置重新规划最优飞行速度方向和大小飞向目标点，避免无人机偏离预定航线。</div>
+<div class="description-paragraph" id="p0110" num="0107">采用上述技术方案所产生的有益效果在于：本发明提供的一种城区低空无人飞行器战术冲突探测化解路径优化方法，通过考虑每架无人机飞行速度方向及大小，判断是否存在飞行冲突，存在飞行冲突是否需要采取紧急避碰措施，对考虑碰撞风险后的速度进行二次优化减小每架无人机飞行路径长度，保障无人机更为安全平稳飞行，并提高飞行效率，占用更少空域资源。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0111">附图说明</div>
+<div class="description-paragraph" id="p0112" num="0108">图1为本发明的基于CCR-GDO-RVO的城区低空无人飞行器战术冲突探测化解路径优化方法流程图。</div>
+<div class="description-paragraph" id="p0113" num="0109">图2为本发明的地心地固坐标系示意图。</div>
+<div class="description-paragraph" id="p0114" num="0110">图3为本发明的两架无人机的飞行状态示意图。</div>
+<div class="description-paragraph" id="p0115" num="0111">图4为本发明的碰撞锥冲突探测模型示意图。</div>
+<div class="description-paragraph" id="p0116" num="0112">图5为本发明的互惠速度障碍区域模型示意图。</div>
+<div class="description-paragraph" id="p0117" num="0113">图6为本发明的碰撞风险程度评估示意图。</div>
+<div class="description-paragraph" id="p0118" num="0114">图7为本发明的考虑碰撞风险的互惠速度障碍区域模型示意图。</div>
+<div class="description-paragraph" id="p0119" num="0115">图8为本发明的调节函数曲线与碰撞风险关系示意图。</div>
+<div class="description-paragraph" id="p0120" num="0116">图9为本发明的Sigmoid函数曲线示意图。</div>
+<div class="description-paragraph" id="p0121" num="0117">图10为本发明的调节函数曲线样例示意图。</div>
+<div class="description-paragraph" id="p0122" num="0118">图11为本发明的梯度下降优化后的飞行状态示意图。</div>
+<div class="description-paragraph" id="p0123" num="0119">图12为本发明的检测到冲突后两架无人机飞行路径规划图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0124">具体实施方式</div>
+<div class="description-paragraph" id="p0125" num="0120">下面结合附图和具体实施方式对本发明做更进一步的具体说明，本发明的上述和/或其他方面的优点将会变得更加清楚。</div>
+<div class="description-paragraph" id="p0126" num="0121">本实施例中，基于CCR-GDO-RVO的城区低空无人飞行器战术冲突探测化解算法，如图1所示，包括以下步骤：</div>
+<div class="description-paragraph" id="p0127" num="0122">步骤1：每架无人机搭载小型广播式自动相关监视(Automatic DependentSurveillance-Broadcast,ADS-B)接收机持续地接收ADS-B报文并通过简洁的位置报告(Compact Position Reporting,CPR)的形式解析出ADS-B经纬高坐标，进一步采取实时的坐标转换，以获得无人机的实时相对地面位置。</div>
+<div class="description-paragraph" id="p0128" num="0123">步骤1.1：获取ADS-B数据报文。</div>
+<div class="description-paragraph" id="p0129" num="0124">获取ADS-B广播的无人机位置和速度数据报文。</div>
+<div class="description-paragraph" id="p0130" num="0125">步骤1.2：解码ADS-B数据。</div>
+<div class="description-paragraph" id="p0131" num="0126">获取到的二进制ADS-B数据报文需要进行经纬度和高度的解码，高度和速度可由报文对应位的二进制转化为十进制得来，经纬度解码方式为CPR解码，将ADS-B数据报文转换为可读的文本格式。</div>
+<div class="description-paragraph" id="p0132" num="0127">为了确定无人机的准确位置，首先将地球划分为许多不同编号的区域(Zone)，然后再将每个Zone细分为许多分箱(Bin)，计算纬度Zone的位置D<sub>i</sub>：</div>
+<div class="description-paragraph" id="p0133" num="0128">D<sub>i</sub>＝360°/(4N<sub>L</sub>-i)i＝0,1；</div>
+<div class="description-paragraph" id="p0134" num="0129">其中，i＝0为偶编码，i＝1为奇编码，N<sub>L</sub>为在赤道和南极或北极之间的纬度Zone的数量。</div>
+<div class="description-paragraph" id="p0135" num="0130">计算纬度索引j：</div>
+<div class="description-paragraph" id="p0136" num="0131">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0137" num="0132">其中，l<sub>s</sub>为参考点纬度，Y<sub>i</sub>为CPR坐标纬度，floor(x)表示取不大于x的最大整数。MOD(a,b)表示求a和b相除的余数。</div>
+<div class="description-paragraph" id="p0138" num="0133">计算纬度值R<sub>i</sub>：</div>
+<div class="description-paragraph" id="p0139" num="0134">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0140" num="0135">确定东、西经度的Zone的D<sub>Li</sub>：</div>
+<div class="description-paragraph" id="p0141" num="0136">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0142" num="0137">计算经度索引m：</div>
+<div class="description-paragraph" id="p0143" num="0138">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0144" num="0139">其中，L<sub>s</sub>为参考点经度，X<sub>i</sub>为CPR坐标经度。</div>
+<div class="description-paragraph" id="p0145" num="0140">计算经度值R<sub>Li</sub>为：</div>
+<div class="description-paragraph" id="p0146" num="0141">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0147" num="0142">步骤1-3：将解码处理后的ADS-B位置数据进行坐标转换，将无人机的ADS-B位置和参考位置的WGS-84椭球坐标转换为地心地固坐标(X,Y,Z)，如图2所示，进而计算出一架无人机A相对地面固定参考点的东-北-天(East North Up,ENU)坐标(x,y,z)。无人机的地心地固坐标计算如下：</div>
+<div class="description-paragraph" id="p0148" num="0143">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0149" num="0144">其中H为无人机海拔高度。e为地球偏心率，N为地球曲率半径，这两个参数计算公式如下：</div>
+<div class="description-paragraph" id="p0150" num="0145">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0151" num="0146">其中，a为地球长半轴，b为地球短半轴。</div>
+<div class="description-paragraph" id="p0152" num="0147">以地面参考点坐标为(0,0,0)，对应的WGS-84椭球坐标为经度(lon)，纬度(lat)，坐标计算如下：</div>
+<div class="description-paragraph" id="p0153" num="0148">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0154" num="0149">同理可得到其他无人飞行器相对地面参考点的位置坐标。</div>
+<div class="description-paragraph" id="p0155" num="0150">步骤2：根据无人机飞行速度和空域建筑布局，建立无人机的飞行保护区，并建立碰撞锥模型进行飞行冲突探测；</div>
+<div class="description-paragraph" id="p0156" num="0151">步骤2-1：确定无人飞行器的飞行保护区模型及飞行信息。</div>
+<div class="description-paragraph" id="p0157" num="0152">定义R<sup>3</sup>为三维实向量空间，无人机球形保护区集合V如下式所示：</div>
+<div class="description-paragraph" id="p0158" num="0153">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0159" num="0154">其中，d<sub>h</sub>表示无人机的球形飞行保护区半径。</div>
+<div class="description-paragraph" id="p0160" num="0155">如图3所示，设无人机A和无人机B在有限的空域内飞行，通过步骤1的ADS-B报文解析得到无人机A和无人机B的飞行速率分别为u<sub>1</sub>和u<sub>2</sub>，以无人机A为原点O作为地面固定参考点，直线AB作为x轴，向量AB方向为x轴正方向，通过右手定则建立三维空间坐标系。</div>
+<div class="description-paragraph" id="p0161" num="0156">在三维球坐标系中，得到两架无人机的飞行速度v<sub>1</sub>和v<sub>2</sub>如下式所示：</div>
+<div class="description-paragraph" id="p0162" num="0157">v<sub>i</sub>＝(u<sub>i</sub>cosφ<sub>i</sub>sinθ<sub>i</sub>,u<sub>i</sub>sinφ<sub>i</sub>sinθ<sub>i</sub>,u<sub>i</sub>cosθ<sub>i</sub>),i∈1,2；</div>
+<div class="description-paragraph" id="p0163" num="0158">其中，φ<sub>i</sub>代表无人机飞行方向与x轴之间形成的正方向夹角；θ<sub>i</sub>代表无人机飞行方向与z轴之间形成的正方向夹角。</div>
+<div class="description-paragraph" id="p0164" num="0159">无人机A和无人机B对应保护区半径分别为<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0165" num="0160">设定无人机A或无人机B在第k个时间段Δt内飞行产生位移为<span class="patent-image-not-available"></span>则无人机在第k+1个时间段Δt内飞行产生位移如下式所示：</div>
+<div class="description-paragraph" id="p0166" num="0161">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0167" num="0162">定义最大速度约束v<sub>max</sub>和最大加速度约束a<sub>max</sub>限制无人机可用速度和加速度的大小，如下公式所示：</div>
+<div class="description-paragraph" id="p0168" num="0163">||v<sub>i</sub>||≤v<sub>max</sub>,i∈1,2；</div>
+<div class="description-paragraph" id="p0169" num="0164">||a<sub>i</sub>||≤a<sub>max</sub>,i∈1,2；</div>
+<div class="description-paragraph" id="p0170" num="0165">其中，||.||代表向量的模值或欧几里得距离，v<sub>i</sub>为第i架无人机的速度，a<sub>i</sub>为第i架无人机的加速度。</div>
+<div class="description-paragraph" id="p0171" num="0166">步骤2-2：采用碰撞锥模型得到飞行冲突探测区域；</div>
+<div class="description-paragraph" id="p0172" num="0167">如图4所示，以两架无人机为例，在三维空间内，无人机A的飞行速度为v<sub>1</sub>，无人机B的飞行速度为v<sub>2</sub>，α为两无人机之间连线AB与速度障碍区边界之间的夹角，即碰撞锥顶角的一半，γ为两无人机之间连线AB与相对速度v<sub>R</sub>之间的夹角。</div>
+<div class="description-paragraph" id="p0173" num="0168">定义相对碰撞锥(Relative Collision Cone,RCC)冲突探测模型，即无人机发生碰撞可能的相对速度v<sub>R</sub>＝v<sub>1</sub>-v<sub>2</sub>的速度集合，如下式所示：</div>
+<div class="description-paragraph" id="p0174" num="0169">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0175" num="0170">其中，<span class="patent-image-not-available"></span>为相对速度v<sub>R</sub>在无人机A质点处引出的射线；Sphere_B为无人机B的飞行安全保护区，且碰撞锥边界与Sphere_B相切。</div>
+<div class="description-paragraph" id="p0176" num="0171">步骤2-3：通过碰撞锥模型判断是否发生飞行冲突；</div>
+<div class="description-paragraph" id="p0177" num="0172">碰撞锥模型只考虑无人机之间的位置关系和当前的状态，以无人机B为参照点，无人机A相对于无人机B运动，若无人机A相对无人机B的运动速度在碰撞锥范围内，则两架无人机之间会发生飞行冲突，否则无飞行冲突；基于碰撞锥模型对两架无人机飞行冲突探测有如下几何判断方法：当α&gt;γ时，两架无人机存在飞行冲突，反之不存在飞行冲突；α和γ的表达式如下式所示：</div>
+<div class="description-paragraph" id="p0178" num="0173">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0179" num="0174">其中D<sub>AB</sub>为无人机A和无人机B的相对距离，D<sub>AB</sub>为向量AB。</div>
+<div class="description-paragraph" id="p0180" num="0175">步骤3：采用互惠速度障碍(Reciprocal Velocity Obstacle,RVO)冲突探测算法确定冲突发生区域，赋予无人机可飞行速度，实现无人机飞行冲突化解；</div>
+<div class="description-paragraph" id="p0181" num="0176">步骤3-1：通过碰撞锥区域和无人机的飞行速度得到互惠速度障碍区域。</div>
+<div class="description-paragraph" id="p0182" num="0177">仍以两架无人机为例，对传统的速度障碍法进行双向迭代，得到互惠速度障碍法，该算法试图同时考虑无人机A和无人机B互惠运动，实现两架无人机共同承担避障责任，以产生较平滑的规避路径，可得到A相对于B生成的RVO区域如图5所示，该区域生成表达式如下：</div>
+<div class="description-paragraph" id="p0183" num="0178">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0184" num="0179">其中，<span class="patent-image-not-available"></span>代表闵可夫斯基和；该区域内的无人机A下一时刻飞行速度v满足下式：</div>
+<div class="description-paragraph" id="p0185" num="0180">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0186" num="0181">其中t为未来某一飞行时刻，Sphere_B为无人机B的飞行安全保护区。</div>
+<div class="description-paragraph" id="p0187" num="0182">若存在n架无人机在空域内飞行，则对于无人机A来说飞行冲突化解速度集合可如下式所示：</div>
+<div class="description-paragraph" id="p0188" num="0183">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0189" num="0184">其中n为空域内飞行的无人机数量。</div>
+<div class="description-paragraph" id="p0190" num="0185">步骤3-2：赋予无人机可飞行速度，实现无人机飞行冲突化解。</div>
+<div class="description-paragraph" id="p0191" num="0186">为无人机A设定一个最优飞行速度<span class="patent-image-not-available"></span>如下式所示：</div>
+<div class="description-paragraph" id="p0192" num="0187">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0193" num="0188">其中，<span class="patent-image-not-available"></span>表示无人机A飞行的最优速率大小，P<sub>1</sub>表示无人机A的当前位置，<span class="patent-image-not-available"></span>表示无人机A的终点位置；</div>
+<div class="description-paragraph" id="p0194" num="0189">无人机A选择RVO区域外最接近最优飞行速度的一个速度向量作为新的飞行速度<span class="patent-image-not-available"></span>如下式所示：</div>
+<div class="description-paragraph" id="p0195" num="0190">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0196" num="0191">其中，v是下一时刻无人机A的飞行速度集合。</div>
+<div class="description-paragraph" id="p0197" num="0192">步骤4：基于RVO算法通过进一步考虑碰撞风险的互惠速度障碍(ConsiderCollision Risk-Reciprocal Velocity Obstacle,CCR-RVO)冲突探测算法减小冲突发生区域，调整无人机飞行冲突化解速度。</div>
+<div class="description-paragraph" id="p0198" num="0193">步骤4-1：根据两架无人机相对位置和速度来考虑两架无人机的碰撞风险，为无人机实时选择适宜的保护区半径。</div>
+<div class="description-paragraph" id="p0199" num="0194">根据保护区半径的实时变化来增大无人机每一时刻可选避障速度矢量范围。无人机之间的碰撞风险程度可以由如图6所示的渐变色碰撞锥区域评估，区域颜色随着无人机A与无人机B距离逐渐减小，碰撞锥区域的颜色逐渐由白到灰再变黑，此时对于两架无人机来说碰撞风险程度逐渐增高，发生碰撞的可能性也随之增大。</div>
+<div class="description-paragraph" id="p0200" num="0195">设置一个保护区半径变化比例系数k，且0&lt;k≤1，使得下一飞行时刻可以通过缩小传统碰撞锥中的保护区半径，进而缩小RCC，此时生成的RVO区域如图7所示，即为考虑碰撞风险的互惠速度障碍区域。通过缩小传统碰撞锥中的保护区半径进而缩小RCC区域，此时生成的RVO区域即为考虑碰撞风险的互惠速度障碍区域；从而增大无人机可供选择的速度区域。</div>
+<div class="description-paragraph" id="p0201" num="0196">如果无人机相对距离较近，则扩大下一飞行时刻保护区半径，进而扩大RCC区域，缩小无人机可供选择的速度区域；当相对距离减小接近到保护区半径时，保护区半径仍为<span class="patent-image-not-available"></span>保持不变。</div>
+<div class="description-paragraph" id="p0202" num="0197">步骤4-2：调整无人机的飞行冲突化解速度；</div>
+<div class="description-paragraph" id="p0203" num="0198">无人机A扩大了可选飞行冲突化解速度集合范围。进而选择更优的飞行冲突化解速度，减少因传统算法速度障碍区域过大导致可选速度集较小，空域内无人机较多产生抖动频发问题。最优飞行速度<span class="patent-image-not-available"></span>计算式如下式所示：</div>
+<div class="description-paragraph" id="p0204" num="0199">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0205" num="0200">本文为无人机A选择CCR-RVO区域外最接近最优飞行速度的一个速度向量作为新的飞行速度，如下式所示：</div>
+<div class="description-paragraph" id="p0206" num="0201">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0207" num="0202">同理得到无人机B的飞行冲突化解速度。</div>
+<div class="description-paragraph" id="p0208" num="0203">多架无人机飞行时，所述步骤4-2中无人机A的飞行冲突化解速度通过下式计算：</div>
+<div class="description-paragraph" id="p0209" num="0204">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0210" num="0205">其中n为空域内飞行的无人机数量。</div>
+<div class="description-paragraph" id="p0211" num="0206">同理也可得到无人机B的飞行冲突化解速度。</div>
+<div class="description-paragraph" id="p0212" num="0207">所述步骤4中设置保护区半径的具体方法为：</div>
+<div class="description-paragraph" id="p0213" num="0208">为保护区半径变化比例系数选择一个调节函数，该函数自变量为两无人机间距，因变量为比例系数，规定无人机与其他无人机或障碍物距离越小，k值越大，且随着碰撞风险增大，k值增长速率逐渐增大，即调节函数在k处斜率逐渐增大。反之间距越大，k值越小，且k值减小速率逐渐减小，即调节函数在k处斜率逐渐减小；</div>
+<div class="description-paragraph" id="p0214" num="0209">调节函数曲线与碰撞风险关系如图8所示。</div>
+<div class="description-paragraph" id="p0215" num="0210">Sigmoid函数具备函数值随自变量的增大而增大，且自变量增大时，其对应函数点处斜率也在逐渐增加，且该函数曲线上的点斜率变化是连续的，Sigmoid函数表达式如下式所示：</div>
+<div class="description-paragraph" id="p0216" num="0211">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0217" num="0212">其函数曲线如图9所示。</div>
+<div class="description-paragraph" id="p0218" num="0213">基于Sigmoid函数特征，选择一个调节函数形如下式所示，保证CCR-RVO区域变化过程也是连续的；</div>
+<div class="description-paragraph" id="p0219" num="0214">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0220" num="0215">函数保证了k值不小于m，即冲突探测过程中碰撞锥区域的保护区半径最小为m倍<span class="patent-image-not-available"></span>其中，0&lt;m&lt;1，2m+n＝2。相较于<span class="patent-image-not-available"></span>每架无人机在飞行过程中可选速度范围得以增大，保证无人机更加平稳地飞行。</div>
+<div class="description-paragraph" id="p0221" num="0216">如图10所示，给出一条函数曲线样例，对应调节函数如下所示：</div>
+<div class="description-paragraph" id="p0222" num="0217">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0223" num="0218">步骤5：进一步优化无人机飞行速度以减小无人机从起始点到目标点的飞行路径长度。</div>
+<div class="description-paragraph" id="p0224" num="0219">梯度下降算法(Gradient Descent Optimization,GDO)是一种用于优化目标函数的迭代方法，广泛应用于机器学习、深度学习和最优化问题中。其核心思想是通过不断调整参数，使得目标函数的值逐渐减小，从而找到局部或全局的最小值。</div>
+<div class="description-paragraph" id="p0225" num="0220">根据梯度下降算法(Gradient Descent Optimization,GDO)原理思路，在步骤4的基础上对互惠速度障碍法实现无人机冲突化解飞行路径进行优化。</div>
+<div class="description-paragraph" id="p0226" num="0221">在实际应用中，优化飞行路径长度自然重要，但优化路径长度和碰撞避免之间存在一定的权衡。过于追求路径长度的优化可能导致碰撞风险增大，而过于注重避免碰撞可能会导致路径长度变长。因此，在探测到冲突后，需要根据实际场景来调整梯度下降算法和RVO算法之间的权重，需要在优化的目标函数中引入一定的碰撞代价，以平衡两者之间的关系，从而整体目标函数应具有如下形式：</div>
+<div class="description-paragraph" id="p0227" num="0222">J(P)＝αL(P)+βC(P)；</div>
+<div class="description-paragraph" id="p0228" num="0223">其中，J(P)为整体优化目标函数，α和β分别为权重系数，用于平衡路径长度和碰撞代价，L(P)为当前时刻无人机飞行路径的总长度，C(P)为无人机的碰撞代价函数，P为无人机位置点，随时间和速度变化。</div>
+<div class="description-paragraph" id="p0229" num="0224">针对空域内的其中一架无人机，给出所优化的整体目标函数如下：</div>
+<div class="description-paragraph" id="p0230" num="0225">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0231" num="0226">其中N为该架无人机从起点到当前位置的总飞行时间，λ为平衡路径长度和碰撞代价的权重，CollisionCost(P<sub>i</sub>)为第i时刻该无人机碰撞代价函数，P<sub>i</sub>为无人机第i时刻飞行位置。其中第I架无人机在第i时刻碰撞代价函数如下式所示：</div>
+<div class="description-paragraph" id="p0232" num="0227">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0233" num="0228">其中M为空域内无人机架次，P<sub>I</sub>和P<sub>J</sub>分别是第I架无人机和第J架无人机在同一飞行时刻的位置，D<sub>AB(min)</sub>为两架无人机规定的最小安全距离，一般设置为<span class="patent-image-not-available"></span>v<sub>I</sub>和v<sub>J</sub>分别是第I架无人机和第J架无人机在同一飞行时刻的速度，v<sub>I</sub>和v<sub>J</sub>通过步骤4-2确定，v<sub>max</sub>是无人机的最大飞行速率，ξ为权重系数，ξ评估两架无人机相对速度对碰撞代价的影响程度。</div>
+<div class="description-paragraph" id="p0234" num="0229">J(P<sub>i</sub>)的取值可以改写为：</div>
+<div class="description-paragraph" id="p0235" num="0230">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0236" num="0231">上式为在位置域下得出所需优化的目标函数，将无人机每一飞行时间段固定为一个常数，得到对应的速度域下的目标函数：</div>
+<div class="description-paragraph" id="p0237" num="0232">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0238" num="0233">根据梯度下降算法，对飞行速度进行更新：</div>
+<div class="description-paragraph" id="p0239" num="0234">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0240" num="0235">其中<span class="patent-image-not-available"></span>代表对目标函数求解偏微分方程，η为每次速度更新调节率，η的取值范围为0.001～0.01。</div>
+<div class="description-paragraph" id="p0241" num="0236">由于设置的学习率固定，导致一直出于下降优化过程，但是直到无人机飞到目标点，得到的飞行路径无法保证最短。为了解决该问题，引入衰减系数，使得梯度下降过程中，学习率在逐步衰减，优化飞行速度，进而逐渐生成预期的飞行路径：</div>
+<div class="description-paragraph" id="p0242" num="0237">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0243" num="0238">其中i为衰减系数，即随着时间的增大，无人机的飞行路径越来越长，学习率的值也随之越来越小，进而保证速度更新幅度越来越慢得到可获取近似最短路径长度的飞行速度。直到飞到目标点生成最终路径。</div>
+<div class="description-paragraph" id="p0244" num="0239">无人机采取上式得到的速度作为下一飞行时刻速度可以保证冲突化解前提下最大化地缩小飞行路径长度，使得该速度逐渐偏向目标点，优化后的无人机飞行状态如图11所示，优化速度为<span class="patent-image-not-available"></span>从而可以使无人机在冲突化解基础上尽可能沿着最优飞行速度方向偏移飞行。可以最大化地缩小飞行路径长度。</div>
+<div class="description-paragraph" id="p0245" num="0240">无需冲突化解时，沿直线航向飞往目标点。</div>
+<div class="description-paragraph" id="p0246" num="0241">当无人机无需冲突化解时，无人机会根据当前位置和目标点位置重新规划最优飞行速度方向和大小飞向目标点，避免无人机偏离预定航线。</div>
+<div class="description-paragraph" id="p0247" num="0242">如图12所示，在探测到飞行冲突时，无人机A的飞行路径将经过M点和N点，MN是规避过程中飞行的路径，规避后速度指向对应目标点。无人机B的飞行路径将经过P点和Q点。PQ是规避过程中飞行的路径，规避后速度指向对应目标点。</div>
+<div class="description-paragraph" id="p0248" num="0243">本发明提供了一种城区低空无人飞行器战术冲突探测化解路径优化方法的思路及方法，具体实现该技术方案的方法和途径很多，以上所述仅是本发明的优选实施方式，应当指出，对于本技术领域的普通技术人员来说，在不脱离本发明原理的前提下，还可以做出若干改进和润饰，这些改进和润饰也应视为本发明的保护范围。本实施例中未明确的各组成部分均可用现有技术加以实现。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

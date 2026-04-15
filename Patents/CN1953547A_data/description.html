@@ -1,0 +1,63 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN1953547A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES403754422">
+<invention-title lang="ZH">无人飞行器对地面移动目标的低空跟踪系统及方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001" num="0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0002">本发明涉及基于无人飞行器的视觉跟踪，具体涉及一种无人旋翼机或无人飞艇对地面移动目标的低空跟踪系统及方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003" num="0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0004">基于视觉的目标识别，跟踪是视觉监控系统的一个关键技术。在具体的监控系统中，视觉跟踪的目的主要是辅助监控人员对可疑目标进行跟踪监视，扩大了监控的范围，减轻了监控人员的劳动强度，增强了监控的可靠性。</div>
+<div class="description-paragraph" id="p0005" num="0005">目前的基于视觉的监控系统主要集中在一些公共场所，重要部门等，监控摄像头通常都是固定安装的，监控的场景范围比较有限，通过监控人员操作摄像机运动(pan-tilt-zoom)跟踪可疑目标，基本上没有识别和自动跟踪的功能，属于被动监视。为了扩大监控范围，常采用多摄像头监控，相邻摄像头的监控范围部分重叠，场景固定，摄像头不能对可疑目标进行跟踪监视。同时现有的自动识别跟踪技术都是先建立被监控场所的背景模型，然后分割运动区域，跟踪运动区域，这些特点都不适合于对地面移动目标进行长距离，大范围的机动跟踪。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006" num="0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0007">本发明的目的在于提供一种无人飞行器对地面移动目标的低空跟踪系统及方法，实现低空无人飞行器携带摄像头对地面移动目标进行长距离，大范围的机动跟踪。</div>
+<div class="description-paragraph" id="p0008" num="0008">为达到上述目的，本发明采用下述技术方案：</div>
+<div class="description-paragraph" id="p0009" num="0009">一种无人飞行器的地面移动目标低空跟踪系统，由机载系统和地面系统组成，其特征在于：</div>
+<div class="description-paragraph" id="p0010" num="0010">所述的机载系统由一个带云台的摄像头、一个机载图像发射模块和一个机载数传模块组成；所述的摄像头固定在云台上，摄像头输出端与机载图像发射模块输入端连接，云台控制串口与机载数传模块串口连接；</div>
+<div class="description-paragraph" id="p0011" num="0011">所述的地面系统由一个地面图像接收模块、一个图像采集处理模块、一台PC机和一个地面数传模块组成；所述的PC机通过PCI插槽与图像采集处理模块连接，通过串口与地面数传模块连接；地面图像接收模块的输出端与图像采集处理模块的输入端连接；</div>
+<div class="description-paragraph" id="p0012" num="0012">所述的机载图像发射模块通过模拟信号与地面图像接收模块联系，地面数传模块通过射频信号与机载数传模块联系。</div>
+<div class="description-paragraph" id="p0013" num="0013">上述的系统，要求所的机载系统位于跟踪的地面移动目标的两侧上方及后上方，距离跟踪目标直线距离是目标长度的8～20倍，机载系统与目标连线与地平夹角大于30度小于75度，允许存在部分遮挡现象，遮挡面积不得大于目标面积的三分之二。</div>
+<div class="description-paragraph" id="p0014" num="0014">上述的摄像头采用佳能VC-C50iR摄像头，机载图像发射模块采用PT-609/1000mw无线音视频发射器，机载数传模块采用9XStream-PKG-R无线数传电台。</div>
+<div class="description-paragraph" id="p0015" num="0015">上述的地面图像接收模块采用PT-603SN无线音视频接收器，图像采集处理模块采用Matrox Meteor-II图像采集卡，地面数传模块采用9XStream-PKG-R无线数传电台。</div>
+<div class="description-paragraph" id="p0016" num="0016">一种用于权利要求1所述的无人飞行器对地面移动目标的低空跟踪方法，采用上述的无人飞行器对地面移动目标的低空跟踪系统进行跟踪，其特征在于要求跟踪的工作步骤如下：</div>
+<div class="description-paragraph" id="p0017" num="0017">(1)机载系统和地面系统初始化，进入跟踪状态；</div>
+<div class="description-paragraph" id="p0018" num="0018">(2)人工干预搜索目标，摄像头对搜索场景进行视频采集，获得原始图像，图像通过机载图像发射模块和地面图像接收模块下传到图像采样处理模块，再传至PC上显示；</div>
+<div class="description-paragraph" id="p0019" num="0019">(3)在跟踪视野发现目标后，人工干预锁定目标，并提取目标的灰度值，对目标进行阈值分割二值化，获取目标在跟踪视野中的位置参数，并转换成云台控制命令；</div>
+<div class="description-paragraph" id="p0020" num="0020">(4)云台控制命令通过地面数传模块和机载数传模块上传给云台，控制云台运动，从而带动摄像头跟踪目标；</div>
+<div class="description-paragraph" id="p0021" num="0021">(5)目标丢失时，人工干预引导靶框重新锁定目标；</div>
+<div class="description-paragraph" id="p0022" num="0022">(6)在靶框图像显示区内点选目标上灰度不同的区域，可以获取多个阈值，完整的提取目标；</div>
+<div class="description-paragraph" id="p0023" num="0023">若更换跟踪目标，重复(2)、(3)、(4)步骤。</div>
+<div class="description-paragraph" id="p0024" num="0024">在上述跟踪方法中，目标的锁定主要是通过阈值分割提取目标，计算目标重心的位置，从而确定其在跟踪视野中的位置并进行跟踪，在跟踪过程中可以随时获取鼠标在跟踪视野中的位置，并以此替代目标的位置，这使得在跟踪状态下随时可以进行人工干预，因此本系统最初目标的锁定及目标丢失后的重新锁定都是在跟踪状态下进行的。</div>
+<div class="description-paragraph" id="p0025" num="0025">在上述跟踪方法中，考虑到目标上可能存在多个不同灰度的区域，以及目标在建筑物或者树木的阴影里时灰度会有一定变化，采用多个阈值来提取目标，在确保跟踪连续性的前提下，进一步提高了跟踪的稳定性。并且在跟踪过程中，还可以根据需要，很方便地修改替换这些阈值。</div>
+<div class="description-paragraph" id="p0026" num="0026">本发明与现有技术相比，具有如下显而易见的突出实质性特点和显著优点：系统分机载和地面两部分，结构非常简单，各模块都已产品化，无需自己设计制作控制板，这使得系统搭建容易；图像下传至PC机上处理，编程调试方便，可以使用较复杂的算法，并且易于进行人工干预。人工干预和目标自动跟踪两种状态可以随时进行无缝切换，以人工干预为主，但不终止自动跟踪状态，这使得系统具有可操作性；基于多阈值的目标提取以及阈值的逐个修改，增加了跟踪系统的稳定性。本发明实现容易，实时性和稳定性较好，可操作性强，减轻了监控人员的劳动强度。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0027" num="0027">附图说明</div>
+<div class="description-paragraph" id="p0028" num="0028">图1是本发明应用场景示意图。</div>
+<div class="description-paragraph" id="p0029" num="0029">图2是本发明跟踪系统结构示意框图。</div>
+<div class="description-paragraph" id="p0030" num="0030">图3是本发明跟踪系统操作界面示意图。</div>
+<div class="description-paragraph" id="p0031" num="0031">图4是本发明跟踪方法工作流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0032" num="0032">具体实施方式</div>
+<div class="description-paragraph" id="p0033" num="0033">本发明的一个优选实施例是：</div>
+<div class="description-paragraph" id="p0034" num="0034">参照图1和图2，本无人飞行器对地面移动目标的低空跟踪系统，包括机载系统2和地面系统1两部分，其中机载系统2由带云台的摄像头4和5、机载图像发射模块3、机载数传模6组成。地面系统1由图像接收模块10、图像采集处理模块9、PC机8、地面数传模块7组成。其特征在于机载部分摄像头4输出端与机载发射模块3输入端连接，云台5控制串口和机载数传模块6串口连接；地面部分PC机8通过PCI插槽与图像采集处理模块9连接，PC机8通过串口与地面数传模块7连接，图像接收模块10输出端和图像采集处理模块9输入端连接。机载系统2和地面系统1之间，机载图像发射模块3通过模拟信号和地面图像接收模块10联系，地面数传模块7通过射频信号与机载数传模块6联系。机载系统2位于跟踪目标的两侧上方及后上方，距离跟踪目标直线距离是目标长度的8到20倍，机载系统2与目标连线与地面夹角大于30度小于75度，允许存在部分遮挡现象。</div>
+<div class="description-paragraph" id="p0035" num="0035">参照图3，本无人飞行器的地面移动目标低空跟踪系统的操作界面，主要分六个区，四个视频显示区分别是跟踪视野11，跟踪视野中心图像显示区12，靶框图像显示区13，靶框图像处理结果显示区14，其中跟踪视野11中心的方框为中心框，另外一个为靶框，靶框位置可以改变。还有两个命令控制区，分别是云台串口命令控制区16和图像处理命令控制区15。</div>
+<div class="description-paragraph" id="p0036" num="0036">参照图1、图2和图3和图4，本无人飞行器对地面移动目标的低空跟踪方法，其工作步骤如下：</div>
+<div class="description-paragraph" id="p0037" num="0037">1)机载系统2与地面系统1初始化，进入跟踪状态；</div>
+<div class="description-paragraph" id="p0038" num="0038">2)人工干预搜索目标，摄像头4对搜索场景进行视频采集，获得原始图像，图像通过图像发射模块3和图像接收模块10下传到图像采集处理模块9，在PC机8上显示；</div>
+<div class="description-paragraph" id="p0039" num="0039">3)在跟踪视野11内发现目标后，人工锁定目标，并提取目标的灰度值，对目标进行阈值分割二值化，获取目标在跟踪视野11中的位置参数，并转换成云台5的控制命令；</div>
+<div class="description-paragraph" id="p0040" num="0040">4)云台5的控制命令通过地面及机载数传模块7和6上传给云台5，控制云台5运动，从而带动摄像头4跟踪目标；</div>
+<div class="description-paragraph" id="p0041" num="0041">5)目标丢失时，在跟踪视野11内人工引导靶框重新锁定目标；</div>
+<div class="description-paragraph" id="p0042" num="0042">6)在靶框图像显示区13内点选目标上灰度不同的区域，获取多个阈值，完整的提取目标；</div>
+<div class="description-paragraph" id="p0043" num="0043">如果更换跟踪目标，重复2)、3)、4)步骤。</div>
+<div class="description-paragraph" id="p0044" num="0044">在上述跟踪方法中，目标的锁定主要是通过阈值分割提取目标，计算目标重心的位置，从而确定其在跟踪视野11中的位置，在跟踪过程中可以随时获取鼠标在跟踪视野11中的位置，并以此替代目标的位置进行人工干预。</div>
+<div class="description-paragraph" id="p0045" num="0045">在上述跟踪方法中，可以在靶框图像显示区13中用鼠标点选多个不同灰度的区域，获取多个阈值来提取目标，在跟踪过程中，还可以图像处理命令控制区15中逐个修改替换这些阈值。</div>
+<div class="description-paragraph" id="p0046" num="0046">参照图1，本无人飞行器的地面移动目标低空跟踪系统用于上海箭微机电技术有限公司研制的超小型旋翼飞行器SUAV-X160和小型可控飞艇SUAV-F11上，对公路上移动的汽车的跟踪效果良好，说明了跟踪方法有效性。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

@@ -1,0 +1,192 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120252729A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES498623168">
+<invention-title id="title1" lang="ZH">一种用于低空飞行器航行引导的路径规划方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空飞行器飞行控制技术领域，特别是涉及一种用于低空飞行器航行引导的路径规划方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空飞行器路径规划是为低空飞行器规划出一条从起点到终点的最优或安全路径，以确保低空飞行器能够安全、高效地完成任务。在相关低空飞行器路径规划技术中，规划的路径与实际航行路径偏差显著。并且规划路径易贴近障碍物，具有低空飞行器碰撞障碍物的风险。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0005">发明内容</div>
+<div class="description-paragraph" id="p0006" num="0003">本发明提供一种用于低空飞行器航行引导的路径规划方法及系统，旨在至少解决现有技术中存在的技术问题之一。</div>
+<div class="description-paragraph" id="p0007" num="0004">本发明的技术方案为一种用于低空飞行器航行引导的路径规划方法，包括：</div>
+<div class="description-paragraph" id="p0008" num="0005">获取目标区域内低空飞行器的先验飞行数据，对所述先验飞行数据进行预处理；</div>
+<div class="description-paragraph" id="p0009" num="0006">基于核密度估计，对预处理后的所述先验飞行数据计算概率密度值，对所述概率密度值进行归一化处理，将归一化处理后的所述概率密度值映射到栅格化环境模型的栅格图中，生成飞行线路安全经验分布图；</div>
+<div class="description-paragraph" id="p0010" num="0007">基于安全距离约束矩阵扩展障碍物区域边界，生成包含安全缓冲区的限制区域矩阵；</div>
+<div class="description-paragraph" id="p0011" num="0008">根据双向A*-KDE算法代价函数、所述飞行线路安全经验分布图和所述限制区域矩阵生成初始路径；</div>
+<div class="description-paragraph" id="p0012" num="0009">对所述初始路径去除冗余节点和进行平滑处理，得到飞行航线。</div>
+<div class="description-paragraph" id="p0013" num="0010">根据本发明的一些实施例，对所述先验飞行数据进行预处理，包括：</div>
+<div class="description-paragraph" id="p0014" num="0011">对所述先验飞行数据进行数据清洗与数据预处理，并通过三次样条插值法补齐缺失采样点。</div>
+<div class="description-paragraph" id="p0015" num="0012">根据本发明的一些实施例，所述基于核密度估计，对预处理后的所述先验飞行数据计算概率密度值，对所述概率密度值进行归一化处理，将归一化处理后的所述概率密度值映射到所述栅格化环境模型的栅格图中，生成飞行线路安全经验分布图，包括：</div>
+<div class="description-paragraph" id="p0016" num="0013">将所述预处理后的所述先验飞行数据的轨迹点映射到所述栅格化环境模型的立体方块中，基于所述核密度估计计算所述立体方块的所述概率密度值；</div>
+<div class="description-paragraph" id="p0017" num="0014">将所述概率密度值进行归一化处理，将所述归一化处理后的所述概率密度值映射到所述栅格化环境模型的所述栅格图中，生成所述飞行线路安全经验分布图。</div>
+<div class="description-paragraph" id="p0018" num="0015">根据本发明的一些实施例，所述核密度估计表示为：</div>
+<div class="description-paragraph" id="p0019" num="0016">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0020" num="0017">式中，p(G)为所述先验飞行数据在所述立体方块G位置的所述概率密度值，n为所述先验飞行数据的数据集中的轨迹点数量，h为带宽，d为数据的维度，K(·)为核函数，X<sub>i</sub>为所述先验飞行数据的所述数据集中的第i个所述轨迹点；</div>
+<div class="description-paragraph" id="p0021" num="0018">所述归一化处理表示为：</div>
+<div class="description-paragraph" id="p0022" num="0019">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0023" num="0020">式中，d<sub>norm</sub>(G)为所述先验飞行数据在所述立体方块G处所述归一化处理后的所述概率密度值，p<sub>max</sub>＝max(p(G))为所述概率密度值的最大值。</div>
+<div class="description-paragraph" id="p0024" num="0021">根据本发明的一些实施例，所述根据双向A*-KDE算法代价函数、所述飞行线路安全经验分布图和所述限制区域矩阵生成初始路径，包括：</div>
+<div class="description-paragraph" id="p0025" num="0022">根据所述双向A*-KDE算法代价函数、所述飞行线路安全经验分布图和所述限制区域矩阵生成路径初始节点；</div>
+<div class="description-paragraph" id="p0026" num="0023">采用双向搜索机制，对所述路径初始节点同步进行正向与反向路径搜索，当正反向路径交汇时生成所述初始路径。</div>
+<div class="description-paragraph" id="p0027" num="0024">根据本发明的一些实施例，对所述初始路径去除冗余节点和进行平滑处理，得到飞行航线，包括：</div>
+<div class="description-paragraph" id="p0028" num="0025">利用视线检测算法对所述初始路径去除所述冗余节点；</div>
+<div class="description-paragraph" id="p0029" num="0026">使用贝塞尔曲线对去除所述冗余节点后的所述初始路径进行平滑处理，得到所述飞行航线。</div>
+<div class="description-paragraph" id="p0030" num="0027">根据本发明的一些实施例，所述利用视线检测算法对所述初始路径去除所述冗余节点，包括：</div>
+<div class="description-paragraph" id="p0031" num="0028">基于视线检测算法，从所述初始路径中提取节点；</div>
+<div class="description-paragraph" id="p0032" num="0029">以第一个所述节点为起始，遍历每一个所述节点，判断当前节点与后续节点之间的视线是否被障碍物或不满足所述安全距离约束矩阵的危险节点阻挡；</div>
+<div class="description-paragraph" id="p0033" num="0030">若所述当前节点与所述后续节点之间的视线无阻挡，则</div>
+<div class="description-paragraph" id="p0034" num="0031">连接所述当前节点与所述后续节点，得到连接线；</div>
+<div class="description-paragraph" id="p0035" num="0032">计算所述当前节点与所述后续节点之间的中间原始节点到所述连接线的垂直距离，得到偏移距离；</div>
+<div class="description-paragraph" id="p0036" num="0033">判断所述偏移距离是否超过偏离阈值；</div>
+<div class="description-paragraph" id="p0037" num="0034">若所述偏移距离不超过所述偏离阈值，则将所述中间原始节点作为所述冗余节点，连接所述当前节点与所述后续节点，移除所述冗余节点，否则放弃连接所述当前节点与所述后续节点，保留所述中间原始节点。</div>
+<div class="description-paragraph" id="p0038" num="0035">根据本发明的一些实施例，若所述偏移距离不超过所述偏离阈值，表示为：</div>
+<div class="description-paragraph" id="p0039" num="0036">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0040" num="0037">式中，δ为所述偏离阈值。</div>
+<div class="description-paragraph" id="p0041" num="0038">根据本发明的一些实施例，所述双向A*-KDE算法代价函数表示为：</div>
+<div class="description-paragraph" id="p0042" num="0039">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0043" num="0040">式中，g(n)为路径实际代价，h(n)为启发式代价，P(n)为核密度潜在场代价，F(neighbor(n))为所述双向A*-KDE算法代价函数，α为所述核密度潜在场代价的权重参数。</div>
+<div class="description-paragraph" id="p0044" num="0041">本发明的技术方案还涉及一种电子设备，所述电子设备包括存储器、处理器，所述存储器存储有计算机程序，所述处理器执行所述计算机程序时实现如上所述的一种用于低空飞行器航行引导的路径规划方法。</div>
+<div class="description-paragraph" id="p0045" num="0042">本发明的技术方案还涉及一种计算机系统，所述计算机系统包括存储介质，所述存储介质存储有计算机程序，所述计算机程序被处理器执行时实现如上所述的一种用于低空飞行器航行引导的路径规划方法。</div>
+<div class="description-paragraph" id="p0046" num="0043">本发明的有益效果包括：获取目标区域内低空飞行器的先验飞行数据，对先验飞行数据进行预处理，接着基于核密度估计，对预处理后的先验飞行数据计算概率密度值，对概率密度值进行归一化处理，将归一化处理后的概率密度值映射到栅格化环境模型的栅格图中，生成飞行线路安全经验分布图，基于安全距离约束矩阵扩展障碍物区域边界，生成包含安全缓冲区的限制区域矩阵，根据双向A*-KDE算法代价函数、飞行线路安全经验分布图和限制区域矩阵生成初始路径，对初始路径去除冗余节点和进行平滑处理，得到飞行航线。使用低空飞行器的先验飞行数据来得到飞行航线，能够减小飞行航线与实际航行路径的偏差，并且基于安全距离约束矩阵扩展障碍物区域边界，充分考虑了障碍物安全距离，能够降低低空飞行器碰撞障碍物的风险。</div>
+<div class="description-paragraph" id="p0047" num="0044">此外，本发明的附加方面和优点将在下面的描述中部分给出，部分将从下面的描述中变得明显，或通过本发明的实践了解到。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0048">附图说明</div>
+<div class="description-paragraph" id="p0049" num="0045">图1是本发明实施例中的一种用于低空飞行器航行引导的路径规划方法的一种可选的流程图。</div>
+<div class="description-paragraph" id="p0050" num="0046">图2是本发明实施例中的基于核密度估计生成飞行线路安全经验分布图的一种可选的流程图。</div>
+<div class="description-paragraph" id="p0051" num="0047">图3是本发明实施例中的根据初始路径得到飞行航线的一种可选的流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0052">具体实施方式</div>
+<div class="description-paragraph" id="p0053" num="0048">以下将结合实施例和附图对本发明的构思、具体结构及产生的技术效果进行清楚、完整的描述，以充分地理解本发明的目的、方案和效果。需要说明的是，在不冲突的情况下，本申请中的实施例及实施例中的特征可以相互组合。</div>
+<div class="description-paragraph" id="p0054" num="0049">需要说明的是，如无特殊说明，当某一特征被称为“固定”、“连接”在另一个特征，它可以直接固定、连接在另一个特征上，也可以间接地固定、连接在另一个特征上。此外，本发明中所使用的上、下、左、右、顶、底等描述仅仅是相对于附图中本发明各组成部分的相互位置关系来说的。</div>
+<div class="description-paragraph" id="p0055" num="0050">此外，除非另有定义，本文所使用的所有的技术和科学术语与本技术领域的技术人员通常理解的含义相同。本文说明书中所使用的术语只是为了描述具体的实施例，而不是为了限制本发明。本文所使用的术语“和/或”包括一个或多个相关的所列项目的任意的组合。</div>
+<div class="description-paragraph" id="p0056" num="0051">应当理解，尽管在本发明可能采用术语第一、第二、第三等来描述各种元件，但这些元件不应限于这些术语。这些术语仅用来将同一类型的元件彼此区分开。例如，在不脱离本发明范围的情况下，第一元件也可以被称为第二元件，类似地，第二元件也可以被称为第一元件。</div>
+<div class="description-paragraph" id="p0057" num="0052">参照图1至图3，在一些实施例中，本发明的技术方案为一种用于低空飞行器航行引导的路径规划方法，包括但不限于步骤101至步骤105，下面依次对各个步骤进行介绍。</div>
+<div class="description-paragraph" id="p0058" num="0053">步骤101：获取目标区域内低空飞行器的先验飞行数据，对先验飞行数据进行预处理。</div>
+<div class="description-paragraph" id="p0059" num="0054">在具体实施例中，低空飞行器是无人机。获取目标区域内无人机的先验飞行数据，对先验飞行数据进行预处理。</div>
+<div class="description-paragraph" id="p0060" num="0055">在一些实施例中，获取目标区域内低空飞行器的先验飞行数据，对先验飞行数据进行预处理之前，用于低空飞行器航行引导的路径规划方法还包括对目标区域进行栅格化空间建模，得到栅格化环境模型。</div>
+<div class="description-paragraph" id="p0061" num="0056">具体地，对于栅格化空间建模，栅格化是将目标区域划分成100×100个栅格，其中，除了100也可以取值其他正整数，具体取值根据实际情况选择，本发明不作具体限定。空间栅格化是划分立体方块，即将目标区域划分形成多个立体方块。</div>
+<div class="description-paragraph" id="p0062" num="0057">在一个具体的实施例中，对目标区域进行栅格化空间建模，得到栅格化环境模型之前，用于低空飞行器航行引导的路径规划方法还包括基于低空飞行器飞行的起点和终点，确认目标区域。</div>
+<div class="description-paragraph" id="p0063" num="0058">在一个具体的实施例中，使用立体方块划分方法对目标区域进行栅格化空间建模，得到栅格化环境模型。</div>
+<div class="description-paragraph" id="p0064" num="0059">在一个具体的实施例中，获取目标区域的实际地图数据，采用灰度图像处理技术对目标区域的实际地图数据进行处理，生成灰度处理后的地图，再栅格化处理灰度处理后的地图，将栅格化处理后的地图中的障碍物信息映射至栅格化环境模型中。</div>
+<div class="description-paragraph" id="p0065" num="0060">具体地，在栅格化环境模型中，黑色立体方块代表障碍物的位置和大小，白色立体方块表示低空飞行器可通行的区域。先验飞行数据是历史飞行数据。</div>
+<div class="description-paragraph" id="p0066" num="0061">在一些实施例中，对先验飞行数据进行预处理，包括：对先验飞行数据进行数据清洗与数据预处理，并通过三次样条插值法补齐缺失采样点。可以理解的是，对先验飞行数据进行数据清洗与数据预处理，优化了先验飞行数据的质量，提高了飞行航线的准确性。</div>
+<div class="description-paragraph" id="p0067" num="0062">在一个具体的实施例中，对先验飞行数据进行数据清洗与数据预处理包括：对先验飞行数据的时间戳、经纬度、航速及航向字段进行格式标准化；剔除异常位置信息，剔除速度和航向异常数据点。</div>
+<div class="description-paragraph" id="p0068" num="0063">步骤102：基于核密度估计，对预处理后的先验飞行数据计算概率密度值，对概率密度值进行归一化处理，将归一化处理后的概率密度值映射到栅格化环境模型的栅格图中，生成飞行线路安全经验分布图。</div>
+<div class="description-paragraph" id="p0069" num="0064">具体地，核密度估计(Kernel Density Estimation,KDE)是一种非参数的概率密度函数估计方法。需要说明的是，将归一化处理后的概率密度值映射到栅格化环境模型的栅格图的每一个立体方块中。其中，概率密度值代表安全经验，概率密度值越大越安全，栅格图上包含有概率密度值，形成飞行线路安全经验分布图。</div>
+<div class="description-paragraph" id="p0070" num="0065">参照图2，在一些实施例中，基于核密度估计，对预处理后的先验飞行数据计算概率密度值，对概率密度值进行归一化处理，将归一化处理后的概率密度值映射到栅格化环境模型的栅格图中，生成飞行线路安全经验分布图，包括但不限于以下步骤201至202。</div>
+<div class="description-paragraph" id="p0071" num="0066">步骤201：将预处理后的先验飞行数据的轨迹点映射到栅格化环境模型的立体方块中，基于核密度估计计算立体方块的概率密度值。</div>
+<div class="description-paragraph" id="p0072" num="0067">步骤202：将概率密度值进行归一化处理，将归一化处理后的概率密度值映射到栅格化环境模型的栅格图中，生成飞行线路安全经验分布图。</div>
+<div class="description-paragraph" id="p0073" num="0068">具体地，先验飞行数据的坐标是三维坐标。以立体方块为基本单元统计分析低空飞行器航线的概率密度值。若立体方块附近的轨迹点集中，则立体方块的概率密度值较高；若立体方块附近的轨迹点较少或立体方块距离轨迹点较远，则立体方块的概率密度值较低。</div>
+<div class="description-paragraph" id="p0074" num="0069">在一些实施例中，核密度估计表示为：</div>
+<div class="description-paragraph" id="p0075" num="0070">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0076" num="0071">式中，p(G)为先验飞行数据在立体方块G位置的概率密度值，n为先验飞行数据的数据集中的轨迹点数量，h为带宽，d为数据的维度，K(·)为核函数，X<sub>i</sub>为先验飞行数据的数据集中的第i个轨迹点；</div>
+<div class="description-paragraph" id="p0077" num="0072">归一化处理表示为：</div>
+<div class="description-paragraph" id="p0078" num="0073">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0079" num="0074">式中，d<sub>norm</sub>(G)为先验飞行数据在立体方块G处归一化处理后的概率密度值，p<sub>max</sub>＝max(p(G))为概率密度值的最大值。</div>
+<div class="description-paragraph" id="p0080" num="0075">具体地，X是当前观察到的轨迹点，是需要估计密度的点。K(·)为核函数，也可以采用高斯核，采用高斯核函数后核密度估计的表达形式为：</div>
+<div class="description-paragraph" id="p0081" num="0076">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0082" num="0077">式中，σ为潜在场扩散系数，exp(·)为指数函数，举例子exp(m)表示自然对数的底数e的m次方。T表示转置操作，(X-X<sub>i</sub>)<sup>T</sup>是向量(X-X<sub>i</sub>)的转置，转置是将列向量转换为行向量。</div>
+<div class="description-paragraph" id="p0083" num="0078">步骤103：基于安全距离约束矩阵扩展障碍物区域边界，生成包含安全缓冲区的限制区域矩阵。</div>
+<div class="description-paragraph" id="p0084" num="0079">在一个具体的实施例中，安全距离约束矩阵A<sub>nn</sub>是一个大小为n×n的矩阵，旨在对航线中的障碍区域进行扩展，形成一个包含安全缓冲区的限制区域矩阵。具体地，通过预设的安全距离d<sub>safe</sub>调整安全距离约束矩阵A<sub>nn</sub>的大小，以确保在节点扩展过程中，仅选择那些与障碍物保持有预设的安全距离的节点进行扩展。安全距离约束矩阵A<sub>nn</sub>和预设的安全距离d<sub>safe</sub>的关系表示为：</div>
+<div class="description-paragraph" id="p0085" num="0080">A<sub>nn</sub>,n＝2·d<sub>safe</sub>+1，</div>
+<div class="description-paragraph" id="p0086" num="0081">当d<sub>safe</sub>取1时，障碍物周围的栅格单位将不满足安全距离约束。</div>
+<div class="description-paragraph" id="p0087" num="0082">具体地，目标区域空间栅格化后，形成多个立体方块。障碍物不会被选择作为路径扩展，当d<sub>safe</sub>取1时，紧靠障碍物的一个立体方块也不会作为路径选择的节点，使生成的路径和障碍物有一定的距离。</div>
+<div class="description-paragraph" id="p0088" num="0083">步骤104：根据双向A*-KDE算法代价函数、飞行线路安全经验分布图和限制区域矩阵生成初始路径。</div>
+<div class="description-paragraph" id="p0089" num="0084">在一个具体的实施例中，设计双向A*-KDE算法代价函数，将路径实际代价、启发式代价和核密度潜在场代价融合，引导路径优先选择高安全密度区域进行路径搜索。具体地，双向A*-KDE算法含义是A*算法和KDE算法的结合体。</div>
+<div class="description-paragraph" id="p0090" num="0085">在一些实施例中，根据双向A*-KDE算法代价函数、飞行线路安全经验分布图和限制区域矩阵生成初始路径，包括：</div>
+<div class="description-paragraph" id="p0091" num="0086">根据双向A*-KDE算法代价函数、飞行线路安全经验分布图和限制区域矩阵生成路径初始节点；</div>
+<div class="description-paragraph" id="p0092" num="0087">采用双向搜索机制，对路径初始节点同步进行正向与反向路径搜索，当正反向路径交汇时生成初始路径。</div>
+<div class="description-paragraph" id="p0093" num="0088">具体地，当正反向路径交汇时，采用路径回溯算法生成初始路径，并记录交汇节点的坐标及索引信息。双向搜索机制显著缩短了路径规划的计算时间。</div>
+<div class="description-paragraph" id="p0094" num="0089">步骤105：对初始路径去除冗余节点和进行平滑处理，得到飞行航线。</div>
+<div class="description-paragraph" id="p0095" num="0090">参照图3，在一些实施例中，对初始路径去除冗余节点和进行平滑处理，得到飞行航线，包括但不限于以下步骤301至302。</div>
+<div class="description-paragraph" id="p0096" num="0091">步骤301：利用视线检测算法对初始路径去除冗余节点。</div>
+<div class="description-paragraph" id="p0097" num="0092">步骤302：使用贝塞尔曲线对去除冗余节点后的初始路径进行平滑处理，得到飞行航线。</div>
+<div class="description-paragraph" id="p0098" num="0093">在具体实施例中，通过贝塞尔曲线平滑处理优化去除冗余节点后的初始路径的路径曲率连续性。</div>
+<div class="description-paragraph" id="p0099" num="0094">具体地，视线检测(Line of Sight,LOS)算法的基本思想是确定一个观察点与目标点之间是否存在没有物体阻挡的直线路径。视线检测算法是通过计算当前位置与目标路径之间的虚拟线，以及这条虚拟线与前进方向之间的角度偏差，来指导系统调整航向和速度，从而保持在预定路径上。采用贝塞尔曲线对去除冗余节点后的初始路径进行平滑优化，提高了飞行航线的连续性、稳定性和安全性。</div>
+<div class="description-paragraph" id="p0100" num="0095">在一些实施例中，利用视线检测算法对初始路径去除冗余节点，包括：</div>
+<div class="description-paragraph" id="p0101" num="0096">基于视线检测算法，从初始路径中提取节点；</div>
+<div class="description-paragraph" id="p0102" num="0097">以第一个节点为起始，遍历每一个节点，判断当前节点与后续节点之间的视线是否被障碍物或不满足安全距离约束矩阵的危险节点阻挡；</div>
+<div class="description-paragraph" id="p0103" num="0098">若当前节点与后续节点之间的视线无阻挡，则</div>
+<div class="description-paragraph" id="p0104" num="0099">连接当前节点与后续节点，得到连接线；</div>
+<div class="description-paragraph" id="p0105" num="0100">计算当前节点与后续节点之间的中间原始节点到连接线的垂直距离，得到偏移距离；</div>
+<div class="description-paragraph" id="p0106" num="0101">判断偏移距离是否超过偏离阈值；</div>
+<div class="description-paragraph" id="p0107" num="0102">若偏移距离不超过偏离阈值，则将中间原始节点作为冗余节点，连接当前节点与后续节点，移除冗余节点，否则放弃连接当前节点与后续节点，保留中间原始节点。</div>
+<div class="description-paragraph" id="p0108" num="0103">在具体实施例中，若当前节点与后续节点之间的视线有阻挡，则无法进一步连接当前节点与后续节点，终止去除冗余节点操作。这时，根据实际情况判断，可以进行下一步平滑处理操作，或者可以回归上一步重新根据双向A*-KDE算法代价函数、飞行线路安全经验分布图和限制区域矩阵生成初始路径。</div>
+<div class="description-paragraph" id="p0109" num="0104">在具体实施例中，当遍历到最后一个节点，终止去除冗余节点操作。</div>
+<div class="description-paragraph" id="p0110" num="0105">具体地，不满足安全距离约束矩阵的危险节点是该危险节点与障碍物之间的距离不满足安全距离约束矩阵，无法扩展障碍物区域边界，使节点包含安全缓冲区。可以理解的是，对初始路径去除冗余节点，优化了飞行航线的长度。</div>
+<div class="description-paragraph" id="p0111" num="0106">在一些实施例中，若偏移距离不超过偏离阈值，表示为：</div>
+<div class="description-paragraph" id="p0112" num="0107">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0113" num="0108">式中，δ为偏离阈值，E、F、C为通过去除冗余节点后的初始路径的三个维度的法向量，D为常数，x<sub>i</sub>、y<sub>i</sub>、z<sub>i</sub>分别为中间原始节点的x、y、z坐标。具体地，该公式为约束公式，限制LOS算法优化后的路径与初始路径的最大偏移距离。</div>
+<div class="description-paragraph" id="p0114" num="0109">在一些实施例中，双向A*-KDE算法代价函数表示为：</div>
+<div class="description-paragraph" id="p0115" num="0110">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0116" num="0111">式中，g(n)为路径实际代价，h(n)为启发式代价，P(n)为核密度潜在场代价，F(neighbor(n))为双向A*-KDE算法代价函数，α为核密度潜在场代价的权重参数，d<sub>safe</sub>为预设的安全距离，neighbor(n)表示当前节点n的邻节点。</div>
+<div class="description-paragraph" id="p0117" num="0112">具体地，路径实际代价表示从起点到当前节点的路径长度，启发式代价表示从当前节点到目标节点的预估代价，核密度潜在场代价表示核密度估计生成的潜在场代价，核密度潜在场代价的权重参数用于调节路径长度与安全性的平衡。</div>
+<div class="description-paragraph" id="p0118" num="0113">在具体的实施例中，路径实际代价g(n)表示为：</div>
+<div class="description-paragraph" id="p0119" num="0114">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0120" num="0115">式中，pos<sub>x</sub>(n)、pos<sub>y</sub>(n)和pos<sub>z</sub>(n)分别为当前节点n的x、y、z坐标，parent(n)表示当前节点n的父节点。</div>
+<div class="description-paragraph" id="p0121" num="0116">在具体的实施例中，启发式代价h(n)用于估算当前节点到目标节点的最短路径代价，结合曼哈顿距离和对角距离，表示为：</div>
+<div class="description-paragraph" id="p0122" num="0117">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0123" num="0118">式中，dx＝|pos<sub>x</sub>(goal)-pos<sub>x</sub>(n)|，dy＝|pos<sub>y</sub>(goal)-pos<sub>y</sub>(n)|，dz＝|pos<sub>z</sub>(goal)-pos<sub>z</sub>(n)|，goal表示目标节点的位置。</div>
+<div class="description-paragraph" id="p0124" num="0119">在具体的实施例中，核密度潜在场代价P(n)通过核密度估计的归一化概率密度值引导路径避开低密度区域。高斯分布的指数形式能够实现密度的快速衰减，有效放大高密度区域的优势，抑制低密度区域的路径选择风险，同时在数值上避免过大波动，有助于路径规划的稳定性。可控的参数A和σ使得用于低空飞行器航行引导的路径规划方法能够灵活适应不同的航行场景。潜在场代价函数的设计采用了高斯分布形式，表示为：</div>
+<div class="description-paragraph" id="p0125" num="0120">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0126" num="0121">式中，exp(·)为指数函数，A为潜在场强度系数，控制密度场对路径的影响程度，高风险场景下可以增大A强化低密度区域的惩罚效应。σ为潜在场扩散系数，决定密度场影响的范围，较小的σ限制了高密度的影响范围，强调局部性；而较大的σ则扩大了密度的影响范围，适合较为全局的路径搜索需求。d(n)为位置n的归一化概率密度值，由KDE计算得到。</div>
+<div class="description-paragraph" id="p0127" num="0122">在一个具体的实施例中，贝塞尔曲线通过调整控制点，能够平滑地过渡路径，表示为：</div>
+<div class="description-paragraph" id="p0128" num="0123">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0129" num="0124">式中，B(t)为贝塞尔曲线，t表示贝塞尔曲线上的一个参数值，用来控制贝塞尔曲线的位置，贝塞尔曲线的表达式利用这个参数t在贝塞尔曲线的区间[0,1]内进行插值。</div>
+<div class="description-paragraph" id="p0130" num="0125">具体地，n是贝塞尔曲线的最高次数，等于控制点数量减1。比如贝塞尔曲线有4个控制点，则n＝3，称为三次贝塞尔曲线。<span class="patent-image-not-available"></span>中，P<sub>i</sub>是第i个控制点；<span class="patent-image-not-available"></span>是二项式系数，是数学计算，即</div>
+<div class="description-paragraph" id="p0131" num="0126">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0132" num="0127">需要说明的是，贝塞尔曲线(Bézier Curve)是一种由控制点定义的矢量曲线。</div>
+<div class="description-paragraph" id="p0133" num="0128">其中，控制点：在贝塞尔曲线中，控制点是定义贝塞尔曲线形状的点。贝塞尔曲线并不直接通过这些控制点，但它们控制贝塞尔曲线的弯曲和路径。起始控制点和终止控制点是贝塞尔曲线的端点，贝塞尔曲线将从起始控制点开始，最终到达终止控制点。中间控制点(对于二次或更高阶贝塞尔曲线)决定贝塞尔曲线的弯曲程度和方向。通过调整这些控制点的位置，可以改变贝塞尔曲线的形状。比如，对于二次贝塞尔曲线，有三个控制点：一个起点，一个终点，一个中间控制点。对于三次贝塞尔曲线，有四个控制点：一个起点，一个终点，两个中间控制点。</div>
+<div class="description-paragraph" id="p0134" num="0129">在具体的实施例中，将去除冗余节点后的初始路径进行分段，得到分段路径，同时结合最小安全距离检测，确保分段路径符合最小安全距离要求；根据分段路径的路径转折点数量确认贝塞尔曲线的阶数；若分段路径穿越障碍物和危险节点，则增加贝塞尔曲线的控制点；使用贝塞尔曲线对分段路径进行平滑优化，将平滑优化后的分段路径进行连接，得到飞行航线。其中，最小安全距离是偏离阈值δ。</div>
+<div class="description-paragraph" id="p0135" num="0130">在具体的实施例中，根据双向A*-KDE算法代价函数、飞行线路安全经验分布图和限制区域矩阵生成路径初始节点，包括：</div>
+<div class="description-paragraph" id="p0136" num="0131">遍历每一个节点，利用双向A*-KDE算法代价函数综合考虑了路径实际代价、启发式距离以及密度场的潜在影响，将路径实际代价、启发式代价和核密度潜在场代价融合，引导优先选择飞行线路安全经验分布图的高安全密度区域进行路径搜索，并通过限制区域矩阵对路径点的扩展方向进行严格限制，以限制选择不满足安全距离约束矩阵的危险节点，最终得到路径初始节点，确保了路径搜索的安全性与合理性。</div>
+<div class="description-paragraph" id="p0137" num="0132">可以理解的是，利用核密度估计生成飞行线路安全经验分布图，使用双向A*-KDE算法代价函数引导优先选择飞行线路安全经验分布图的高安全密度区域进行路径搜索，缩小了路径搜索范围，降低了计算复杂度，并且能够避开潜在风险区域。</div>
+<div class="description-paragraph" id="p0138" num="0133">在一种可能的实现方式中，用于低空飞行器航行引导的路径规划方法应用于低空飞行器的主控单元中，与飞行控制系统协同工作，实现对低空飞行器飞行状态的精准控制和任务的高效执行。</div>
+<div class="description-paragraph" id="p0139" num="0134">在一种具体的实现方式中，用于低空飞行器航行引导的路径规划方法应用于无人机的主控单元中，与飞行控制系统协同工作，实现对无人机飞行状态的精准控制和任务的高效执行。</div>
+<div class="description-paragraph" id="p0140" num="0135">可见，对目标区域进行栅格化空间建模得到栅格化环境模型，获取目标区域内低空飞行器的先验飞行数据，对先验飞行数据进行预处理，基于核密度估计，对预处理后的先验飞行数据计算概率密度值，对概率密度值进行归一化处理，将归一化处理后的概率密度值映射到栅格化环境模型的栅格图中，生成飞行线路安全经验分布图，基于安全距离约束矩阵扩展障碍物区域边界，生成包含安全缓冲区的限制区域矩阵，根据双向A*-KDE算法代价函数、飞行线路安全经验分布图和限制区域矩阵生成初始路径，对初始路径去除冗余节点和进行平滑处理，得到飞行航线。使用低空飞行器的先验飞行数据来得到飞行航线，能够减小飞行航线与实际航行路径的偏差，并且基于安全距离约束矩阵扩展障碍物区域边界，充分考虑了障碍物安全距离，能够降低低空飞行器碰撞障碍物的风险。</div>
+<div class="description-paragraph" id="p0141" num="0136">本发明实施例还提供了一种电子设备，电子设备包括存储器、处理器，存储器存储有计算机程序，处理器执行计算机程序时实现上述一种用于低空飞行器航行引导的路径规划方法。该电子设备可以为包括电脑等任意智能终端。</div>
+<div class="description-paragraph" id="p0142" num="0137">本发明实施例还提供了一种计算机系统，计算机系统包括存储介质，该存储介质存储有计算机程序，计算机程序被处理器执行时实现上述一种用于低空飞行器航行引导的路径规划方法。</div>
+<div class="description-paragraph" id="p0143" num="0138">应当认识到，本发明实施例中的方法步骤可以由计算机硬件、硬件和软件的组合、或者通过存储在非暂时性计算机可读存储器中的计算机指令来实现或实施。所述方法可以使用标准编程技术。每个程序可以以高级过程或面向对象的编程语言来实现以与计算机系统通信。然而，若需要，该程序可以以汇编或机器语言实现。在任何情况下，该语言可以是编译或解释的语言。此外，为此目的该程序能够在编程的专用集成电路上运行。</div>
+<div class="description-paragraph" id="p0144" num="0139">此外，可按任何合适的顺序来执行本文描述的过程的操作，除非本文另外指示或以其他方式明显地与上下文矛盾。本文描述的过程(或变型和/或其组合)可在配置有可执行指令的一个或多个计算机系统的控制下执行，并且可作为共同地在一个或多个处理器上执行的代码(例如，可执行指令、一个或多个计算机程序或一个或多个应用)、由硬件或其组合来实现。所述计算机程序包括可由一个或多个处理器执行的多个指令。</div>
+<div class="description-paragraph" id="p0145" num="0140">进一步，所述方法可以在可操作地连接至合适的任何类型的计算平台中实现，包括但不限于个人电脑、迷你计算机、主框架、工作站、网络或分布式计算环境、单独的或集成的计算机平台、或者与带电粒子工具或其它成像装置通信等等。本发明的各方面可以以存储在非暂时性存储介质或设备上的机器可读代码来实现，无论是可移动的还是集成至计算平台，如硬盘、光学读取和/或写入存储介质、RAM、ROM等，使得其可由可编程计算机读取，当存储介质或设备由计算机读取时可用于配置和操作计算机以执行在此所描述的过程。此外，机器可读代码，或其部分可以通过有线或无线网络传输。当此类媒体包括结合微处理器或其他数据处理器实现上文所述步骤的指令或程序时，本文所述的发明包括这些和其他不同类型的非暂时性计算机可读存储介质。当根据本发明所述的方法和技术编程时，本发明还可以包括计算机本身。</div>
+<div class="description-paragraph" id="p0146" num="0141">计算机程序能够应用于输入数据以执行本文所述的功能，从而转换输入数据以生成存储至非易失性存储器的输出数据。输出信息还可以应用于一个或多个输出设备如显示器。在本发明优选的实施例中，转换的数据表示物理和有形的对象，包括显示器上产生的物理和有形对象的特定视觉描绘。</div>
+<div class="description-paragraph" id="p0147" num="0142">以上所述，只是本发明的较佳实施例而已，本发明并不局限于上述实施方式，只要其以相同的手段达到本发明的技术效果，凡在本发明的精神和原则之内，所做的任何修改、等同替换、改进等，均应包含在本发明保护的范围之内。在本发明的保护范围内其技术方案和/或实施方式可以有各种不同的修改和变化。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

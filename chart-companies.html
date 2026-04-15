@@ -49,7 +49,7 @@
             width: 100%; 
             height: 65vh; 
             min-height: 500px; 
-            max-height: 800px; 
+            /* max-height: 800px;  Removed to allow dynamic growth */
             border-radius: 12px; 
             background: #f8fafc; 
             border: 1px solid #e2e8f0;
@@ -377,7 +377,7 @@
             return fundings || [];
         }
 
-        // 4. 初始化关系图谱 (Updated)
+        // 4. 初始化关系图谱 (改为 Tree / 鱼骨图 - 扁平化 + 动态加载)
         async function initGraph() {
             if (graphChart) { graphChart.resize(); return; }
             const dom = document.getElementById('graph-container');
@@ -386,97 +386,456 @@
             graphChart = echarts.init(dom);
             graphChart.showLoading();
 
-            // 核心：拉取真实融资关系
-            const relations = await fetchGraphRelations();
+            // --- 结构定义：扁平化处理 (Chain -> Category -> Company) ---
+            const industryMap = {
+                'upstream': {
+                    name: '上游：原材料及零部件',
+                    children: [
+                        { name: 'CAx/EDA/PLM', _companies: [] },
+                        { name: '其他研发', _companies: [] },
+                        { name: '钢材/铝合金', _companies: [] },
+                        { name: '碳纤维/复材', _companies: [] },
+                        { name: '树脂/陶瓷', _companies: [] },
+                        { name: '芯片/板卡', _companies: [] },
+                        { name: '电池/电机', _companies: [] },
+                        { name: '陀螺/飞控', _companies: [] },
+                        { name: '其他部件', _companies: [] }
+                    ]
+                },
+                'midstream': {
+                    name: '中游：低空经济核心',
+                    children: [
+                        { name: '摄像机/传感器', _companies: [] },
+                        { name: '云台/其他', _companies: [] },
+                        { name: '无人机', _companies: [] },
+                        { name: 'eVTOL/飞行汽车', _companies: [] },
+                        { name: '高端装备', _companies: [] },
+                        { name: '配套产品', _companies: [] },
+                        { name: '遥控监测', _companies: [] },
+                        { name: '数据处理', _companies: [] },
+                        { name: '起降/指挥', _companies: [] }
+                    ]
+                },
+                'downstream': {
+                    name: '下游：产业融合',
+                    children: [
+                        { name: '飞行审批', _companies: [] },
+                        { name: '空域管控', _companies: [] },
+                        { name: '低空+物流', _companies: [] },
+                        { name: '低空+农业', _companies: [] },
+                        { name: '低空+旅游', _companies: [] },
+                        { name: '低空+应急/消防', _companies: [] },
+                        { name: '综合服务', _companies: [] }
+                    ]
+                }
+            };
 
-            // 构建节点 (Nodes)
-            let nodes = globalCompanyData.map(comp => {
-                let cat = 0; // 默认
-                if (comp.industry_chain === 'midstream') cat = 0; 
-                else if (comp.industry_chain === 'upstream') cat = 1; 
-                else if (comp.industry_chain === 'downstream') cat = 2;
+            // 辅助函数：映射 Category
+            function findLeafNode(chain, category) {
+                const root = industryMap[chain];
+                if (!root) return null;
+                const cat = (category || '').toLowerCase();
+                const kids = root.children;
+
+                if (chain === 'upstream') {
+                    if (cat.includes('cax') || cat.includes('eda') || cat.includes('plm')) return kids[0];
+                    if (cat.includes('design') || cat.includes('research')) return kids[1];
+                    if (cat.includes('steel') || cat.includes('aluminum') || cat.includes('metal')) return kids[2];
+                    if (cat.includes('carbon') || cat.includes('fiber') || cat.includes('composite')) return kids[3];
+                    if (cat.includes('resin') || cat.includes('ceramic') || cat.includes('material')) return kids[4];
+                    if (cat.includes('chip') || cat.includes('board') || cat.includes('ic')) return kids[5];
+                    if (cat.includes('battery') || cat.includes('motor') || cat.includes('power')) return kids[6];
+                    if (cat.includes('gyro') || cat.includes('control') || cat.includes('avionic')) return kids[7];
+                    return kids[8];
+                }
+                if (chain === 'midstream') {
+                    if (cat.includes('camera') || cat.includes('sensor') || cat.includes('lidar') || cat.includes('radar')) return kids[0];
+                    if (cat.includes('gimbal') || cat.includes('payload')) return kids[1];
+                    if (cat.includes('drone') || cat.includes('uav')) return kids[2];
+                    if (cat.includes('evtol') || cat.includes('flying') || cat.includes('aircraft')) return kids[3];
+                    if (cat.includes('equipment')) return kids[4];
+                    if (cat.includes('monitor') || cat.includes('remote')) return kids[6];
+                    if (cat.includes('data')) return kids[7];
+                    if (cat.includes('ground') || cat.includes('landing') || cat.includes('command')) return kids[8];
+                    return kids[5]; // 配套产品
+                }
+                if (chain === 'downstream') {
+                    if (cat.includes('approval') || cat.includes('license')) return kids[0];
+                    if (cat.includes('airspace') || cat.includes('traffic')) return kids[1];
+                    if (cat.includes('logistics') || cat.includes('delivery')) return kids[2];
+                    if (cat.includes('agriculture') || cat.includes('farm')) return kids[3];
+                    if (cat.includes('tourism') || cat.includes('travel')) return kids[4];
+                    if (cat.includes('fire') || cat.includes('emergency') || cat.includes('rescue')) return kids[5];
+                    return kids[6];
+                }
+                return null;
+            }
+
+            // 1. 填充企业数据
+            globalCompanyData.forEach(comp => {
+                const chain = comp.industry_chain || 'midstream';
+                const leafNode = findLeafNode(chain, comp.primary_category);
                 
-                return {
-                    id: 'c-' + comp.id, // 加前缀区分类型
-                    name: comp.name,
-                    symbolSize: comp.is_listed ? 30 : 15,
-                    category: cat,
-                    value: comp.primary_category,
-                    desc: comp.description,
-                    funding: comp.total_funding_est_usd,
-                    nodeType: 'company'
-                };
-            });
-
-            // 提取投资方作为节点
-            let investorSet = new Set();
-            relations.forEach(r => {
-                if(r.lead_investor) investorSet.add(r.lead_investor);
-            });
-            
-            investorSet.forEach(inv => {
-                nodes.push({
-                    id: 'i-' + inv,
-                    name: inv,
-                    category: 3, // 投资方分类
-                    symbolSize: 25,
-                    nodeType: 'investor'
-                });
-            });
-
-            // 构建连线 (Links)
-            let links = [];
-            relations.forEach(r => {
-                const targetId = 'c-' + r.company_id;
-                const sourceId = 'i-' + r.lead_investor;
-                
-                // 确保目标公司存在于节点列表中
-                if (globalCompanyData.find(c => c.id == r.company_id)) {
-                    links.push({
-                        source: sourceId,
-                        target: targetId,
-                        value: r.funding_amount ? `$${r.funding_amount}M` : 'Invested'
+                if (leafNode) {
+                    leafNode._companies.push({
+                        name: comp.name,
+                        value: comp.total_funding_est_usd,
+                        nodeType: 'company',
+                        id: comp.id,
+                        desc: comp.description,
+                        cat: comp.primary_category,
+                        funding: comp.total_funding_est_usd,
+                        label: { 
+                            color: comp.is_listed ? '#b45309' : '#334155',
+                            fontWeight: comp.is_listed ? 'bold' : 'normal'
+                        }
                     });
                 }
             });
 
-            const categories = [
-                {name: '✈️ 主机制造'}, 
-                {name: '⛓️ 供应链'}, 
-                {name: '🏷️ 运营服务'}, 
-                {name: '💰 投资机构'}
-            ];
+            // 2. 处理每个分类节点：超过20个显示“更多”
+            [industryMap.upstream, industryMap.midstream, industryMap.downstream].forEach(chainNode => {
+                chainNode.children.forEach(catNode => {
+                    const all = catNode._companies || [];
+                    // 按融资额排序，确保大企业优先展示
+                    all.sort((a, b) => (b.funding || 0) - (a.funding || 0));
 
+                    if (all.length > 20) {
+                        catNode.children = all.slice(0, 20);
+                        catNode.children.push({
+                            name: `显示更多 (${all.length - 20})`,
+                            nodeType: 'more',
+                            id: 'more_' + catNode.name + '_' + Math.random().toString(36).substr(2, 5),
+                            _remaining: all.slice(20),
+                            itemStyle: { color: '#fbbf24', borderColor: '#d97706' },
+                            label: { color: '#d97706', fontWeight: 'bold' }
+                        });
+                    } else {
+                        catNode.children = all;
+                    }
+                    delete catNode._companies;
+                });
+            });
+
+            // 3. 处理投资机构 (作为单独分支)
+            const relations = await fetchGraphRelations();
+            const investorSet = new Set();
+            relations.forEach(r => {
+                if(r.lead_investor) investorSet.add(r.lead_investor);
+            });
+            
+            const investorNode = {
+                name: '资本：投资机构',
+                children: []
+            };
+            let investors = Array.from(investorSet).map(inv => ({
+                name: inv, nodeType: 'investor', value: 1, label: { color: '#64748b' }
+            }));
+             if (investors.length > 20) {
+                investorNode.children = investors.slice(0, 20);
+                 investorNode.children.push({
+                    name: `显示更多 (${investors.length - 20})`,
+                    nodeType: 'more',
+                    id: 'more_investor_' + Math.random().toString(36).substr(2, 5),
+                    _remaining: investors.slice(20),
+                    itemStyle: { color: '#fbbf24', borderColor: '#d97706' },
+                    label: { color: '#d97706', fontWeight: 'bold' }
+                });
+            } else {
+                investorNode.children = investors;
+            }
+
+            // 构建最终 Tree Data
+            const treeData = {
+                name: "低空经济产业全景",
+                children: [
+                    industryMap.upstream,
+                    industryMap.midstream,
+                    industryMap.downstream,
+                    investorNode
+                ]
+            };
+            
+            // 保存 treeData 到全局以便更新
+            window.currentTreeData = treeData;
+
+            // 递归处理节点样式 (实现 "文字在矩形中，连线在框上" 的效果)
+            const processNodeStyles = (node) => {
+                // 清除之前的 symbol 设置 (如果存在)
+                node.symbol = 'circle'; 
+                
+                if (node.nodeType === 'company') {
+                    // 企业节点 (叶子): 小圆点 + 右侧卡片式 Label
+                    node.symbolSize = 6;
+                    node.itemStyle = { color: '#3b82f6', borderColor: '#fff', borderWidth: 1 };
+                    node.label = {
+                        position: 'right',
+                        distance: 8,
+                        backgroundColor: '#fff',
+                        borderColor: '#e2e8f0',
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        padding: [6, 10],
+                        shadowColor: 'rgba(0,0,0,0.05)',
+                        shadowBlur: 2,
+                        shadowOffsetY: 1,
+                        fontSize: 12,
+                        color: '#334155',
+                        align: 'left'
+                    };
+                } else if (node.nodeType === 'more') {
+                    // "显示更多" 按钮: 稍微大一点的圆点 + 右侧文字
+                    node.symbol = 'circle';
+                    node.symbolSize = 8;
+                    node.itemStyle = { color: '#f59e0b', borderColor: '#fff', borderWidth: 2 };
+                    node.label = {
+                        position: 'right',
+                        distance: 8,
+                        color: '#d97706',
+                        fontWeight: 'bold',
+                        fontSize: 12,
+                        backgroundColor: '#fff7ed',
+                        padding: [4, 8],
+                        borderRadius: 12,
+                        borderColor: '#fcd34d',
+                        borderWidth: 1
+                    };
+                } else if (node.nodeType === 'investor') {
+                    // 投资机构: 类似企业
+                     node.symbolSize = 6;
+                    node.itemStyle = { color: '#64748b', borderColor: '#fff', borderWidth: 1 };
+                    node.label = {
+                        position: 'right',
+                        distance: 8,
+                        backgroundColor: '#f8fafc',
+                        borderColor: '#cbd5e1',
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        padding: [4, 8],
+                        fontSize: 11,
+                        color: '#475569'
+                    };
+                } else {
+                    // 结构节点 (Chain/Category): 
+                    // 改回小圆点，把 Label 放在旁边，避免线条穿过文字
+                    
+                    if (node.name === "低空经济产业全景") {
+                        // 根节点
+                        node.symbolSize = 20;
+                        node.itemStyle = { color: '#1e40af', borderColor: '#fff', borderWidth: 4, shadowBlur: 10, shadowColor: 'rgba(30, 64, 175, 0.5)' };
+                        node.label = { 
+                            position: 'left', 
+                            distance: 15,
+                            color: '#1e3a8a', 
+                            fontWeight: 'bold', 
+                            fontSize: 20 
+                        };
+                    } else if (node.name.startsWith('上游') || node.name.startsWith('中游') || node.name.startsWith('下游')) {
+                        // 产业链环节 (Level 1)
+                        node.symbolSize = 16;
+                        node.itemStyle = { color: '#3b82f6', borderColor: '#fff', borderWidth: 3 };
+                        // label 放下方，避免左右连线干扰
+                        node.label = { 
+                            position: 'bottom', 
+                            distance: 10,
+                            color: '#334155', 
+                            fontWeight: 'bold', 
+                            fontSize: 16,
+                            backgroundColor: '#f1f5f9',
+                            padding: [4, 8],
+                            borderRadius: 4
+                        };
+                    } else {
+                        // 细分领域 (Level 2)
+                        node.symbolSize = 10;
+                        node.itemStyle = { color: '#60a5fa', borderColor: '#fff', borderWidth: 2 };
+                        // label 放上方，错开显示
+                        node.label = { 
+                            position: 'top', 
+                            distance: 8,
+                            color: '#1d4ed8', 
+                            fontWeight: 'bold', 
+                            fontSize: 14 
+                        };
+                    }
+                }
+
+                if (node.children) {
+                    node.children.forEach(processNodeStyles);
+                }
+            };
+
+            processNodeStyles(window.currentTreeData);
+
+            // 自动调整高度函数
+            const autoResizeGraph = () => {
+                let leafCount = 0;
+                const traverse = (node) => {
+                    if (!node.children || node.children.length === 0) {
+                        leafCount++;
+                        return;
+                    }
+                    node.children.forEach(traverse);
+                };
+                traverse(window.currentTreeData);
+                
+                // 估算高度：每个叶子节点约 25px，最小 600px
+                const newHeight = Math.max(600, leafCount * 25);
+                dom.style.height = newHeight + 'px';
+                graphChart.resize();
+            };
+
+            // 3. 配置 ECharts Tree
             const option = {
-                tooltip: {},
-                legend: [{ data: categories.map(a => a.name) }],
-                animationDuration: 1500,
-                animationEasingUpdate: 'quinticInOut',
-                series: [{
-                    type: 'graph',
-                    layout: 'force',
-                    data: nodes,
-                    links: links,
-                    categories: categories,
-                    roam: true, 
-                    label: { show: true, position: 'right', formatter: '{b}' },
-                    force: { repulsion: 200, edgeLength: 120 },
-                    lineStyle: { color: 'source', curveness: 0.3 }
-                }]
+                tooltip: {
+                    trigger: 'item',
+                    triggerOn: 'mousemove',
+                    formatter: function(params) {
+                        const d = params.data;
+                        if (d.nodeType === 'company') {
+                            const f = d.funding ? `$${d.funding}M` : '未披露';
+                            return `<b>${d.name}</b><br/>赛道: ${d.cat}<br/>融资: ${f}`;
+                        }
+                        if (d.nodeType === 'more') return '点击展开剩余企业';
+                        return d.name;
+                    }
+                },
+                series: [
+                    {
+                        type: 'tree',
+                        data: [treeData],
+                        top: '1%',
+                        left: '7%',
+                        bottom: '1%',
+                        right: '20%',
+                        symbolSize: 7,
+                        
+                        layout: 'orthogonal',
+                        orient: 'LR',
+                        
+                        label: {
+                            position: 'left',
+                            verticalAlign: 'middle',
+                            align: 'right',
+                            fontSize: 14,
+                            color: '#1e293b'
+                        },
+
+                        leaves: {
+                            label: {
+                                position: 'right',
+                                verticalAlign: 'middle',
+                                align: 'left',
+                                fontSize: 12
+                            }
+                        },
+
+                        emphasis: {
+                            focus: 'descendant'
+                        },
+                        
+                        expandAndCollapse: true,
+                        animationDuration: 550,
+                        animationDurationUpdate: 750,
+                        
+                        lineStyle: {
+                            color: '#cbd5e1',
+                            width: 1.5,
+                            curveness: 0.5
+                        },
+                        
+                        // 层级样式定义
+                        itemStyle: {
+                            color: '#3b82f6',
+                            borderColor: '#3b82f6'
+                        },
+                        
+                        initialTreeDepth: -1, // 展开所有层级 (User request: 展开所有列)
+                        
+                        levels: [
+                            {
+                                // Root
+                                itemStyle: { color: '#1e3a8a', borderColor: '#1e3a8a', borderWidth: 2 },
+                                label: { fontSize: 18, fontWeight: 'bold', align: 'center', verticalAlign: 'bottom', position: 'top', offset: [0, -10] }
+                            },
+                            {
+                                // Level 1: Up/Mid/Down/Capital
+                                itemStyle: { color: '#2563eb', borderColor: '#2563eb' },
+                                label: { fontSize: 16, fontWeight: 'bold', position: 'top', rotate: 0, offset: [0, -10], align: 'center' }
+                            },
+                            {
+                                // Level 2: Specific Categories (Now direct child of Chain)
+                                itemStyle: { color: '#3b82f6', borderColor: '#3b82f6' },
+                                label: { fontSize: 14, fontWeight: 'bold', position: 'top', align: 'center', offset: [0, -5] } 
+                            },
+                            {
+                                // Level 3: Companies (Leaves)
+                                itemStyle: { color: '#93c5fd', borderColor: '#93c5fd', opacity: 0.8 },
+                                label: { fontSize: 11, color: '#475569' }
+                            }
+                        ]
+                    }
+                ]
             };
 
             graphChart.hideLoading();
+            // 初始调整高度
+            autoResizeGraph();
             graphChart.setOption(option);
             
+            // 点击事件
             graphChart.on('click', function (params) {
-                if (params.dataType === 'node') {
-                    const d = params.data;
-                    if(d.nodeType === 'company') {
-                        const fundingStr = d.funding ? `$${d.funding}M` : '未披露';
-                        showModal(d.name, `<div style="padding:10px;">${d.desc || '暂无简介'}</div>`, `赛道: ${d.value} | 累计融资: ${fundingStr}`);
-                        document.getElementById('modal-tabs-container').style.display = 'none';
+                const d = params.data;
+                if(d.nodeType === 'company') {
+                    const fundingStr = d.funding ? `$${d.funding}M` : '未披露';
+                    showModal(d.name, `<div style="padding:10px;">${d.desc || '暂无简介'}</div>`, `赛道: ${d.cat} | 累计融资: ${fundingStr}`);
+                    document.getElementById('modal-tabs-container').style.display = 'none';
+                } else if(d.nodeType === 'more') {
+                    // 展开逻辑: 通过 ID 匹配找到父节点并替换 children
+                    const findParentAndExpand = (node) => {
+                        if (!node.children || node.children.length === 0) return false;
+                        
+                        // 尝试通过 ID 查找
+                        const idx = node.children.findIndex(child => child.id === d.id);
+                        if (idx !== -1) {
+                            // 找到了！执行展开
+                            const moreNode = node.children[idx];
+                            node.children.splice(idx, 1); // 移除 "More"
+                            node.children.push(...moreNode._remaining); // 添加剩余企业
+                            
+                            // *** 重要: 重新应用样式到新添加的节点 ***
+                            processNodeStyles(node); // 重新处理父节点及其子节点
+
+                            return true;
+                        }
+                        
+                        // 递归查找子节点
+                        for (const child of node.children) {
+                            if (findParentAndExpand(child)) return true;
+                        }
+                        return false;
+                    };
+                    
+                    if (findParentAndExpand(window.currentTreeData)) {
+                        // 重新计算并设置高度
+                        autoResizeGraph();
+                        graphChart.setOption({ series: [{ data: [window.currentTreeData] }] });
+                    } else {
+                        console.warn("未找到对应的 More 节点", d);
                     }
                 }
+            });
+            // 监听节点折叠/展开事件，动态调整高度
+            graphChart.on('restore', function() { autoResizeGraph(); });
+            // ECharts Tree 的展开/折叠不触发特定事件，但可以通过 dataChanged 间接监听，或者简单地绑定 click 
+            // 注意：标准的 tree 展开/折叠是内置行为，点击节点圆圈触发。
+            // 我们可以通过监听 click 事件来重新计算高度，但这可能会有点延迟。
+            // 更好的方式是监听 'click' 且 target 是节点，然后延迟执行 resize
+            graphChart.on('click', function(params) {
+                 if (params.componentType === 'series' && params.seriesType === 'tree') {
+                     // 给一点时间让动画开始，或者让内部状态更新
+                     setTimeout(autoResizeGraph, 100); 
+                 }
             });
         }
 

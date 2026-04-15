@@ -1,0 +1,94 @@
+{
+    "patent_id": "CN109506654B",
+    "title": "CN109506654B - 低空航路规划方法及装置、飞行器 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Fcow It Nanjing Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN109506654B/zh",
+    "citations": [
+        {
+            "Publication Number": "CN1617170A (zh) *",
+            "Priority Date": "2003-09-19",
+            "Publication Date": "2005-05-18",
+            "Assignee": "索尼株式会社",
+            "Title": "环境识别设备及方法，路径规划设备及方法以及机器人",
+            "Link": "https://patents.google.com/patent/CN1617170A/zh"
+        },
+        {
+            "Publication Number": "CN101403625A (zh) *",
+            "Priority Date": "2008-11-07",
+            "Publication Date": "2009-04-08",
+            "Assignee": "南京大学",
+            "Title": "一种基于栅格数据的空间成本距离计算方法",
+            "Link": "https://patents.google.com/patent/CN101403625A/zh"
+        },
+        {
+            "Publication Number": "CN103809597A (zh) *",
+            "Priority Date": "2014-02-18",
+            "Publication Date": "2014-05-21",
+            "Assignee": "清华大学",
+            "Title": "无人机的飞行路径规划方法及无人机",
+            "Link": "https://patents.google.com/patent/CN103809597A/zh"
+        },
+        {
+            "Publication Number": "CN103901892A (zh) *",
+            "Priority Date": "2014-03-04",
+            "Publication Date": "2014-07-02",
+            "Assignee": "清华大学",
+            "Title": "无人机的控制方法及系统",
+            "Link": "https://patents.google.com/patent/CN103901892A/zh"
+        },
+        {
+            "Publication Number": "CN105737819A (zh) *",
+            "Priority Date": "2016-02-25",
+            "Publication Date": "2016-07-06",
+            "Assignee": "西北工业大学",
+            "Title": "基于空间压缩和查表计算的无人机三维航路规划方法",
+            "Link": "https://patents.google.com/patent/CN105737819A/zh"
+        },
+        {
+            "Publication Number": "CN106197426A (zh) *",
+            "Priority Date": "2016-06-28",
+            "Publication Date": "2016-12-07",
+            "Assignee": "桂林电子科技大学",
+            "Title": "一种无人机应急通信路径规划方法及系统",
+            "Link": "https://patents.google.com/patent/CN106197426A/zh"
+        },
+        {
+            "Publication Number": "CN108334062A (zh) *",
+            "Priority Date": "2017-01-18",
+            "Publication Date": "2018-07-27",
+            "Assignee": "华为技术有限公司",
+            "Title": "路径规划方法和装置",
+            "Link": "https://patents.google.com/patent/CN108334062A/zh"
+        },
+        {
+            "Publication Number": "CN106802668A (zh) *",
+            "Priority Date": "2017-02-16",
+            "Publication Date": "2017-06-06",
+            "Assignee": "上海交通大学",
+            "Title": "基于双目与超声波融合的无人机三维避撞方法及系统",
+            "Link": "https://patents.google.com/patent/CN106802668A/zh"
+        },
+        {
+            "Publication Number": "CN108303098A (zh) *",
+            "Priority Date": "2018-02-09",
+            "Publication Date": "2018-07-20",
+            "Assignee": "上海思岚科技有限公司",
+            "Title": "机器人路径规划方法及设备",
+            "Link": "https://patents.google.com/patent/CN108303098A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "US20240427346A1 (en) *",
+            "Priority Date": "2023-06-22",
+            "Publication Date": "2024-12-26",
+            "Assignee": "Phoenix AI LLC",
+            "Title": "Unmanned aerial system path optimization based on machine learning",
+            "Link": "https://patents.google.com/patent/US20240427346A1/en"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:22:01"
+}

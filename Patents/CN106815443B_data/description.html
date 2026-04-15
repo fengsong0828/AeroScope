@@ -1,0 +1,154 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN106815443B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES357797793">
+<invention-title id="tilte1" lang="ZH">面向变化环境的超低空飞行器三维多批多航迹规划方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001" num="0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0002">本发明涉及三维航迹规划领域，具体涉及一种面向变化环境的超低空飞行器三维多批多航迹规划方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003" num="0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0004">航迹规划是随着现代科技进步而兴起的一门新兴技术，它是任务规划系统中的重要一部分。该技术现在已被广泛应用于各种系统中，如飞行器、潜艇、车辆等路径规划系统中。无人飞行器航迹规划则是在一系列物理及任务的限制条件下所进行的为飞行器规划最满意或达到任务需求程度航迹的过程，航迹规划需解决的是将这些约束与航迹规划目标相结合，寻找多约束下的最优航迹。因此从上述定义来看，航迹规划就是将明确的规划目标与各种限制函数相匹配的最优化问题。</div>
+<div class="description-paragraph" id="p0005" num="0005">在国内外众学者的众多研究成果当中，为了减小搜索空间，提高算法的收敛速度，大多数情况下往往只考虑二维平面内的航迹搜索，将水平面和垂直平面的规划问题分开考虑。诸如通视图法、随机路线图法、轮廓图法，人工势场法等方法都可以对二维路径进行规划。</div>
+<div class="description-paragraph" id="p0006" num="0006">但二维规划很难有效地同时考虑地形跟随、地形回避和威胁回避，尤其对于低空突防航迹规划。因此在此基础上众多学者开始进行三维航迹规划的研究。但在三维路径规划方面，由于约束条件众多，模型相对复杂，因此研究成果相对较少。方法主要有粒子群优化算法、遗传算法、蚁群算法、禁忌搜索及启发式搜索等。</div>
+<div class="description-paragraph" id="p0007" num="0007">不论是二维或三维规划，无人机领域的研究均占了大多数。但与无人机相比，这里所要研究的目标飞行器具有飞行高度低，巡航时飞行速度变化范围小，自主规避与导航能力较差，对回避自然障碍物的要求高等有别于其他飞行器的自身固有特点。因此虽然在航迹规划方法上有可以借鉴之处，但在对此类超低空飞行器进行规划时还是需要把其固有特点转化为相应的约束条件。</div>
+<div class="description-paragraph" id="p0008" num="0008">此外，在目标研究方面，不仅需要对单阶段多飞行器的协同规划进行研究，为了适应当今的任务需求还需要对多阶段多飞行器航迹规划进行研究，实现多机协同执行任务等功能，最终使得任务的完成度更高。综上，如何在更复杂的环境条件下不断借助前阶段飞行器获取的环境信息进行更精确，可靠的航迹规划成为一个新的需要解决的问题。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0009" num="0009">发明内容</div>
+<div class="description-paragraph" id="p0010" num="0010">有鉴于此，本发明提供了一种面向变化环境的超低空飞行器三维多批多航迹规划方法，能够在变化环境条件下，解决超低空飞行器在协同作战时的航迹规划问题。</div>
+<div class="description-paragraph" id="p0011" num="0011">一种面向变化环境的超低空飞行器三维多批多航迹规划方法，所述超低空的飞行高度低于200米；具体包括如下步骤：</div>
+<div class="description-paragraph" id="p0012" num="0012">步骤一、根据超低空飞行器的特点以及约束条件，在仿真软件中建立目标模型；</div>
+<div class="description-paragraph" id="p0013" num="0013">步骤二、根据已知的地理环境，采用栅格化的方法，创建三维的地理环境矩阵；根据已知的敌防空部署位置信息，建立与地理环境矩阵相同规模的飞行空域威胁度矩阵，同时将火力覆盖区域内各离散位置的威胁度存入矩阵相应位置；</div>
+<div class="description-paragraph" id="p0014" num="0014">步骤三、根据地理环境矩阵与飞行空域威胁度矩阵，以及步骤一中获得的目标模型，先后使用蚁群算法和粒子群混合算法，在规定的始末点之间对当前批次各飞行器的初始航迹进行规划，每个飞行器获得一条初始航迹；之后在已知的地理环境加入未知山峰威胁，并让飞行器在此环境中按照初始航迹进行模拟飞行，并在遇到未知威胁或火力攻击威胁时，实时更新自己的地理环境矩阵与威胁度矩阵；并将更新后的地理环境矩阵与威胁度矩阵发送至地面，地面根据接收到的所有更新内容，统一对当前的地理环境矩阵与威胁度矩阵进行更新；</div>
+<div class="description-paragraph" id="p0015" num="0015">步骤四：在按照规划的初始航迹的模拟飞行过程中，若每个飞行器均被击落，则返回步骤三，根据更新之后的地理环境矩阵与威胁度矩阵，重新进行下一批飞行器的航迹规划，否则至步骤五；</div>
+<div class="description-paragraph" id="p0016" num="0016">步骤五：若有抵达终点的飞行器且完成最终任务，则仿真结束；若未完成最终任务则返回步骤三，根据更新之后的地理环境矩阵与威胁度矩阵重新进行下一批多个飞行器的初始航迹规划；直至最后一批飞行器飞行结束之后，无论任务是否完成，仿真均结束。</div>
+<div class="description-paragraph" id="p0017" num="0017">较佳地，所述步骤三中模拟飞行的具体方法为：</div>
+<div class="description-paragraph" id="p0018" num="0018">第1步、预先建立一个用于表征未知山峰威胁的曲面表达式，并按照地理环境矩阵的规模进行栅格化，得到山峰矩阵，值为0代表存在山峰，1代表不存在山峰；</div>
+<div class="description-paragraph" id="p0019" num="0019">第2步、飞机在按照初始航迹飞行过程中，若未遇到未知山峰威胁，则按初始航迹飞行；若探测到第1步中未知的区域存在未知山峰威胁，此时，飞机将自动绕行，并将山峰矩阵中所有值为“0”的位置对应到地理环境矩阵的各位置；将所述地理环境矩阵的各位置处的1变成0，并作为斥力点；完成更新；</div>
+<div class="description-paragraph" id="p0020" num="0020">第3步、将初始航迹中所有未发生的航迹点作为引力点；之后，获得各引力点的引力，斥力点的斥力以及引力和斥力所产生的合力；</div>
+<div class="description-paragraph" id="p0021" num="0021">第4步、将获得的合力作用于飞行器上，使飞行器在合力的方向上推进一个步长；</div>
+<div class="description-paragraph" id="p0022" num="0022">第6步、当在合力作用下，如果飞行器回到初始航迹，道中航迹修正结束，飞行器将沿参考航迹继续飞行；否则，重新计算各引力点和斥力点对飞行器产生的引力和斥力，并最终获得合力，将重新获得合力作用于飞行器上进行修正，直至回到初始航迹后，道中航迹修正结束，飞行器将沿参考航迹继续飞行；</div>
+<div class="description-paragraph" id="p0023" num="0023">根据实际的火力攻击威胁进行更新的方法为：</div>
+<div class="description-paragraph" id="p0024" num="0024">若飞行器在飞行过程中遭遇敌方防空火力打击，则根据来袭方向判断大致的攻击位置，获得该攻击位置相对于飞行空域威胁度矩阵的位置点；并根据飞行器遭遇攻击的位置与敌部署位置之间的距离S，再加上在0.5千米至1千米范围内生成的随机距离△S作为敌攻击半径，获得所述位置点的威胁度，并更新威胁度矩阵。</div>
+<div class="description-paragraph" id="p0025" num="0025">较佳地，步骤一中所述约束条件包括地理与威胁约束、飞行器特性约束和多飞行器协同航迹约束；其中，飞行器特性约束又包括最大航程约束、最大转角约束和最低飞行高度约束。</div>
+<div class="description-paragraph" id="p0026" num="0026">有益效果：</div>
+<div class="description-paragraph" id="p0027" num="0027">本发明引入了环境变化这一概念，在飞行器的飞行过程中不断探知周围信息，并以此为依据对航迹进行变更、修正，提高了航迹规划仿真的自主性、真实性。而且，本发明根据前一批次飞行器所获取的对方部署情况，对本批次飞行器的航迹进行规划，使飞行器具有更强的智能性，提高了任务完成的几率。此外，本发明还通过蚁群算法搜索初始可行航迹时引入了启发性函数，减少了初始搜索的盲目性，有效提高了搜索效率。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0028" num="0028">附图说明</div>
+<div class="description-paragraph" id="p0029" num="0029">图1航迹规划流程图。</div>
+<div class="description-paragraph" id="p0030" num="0030">图2蚁群算法流程图。</div>
+<div class="description-paragraph" id="p0031" num="0031">图3粒子群算法流程图。</div>
+<div class="description-paragraph" id="p0032" num="0032">图4初始航迹规划仿真结果。</div>
+<div class="description-paragraph" id="p0033" num="0033">图5道中航迹规划流程图。</div>
+<div class="description-paragraph" id="p0034" num="0034">图6道中航迹修正仿真结果。</div>
+<div class="description-paragraph" id="p0035" num="0035">图7仿真运行过程示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0036" num="0036">具体实施方式</div>
+<div class="description-paragraph" id="p0037" num="0037">下面结合附图并举实施例，对本发明进行详细描述。</div>
+<div class="description-paragraph" id="p0038" num="0038">本发明提供了一种面向变化环境的超低空飞行器三维多批多航迹规划方法；基本的航迹规划流程如图1所示。</div>
+<div class="description-paragraph" id="p0039" num="0039">步骤一、根据超低空飞行器的特点以及限制条件，建立特定的目标模型，并设定合理的仿真参数。其中，初始情况下，所有飞行器的目标模型都是相同的。超低空飞行一般指的是飞行高度低于200米。</div>
+<div class="description-paragraph" id="p0040" num="0040">目标模型包括地理与威胁约束、飞行器特性约束以及多飞行器协同航迹约束。其中飞行器特性约束又包括最大航程约束、最大转角约束和最低飞行高度约束。各种约束条件都可以采用一定的方法将其转化为标准的表达形式。</div>
+<div class="description-paragraph" id="p0041" num="0041">地理与威胁约束</div>
+<div class="description-paragraph" id="p0042" num="0042">飞行器在飞行时必须避开一些地形障碍和敌方防空火力区域，否则飞行器将可能无法完成指定任务。地理与威胁约束的设置是为了提高飞行器的生存概率。</div>
+<div class="description-paragraph" id="p0043" num="0043">在三维空间规划中，地理约束可以表示为一个飞行器不可穿越的区域；而由于敌方部署产生的威胁会随距离的增大而减小，可用正态分布来判定距威胁点不同距离威胁程度。</div>
+<div class="description-paragraph" id="p0044" num="0044">假设在规划区域中，地理与威胁约束区域为集合R<sub>f</sub>，航迹曲线表示为f(x,y,z)。其中(x,y,z)表示航迹曲线上任意一点的三维坐标。则规划区域中的地形与威胁约束可以表示为</div>
+<div class="description-paragraph" id="p0045" num="0045">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0046" num="0046">上式表示航迹上的任意一点都不在地形约束区域中。</div>
+<div class="description-paragraph" id="p0047" num="0047">其余威胁体(包括敌防空火力等)T<sub>i</sub>在环境中的威胁分布可以用正态分布函数来描述(i表示第i个威胁体)，</div>
+<div class="description-paragraph" id="p0048" num="0048">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0049" num="0049">其中：σ<sub>i</sub>表示威胁体T<sub>i</sub>的威胁强度，<span class="patent-image-not-available"></span>为环境中任一位置与威胁体T<sub>i</sub>之间的距离，<span class="patent-image-not-available"></span>表示威胁体T<sub>i</sub>的位置。ω为环境中任一位置。</div>
+<div class="description-paragraph" id="p0050" num="0050">飞行器特性约束</div>
+<div class="description-paragraph" id="p0051" num="0051">飞行器特性约束是指在飞行过程中，飞行器根据自身飞行规律和技术特点所需要遵守的限制条件。本发明中根据飞行器特点，建立的飞行器特性约束如下：</div>
+<div class="description-paragraph" id="p0052" num="0052">1.最大航程约束</div>
+<div class="description-paragraph" id="p0053" num="0053">在进行航迹规划时，飞行器的航程不能超出燃料所允许的最大航程，而且考虑到燃油消耗的不确定性，还应考虑在航程上留出一定的余量。则飞行器航程约束可表示为：</div>
+<div class="description-paragraph" id="p0054" num="0054">J<sub>c</sub>+Δ<sub>c</sub>≤L<sub>max</sub>   (3)</div>
+<div class="description-paragraph" id="p0055" num="0055">式中，J<sub>c</sub>为某条航迹的航程指标，Δ<sub>c</sub>为预留的航程量L<sub>max</sub>为允许的最大航程。</div>
+<div class="description-paragraph" id="p0056" num="0056">对于一条航迹点个数为n的航迹，其航程指标约束则可表示为：</div>
+<div class="description-paragraph" id="p0057" num="0057">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0058" num="0058">式中，l<sub>k,k+1</sub>表示第k-1航迹点与第k个航迹点之间航迹段的航程。</div>
+<div class="description-paragraph" id="p0059" num="0059">2.最大转角约束</div>
+<div class="description-paragraph" id="p0060" num="0060">飞行器转弯时，转弯对其航迹的影响最终会体现在转弯点(航迹点)处的转弯角度上，即飞行器转弯时的转弯角度应在一定的限制范围内。一般而言，若某型特定飞行器允许的最大转弯角为θ，对任意转弯角<span class="patent-image-not-available"></span>都有：</div>
+<div class="description-paragraph" id="p0061" num="0061">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0062" num="0062">在一条航迹点个数为n的航迹上转弯点个数为n-2。</div>
+<div class="description-paragraph" id="p0063" num="0063">3.最低飞行高度约束</div>
+<div class="description-paragraph" id="p0064" num="0064">超低空飞行器的特性决定了它在巡航阶段的飞行高度极低，但飞行高度过低往往会增加飞行器与地面碰撞的概率，降低完成任务的概率。因此，需要保证飞行器在在整条航线上的距地面垂直高度均应该满足：</div>
+<div class="description-paragraph" id="p0065" num="0065">h<sub>k</sub>≥H<sub>min</sub>(k＝1,2,...,n)   (6)</div>
+<div class="description-paragraph" id="p0066" num="0066">式中h<sub>k</sub>为第k个航迹点的高度，H<sub>min</sub>为最低飞行高度限制，本式表示每个航迹点的高度均需高于最低飞行高度。</div>
+<div class="description-paragraph" id="p0067" num="0067">多飞行器协同航迹约束</div>
+<div class="description-paragraph" id="p0068" num="0068">在实际情况中，随着雷达和防空武器性能的不断完善，飞行器遭遇打击的可能性也越来越大。要确保在规定地点完成规定任务，仅仅依靠单个飞行器是不够的。为了保证任务执行的可靠性，在任务进行过程中需要利用多个飞行单位相互协作共同完成指定任务。</div>
+<div class="description-paragraph" id="p0069" num="0069">引入多飞行器后，会遇到处理多飞行器间协同航迹规划的问题。因此在协同航迹规划中，必须考虑多飞行器空间方面的约束。</div>
+<div class="description-paragraph" id="p0070" num="0070">当两架飞行器在空中相遇，距离过近时可能会发生碰撞，从而导致失去执行任务的能力。考虑到两飞行器在同一时空内相遇的可能性，必须保证同一批次内任意两飞行器的航迹在规划区域中不能有交叉点。这里通过规定飞行器间的最小距离来保证飞行器不会发生相互碰撞，对于任意两条航迹p<sub>o</sub>与p<sub>q</sub>之间的最小距离应满足：</div>
+<div class="description-paragraph" id="p0071" num="0071">MIN＝{dis(p<sub>o</sub>-p<sub>q</sub>)}&gt;D   (7)</div>
+<div class="description-paragraph" id="p0072" num="0072">其中dis(p<sub>o</sub>-p<sub>q</sub>)表示航迹p<sub>o</sub>与p<sub>q</sub>之间的最短距离，D表示允许两航迹之间的最短距离。</div>
+<div class="description-paragraph" id="p0073" num="0073">步骤二、环境信息初始化。</div>
+<div class="description-paragraph" id="p0074" num="0074">根据从地图上获取的始末点间的地形，规划空域的天气情况，以及已知的敌方雷达探测区域，敌防空力量部署信息，作为进行初始航迹规划的依据。初始化分为两个部分，首先根据已知的地理环境创建地理环境矩阵，这里将三维空间栅格化之后可得到离散的三维坐标点，地理环境矩阵(为三维矩阵)的规模与离散化后的三维离散坐标点规模相同，且矩阵元素位置与坐标点一一对应。其各维度分别代表地理环境的长、宽和高。矩阵元素的取值只有0和1，0代表矩阵该位置对应的坐标点处于山体丘陵内部或违背最低飞行高度约束的区域，属于不可达区域，1则代表该位置可达。其次，根据已知的敌防空部署位置信息，建立同样规模的飞行空域威胁度矩阵，并根据式(2)计算火力覆盖区域内各离散位置的威胁值，并存入矩阵相应位置。</div>
+<div class="description-paragraph" id="p0075" num="0075">步骤三、根据地理环境矩阵与飞行空域威胁度矩阵，根据已有的目标模型，使用蚁群粒子群混合算法，在规定始末点之间对该批g个飞行器的初始航迹逐个进行规划，每个飞行器获得一条初始航迹。首先用使用蚁群算法进行粗粒度的初始可行航迹搜索，因为蚁群算法通过少量迭代就可以在全局范围内快速搜索到一条较优的可行航迹。此时在已有较优航迹的基础上再通过粒子群算法进行细粒度的深度航迹搜索，最终得到初始航迹。蚁群算法和粒子群算法的流程如图2，图3所示。</div>
+<div class="description-paragraph" id="p0076" num="0076">在步骤三中，初始航迹规划的具体方法包括：</div>
+<div class="description-paragraph" id="p0077" num="0077">S31、初始化搜索空间、蚁群和全局信息素，设定迭代次数，蚁群中不同蚂蚁分别进行初始可行航迹搜索。搜索空间为离散空间，蚂蚁从起始点出发后，需要在离散空间中逐格按照步骤一中的航迹约束条件对下一航迹点进行选取。</div>
+<div class="description-paragraph" id="p0078" num="0078">每只蚂蚁进行初始搜索时借助启发式函数以减少搜索的盲目性。</div>
+<div class="description-paragraph" id="p0079" num="0079">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0080" num="0080">其中β的根据自地理环境矩阵获得，0为不可达，1为可达。h'表示下一搜索位置的高度，s'表示下一搜索位置到终点的距离，<span class="patent-image-not-available"></span>表示当前航迹点与搜索点分别与终点连线后，该两条直线之间的夹角，PH为该点处信息素的浓度。M(x<sub>x</sub>,y<sub>y</sub>,z<sub>z</sub>)为坐标为(x<sub>x</sub>,y<sub>y</sub>,z<sub>z</sub>)的点处的启发式函数值，通过计算M可以判断该点是否可行，且M的数值大小可作为下一搜索位置的可行权重，M越大则说明蚂蚁下一步越可能选择该点作为本次搜索的下一航迹点。式中a,b,c为权重，代表h'，s'，<span class="patent-image-not-available"></span>三个参数对启发式函数值的影响程度。每只蚂蚁搜索完毕后会减小该蚂蚁搜索路线上的信息素浓度，降低下一只蚂蚁重复该路线的概率，保证搜索的广度。</div>
+<div class="description-paragraph" id="p0081" num="0081">S32、每一代蚂蚁搜索完毕后得到与蚁群个数相等的航迹，首先根据式(4)筛选出满足约束的航迹，在筛选结果中通过式(9)计算各个航迹的适应度值，适应度值越低的航迹更优，借此判断航迹优劣。之后对适应度值最低的航迹，提高其各航迹点上的信息素浓度，对搜索空间中位置的信息素进行挥发。</div>
+<div class="description-paragraph" id="p0082" num="0082">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0083" num="0083">上式中，J<sub>1</sub>为整条航迹的代价；整条航迹包含n个航迹点。h<sub>k</sub>表示第k个航迹点的高度，使得飞行路线能尽量贴近地面，尽可能地利用地形遮蔽能力。l<sub>k,k+1</sub>表示第k+1航迹点与第k个航迹点之间航迹段的距离，每段航迹都希望能够尽可能的短，既能够节约燃油消耗，又能够更为快速有效的完成任务。f<sub>k</sub>为第k个航迹点的综合威胁度，包括探测威胁和火力威胁等的综合代价，表明航迹规避威胁保证自身安全的能力,f<sub>k</sub>的值可从威胁度矩阵取得。<span class="patent-image-not-available"></span>分别代表第k个航迹点上的不同代价。ω<sub>1</sub>，ω<sub>2</sub>，ω<sub>3</sub>为各项的权重，代表每一部分代价的重要程度，可根据任务以及人为需求进行调整。</div>
+<div class="description-paragraph" id="p0084" num="0084">S33、根据S31中设定的迭代次数100，按照S31和S32的方法进行迭代，获得初始可行航迹。</div>
+<div class="description-paragraph" id="p0085" num="0085">S34、对初始可行航迹的位置加入随机扰动，作为初始粒子群，初始粒子个数设为30，每一个粒子代表一条可行航迹。</div>
+<div class="description-paragraph" id="p0086" num="0086">S35、通过式(10)所示的适应度函数判断初始粒子代表航迹的优劣</div>
+<div class="description-paragraph" id="p0087" num="0087">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0088" num="0088">式中L<sub>l</sub>为航迹燃油代价，H<sub>h</sub>为高度代价，O<sub>o</sub>为第k个航迹点的广义障碍约束代价，包含地理约束与威胁约束代价，AN<sub>an</sub>为第k个航迹点的转角约束代价。α<sub>1</sub>--α<sub>4</sub>为各项的权重。本发明中针对粒子群算法的特性设计了软性约束，当粒子代表的航迹满足式(1)(4)(5)(6)中所有约束，则<span class="patent-image-not-available"></span>否则，若该航迹违背了式(1)(4)(5)(6)的中任意一项约束时，适应度函数中的对应项会自动附加一个很大的惩罚值来迅速增大总体航迹的代价，例如当该航迹违背燃油约束时，L<sub>l</sub>由原来的<span class="patent-image-not-available"></span>变为<span class="patent-image-not-available"></span>δ即惩罚值，其余代价同理。通过加入惩罚值可以迫使粒子离开违背约束的位置。</div>
+<div class="description-paragraph" id="p0089" num="0089">S36、这里采用线性递减权重粒子群算法对最终的初始航迹进行求解，迭代过程中通过式(10)判断航迹的优劣，并通过粒子的速度位置更新公式，不断更新粒子的速度位置以解算更优航迹。</div>
+<div class="description-paragraph" id="p0090" num="0090">S37、满足迭代次数，设为1000，退出寻优搜索，得到该飞行器的最终初始航迹。</div>
+<div class="description-paragraph" id="p0091" num="0091">S38、若该批g个飞行器的航迹均规划完毕，则至S39，否则根据当前飞行器的航迹，重新建立多飞行器协同航迹约束条件，更新规划区域，并返回S31，对下一飞行器的航迹进行规划，直至本批次全部飞行器的航迹规划完毕。</div>
+<div class="description-paragraph" id="p0092" num="0092">S39、初始航迹规划结束之后，在已知的地理环境加入未知山峰威胁，根据设定的要求，令飞行器沿各自规划得到的初始航迹飞行。</div>
+<div class="description-paragraph" id="p0093" num="0093">初始航迹规划结果示意如图4所示。途中近似圆柱的部分为模拟敌方防空火力部署区域，三条曲线为三个不同飞行器通过上述方法规划得到的航迹。</div>
+<div class="description-paragraph" id="p0094" num="0094">在飞行器飞行过程中，由于战场环境的不确定性,空间中的威胁也需要分为两类，包括事先已确定的威胁与原有地图信息不符的威胁。这些威胁只有进入飞行器的探测区域才能被侦测到，故飞行器不可能在战斗前将所有战场细节都掌握的一清二楚，执行任务时有可能会遇到己方情报中所没有的突发威胁。那么，任务方案中就需要准备应对这一特殊情况的方法。出现与原有地图信息不相符的威胁时，需要进行局部航迹的重新规划。</div>
+<div class="description-paragraph" id="p0095" num="0095">飞行过程中，若飞行器在探测范围内未发现与原地理环境不相符情况则仍沿原参考航迹飞行。实时航迹规划流程如图5所示。否则，会出现以下两种情况，具体操作过程为：</div>
+<div class="description-paragraph" id="p0096" num="0096">情况一、地理环境威胁：</div>
+<div class="description-paragraph" id="p0097" num="0097">若飞行器探测到未知威胁，则在道中采用人工势场法对航迹进行道中实时航迹规划，修正，并更新环境信息。具体为：</div>
+<div class="description-paragraph" id="p0098" num="0098">第1步、预先建立一个用于表征未知山峰威胁的曲面表达式，则该未知山峰威胁的曲面表达式如式(11)所示，为二元指数函数。并按照地理环境矩阵的规模进行栅格化，得到山峰矩阵，值为0代表存在山峰，1代表不存在山峰；</div>
+<div class="description-paragraph" id="p0099" num="0099">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0100" num="0100">式中L(X,Y)为拟合山峰的曲面，(X,Y)为曲面上的坐标，L<sub>r</sub>代表第r座未知山峰中心点的高度，x<sub>r</sub>,y<sub>r</sub>代表第r座山峰峰顶的水平坐标，A，B作为参数用以调节x,y方向上的山峰陡峭程度，以满足不同的仿真需求。M为山峰个数。</div>
+<div class="description-paragraph" id="p0101" num="0101">由于一般飞行器难以在行进间探测到敌方雷达或防空火力部署区域，故此处的突发威胁只考虑因地图老旧等原因造成的地形不符情况。</div>
+<div class="description-paragraph" id="p0102" num="0102">第2步、飞机在按照初始航迹飞行过程中，若未遇到未知山峰威胁，则按初始航迹飞行；若探测到第1步中未知的区域存在未知山峰威胁，此时，飞机将自动绕行，并将山峰矩阵中所有值为“0”的位置对应到地理环境矩阵的各位置；将所述地理环境矩阵的各位置处的1变成0，并作为斥力点；完成更新；</div>
+<div class="description-paragraph" id="p0103" num="0103">第3步、将初始航迹中未发生的航迹点作为引力点；之后，根据下列(12)(13)(14)式进行引斥力以及合力的计算，通过合力方向对飞行器的飞行方向进行实时控制。</div>
+<div class="description-paragraph" id="p0104" num="0104">F<sub>a</sub>(x<sub>c</sub>,y<sub>c</sub>,z<sub>c</sub>)＝λ[O(x<sub>o</sub>,y<sub>o</sub>,z<sub>o</sub>)-C(x<sub>c</sub>,y<sub>c</sub>,z<sub>c</sub>)]   (12)</div>
+<div class="description-paragraph" id="p0105" num="0105">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0106" num="0106">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0107" num="0107">式中，F<sub>a</sub>、F<sub>r</sub>和F分别为飞行器在当前所在位置(x<sub>c</sub>,y<sub>c</sub>,z<sub>c</sub>)处所受的引力、斥力以及合力。式(12)中O(x<sub>o</sub>,y<sub>o</sub>,z<sub>o</sub>)为产生引力的航迹点坐标，C(x<sub>c</sub>,y<sub>c</sub>,z<sub>c</sub>)为飞行器当前坐标，λ为调节引力大小的参数。式(13)中，η为调节斥力大小的参数ρ<sub>0</sub>为斥力作用距离，ρ<sub>obs</sub>为斥力点到当前航迹点的距离，式(14)中u为产生引力点的个数，w为产生斥力点的个数，F<sub>at</sub>表示第t个引力点产生的引力，F<sub>rv</sub>表示第v个斥力点产生的斥力。</div>
+<div class="description-paragraph" id="p0108" num="0108">第4步、将获得的合力作用于飞行器上，使飞行器在合力的方向上推进一个步长；</div>
+<div class="description-paragraph" id="p0109" num="0109">第6步、当在合力作用下，如果飞行器回到初始航迹，道中航迹修正结束，飞行器将沿参考航迹继续飞行；否则，根据第2步中获得的斥力点和第3步中获得的引力点，重新计算各引力点和斥力点对飞行器产生的引力和斥力，并最终获得合力，将重新获得合力作用于飞行器上进行修正，直至回到初始航迹后，道中航迹修正结束，飞行器将沿参考航迹继续飞行；</div>
+<div class="description-paragraph" id="p0110" num="0110">道中实时航迹修正结果如图6所示。图中浅色较粗曲线为参考航迹，即由步骤三中的方法生成的航迹。在图中可以看出浅色较粗曲线航迹穿过了山峰，此处山峰为与原地图信息不相符的威胁，是由于地图老旧等原因导致初始航迹规划时未加考虑的地形。图中深色较细曲线为飞行器在参考航迹基础上通过对周围环境进行实时探测并且在变化环境下对原航迹进行实时修正得到的新航迹。</div>
+<div class="description-paragraph" id="p0111" num="0111">情况二、火力攻击威胁：</div>
+<div class="description-paragraph" id="p0112" num="0112">若飞行器在飞行过程中遭遇敌方防空火力打击，则根据来袭方向判断大致的攻击位置，获得该攻击位置相对于飞行空域威胁度矩阵的位置点；并根据飞行器遭遇攻击的位置与敌部署位置之间的距离S，S再加上在0.5-1km范围内生成的随机距离△S作为敌攻击半径。最后通过式(2)计算该位置点的威胁度，并更新威胁度矩阵。若飞行器未遭遇打击则仍沿原参考航迹飞行。</div>
+<div class="description-paragraph" id="p0113" num="0113">最后，将更新后的地理环境矩阵与威胁度矩阵发送至地面，地面根据接收到的所有更新内容，统一对当前的地理环境矩阵与威胁度矩阵进行更新；</div>
+<div class="description-paragraph" id="p0114" num="0114">步骤四：若该阶段每个飞行器道中均被击落，则返回步骤三，根据更新之后的地理环境矩阵与威胁度矩阵重新进行下一批飞行器的航迹规划，否则至步骤五。</div>
+<div class="description-paragraph" id="p0115" num="0115">步骤五：若有抵达终点的飞行器且完成最终任务，则仿真结束。若未完成最终任务则返回步骤三，根据更新之后的地理环境矩阵与威胁度矩阵重新进行下一批多个飞行器的初始航迹规划；直至最后一批飞行器飞行结束之后，无论任务是否完成，仿真均结束。</div>
+<div class="description-paragraph" id="p0116" num="0116">整体仿真结果如图7所示。如图所示仿真区域设置为长宽各40km，高为250m的空间，飞行器在该区域中依据地形，敌探测区域等环境因素进行航迹规划。由图可知，仿真过程中每批发射两枚飞行器，分别沿不同的规划路径向目的地进发执行任务。图中数字代表飞行器的批次，中间两条较短的航迹代表飞行器遭遇未知的敌方防空火力打击，而在道中终止的航迹，上下两条浅色较粗航迹为在当前已知环境信息下，通过初始航迹规划可抵达目的地的航迹，下路一段在浅色航迹基础上改道的深色曲线则是飞行器在原参考航迹(初始航迹)下根据道中探测得到的变化环境信息自主修正得到的航迹。整体态势：图中第一批飞行器均由于遭遇未知敌方打击坠毁，第二批飞行器在更新环境数据并进行航迹重规划之后能够成功抵达目的地。其中第二批目标中某一飞行器在行进间探测到未知地形，最终也通过道中航迹实时修正成功避开障碍。</div>
+<div class="description-paragraph" id="p0117" num="0117">综上所述，以上仅为本发明的较佳实施例而已，并非用于限定本发明的保护范围。凡在本发明的精神和原则之内，所作的任何修改、等同替换、改进等，均应包含在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

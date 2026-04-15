@@ -1,0 +1,110 @@
+{
+    "patent_id": "CN114120715A",
+    "title": "CN114120715A - 低空飞行器防碰撞的方法、装置、设备及计算机存储介质 - Google Patents",
+    "status": "Unknown",
+    "assignee": "China Mobile Communications Group Co Ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN114120715A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN102831790A (zh) *",
+            "Priority Date": "2012-09-24",
+            "Publication Date": "2012-12-19",
+            "Assignee": "中国航空无线电电子研究所",
+            "Title": "一种基于北斗的空中交通碰撞预警方法",
+            "Link": "https://patents.google.com/patent/CN102831790A/zh"
+        },
+        {
+            "Publication Number": "CN103592948A (zh) *",
+            "Priority Date": "2013-12-04",
+            "Publication Date": "2014-02-19",
+            "Assignee": "成都纵横自动化技术有限公司",
+            "Title": "无人机飞行防撞方法",
+            "Link": "https://patents.google.com/patent/CN103592948A/zh"
+        },
+        {
+            "Publication Number": "US9417325B1 (en) *",
+            "Priority Date": "2014-01-10",
+            "Publication Date": "2016-08-16",
+            "Assignee": "Google Inc.",
+            "Title": "Interface for accessing radar data",
+            "Link": "https://patents.google.com/patent/US9417325B1/en"
+        },
+        {
+            "Publication Number": "CN105978999A (zh) *",
+            "Priority Date": "2016-06-27",
+            "Publication Date": "2016-09-28",
+            "Assignee": "北京小米移动软件有限公司",
+            "Title": "告警方法及装置",
+            "Link": "https://patents.google.com/patent/CN105978999A/zh"
+        },
+        {
+            "Publication Number": "CN107690125A (zh) *",
+            "Priority Date": "2016-08-05",
+            "Publication Date": "2018-02-13",
+            "Assignee": "霍尼韦尔国际公司",
+            "Title": "在机场处地面交通的监视与控制",
+            "Link": "https://patents.google.com/patent/CN107690125A/zh"
+        },
+        {
+            "Publication Number": "CN111512354A (zh) *",
+            "Priority Date": "2017-10-25",
+            "Publication Date": "2020-08-07",
+            "Assignee": "维纳缇有限公司",
+            "Title": "飞行器交通控制方法",
+            "Link": "https://patents.google.com/patent/CN111512354A/zh"
+        },
+        {
+            "Publication Number": "CN109584631A (zh) *",
+            "Priority Date": "2018-12-14",
+            "Publication Date": "2019-04-05",
+            "Assignee": "北京大学深圳研究院",
+            "Title": "基于5g车联网的车辆防碰撞控制方法",
+            "Link": "https://patents.google.com/patent/CN109584631A/zh"
+        },
+        {
+            "Publication Number": "CN110223539A (zh) *",
+            "Priority Date": "2019-07-09",
+            "Publication Date": "2019-09-10",
+            "Assignee": "飞牛智能科技（南京）有限公司",
+            "Title": "适于低空无人机的预警范围实时获取方法",
+            "Link": "https://patents.google.com/patent/CN110223539A/zh"
+        },
+        {
+            "Publication Number": "CN111489585A (zh) *",
+            "Priority Date": "2020-03-04",
+            "Publication Date": "2020-08-04",
+            "Assignee": "昆明理工大学",
+            "Title": "一种基于边缘计算的车辆行人碰撞避免方法",
+            "Link": "https://patents.google.com/patent/CN111489585A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN115562339A (zh) *",
+            "Priority Date": "2022-10-17",
+            "Publication Date": "2023-01-03",
+            "Assignee": "广东汇天航空航天科技有限公司",
+            "Title": "飞行器避障方法、系统及计算机可读存储介质",
+            "Link": "https://patents.google.com/patent/CN115562339A/zh"
+        },
+        {
+            "Publication Number": "WO2024082369A1 (zh) *",
+            "Priority Date": "2022-10-17",
+            "Publication Date": "2024-04-25",
+            "Assignee": "广东汇天航空航天科技有限公司",
+            "Title": "飞行器避障方法、系统及计算机可读存储介质",
+            "Link": "https://patents.google.com/patent/WO2024082369A1/zh"
+        },
+        {
+            "Publication Number": "CN119360682A (zh) *",
+            "Priority Date": "2024-12-12",
+            "Publication Date": "2025-01-24",
+            "Assignee": "四川省天链星通科技有限公司",
+            "Title": "低空飞行器防撞控制方法、装置、设备及存储介质",
+            "Link": "https://patents.google.com/patent/CN119360682A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:39:07"
+}

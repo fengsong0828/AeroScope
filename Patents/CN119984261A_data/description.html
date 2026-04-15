@@ -1,0 +1,209 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119984261A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES494858649">
+<invention-title id="title1" lang="ZH">用于低空无人飞行器的地面目标位置确定方法及装置</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及计算机视觉技术领域，尤其涉及一种用于低空无人飞行器的地面目标位置确定方法、装置及存储介质。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">在目标追踪、人员救援、物资投送等任务中，低空无人飞行器经常需要获取目标在世界坐标系中的精确位置。但对于山地等绝对高程变化较多的场景，目标的位置通常难以通过单纯的经纬度描述，而是需要带有高程信息的位置描述。</div>
+<div class="description-paragraph" id="p0005" num="0003">一般而言，低空无人飞行器可携带激光雷达等测距传感器来获取高程信息。然而，测距传感器通常较为笨重且具有较高额功耗，且会导致移动能力和续航里程下降，提高了运行成本。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本发明提供一种用于低空无人飞行器的地面目标位置确定方法及装置，用以解决现有技术中系统运行成本过高的技术问题。</div>
+<div class="description-paragraph" id="p0008" num="0005">第一方面，本发明提供一种用于低空无人飞行器的地面目标位置确定方法，包括如下步骤。</div>
+<div class="description-paragraph" id="p0009" num="0006">利用低空无人飞行器搭载的光学传感器采集多幅图像，并获取所述光学传感器采集每一图像时的位姿信息；</div>
+<div class="description-paragraph" id="p0010">利用目标检测模型获取所述图像中的目标，并对不同图像中的目标进行匹配，得到包含同一目标的多幅图像；</div>
+<div class="description-paragraph" id="p0011">基于包含同一目标的多幅图像各自对应的所述位姿信息，获取所述同一目标的位置信息。</div>
+<div class="description-paragraph" id="p0012" num="0007">在一些实施例中，所述利用目标检测模型获取所述图像中的目标，并对不同图像中的目标进行匹配，包括：</div>
+<div class="description-paragraph" id="p0013">利用目标检测模型对所述图像进行目标检测，得到所述图像中的每一目标对应的目标检测框；</div>
+<div class="description-paragraph" id="p0014">获取所述目标检测框中的特征点集合；</div>
+<div class="description-paragraph" id="p0015">基于所述目标检测框的邻域范围和所述目标检测框中的特征点集合，对不同图像中的目标进行匹配。</div>
+<div class="description-paragraph" id="p0016" num="0008">在一些实施例中，所述获取所述目标检测框中的特征点集合，包括：</div>
+<div class="description-paragraph" id="p0017">获取所述目标检测框对应的图像分块；</div>
+<div class="description-paragraph" id="p0018">对所述图像分块进行特征提取，得到所述图像分块对应的特征点集合；</div>
+<div class="description-paragraph" id="p0019">确定所述目标检测框中的特征点集合为所述图像分块对应的特征点集合。</div>
+<div class="description-paragraph" id="p0020" num="0009">在一些实施例中，所述基于目标检测框的邻域范围和所述目标检测框中的特征点集合，对不同图像中的目标进行匹配，包括：</div>
+<div class="description-paragraph" id="p0021">确定当前图像中的目标检测框的邻域范围；</div>
+<div class="description-paragraph" id="p0022">将后续图像中的所述邻域范围内存在的目标检测框作为候选匹配框；</div>
+<div class="description-paragraph" id="p0023">对所述候选匹配框中的特征点集合与所述当前图像中的目标检测框中的特征点集合进行匹配。</div>
+<div class="description-paragraph" id="p0024" num="0010">在一些实施例中，所述方法还包括：</div>
+<div class="description-paragraph" id="p0025">在匹配成功的特征点数量高于预设阈值的情况下，确定所述候选匹配框中的目标与所述当前图像中的目标检测框中的目标为同一目标；和/或</div>
+<div class="description-paragraph" id="p0026">在匹配成功的特征点数量小于或等于预设阈值的情况下，确定所述候选匹配框中的目标与所述当前图像中的目标检测框中的目标不是同一目标。</div>
+<div class="description-paragraph" id="p0027" num="0011">在一些实施例中，所述基于包含同一目标的多幅图像各自对应的所述位姿信息，获取所述同一目标的位置信息，包括：</div>
+<div class="description-paragraph" id="p0028">基于包含同一目标的多幅图像各自对应的所述位姿信息以及所述同一目标的目标检测框，利用多目视觉法和三角定位法获取所述同一目标在世界坐标系下的位置信息。</div>
+<div class="description-paragraph" id="p0029" num="0012">在一些实施例中，所述利用低空无人飞行器搭载的光学传感器采集多幅图像，包括：</div>
+<div class="description-paragraph" id="p0030">利用一台低空无人飞行器搭载的光学传感器获取多幅图像；和/或</div>
+<div class="description-paragraph" id="p0031">利用多台低空无人飞行器搭载的光学传感器获取同一时刻对应的多幅图像。</div>
+<div class="description-paragraph" id="p0032" num="0013">在一些实施例中，所述获取所述光学传感器采集每一图像时的位姿信息，包括：</div>
+<div class="description-paragraph" id="p0033">利用所述低空无人飞行器搭载的定位传感器获取所述光学传感器采集每一图像时在世界坐标系下的位置数据；</div>
+<div class="description-paragraph" id="p0034">利用所述低空无人飞行器搭载的姿态传感器获取所述光学传感器采集每一图像时的姿态数据。</div>
+<div class="description-paragraph" id="p0035" num="0014">第二方面，本发明提供一种用于低空无人飞行器的地面目标位置确定装置，包括如下模块。</div>
+<div class="description-paragraph" id="p0036" num="0015">第一获取模块，用于利用低空无人飞行器搭载的光学传感器采集多幅图像，并获取所述光学传感器采集每一图像时的位姿信息；</div>
+<div class="description-paragraph" id="p0037">第二获取模块，用于利用目标检测模型获取所述图像中的目标，并对不同图像中的目标进行匹配，得到包含同一目标的多幅图像；</div>
+<div class="description-paragraph" id="p0038">第三获取模块，用于基于包含同一目标的多幅图像各自对应的所述位姿信息，获取所述同一目标的位置信息。</div>
+<div class="description-paragraph" id="p0039" num="0016">第三方面，本发明提供一种电子设备，包括存储器、处理器及存储在存储器上并可在处理器上运行的计算机程序，所述处理器执行所述计算机程序时实现如上述任一种所述用于低空无人飞行器的地面目标位置确定方法。</div>
+<div class="description-paragraph" id="p0040" num="0017">第四方面，非暂态计算机可读存储介质，其上存储有计算机程序，该计算机程序被处理器执行时实现如上述任一种所述用于低空无人飞行器的地面目标位置确定方法。</div>
+<div class="description-paragraph" id="p0041" num="0018">第五方面，本发明还提供一种计算机程序产品，包括计算机程序，所述计算机程序被处理器执行时实现如上述第一方面所述的用于低空无人飞行器的地面目标位置确定方法。</div>
+<div class="description-paragraph" id="p0042" num="0019">本发明提供的用于低空无人飞行器的地面目标位置确定方法及装置，利用低空无人飞行器搭载的光学传感器采集多幅图像，并获取所述光学传感器采集每一图像时的位姿信息；利用目标检测模型获取所述图像中的目标，并对不同图像中的目标进行匹配，得到包含同一目标的多幅图像；基于包含同一目标的多幅图像各自对应的所述位姿信息，获取所述同一目标的位置信息。基于计算机视觉进行目标识别和目标匹配后，基于采集图像时的位姿信息来估计目标的位置，使无人飞行器无需挂载测距设备便能实现目标位置的确定，降低了设备成本，减轻了系统重量，从而提升了系统机动性和续航里程，还降低了系统总功耗，从而整体上减少了系统运行成本。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0043">附图说明</div>
+<div class="description-paragraph" id="p0044" num="0020">为了更清楚地说明本发明或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作一简单地介绍，显而易见地，下面描述中的附图是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0045" num="0021">图1是本发明提供的用于低空无人飞行器的地面目标位置确定方法的流程示意图之一。</div>
+<div class="description-paragraph" id="p0046" num="0022">图2是本发明提供的用于低空无人飞行器的地面目标位置确定方法的流程示意图之二。</div>
+<div class="description-paragraph" id="p0047" num="0023">图3是本发明提供的多帧图像之间的目标特征匹配示意图。</div>
+<div class="description-paragraph" id="p0048" num="0024">图4是本发明提供的基于多目视觉的目标位置估计示意图。</div>
+<div class="description-paragraph" id="p0049" num="0025">图5是本发明提供的用于低空无人飞行器的地面目标位置确定装置的结构示意图。</div>
+<div class="description-paragraph" id="p0050" num="0026">图6是本发明提供的电子设备的结构示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0051">具体实施方式</div>
+<div class="description-paragraph" id="p0052" num="0027">为使本发明的目的、技术方案和优点更加清楚，下面将结合本发明中的附图，对本发明中的技术方案进行清楚、完整地描述，显然，所描述的实施例是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有作出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0053" num="0028">图1是本发明提供的用于低空无人飞行器的地面目标位置确定方法的流程示意图之一，如图1所示，本发明提供一种用于低空无人飞行器的地面目标位置确定方法。该方法包括：</div>
+<div class="description-paragraph" id="p0054">步骤101、利用低空无人飞行器搭载的光学传感器采集多幅图像，并获取所述光学传感器采集每一图像时的位姿信息。</div>
+<div class="description-paragraph" id="p0055" num="0029">具体地，利用低空无人飞行器搭载或挂载的光学传感器，以固定的帧率采集多幅图像。</div>
+<div class="description-paragraph" id="p0056" num="0030">低空无人飞行器具备机载计算单元，用于将图像和位姿信息等传输至云端计算机进行处理。</div>
+<div class="description-paragraph" id="p0057" num="0031">光学传感器可以为可见光相机或热成像相机等成像设备。成像设备应经过单目相机标定，实现图像去畸变处理，并获取内参。</div>
+<div class="description-paragraph" id="p0058" num="0032">光学传感器采集的图像为对准地面拍摄的图像。</div>
+<div class="description-paragraph" id="p0059" num="0033">获取图像的同时获取该光学传感器采集每一图像时的位姿信息。位姿信息包括位置信息和姿态信息，该位置信息可以为世界坐标系下的位置坐标，该姿态信息包括俯仰、滚转和偏航角度等。</div>
+<div class="description-paragraph" id="p0060" num="0034">步骤102、利用目标检测模型获取所述图像中的目标，并对不同图像中的目标进行匹配，得到包含同一目标的多幅图像。</div>
+<div class="description-paragraph" id="p0061" num="0035">具体地，利用训练好的目标检测模型对图像进行目标识别，输出图像中每一目标的检测框或矩形框，并对不同图像中的目标进行匹配，即进行相似度对比，若目标相似度很高则匹配成功，表明进行匹配的不同图像中的目标是同一目标，遍历完所有的目标后，得到一组或多组图像集，每一图像集为包含同一目标的多幅图像。</div>
+<div class="description-paragraph" id="p0062" num="0036">目标检测模型可以为YOLO系列或其他目标检测网络模型。</div>
+<div class="description-paragraph" id="p0063" num="0037">步骤103、基于包含同一目标的多幅图像各自对应的所述位姿信息，获取所述同一目标的位置信息。</div>
+<div class="description-paragraph" id="p0064" num="0038">具体地，对于每个至少匹配成功一次的目标，统计匹配成功的图像集合，并确定该图像集合中每一图像对应的位姿信息，得到位姿信息集合，基于该位姿信息集合以及该目标的像素位置（即目标检测得到的位置信息），估计该目标的位置信息。</div>
+<div class="description-paragraph" id="p0065" num="0039">本申请实施例提供的用于低空无人飞行器的地面目标位置确定方法，利用低空无人飞行器搭载的光学传感器采集多幅图像，并获取光学传感器采集每一图像时的位姿信息；利用目标检测模型获取图像中的目标，并对不同图像中的目标进行匹配，得到包含同一目标的多幅图像；基于包含同一目标的多幅图像各自对应的位姿信息，获取同一目标的位置信息。基于计算机视觉进行目标识别和目标匹配后，基于采集图像时的位姿信息来估计目标的位置，使无人飞行器无需挂载测距设备便能实现目标位置的确定，降低了设备成本，减轻了系统重量，从而提升了系统机动性和续航里程，还降低了系统总功耗，从而整体上减少了系统运行成本。</div>
+<div class="description-paragraph" id="p0066" num="0040">在一些实施例中，所述利用低空无人飞行器搭载的光学传感器获取多幅图像，包括：</div>
+<div class="description-paragraph" id="p0067">利用一台低空无人飞行器搭载的光学传感器获取多幅图像；和/或</div>
+<div class="description-paragraph" id="p0068">利用多台低空无人飞行器搭载的光学传感器获取同一时刻对应的多幅图像。</div>
+<div class="description-paragraph" id="p0069" num="0041">具体地，可采用单个飞行器所采集的多帧图像进行目标位置估计，也可采用多个飞行器所采集的多帧图像进行目标位置估计。</div>
+<div class="description-paragraph" id="p0070" num="0042">若使用一台低空无人飞行器，其上的光学传感器采集在不同位姿下的图像，或者采集多个时刻下的图像，得到多帧图像。</div>
+<div class="description-paragraph" id="p0071" num="0043">若使用多台低空无人飞行器，多台低空无人飞行器上的光学传感器获取同一时刻对应的多幅图像，即每一低空无人飞行器获取一副该时刻对应的图像，然后这多台无人飞行器需要将所采集的图像汇总至某一台无人机或云端计算机上进行处理。</div>
+<div class="description-paragraph" id="p0072" num="0044">本申请实施例提供的用于低空无人飞行器的地面目标位置确定方法，可以使用一台低空无人飞行器采集不同拍摄位姿或不同时刻的多幅图像，也可以使用多台低空无人飞行器采集同一时刻对应的多幅图像，满足多种场景需求，增加了应用的灵活性。</div>
+<div class="description-paragraph" id="p0073" num="0045">在一些实施例中，所述获取所述光学传感器采集每一图像时的位姿信息，包括：</div>
+<div class="description-paragraph" id="p0074">利用所述低空无人飞行器搭载的定位传感器获取所述光学传感器采集每一图像时在世界坐标系下的位置数据；</div>
+<div class="description-paragraph" id="p0075">利用所述低空无人飞行器搭载的姿态传感器获取所述光学传感器采集每一图像时的姿态数据。</div>
+<div class="description-paragraph" id="p0076" num="0046">具体地，利用低空无人飞行器搭载的姿态传感器获取光学传感器采集每一图像时的姿态数据。其中，姿态传感器可以是陀螺仪、角速度计或加速度计等传感器。例如可利用成像设备自带的旋转云台等获取成像设备的姿态数据。</div>
+<div class="description-paragraph" id="p0077" num="0047">低空无人飞行器还挂载了全局定位传感器，利用低空无人飞行器搭载的定位传感器获取光学传感器采集每一图像时在世界坐标系下的位置数据。其中，（全局）定位传感器可提供无人飞行器在世界坐标系下的实时三维位置信息。定位传感器可以为全球定位系统（Global Positioning System，GPS）或实时动态载波相位差分技术（Real-TimeKinematic，RTK）等。</div>
+<div class="description-paragraph" id="p0078" num="0048">若使用多台低空无人飞行器，在获取光学传感器采集每一图像时的位姿信息之后，将这多幅图像的位姿等信息汇总至某一台无人机或云端计算机上进行处理。</div>
+<div class="description-paragraph" id="p0079" num="0049">本申请实施例提供的用于低空无人飞行器的地面目标位置确定方法，利用低空无人飞行器搭载的全局定位传感器获取低空无人飞行器的世界坐标系下位置数据，并利用低空无人飞行器搭载的姿态传感器获取光学传感器的姿态数据，实现了采集各图像时飞行器的位姿数据，操作简便，几乎不增加系统重量，保证了系统机动性和续航里程。</div>
+<div class="description-paragraph" id="p0080" num="0050">在一些实施例中，所述利用目标检测模型获取所述图像中的目标，并对不同图像中的目标进行匹配，包括：</div>
+<div class="description-paragraph" id="p0081">利用目标检测模型对所述图像进行目标检测，得到所述图像中的每一目标对应的目标检测框；</div>
+<div class="description-paragraph" id="p0082">获取所述目标检测框中的特征点集合；</div>
+<div class="description-paragraph" id="p0083">基于所述目标检测框的邻域范围和所述目标检测框中的特征点集合，对不同图像中的目标进行匹配。</div>
+<div class="description-paragraph" id="p0084" num="0051">具体地，利用目标检测模型对图像进行目标检测，输出图像中的每一目标对应的目标检测框。</div>
+<div class="description-paragraph" id="p0085" num="0052">例如，利用一台低空无人飞行器或者N台低空无人飞行器搭载的光学传感器采集第0帧至第<span class="patent-image-not-available"></span>帧的共<span class="patent-image-not-available"></span>帧图像<span class="patent-image-not-available"></span>，其中<i>I</i> <sub> <i>i</i> </sub>表示第i帧图像，N为正整数。采用目标检测模型获得<span class="patent-image-not-available"></span>组目标检测框的集合<span class="patent-image-not-available"></span>，其中<i>Rect</i> <sub> <i>i</i> </sub>表示第i组目标检测框集合。每个检测框集合中的每个目标检测框可通过中心点像素坐标和矩形的宽和高来表示。</div>
+<div class="description-paragraph" id="p0086" num="0053">通过特征提取获取目标检测框中的特征点集合，然后基于目标检测框的邻域范围和特征点集合，对不同图像中的目标进行匹配，即对不同图像的同一邻域范围内的目标检测框，通过匹配其内的特征点集合实现对应目标的匹配。</div>
+<div class="description-paragraph" id="p0087" num="0054">本申请实施例提供的用于低空无人飞行器的地面目标位置确定方法，采用目标检测神经网络模型获取目标在图像中的像素位置信息（即目标检测框），之后，采用特征提取和特征匹配的方式对已检测到的目标在不同图像帧中进行匹配，具体是设定一个特定的目标检测框的邻域范围，用于多帧图像的目标检测框匹配，实现了多帧图像之间的目标匹配，从而能够依据匹配到同一目标的多帧图像所对应的位姿信息来获取目标位置。</div>
+<div class="description-paragraph" id="p0088" num="0055">在一些实施例中，所述获取所述目标检测框中的特征点集合，包括：</div>
+<div class="description-paragraph" id="p0089">获取所述目标检测框对应的图像分块；</div>
+<div class="description-paragraph" id="p0090">对所述图像分块进行特征提取，得到所述图像分块对应的特征点集合；</div>
+<div class="description-paragraph" id="p0091">确定所述目标检测框中的特征点集合为所述图像分块对应的特征点集合。</div>
+<div class="description-paragraph" id="p0092" num="0056">具体地，通过特征提取获取目标检测框中的特征点集合，首先获取目标检测框对应的图像分块（或子图），对图像分块进行特征提取，得到对应的特征点集合，即为目标检测框中的特征点集合。</div>
+<div class="description-paragraph" id="p0093" num="0057">例如，针对目标检测框集合<span class="patent-image-not-available"></span>，根据其集合内的每个目标检测框的范围，截取对应区域的图像并提取其子图的特征。例如，设目标检测框集合<span class="patent-image-not-available"></span>包含<span class="patent-image-not-available"></span>个目标检测框，从其对应的图像<span class="patent-image-not-available"></span>中根据每个目标检测框的范围，截取目标子图像<span class="patent-image-not-available"></span>，共有<i>n</i>个子图像。之后对每个子图像<span class="patent-image-not-available"></span>进行特征提取，获得每个子图像所对应的特征点集合<span class="patent-image-not-available"></span>。此步骤的特征提取，可采用结合了改进的FAST角点检测算法和二进制描述子的特征算法（Oriented FAST andRotated BRIEF，ORB）或尺度不变特征转换（Scale-Invariant Feature Transform，SIFT）等算子实施。</div>
+<div class="description-paragraph" id="p0094" num="0058">本申请实施例提供的用于低空无人飞行器的地面目标位置确定方法，截取目标检测框对应的子图并提取子图的特征，从而将目标匹配转化为目标检测框中特征点的匹配，保证了匹配准确度。</div>
+<div class="description-paragraph" id="p0095" num="0059">在一些实施例中，所述基于目标检测框的邻域范围和所述目标检测框中的特征点集合，对不同图像中的目标进行匹配，包括：</div>
+<div class="description-paragraph" id="p0096">确定当前图像中的目标检测框的邻域范围；</div>
+<div class="description-paragraph" id="p0097">将后续图像中的所述邻域范围内存在的目标检测框作为候选匹配框；</div>
+<div class="description-paragraph" id="p0098">对所述候选匹配框中的特征点集合与所述当前图像中的目标检测框中的特征点集合进行匹配。</div>
+<div class="description-paragraph" id="p0099" num="0060">具体地，设定一个特定的目标检测框的邻域范围，将后续图像中的该邻域范围内存在的目标检测框作为候选匹配框，然后对候选匹配框中的特征点集合与当前图像中的目标检测框中的特征点集合进行匹配，从而实现图像之间的目标匹配。</div>
+<div class="description-paragraph" id="p0100" num="0061">例如，图2是本发明提供的用于低空无人飞行器的地面目标位置确定方法的流程示意图之二，如图2所示，设定目标检测框匹配容许的宽度邻域为<span class="patent-image-not-available"></span>，高度邻域为<span class="patent-image-not-available"></span>（其中<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>均大于零），设图像帧<span class="patent-image-not-available"></span>对应的某个目标检测框<span class="patent-image-not-available"></span>的中心点位于<span class="patent-image-not-available"></span>（其中<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>均大于零），则在后续图像<span class="patent-image-not-available"></span>至<span class="patent-image-not-available"></span>中，在<span class="patent-image-not-available"></span>的范围内搜索存在的目标检测框。图3是本发明提供的多帧图像之间的目标特征匹配示意图，如图3所示，如果存在某个检测框，图像<span class="patent-image-not-available"></span>对应的检测框<span class="patent-image-not-available"></span>位于目标<span class="patent-image-not-available"></span>所对应的邻域内，则对其子图所对应的特征点集合<span class="patent-image-not-available"></span>与特征点集合<span class="patent-image-not-available"></span>进行特征匹配。</div>
+<div class="description-paragraph" id="p0101" num="0062">本申请实施例提供的用于低空无人飞行器的地面目标位置确定方法，通过设定目标检测框的邻域范围，将后续图像中的该邻域范围内存在的目标检测框中的特征点集合与当前图像中的目标检测框中的特征点集合进行匹配，实现了多帧图像之间的目标匹配。</div>
+<div class="description-paragraph" id="p0102" num="0063">在一些实施例中，所述方法还包括：</div>
+<div class="description-paragraph" id="p0103">在匹配成功的特征点数量高于预设阈值的情况下，确定所述候选匹配框中的目标与所述当前图像中的目标检测框中的目标为同一目标；和/或</div>
+<div class="description-paragraph" id="p0104">在匹配成功的特征点数量小于或等于预设阈值的情况下，确定所述候选匹配框中的目标与所述当前图像中的目标检测框中的目标不是同一目标。</div>
+<div class="description-paragraph" id="p0105" num="0064">具体地，若匹配成功的特征点数量高于预设阈值，则认为目标特征匹配成功，候选匹配框中的目标与当前图像中的目标检测框中的目标为同一目标。</div>
+<div class="description-paragraph" id="p0106" num="0065">若匹配成功的特征点数量小于或等于预设阈值，则认为目标特征匹配失败，候选匹配框中的目标与当前图像中的目标检测框中的目标不是同一目标。</div>
+<div class="description-paragraph" id="p0107" num="0066">本申请实施例提供的用于低空无人飞行器的地面目标位置确定方法，利用预设阈值来判断多帧图像之间对应位置上的特征点集合是否匹配，该预设阈值可根据经验和具体需求灵活设置，提高了多帧图像之间的目标匹配的准确度。</div>
+<div class="description-paragraph" id="p0108" num="0067">在一些实施例中，所述基于包含同一目标的多幅图像各自对应的所述位姿信息，获取所述同一目标的位置信息，包括：</div>
+<div class="description-paragraph" id="p0109">基于包含同一目标的多幅图像各自对应的所述位姿信息以及所述同一目标的目标检测框，利用多目视觉法和三角定位法获取所述同一目标在世界坐标系下的位置信息。</div>
+<div class="description-paragraph" id="p0110" num="0068">具体地，对于每个至少匹配成功一次的目标，统计其特征匹配成功的图像集合，并获取图像集合所对应的世界坐标系下三维位置集合（即位置信息）和相机姿态集合（即姿态信息）。基于包含同一目标的多幅图像各自对应的位姿信息以及同一目标的目标检测框（即像素位置），利用多目视觉法和三角定位法估计该目标在世界坐标系下的位置信息。</div>
+<div class="description-paragraph" id="p0111" num="0069">例如，设某个目标在共计<i>l</i>帧图像中特征匹配成功，则以该目标在<i>l</i>帧图像的目标检测框的中心点像素坐标作为其像素位置，再结合相机的内参信息和拍摄该帧图像时相机在世界坐标系下的位置和姿态信息，以相机小孔成像模型，获得目标在世界坐标系下可能位于的<i>l</i>条三维直线。</div>
+<div class="description-paragraph" id="p0112" num="0070">图4是本发明提供的基于多目视觉的目标位置估计示意图，如图4所示，设获取图像<span class="patent-image-not-available"></span>和图像<span class="patent-image-not-available"></span>的飞行器的相机所在的世界坐标系坐标为<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，相机坐标系的x,y,z三轴方向如图中所示，其中相机的焦点<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>均位于z轴上。根据小孔成像模型，由目标框<span class="patent-image-not-available"></span>和目标框<span class="patent-image-not-available"></span>的中心点分别向焦点<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>引直线<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，则两直线应相交于点<span class="patent-image-not-available"></span>处，即为目标所在的位置。</div>
+<div class="description-paragraph" id="p0113" num="0071">理论上，此<i>l</i>帧图像所对应的<i>l</i>条直线的交点应为目标所处的世界坐标系下的位置。在实际应用中由于存在多种误差因素，<i>l</i>条直线未必恰好相交于一点，针对此种情况可通过最小二乘法求解与各个异面直线距离最近的点作为该目标所在的世界坐标系的位置估计。</div>
+<div class="description-paragraph" id="p0114" num="0072">本申请实施例提供的用于低空无人飞行器的地面目标位置确定方法，对于匹配成功超过一帧的目标，可结合匹配成功的图像帧所对应的位姿信息，以多目视觉三角定位的方式实现目标位置估计，减少了低空无人飞行器在高精度目标位置估计任务中对测距传感器的依赖性，无人飞行器无需挂载激光雷达等测距设备便能实现目标位置的获取，可降低设备成本、减轻系统重量以提升系统机动性和续航里程、并可降低系统总功耗，从而降低了系统运行成本。</div>
+<div class="description-paragraph" id="p0115" num="0073">图5是本发明提供的用于低空无人飞行器的地面目标位置确定装置的结构示意图，如图5所示，本发明提供一种用于低空无人飞行器的地面目标位置确定装置，包括第一获取模块501、第二获取模块502和第三获取模块503。</div>
+<div class="description-paragraph" id="p0116" num="0074">第一获取模块501用于利用低空无人飞行器搭载的光学传感器采集多幅图像，并获取所述光学传感器采集每一图像时的位姿信息。</div>
+<div class="description-paragraph" id="p0117" num="0075">第二获取模块502用于利用目标检测模型获取所述图像中的目标，并对不同图像中的目标进行匹配，得到包含同一目标的多幅图像。</div>
+<div class="description-paragraph" id="p0118" num="0076">第三获取模块503用于基于包含同一目标的多幅图像各自对应的所述位姿信息，获取所述同一目标的位置信息。</div>
+<div class="description-paragraph" id="p0119" num="0077">在一些实施例中，所述第二获取模块502包括：</div>
+<div class="description-paragraph" id="p0120">第一获取单元，用于利用目标检测模型对所述图像进行目标检测，得到所述图像中的每一目标对应的目标检测框；</div>
+<div class="description-paragraph" id="p0121">第二获取单元，用于获取所述目标检测框中的特征点集合；</div>
+<div class="description-paragraph" id="p0122">匹配单元，用于基于所述目标检测框的邻域范围和所述目标检测框中的特征点集合，对不同图像中的目标进行匹配。</div>
+<div class="description-paragraph" id="p0123" num="0078">在一些实施例中，所述第二获取单元包括：</div>
+<div class="description-paragraph" id="p0124">第一获取子单元，用于获取所述目标检测框对应的图像分块；</div>
+<div class="description-paragraph" id="p0125">第二获取子单元，用于对所述图像分块进行特征提取，得到所述图像分块对应的特征点集合；</div>
+<div class="description-paragraph" id="p0126">第一确定子单元，用于确定所述目标检测框中的特征点集合为所述图像分块对应的特征点集合。</div>
+<div class="description-paragraph" id="p0127" num="0079">在一些实施例中，所述匹配单元包括：</div>
+<div class="description-paragraph" id="p0128">第二确定子单元，用于确定当前图像中的目标检测框的邻域范围；</div>
+<div class="description-paragraph" id="p0129">第三确定子单元，用于将后续图像中的所述邻域范围内存在的目标检测框作为候选匹配框；</div>
+<div class="description-paragraph" id="p0130">匹配子单元，用于对所述候选匹配框中的特征点集合与所述当前图像中的目标检测框中的特征点集合进行匹配。</div>
+<div class="description-paragraph" id="p0131" num="0080">在一些实施例中，匹配单元还包括：</div>
+<div class="description-paragraph" id="p0132">第四确定子单元，用于在匹配成功的特征点数量高于预设阈值的情况下，确定所述候选匹配框中的目标与所述当前图像中的目标检测框中的目标为同一目标；和/或</div>
+<div class="description-paragraph" id="p0133">第五确定子单元，用于在匹配成功的特征点数量小于或等于预设阈值的情况下，确定所述候选匹配框中的目标与所述当前图像中的目标检测框中的目标不是同一目标。</div>
+<div class="description-paragraph" id="p0134" num="0081">在一些实施例中，所述第三获取模块包括：</div>
+<div class="description-paragraph" id="p0135">第三获取单元，用于基于包含同一目标的多幅图像各自对应的所述位姿信息以及所述同一目标的目标检测框，利用多目视觉法和三角定位法获取所述同一目标在世界坐标系下的位置信息。</div>
+<div class="description-paragraph" id="p0136" num="0082">在一些实施例中，所述第一获取模块501包括：</div>
+<div class="description-paragraph" id="p0137">第四获取单元，用于利用一台低空无人飞行器搭载的光学传感器获取多幅图像；和/或</div>
+<div class="description-paragraph" id="p0138">第五获取单元，用于利用多台低空无人飞行器搭载的光学传感器获取同一时刻对应的多幅图像。</div>
+<div class="description-paragraph" id="p0139" num="0083">在一些实施例中，所述第一获取模块501还包括：</div>
+<div class="description-paragraph" id="p0140">第六获取单元，用于利用所述低空无人飞行器搭载的定位传感器获取所述光学传感器采集每一图像时在世界坐标系下的位置数据；</div>
+<div class="description-paragraph" id="p0141">第七获取单元，用于利用所述低空无人飞行器搭载的姿态传感器获取所述光学传感器采集每一图像时的姿态数据。</div>
+<div class="description-paragraph" id="p0142" num="0084">具体地，本发明提供的上述用于低空无人飞行器的地面目标位置确定装置，能够实现上述用于低空无人飞行器的地面目标位置确定方法实施例所实现的所有方法步骤，且能够达到相同的技术效果，在此不再对本实施例中与方法实施例相同的部分及有益效果进行具体赘述。</div>
+<div class="description-paragraph" id="p0143" num="0085">需要说明的是，本发明上述各实施例中对单元/模块的划分是示意性的，仅仅为一种逻辑功能划分，实际实现时可以有另外的划分方式。另外，在本申请各个实施例中的各功能单元可以集成在一个处理单元中，也可以是各个单元单独物理存在，也可以两个或两个以上单元集成在一个单元中。上述集成的单元既可以采用硬件的形式实现，也可以采用软件功能单元的形式实现。</div>
+<div class="description-paragraph" id="p0144" num="0086">图6是本发明提供的电子设备的结构示意图，如图6所示，所述电子设备可以包括：处理器（processor）601、通信接口（Communications Interface）602、存储器（memory）603和通信总线604，其中，处理器601，通信接口602，存储器603通过通信总线604完成相互间的通信。处理器601可以调用存储器603中的逻辑指令，以执行用于低空无人飞行器的地面目标位置确定方法，该方法包括：</div>
+<div class="description-paragraph" id="p0145">利用低空无人飞行器搭载的光学传感器采集多幅图像，并获取所述光学传感器采集每一图像时的位姿信息；</div>
+<div class="description-paragraph" id="p0146">利用目标检测模型获取所述图像中的目标，并对不同图像中的目标进行匹配，得到包含同一目标的多幅图像；</div>
+<div class="description-paragraph" id="p0147">基于包含同一目标的多幅图像各自对应的所述位姿信息，获取所述同一目标的位置信息。</div>
+<div class="description-paragraph" id="p0148" num="0087">在一些实施例中，所述利用目标检测模型获取所述图像中的目标，并对不同图像中的目标进行匹配，包括：</div>
+<div class="description-paragraph" id="p0149">利用目标检测模型对所述图像进行目标检测，得到所述图像中的每一目标对应的目标检测框；</div>
+<div class="description-paragraph" id="p0150">获取所述目标检测框中的特征点集合；</div>
+<div class="description-paragraph" id="p0151">基于所述目标检测框的邻域范围和所述目标检测框中的特征点集合，对不同图像中的目标进行匹配。</div>
+<div class="description-paragraph" id="p0152" num="0088">在一些实施例中，所述获取所述目标检测框中的特征点集合，包括：</div>
+<div class="description-paragraph" id="p0153">获取所述目标检测框对应的图像分块；</div>
+<div class="description-paragraph" id="p0154">对所述图像分块进行特征提取，得到所述图像分块对应的特征点集合；</div>
+<div class="description-paragraph" id="p0155">确定所述目标检测框中的特征点集合为所述图像分块对应的特征点集合。</div>
+<div class="description-paragraph" id="p0156" num="0089">在一些实施例中，所述基于目标检测框的邻域范围和所述目标检测框中的特征点集合，对不同图像中的目标进行匹配，包括：</div>
+<div class="description-paragraph" id="p0157">确定当前图像中的目标检测框的邻域范围；</div>
+<div class="description-paragraph" id="p0158">将后续图像中的所述邻域范围内存在的目标检测框作为候选匹配框；</div>
+<div class="description-paragraph" id="p0159">对所述候选匹配框中的特征点集合与所述当前图像中的目标检测框中的特征点集合进行匹配。</div>
+<div class="description-paragraph" id="p0160" num="0090">在一些实施例中，所述方法还包括：</div>
+<div class="description-paragraph" id="p0161">在匹配成功的特征点数量高于预设阈值的情况下，确定所述候选匹配框中的目标与所述当前图像中的目标检测框中的目标为同一目标；和/或</div>
+<div class="description-paragraph" id="p0162">在匹配成功的特征点数量小于或等于预设阈值的情况下，确定所述候选匹配框中的目标与所述当前图像中的目标检测框中的目标不是同一目标。</div>
+<div class="description-paragraph" id="p0163" num="0091">在一些实施例中，所述基于包含同一目标的多幅图像各自对应的所述位姿信息，获取所述同一目标的位置信息，包括：</div>
+<div class="description-paragraph" id="p0164">基于包含同一目标的多幅图像各自对应的所述位姿信息以及所述同一目标的目标检测框，利用多目视觉法和三角定位法获取所述同一目标在世界坐标系下的位置信息。</div>
+<div class="description-paragraph" id="p0165" num="0092">在一些实施例中，所述利用低空无人飞行器搭载的光学传感器采集多幅图像，包括：</div>
+<div class="description-paragraph" id="p0166">利用一台低空无人飞行器搭载的光学传感器获取多幅图像；和/或</div>
+<div class="description-paragraph" id="p0167">利用多台低空无人飞行器搭载的光学传感器获取同一时刻对应的多幅图像。</div>
+<div class="description-paragraph" id="p0168" num="0093">在一些实施例中，所述获取所述光学传感器采集每一图像时的位姿信息，包括：</div>
+<div class="description-paragraph" id="p0169">利用所述低空无人飞行器搭载的定位传感器获取所述光学传感器采集每一图像时在世界坐标系下的位置数据；</div>
+<div class="description-paragraph" id="p0170">利用所述低空无人飞行器搭载的姿态传感器获取所述光学传感器采集每一图像时的姿态数据。</div>
+<div class="description-paragraph" id="p0171" num="0094">具体地，处理器601可以是中央处理器（Central Processing Unit，CPU）、专用集成电路（Application Specific Integrated Circuit，ASIC）、现场可编程门阵列（FieldProgrammable Gate Array，FPGA）或复杂可编程逻辑器件（Complex Programmable LogicDevice，CPLD），处理器也可以采用多核架构。</div>
+<div class="description-paragraph" id="p0172" num="0095">存储器603中的逻辑指令可以通过软件功能单元的形式实现并作为独立的产品销售或使用时，可以存储在一个处理器可读取存储介质中。基于这样的理解，本申请的技术方案本质上或者说对现有技术做出贡献的部分或者该技术方案的全部或部分可以以软件产品的形式体现出来，该计算机软件产品存储在一个存储介质中，包括若干指令用以使得一台计算机设备（可以是个人计算机，服务器，或者网络设备等）或处理器（processor）执行本申请各个实施例所述方法的全部或部分步骤。而前述的存储介质包括：U盘、移动硬盘、只读存储器（Read-Only Memory ，ROM）、随机存取存储器（Random Access Memory，RAM）、磁碟或者光盘等各种可以存储程序代码的介质。</div>
+<div class="description-paragraph" id="p0173" num="0096">在一些实施例中，还提供一种计算机程序产品，所述计算机程序产品包括计算机程序，计算机程序可存储在非暂态计算机可读存储介质上，所述计算机程序被处理器执行时，计算机能够执行上述各方法实施例提供的用于低空无人飞行器的地面目标位置确定方法，该方法包括：</div>
+<div class="description-paragraph" id="p0174">利用低空无人飞行器搭载的光学传感器采集多幅图像，并获取所述光学传感器采集每一图像时的位姿信息；</div>
+<div class="description-paragraph" id="p0175">利用目标检测模型获取所述图像中的目标，并对不同图像中的目标进行匹配，得到包含同一目标的多幅图像；</div>
+<div class="description-paragraph" id="p0176">基于包含同一目标的多幅图像各自对应的所述位姿信息，获取所述同一目标的位置信息。</div>
+<div class="description-paragraph" id="p0177" num="0097">具体地，本申请实施例提供的上述计算机程序产品，能够实现上述各方法实施例所实现的所有方法步骤，且能够达到相同的技术效果，在此不再对本实施例中与方法实施例相同的部分及有益效果进行具体赘述。</div>
+<div class="description-paragraph" id="p0178" num="0098">在一些实施例中，还提供一种计算机可读存储介质，所述计算机可读存储介质存储有计算机程序，所述计算机程序用于使计算机执行上述各方法实施例提供的用于低空无人飞行器的地面目标位置确定方法，该方法包括：</div>
+<div class="description-paragraph" id="p0179">利用低空无人飞行器搭载的光学传感器采集多幅图像，并获取所述光学传感器采集每一图像时的位姿信息；</div>
+<div class="description-paragraph" id="p0180">利用目标检测模型获取所述图像中的目标，并对不同图像中的目标进行匹配，得到包含同一目标的多幅图像；</div>
+<div class="description-paragraph" id="p0181">基于包含同一目标的多幅图像各自对应的所述位姿信息，获取所述同一目标的位置信息。</div>
+<div class="description-paragraph" id="p0182" num="0099">具体地，本发明提供的上述计算机可读存储介质，能够实现上述各方法实施例所实现的所有方法步骤，且能够达到相同的技术效果，在此不再对本实施例中与方法实施例相同的部分及有益效果进行具体赘述。</div>
+<div class="description-paragraph" id="p0183" num="0100">需要说明的是：所述计算机可读存储介质可以是处理器能够存取的任何可用介质或数据存储设备，包括但不限于磁性存储器（例如软盘、硬盘、磁带、磁光盘（MO）等）、光学存储器（例如CD、DVD、BD、HVD等）、以及半导体存储器（例如ROM、EPROM、EEPROM、非易失性存储器（NAND FLASH）、固态硬盘（SSD））等。</div>
+<div class="description-paragraph" id="p0184" num="0101">另外需要说明的是：本发明中术语“第一”、“第二”等是用于区别类似的对象，而不用于描述特定的顺序或先后次序。应该理解这样使用的术语在适当情况下可以互换，以便本发明的实施例能够以除了在这里图示或描述的那些以外的顺序实施，且“第一”、“第二”所区别的对象通常为一类，并不限定对象的个数，例如第一对象可以是一个，也可以是多个。</div>
+<div class="description-paragraph" id="p0185" num="0102">本发明中术语“和/或”，描述关联对象的关联关系，表示可以存在三种关系，例如，A和/或B，可以表示：单独存在A，同时存在A和B，单独存在B这三种情况。字符“/”一般表示前后关联对象是一种“或”的关系。</div>
+<div class="description-paragraph" id="p0186" num="0103">本发明中术语“多个”是指两个或两个以上，其它量词与之类似。</div>
+<div class="description-paragraph" id="p0187" num="0104">本发明中的“基于A确定B”表示确定B时要考虑A这个因素。并不限于“只基于A就可以确定出B”，还应包括：“基于A和C确定B”、“基于A、C和E确定B”、基于“A确定C，基于C进一步确定B”等。另外还可以包括将A作为确定B的条件，例如，“当A满足第一条件时，使用第一方法确定B”；再例如，“当A满足第二条件时，确定B”等；再例如，“当A满足第三条件时，基于第一参数确定B”等。当然也可以是将A作为确定B的因素的条件，例如，“当A满足第一条件时，使用第一方法确定C，并进一步基于C确定B”等。</div>
+<div class="description-paragraph" id="p0188" num="0105">本领域内的技术人员应明白，本申请的实施例可提供为方法、系统、或计算机程序产品。因此，本申请可采用完全硬件实施例、完全软件实施例、或结合软件和硬件方面的实施例的形式。而且，本申请可采用在一个或多个其中包含有计算机可用程序代码的计算机可用存储介质（包括但不限于磁盘存储器和光学存储器等）上实施的计算机程序产品的形式。</div>
+<div class="description-paragraph" id="p0189" num="0106">本申请是参照根据本申请实施例的方法、设备（系统）、和计算机程序产品的流程图和/或方框图来描述的。应理解可由计算机可执行指令实现流程图和/或方框图中的每一流程和/或方框、以及流程图和/或方框图中的流程和/或方框的结合。可提供这些计算机可执行指令到通用计算机、专用计算机、嵌入式处理机或其他可编程数据处理设备的处理器以产生一个机器，使得通过计算机或其他可编程数据处理设备的处理器执行的指令产生用于实现在流程图一个流程或多个流程和/或方框图一个方框或多个方框中指定的功能的装置。</div>
+<div class="description-paragraph" id="p0190" num="0107">这些处理器可执行指令也可存储在能引导计算机或其他可编程数据处理设备以特定方式工作的处理器可读存储器中，使得存储在该处理器可读存储器中的指令产生包括指令装置的制造品，该指令装置实现在流程图一个流程或多个流程和/或方框图一个方框或多个方框中指定的功能。</div>
+<div class="description-paragraph" id="p0191" num="0108">这些处理器可执行指令也可装载到计算机或其他可编程数据处理设备上，使得在计算机或其他可编程设备上执行一系列操作步骤以产生计算机实现的处理，从而在计算机或其他可编程设备上执行的指令提供用于实现在流程图一个流程或多个流程和/或方框图一个方框或多个方框中指定的功能的步骤。</div>
+<div class="description-paragraph" id="p0192" num="0109">显然，本领域的技术人员可以对本发明进行各种改动和变型而不脱离本发明的精神和范围。这样，倘若本发明的这些修改和变型属于本发明权利要求及其等同技术的范围之内，则本发明也意图包含这些改动和变型在内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

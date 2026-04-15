@@ -1,0 +1,29 @@
+{
+    "patent_id": "CN120746297B",
+    "title": "CN120746297B - 基于时空知识蒸馏的低空微气象动态风险预测与无人飞行器保险对冲方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Dalian University of Technology",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120746297B/zh",
+    "citations": [
+        {
+            "Publication Number": "CN117420617A (zh) *",
+            "Priority Date": "2022-11-30",
+            "Publication Date": "2024-01-19",
+            "Assignee": "上海翱坤信息科技有限公司",
+            "Title": "一种飞行器气象预测系统及演示方法",
+            "Link": "https://patents.google.com/patent/CN117420617A/zh"
+        },
+        {
+            "Publication Number": "CN118191844A (zh) *",
+            "Priority Date": "2024-05-17",
+            "Publication Date": "2024-06-14",
+            "Assignee": "中国民航科学技术研究院",
+            "Title": "一种低空空域无人机运行的动态风险态势感知方法",
+            "Link": "https://patents.google.com/patent/CN118191844A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:41:40"
+}

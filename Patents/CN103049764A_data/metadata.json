@@ -1,0 +1,142 @@
+{
+    "patent_id": "CN103049764A",
+    "title": "CN103049764A - 一种低空飞行器目标识别方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shanghai Institute of Microsystem and Information Technology of CAS",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN103049764A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN101383008A (zh) *",
+            "Priority Date": "2008-10-23",
+            "Publication Date": "2009-03-11",
+            "Assignee": "上海交通大学",
+            "Title": "基于视觉注意模型的图像分类方法",
+            "Link": "https://patents.google.com/patent/CN101383008A/zh"
+        },
+        {
+            "Publication Number": "CN102004922A (zh) *",
+            "Priority Date": "2010-12-01",
+            "Publication Date": "2011-04-06",
+            "Assignee": "南京大学",
+            "Title": "基于骨架特征的高分辨率遥感影像飞机提取方法",
+            "Link": "https://patents.google.com/patent/CN102004922A/zh"
+        },
+        {
+            "Publication Number": "CN102622607A (zh) *",
+            "Priority Date": "2012-02-24",
+            "Publication Date": "2012-08-01",
+            "Assignee": "河海大学",
+            "Title": "一种基于多特征融合的遥感图像分类方法",
+            "Link": "https://patents.google.com/patent/CN102622607A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN104159031A (zh) *",
+            "Priority Date": "2014-08-19",
+            "Publication Date": "2014-11-19",
+            "Assignee": "湖北易瓦特科技有限公司",
+            "Title": "针对目标对象进行定位跟踪的方法及其设备",
+            "Link": "https://patents.google.com/patent/CN104159031A/zh"
+        },
+        {
+            "Publication Number": "CN104331691A (zh) *",
+            "Priority Date": "2014-11-28",
+            "Publication Date": "2015-02-04",
+            "Assignee": "深圳市捷顺科技实业股份有限公司",
+            "Title": "一种车标分类器训练方法、车标识别方法及装置",
+            "Link": "https://patents.google.com/patent/CN104331691A/zh"
+        },
+        {
+            "Publication Number": "US10713959B2 (en)",
+            "Priority Date": "2015-06-12",
+            "Publication Date": "2020-07-14",
+            "Assignee": "Airspace Systems, Inc.",
+            "Title": "Low altitude aircraft identification system",
+            "Link": "https://patents.google.com/patent/US10713959B2/en"
+        },
+        {
+            "Publication Number": "WO2016201359A1 (en) *",
+            "Priority Date": "2015-06-12",
+            "Publication Date": "2016-12-15",
+            "Assignee": "Foina Aislan Gomide",
+            "Title": "A low altitude aircraft identification system",
+            "Link": "https://patents.google.com/patent/WO2016201359A1/en"
+        },
+        {
+            "Publication Number": "US10192451B2 (en)",
+            "Priority Date": "2015-06-12",
+            "Publication Date": "2019-01-29",
+            "Assignee": "Airspace Systems, Inc.",
+            "Title": "Low altitude aircraft identification system",
+            "Link": "https://patents.google.com/patent/US10192451B2/en"
+        },
+        {
+            "Publication Number": "CN105759834B (zh) *",
+            "Priority Date": "2016-03-09",
+            "Publication Date": "2018-07-24",
+            "Assignee": "中国科学院上海微系统与信息技术研究所",
+            "Title": "一种主动捕获低空小型无人飞行器的系统及方法",
+            "Link": "https://patents.google.com/patent/CN105759834B/zh"
+        },
+        {
+            "Publication Number": "CN105759834A (zh) *",
+            "Priority Date": "2016-03-09",
+            "Publication Date": "2016-07-13",
+            "Assignee": "中国科学院上海微系统与信息技术研究所",
+            "Title": "一种主动捕获低空小型无人飞行器的系统及方法",
+            "Link": "https://patents.google.com/patent/CN105759834A/zh"
+        },
+        {
+            "Publication Number": "CN107016690A (zh) *",
+            "Priority Date": "2017-03-06",
+            "Publication Date": "2017-08-04",
+            "Assignee": "浙江大学",
+            "Title": "基于视觉的无人机入侵检测与识别系统及方法",
+            "Link": "https://patents.google.com/patent/CN107016690A/zh"
+        },
+        {
+            "Publication Number": "CN107016690B (zh) *",
+            "Priority Date": "2017-03-06",
+            "Publication Date": "2019-12-17",
+            "Assignee": "浙江大学",
+            "Title": "基于视觉的无人机入侵检测与识别系统及方法",
+            "Link": "https://patents.google.com/patent/CN107016690B/zh"
+        },
+        {
+            "Publication Number": "CN108038452A (zh) *",
+            "Priority Date": "2017-12-15",
+            "Publication Date": "2018-05-15",
+            "Assignee": "厦门瑞为信息技术有限公司",
+            "Title": "一种基于局部图像增强的家电手势快速检测识别方法",
+            "Link": "https://patents.google.com/patent/CN108038452A/zh"
+        },
+        {
+            "Publication Number": "CN108038452B (zh) *",
+            "Priority Date": "2017-12-15",
+            "Publication Date": "2020-11-03",
+            "Assignee": "厦门瑞为信息技术有限公司",
+            "Title": "一种基于局部图像增强的家电手势快速检测识别方法",
+            "Link": "https://patents.google.com/patent/CN108038452B/zh"
+        },
+        {
+            "Publication Number": "CN108549076A (zh) *",
+            "Priority Date": "2018-03-12",
+            "Publication Date": "2018-09-18",
+            "Assignee": "清华大学",
+            "Title": "一种基于速度节凑图的多种类无人机场景识别方法",
+            "Link": "https://patents.google.com/patent/CN108549076A/zh"
+        },
+        {
+            "Publication Number": "CN115690633A (zh) *",
+            "Priority Date": "2022-11-16",
+            "Publication Date": "2023-02-03",
+            "Assignee": "湖南航天有限责任公司",
+            "Title": "一种多飞行器自主攻击目标识别方法",
+            "Link": "https://patents.google.com/patent/CN115690633A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:33:42"
+}

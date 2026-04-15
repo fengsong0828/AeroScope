@@ -1,0 +1,508 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN101101614A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES403053924">
+<invention-title lang="ZH">远程飞行器实际低空突防航迹的撞地概率解析评价与修正方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001" num="0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0002">本发明涉及领域是远程飞行器的低空突防技术，更具体的是为保证低空突防飞行器的安全飞行，进行实际规划航迹的撞地坠毁概率解析计算技术和航迹调整方法。本技术可广泛应用于各种先进飞行器在低空突防作战时的飞行航迹评价、控制系统设计性能评估等领域。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003" num="0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0004">一直以来，低空突防技术是远程飞行器武器系统研制的关键技术，它能保证飞行器安全隐蔽地飞向目标区，达到侦察、攻击等目的。而撞地概率计算技术又是低空突防技术的关键技术之一。因此，开展撞地概率研究具有重要的军事意义。</div>
+<div class="description-paragraph" id="p0005" num="0005">国外早在1979年至1982年左右，Cunningham.E.P等公开了一些撞地概率的解析计算方法，其后的撞地概率解析研究础大多基于Cunningham.E.P等早年发表的成果。</div>
+<div class="description-paragraph" id="p0006" num="0006">在这些研究中，一般都是在假设地形的数学模型已知情况下，进行撞地概率解析计算的改进及有效性验证等，没有对飞行器系统规划出的实际航迹进行撞地概率评估，即没有很好地与实际工程应用结合起来。其主要缺陷在于对飞行器实际规划三维航迹下地形数据的数学建模，没有把实际飞行器系统的航迹规划、航迹撞地概率评估、航迹修正有机结合起来，为撞地概率解析方法的实际工程应用提供一条途径和方法。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007" num="0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0008">本发明的目的是克服现有技术中的不足，提供一种对在实际地图上规划得到的实际三维航迹进行撞地概率分析的方法及航迹的二次修正方法，并给出了由测量噪声等引起的飞行器高度误差方差与高度误差方差导数的计算方法。</div>
+<div class="description-paragraph" id="p0009" num="0009">本发明为撞地概率解析方法的实际工程应用提供一条完整有效的途径和方法，对航迹规划的结果提供定量评价与修正，最终为飞行器武器系统提供一条隐蔽、安全、撞地概率最小的飞行航迹。</div>
+<div class="description-paragraph" id="p0010" num="0010">本发明主要用于对在三维实际地图上规划得到的实际航迹进行撞地概率的解析分析评价，并进行航迹二次修正；该方法包括：实际地形数据采样、对实际地形数据进行频谱分析、建立实际地形的功率谱密度解析表达式、进行撞地概率解析计算、对规划航迹进行二次修正。</div>
+<div class="description-paragraph" id="p0011" num="0011">本发明是通过以下技术方案实现的，所述的方法包括：</div>
+<div class="description-paragraph" id="p0012" num="0012">1)首先根据远程飞行器任务规划系统初步规划得到的三维航迹，对航迹下面对应的实际地形进行采样；</div>
+<div class="description-paragraph" id="p0013" num="0013">2)对采样得到的地形数据进行频谱分析，得到实际地形的功率谱密度变化曲线；</div>
+<div class="description-paragraph" id="p0014" num="0014">3)采用概率统计方法辨识出实际地形的相关长度，计算实际地形的方差；</div>
+<div class="description-paragraph" id="p0015" num="0015">4)基于计算得到的相关长度和方差，画出一阶、二阶、三阶BUTTERWORTH地形的功率谱密度曲线，与步骤2中得到的实际地形功率谱密度曲线进行阶次匹配分析，确定实际地形的功率谱密度模型的解析表达式；</div>
+<div class="description-paragraph" id="p0016" num="0016">5)依据实际地形模型和飞行器控制系统模型，计算出由于地形起伏以及高度表等测量噪声引起的飞行器高度误差方差及高度误差导数方差；</div>
+<div class="description-paragraph" id="p0017" num="0017">6)解析计算飞行器系统的撞地概率；</div>
+<div class="description-paragraph" id="p0018" num="0018">7)若撞地概率不满足系统要求，则措施一是对步骤1中的航迹进行二次修正，为降低撞地概率，节约燃料，增大飞行器射程，其二次修正的原则是：提高航迹高度与减少航迹局部起伏相结合；措施二是改进飞行器控制系统设计。</div>
+<div class="description-paragraph" id="p0019" num="0019">本发明主要解决了在实际地图上进行三维航迹规划后，对规划航迹的撞地概率评价和修正方法，为飞行器低空突防的实现提供了一条有效途径和方法。</div>
+<div class="description-paragraph" id="p0020" num="0020">本发明有益效果是可广泛用于各类低空突防飞行器的预装订航迹评价和制导控制系统性能评估，具有广阔的市场前景和应用价值。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0021" num="0021">附图说明</div>
+<div class="description-paragraph" id="p0022" num="0022">图1-本发明处理方法总体框图；</div>
+<div class="description-paragraph" id="p0023" num="0023">图2-真实地形功率谱密度曲线与辨识得到的地形功率谱密度的曲线对比；</div>
+<div class="description-paragraph" id="p0024" num="0024">图3-导弹高度控制系统结构图；</div>
+<div class="description-paragraph" id="p0025" num="0025">图4-采用最低高度原则在一块20km地形上进行三维航迹规划后得到的导弹规划航迹和航迹下方的地形图；</div>
+<div class="description-paragraph" id="p0026" num="0026">图5-对规划航迹调整后的导弹飞行航迹。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0027" num="0027">具体实施方式</div>
+<div class="description-paragraph" id="p0028" num="0028">下面结合附图和实施例对本发明做进一步说明。图1是本发明的总体框图，包括下述步骤：</div>
+<div class="description-paragraph" id="p0029" num="0029">1)本发明首先根据武器系统作战需求进行飞行器的三维航迹规划，性能指标中包括使飞行器射程尽量短，飞行高度尽量低，被防空雷达探测的概率尽可能低、被防空导弹的击毁概率尽量低；</div>
+<div class="description-paragraph" id="p0030" num="0030">2)根据远程飞行器任务规划系统初步规划得到的三维航迹，对航迹下面对应的实际地形进行采样；</div>
+<div class="description-paragraph" id="p0031" num="0031">3)对采样得到的地形数据采用韦尔奇方法(welch’s method)进行频谱分析，得到实际地形的功率谱密度变化曲线，如图2中的虚线所示；</div>
+<div class="description-paragraph" id="p0032" num="0032">4)采用概率统计方法辨识出实际地形的相关长度，计算出实际地形的方差；</div>
+<div class="description-paragraph" id="p0033" num="0033">5)基于计算得到的相关长度和方差，画出一阶、二阶、三阶BUTTERWORTH地形的功率谱密度曲线，与步骤3得到的实际地形功率谱密度曲线进行阶次匹配分析，确定已知规划航路下实际地形的功率谱密度模型的解析表达式；</div>
+<div class="description-paragraph" id="p0034" num="0034">6)计算由地形起伏和测量噪声引起的飞行器高度误差方差和误差导数方差；</div>
+<div class="description-paragraph" id="p0035" num="0035">根据图3的低空突防飞行器控制系统框图，可计算由于地形起伏引起的飞行器高度误差e<sub>T</sub>(t)和误差导数e<sub>T</sub>′(t)随机过程的方差为：</div>
+<div class="description-paragraph" id="p0036" num="0036">
+<maths>
+<math>
+<mrow>
+<msubsup>
+<mi>&amp;sigma;</mi>
+<msub>
+<mi>e</mi>
+<mi>T</mi>
+</msub>
+<mn>2</mn>
+</msubsup>
+<mo>=</mo>
+<mfrac>
+<mn>1</mn>
+<mrow>
+<mn>2</mn>
+<mi>&amp;pi;</mi>
+</mrow>
+</mfrac>
+<msubsup>
+<mo>&amp;Integral;</mo>
+<mrow>
+<mo>-</mo>
+<mo>&amp;infin;</mo>
+</mrow>
+<mo>&amp;infin;</mo>
+</msubsup>
+<msub>
+<mi>W</mi>
+<mi>e</mi>
+</msub>
+<mrow>
+<mo>(</mo>
+<mi>j&amp;omega;</mi>
+<mo>)</mo>
+</mrow>
+<msub>
+<mi>W</mi>
+<mi>e</mi>
+</msub>
+<mrow>
+<mo>(</mo>
+<mo>-</mo>
+<mi>j&amp;omega;</mi>
+<mo>)</mo>
+</mrow>
+<msub>
+<mi>&amp;Phi;</mi>
+<mi>T</mi>
+</msub>
+<mrow>
+<mo>(</mo>
+<mi>&amp;omega;</mi>
+<mo>)</mo>
+</mrow>
+<mi>d&amp;omega;</mi>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0037" num="0037">
+<maths>
+<math>
+<mrow>
+<msubsup>
+<mi>&amp;sigma;</mi>
+<msubsup>
+<mi>e</mi>
+<mi>T</mi>
+<mo>&amp;prime;</mo>
+</msubsup>
+<mn>2</mn>
+</msubsup>
+<mo>=</mo>
+<mfrac>
+<mn>1</mn>
+<mrow>
+<mn>2</mn>
+<mi>&amp;pi;</mi>
+</mrow>
+</mfrac>
+<msubsup>
+<mo>&amp;Integral;</mo>
+<mrow>
+<mo>-</mo>
+<mo>&amp;infin;</mo>
+</mrow>
+<mo>&amp;infin;</mo>
+</msubsup>
+<mi>j</mi>
+<msub>
+<mi>&amp;omega;W</mi>
+<mi>e</mi>
+</msub>
+<mrow>
+<mo>(</mo>
+<mi>j&amp;omega;</mi>
+<mo>)</mo>
+</mrow>
+<mrow>
+<mo>(</mo>
+<mo>-</mo>
+<mi>j&amp;omega;</mi>
+<mo>)</mo>
+</mrow>
+<msub>
+<mi>W</mi>
+<mi>e</mi>
+</msub>
+<mrow>
+<mo>(</mo>
+<mo>-</mo>
+<mi>j&amp;omega;</mi>
+<mo>)</mo>
+</mrow>
+<msub>
+<mi>&amp;Phi;</mi>
+<mi>T</mi>
+</msub>
+<mrow>
+<mo>(</mo>
+<mi>&amp;omega;</mi>
+<mo>)</mo>
+</mrow>
+<mi>d&amp;omega;</mi>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0038" num="0038">其中，W<sub>e</sub>(s)为地形输入到高度误差的传递函数，Φ<sub>T</sub>(ω)为地形功率谱密度。</div>
+<div class="description-paragraph" id="p0039" num="0039">由于测量噪声引起的飞行器高度误差e<sub>n</sub>(t)和误差导数e<sub>n</sub>′(t)随机过程的方差为：</div>
+<div class="description-paragraph" id="p0040" num="0040">
+<maths>
+<math>
+<mrow>
+<msubsup>
+<mi>&amp;sigma;</mi>
+<msub>
+<mi>e</mi>
+<mi>n</mi>
+</msub>
+<mn>2</mn>
+</msubsup>
+<mo>=</mo>
+<mfrac>
+<mn>1</mn>
+<mrow>
+<mn>2</mn>
+<mi>&amp;pi;</mi>
+</mrow>
+</mfrac>
+<msubsup>
+<mo>&amp;Integral;</mo>
+<mrow>
+<msub>
+<mi>&amp;omega;</mi>
+<mn>0</mn>
+</msub>
+<mo>-</mo>
+<mfrac>
+<mi>&amp;Delta;&amp;omega;</mi>
+<mn>2</mn>
+</mfrac>
+</mrow>
+<mrow>
+<msub>
+<mi>&amp;omega;</mi>
+<mn>0</mn>
+</msub>
+<mo>+</mo>
+<mfrac>
+<mi>&amp;Delta;&amp;omega;</mi>
+<mn>2</mn>
+</mfrac>
+</mrow>
+</msubsup>
+<msub>
+<mi>W</mi>
+<mi>en</mi>
+</msub>
+<mrow>
+<mo>(</mo>
+<mi>j&amp;omega;</mi>
+<mo>)</mo>
+</mrow>
+<msub>
+<mi>W</mi>
+<mi>en</mi>
+</msub>
+<mrow>
+<mo>(</mo>
+<mo>-</mo>
+<mi>j&amp;omega;</mi>
+<mo>)</mo>
+</mrow>
+<msub>
+<mi>&amp;Phi;</mi>
+<mi>N</mi>
+</msub>
+<mrow>
+<mo>(</mo>
+<mi>&amp;omega;</mi>
+<mo>)</mo>
+</mrow>
+<mi>d&amp;omega;</mi>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0041" num="0041">
+<maths>
+<math>
+<mrow>
+<msubsup>
+<mi>&amp;sigma;</mi>
+<msubsup>
+<mi>e</mi>
+<mi>n</mi>
+<mo>&amp;prime;</mo>
+</msubsup>
+<mn>2</mn>
+</msubsup>
+<mo>=</mo>
+<mfrac>
+<mn>1</mn>
+<mrow>
+<mn>2</mn>
+<mi>&amp;pi;</mi>
+</mrow>
+</mfrac>
+<msubsup>
+<mo>&amp;Integral;</mo>
+<mrow>
+<msub>
+<mi>&amp;omega;</mi>
+<mn>0</mn>
+</msub>
+<mo>-</mo>
+<mfrac>
+<mi>&amp;Delta;&amp;omega;</mi>
+<mn>2</mn>
+</mfrac>
+</mrow>
+<mrow>
+<msub>
+<mi>&amp;omega;</mi>
+<mn>0</mn>
+</msub>
+<mo>+</mo>
+<mfrac>
+<mi>&amp;Delta;&amp;omega;</mi>
+<mn>2</mn>
+</mfrac>
+</mrow>
+</msubsup>
+<mrow>
+<mo>(</mo>
+<mi>j&amp;omega;</mi>
+<mo>)</mo>
+</mrow>
+<msub>
+<mi>W</mi>
+<mi>en</mi>
+</msub>
+<mrow>
+<mo>(</mo>
+<mi>j&amp;omega;</mi>
+<mo>)</mo>
+</mrow>
+<mrow>
+<mo>(</mo>
+<mo>-</mo>
+<mi>j&amp;omega;</mi>
+<mo>)</mo>
+</mrow>
+<msub>
+<mi>W</mi>
+<mi>en</mi>
+</msub>
+<mrow>
+<mo>(</mo>
+<mo>-</mo>
+<mi>j&amp;omega;</mi>
+<mo>)</mo>
+</mrow>
+<msub>
+<mi>&amp;Phi;</mi>
+<mi>N</mi>
+</msub>
+<mrow>
+<mo>(</mo>
+<mi>&amp;omega;</mi>
+<mo>)</mo>
+</mrow>
+<mi>d&amp;omega;</mi>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0042" num="0042">其中，W<sub>en</sub>(s)为地形输入到高度误差的传递函数，Φ<sub>N</sub>(ω)为测量噪声功率谱密度。</div>
+<div class="description-paragraph" id="p0043" num="0043">则由地形起伏和测量噪声引起的飞行器高度误差方差和误差导数方差分别如下：</div>
+<div class="description-paragraph" id="p0044" num="0044">
+<maths>
+<math>
+<mrow>
+<msub>
+<mi>&amp;sigma;</mi>
+<mi>e</mi>
+</msub>
+<mo>=</mo>
+<msqrt>
+<msubsup>
+<mi>&amp;sigma;</mi>
+<msub>
+<mi>e</mi>
+<mi>T</mi>
+</msub>
+<mn>2</mn>
+</msubsup>
+<mo>+</mo>
+<msubsup>
+<mi>&amp;sigma;</mi>
+<msub>
+<mi>e</mi>
+<mi>N</mi>
+</msub>
+<mn>2</mn>
+</msubsup>
+</msqrt>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0045" num="0045">
+<maths>
+<math>
+<mrow>
+<msub>
+<mi>&amp;sigma;</mi>
+<msup>
+<mi>e</mi>
+<mo>&amp;prime;</mo>
+</msup>
+</msub>
+<mo>=</mo>
+<msqrt>
+<msubsup>
+<mi>&amp;sigma;</mi>
+<msubsup>
+<mi>e</mi>
+<mi>T</mi>
+<mo>&amp;prime;</mo>
+</msubsup>
+<mn>2</mn>
+</msubsup>
+<mo>+</mo>
+<msubsup>
+<mi>&amp;sigma;</mi>
+<msubsup>
+<mi>e</mi>
+<mi>N</mi>
+<mo>&amp;prime;</mo>
+</msubsup>
+<mn>2</mn>
+</msubsup>
+</msqrt>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0046" num="0046">7)依据下面的公式，进一步解析计算出飞行器系统沿该航迹飞行时的撞地概率；</div>
+<div class="description-paragraph" id="p0047" num="0047">
+<maths>
+<math>
+<mrow>
+<msub>
+<mi>P</mi>
+<mi>C</mi>
+</msub>
+<mo>=</mo>
+<mn>1</mn>
+<mo>-</mo>
+<mi>exp</mi>
+<mo>{</mo>
+<msubsup>
+<mo>&amp;Integral;</mo>
+<mn>0</mn>
+<mi>T</mi>
+</msubsup>
+<mo>-</mo>
+<mfrac>
+<mn>1</mn>
+<mrow>
+<mn>2</mn>
+<mi>&amp;pi;</mi>
+</mrow>
+</mfrac>
+<mfrac>
+<msub>
+<mi>&amp;sigma;</mi>
+<msup>
+<mi>e</mi>
+<mo>&amp;prime;</mo>
+</msup>
+</msub>
+<msub>
+<mi>&amp;sigma;</mi>
+<mi>e</mi>
+</msub>
+</mfrac>
+<mi>exp</mi>
+<mo>[</mo>
+<mo>-</mo>
+<mfrac>
+<msup>
+<mrow>
+<mo>[</mo>
+<mi>h</mi>
+<mrow>
+<mo>(</mo>
+<mi>t</mi>
+<mo>)</mo>
+</mrow>
+<mo>-</mo>
+<msub>
+<mi>h</mi>
+<mi>T</mi>
+</msub>
+<mrow>
+<mo>(</mo>
+<mi>t</mi>
+<mo>)</mo>
+</mrow>
+<mo>]</mo>
+</mrow>
+<mn>2</mn>
+</msup>
+<msubsup>
+<mrow>
+<mn>2</mn>
+<mi>&amp;sigma;</mi>
+</mrow>
+<mi>e</mi>
+<mn>2</mn>
+</msubsup>
+</mfrac>
+<mo>]</mo>
+<mi>dt</mi>
+<mo>}</mo>
+</mrow>
+</math>
+</maths>
+</div>
+<div class="description-paragraph" id="p0048" num="0048">8)若撞地概率不满足武器系统作战要求，则措施一是对步骤1中初步得到的航迹进行修正，为降低撞地概率，节约燃料，增大飞行器射程，其二次修正的原则是：提高航迹高度与减少航迹局部起伏相结合；措施二是改进实际飞行器控制系统设计。</div>
+<div class="description-paragraph" id="p0049" num="0049">9)若撞地概率满足武器系统作战要求，则保存当前航迹为飞行器预装订航迹。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

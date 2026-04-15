@@ -1,0 +1,158 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN121037927A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES513049474">
+<invention-title id="title1" lang="ZH">低空飞行器通信切换方法和装置</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及通信技术领域，尤其涉及一种低空飞行器通信切换方法和装置。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空经济发展迅猛，低空通信网是低空飞行活动的地面关键基础设施，需要实现全城全域通信覆盖，满足低空复杂环境下地面与低空空间飞行器的连续实时通信需求。</div>
+<div class="description-paragraph" id="p0005" num="0003">传统4G/5G公网做低空覆盖，仍旧沿用地面蜂窝网络进行低空120米以下的空域覆盖，信号覆盖依赖于波束旁瓣，存在天线零点现象，导致信号电平波动较大。对于120米到300米左右的空域，目前，通常采用5G-A通感一体网络进行覆盖，具体方式是在基站的每个小区增加专门对空覆盖的远端射频单元（Remote Radio Unit，RRU），配置与地面独立的小区，专门进行低空覆盖，该方案组网较复杂。现有的低空飞行器通信切换方法，依赖于上述组网，飞行过程中小区切换次数较多，影响低空通信质量，容易引起相邻区域的乒乓切换，影响通信性能。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本发明提供一种低空飞行器通信切换方法和装置，用以解决现有技术中的低空飞行器通信切换方法，小区切换次数较多，影响低空通信质量和性能的缺陷。</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明提供一种低空飞行器通信切换方法，应用于低空通信网络系统的无人机终端，所述低空通信网络系统包括鱼鳞组网，所述方法包括：</div>
+<div class="description-paragraph" id="p0009">向基站发送所述无人机终端的飞行数据；</div>
+<div class="description-paragraph" id="p0010">接收所述基站发送的通信小区切换命令；所述基站用于：接收所述无人机终端发送的飞行数据，基于所述飞行数据识别所述无人机终端，配置所述无人机终端的通信切换参数，基于所述飞行数据和通信切换参数，确定通信小区切换策略，根据所述通信小区切换策略，生成通信小区切换命令，将所述通信小区切换命令发送至所述无人机终端；</div>
+<div class="description-paragraph" id="p0011">基于所述通信小区切换命令，对通信小区进行切换。</div>
+<div class="description-paragraph" id="p0012" num="0006">在一些实施例中，所述通信切换参数包括：切换频点优先级、切换门限和切换迟滞；所述飞行数据包括：飞行轨迹、飞行高度和干扰情况；所述鱼鳞组网中每一基站配置有一个扇区和至少一个逻辑小区，所述逻辑小区包括地面小区和低空小区。</div>
+<div class="description-paragraph" id="p0013" num="0007">在一些实施例中，所述基于所述飞行数据和通信切换参数，确定通信小区切换策略，包括：</div>
+<div class="description-paragraph" id="p0014">基于所述飞行数据，确定所述无人机终端所处的移动阶段；</div>
+<div class="description-paragraph" id="p0015">根据所述无人机终端所处的移动阶段，以及所述飞行数据和通信切换参数，确定所述无人机终端的通信小区切换策略。</div>
+<div class="description-paragraph" id="p0016" num="0008">在一些实施例中，所述确定所述无人机终端的通信小区切换策略，包括：</div>
+<div class="description-paragraph" id="p0017">在确定所述无人机终端处于起飞阶段的情况下，确定所述无人机终端的通信小区切换策略包括：将所述无人机终端从地面小区切换到低空小区；</div>
+<div class="description-paragraph" id="p0018">在确定所述无人机终端处于飞行阶段的情况下，确定所述无人机终端的通信小区切换策略包括：将所述无人机终端保持在低空小区之间切换；</div>
+<div class="description-paragraph" id="p0019">在确定所述无人机终端处于降落阶段的情况下，确定所述无人机终端的通信小区切换策略包括：将所述无人机终端从低空小区切换到地面小区。</div>
+<div class="description-paragraph" id="p0020" num="0009">本发明还提供一种低空飞行器通信切换方法，应用于低空通信网络系统的基站，所述低空通信网络系统包括鱼鳞组网，所述方法包括：</div>
+<div class="description-paragraph" id="p0021">接收无人机终端发送的飞行数据；所述无人机终端用于执行如权利要求1-4任一项所述的低空飞行器通信切换方法；</div>
+<div class="description-paragraph" id="p0022">基于所述飞行数据识别所述无人机终端，配置所述无人机终端的通信切换参数；</div>
+<div class="description-paragraph" id="p0023">基于所述飞行数据和通信切换参数，确定通信小区切换策略，根据所述通信小区切换策略，生成通信小区切换命令；</div>
+<div class="description-paragraph" id="p0024">将所述通信小区切换命令发送至所述无人机终端。</div>
+<div class="description-paragraph" id="p0025" num="0010">在一些实施例中，所述通信切换参数包括：切换频点优先级、切换门限和切换迟滞；所述飞行数据包括：飞行轨迹、飞行高度和干扰情况；所述鱼鳞组网中每一基站配置有一个扇区和至少一个逻辑小区，所述逻辑小区包括地面小区和低空小区。</div>
+<div class="description-paragraph" id="p0026" num="0011">在一些实施例中，所述基于所述飞行数据和通信切换参数，确定通信小区切换策略，包括：</div>
+<div class="description-paragraph" id="p0027">基于所述飞行数据，确定所述无人机终端所处的移动阶段；</div>
+<div class="description-paragraph" id="p0028">根据所述无人机终端所处的移动阶段，以及所述飞行数据和通信切换参数，确定所述无人机终端的通信小区切换策略。</div>
+<div class="description-paragraph" id="p0029" num="0012">在一些实施例中，所述确定所述无人机终端的通信小区切换策略，包括：</div>
+<div class="description-paragraph" id="p0030">在确定所述无人机终端处于起飞阶段的情况下，确定所述无人机终端的通信小区切换策略包括：将所述无人机终端从地面小区切换到低空小区；</div>
+<div class="description-paragraph" id="p0031">在确定所述无人机终端处于飞行阶段的情况下，确定所述无人机终端的通信小区切换策略包括：将所述无人机终端保持在低空小区之间切换；</div>
+<div class="description-paragraph" id="p0032">在确定所述无人机终端处于降落阶段的情况下，确定所述无人机终端的通信小区切换策略包括：将所述无人机终端从低空小区切换到地面小区。</div>
+<div class="description-paragraph" id="p0033" num="0013">本发明还提供一种低空飞行器通信切换装置，应用于低空通信网络系统的无人机终端，所述低空通信网络系统包括鱼鳞组网，所述装置包括：</div>
+<div class="description-paragraph" id="p0034">第一发送单元，用于向基站发送所述无人机终端的飞行数据；</div>
+<div class="description-paragraph" id="p0035">第一接收单元，用于接收所述基站发送的通信小区切换命令；所述基站用于：接收所述无人机终端发送的飞行数据，基于所述飞行数据识别所述无人机终端，配置所述无人机终端的通信切换参数，基于所述飞行数据和通信切换参数，确定通信小区切换策略，根据所述通信小区切换策略，生成通信小区切换命令，将所述通信小区切换命令发送至所述无人机终端；</div>
+<div class="description-paragraph" id="p0036">切换单元，用于基于所述通信小区切换命令，对通信小区进行切换。</div>
+<div class="description-paragraph" id="p0037" num="0014">本发明还提供一种低空飞行器通信切换装置，应用于低空通信网络系统的基站，所述低空通信网络系统包括鱼鳞组网，所述装置包括：</div>
+<div class="description-paragraph" id="p0038">第二接收单元，用于接收无人机终端发送的飞行数据；所述无人机终端用于执行如上述任一种所述的低空飞行器通信切换方法；</div>
+<div class="description-paragraph" id="p0039">配置单元，用于基于所述飞行数据识别所述无人机终端，配置所述无人机终端的通信切换参数；</div>
+<div class="description-paragraph" id="p0040">生成单元，用于基于所述飞行数据和通信切换参数，确定通信小区切换策略，根据所述通信小区切换策略，生成通信小区切换命令；</div>
+<div class="description-paragraph" id="p0041">第二发送单元，用于将所述通信小区切换命令发送至所述无人机终端。</div>
+<div class="description-paragraph" id="p0042" num="0015">本发明提供的低空飞行器通信切换方法和装置，通过向基站发送无人机终端的飞行数据；接收基站发送的通信小区切换命令；基站用于：接收无人机终端发送的飞行数据，基于飞行数据识别无人机终端，配置无人机终端的通信切换参数，基于飞行数据和通信切换参数，确定通信小区切换策略，根据通信小区切换策略，生成通信小区切换命令，将通信小区切换命令发送至无人机终端；基于通信小区切换命令，对通信小区进行切换。本发明基于低空通信网络系统的鱼鳞组网进行通信切换，提高了低空通信的质量和性能。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0043">附图说明</div>
+<div class="description-paragraph" id="p0044" num="0016">为了更清楚地说明本发明或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作一简单地介绍，显而易见地，下面描述中的附图是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0045" num="0017">图1是现有技术提供的蜂窝组网的结构示意图。</div>
+<div class="description-paragraph" id="p0046" num="0018">图2是本发明实施例提供的鱼鳞组网的结构示意图。</div>
+<div class="description-paragraph" id="p0047" num="0019">图3是本发明实施例提供的低空飞行器通信切换方法的流程示意图之一。</div>
+<div class="description-paragraph" id="p0048" num="0020">图4是本发明实施例提供的基站配置方案的示意图。</div>
+<div class="description-paragraph" id="p0049" num="0021">图5是本发明实施例提供的低空飞行器通信切换方法的流程示意图之二。</div>
+<div class="description-paragraph" id="p0050" num="0022">图6是本发明实施例提供的低空飞行器通信切换装置的结构示意图之一。</div>
+<div class="description-paragraph" id="p0051" num="0023">图7是本发明实施例提供的低空飞行器通信切换装置的结构示意图之二。</div>
+<div class="description-paragraph" id="p0052" num="0024">图8是本发明实施例提供的电子设备的结构示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0053">具体实施方式</div>
+<div class="description-paragraph" id="p0054" num="0025">为使本发明的目的、技术方案和优点更加清楚，下面将结合本发明中的附图，对本发明中的技术方案进行清楚、完整地描述，显然，所描述的实施例是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有作出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0055" num="0026">图1为现有技术提供的蜂窝组网的结构示意图。如图1所示，蜂窝组网中每一基站包括三个扇区。高度越高，三扇区组网的旁瓣信号辐射越严重，小区边界控制越难，导致低空小区邻区关系复杂，小区切换问题严重，信噪比下降明显，无人机通信性能受到严重影响。</div>
+<div class="description-paragraph" id="p0056" num="0027">图2为本发明实施例提供的鱼鳞组网的结构示意图。如图2所示，鱼鳞组网中每一基站包括一个扇区，每一基站只采用一个天线朝一个方向对空覆盖，由于对空视通无遮挡，信号传输距离远，调整好天线倾角和方位，单站可以覆盖更远的距离，且低空主要采用主波瓣覆盖，信号质量更好。该组网方案把传统组网方式的单站3扇区降低为单站一个扇区，邻区关系复杂度大幅度降低。</div>
+<div class="description-paragraph" id="p0057" num="0028">图3为本发明实施例提供的低空飞行器通信切换方法的流程示意图之一。如图3所示，提供了一种低空飞行器通信切换方法，应用于低空通信网络系统的无人机终端，低空通信网络系统包括鱼鳞组网，该方法包括以下步骤：步骤310、步骤320、步骤330。该方法流程步骤仅仅作为本发明一个可能的实现方式。</div>
+<div class="description-paragraph" id="p0058" num="0029">步骤310、向基站发送无人机终端的飞行数据。</div>
+<div class="description-paragraph" id="p0059" num="0030">可选地，飞行数据至少包括：基本信息（如无人机终端的唯一标识符）、位置信息、飞行状态信息、任务信息、电池状态信息、通信状态信息、传感器数据和飞行控制参数。</div>
+<div class="description-paragraph" id="p0060" num="0031">步骤320、接收基站发送的通信小区切换命令。</div>
+<div class="description-paragraph" id="p0061" num="0032">其中，基站用于：接收无人机终端发送的飞行数据，基于飞行数据识别无人机终端，配置无人机终端的通信切换参数，基于飞行数据和通信切换参数，确定通信小区切换策略，根据通信小区切换策略，生成通信小区切换命令，将通信小区切换命令发送至无人机终端。</div>
+<div class="description-paragraph" id="p0062" num="0033">可选地，通信切换参数至少包括：信号强度相关参数（如参考信号接收功率、参考信号接收质量等）、时间相关参数（如切换触发时间）、速度相关参数（如飞行速度）、距离相关参数（如基站与无人机之间的距离阈值）、角度相关参数（如无人机的飞行方向与基站天线方向之间的夹角）、载波频率相关参数、切换迟滞参数、邻区列表相关参数、业务类型相关参数和切换算法相关参数。</div>
+<div class="description-paragraph" id="p0063" num="0034">可选地，通信小区切换命令至少包括：目标小区信息、切换时间、切换算法参数、随机接入参数和数据传输参数。</div>
+<div class="description-paragraph" id="p0064" num="0035">可选地，基站用于基于无人机终端的飞行数据，对无人机终端进行识别，针对不同的无人机终端，配置个性化的通信切换参数；基站还用于，基于无人机终端的实时飞行数据，对相应的通信切换参数进行动态调整。</div>
+<div class="description-paragraph" id="p0065" num="0036">步骤330、基于通信小区切换命令，对通信小区进行切换。</div>
+<div class="description-paragraph" id="p0066" num="0037">可选地，对通信小区进行切换后，获取反馈信息，反馈信息包括切换成功或切换失败；将反馈信息发送至基站，进而可以优化通信小区切换策略，提升通信质量。</div>
+<div class="description-paragraph" id="p0067" num="0038">在本发明实施例中，依赖于鱼鳞组网进行低空通信，通过向基站发送无人机终端的飞行数据；接收基站发送的通信小区切换命令；基于通信小区切换命令，对通信小区进行切换，可以确保无人机在不同小区间移动时通信不中断，数据传输连续稳定，提高了低空通信的质量和性能。</div>
+<div class="description-paragraph" id="p0068" num="0039">图4为本发明实施例提供的基站配置方案的示意图。如图4所示，对于低空覆盖的单基站，通过修改参数配置，把原来对地和对空的两个独立小区PCI1（即低空小区）和PCI2（即地面小区）配置为一个逻辑小区，即对地和对空的小区都修改为PCI1，避免无人机从地面到低空飞行的过程中，以及从低空返回地面的过程中都经历一次小区切换。可以通过增加基带板资源的方式进行小区扩容，保证合并后小区容量不变。</div>
+<div class="description-paragraph" id="p0069" num="0040">在一些实施例中，通信切换参数包括：切换频点优先级、切换门限和切换迟滞；飞行数据包括：飞行轨迹、飞行高度和干扰情况；鱼鳞组网中每一基站配置有一个扇区和至少一个逻辑小区，逻辑小区包括地面小区和低空小区。</div>
+<div class="description-paragraph" id="p0070" num="0041">需要说明的是，低空覆盖频点的优先级设置的较高，切换门限设置的较高，切换迟滞参数设置的较大，可以有效避免乒乓切换。</div>
+<div class="description-paragraph" id="p0071" num="0042">需要说明的是，鱼鳞组网结构通过多个基站的扇区覆盖，形成对低空区域的良好覆盖，减少了信号盲区，为无人机低空飞行提供了可靠的通信保障；鱼鳞组网的基站布局和切换机制能有效应对低空环境中建筑物、地形等因素的干扰，确保通信质量。</div>
+<div class="description-paragraph" id="p0072" num="0043">在一些实施例中，基于飞行数据和通信切换参数，确定通信小区切换策略，包括：</div>
+<div class="description-paragraph" id="p0073">基于飞行数据，确定无人机终端所处的移动阶段；</div>
+<div class="description-paragraph" id="p0074">根据无人机终端所处的移动阶段，以及飞行数据和通信切换参数，确定无人机终端的通信小区切换策略。</div>
+<div class="description-paragraph" id="p0075" num="0044">其中，移动阶段至少包括：起飞阶段、飞行阶段和降落阶段。</div>
+<div class="description-paragraph" id="p0076" num="0045">可以理解的是，根据不同飞行阶段的特点，精准选择切换时机和目标小区，从而可以减少通信中断和卡顿，合理分配通信资源，避免资源浪费，提升系统整体容量，增强系统对复杂环境和任务的适应性。</div>
+<div class="description-paragraph" id="p0077" num="0046">在一些实施例中，确定无人机终端的通信小区切换策略，包括：</div>
+<div class="description-paragraph" id="p0078">在确定无人机终端处于起飞阶段的情况下，确定无人机终端的通信小区切换策略包括：将无人机终端从地面小区切换到低空小区；</div>
+<div class="description-paragraph" id="p0079">在确定无人机终端处于飞行阶段的情况下，确定无人机终端的通信小区切换策略包括：将无人机终端保持在低空小区之间切换；</div>
+<div class="description-paragraph" id="p0080">在确定无人机终端处于降落阶段的情况下，确定无人机终端的通信小区切换策略包括：将无人机终端从低空小区切换到地面小区。</div>
+<div class="description-paragraph" id="p0081" num="0047">其中，起飞阶段是指无人机从地面飞行到低空的过程；飞行阶段是指无人机在低空飞行的过程；降落阶段是指无人机从低空降落到地面的过程。</div>
+<div class="description-paragraph" id="p0082" num="0048">可选地，在起飞阶段，基于切换频点优先级尽快从地面小区切换到低空小区，切换参数可设置为较低的切换阈值，以便快速切换到信号更好的小区。例如，切换迟滞较小，切换偏置较大，可以加快切换速度。</div>
+<div class="description-paragraph" id="p0083" num="0049">可选地，在飞行阶段，通过切换门限、切换迟滞的优化，尽量让无人机保持在低空小区之间切换。</div>
+<div class="description-paragraph" id="p0084" num="0050">可选地，在降落阶段，根据信号强度切回到地面小区，选择覆盖着陆点的小区；切换参数可设置为较高的切换阈值，确保稳定连接。例如，切换迟滞较大，切换偏置较小，可以避免频繁切换。</div>
+<div class="description-paragraph" id="p0085" num="0051">图5为本发明实施例提供的低空飞行器通信切换方法的流程示意图之二。如图5所示，提供了一种低空飞行器通信切换方法，应用于低空通信网络系统的基站，低空通信网络系统包括鱼鳞组网，该方法包括以下步骤：步骤510、步骤520、步骤530和步骤540。该方法流程步骤仅仅作为本发明一个可能的实现方式。</div>
+<div class="description-paragraph" id="p0086" num="0052">步骤510、接收无人机终端发送的飞行数据；无人机终端用于执行如上述任一种的低空飞行器通信切换方法。</div>
+<div class="description-paragraph" id="p0087" num="0053">其中，飞行数据至少包括：基本信息、位置信息、飞行状态信息、任务信息、电池状态信息、通信状态信息、传感器数据和飞行控制参数。</div>
+<div class="description-paragraph" id="p0088" num="0054">步骤520、基于飞行数据识别无人机终端，配置无人机终端的通信切换参数。</div>
+<div class="description-paragraph" id="p0089" num="0055">其中，通信切换参数至少包括：信号强度相关参数、时间相关参数、速度相关参数、距离相关参数、角度相关参数、载波频率相关参数、切换迟滞参数、邻区列表相关参数、业务类型相关参数和切换算法相关参数。</div>
+<div class="description-paragraph" id="p0090" num="0056">可选地，基于无人机终端的飞行数据，对无人机终端进行识别，针对不同的无人机终端，配置个性化的通信切换参数。</div>
+<div class="description-paragraph" id="p0091" num="0057">可选地，基于无人机终端的实时飞行数据，对相应的通信切换参数进行动态调整。</div>
+<div class="description-paragraph" id="p0092" num="0058">步骤530、基于飞行数据和通信切换参数，确定通信小区切换策略，根据通信小区切换策略，生成通信小区切换命令。</div>
+<div class="description-paragraph" id="p0093" num="0059">步骤540、将通信小区切换命令发送至无人机终端。</div>
+<div class="description-paragraph" id="p0094" num="0060">在本发明实施例中，通过接收无人机终端发送的飞行数据，基于飞行数据识别无人机终端，配置无人机终端的通信切换参数，基于飞行数据和通信切换参数，确定通信小区切换策略，根据通信小区切换策略，生成通信小区切换命令，将通信小区切换命令发送至无人机终端，可以提高通信的稳定性和可靠性，避免出现乒乓切换，提高通信质量。</div>
+<div class="description-paragraph" id="p0095" num="0061">在一些实施例中，通信切换参数包括：切换频点优先级、切换门限和切换迟滞；飞行数据包括：飞行轨迹、飞行高度和干扰情况；鱼鳞组网中每一基站配置有一个扇区和至少一个逻辑小区，逻辑小区包括地面小区和低空小区。</div>
+<div class="description-paragraph" id="p0096" num="0062">需要说明的是，鱼鳞组网结构通过多个基站的扇区覆盖，形成对低空区域的良好覆盖，减少了信号盲区，为无人机低空飞行提供了可靠的通信保障；鱼鳞组网的基站布局和切换机制能有效应对低空环境中建筑物、地形等因素的干扰，确保通信质量。</div>
+<div class="description-paragraph" id="p0097" num="0063">在一些实施例中，基于飞行数据和通信切换参数，确定通信小区切换策略，包括：</div>
+<div class="description-paragraph" id="p0098">基于飞行数据，确定无人机终端所处的移动阶段；</div>
+<div class="description-paragraph" id="p0099">根据无人机终端所处的移动阶段，以及飞行数据和通信切换参数，确定无人机终端的通信小区切换策略。</div>
+<div class="description-paragraph" id="p0100" num="0064">可选地，对飞行数据进行特征提取，得到飞行特征（如速度特征、位置特征），根据飞行特征，确定无人机终端所处的移动阶段。</div>
+<div class="description-paragraph" id="p0101" num="0065">可以理解的是，根据不同飞行阶段的特点，精准选择切换时机和目标小区，从而可以减少通信中断和卡顿，合理分配通信资源，避免资源浪费，提升系统整体容量，增强系统对复杂环境和任务的适应性。</div>
+<div class="description-paragraph" id="p0102" num="0066">在一些实施例中，确定无人机终端的通信小区切换策略，包括：</div>
+<div class="description-paragraph" id="p0103">在确定无人机终端处于起飞阶段的情况下，确定无人机终端的通信小区切换策略包括：将无人机终端从地面小区切换到低空小区；</div>
+<div class="description-paragraph" id="p0104">在确定无人机终端处于飞行阶段的情况下，确定无人机终端的通信小区切换策略包括：将无人机终端保持在低空小区之间切换；</div>
+<div class="description-paragraph" id="p0105">在确定无人机终端处于降落阶段的情况下，确定无人机终端的通信小区切换策略包括：将无人机终端从低空小区切换到地面小区。</div>
+<div class="description-paragraph" id="p0106" num="0067">其中，起飞阶段是指无人机从地面飞行到低空的过程；飞行阶段是指无人机在低空飞行的过程；降落阶段是指无人机从低空降落到地面的过程。</div>
+<div class="description-paragraph" id="p0107" num="0068">可选地，在起飞阶段，基于切换频点优先级尽快从地面小区切换到低空小区。例如，切换迟滞较小，切换偏置较大，可以加快切换速度。</div>
+<div class="description-paragraph" id="p0108" num="0069">可选地，在飞行阶段，通过切换门限、切换迟滞的优化，尽量让无人机保持在低空小区之间切换。</div>
+<div class="description-paragraph" id="p0109" num="0070">可选地，在降落阶段，选择覆盖着陆点的小区；切换参数可设置为较高的切换阈值，确保稳定连接。例如，切换迟滞较大，切换偏置较小，可以避免频繁切换。</div>
+<div class="description-paragraph" id="p0110" num="0071">下面对本发明实施例提供的低空飞行器通信切换装置进行描述，下文描述的低空飞行器通信切换装置与上文描述的低空飞行器通信切换方法可相互对应参照。</div>
+<div class="description-paragraph" id="p0111" num="0072">图6为本发明实施例提供的低空飞行器通信切换装置的结构示意图之一，如图6所示，该低空飞行器通信切换装置600应用于低空通信网络系统的无人机终端，所述低空通信网络系统包括鱼鳞组网，该装置包括：</div>
+<div class="description-paragraph" id="p0112">第一发送单元610，用于向基站发送无人机终端的飞行数据；</div>
+<div class="description-paragraph" id="p0113">第一接收单元620，用于接收基站发送的通信小区切换命令；基站用于：接收无人机终端发送的飞行数据，基于飞行数据识别无人机终端，配置无人机终端的通信切换参数，基于飞行数据和通信切换参数，确定通信小区切换策略，根据通信小区切换策略，生成通信小区切换命令，将通信小区切换命令发送至无人机终端；</div>
+<div class="description-paragraph" id="p0114">切换单元630，用于基于通信小区切换命令，对通信小区进行切换。</div>
+<div class="description-paragraph" id="p0115" num="0073">可选地，通信切换参数包括：切换频点优先级、切换门限和切换迟滞；飞行数据包括：飞行轨迹、飞行高度和干扰情况；鱼鳞组网中每一基站配置有一个扇区和至少一个逻辑小区，逻辑小区包括地面小区和低空小区。</div>
+<div class="description-paragraph" id="p0116" num="0074">可选地，基于飞行数据和通信切换参数，确定通信小区切换策略，包括：</div>
+<div class="description-paragraph" id="p0117">基于飞行数据，确定无人机终端所处的移动阶段；</div>
+<div class="description-paragraph" id="p0118">根据无人机终端所处的移动阶段，以及飞行数据和通信切换参数，确定无人机终端的通信小区切换策略。</div>
+<div class="description-paragraph" id="p0119" num="0075">可选地，确定无人机终端的通信小区切换策略，包括：</div>
+<div class="description-paragraph" id="p0120">在确定无人机终端处于起飞阶段的情况下，确定无人机终端的通信小区切换策略包括：将无人机终端从地面小区切换到低空小区；</div>
+<div class="description-paragraph" id="p0121">在确定无人机终端处于飞行阶段的情况下，确定无人机终端的通信小区切换策略包括：将无人机终端保持在低空小区之间切换；</div>
+<div class="description-paragraph" id="p0122">在确定无人机终端处于降落阶段的情况下，确定无人机终端的通信小区切换策略包括：将无人机终端从低空小区切换到地面小区。</div>
+<div class="description-paragraph" id="p0123" num="0076">图7为本发明实施例提供的低空飞行器通信切换装置的结构示意图之二，如图7所示，该低空飞行器通信切换装置700应用于低空通信网络系统的基站，所述低空通信网络系统包括鱼鳞组网，该装置包括：</div>
+<div class="description-paragraph" id="p0124">第二接收单元710，用于接收无人机终端发送的飞行数据；无人机终端用于执行如上述任一种的低空飞行器通信切换方法；</div>
+<div class="description-paragraph" id="p0125">配置单元720，用于基于飞行数据识别无人机终端，配置无人机终端的通信切换参数；</div>
+<div class="description-paragraph" id="p0126">生成单元730，用于基于飞行数据和通信切换参数，确定通信小区切换策略，根据通信小区切换策略，生成通信小区切换命令；</div>
+<div class="description-paragraph" id="p0127">第二发送单元740，用于将通信小区切换命令发送至无人机终端。</div>
+<div class="description-paragraph" id="p0128" num="0077">可选地，通信切换参数包括：切换频点优先级、切换门限和切换迟滞；飞行数据包括：飞行轨迹、飞行高度和干扰情况；鱼鳞组网中每一基站配置有一个扇区和至少一个逻辑小区，逻辑小区包括地面小区和低空小区。</div>
+<div class="description-paragraph" id="p0129" num="0078">可选地，基于飞行数据和通信切换参数，确定通信小区切换策略，包括：</div>
+<div class="description-paragraph" id="p0130">基于飞行数据，确定无人机终端所处的移动阶段；</div>
+<div class="description-paragraph" id="p0131">根据无人机终端所处的移动阶段，以及飞行数据和通信切换参数，确定无人机终端的通信小区切换策略。</div>
+<div class="description-paragraph" id="p0132" num="0079">可选地，确定无人机终端的通信小区切换策略，包括：</div>
+<div class="description-paragraph" id="p0133">在确定无人机终端处于起飞阶段的情况下，确定无人机终端的通信小区切换策略包括：将无人机终端从地面小区切换到低空小区；</div>
+<div class="description-paragraph" id="p0134">在确定无人机终端处于飞行阶段的情况下，确定无人机终端的通信小区切换策略包括：将无人机终端保持在低空小区之间切换；</div>
+<div class="description-paragraph" id="p0135">在确定无人机终端处于降落阶段的情况下，确定无人机终端的通信小区切换策略包括：将无人机终端从低空小区切换到地面小区。</div>
+<div class="description-paragraph" id="p0136" num="0080">在此需要说明的是，本发明实施例提供的低空飞行器通信切换装置，能够实现上述低空飞行器通信切换方法实施例所实现的所有方法步骤，且能够达到相同的技术效果，在此不再对本实施例中与方法实施例相同的部分及有益效果进行具体赘述。</div>
+<div class="description-paragraph" id="p0137" num="0081">图8为本发明实施例提供的电子设备的结构示意图，如图8所示，该电子设备可以包括：处理器（processor）810、通信接口（Communications Interface）820、存储器（memory）830和通信总线840，其中，处理器810，通信接口820，存储器830通过通信总线840完成相互间的通信。处理器810可以调用存储器830中的逻辑指令，以执行低空飞行器通信切换方法，该方法包括：向基站发送无人机终端的飞行数据；接收基站发送的通信小区切换命令；基站用于：接收无人机终端发送的飞行数据，基于飞行数据识别无人机终端，配置无人机终端的通信切换参数，基于飞行数据和通信切换参数，确定通信小区切换策略，根据通信小区切换策略，生成通信小区切换命令，将通信小区切换命令发送至无人机终端；基于通信小区切换命令，对通信小区进行切换。</div>
+<div class="description-paragraph" id="p0138" num="0082">此外，上述的存储器830中的逻辑指令可以通过软件功能单元的形式实现并作为独立的产品销售或使用时，可以存储在一个计算机可读取存储介质中。基于这样的理解，本发明的技术方案本质上或者说对现有技术做出贡献的部分或者该技术方案的部分可以以软件产品的形式体现出来，该计算机软件产品存储在一个存储介质中，包括若干指令用以使得一台计算机设备（可以是个人计算机，服务器，或者网络设备等）执行本发明各个实施例所述方法的全部或部分步骤。而前述的存储介质包括：U盘、移动硬盘、只读存储器（ROM，Read-Only Memory）、随机存取存储器（RAM，Random Access Memory）、磁碟或者光盘等各种可以存储程序代码的介质。</div>
+<div class="description-paragraph" id="p0139" num="0083">以上所描述的装置实施例仅仅是示意性的，其中所述作为分离部件说明的单元可以是或者也可以不是物理上分开的，作为单元显示的部件可以是或者也可以不是物理单元，即可以位于一个地方，或者也可以分布到多个网络单元上。可以根据实际的需要选择其中的部分或者全部模块来实现本实施例方案的目的。本领域普通技术人员在不付出创造性的劳动的情况下，即可以理解并实施。</div>
+<div class="description-paragraph" id="p0140" num="0084">通过以上的实施方式的描述，本领域的技术人员可以清楚地了解到各实施方式可借助软件加必需的通用硬件平台的方式来实现，当然也可以通过硬件。基于这样的理解，上述技术方案本质上或者说对现有技术做出贡献的部分可以以软件产品的形式体现出来，该计算机软件产品可以存储在计算机可读存储介质中，如ROM/RAM、磁碟、光盘等，包括若干指令用以使得一台计算机设备（可以是个人计算机，服务器，或者网络设备等）执行各个实施例或者实施例的某些部分所述的方法。</div>
+<div class="description-paragraph" id="p0141" num="0085">最后应说明的是：以上实施例仅用以说明本发明的技术方案，而非对其限制；尽管参照前述实施例对本发明进行了详细的说明，本领域的普通技术人员应当理解：其依然可以对前述各实施例所记载的技术方案进行修改，或者对其中部分技术特征进行等同替换；而这些修改或者替换，并不使相应技术方案的本质脱离本发明各实施例技术方案的精神和范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

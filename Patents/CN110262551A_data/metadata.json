@@ -1,0 +1,86 @@
+{
+    "patent_id": "CN110262551A",
+    "title": "CN110262551A - 一种飞行器海面高、低空巡航预选高度基准切换方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "AVIC Shaanxi Aircraft Industry Group Corp Ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN110262551A/zh",
+    "citations": [
+        {
+            "Publication Number": "WO2001004713A1 (fr) *",
+            "Priority Date": "1999-07-09",
+            "Publication Date": "2001-01-18",
+            "Assignee": "Thomson-Csf Sextant",
+            "Title": "Procede et systeme de gestion d'altitude pour aerodyne utilisant la capture automatique d'une altitude barometrique ou d'une hauteur radiosonde",
+            "Link": "https://patents.google.com/patent/WO2001004713A1/fr"
+        },
+        {
+            "Publication Number": "CN101256411A (zh) *",
+            "Priority Date": "2008-03-21",
+            "Publication Date": "2008-09-03",
+            "Assignee": "北京航空航天大学",
+            "Title": "多高度类型切换方法",
+            "Link": "https://patents.google.com/patent/CN101256411A/zh"
+        },
+        {
+            "Publication Number": "US20120056760A1 (en) *",
+            "Priority Date": "2010-09-06",
+            "Publication Date": "2012-03-08",
+            "Assignee": "Airbus Operations (S.A.S.)",
+            "Title": "Method And Device For Automatically Determining An Erroneous Height Value Of A Radioaltimeter Mounted On An Aircraft",
+            "Link": "https://patents.google.com/patent/US20120056760A1/en"
+        },
+        {
+            "Publication Number": "CN102541054A (zh) *",
+            "Priority Date": "2010-12-20",
+            "Publication Date": "2012-07-04",
+            "Assignee": "西安韦德沃德航空科技有限公司",
+            "Title": "无人机用组合高度控制方法及系统",
+            "Link": "https://patents.google.com/patent/CN102541054A/zh"
+        },
+        {
+            "Publication Number": "CN103344218A (zh) *",
+            "Priority Date": "2013-06-18",
+            "Publication Date": "2013-10-09",
+            "Assignee": "桂林理工大学",
+            "Title": "一种适用于低空无人机的高度测量系统及方法",
+            "Link": "https://patents.google.com/patent/CN103344218A/zh"
+        },
+        {
+            "Publication Number": "CN104049636A (zh) *",
+            "Priority Date": "2014-05-27",
+            "Publication Date": "2014-09-17",
+            "Assignee": "北京航空航天大学",
+            "Title": "一种融合相对高度和绝对高度获得导航高度的方法",
+            "Link": "https://patents.google.com/patent/CN104049636A/zh"
+        },
+        {
+            "Publication Number": "CN104238580A (zh) *",
+            "Priority Date": "2014-09-30",
+            "Publication Date": "2014-12-24",
+            "Assignee": "中国航天空气动力技术研究院",
+            "Title": "一种应用于无人机航空物探的低空飞行控制方法",
+            "Link": "https://patents.google.com/patent/CN104238580A/zh"
+        },
+        {
+            "Publication Number": "CN108955634A (zh) *",
+            "Priority Date": "2018-07-20",
+            "Publication Date": "2018-12-07",
+            "Assignee": "中国人民解放军总参谋部第六十研究所",
+            "Title": "一种无人机高度传感器融合方法",
+            "Link": "https://patents.google.com/patent/CN108955634A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "CN110631546A (zh) *",
+            "Priority Date": "2019-09-24",
+            "Publication Date": "2019-12-31",
+            "Assignee": "中国航空工业集团公司沈阳飞机设计研究所",
+            "Title": "一种高度表上下电控制方法",
+            "Link": "https://patents.google.com/patent/CN110631546A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:27:06"
+}

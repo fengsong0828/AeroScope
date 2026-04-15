@@ -1,0 +1,151 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN111065105B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES296050104">
+<invention-title id="title1" lang="ZH">一种面向无人机网络切片的分布式智能路由方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="n0001">本发明涉及一种无线网络路由方法，具体涉及一种面向无人机网络切片的分布式智能路由方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="n0002">传统的基于最短路算法来求解路由策略的算法，将很难应用到无人机网络切片的场景下。这是由于当前网络中对于实时变化的网络环境适应性不强，而且最短路算法选择的路径比较单一，当网络中的业务流数量逐渐增多时，网络拥塞的可能性会显著增大。在最短路算法的基础上如果期望降低网络的拥塞程度，就会牺牲所能承载的业务流数量。此外，在实际场景中，由于节点的移动性，网络中链路的通信质量也会发生变化，这种网络的动态性也会影响到路由算法的结果。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0005">发明内容</div>
+<div class="description-paragraph" id="p0006" num="n0003">本发明所要解决的技术问题是：现有技术中路由算法比较单一，不能适应网络动态性的变化需求，使得网络中业务流数量与网络拥塞成正比关系，无法应用到无人机网络切片的场景下。本发明目的在于提供一种面向无人机网络切片的分布式智能路由方法，解决无人机网络切片场景的动态网络环境下，如何提高通信质量的问题。</div>
+<div class="description-paragraph" id="p0007" num="n0004">本发明通过以下述技术方案实现：</div>
+<div class="description-paragraph" id="p0008" num="n0005">一种面向无人机网络切片的分布式智能路由方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0009" num="n0006">S1：将无人机网络建模为网络模型；</div>
+<div class="description-paragraph" id="p0010" num="n0007">S2：对所述网络模型设置约束条件，所述约束条件包括：时延限制、速率限制、丢包率限制；</div>
+<div class="description-paragraph" id="p0011" num="n0008">S3：在面向低时延的切片时，将所述受约束的网络模型建为多约束优化模型；</div>
+<div class="description-paragraph" id="p0012" num="n0009">S4：通过强化学习模型对所述多约束优化模型进行求解，得到求解值，在求解过程中，每个通信节点独立保存自己与邻居节点的链路状况并进行实时更新链路状况；</div>
+<div class="description-paragraph" id="p0013" num="n0010">S5：根据所述求解值和所述链路状况进行动态的路由选择。</div>
+<div class="description-paragraph" id="p0014" num="n0011">首先将无人机网络建为一个网络模型，一个静止环境下的网络模型，然后对所述网格模型设置时延限制、速率限制、丢包率限制的约束条件。针对无人机网络的要求，在面向时延的切片时，将受约束的网络模型建为一个多约束的优化模型。建立一个强化学习模型，通过强化学习模型来对所述多约束的优化模型进行求解，得到一个求解值，同时在求解过程中，网络中每个通信节点都独立保存自己与邻居节点的链路状况，而且每个通信节点实时更新当明的链路状况。最后根据求解值和通信节点的链接状态，找到一条从源节点到目的节点之间，满足速率、丢包率等要求的最低时延要求的路由路径。所述路径随着网络状态和约束条件的变化而随时动态变化的。</div>
+<div class="description-paragraph" id="p0015" num="n0012">进一步的，将静止环境下的网络模型建为一个带权重边的无向图G(V,E,W)，V为网络中的通信节点集合，E为网络中的通信链路集合，W表示网络中链路的权重值。所述通信链路使用的技术包括：TDMA、CSMA或轮询。</div>
+<div class="description-paragraph" id="p0016" num="n0013">进一步的，将所述网络模型的约束条件用QoS＝(δ,ν,γ)表示，δ表示时延，ν表示速率，γ表示丢包率，所述约束条件包括：</div>
+<div class="description-paragraph" id="p0017" num="n0014">∑<sub>i，j＝1…n</sub>D(L<sub>ij</sub>)≤δ、</div>
+<div class="description-paragraph" id="p0018" num="n0015">min<sub>i，j＝1…n</sub>V(L<sub>ij</sub>)≥v、</div>
+<div class="description-paragraph" id="p0019" num="n0016">1-Π<sub>i，j＝1…n</sub>(1-R(L<sub>ij</sub>))≤γ；</div>
+<div class="description-paragraph" id="p0020" num="n0017">L<sub>ij</sub>表示所述通信节点i到所述通信节点j的链路；D(L<sub>ij</sub>)表示所述链路L<sub>ij</sub>的时延；V(L<sub>ij</sub>)表示所述链路L<sub>ij</sub>的速率；R(L<sub>ij</sub>)表示所述链路L<sub>ij</sub>的丢包率。</div>
+<div class="description-paragraph" id="p0021" num="n0018">进一步的，当面向无人机网络低时延的切片时，所述多约束优化模型为：</div>
+<div class="description-paragraph" id="p0022" num="n0019">minimize Delay＝E[Σ<sub>i,j＝1…n</sub>D(L<sub>ij</sub>)]<sub>t</sub>、</div>
+<div class="description-paragraph" id="p0023" num="n0020">subject to Error＝E[1-Π<sub>i,j＝1…n</sub>(1-R(L<sub>ij</sub>))]<sub>t</sub>≤γ、</div>
+<div class="description-paragraph" id="p0024" num="n0021">TransRate＝E[min<sub>i,j＝1…n</sub>V(L<sub>ij</sub>)]<sub>t</sub>≥ν、</div>
+<div class="description-paragraph" id="p0025" num="n0022">L<sub>ij</sub>∈p＝(L<sub>si</sub>,…,L<sub>ij</sub>,…,L<sub>jd</sub>)；</div>
+<div class="description-paragraph" id="p0026" num="n0023">E[θ]<sub>t</sub>表示θ在其持续时间内的期望，t表示业务流的持续时间，Error表示业务流的丢包率，TransRate表示链路的传输速率，L<sub>ij</sub>∈p限制了一条路由的起始节点为源节点s终止节点为目的节点d；minimize Delay表示优化目标为最小化路径的传输时延。</div>
+<div class="description-paragraph" id="p0027" num="n0024">进一步的，所述通信节点用Q值来衡量所述通信节点到目的节点间链路QoS的优劣，所述步骤S5包括以下子步骤：</div>
+<div class="description-paragraph" id="p0028" num="n0025">S51：将发送数据包的通信节点定义为数据包节点；</div>
+<div class="description-paragraph" id="p0029" num="n0026">S52：所述数据包节点向邻居节点发送数据包；</div>
+<div class="description-paragraph" id="p0030" num="n0027">S53：根据邻居节点的Q值和链路QoS，判断数据包下一跳的通信节点，并将所述下一跳的通信节点作为数据包节点；</div>
+<div class="description-paragraph" id="p0031" num="n0028">S54：重复步骤S52-S54，直至所述数据包节点为目的节点。</div>
+<div class="description-paragraph" id="p0032" num="n0029">所述数据包节点独立计算所述数据包节点到目的节点的Q值。</div>
+<div class="description-paragraph" id="p0033" num="n0030">通信节点使用一个Q值来衡量当前通信节点到目的节点之间链路QoS的优劣。通信节点向所有邻居节点发送数据包，根据邻居节点的Q值和链路QoS来判断，数据包的下一个通信节点是哪个，根据判断结果，将数据包传递下去，直到送达目的节点，完成了一个源节点到目的节点路由选择的迭代过程。在此过程基础上，优选的采用分布式算法，每个通信节点独立计算当前通信节点到目的节点的Q值，并且每个通信节点与邻居节点交互获取Q值和链路QoS，并以获取的Q值和链路QoS值，作为下个通信节点选取的标准。</div>
+<div class="description-paragraph" id="p0034" num="n0031">进一步的，当网络发生较大波动时，所述通信节点丢弃当前储存的链路状况，重新进行链路状况计算。</div>
+<div class="description-paragraph" id="p0035" num="n0032">进一步的，所述强化学习采用值迭代方法。</div>
+<div class="description-paragraph" id="p0036" num="n0033">进一步的，将所述路由选择问题建模成马尔可夫决策过程MDP，所述MDP模型包括：状态机、动作集合、概率转移矩阵、奖赏矩阵、折扣因子，所述折扣因子用于计算累积回报。</div>
+<div class="description-paragraph" id="p0037" num="n0034">本发明与现有技术相比，具有如下的优点和有益效果：</div>
+<div class="description-paragraph" id="p0038" num="n0035">本发明建立了面向低时延网络切片时的一个多约束的优化模型，此模型具有动态性特点，通过对多约束优化模型的求解，可以找到源节点到目的节点最优时延路径，并且此路径随网络状况随时动态变化。尤其适应于无人机网络环境下，对时延要求高，网络节点随时变化的特点。同时，本发明中网络节点采用分布式方法，由每个用户独立保存自己与邻居间的链路状况并进行链接状态的更新，使得路径的选择更快更高效。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0039">附图说明</div>
+<div class="description-paragraph" id="p0040" num="n0036">此处所说明的附图用来提供对本发明实施例的进一步理解，构成本申请的一部分，并不构成对本发明实施例的限定。在附图中：</div>
+<div class="description-paragraph" id="p0041" num="n0037">图1为实施例1示意图。</div>
+<div class="description-paragraph" id="p0042" num="n0038">图2为实施例1的网络模型示意图。</div>
+<div class="description-paragraph" id="p0043" num="n0039">图3为实施例2的Q学习方法示意图。</div>
+<div class="description-paragraph" id="p0044" num="n0040">图4为实施例5的仿真环境示意图。</div>
+<div class="description-paragraph" id="p0045" num="n0041">图5为实施例5在不同ε下的平均Q值收敛图。</div>
+<div class="description-paragraph" id="p0046" num="n0042">图6为实施例5在迭代次数较少时的收敛细节图。</div>
+<div class="description-paragraph" id="p0047" num="n0043">图7为实施例6在不同QoS需求下的路由结果。</div>
+<div class="description-paragraph" id="p0048" num="n0044">图8为实施例6网络中节点失联的情况图。</div>
+<div class="description-paragraph" id="p0049" num="n0045">图9为实施例6网络中链路失效的情况图。</div>
+<div class="description-paragraph" id="p0050" num="n0046">图10为本发明与DSDV算法业务传输率对比图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0051">具体实施方式</div>
+<div class="description-paragraph" id="p0052" num="n0047">为使本发明的目的、技术方案和优点更加清楚明白，下面结合实施例和附图，对本发明作进一步的详细说明，本发明的示意性实施方式及其说明仅用于解释本发明，并不作为对本发明的限定。</div>
+<div class="description-paragraph" id="p0053" num="n0048">实施例1。</div>
+<div class="description-paragraph" id="p0054" num="n0049">如图1所示。实施例1是一种面向无人机网络切片的分布式智能路由方法。首先通过将无人机网络建模为网络模型；再对所述网络模型设置约束条件，所述约束条件包括：时延限制、速率限制、丢包率限制；在面向低时延的切片时，将所述受约束的网络模型建为多约束优化模型；然后通过强化学习模型对所述多约束优化模型进行求解，得到求解值，在求解过程中，每个通信节点独立保存自己与邻居节点的链路状况并实时更新链路状况；再根据所述求解值和所述链路状况进行动态的路由选择。</div>
+<div class="description-paragraph" id="p0055" num="n0050">在静止网络环境下，将实施例1中的网络模型建立为一个带权重边的无向图G(V,E,W)，其中V为网络中的通信节点集合，表示为V＝{v<sub>1</sub>,v<sub>2</sub>,…,v<sub>n</sub>}，n为节点的数量；E为网络中的通信链路集合，E＝{e<sub>11a</sub>,e<sub>12a</sub>,…,e<sub>ijk</sub>}，e<sub>ijk</sub>表示从节点i出发到节点j结束的一条链路，k表示该链路所使用的通信技术，k可取值有三个{1,2,3}，分别表示TDMA、CSMA和轮询三种技术；W表示网络中链路的权重值，W＝(d<sub>ijk</sub>,v<sub>ijk</sub>,p<sub>ijk</sub>)，表示链路e<sub>ijk</sub>的QoS特征值，对应于链路时延(delay)、链路传输速率(transmissionrate)和链路的丢包率(packetloss)。无权图中链路e<sub>ijk</sub>和e<sub>jik</sub>表示相同链路，如图2所示，4号节点和5号节点有3条重边，表示4节点到5节点的链路支持3种通信技术。</div>
+<div class="description-paragraph" id="p0056" num="n0051">在上述网络模型的基础上，每一条申请接入网络的业务流都有其对应的时延、速率和丢包率需求，用三元组QoS＝(δ,ν,γ)表示(通过发送探测包的方式可以获得每条链路相应的值)。QoS路由的目的是在满足业务f的源节点s和目的节点d要求的路径集合P中找到一条合适的路径p＝(L<sub>si</sub>,…,L<sub>ij</sub>,…,L<sub>jd</sub>)满足如下约束：</div>
+<div class="description-paragraph" id="p0057" num="n0052">1、业务请求的时延限制：</div>
+<div class="description-paragraph" id="p0058" num="n0053">Σ<sub>i,j＝1…n</sub>D(L<sub>ij</sub>)≤δ</div>
+<div class="description-paragraph" id="p0059" num="n0054">2、业务请求的速率限制：</div>
+<div class="description-paragraph" id="p0060" num="n0055">min<sub>i,j＝1…n</sub>V(L<sub>ij</sub>)≥ν</div>
+<div class="description-paragraph" id="p0061" num="n0056">3、业务请求的丢包率限制：</div>
+<div class="description-paragraph" id="p0062" num="n0057">1-Π<sub>i,j＝1…n</sub>(1-R(L<sub>ij</sub>))≤γ</div>
+<div class="description-paragraph" id="p0063" num="n0058">其中D(L<sub>i</sub>)表示链路L<sub>i</sub>的传输时延，V(L<sub>i</sub>)表示链路L<sub>i</sub>的可用带宽，R(L<sub>i</sub>)表示链路L<sub>i</sub>的丢包率。</div>
+<div class="description-paragraph" id="p0064" num="n0059">在切片场景下，不同类型的业务对不同的QoS特征需求不同，以面向低时延的切片为例，当业务对时延有严格的限制需求时，可建立如下多约束优化模型：</div>
+<div class="description-paragraph" id="p0065" num="n0060">minimize Delay＝E[Σ<sub>i,j＝1…n</sub>D(L<sub>ij</sub>)]<sub>t</sub> </div>
+<div class="description-paragraph" id="p0066" num="n0061">subject to Error＝E[1-Π<sub>i,j＝1…n</sub>(1-R(L<sub>ij</sub>))]<sub>t</sub>≤γ；</div>
+<div class="description-paragraph" id="p0067" num="n0062">TransRate＝E[min<sub>i,j＝1…n</sub>V(L<sub>ij</sub>)]<sub>t</sub>≥ν；</div>
+<div class="description-paragraph" id="p0068" num="n0063">L<sub>ij</sub>∈p＝(L<sub>si</sub>,…,L<sub>ij</sub>,…,L<sub>jd</sub>).</div>
+<div class="description-paragraph" id="p0069" num="n0064">其中，E[θ]<sub>t</sub>表示θ在其持续时间内的期望，此处t表示业务流的持续时间。约束一(Error)为业务流的丢包率(误码率)约束，约束二(TransRate)为链路的传输速率，约束三(L<sub>ij</sub>∈p)限制了一条路由的起始节点必须是源节点s，终止节点是目的节点d；优化目标(minimize Delay)为最小化路径的传输时延。</div>
+<div class="description-paragraph" id="p0070" num="n0065">建立一个强化学习模型对上述多约束优化模型进行求解。</div>
+<div class="description-paragraph" id="p0071" num="n0066">首先将路由选择问题建模成为一个马尔可夫决策过程(MDP)，并用强化学习模型进行求解。在该模型下，网络的每一个节点被看做MDP中的一个状态(State)，每个状态下选择其邻居节点作为路由的下一跳的过程作为动作(Action)选择，每个节点作为agent独立进行自己的动作选择和奖赏(Reward)计算，节点间通过信息交互实现整个网络的更新。</div>
+<div class="description-paragraph" id="p0072" num="n0067">MDP模型包含五个主要的元素&lt;S,A,P,R,γ&gt;，S表示状态机，A表示动作集合，P表示概率转移矩阵，R表示奖赏矩阵，γ表示折扣因子，用来计算累积回报。由于在指定状态下选择指定动作后状态的转移是确定的，因此动作转移概率p＝1。链路的QoS指标作为即时奖励值r，具体的QoS指标d<sub>ij</sub>(t)、e<sub>ij</sub>(t)和v<sub>ij</sub>(t)分别表示链路i-j在一段时间内的延时期望、误码率期望和速率。此外定义三种Q值Q<sub>ij</sub>(d)、Q<sub>ij</sub>(e)和Q<sub>ij</sub>(v)的含义为从i节点开始选择j节点为下一跳时从i节点到目的节点整个路径所有链路的累积时延、累积误码率和累积速率。对应于优化模型，优化目标是所选择路径的所有链路的时延期望累加最小，因此设定折扣因子γ＝1，此时Q值的更新策略得到化简，Q学习价值函数的一般更新公式为：Q(s,a)＝Q(s,a)+α(r+γQ(s’,a’)-Q(s,a))，其中Q(s,a)为状态-动作(s,a)的价值，α为学习率，γ为折扣因子，r为即时回报。根据路由问题，该公式可化简为Q(s,a)＝r+Q(s’,a’)。</div>
+<div class="description-paragraph" id="p0073" num="n0068">在该学习模型中，节点间通过交互获得链路的QoS性能，在系统开始运行后的任一时刻t，可以获得全局的链路QoS性能矩阵(回报R)，在该时刻t下，&lt;S,A,P,R,γ&gt;都是已知的，因此可以用有模型的强化学习对问题求解，本发明选择了值迭代(value-iteration)的方法进行学习。</div>
+<div class="description-paragraph" id="p0074" num="n0069">根据Q值的更新公式Q(s,a)＝r+Q(s’,a’)，Q(s,a)表示在s节点，选择其邻居节点a作为下一跳时，从s节点处到d节点的最短路径时延。考虑的优化目标是最小化时延，因此最小化Q(s,a)等价于最小化r+Q(s’,a’)，而即时回报项r在某一时刻下为确定值，因此只需要最小化Q(s’,a’)即可。具体来说，对于网络中的某个节点i，通过ε-greedy算法找出其下一跳节点j后，只需找到节点j的Q值表中Q值最小的下一跳k(即<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/47/e7/d4/f246579691ffbb/BDA0002346146560000061.png"><img alt="Figure BDA0002346146560000061" class="patent-full-image" file="BDA0002346146560000061.GIF" he="72" height="288" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_0.png" wi="588" width="2352"/></a></div>)进行更新，由此计算出的Q<sub>ij</sub>值是当前阶段最优值。</div>
+<div class="description-paragraph" id="p0075" num="n0070">实施例2。</div>
+<div class="description-paragraph" id="p0076" num="n0071">以图3为例介绍Q学习的具体过程。寻找一条从v1到v7的满足QoS需求的路径。指定每个节点为一个状态，在图3所示的网络中，状态数为7。在每个状态下，动作定义为每个节点可选的下一跳，以v1为例，其动作集大小为3，可选动作有v2，v3，v4三种。每个状态下定义了三种Q值，分别用于描述从当前节点到目的节点的时延、丢包率、带宽情况。v1首先利用ε-greedy策略发送数据包，根据v2、v3、v4的Q值判断数据包下一跳应该发给哪个节点。若选择v2时丢包率和带宽满足需求(通过Q12(e)、Q12(v)判断)，则更新Q12(d)，v2再重复相同的步骤，直到选中了v7，此时完成一次迭代过程。</div>
+<div class="description-paragraph" id="p0077" num="n0072">网络环境中有大量的节点信息和链路信息需要被使用，若将所有的数据信息都存储在SDN控制器中，会占据控制器大量的缓存空间，对这些信息的更新和访问复杂度也在O(|V||E|)的数量级，以完全图为例，其复杂度为O(|V|<sup>3</sup>)，这会极大增加SDN控制器的压力。</div>
+<div class="description-paragraph" id="p0078" num="n0073">对于上述状况，考虑到每个节点有一定的计算能力和存储空间，本发明采用分布式的方法，由每个用户独立保存自己与邻居间的链路状况并进行Q值的更新。即每个节点通过相同的方式，利用RREQ数据包独立计算到v7的Q值，但是节点间通过交互获取其他节点的Q值和链路QoS值，并以此作为动作选取的标准，这样训练的速度更快，复杂度也比较低。</div>
+<div class="description-paragraph" id="p0079" num="n0074">实施例3。</div>
+<div class="description-paragraph" id="p0080" num="n0075">设当前网络中有一条业务流发起了路由请求，其源节点为s，目的节点为d，Q<sub>ij</sub>(d)、Q<sub>ij</sub>(e)和Q<sub>ij</sub>(v)分别表示从当前节点到目的节点d的累积链路时延、累积丢包率和路径速率，∞表示无穷大，每个节点都会维护自己的这3类Q值信息，<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/79/88/47/fbdaac6596f8db/BDA0002346146560000062.png"><img alt="Figure BDA0002346146560000062" class="patent-full-image" file="BDA0002346146560000062.GIF" he="60" height="240" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_1.png" wi="172" width="688"/></a></div>表示节点j的邻居节点i，l表示实验轮次。</div>
+<div class="description-paragraph" id="p0081" num="n0076">现已知：业务流的源节点s、目的节点j、业务类型(此处以低时延业务为例)、QoS需求；</div>
+<div class="description-paragraph" id="p0082" num="n0077">目的是得出：此业务的路径选择方案π。</div>
+<div class="description-paragraph" id="p0083" num="n0078">初始化阶段：</div>
+<div class="description-paragraph" id="p0084" num="n0079">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/ba/97/25/ca3e7eb35d83b9/BDA0002346146560000072.png"><img alt="Figure BDA0002346146560000072" class="patent-full-image" file="BDA0002346146560000072.GIF" he="46" height="184" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_2.png" wi="163" width="652"/></a></div>
+</div>
+<div class="description-paragraph" id="p0085" num="n0080">Q<sub>ij</sub>(d)＝∞,Q<sub>ij</sub>(e)＝1,Q<sub>ij</sub>(v)＝0//初始化Q-value</div>
+<div class="description-paragraph" id="p0086" num="n0081">在线学习阶段：</div>
+<div class="description-paragraph" id="p0087" num="n0082">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/bf/33/f6/6893ecca86b0eb/BDA0002346146560000071.png"><img alt="Figure BDA0002346146560000071" class="patent-full-image" file="BDA0002346146560000071.GIF" he="1000" height="4000" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_3.png" wi="561" width="2244"/></a></div>
+</div>
+<div class="description-paragraph" id="p0088" num="n0083">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/b4/23/96/7dcdeabee2c301/BDA0002346146560000081.png"><img alt="Figure BDA0002346146560000081" class="patent-full-image" file="BDA0002346146560000081.GIF" he="862" height="3448" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_4.png" wi="928" width="3712"/></a></div>
+</div>
+<div class="description-paragraph" id="p0089" num="n0084">输出：<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/65/50/9e/8118fa55219395/BDA0002346146560000083.png"><img alt="Figure BDA0002346146560000083" class="patent-full-image" file="BDA0002346146560000083.GIF" he="67" height="268" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_5.png" wi="778" width="3112"/></a></div> </div>
+<div class="description-paragraph" id="p0090" num="n0085">实施例4。</div>
+<div class="description-paragraph" id="p0091" num="n0086">本实施例介绍了网络应对链路波动的方法。将每个节点i∈V都看作独立的智能体，邻居用户的集合为<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/a4/61/dd/536e83e5dae43a/BDA0002346146560000085.png"><img alt="Figure BDA0002346146560000085" class="patent-full-image" file="BDA0002346146560000085.GIF" he="60" height="240" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_6.png" wi="141" width="564"/></a></div>则该节点会在固定的迭代周期内以ε-greedy规则发送路由请求报文(Route Request,RREQ)，用于探测当前节点与邻居用户间无线链路的QoS值。</div>
+<div class="description-paragraph" id="p0092" num="n0087">对网络中的某一节点i，根据节点自身的承载力和运算能力，设其能承载<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/02/f1/82/8d2b4107902a5f/BDA0002346146560000084.png"><img alt="Figure BDA0002346146560000084" class="patent-full-image" file="BDA0002346146560000084.GIF" he="59" height="236" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_7.png" wi="270" width="1080"/></a></div>个邻居的信息(邻居数量不多的情况下，可以全部更新)，每次选择k个邻居一次发送RREQ。邻居节点在收到RREQ后将返回路由应答报文(Route Reply,RREP)，并根据RREQ探测到的链路状况，在RREP上附加链路的即时状况信息(包括误码率e<sub>ij</sub>、时延d<sub>ij</sub>和速率v<sub>ij</sub>)，并将所述邻居节点保存的Q值信息Q<sub>jk</sub>(d)、Q<sub>jk</sub>(e)和Q<sub>jk</sub>(v)也通过RP回传给节点i，完成链路状况的更新。</div>
+<div class="description-paragraph" id="p0093" num="n0088">在节点i选择了k个邻居发送RREQ后，接收邻居节点发回的RREP，利用其中携带的信息更新链路i-j的QoS值。</div>
+<div class="description-paragraph" id="p0094" num="n0089">离线阶段：</div>
+<div class="description-paragraph" id="p0095" num="n0090">初始化：</div>
+<div class="description-paragraph" id="p0096" num="n0091">d<sub>ij</sub>(0)＝0,e<sub>ij</sub>(0)＝0,v<sub>ij</sub>(0)＝0</div>
+<div class="description-paragraph" id="p0097" num="n0092">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/30/51/87/b3fbd75069e89b/BDA0002346146560000082.png"><img alt="Figure BDA0002346146560000082" class="patent-full-image" file="BDA0002346146560000082.GIF" he="242" height="968" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_8.png" wi="1000" width="4000"/></a></div>
+</div>
+<div class="description-paragraph" id="p0098" num="n0093">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/d9/0e/1f/5abee082391450/BDA0002346146560000091.png"><img alt="Figure BDA0002346146560000091" class="patent-full-image" file="BDA0002346146560000091.GIF" he="439" height="1756" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_9.png" wi="765" width="3060"/></a></div>
+</div>
+<div class="description-paragraph" id="p0099" num="n0094">以上可以看出，如果网络在一段时间内发生较大波动，可以丢弃当前储存的链路状态期望值，重新进行链路状态计算。</div>
+<div class="description-paragraph" id="p0100" num="n0095">实施例5。</div>
+<div class="description-paragraph" id="p0101" num="n0096">利用python对算法进行仿真。基于前文所述系统模型，对仿真环境设置了如下参数：</div>
+<div class="description-paragraph" id="p0102" num="n0097">节点数量：50；区域大小：1000km×1000km；节点通信范围：300km；链路误码率：正态分布；链路速率：均匀分布50kbps～450kbps；链路时延：正态分布；源节点、目的节点：0～49的随机整数；业务需求：随机产生。</div>
+<div class="description-paragraph" id="p0103" num="n0098">链路的误码率设置为服从正态分布的随机数，正态分布的参数与节点的度数(节点的邻居数量)有关，链路时延也设置为服从正态分布的随机数，其参数与链路长度有关。为了产生动态环境，在链路连接状况不变的情况下，将链路的QoS值添加了一定的动态性，让其在小范围内变化，模拟实际场景中的链路波动。</div>
+<div class="description-paragraph" id="p0104" num="n0099">仿真过程中，将节点定义为python类，并设置其包含属性：节点位置、邻居节点集和针对不同QoS的Q值表，其中每个节点的每类Q值表用长度为<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/0e/34/67/800f8a6ae68dc1/BDA0002346146560000092.png"><img alt="Figure BDA0002346146560000092" class="patent-full-image" file="BDA0002346146560000092.GIF" he="59" height="236" img-content="drawing" img-format="gif" inline="yes" orientation="portrait" src="./description_images/desc_img_10.png" wi="115" width="460"/></a></div>列表存储。网络环境用图的邻接矩阵(二维数组)进行储存，并通过在1000km×1000km的范围内随机产生横纵坐标的方式得到了50个节点的位置，具体网络环境图如图4所示。</div>
+<div class="description-paragraph" id="p0105" num="n0100">在图4中，设定了业务流的源节点Source为2号节点，目的节点Destiny为20号节点，具体位置已经在图中标定。为方便验证收敛性，首先对业务流的QoS需求设置为：速率需求v≥50kbps，误码率需求e≤1。在这样的需求下，问题转变为一个无条件限制的最小化时延路由问题。</div>
+<div class="description-paragraph" id="p0106" num="n0101">图5展示了在不同的ε(epsilon)取值下，算法的收敛过程，图6为图5中迭代次数(iteration times)在7000次内时，ε为线性变化和ε＝0.5时的收敛细节，当Q值(Qd_value)在一段时间内不再发生变化时，可以认为算法收敛。当ε很小时，算法以很小的概率进行探索，以很大的概率进行利用，在系统运行的初期无法充分获取网络信息，因此收敛速度很慢，随着ε增大，算法的收敛速度逐渐增加，在图6中可见，采用与迭代轮次有关的线性变化的ε值可以得到最快的收敛速度，迭代2000次左右即可收敛。在算法收敛后，由源节点开始进行Q值的利用，在每一个节点处选择Q值最小的节点作为下一跳，最后获得的路径为[2,36,49,23,20]，这是在网络下时延最低的路由，最低时延16.9647ms。</div>
+<div class="description-paragraph" id="p0107" num="n0102">实施例6。</div>
+<div class="description-paragraph" id="p0108" num="n0103">如图7所示，为给定不同的误码率、速率需求的情况下，为业务流寻找一条由32号节点(Source)到20号节点(Destiny)的路径时，使用本发明方法给出的路径结果，仿真数据给出了详细的QoS需求设定及算法运行结果：</div>
+<div class="description-paragraph" id="p0109" num="n0104">业务流1的QoS需求为：γ≤0.15，ν≥100kbps；</div>
+<div class="description-paragraph" id="p0110" num="n0105">实际路由结果：γ＝0.119，ν＝106.78kbps，δ＝19.294ms；</div>
+<div class="description-paragraph" id="p0111" num="n0106">业务流2的QoS需求为：γ≤0.15，ν≥120kbps；</div>
+<div class="description-paragraph" id="p0112" num="n0107">实际路由结果：γ＝0.137，ν＝169.497kbps，δ＝19.74ms；</div>
+<div class="description-paragraph" id="p0113" num="n0108">业务流3的QoS需求为：γ≤0.25，ν≥250kbps；</div>
+<div class="description-paragraph" id="p0114" num="n0109">实际路由结果：γ＝0.238，ν＝272.289kbps，δ＝23.769ms；</div>
+<div class="description-paragraph" id="p0115" num="n0110">业务流4的QoS需求为：γ≤0.75，ν≥450kbps；</div>
+<div class="description-paragraph" id="p0116" num="n0111">实际路由结果：γ＝1，ν＝0，δ＝∞；</div>
+<div class="description-paragraph" id="p0117" num="n0112">业务流5的QoS需求为：γ≤0.05，ν≥50kbps；</div>
+<div class="description-paragraph" id="p0118" num="n0113">实际路由结果：γ＝1，ν＝0，δ＝∞。</div>
+<div class="description-paragraph" id="p0119" num="n0114">对于业务流1、业务流2和业务流3，本发明都在给定的需求下找到了时延最短的路由，具体路径如图7所示。对比于业务流1和业务流2，业务流3具有更强的QoS限制，因此业务流3的路由路径更长，跳数更多，时延也明显更长。对于业务流4和业务流5，由于网络中不存在满足需求的路径，因此算法返回时延结果为∞，对于业务流4，网络无法满足通信速率需求，对于业务流5，网络无法满足误码率需求。</div>
+<div class="description-paragraph" id="p0120" num="n0115">图8展示了网络中部分节点失联的情况，图9展示了部分链路失效的情况。设定本发明方法在迭代7000次时出现，从图中可以看出，当网络中某些节点或链路出现异常时，本发明方法在感知到该变化后可以自适应地进行路由恢复。由于节点保存了每个动作的Q值信息，若最优路由中某些节点或链路失效，方法可以选取备选路径进行业务转发，增强网络抗毁性。</div>
+<div class="description-paragraph" id="p0121" num="n0116">根据算法的QoS性能，将本发明的分布式Q学习方法(也称QLRA)和DSDV路由算法做对比。从源节点s到目的节点d，通过QLRA方法，所得路径时延为13.6436ms，误码率为0.1140，速率为131.0551kbps；而DSDV路由算法，所得路径时延为8.3547ms，误码率为0.1274，速率为57.2383kbps。DSDV中的路径以跳数(hoops)为衡量标准，给出的路由信息只能满足跳数这一种QoS需求，当业务的QoS需求种类增加时，DSDV算法无法满足所有的需求。当业务QoS需求限制在误码率≤0.12，通信速率≥50kbps时，DSDV算法无法给出满足需求的路由结果，其只能按照最短时延给出结果。</div>
+<div class="description-paragraph" id="p0122" num="n0117">如图10所示，展示了在动态网络环境下，不同交互频率下业务正确传输的概率。可以看到，QLRA方法可以感知到网络环境的变化情况，因此随着学习的轮次的增加，其业务交付的正确率在逐渐上升，而DSDV只能保存最近一次得到的局部网络拓扑信息，因此其传输的正确率无法得到保证，每次网络环境发生变化时都需要重新交互信息并更新路由表。图10(a)展示了在高交互频率下的业务传输成功率，图10(b)展示了低交互频率下的业务传输率，可以看出随着交互频率的降低，两种算法的成功率都有不同程度的下降，但由于QLRA方法以获得环境状态的长期期望为回报进行报文更新，因此即使降低节点间的交互频率，分布式Q学习方法仍然会学习到一定程度的网络变化趋势，保证一定的正确率，而DSDV算法的正确率会有较大程度的下降，这是因为其只能保证在某一时刻交互的链路信息时正确的，而环境动态变化时会对算法正确率有极大影响。</div>
+<div class="description-paragraph" id="p0123" num="n0118">DSDV算法采用洪泛的方式进行路由信息交互和获取，网络中会出现大量的无效报文，引发广播风暴问题，本发明的QLRA方法仅和邻居节点进行信息交互，可以很大程度减少信息交互对网络资源的损耗。另外本发明QLRA方法维护的路由表中不提供备用路由供节点转发报文。当网络环境发生波动，如网络中某些链路或节点发生损坏时，DSDV算法不能保证业务的交付率，但本发明QLRA方法可以根据Q表中其他节点的Q值信息选择备用路径转发。</div>
+<div class="description-paragraph" id="p0124" num="n0119">以上所述的具体实施方式，对本发明的目的、技术方案和有益效果进行了进一步详细说明，所应理解的是，以上所述仅为本发明的具体实施方式而已，并不用于限定本发明的保护范围，凡在本发明的精神和原则之内，所做的任何修改、等同替换、改进等，均应包含在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

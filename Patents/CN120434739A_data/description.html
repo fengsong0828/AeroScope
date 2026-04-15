@@ -1,0 +1,89 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120434739A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES501244007">
+<invention-title id="title1" lang="ZH">一种基于低空飞行器多链路数据回传系统、方法和介质</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及一种基于低空飞行器多链路数据回传系统、方法和介质，属于低空飞行器领域。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空飞行器eVTOL作为新一代航空载具，与传统的航空运输工具相比飞行环境更加复杂，飞行路径更为灵活且频繁变动。其在飞行过程中需要持续进行数据回传，传输飞行状态信息、传感器数据、远程控制指令等，这对通信系统提出了更高的要求。传统的航空通信技术，尤其是基于VHF、HF和卫星通信的数据链，并不适用于低空飞行器的需求。在城市低空飞行中，传统的数据链无法提供足够的带宽和低时延，难以满足高清图像、视频流和实时飞行数据传输的需求。</div>
+<div class="description-paragraph" id="p0005" num="0003">eVTOL在飞行过程中可能需要在不同类型的通信网络之间进行切换，例如从地面自组网切换到5G网络，或者在5G和低地轨道卫星之间转换。传统的通信系统通常依赖单一链路，并无法自动切换或适应这些动态变化。这导致在网络切换时可能出现数据丢失、连接中断等问题，影响通信的稳定性和飞行的安全性。</div>
+<div class="description-paragraph" id="p0006" num="0004">低空飞行器对于数据传输的时延和可靠性要求极高。飞行控制指令、飞行数据和视频回传等业务需要在毫秒级别内传输，如果出现高延迟或数据丢失，可能会对飞行安全造成严重威胁。传统通信系统无法有效满足这种低时延和高可靠性的需求，特别是在处理高清视频回传和大量传感器数据时，带宽限制和网络不稳定性往往会导致传输中断或延迟过长。</div>
+<div class="description-paragraph" id="p0007" num="0005">随着eVTOL越来越依赖公网环境进行数据回传，数据安全性问题也愈加突出。公网环境下的通信易受到中间人攻击、数据篡改、DNS劫持等安全威胁，尤其是在远程控制指令和飞行状态数据的传输过程中，缺乏有效的加密和安全保障措施。传统的航空通信系统虽然具备基本的安全性，但其加密技术和防护机制未能针对公网环境的安全威胁进行优化。现有的通信系统在适应性、带宽、延迟、稳定性以及安全性方面存在显著不足，不能满足低空飞行器在复杂飞行环境中的多链路数据回传需求。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0008">发明内容</div>
+<div class="description-paragraph" id="p0009" num="0006">本发明的目的在于克服现有技术中的不足，提供一种基于低空飞行器多链路数据回传的系统和方法，解决了传统TCP通信在低空飞行器动态网络环境中面临的连接不稳定、链路切换中断、加密机制缺失等问题，实现了高可靠、低延迟、端到端安全的数据回传能力。</div>
+<div class="description-paragraph" id="p0010" num="0007">为达到上述目的，本发明是采用下述技术方案实现的：</div>
+<div class="description-paragraph" id="p0011">第一方面，本发明提供了一种基于低空飞行器多链路数据回传的系统，包括：</div>
+<div class="description-paragraph" id="p0012">机载多链路通信网关，用于同时连接多个通信链路，并基于链路质量参数动态选择当前性能最优通信链路进行数据回传；</div>
+<div class="description-paragraph" id="p0013">协议转换模块，用于接收来自飞行器内网设备的TCP数据流，并将TCP数据流转换为QUIC协议中的QUIC数据流；</div>
+<div class="description-paragraph" id="p0014">数据加密模块，对所述QUIC数据流进行端到端加密处理，生成加密的QUIC数据包；</div>
+<div class="description-paragraph" id="p0015">数据传输模块，用于接收所述加密的QUIC数据包，并通过QUIC协议的ConnectionID机制，在IP地址变化时保持QUIC连接，将所述加密的QUIC数据包通过所选最优通信链路发送至地面接收端。</div>
+<div class="description-paragraph" id="p0016" num="0008">进一步地，所述机载多链路通信网关还包括多链路管理单元，所述多链路管理单元具体用于：</div>
+<div class="description-paragraph" id="p0017">采集多个可用通信链路的实时质量参数，所述实时质量参数至少包括带宽、时延、丢包率和信号强度；</div>
+<div class="description-paragraph" id="p0018">基于实时质量参数对各通信链路的网络状态进行监控，并结合延迟变化趋势预测结果，选择当前性能最优通信链路。</div>
+<div class="description-paragraph" id="p0019" num="0009">进一步地，所述协议转换模块具体包括：</div>
+<div class="description-paragraph" id="p0020">TCP监听单元，接收来自飞行器内网设备的TCP数据流；</div>
+<div class="description-paragraph" id="p0021">会话映射单元，用于为每个TCP连接分配唯一标识，并与QUIC数据流建立一一对应关系；</div>
+<div class="description-paragraph" id="p0022">数据封装单元，用于从TCP连接中提取数据，将处理后的数据写入QUIC数据流，完成TCP数据流到QUIC数据流的转换。</div>
+<div class="description-paragraph" id="p0023" num="0010">进一步地，所述协议转换模块还包括数据解封装单元，用于从地面接收端接收到的QUIC数据流中提取数据，还原为TCP数据流并返回飞行器内网设备。</div>
+<div class="description-paragraph" id="p0024" num="0011">进一步地，所述数据加密模块具体用于：</div>
+<div class="description-paragraph" id="p0025">在QUIC连接初始化过程中，通过TLS协议与地面接收端完成密钥协商，生成会话密钥并建立加密会话上下文；</div>
+<div class="description-paragraph" id="p0026">接收来自协议转换模块输出的QUIC数据流；</div>
+<div class="description-paragraph" id="p0027">基于所述加密会话上下文对所述QUIC数据流进行端到端加密处理，生成加密的QUIC数据包。</div>
+<div class="description-paragraph" id="p0028" num="0012">进一步地，所述数据传输模块具体用于：</div>
+<div class="description-paragraph" id="p0029">接收所述加密的QUIC数据包；</div>
+<div class="description-paragraph" id="p0030">调用机载多链路通信网关选择的当前性能最优通信链路；</div>
+<div class="description-paragraph" id="p0031">将所述加密的QUIC数据包通过所选的最优通信链路发送至地面接收端。</div>
+<div class="description-paragraph" id="p0032" num="0013">进一步地，所述地面接收端兼容TCP设备，用于将QUIC数据流转换回TCP数据流，具体用于：</div>
+<div class="description-paragraph" id="p0033">接收加密的QUIC数据包；</div>
+<div class="description-paragraph" id="p0034">利用在QUIC连接初始化过程中协商生成的加密会话上下文对所述加密的QUIC数据包进行解密，恢复为明文QUIC数据流；</div>
+<div class="description-paragraph" id="p0035">基于明文QUIC数据流的标识，将所述明文QUIC数据流还原为对应的TCP数据流字节序列；</div>
+<div class="description-paragraph" id="p0036">将还原得到的TCP数据流字节序列发送至地面内部目标设备，完成TCP会话的无缝对接。</div>
+<div class="description-paragraph" id="p0037" num="0014">进一步地，还包括数据冗余消除模块，所述数据冗余消除模块具体用于：</div>
+<div class="description-paragraph" id="p0038">接收来自数据加密模块输出的加密的QUIC数据包；</div>
+<div class="description-paragraph" id="p0039">对所述加密的QUIC数据包进行内容哈希计算，生成唯一标识值；</div>
+<div class="description-paragraph" id="p0040">将所述标识值与本地已接收数据缓存中的历史标识进行比对，判断是否为冗余数据；</div>
+<div class="description-paragraph" id="p0041">若判断为非冗余数据，则保留并转发至数据传输模块；若判断为冗余数据，则丢弃加密的QUIC数据包，避免重复发送。</div>
+<div class="description-paragraph" id="p0042" num="0015">第二方面，本发明提供了一种基于低空飞行器多链路数据回传的方法，包括：</div>
+<div class="description-paragraph" id="p0043">同时连接多个通信链路，并基于链路质量参数动态选择当前性能最优的通信链路；</div>
+<div class="description-paragraph" id="p0044">接收来自飞行器内网设备的TCP数据流，并将TCP数据流转换为QUIC协议中的QUIC数据流；</div>
+<div class="description-paragraph" id="p0045">对所述QUIC数据流进行端到端加密处理，生成加密的QUIC数据包；</div>
+<div class="description-paragraph" id="p0046">通过QUIC协议的Connection ID机制，在IP地址变化时保持QUIC连接，将所述加密的QUIC数据包通过所选最优通信链路发送至地面接收端。</div>
+<div class="description-paragraph" id="p0047" num="0016">第三方面，本发明提供了一种计算机可读存储介质，其上存储有计算机程序，该程序被处理器执行时实现权利要求9所述的基于低空飞行器多链路数据回传方法的步骤。</div>
+<div class="description-paragraph" id="p0048" num="0017">与现有技术相比，本发明达到的有益效果：</div>
+<div class="description-paragraph" id="p0049">本发明所提供的多链路数据回传系统，采用TCP与QUIC协议间的动态转换机制，结合QUIC协议的连接保持能力、多路复用能力和端到端加密特性，实现了在多种链路间无缝切换且高效安全的数据传输。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0050">附图说明</div>
+<div class="description-paragraph" id="p0051" num="0018">图1为本发明提供的一种基于低空飞行器多链路数据回传的方法流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0052">具体实施方式</div>
+<div class="description-paragraph" id="p0053" num="0019">下面通过附图以及具体实施例对本发明技术方案做详细的说明，应当理解本申请实施例以及实施例中的具体特征是对本申请技术方案的详细的说明，而不是对本申请技术方案的限定，在不冲突的情况下，本申请实施例以及实施例中的技术特征可以相互组合。</div>
+<div class="description-paragraph" id="p0054" num="0020">术语“第一”、“第二”等仅用于描述目的，而不能理解为指示或暗示相对重要性或者隐含指明所指示的技术特征的数量。由此，限定有“第一”、“第二”等的特征可以明示或者隐含地包括一个或者更多个该特征。在本公开/本申请的描述中，除非另有说明，“多个”的含义是两个或两个以上。</div>
+<div class="description-paragraph" id="p0055" num="0021">实施例一</div>
+<div class="description-paragraph" id="p0056" num="0022">本实施例提供了一种基于低空飞行器的多链路数据回传系统，包括：</div>
+<div class="description-paragraph" id="p0057">机载多链路通信网关，用于同时连接多个通信链路，并基于链路质量参数动态选择当前性能最优的通信链路进行数据回传。所述多个通信链路包括地面自组网、5G网络和LEO卫星，系统能够动态切换链路，确保在飞行器进入信号不稳定的区域时，迅速切换到其他链路，以保证数据回传不中断。</div>
+<div class="description-paragraph" id="p0058" num="0023">在飞行器内网设备通过标准TCP协议与机载多链路通信网关建立连接。机载多链路通信网关内设置有协议转换模块，协议转换模块中的TCP监听单元用于监听来自这些内网设备的TCP连接请求。一旦接收到连接请求，会话映射单元为每条TCP连接分配唯一会话标识，并在QUIC连接中创建对应的QUIC数据流通道。数据封装单元从TCP连接中持续读取原始数据字节流，进行分段、粘包处理后写入对应的QUIC数据流中，从而完成TCP到QUIC的协议转换过程。</div>
+<div class="description-paragraph" id="p0059" num="0024">QUIC数据流数据随后被传递至数据加密模块。在数据加密模块中，系统首先通过QUIC连接初始化时的TLS握手，与地面接收端建立加密会话上下文。在会话密钥生成后，数据加密模块使用协商的密钥对接收到的QUIC数据流进行端到端加密，生成加密的QUIC数据包，并将QUIC数据包输出至后续模块。</div>
+<div class="description-paragraph" id="p0060" num="0025">数据传输模块调用机载多链路通信网关中的多链路管理单元，所述多链路管理单元通过采集当前各链路的带宽、时延、丢包率和信号强度等参数动态评估通信链路质量，然后选择出当前性能最优通信链路，并返回给数据传输模块。数据传输模块通过QUIC协议的Connection ID机制，保持连接的逻辑会话不变，即使IP地址发生变化也无需重新连接，在链路切换过程中保持连接，减少数据传输中的延迟和丢包，从而提高数据传输效率。对于传统的TCP协议在频繁链路切换中容易导致的连接中断问题，QUIC协议能够有效避免并保持稳定的传输，最终数据传输模块将加密后的QUIC数据包通过最优通信链路发送至地面接收端。</div>
+<div class="description-paragraph" id="p0061" num="0026">在地面接收端系统设置了QUIC数据还原功能，所述服务器支持QUIC协议与传统TCP协议兼容的转换过程。当接收到飞行器内网设备发来的加密的QUIC数据包后，首先使用之前在TLS握手中建立的加密上下文完成数据解密，恢复为明文QUIC数据流；然后系统根据明文QUIC数据流的标识信息，将明文QUIC数据流还原为原始TCP数据流字节序列，并将恢复后的数据通过标准TCP协议转发至地面内部目标设备，实现TCP会话的无缝对接与还原。</div>
+<div class="description-paragraph" id="p0062" num="0027">为提升带宽利用效率和防止链路冗余发送，系统进一步调用数据冗余消除模块对加密的QUIC数据包进行处理。所述数据冗余消除模块位于地面接收端，基于内容哈希算法计算每个数据包的唯一标识值，并与本地缓存中历史发送记录进行比对。如果检测到数据为首次出现或非冗余，则将数据保留并转发；如为冗余数据，则丢弃数据包，避免带宽浪费。</div>
+<div class="description-paragraph" id="p0063" num="0028">实施例二</div>
+<div class="description-paragraph" id="p0064" num="0029">本发明实施例还提供了一种基于低空飞行器多链路数据回传的方法，如图1所示，包括：机载多链路通信网关同时连接多个通信链路，并基于链路质量参数动态选择当前性能最优通信链路；</div>
+<div class="description-paragraph" id="p0065">接收来自飞行器内网设备的TCP数据流，并将TCP数据流转换为QUIC协议中的QUIC数据流；</div>
+<div class="description-paragraph" id="p0066">对所述QUIC数据流进行端到端加密处理，生成加密的QUIC数据包；</div>
+<div class="description-paragraph" id="p0067">通过QUIC协议的Connection ID机制，在IP地址变化时保持QUIC连接，将所述加密的QUIC数据包通过所选最优通信链路发送至地面接收端。</div>
+<div class="description-paragraph" id="p0068" num="0030">实施例三</div>
+<div class="description-paragraph" id="p0069" num="0031">本发明实施例还提供了一种计算机可读存储介质，其上存储有计算机程序，该程序被处理器执行时首先实现上述实施例二所述的基于低空飞行器多链路数据回传方法的步骤。</div>
+<div class="description-paragraph" id="p0070" num="0032">所述计算机可读存储介质包括：U盘、移动硬盘、只读存储器（read-only memory，ROM）、随机存取存储器（random access memory，RAM）、磁碟或者光盘等各种可以存储程序代码的介质。</div>
+<div class="description-paragraph" id="p0071" num="0033">本领域内的技术人员应明白，本申请的实施例可提供为方法、系统、或计算机程序产品。因此，本申请可采用完全硬件实施例、完全软件实施例、或结合软件和硬件方面的实施例的形式。而且，本申请可采用在一个或多个其中包含有计算机可用程序代码的计算机可用存储介质（包括但不限于磁盘存储器、CD-ROM、光学存储器等）上实施的计算机程序产品的形式。</div>
+<div class="description-paragraph" id="p0072" num="0034">最后应说明的是：以上所述仅为本发明的优选实施例而已，并不用于限制本发明，尽管参照前述实施例对本发明进行了详细的说明，对于本领域的技术人员来说，其依然可以对前述各实施例所记载的技术方案进行修改，或者对其中部分技术特征进行等同替换,凡在本发明的精神和原则之内，所作的任何修改、等同替换、改进等，均应包含在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

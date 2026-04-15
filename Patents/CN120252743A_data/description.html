@@ -1,0 +1,118 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120252743A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES498623182">
+<invention-title id="title1" lang="ZH">基于数字孪生的低空飞行器导航误差补偿系统及方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及无人机导航技术领域，具体为基于数字孪生的低空飞行器导航误差补偿系统及方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">飞行器导航误差补偿是通过技术手段修正导航系统误差的过程。常见误差来源包括传感器噪声、环境干扰等。补偿方法有滤波算法抑制随机误差，误差模型建模修正系统误差，还可利用多传感器融合、卫星差分等技术提升精度，保障飞行器导航的可靠性与准确性。</div>
+<div class="description-paragraph" id="p0005" num="0003">申请号为201711312957.X的发明专利申请中公开了一种超高速飞行器自主导航系统的模型误差补偿方法，该申请旨在解决“在超高速飞行器机动的过程中,受发动机推力等作用的影响,初始的动力学模型与实际运动情况不符,而模型误差会直接影响滤波精度;超高速飞行器在跨域飞行边界由于激波形成包围飞行器的高温等离子体壳层,会导致无线电导航信息间断,因此依赖于卫星导航的接收机会存在大范围、长弧段误差,严重影响超高速飞行器的导航精度,甚至导致发散”的问题。</div>
+<div class="description-paragraph" id="p0006" num="0004">然而，针对于每次均按相同路线执行无人机巡检的技术场景，无人机分析偏航会直接导致无人机采集影像视角出现偏差，以至于采集的影像无法更加精准的反映巡检目标；</div>
+<div class="description-paragraph" id="p0007">为此，我们提出了基于数字孪生的低空飞行器导航误差补偿系统及方法。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0008">发明内容</div>
+<div class="description-paragraph" id="p0009" num="0005">针对现有技术所存在的上述缺点，本发明提供了基于数字孪生的低空飞行器导航误差补偿系统及方法，能够有效地解决现有技术的问题。</div>
+<div class="description-paragraph" id="p0010" num="0006">为实现以上目的，本发明通过以下技术方案予以实现；</div>
+<div class="description-paragraph" id="p0011">本发明公开了基于数字孪生的低空飞行器导航误差补偿系统，系统应用于每次飞行均按相同预定路线飞行以执行视觉巡检的无人机，包括：</div>
+<div class="description-paragraph" id="p0012">拾取模块，用于实时接收无人机搭载摄像头采集的影像数据，在影像数据中拾取关键图像；标注模块，用于在拾取模块中拾取的各关键图像中标注关键点及各关键点到关键图像来源时间无人机位置信息的距离；分析模块，用于在无人机再次执行巡检时，拾取模块与标注模块再次运行后运行，基于当前拾取关键图像与最早拾取的关键图像分析无人机偏航程度；决策模块，用于设定决策阈值，接收分析模块中无人机偏航程度分析结果，应用分析结果与决策阈值比对，在分析结果大于等于决策阈值时，控制协调模块运行，反之，控制跳转模块运行；协调模块，用于协调无人机回归预定路径；跳转模块，用于刷新系统运行跳转，跳转至拾取模块运行阶段；</div>
+<div class="description-paragraph" id="p0013">所述系统运行阶段，基于数字孪生技术构建包含预定路线的三维虚拟场景，通过特征点云配准算法将实时采集影像与虚拟场景进行时空对齐，形成物理空间与虚拟空间的映射矩阵，并实时更新虚拟场景中的关键点坐标与距离参数。</div>
+<div class="description-paragraph" id="p0014" num="0007">更进一步地，所述拾取模块内部设置有储存单元，所述储存单元用于接收拾取模块运行拾取的关键图像，对关键图像进行储存；</div>
+<div class="description-paragraph" id="p0015">所述无人机按预定路线飞行过程中，在预定路线中预定位置悬停飞行，并同步执行采集图像操作时，采集的图像记作关键图像；</div>
+<div class="description-paragraph" id="p0016">当前影像数据采集过程无人机未执行悬停飞行并采集图像时，在影像数据中分割获取画面帧，分析各画面帧拾取倾向，基于画面帧拾取倾向分析结果，拾取对应拾取倾向最高的画面帧作为关键图像；</div>
+<div class="description-paragraph" id="p0017">其中，拾取模块每次运行仅拾取一幅关键图像，且同步以关键图像在拾取时无人机自身位置信息标记于拾取的关键图像。</div>
+<div class="description-paragraph" id="p0018" num="0008">更进一步地，所述关键图像来源于预定路线中预定位置悬停飞行采集图像时，判定关键图像数量，关键图像数量唯一则结束，反之则对各关键图像同步执行拾取倾向分析，拾取对应拾取倾向最高的画面帧作为保留目标，剩余关键图像作为删除目标，执行删除操作；</div>
+<div class="description-paragraph" id="p0019">所述储存单元对关键图像进行储存时，基于各关键图像标记的位置信息相对于预定飞行路线中排列位置进行队列储存，且距离预定路线起点近的排列在前，距离预定路线起点远的排列在后。</div>
+<div class="description-paragraph" id="p0020" num="0009">更进一步地，所述画面帧或关键图像的拾取倾向分析逻辑表示为：</div>
+<div class="description-paragraph" id="p0021">将画面帧或关键图像转换为灰度图像，在灰度图像进一步提取轮廓图像，以提取到的轮廓图像作为分析目标；</div>
+<div class="description-paragraph" id="p0022"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0023">式中：<span class="patent-image-not-available"></span>为拾取倾向分值；<span class="patent-image-not-available"></span>为轮廓总数；<span class="patent-image-not-available"></span>为第i个轮廓的周长；<span class="patent-image-not-available"></span>为第i个轮廓的平均曲率；<span class="patent-image-not-available"></span>为轮廓图像总像素数；<span class="patent-image-not-available"></span>为添加高斯噪声后的轮廓复杂度向量；<span class="patent-image-not-available"></span>为原始轮廓复杂度向量；<span class="patent-image-not-available"></span>为将图像划分为M个网格；<span class="patent-image-not-available"></span>为第k个网格内的轮廓总长度；<span class="patent-image-not-available"></span>为所有网格的平均轮廓长度；<span class="patent-image-not-available"></span>为指标均衡性惩罚因子；</div>
+<div class="description-paragraph" id="p0024">其中，<span class="patent-image-not-available"></span>分别表示轮廓复杂度、轮廓密度、轮廓稳定性、轮廓分布均匀性，记作C、D、S、U，取<span class="patent-image-not-available"></span>值最大的轮廓图像对应画面帧或关键图像作为最终的关键图像。</div>
+<div class="description-paragraph" id="p0025" num="0010">更进一步地，所述指标均衡性惩罚因子<span class="patent-image-not-available"></span>取值服从：</div>
+<div class="description-paragraph" id="p0026"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0027">式中：<span class="patent-image-not-available"></span>表示取括号内最大值；<span class="patent-image-not-available"></span>表示取括号内最小值；<span class="patent-image-not-available"></span>为平滑指数；</div>
+<div class="description-paragraph" id="p0028">其中，平滑指数<span class="patent-image-not-available"></span>由系统端用户自定义，初始默认取值为-0.25，用于弱化惩罚力度。</div>
+<div class="description-paragraph" id="p0029" num="0011">更进一步地，所述标注模块在关键图像中标注关键点时，选择最大灰度值、最小灰度值对应像素作为标注目标，选择关键图像对应轮廓图像下最大角、最小角对应角点所在像素作为标注目标。</div>
+<div class="description-paragraph" id="p0030" num="0012">更进一步地，所述分析模块运行阶段，所述无人机再次执行巡检时，拾取模块接收无人机搭载摄像头当前采集的影像数据，或在预定路线中预定位置悬停飞行时采集的图像；</div>
+<div class="description-paragraph" id="p0031">在接收的影像数据中各画面帧来源位置信息存在与各关键图像对应来源位置信息相同的项，将位置信息相同的画面帧与关键图像组合作为分析目标；</div>
+<div class="description-paragraph" id="p0032">或获取在预定路线中预定位置悬停飞行时采集的图像来源位置信息，识别各关键图像对应来源位置信息，以来源位置信息相同的关键图像作为比对目标，比对其与各在预定路线中预定位置悬停飞行时采集的图像的相似度，以相似度最高的图像与作为比对目标的关键图像的组合作为分析目标。</div>
+<div class="description-paragraph" id="p0033" num="0013">更进一步地，所述分析模块中无人机偏航程度分析逻辑表示为：</div>
+<div class="description-paragraph" id="p0034"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0035">式中：<span class="patent-image-not-available"></span>为无人机综合偏航表征值；<span class="patent-image-not-available"></span>为当前拾取关键图像与最早拾取的关键图像中对应关键点总量；<span class="patent-image-not-available"></span>为当前拾取关键图像中第j个关键点到当前拾取关键图像来源时间无人机所在位置信息的距离、最早拾取的关键图像中第j个关键点到最早拾取的关键图像来源时间无人机所在位置信息的距离；<span class="patent-image-not-available"></span>为第j个关键点的配置权重；</div>
+<div class="description-paragraph" id="p0036"> <span class="patent-image-not-available"></span>计算阶段，应用的配置权重服从：所有配置权重均为正数且相加之和为1；配置权重取值确定阶段，识别权重乘积对象对应关键点基于角点确定或基于灰度值确定，使基于灰度值确定的关键点对应配置权重始终小于基于角点确定的关键点对应配置权重；</div>
+<div class="description-paragraph" id="p0037">所述协调模块运行阶段，控制无人机在与前进方向垂直的自身位置信息所在的平面上横向、竖向、斜向移动，使移动后应用分析模块当前拾取关键图像视角再次采集的图像，与分析模块中应用的最早拾取的关键图像相互之间服从：</div>
+<div class="description-paragraph" id="p0038"> <span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0039" num="0014">更进一步地，所述拾取模块内部通过无线网络与储存单元交互连接，所述拾取模块通过无线网络与标注模块交互连接，所述标注模块通过无线网络交互连接有分析模块、决策模块及协调模块，所述协调模块通过无线网络与跳转模块交互连接；</div>
+<div class="description-paragraph" id="p0040">所述分析模块及跳转模块通过无线网络与拾取模块及标注模块交互连接。</div>
+<div class="description-paragraph" id="p0041" num="0015">另一方面，基于数字孪生的低空飞行器导航误差补偿方法，包括：</div>
+<div class="description-paragraph" id="p0042">拾取无人机搭载摄像头实时采集的影像数据，在影像数据中拾取关键图像；在关键图像中标注关键点，并获取各关键点到关键图像采集时间戳无人机所在位置信息的距离，并将获取的距离标注于关键图像中各对应关键点；在无人机再次搭载摄像头按预定路线飞行再次采集影像数据时，再次获取关键图像，以获取的关键图像与最早一次拾取的关键图像中对应图像分析无人机偏航程度；设定决策阈值，应用决策阈值与无人机偏航程度分析结果比对，决策无人机当前位置是否需要协调；决策结果为是，则控制无人机在与前进方向垂直的自身位置信息所在的平面上移动，以完成协调；决策结果为否，则跳转步骤执行初始阶段，刷新执行。</div>
+<div class="description-paragraph" id="p0043" num="0016">采用本发明提供的技术方案，与已知的现有技术相比，具有如下有益效果：</div>
+<div class="description-paragraph" id="p0044">本发明提供一种基于数字孪生的低空飞行器导航误差补偿系统及方法，该系统及方法在运行过程中，能够在无人机飞行中，智能拾取关键图像并标记位置信息，通过分析不同时期关键图像，精准判断无人机偏航程度，并通过独特的图像分析逻辑，将图像转换为灰度图提取轮廓，综合轮廓复杂度、密度等多维度计算拾取倾向分值，还通过指标均衡性惩罚因子优化分析，确保关键图像选取的科学性，标注关键点时结合灰度值与角点，提升分析基准的可靠性；</div>
+<div class="description-paragraph" id="p0045">分析偏航程度时，依据对应关键点距离变化并赋予不同权重计算综合表征值，使判断更精准，当偏航超过阈值，系统能控制无人机在垂直平面灵活移动归位，未超阈值则刷新系统继续运行。整套机制实现了从图像采集、分析到误差补偿的全流程智能化、精准化，有效提升无人机导航精度与巡检可靠性，并以数字孪生技术呈现无人机实时飞行状态，以便于无人机后台管理人员实时监管。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0046">附图说明</div>
+<div class="description-paragraph" id="p0047" num="0017">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图做简单的介绍。显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0048" num="0018">图1为基于数字孪生的低空飞行器导航误差补偿系统的结构示意图；</div>
+<div class="description-paragraph" id="p0049">图2为基于数字孪生的低空飞行器导航误差补偿方法的流程示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0050">具体实施方式</div>
+<div class="description-paragraph" id="p0051" num="0019">为使本发明实施例的目的、技术方案和优点更加清楚，下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述。显然，所描述的实施例是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0052" num="0020">下面结合实施例对本发明做进一步的描述。</div>
+<div class="description-paragraph" id="p0053" num="0021">实施例1</div>
+<div class="description-paragraph" id="p0054" num="0022">本实施例的基于数字孪生的低空飞行器导航误差补偿系统，系统应用于每次飞行均按相同预定路线飞行以执行视觉巡检的无人机，如图1所示，包括：</div>
+<div class="description-paragraph" id="p0055">拾取模块，用于实时接收无人机搭载摄像头采集的影像数据，在影像数据中拾取关键图像；</div>
+<div class="description-paragraph" id="p0056">拾取模块内部设置有储存单元，储存单元用于接收拾取模块运行拾取的关键图像，对关键图像进行储存；</div>
+<div class="description-paragraph" id="p0057">无人机按预定路线飞行过程中，在预定路线中预定位置悬停飞行，并同步执行采集图像操作时，采集的图像记作关键图像；</div>
+<div class="description-paragraph" id="p0058">当前影像数据采集过程无人机未执行悬停飞行并采集图像时，在影像数据中分割获取画面帧，分析各画面帧拾取倾向，基于画面帧拾取倾向分析结果，拾取对应拾取倾向最高的画面帧作为关键图像；</div>
+<div class="description-paragraph" id="p0059">其中，拾取模块每次运行仅拾取一幅关键图像，且同步以关键图像在拾取时无人机自身位置信息标记于拾取的关键图像；</div>
+<div class="description-paragraph" id="p0060">关键图像来源于预定路线中预定位置悬停飞行采集图像时，判定关键图像数量，关键图像数量唯一则结束，反之则对各关键图像同步执行拾取倾向分析，拾取对应拾取倾向最高的画面帧作为保留目标，剩余关键图像作为删除目标，执行删除操作；</div>
+<div class="description-paragraph" id="p0061">储存单元对关键图像进行储存时，基于各关键图像标记的位置信息相对于预定飞行路线中排列位置进行队列储存，且距离预定路线起点近的排列在前，距离预定路线起点远的排列在后；</div>
+<div class="description-paragraph" id="p0062">画面帧或关键图像的拾取倾向分析逻辑表示为：</div>
+<div class="description-paragraph" id="p0063">将画面帧或关键图像转换为灰度图像，在灰度图像进一步提取轮廓图像，以提取到的轮廓图像作为分析目标；</div>
+<div class="description-paragraph" id="p0064"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0065">式中：<span class="patent-image-not-available"></span>为拾取倾向分值；<span class="patent-image-not-available"></span>为轮廓总数；<span class="patent-image-not-available"></span>为第i个轮廓的周长；<span class="patent-image-not-available"></span>为第i个轮廓的平均曲率；<span class="patent-image-not-available"></span>为轮廓图像总像素数；<span class="patent-image-not-available"></span>为添加高斯噪声后的轮廓复杂度向量；<span class="patent-image-not-available"></span>为原始轮廓复杂度向量；<span class="patent-image-not-available"></span>为将图像划分为M个网格；<span class="patent-image-not-available"></span>为第k个网格内的轮廓总长度；<span class="patent-image-not-available"></span>为所有网格的平均轮廓长度；<span class="patent-image-not-available"></span>为指标均衡性惩罚因子；</div>
+<div class="description-paragraph" id="p0066">其中，<span class="patent-image-not-available"></span>分别表示轮廓复杂度、轮廓密度、轮廓稳定性、轮廓分布均匀性，记作C、D、S、U，取<span class="patent-image-not-available"></span>值最大的轮廓图像对应画面帧或关键图像作为最终的关键图像；</div>
+<div class="description-paragraph" id="p0067">指标均衡性惩罚因子<span class="patent-image-not-available"></span>取值服从：</div>
+<div class="description-paragraph" id="p0068"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0069">式中：<span class="patent-image-not-available"></span>表示取括号内最大值；<span class="patent-image-not-available"></span>表示取括号内最小值；<span class="patent-image-not-available"></span>为平滑指数；</div>
+<div class="description-paragraph" id="p0070">其中，平滑指数<span class="patent-image-not-available"></span>由系统端用户自定义，初始默认取值为-0.25，用于弱化惩罚力度；</div>
+<div class="description-paragraph" id="p0071">通过上述逻辑公式计算，为在影像数据中拾取关键图像提供有效支持，确保关键图像稳定拾取，为本实施例中系统的进一步运行提供支持；</div>
+<div class="description-paragraph" id="p0072">标注模块，用于在拾取模块中拾取的各关键图像中标注关键点及各关键点到关键图像来源时间无人机位置信息的距离；</div>
+<div class="description-paragraph" id="p0073">标注模块在关键图像中标注关键点时，选择最大灰度值、最小灰度值对应像素作为标注目标，选择关键图像对应轮廓图像下最大角、最小角对应角点所在像素作为标注目标；</div>
+<div class="description-paragraph" id="p0074">分析模块，用于在无人机再次执行巡检时，拾取模块与标注模块再次运行后运行，基于当前拾取关键图像与最早拾取的关键图像分析无人机偏航程度；</div>
+<div class="description-paragraph" id="p0075">分析模块运行阶段，无人机再次执行巡检时，拾取模块接收无人机搭载摄像头当前采集的影像数据，或在预定路线中预定位置悬停飞行时采集的图像；</div>
+<div class="description-paragraph" id="p0076">在接收的影像数据中各画面帧来源位置信息存在与各关键图像对应来源位置信息相同的项，将位置信息相同的画面帧与关键图像组合作为分析目标；</div>
+<div class="description-paragraph" id="p0077">或获取在预定路线中预定位置悬停飞行时采集的图像来源位置信息，识别各关键图像对应来源位置信息，以来源位置信息相同的关键图像作为比对目标，比对其与各在预定路线中预定位置悬停飞行时采集的图像的相似度，以相似度最高的图像与作为比对目标的关键图像的组合作为分析目标；</div>
+<div class="description-paragraph" id="p0078">分析模块中无人机偏航程度分析逻辑表示为：</div>
+<div class="description-paragraph" id="p0079"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0080">式中：<span class="patent-image-not-available"></span>为无人机综合偏航表征值；<span class="patent-image-not-available"></span>为当前拾取关键图像与最早拾取的关键图像中对应关键点总量；<span class="patent-image-not-available"></span>为当前拾取关键图像中第j个关键点到当前拾取关键图像来源时间无人机所在位置信息的距离、最早拾取的关键图像中第j个关键点到最早拾取的关键图像来源时间无人机所在位置信息的距离；<span class="patent-image-not-available"></span>为第j个关键点的配置权重；</div>
+<div class="description-paragraph" id="p0081"> <span class="patent-image-not-available"></span>计算阶段，应用的配置权重服从：所有配置权重均为正数且相加之和为1；配置权重取值确定阶段，识别权重乘积对象对应关键点基于角点确定或基于灰度值确定，使基于灰度值确定的关键点对应配置权重始终小于基于角点确定的关键点对应配置权重；</div>
+<div class="description-paragraph" id="p0082">通过上述逻辑公式，为决策模块提供支持，辅助决策模块稳定作出是否协调无人机的决策；</div>
+<div class="description-paragraph" id="p0083">协调模块运行阶段，控制无人机在与前进方向垂直的自身位置信息所在的平面上横向、竖向、斜向移动，使移动后应用分析模块当前拾取关键图像视角再次采集的图像，与分析模块中应用的最早拾取的关键图像相互之间服从：</div>
+<div class="description-paragraph" id="p0084"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0085">决策模块，用于设定决策阈值，接收分析模块中无人机偏航程度分析结果，应用分析结果与决策阈值比对，在分析结果大于等于决策阈值时，控制协调模块运行，反之，控制跳转模块运行；</div>
+<div class="description-paragraph" id="p0086">协调模块，用于协调无人机回归预定路径；</div>
+<div class="description-paragraph" id="p0087">跳转模块，用于刷新系统运行跳转，跳转至拾取模块运行阶段；</div>
+<div class="description-paragraph" id="p0088">拾取模块内部通过无线网络与储存单元交互连接，拾取模块通过无线网络与标注模块交互连接，标注模块通过无线网络交互连接有分析模块、决策模块及协调模块，协调模块通过无线网络与跳转模块交互连接；分析模块及跳转模块通过无线网络与拾取模块及标注模块交互连接；</div>
+<div class="description-paragraph" id="p0089">系统运行阶段，基于数字孪生技术构建包含预定路线的三维虚拟场景，通过特征点云配准算法将实时采集影像与虚拟场景进行时空对齐，形成物理空间与虚拟空间的映射矩阵，并实时更新虚拟场景中的关键点坐标与距离参数。</div>
+<div class="description-paragraph" id="p0090" num="0023">在本实施例中，拾取模块运行实时接收无人机搭载摄像头采集的影像数据，在影像数据中拾取关键图像；储存单元同步接收拾取模块运行拾取的关键图像，对关键图像进行储存，标注模块后置运行在拾取模块中拾取的各关键图像中标注关键点及各关键点到关键图像来源时间无人机位置信息的距离，再由分析模块在无人机再次执行巡检时，拾取模块与标注模块再次运行后运行，基于当前拾取关键图像与最早拾取的关键图像分析无人机偏航程度，进一步通过决策模块设定决策阈值，接收分析模块中无人机偏航程度分析结果，应用分析结果与决策阈值比对，在分析结果大于等于决策阈值时，控制协调模块运行，反之，控制跳转模块运行，应用协调模块协调无人机回归预定路径，或应用跳转模块刷新系统运行跳转，跳转至拾取模块运行阶段。</div>
+<div class="description-paragraph" id="p0091" num="0024">通过上述实施例中系统运行，为按相同预定路线飞行以执行视觉巡检的无人机提供以导航实时误差校准，以实现误差补偿，保障无人机每次飞行均能够按照预定路线精准飞行，从而准确的完成视觉巡检任务。</div>
+<div class="description-paragraph" id="p0092" num="0025">实施例2</div>
+<div class="description-paragraph" id="p0093" num="0026">在具体实施层面，在实施例1的基础上，本实施例参照图2对实施例1中基于数字孪生的低空飞行器导航误差补偿系统做进一步具体说明：</div>
+<div class="description-paragraph" id="p0094">基于数字孪生的低空飞行器导航误差补偿方法，包括：</div>
+<div class="description-paragraph" id="p0095">步骤1：拾取无人机搭载摄像头实时采集的影像数据，在影像数据中拾取关键图像；</div>
+<div class="description-paragraph" id="p0096">步骤2：在关键图像中标注关键点，并获取各关键点到关键图像采集时间戳无人机所在位置信息的距离，并将获取的距离标注于关键图像中各对应关键点；</div>
+<div class="description-paragraph" id="p0097">步骤3：在无人机再次搭载摄像头按预定路线飞行再次采集影像数据时，再次获取关键图像，以获取的关键图像与最早一次拾取的关键图像中对应图像分析无人机偏航程度；</div>
+<div class="description-paragraph" id="p0098">步骤4：设定决策阈值，应用决策阈值与无人机偏航程度分析结果比对，决策无人机当前位置是否需要协调；</div>
+<div class="description-paragraph" id="p0099">步骤5：决策结果为是，则控制无人机在与前进方向垂直的自身位置信息所在的平面上移动，以完成协调；决策结果为否，则跳转步骤执行初始阶段，刷新执行。</div>
+<div class="description-paragraph" id="p0100" num="0027">综上而言，上述实施例中系统及方法在运行过程中，能够在无人机飞行中，智能拾取关键图像并标记位置信息，通过分析不同时期关键图像，精准判断无人机偏航程度，并通过独特的图像分析逻辑，将图像转换为灰度图提取轮廓，综合轮廓复杂度、密度等多维度计算拾取倾向分值，还通过指标均衡性惩罚因子优化分析，确保关键图像选取的科学性，标注关键点时结合灰度值与角点，提升分析基准的可靠性，分析偏航程度时，依据对应关键点距离变化并赋予不同权重计算综合表征值，使判断更精准，当偏航超过阈值，系统能控制无人机在垂直平面灵活移动归位，未超阈值则刷新系统继续运行。整套机制实现了从图像采集、分析到误差补偿的全流程智能化、精准化，有效提升无人机导航精度与巡检可靠性，并以数字孪生技术呈现无人机实时飞行状态，以便于无人机后台管理人员实时监管。</div>
+<div class="description-paragraph" id="p0101" num="0028">以上实施例仅用以说明本发明的技术方案，而非对其限制；尽管参照前述实施例对本发明进行了详细的说明，本领域的普通技术人员应当理解，其依然可以对前述各实施例所记载的技术方案进行修改，或者对其中部分技术特征进行等同替换；而这些修改或者替换，并不会使相应技术方案的本质脱离本发明各实施例技术方案的精神和范围。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

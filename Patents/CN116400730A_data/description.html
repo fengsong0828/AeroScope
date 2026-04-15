@@ -1,0 +1,133 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN116400730A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES422155413">
+<invention-title id="title1" lang="ZH">一种飞行器低空飞行范围标定方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及飞行器技术领域，特别涉及一种飞行器低空飞行范围标定方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">无人飞行器是利用无线电遥控设备和自备的程序控制装置操纵的不载人飞行器。现有关于无人飞行器的飞行范围标定，已有相关专利；比如公开号为CN108803656B的中国专利公开了一种基于复杂低空的飞行控制方法及系统，该方法包括：获取待控制航空器周围设定阈值范围内的环境信息，所述环境信息包括其他航空器的信息、天气信息和地形信息；获取所述待控制航空器的飞行计划，所述飞行计划包括多个航段对应的飞行线路、飞行高度和飞行速度；判断所述环境信息与所述待控制航空器的飞行计划是否存在冲突，如果否，所述待控制航空器按照所述飞行计划飞行；如果是，获取所述环境信息与所述飞行计划的冲突信息；根据所述冲突信息对所述飞行计划进行调整，得到调整后的飞行计划，所述待控制航空器按照所述调整后的飞行计划飞行。</div>
+<div class="description-paragraph" id="p0005" num="0003">上述专利虽然实现了对复杂低空飞行的控制与仿真分析，但仍存在以下问题：</div>
+<div class="description-paragraph" id="p0006" num="0004">1、现有技术中，通常采用全局格栅地图进行飞行数据的分析基础，然而全局栅格地图难以精确反应地形和场景，且制作花费时间长，成本高，无法使管理人员直观的监测并判断飞行器的飞行范围和飞行区域的地形；</div>
+<div class="description-paragraph" id="p0007" num="0005">2、现有技术中，没有以城市设置中心点进行信息获取和范围标定，由于城市间的地形地貌和天气的不同，导致飞行器飞行范围的标定和计算更加复杂，影响飞行安全范围标定的精度，出现飞行安全隐患的情况。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0008">发明内容</div>
+<div class="description-paragraph" id="p0009" num="0006">本发明的目的在于提供一种飞行器低空飞行范围标定方法及系统，通过在城市设定一个中心点，根据相应的地形、地貌、天气和周边地面补给站的数据标定出无人低空飞行器飞行的安全范围，有效提高了飞行器低空飞行范围标定方法计算精度，满足在线计算的要求，以解决上述背景技术中提出的问题。</div>
+<div class="description-paragraph" id="p0010" num="0007">为实现上述目的，本发明提供如下技术方案：</div>
+<div class="description-paragraph" id="p0011" num="0008">一种飞行器低空飞行范围标定方法，所述方法包括以下步骤：</div>
+<div class="description-paragraph" id="p0012" num="0009">S1：构建飞行器城市地图：</div>
+<div class="description-paragraph" id="p0013" num="0010">获取无人低空飞行器所在位置数据，获取所述位置数据所在城市的终端采集器主动上传的相关城市数据，基于城市数据类型提取所述城市数据中的目标数据，构建三维城市地图；</div>
+<div class="description-paragraph" id="p0014" num="0011">S2：飞行器跟踪定位：</div>
+<div class="description-paragraph" id="p0015" num="0012">获取无人低空飞行器初始位置信息，将所述初始位置信息输入至三维城市地图中进行标记，确定所述无人低空飞行器在三维城市地图的实际位置，并进行标高标记；</div>
+<div class="description-paragraph" id="p0016" num="0013">获取所述无人低空飞行器的飞行计划，所述飞行计划包括多个航段对应的飞行线路、飞行高度和飞行速度，将所述飞行线路、飞行高度和飞行速度在所述三维城市地图中进行显示；</div>
+<div class="description-paragraph" id="p0017" num="0014">S3：飞行器飞行范围标定：</div>
+<div class="description-paragraph" id="p0018" num="0015">在所述模拟城市地图中设定中心点，通过中心点向外扩散，获取所述城市地图对应的天气数据，结合地面补给站数据标定所述无人低空飞行器的飞行范围。</div>
+<div class="description-paragraph" id="p0019" num="0016">进一步的，针对S1中构建飞行器城市地图，其具体过程包括：</div>
+<div class="description-paragraph" id="p0020" num="0017">提取无人低空飞行器所在位置数据中的经纬度，确定所述经纬度数据对应的城市，获取所述城市所在的终端采集器，获取所述终端采集器采集的城市数据；</div>
+<div class="description-paragraph" id="p0021" num="0018">获取所述城市数据的数据标识，将所述数据标识输入至预设城市数据样本数据库中进行匹配，并基于匹配结果输出该城市的基本数据类型，其中，所述预设城市数据样本数据库中包括建筑、道路和地形的基本数据类型；</div>
+<div class="description-paragraph" id="p0022" num="0019">提取所述城市数据中的城市二维坐标数据，基于所述二维坐标数据构建二维平面地图，基于基本数据类型将建筑和道路输入至对应坐标，基于所述地形数据将二维坐标数据输入至三维坐标中，建立三维地图。</div>
+<div class="description-paragraph" id="p0023" num="0020">进一步的，所述构建三维地图，还包括：</div>
+<div class="description-paragraph" id="p0024" num="0021">基于所述基本数据类型将城市数据进行整合生成数据集，获取所述基本数据类型中对应的数据集并在场景库中匹配对应实景模型；</div>
+<div class="description-paragraph" id="p0025" num="0022">基于所述数据类型匹配场景库中对应的实景数据，将所述实景模型放置在对应坐标中，构建三维实景地图。</div>
+<div class="description-paragraph" id="p0026" num="0023">进一步的，针对S2中飞行器跟踪定位，还包括：</div>
+<div class="description-paragraph" id="p0027" num="0024">确定所述无人低空飞行器的最远航线距离和航线最低安全高度，将航线上对应的主要地理信息矢量化；</div>
+<div class="description-paragraph" id="p0028" num="0025">实时获取所述无人低空飞行器的飞行数据，根据所述无人低空飞行器的飞行数据监测所述无人低空飞行器是否正常飞行；</div>
+<div class="description-paragraph" id="p0029" num="0026">判断所述无人低空飞行器是否在航线最低安全高度内，监测所述无人低空飞行器连续飞行是否超出最远航线距离。</div>
+<div class="description-paragraph" id="p0030" num="0027">进一步的，针对S3中飞行范围标定，其过程包括：</div>
+<div class="description-paragraph" id="p0031" num="0028">基于所述三维地标确定所述三维地图的中心点，获取所述三维地图中各个无人机地面补给站坐标，并基于与中心点的差值进行无人机地面补给站标号；</div>
+<div class="description-paragraph" id="p0032" num="0029">获取所述无人低空飞行器所在城市的天气数据，所述天气数据包括温湿度、风速、风向、恶劣天气的影响范围和恶劣天气的影响程度；</div>
+<div class="description-paragraph" id="p0033" num="0030">将所述天气数据输入至三维地图中进行模拟推演，确定所述无人低空飞行器在执行飞行计划时的模拟飞行数据，评估所述无人低空飞行器在执行飞行计划时的安全飞行分值；</div>
+<div class="description-paragraph" id="p0034" num="0031">基于所述安全飞行分值确定所述无人低空飞行器各个航段的飞行高度阈值和飞行范围，基于所述各个航段的飞行高度阈值和飞行范围对所述飞行计划进行调整。</div>
+<div class="description-paragraph" id="p0035" num="0032">进一步的，所述地面补给站数据，还包括：</div>
+<div class="description-paragraph" id="p0036" num="0033">提取所述三维实景地图中无人机地面补给站的坐标，基于所述无人低空飞行器的最远航线距离确定无人机地面补给站的覆盖范围，确定所述覆盖范围是否相互重合。</div>
+<div class="description-paragraph" id="p0037" num="0034">进一步的，所述飞行器低空飞行范围标定方法，还包括：</div>
+<div class="description-paragraph" id="p0038" num="0035">所述无人机定时向所述城市的终端采集器发送无线通信检测指令，其中，所述无线通信检测指令包括指令发送时刻和指令内容；</div>
+<div class="description-paragraph" id="p0039" num="0036">所述终端采集器接收到所述无线通信检测指令后，标记接收时刻；</div>
+<div class="description-paragraph" id="p0040" num="0037">所述终端采集器对所述无线通信检测指令中的指令发送时刻进行提取，获取所述无线通信检测指令中的指令发送时刻；</div>
+<div class="description-paragraph" id="p0041" num="0038">利用所述标记接收时刻和所述指令发送时刻获取无线通信检测指令的无线传输时间；</div>
+<div class="description-paragraph" id="p0042" num="0039">将所述无线传输时间与无线通信装置的理论数据传输时间和理论延时进行比较，当所述无线传输时间与无线通信装置的理论数据传输时间和理论延时之间满足约束条件时，则利用所述无线传输时间判定当前无线通信状态；</div>
+<div class="description-paragraph" id="p0043" num="0040">当所述无线传输时间不满足所述约束条件时，则进行报警；</div>
+<div class="description-paragraph" id="p0044" num="0041">其中，所述约束条件如下：</div>
+<div class="description-paragraph" id="p0045" num="0042">T≤T<sub>y</sub> </div>
+<div class="description-paragraph" id="p0046" num="0043">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/92/17/94/27b72afc38c2eb/BDA0004182410880000051.png"><img alt="Figure BDA0004182410880000051" class="patent-full-image" file="BDA0004182410880000051.GIF" he="154" height="616" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_0.png" wi="719" width="2876"/></a></div>
+</div>
+<div class="description-paragraph" id="p0047" num="0044">其中，T表示无线传输时间；T<sub>y</sub>表示传输时间对应的约束条件；ΔT表示历史记录中符合余数条件情况下的无线传输时间相较于无线通信装置的理论数据传输时间和理论延时之和的延时最大时长；T<sub>01</sub>表示无线通信装置的理论数据传输时间；T<sub>02</sub>表示理论延时。</div>
+<div class="description-paragraph" id="p0048" num="0045">进一步的，利用所述无线传输时间判定当前无线通信状态，包括：</div>
+<div class="description-paragraph" id="p0049" num="0046">利用当前所述无线传输时间与约束条件的关系，设置通信时间阈值；其中，所述通信时间阈值如下：</div>
+<div class="description-paragraph" id="p0050" num="0047">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/39/5c/85/bf18fc1bf7ecba/BDA0004182410880000052.png"><img alt="Figure BDA0004182410880000052" class="patent-full-image" file="BDA0004182410880000052.GIF" he="167" height="668" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_1.png" wi="762" width="3048"/></a></div>
+</div>
+<div class="description-paragraph" id="p0051" num="0048">其中，T<sub>0</sub>表示通信时间阈值；T<sub>y</sub>表示传输时间对应的约束条件；ΔT表示历史记录中符合余数条件情况下的无线传输时间相较于无线通信装置的理论数据传输时间和理论延时之和的延时最大时长；</div>
+<div class="description-paragraph" id="p0052" num="0049">当所述无线传输时间未超过所述通信时间阈值时，则确定当前无线通信状态为良好，并保持单位时间内，当前无人机与终端采集器之间的针对同一数据的数据发送次数；</div>
+<div class="description-paragraph" id="p0053" num="0050">当所述无线传输时间超过所述通信时间阈值时，则确定当前无线通信状态为非良好，提高单位时间内当前无人机与终端采集器之间针对同一数据的数据发送次数。</div>
+<div class="description-paragraph" id="p0054" num="0051">本发明提供另一种技术方案，一种飞行器低空飞行范围标定系统，包括：</div>
+<div class="description-paragraph" id="p0055" num="0052">模型建构单元，用于基于无人低空飞行器所在位置构建城市三维实景地图；</div>
+<div class="description-paragraph" id="p0056" num="0053">飞行器跟踪单元，用于实时获取无人低空飞行器的实际位置，监测无人低空飞行器的飞行数据，并在所述三维实景地图中实时显示；</div>
+<div class="description-paragraph" id="p0057" num="0054">范围标定预警单元，用于基于城市地形地貌和天气对无人低空飞行器的飞行范围进行标定，并判断所述无人低空飞行器是否在安全范围内飞行，并及时对异常数据进行警报。</div>
+<div class="description-paragraph" id="p0058" num="0055">进一步的，所述对异常数据进行警报，还包括：</div>
+<div class="description-paragraph" id="p0059" num="0056">基于所述无人低空飞行器的飞行数据确定无人低空飞行器的安全飞行分值，并将所述安全飞行分值与预设阈值进行比较，判断所述无人低空飞行器的飞行数据是否在安全范围内；</div>
+<div class="description-paragraph" id="p0060" num="0057">当所述安全飞行分值等于或大于所述预设阈值时，则判定所述无人低空飞行器行为存在安全隐患，同时，当所述无人低空飞行器行为存在安全隐患时，生成预警报告；</div>
+<div class="description-paragraph" id="p0061" num="0058">并获取所述无人低空飞行器当前的坐标，基于所述无人低空飞行器当前的坐标显示在三维地图中，同时，将所述预警报告基于物联网传输至所述远程管理人员所在终端。</div>
+<div class="description-paragraph" id="p0062" num="0059">与现有技术相比，本发明的有益效果是：</div>
+<div class="description-paragraph" id="p0063" num="0060">1.通过构建三维城市地图，在三维地图中显示无人低空飞行器的初始位置，并实时监测无人低空飞行器的飞行数据，在城市设定一个中心点，通过中心点向外扩散，便于各个城市建立统一的计算模型，以保证在对无人低空飞行器进行计算时的效率，在无人低空飞行器低空或者超低空飞行时，确定所述无人低空飞行器的最远航线距离和航线最低安全高度，根据相应的地形、地貌、天气和周边地面补给站的数据标定出无人低空飞行器飞行的安全范围，有效提高了飞行器低空飞行范围标定方法计算精度，满足在线计算的要求。</div>
+<div class="description-paragraph" id="p0064" num="0061">2.通过利用三维空间在二维平面的表现手法，以二维贴图的方式重现三维的景观，先构建二维平面地图后建立三维地图，降低城市三维模型创建的成本，基于基本数据类型将城市数据进行整合生成数据集，并在场景库中匹配对应实景模型，匹配场景库中对应的实景数据，对三维模型进行实景融合，精确反应该城市的地形、地貌和各个场景，提高城市地图各个场景的真实性。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0065">附图说明</div>
+<div class="description-paragraph" id="p0066" num="0062">图1为本发明的飞行器低空飞行范围标定方法流程图；</div>
+<div class="description-paragraph" id="p0067" num="0063">图2为本发明的飞行器低空飞行范围标定系统模块图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0068">具体实施方式</div>
+<div class="description-paragraph" id="p0069" num="0064">下面将结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0070" num="0065">为了解决传统的飞行范围标定方法计算精度较低，计算时间较长，无法满足在线计算的要求的技术问题，请参阅图1，本实施例提供以下技术方案：</div>
+<div class="description-paragraph" id="p0071" num="0066">一种飞行器低空飞行范围标定方法，所述方法包括以下步骤：</div>
+<div class="description-paragraph" id="p0072" num="0067">S1：构建飞行器城市地图：获取无人低空飞行器所在位置数据，获取所述位置数据所在城市的终端采集器主动上传的相关城市数据，基于城市数据类型提取所述城市数据中的目标数据，构建三维城市地图；</div>
+<div class="description-paragraph" id="p0073" num="0068">S2：飞行器跟踪定位：获取无人低空飞行器初始位置信息，将所述初始位置信息输入至三维城市地图中进行标记，确定所述无人低空飞行器在三维城市地图的实际位置，并进行标高标记；获取所述无人低空飞行器的飞行计划，所述飞行计划包括多个航段对应的飞行线路、飞行高度和飞行速度，将所述飞行线路、飞行高度和飞行速度在所述三维城市地图中进行显示；</div>
+<div class="description-paragraph" id="p0074" num="0069">确定所述无人低空飞行器的最远航线距离和航线最低安全高度，将航线上对应的主要地理信息矢量化；实时获取所述无人低空飞行器的飞行数据，根据所述无人低空飞行器的飞行数据监测所述无人低空飞行器是否正常飞行；判断所述无人低空飞行器是否在航线最低安全高度内，监测所述无人低空飞行器连续飞行是否超出最远航线距离；</div>
+<div class="description-paragraph" id="p0075" num="0070">S3：飞行器飞行范围标定：在所述模拟城市地图中设定中心点，通过中心点向外扩散，获取所述城市地图对应的天气数据，结合地面补给站数据标定所述无人低空飞行器的飞行范围。</div>
+<div class="description-paragraph" id="p0076" num="0071">具体的，通过构建三维城市地图，在三维地图中显示无人低空飞行器的初始位置，并实时监测无人低空飞行器的飞行数据，在城市设定一个中心点，通过中心点向外扩散，便于各个城市建立统一的计算模型，以保证在对无人低空飞行器进行计算时的效率，在无人低空飞行器低空或者超低空飞行时，确定所述无人低空飞行器的最远航线距离和航线最低安全高度，根据相应的地形、地貌、天气和周边地面补给站的数据标定出无人低空飞行器飞行的安全范围，有效提高了飞行器低空飞行范围标定方法计算精度，满足在线计算的要求。</div>
+<div class="description-paragraph" id="p0077" num="0072">为了解决现有技术中，往往通过栅格制作地图，全局栅格地图难以精确反应地形和场景，且制作花费时间长，成本高的技术问题，请参阅图1，本实施例提供以下技术方案：</div>
+<div class="description-paragraph" id="p0078" num="0073">针对S1中构建飞行器城市地图，其具体过程包括：</div>
+<div class="description-paragraph" id="p0079" num="0074">提取无人低空飞行器所在位置数据中的经纬度，确定所述经纬度数据对应的城市，获取所述城市所在的终端采集器，获取所述终端采集器采集的城市数据；获取所述城市数据的数据标识，将所述数据标识输入至预设城市数据样本数据库中进行匹配，并基于匹配结果输出该城市的基本数据类型，其中，所述预设城市数据样本数据库中包括建筑、道路和地形的基本数据类型；提取所述城市数据中的城市二维坐标数据，基于所述二维坐标数据构建二维平面地图，基于基本数据类型将建筑和道路输入至对应坐标，基于所述地形数据将二维坐标数据输入至三维坐标中，建立三维地图；基于所述基本数据类型将城市数据进行整合生成数据集，获取所述基本数据类型中对应的数据集并在场景库中匹配对应实景模型；基于所述数据类型匹配场景库中对应的实景数据，将所述实景模型放置在对应坐标中，构建三维实景地图。</div>
+<div class="description-paragraph" id="p0080" num="0075">具体的，通过利用三维空间在二维平面的表现手法，以二维贴图的方式重现三维的景观，先构建二维平面地图后建立三维地图，降低城市三维模型创建的成本，基于基本数据类型将城市数据进行整合生成数据集，并在场景库中匹配对应实景模型，匹配场景库中对应的实景数据，对三维模型进行实景融合，精确反应该城市的地形、地貌和各个场景，提高城市地图各个场景的真实性。</div>
+<div class="description-paragraph" id="p0081" num="0076">为了解决现有技术中，没有以城市设置中心点进行信息获取和范围标定，由于城市间的地形地貌和天气的不同，导致飞行器飞行范围的标定和计算更加复杂，影响飞行安全范围标定的精度，出现飞行安全隐患的情况的技术问题，请参阅图1，本实施例提供以下技术方案：</div>
+<div class="description-paragraph" id="p0082" num="0077">针对S3中飞行范围标定，其过程包括：</div>
+<div class="description-paragraph" id="p0083" num="0078">基于所述三维地标确定所述三维地图的中心点，获取所述三维地图中各个无人机地面补给站坐标，并基于与中心点的差值进行无人机地面补给站标号；提取所述三维实景地图中无人机地面补给站的坐标，基于所述无人低空飞行器的最远航线距离确定无人机地面补给站的覆盖范围，确定所述覆盖范围是否相互重合；获取所述无人低空飞行器所在城市的天气数据，所述天气数据包括温湿度、风速、风向、恶劣天气的影响范围和恶劣天气的影响程度；将所述天气数据输入至三维地图中进行模拟推演，确定所述无人低空飞行器在执行飞行计划时的模拟飞行数据，评估所述无人低空飞行器在执行飞行计划时的安全飞行分值；基于所述安全飞行分值确定所述无人低空飞行器各个航段的飞行高度阈值和飞行范围，基于所述各个航段的飞行高度阈值和飞行范围对所述飞行计划进行调整。</div>
+<div class="description-paragraph" id="p0084" num="0079">具体的，通过确定三维地图的中心点，以中心点向外扩散，一一标地图中的无人机地面补给站，基于各个无人机地面补给站的覆盖范围确定无人低空飞行器在执行飞行计划中的飞行范围，基于无人低空飞行器最低飞行高度结合获取的天气数据判断低空飞行时的高度是否在安全范围，且通过飞行计划和当前天气影响进行无人低空飞行器的飞行模拟推演，并基于推演结果判断模拟飞行数据的安全飞行分值，基于各个航段的飞行高度阈值和飞行范围对所述飞行计划进行调整，保证了各个航段的飞行安全，提高了无人低空飞行器的飞行效率。</div>
+<div class="description-paragraph" id="p0085" num="0080">本发明的一个实施例，所述飞行器低空飞行范围标定方法，还包括：</div>
+<div class="description-paragraph" id="p0086" num="0081">所述无人机定时向所述城市的终端采集器发送无线通信检测指令，其中，所述无线通信检测指令包括指令发送时刻和指令内容；</div>
+<div class="description-paragraph" id="p0087" num="0082">所述终端采集器接收到所述无线通信检测指令后，标记接收时刻；</div>
+<div class="description-paragraph" id="p0088" num="0083">所述终端采集器对所述无线通信检测指令中的指令发送时刻进行提取，获取所述无线通信检测指令中的指令发送时刻；</div>
+<div class="description-paragraph" id="p0089" num="0084">利用所述标记接收时刻和所述指令发送时刻获取无线通信检测指令的无线传输时间；</div>
+<div class="description-paragraph" id="p0090" num="0085">将所述无线传输时间与无线通信装置的理论数据传输时间和理论延时进行比较，当所述无线传输时间与无线通信装置的理论数据传输时间和理论延时之间满足约束条件时，则利用所述无线传输时间判定当前无线通信状态；</div>
+<div class="description-paragraph" id="p0091" num="0086">当所述无线传输时间不满足所述约束条件时，则进行报警；</div>
+<div class="description-paragraph" id="p0092" num="0087">其中，所述约束条件如下：</div>
+<div class="description-paragraph" id="p0093" num="0088">T≤T<sub>y</sub> </div>
+<div class="description-paragraph" id="p0094" num="0089">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/06/e1/87/d52e67c224ffd8/BDA0004182410880000101.png"><img alt="Figure BDA0004182410880000101" class="patent-full-image" file="BDA0004182410880000101.GIF" he="155" height="620" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_2.png" wi="720" width="2880"/></a></div>
+</div>
+<div class="description-paragraph" id="p0095" num="0090">其中，T表示无线传输时间；T<sub>y</sub>表示传输时间对应的约束条件；ΔT表示历史记录中符合余数条件情况下的无线传输时间相较于无线通信装置的理论数据传输时间和理论延时之和的延时最大时长；T<sub>01</sub>表示无线通信装置的理论数据传输时间；T<sub>02</sub>表示理论延时。</div>
+<div class="description-paragraph" id="p0096" num="0091">上述技术方案的效果为：通过上述方式能够在无人机飞行过程中定时进行无线通信的质量检测，由于无人机飞行速度较快，防止通信质量较差，导致通信演示过大，进而导致无人机标定位置显示与实际无人机飞行位置差距较大的问题发生，同时，通过上述约束条件的设置，能够对无线传输时间是否符合要求进行初步判定，能够最大限度提高报警及时性。并且通过上述方式能够使约束条件随着无人机实际通信状态进行自适应变化，进一步提高约束条件设置的合理性和自适应调控性。</div>
+<div class="description-paragraph" id="p0097" num="0092">本发明的一个实施例，利用所述无线传输时间判定当前无线通信状态，包括：</div>
+<div class="description-paragraph" id="p0098" num="0093">利用当前所述无线传输时间与约束条件的关系，设置通信时间阈值；其中，所述通信时间阈值如下：</div>
+<div class="description-paragraph" id="p0099" num="0094">
+<div class="patent-image"><a href="https://patentimages.storage.googleapis.com/06/6e/e0/39d18883dc57fc/BDA0004182410880000111.png"><img alt="Figure BDA0004182410880000111" class="patent-full-image" file="BDA0004182410880000111.GIF" he="168" height="672" img-content="drawing" img-format="gif" inline="no" orientation="portrait" src="./description_images/desc_img_3.png" wi="764" width="3056"/></a></div>
+</div>
+<div class="description-paragraph" id="p0100" num="0095">其中，T<sub>0</sub>表示通信时间阈值；T<sub>y</sub>表示传输时间对应的约束条件；ΔT表示历史记录中符合余数条件情况下的无线传输时间相较于无线通信装置的理论数据传输时间和理论延时之和的延时最大时长；</div>
+<div class="description-paragraph" id="p0101" num="0096">当所述无线传输时间未超过所述通信时间阈值时，则确定当前无线通信状态为良好，并保持单位时间内，当前无人机与终端采集器之间的针对同一数据的数据发送次数；</div>
+<div class="description-paragraph" id="p0102" num="0097">当所述无线传输时间超过所述通信时间阈值时，则确定当前无线通信状态为非良好，提高单位时间内当前无人机与终端采集器之间针对同一数据的数据发送次数。</div>
+<div class="description-paragraph" id="p0103" num="0098">上述技术方案的效果为：通过上述方式能够在无人机飞行过程中定时进行无线通信的质量检测，由于无人机飞行速度较快，防止通信质量较差，导致通信演示过大，进而导致无人机标定位置显示与实际无人机飞行位置差距较大的问题发生，同时，通过上述通信阈值的设置，能够有效结合无人机的实际无线通信状态进行针对性设置，使通信阈值与无人机通信实际情况进行有效匹配，进而提高通信质量检测准确性和可靠性。</div>
+<div class="description-paragraph" id="p0104" num="0099">为了更好的实现飞行器低空飞行范围标定方法，请参阅图2，本实施例提供一种飞行器低空飞行范围标定系统，包括：</div>
+<div class="description-paragraph" id="p0105" num="0100">模型建构单元，用于基于无人低空飞行器所在位置构建城市三维实景地图；飞行器跟踪单元，用于实时获取无人低空飞行器的实际位置，监测无人低空飞行器的飞行数据，并在所述三维实景地图中实时显示；范围标定预警单元，用于基于城市地形地貌和天气对无人低空飞行器的飞行范围进行标定，并判断所述无人低空飞行器是否在安全范围内飞行，并及时对异常数据进行警报；</div>
+<div class="description-paragraph" id="p0106" num="0101">对异常数据进行警报，还包括基于所述无人低空飞行器的飞行数据确定无人低空飞行器的安全飞行分值，并将所述安全飞行分值与预设阈值进行比较，判断所述无人低空飞行器的飞行数据是否在安全范围内；当所述安全飞行分值等于或大于所述预设阈值时，则判定所述无人低空飞行器行为存在安全隐患，同时，当所述无人低空飞行器行为存在安全隐患时，生成预警报告；并获取所述无人低空飞行器当前的坐标，基于所述无人低空飞行器当前的坐标显示在三维地图中，同时，将所述预警报告基于物联网传输至所述远程管理人员所在终端。</div>
+<div class="description-paragraph" id="p0107" num="0102">具体的，通过三维实景地图基于当前环境进行飞行计划的模拟推演，实时监测监测无人低空飞行器的飞行数据，判断无人低空飞行器的飞行数据是否在安全范围内，基于城市地形地貌和天气对无人低空飞行器的飞行范围进行标定，并基于飞行数据确定无人低空飞行器的安全飞行分值，及时发现异常数据并进行警报，方便远程管理人员实施远程控制，及时发现问题，依据无人低空飞行器当前的坐标对无人低空飞行器进行维护，方便管理人员的远程管理。</div>
+<div class="description-paragraph" id="p0108" num="0103">以上所述，仅为本发明较佳的具体实施方式，但本发明的保护范围并不局限于此，任何熟悉本技术领域的技术人员在本发明披露的技术范围内，根据本发明的技术方案及其发明构思加以等同替换或改变，都应涵盖在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

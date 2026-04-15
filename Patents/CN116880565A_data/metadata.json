@@ -1,0 +1,118 @@
+{
+    "patent_id": "CN116880565A",
+    "title": "CN116880565A - 一种低空飞行器智能巡航控制系统及其方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Shenzhen Xiyue Wisdom Data Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN116880565A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN105373132A (zh) *",
+            "Priority Date": "2015-11-26",
+            "Publication Date": "2016-03-02",
+            "Assignee": "北京浩恒征途航空科技有限公司",
+            "Title": "一种基于自动巡航无人机的低空遥感系统及遥感方法",
+            "Link": "https://patents.google.com/patent/CN105373132A/zh"
+        },
+        {
+            "Publication Number": "CN109582035A (zh) *",
+            "Priority Date": "2018-11-29",
+            "Publication Date": "2019-04-05",
+            "Assignee": "沈阳无距科技有限公司",
+            "Title": "一种飞行器航迹导航方法、装置及电子设备",
+            "Link": "https://patents.google.com/patent/CN109582035A/zh"
+        },
+        {
+            "Publication Number": "CN109375649A (zh) *",
+            "Priority Date": "2018-12-19",
+            "Publication Date": "2019-02-22",
+            "Assignee": "中国商用飞机有限责任公司",
+            "Title": "用于控制飞行器的方法和系统",
+            "Link": "https://patents.google.com/patent/CN109375649A/zh"
+        },
+        {
+            "Publication Number": "CN113741490A (zh) *",
+            "Priority Date": "2020-05-29",
+            "Publication Date": "2021-12-03",
+            "Assignee": "广州极飞科技股份有限公司",
+            "Title": "一种巡检方法、装置、飞行器及存储介质",
+            "Link": "https://patents.google.com/patent/CN113741490A/zh"
+        },
+        {
+            "Publication Number": "CN113721653A (zh) *",
+            "Priority Date": "2021-08-09",
+            "Publication Date": "2021-11-30",
+            "Assignee": "陕西工业职业技术学院",
+            "Title": "一种飞行器航迹实时规划系统",
+            "Link": "https://patents.google.com/patent/CN113721653A/zh"
+        },
+        {
+            "Publication Number": "CN114564041A (zh) *",
+            "Priority Date": "2022-03-01",
+            "Publication Date": "2022-05-31",
+            "Assignee": "深圳市天空汽车网络有限公司",
+            "Title": "一种基于5g和视觉定位的无人机飞行控制系统",
+            "Link": "https://patents.google.com/patent/CN114564041A/zh"
+        },
+        {
+            "Publication Number": "CN115616578A (zh) *",
+            "Priority Date": "2022-12-05",
+            "Publication Date": "2023-01-17",
+            "Assignee": "成都航空职业技术学院",
+            "Title": "一种用于无人飞行器的雷达探测方法及装置",
+            "Link": "https://patents.google.com/patent/CN115616578A/zh"
+        },
+        {
+            "Publication Number": "CN115981373A (zh) *",
+            "Priority Date": "2023-02-22",
+            "Publication Date": "2023-04-18",
+            "Assignee": "重庆电子工程职业学院",
+            "Title": "一种基于无人机地面站的无人机飞行控制系统及方法",
+            "Link": "https://patents.google.com/patent/CN115981373A/zh"
+        },
+        {
+            "Publication Number": "CN116400730A (zh) *",
+            "Priority Date": "2023-04-17",
+            "Publication Date": "2023-07-07",
+            "Assignee": "深圳市喜悦智慧数据有限公司",
+            "Title": "一种飞行器低空飞行范围标定方法及系统",
+            "Link": "https://patents.google.com/patent/CN116400730A/zh"
+        }
+    ],
+    "cited_by": [
+        {
+            "Publication Number": "WO2025179937A1 (zh) *",
+            "Priority Date": "2024-02-28",
+            "Publication Date": "2025-09-04",
+            "Assignee": "南京大学",
+            "Title": "一种基于物联网的飞艇数据传输管理系统及方法",
+            "Link": "https://patents.google.com/patent/WO2025179937A1/zh"
+        },
+        {
+            "Publication Number": "CN118151675A (zh) *",
+            "Priority Date": "2024-05-09",
+            "Publication Date": "2024-06-07",
+            "Assignee": "南京新航线无人机科技有限公司",
+            "Title": "用于复杂场景巡航的无人机姿态控制方法及系统",
+            "Link": "https://patents.google.com/patent/CN118151675A/zh"
+        },
+        {
+            "Publication Number": "CN118226884A (zh) *",
+            "Priority Date": "2024-05-22",
+            "Publication Date": "2024-06-21",
+            "Assignee": "江苏园上园智能科技有限公司",
+            "Title": "一种空中飞行机器人精确巡航控制的方法",
+            "Link": "https://patents.google.com/patent/CN118226884A/zh"
+        },
+        {
+            "Publication Number": "CN119739180A (zh) *",
+            "Priority Date": "2024-11-28",
+            "Publication Date": "2025-04-01",
+            "Assignee": "三峡大学",
+            "Title": "一种电力巡检无人机路线自动修正方法",
+            "Link": "https://patents.google.com/patent/CN119739180A/zh"
+        }
+    ],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 10:31:50"
+}

@@ -1,0 +1,85 @@
+{
+    "patent_id": "CN120610238A",
+    "title": "CN120610238A - 一种分布式低空飞行器声探测阵列的在线校准方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "National Institute of Metrology",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120610238A/zh",
+    "citations": [
+        {
+            "Publication Number": "WO2018149500A1 (en) *",
+            "Priority Date": "2017-02-16",
+            "Publication Date": "2018-08-23",
+            "Assignee": "Areva Gmbh",
+            "Title": "Method for identifying an acoustic source in a component",
+            "Link": "https://patents.google.com/patent/WO2018149500A1/en"
+        },
+        {
+            "Publication Number": "CN108297108A (zh) *",
+            "Priority Date": "2018-02-06",
+            "Publication Date": "2018-07-20",
+            "Assignee": "上海交通大学",
+            "Title": "一种球形跟随机器人及其跟随控制方法",
+            "Link": "https://patents.google.com/patent/CN108297108A/zh"
+        },
+        {
+            "Publication Number": "CN110033623A (zh) *",
+            "Priority Date": "2019-04-25",
+            "Publication Date": "2019-07-19",
+            "Assignee": "中国计量大学",
+            "Title": "一种汽车鸣笛抓拍装置的现场校准方法及系统",
+            "Link": "https://patents.google.com/patent/CN110033623A/zh"
+        },
+        {
+            "Publication Number": "CN110049408A (zh) *",
+            "Priority Date": "2019-05-10",
+            "Publication Date": "2019-07-23",
+            "Assignee": "苏州静声泰科技有限公司",
+            "Title": "一种麦克风传声器阵列阵型优化方法",
+            "Link": "https://patents.google.com/patent/CN110049408A/zh"
+        },
+        {
+            "Publication Number": "CN112168177A (zh) *",
+            "Priority Date": "2020-09-10",
+            "Publication Date": "2021-01-05",
+            "Assignee": "首都医科大学附属北京朝阳医院",
+            "Title": "用于测试声源定位能力的方法、测试者终端、受试者终端",
+            "Link": "https://patents.google.com/patent/CN112168177A/zh"
+        },
+        {
+            "Publication Number": "KR20240138348A (ko) *",
+            "Priority Date": "2023-03-10",
+            "Publication Date": "2024-09-20",
+            "Assignee": "엘아이지넥스원 주식회사",
+            "Title": "수중 모의 표적을 이용한 수중 탐지 장비 시험 시스템 및 방법",
+            "Link": "https://patents.google.com/patent/KR20240138348A/ko"
+        },
+        {
+            "Publication Number": "CN117007174A (zh) *",
+            "Priority Date": "2023-07-19",
+            "Publication Date": "2023-11-07",
+            "Assignee": "北京航空航天大学",
+            "Title": "一种仿生扑翼微型飞行器噪声测量方法",
+            "Link": "https://patents.google.com/patent/CN117007174A/zh"
+        },
+        {
+            "Publication Number": "CN118731848A (zh) *",
+            "Priority Date": "2024-07-02",
+            "Publication Date": "2024-10-01",
+            "Assignee": "济宁市质量计量检验检测研究院(济宁半导体及显示产品质量监督检验中心、济宁市纤维质量监测中心)",
+            "Title": "一种声源识别定位系统计量校准方法及系统",
+            "Link": "https://patents.google.com/patent/CN118731848A/zh"
+        },
+        {
+            "Publication Number": "CN119963663A (zh) *",
+            "Priority Date": "2025-04-11",
+            "Publication Date": "2025-05-09",
+            "Assignee": "四川国创新视超高清视频科技有限公司",
+            "Title": "一种针对无人机的快速目标标定方法及系统",
+            "Link": "https://patents.google.com/patent/CN119963663A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:06:01"
+}

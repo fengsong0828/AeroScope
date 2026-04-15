@@ -1,0 +1,157 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN105005317A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES380095992">
+<invention-title id="tilte1" lang="ZH">一种低空飞行器机载交互设备</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001" num="0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0002">本发明涉及数据交互显示领域，尤其涉及一种低空飞行器机载交互设备。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003" num="0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0004">目前，我国的通用航空产业发展缓慢，与国民经济发展的状况不相适应，难以为我国经济发展转型提供应有的支撑。如何促进通用航空的发展是值得研究的重大课题，其中通用航空运行管理系统的不成熟与缺失也是阻碍我国通用航空发展的一个障碍。而发展通用航空，空域开放是关键。空域不开放，通用飞机就无法顺利升空飞行，通用航空的各项工作也就无法推进。目前低空空域管理改革面临的主要困难是：空防安全与低空开放的矛盾、空域资源规划对低空空域开放的影响、法律责任界定存在缺失、运行管理体系不健全、飞行服务保障条件不完善。与国外通用航空运行监视模式不同，我国是高度设防的国家，周边环境复杂，部分地区又有众多的重要限制区域，空防安全的压力很大，通用航空的低、慢、小飞行目标的监控对航空安全至关重要。</div>
+</background-art>
+<background-art>
+<div class="description-paragraph" id="p0005" num="0005">现有技术中，对于大型飞行器，其具有成熟的通信交互系统，在GPS、北斗导航、ADS/B、空域管理等先进技术的支撑下，能够搭建通用航空运行管理与服务保障航空专网，为飞行员在飞行过程中，通过专用设备与地面保持实时高速大带宽的通信联系建立了物质基础。</div>
+<div class="description-paragraph" id="p0006" num="0006">而对于低空飞行器，特别是小型飞行器，通常携带的通信交互系统较少，飞行所需的信息资源贫乏。为此，亟需一种便携式的机载交互设备，用以满足通用航空移动互联、信息交互需求,为监视导航、综合信息服务、飞行计划服务、气象信息、增值服务等应用提供支撑。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007" num="0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0008">有鉴于此，本发明公开了一种低空飞行器机载交互设备，用以满足通用航空移动互联、信息交互需求,为监视导航、综合信息服务、飞行计划服务、气象信息、增值服务等应用提供支撑。</div>
+<div class="description-paragraph" id="p0009" num="0009">本发明公开了一种低空飞行器机载交互设备，所述设备包括：</div>
+<div class="description-paragraph" id="p0010" num="0010">存储器，用于存储机载交互设备中的交互过程中所需的数据和/或用户输入的数据；</div>
+<div class="description-paragraph" id="p0011" num="0011">显示器，用于显示机载交互设备中生成的数据信息；</div>
+<div class="description-paragraph" id="p0012" num="0012">位置检测器，用于检测用户在屏幕上触摸的位置，并将用户的触摸位置与用户的交互指令进行关联；</div>
+<div class="description-paragraph" id="p0013" num="0013">通信接口，用于通过低空飞行器上的机载终端获取地面云计算中心通过高速地空无线链路发送的交互信息；</div>
+<div class="description-paragraph" id="p0014" num="0014">解析分发器，用于对通信接口接收到的交互信息进行解析，判断解析后的所述交互信息中是否存在预设信息，若存在，则对所述预设信息执行转发；</div>
+<div class="description-paragraph" id="p0015" num="0015">交互控制器，用于接收并显示解析分发器发送的所述预设信息，以及监控预设时间段内触摸屏上是否接收到用户的交互指令，若是，则控制交互程序显示与用户指令相关的交互界面，否则，在交互程序上显示预设的交互界面；</div>
+<div class="description-paragraph" id="p0016" num="0016">可选的，所述机载终端周期性发送询问消息，用以查询临近飞机的位置、方位、相对高度和距离，并根据临近飞机的位置、方位、相对高度和距离计算临近飞机的临近值；</div>
+<div class="description-paragraph" id="p0017" num="0017">所述机载终端包括轮询装置，用于周期性发送询问消息，查询临近飞机的位置、方位、相对高度和距离，并根据临近飞机的位置、方位、相对高度和距离计算临近飞机的临近值；</div>
+<div class="description-paragraph" id="p0018" num="0018">所述机载交互设备从所述机载终端中获取机载终端的查询结果，当所述临近值小于预设阈值时，所述机载交互设备显示所述机载终端发出报警信号。</div>
+<div class="description-paragraph" id="p0019" num="0019">可选的，在飞行器起飞之前，所述交互终端预先从地面云计算中心获取飞行数据，并将所述飞行数据存储在所述存储器中。</div>
+<div class="description-paragraph" id="p0020" num="0020">可选的，所述飞行数据包括：飞行运行手册、公司标准运行程序、机场改航指令指导、运行规范、驾驶舱观察员简令卡、机场性能限制手册、航空器飞行日志和服务记录、航空器部件手册、进离场航空器减噪程序。</div>
+<div class="description-paragraph" id="p0021" num="0021">可选的，所述设备还包括图形资料收集器，所述图形资料收集器用于周期性的扫描所述存储器的指定目录单元是否存在新图形文件；</div>
+<div class="description-paragraph" id="p0022" num="0022">以及转换器，当存在新图形文件时，根据预设的匹配规则对新图形文件进行筛选，并对筛选出的文件按照预设规则进行格式转换；</div>
+<div class="description-paragraph" id="p0023" num="0023">可选的，所述设备还包括旋转控制器，在所述转换器在对筛选出的文件按照预设规则进行格式转换之后，对格式转换后的图形文件进行预设度数的旋转，并提取格式转换后的图形文件的属性信息，基于所述属性信息将格式转换后的图形文件存储到相应的数据库中。</div>
+<div class="description-paragraph" id="p0024" num="0024">可选的，所述新图形文件为气象图形文件。</div>
+<div class="description-paragraph" id="p0025" num="0025">可选的，所述设备还包括：</div>
+<div class="description-paragraph" id="p0026" num="0026">气象报文接收器，用于接收气象报文；</div>
+<div class="description-paragraph" id="p0027" num="0027">气象报文处理器，用于对接收到的气象报文进行分解，并将分解后的报文按照预定的格式进行存储；</div>
+<div class="description-paragraph" id="p0028" num="0028">气象报文检索器，用于通过多种检索方式对气象报文进行检索。</div>
+<div class="description-paragraph" id="p0029" num="0029">可选的，所述通过多种检索方式对气象报文进行检索包括：</div>
+<div class="description-paragraph" id="p0030" num="0030">按照气象报文的类型进行检索；和/或</div>
+<div class="description-paragraph" id="p0031" num="0031">按照气象报文的站点进行检索；和/或</div>
+<div class="description-paragraph" id="p0032" num="0032">按照气象报文的区域进行检索；和/或</div>
+<div class="description-paragraph" id="p0033" num="0033">按照气象报文的要素进行检索。</div>
+<div class="description-paragraph" id="p0034" num="0034">通过本发明的低空飞行器机载交互设备，实现了在机载交互设备上实时显示空中交通信息，满足飞机交通辅助导航的要求，能够针对临近飞机的位置、方位、相对高度和距离等参数给出告警；通过无线和有线两种方式与机载终端连接，可以满足通用航空移动互联、信息交互需求,是监视导航、综合信息服务、飞行计划服务、气象信息、增值服务等应用平台的综合载体。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0035" num="0035">附图说明</div>
+<div class="description-paragraph" id="p0036" num="0036">为了更清楚地说明本发明实施例或现有技术中的技术方案，下面将对实施例或现有技术描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其它的附图。</div>
+<div class="description-paragraph" id="p0037" num="0037">图1为本发明实施例提供的一种低空飞行器机载交互系统的结构图；</div>
+<div class="description-paragraph" id="p0038" num="0038">图2为本发明实施例提供的通用航空专网功能及结构示意图；</div>
+<div class="description-paragraph" id="p0039" num="0039">图3为本发明实施例提供的机载系统的结构图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0040" num="0040">具体实施方式</div>
+<div class="description-paragraph" id="p0041" num="0041">下面结合附图对本发明实施例进行详细描述。</div>
+<div class="description-paragraph" id="p0042" num="0042">应当明确，所描述的实施例仅仅是本发明一部分实施例，而不是全部的实施例。基于本发明中的实施例，本领域普通技术人员在没有作出创造性劳动前提下所获得的所有其它实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0043" num="0043">图1为本发明实施例提供的一种低空飞行器机载交互系统的结构图，机载设备包括：存储器、显示器、位置检测器、通信接口、解析分发器以及交互控制器。</div>
+<div class="description-paragraph" id="p0044" num="0044">存储器，用于存储机载交互设备中的交互过程中所需的数据和/或用户输入的数据。</div>
+<div class="description-paragraph" id="p0045" num="0045">存储器存储的数据包括多种航空信息数据或进行基本的计算(如性能数据、燃油计算等)。其中的一些功能传统上是使用纸质参考材料或是基于“飞行签派”向机组提供数据来完成的。</div>
+<div class="description-paragraph" id="p0046" num="0046">显示器，用于显示机载交互设备中的交互过程中所生成的数据信息；</div>
+<div class="description-paragraph" id="p0047" num="0047">主要显示的信息数据类型包括：</div>
+<div class="description-paragraph" id="p0048" num="0048">·飞行运行手册(FOM)</div>
+<div class="description-paragraph" id="p0049" num="0049">·公司标准运行程序(SOP)</div>
+<div class="description-paragraph" id="p0050" num="0050">·机场改航指令指导</div>
+<div class="description-paragraph" id="p0051" num="0051">·运行规范(OpSpecs)</div>
+<div class="description-paragraph" id="p0052" num="0052">·驾驶舱观察员简令卡</div>
+<div class="description-paragraph" id="p0053" num="0053">·航空器性能数据手册(固定的、非交互式材料)</div>
+<div class="description-paragraph" id="p0054" num="0054">·机场性能限制手册(如起飞和着陆性能计算的参考)</div>
+<div class="description-paragraph" id="p0055" num="0055">·载重和平衡手册(如单独成册，固定的、非交互式材料)</div>
+<div class="description-paragraph" id="p0056" num="0056">·维修手册</div>
+<div class="description-paragraph" id="p0057" num="0057">·航空器维修报告手册</div>
+<div class="description-paragraph" id="p0058" num="0058">·航空器飞行日志和服务记录</div>
+<div class="description-paragraph" id="p0059" num="0059">·飞行管理系统/飞行管理和指引系统问题报告表</div>
+<div class="description-paragraph" id="p0060" num="0060">·航空器部件手册</div>
+<div class="description-paragraph" id="p0061" num="0061">·服务通告/出版的适航指令等</div>
+<div class="description-paragraph" id="p0062" num="0062">·国家和民航的有关规章和规定</div>
+<div class="description-paragraph" id="p0063" num="0063">·机场/设施指导(A/FD)数据(如燃油可用性、与特殊跑道组合的LAHSO距离等)</div>
+<div class="description-paragraph" id="p0064" num="0064">·进离场航空器减噪程序</div>
+<div class="description-paragraph" id="p0065" num="0065">·公布的航行通告(NOTAM)</div>
+<div class="description-paragraph" id="p0066" num="0066">·航空资料汇编(ΑΙP)</div>
+<div class="description-paragraph" id="p0067" num="0067">·海上导航程序日志</div>
+<div class="description-paragraph" id="p0068" num="0068">·驾驶员飞行和值勤日志</div>
+<div class="description-paragraph" id="p0069" num="0069">·飞行机组必要休息日志</div>
+<div class="description-paragraph" id="p0070" num="0070">·机长报告(如机长事故征候报告表)</div>
+<div class="description-paragraph" id="p0071" num="0071">·飞行机组检查表(多方面的)</div>
+<div class="description-paragraph" id="p0072" num="0072">·应急医疗服务参考资料(在应急医疗中适用)</div>
+<div class="description-paragraph" id="p0073" num="0073">·航空器机长日志</div>
+<div class="description-paragraph" id="p0074" num="0074">·反恐简介资料</div>
+<div class="description-paragraph" id="p0075" num="0075">·危险品(HAZMAT)/氧化剂查询表</div>
+<div class="description-paragraph" id="p0076" num="0076">·涉及危险品的航空器事故征候的应急反应指导(ICAO Doc 9481-AN/928)</div>
+<div class="description-paragraph" id="p0077" num="0077">·特殊报告表(如空中危险接近报告，鸟击和遭遇野生动物等)</div>
+<div class="description-paragraph" id="p0078" num="0078">·机载其他设备对航空器电子设备干扰造成的影响</div>
+<div class="description-paragraph" id="p0079" num="0079">·不同机场的当前燃油价格</div>
+<div class="description-paragraph" id="p0080" num="0080">·应急程序</div>
+<div class="description-paragraph" id="p0081" num="0081">·航空公司政策和程序手册</div>
+<div class="description-paragraph" id="p0082" num="0082">·维修人员签署缺陷记录</div>
+<div class="description-paragraph" id="p0083" num="0083">·以满足飞行要求的信息</div>
+<div class="description-paragraph" id="p0084" num="0084">触摸屏，用于检测用户在屏幕上触摸的位置，并将用户的触摸位置与用户的对交互程序的交互指令进行关联；</div>
+<div class="description-paragraph" id="p0085" num="0085">飞行员能够根据需要点击触摸屏上的响应功能模块，例如，飞行员需要查找降落机场的气象情况，飞行员用户可以点击触摸屏上的气象信息模块，气象信息模块提供机场天气告警消息通知功能，然后以WEB的方式，向定制告警服务的用户提供机场天气详细告警信息。</div>
+<div class="description-paragraph" id="p0086" num="0086">通告预警功能实现气象中心发布短期天气预警的功能。可以采用根据气象中心现有的发布产品文档，通过通告预警产品访问适配器，进行信息发布；也可以采用通告预警信息后台录入进行信息发布。</div>
+<div class="description-paragraph" id="p0087" num="0087">通信接口，用于通过低空飞行器上的机载终端获取地面云计算中心通过高速地空无线链路发送的交互信息。</div>
+<div class="description-paragraph" id="p0088" num="0088">该通信接口能够支撑多种制式的通信协议，如TCP/IP协议等，通信可以以有线连接的方式进行，也可以按照无线连接的方式进行。</div>
+<div class="description-paragraph" id="p0089" num="0089">解析分发器，用于对通信接口接收到的交互信息进行解析，判断解析后的所述交互信息中是否存在预设信息，若存在，则对所述预设信息执行转发；</div>
+<div class="description-paragraph" id="p0090" num="0090">根据对通用航空目标实施可靠监视的需求，机载终端中包含多种信息源(多源监视数据、空管雷达、飞行计划、实时气象信息等)的异类数据融合，对于交互设备来讲，并非所有的数据信息都是必须的，作为一个实施方式，解析分发器预先扫描交互设备的交互程序所支撑的数据类型，根据支持的数据类型进行解析数据的转发。</div>
+<div class="description-paragraph" id="p0091" num="0091">交互控制器，用于接收并显示解析分发器发送的所述预设信息，以及监控预设时间段内触摸屏上是否存在用户的交互指令，若存在，则控制交互程序显示与用户指令相关的交互界面，否则，在交互程序上显示预设的交互界面。</div>
+<div class="description-paragraph" id="p0092" num="0092">作为一种实施方式，交互设备默认显示飞行器的飞行状态界面，当用户选择了其它界面之后，则在一段时间之内(如1分钟，可由用户设置)切换至用户选择的功能界面，等时间到后，再返回默认界面。</div>
+<div class="description-paragraph" id="p0093" num="0093">作为一种实施方式，机载交交互设备具有如下组件或特性：</div>
+<div class="description-paragraph" id="p0094" num="0094">双核处理器；</div>
+<div class="description-paragraph" id="p0095" num="0095">4G内存；</div>
+<div class="description-paragraph" id="p0096" num="0096">4个外部USB</div>
+<div class="description-paragraph" id="p0097" num="0097">4个输入和2个输出429总线，可选高、低速；</div>
+<div class="description-paragraph" id="p0098" num="0098">大容量固态硬盘；</div>
+<div class="description-paragraph" id="p0099" num="0099">以太网端口；</div>
+<div class="description-paragraph" id="p0100" num="0100">28伏直流输入，机上电源；</div>
+<div class="description-paragraph" id="p0101" num="0101">镍氢备用电池，避免FAA对锂元素的顾虑；</div>
+<div class="description-paragraph" id="p0102" num="0102">通过DO-160F标准；</div>
+<div class="description-paragraph" id="p0103" num="0103">无线WiFi支持。</div>
+<div class="description-paragraph" id="p0104" num="0104">作为一种实施方式，交互设备还能够进行气象资料收集处理，图形资料收集流程首先扫描数据源(FTP下载或者磁盘目录)，发现新文件资料后根据匹配规则筛选合格文件，依据配置确定格式转换，确定90度旋转，文件属性收集，最后入库。</div>
+<div class="description-paragraph" id="p0105" num="0105">作为一种实施方式，交互设备提供气象报文管理功能。支持气象报文接收分解处理程序，兼容世界区域预报系统文件资料。通过本方式接收的气象报文，既可以作为航空气象服务系统的报文查询主用来源，也可以在系统故障时提供备用来源。</div>
+<div class="description-paragraph" id="p0106" num="0106">作为一种实施方式，交互设备提供气象报文资料检索功能，此功能实现航空飞行气象历史资料查询、打印；航空报文检索实现多种报类、多站点的方式检索，可以实现控制报文的份数检索，可以实现分区检索，可以实现备降场的检索，可以采用要素检索(如大于风速、小于能见度、有雾、有雷雨等)，可以采用多种条件组合的检索。</div>
+<div class="description-paragraph" id="p0107" num="0107">作为一种实施方式，交互设备提供飞行文件处理功能，此功能实现航空飞行气象资料查询、打印；飞行气象文件实现根据降落机场和起飞时间，通过系统配置参数，完成飞行需要的一套气象资料。包括本场的实况报、预报，降落机场和备降机场的实况报、预报，飞越情报区的重要天气报告，高空风温图、重要天气图等资料。</div>
+<div class="description-paragraph" id="p0108" num="0108">作为一种实施方式，交互设备提供卫星云图处理功能，支持卫星云图实时资料查询、打印、动画操作功能；卫星云图实现按云图类型、时间、投影方式、地理区域完成卫星云图的检索显示。并提供打印、动画操作功能。</div>
+<div class="description-paragraph" id="p0109" num="0109">作为一种实施方式，交互设备提供雷达图像处理功能，支持气象雷达回波图查询、动画操作功能；雷达图象实现按机场代码、时间、扫描方式完成雷达图象的检索显示。</div>
+<div class="description-paragraph" id="p0110" num="0110">作为一种实施方式，交互设备提供自动观测功能，自动观测通过数据库，采用定时刷新的方式，实时显示选定机场的自动观测数据。对24小时内的自动观测数据，采用1小时、8小时和24小时的时段形成自动观测要素时间序列，支持时间段自定义设置。</div>
+<div class="description-paragraph" id="p0111" num="0111">作为一种实施方式，交互设备提供传真图处理功能，支持有线传真图查询、打印功能；传真图实现按图象类型、时间完成传真图的检索显示。</div>
+<div class="description-paragraph" id="p0112" num="0112">作为一种实施方式，交互设备提供航空预告图管理功能，航空预报图实现按资料类型、时间、有效时效、区域完成航空预报图的检索显示。包括：国内各地区天气查询、重要天气预告图查询、打印、高空风/温度预告图查询、打印</div>
+<div class="description-paragraph" id="p0113" num="0113">作为一种实施方式，交互设备提供台风路径图处理功能，台风路径图实现按国家气象局发布的台风报，按时间序列的方式，采用矢量图形技术，在地图上显示台风路径，并在台风路径节点上标注台风信息。</div>
+<div class="description-paragraph" id="p0114" num="0114">机载终端主要由宽带无线通信单元、北斗/GPS导航单元等部分组成，支持外置音频输出和显示设备。机载终端基本组成框图如图2所示。</div>
+<div class="description-paragraph" id="p0115" num="0115">作为一个实施例，机载终端具有如下特性：</div>
+<div class="description-paragraph" id="p0116" num="0116">(1)环境适应性、可靠性、电磁兼容性等遵循DO160G标准，需通过相关检测机构的测试；</div>
+<div class="description-paragraph" id="p0117" num="0117">(2)内部整合1个1800M 5M终端，最大业务吞吐量10bps；</div>
+<div class="description-paragraph" id="p0118" num="0118">(3)终端使用40dBm大功率发射模块，满足空地远距离覆盖需求；</div>
+<div class="description-paragraph" id="p0119" num="0119">(4)终端可利用北斗/GPS提供的位置、速度信息进行多普勒频移估算、辅助切换；</div>
+<div class="description-paragraph" id="p0120" num="0120">(5)终端利用北斗/GPS提供的秒脉冲信号对本地晶振频率漂移进行校准；</div>
+<div class="description-paragraph" id="p0121" num="0121">(6)使用前后隔离比较高的两幅天线分别指向前后两个方向，可通过天线切换减小非直射径能量、改善同频干扰、改善切换性能等。</div>
+<div class="description-paragraph" id="p0122" num="0122">作为一个实施例，机载交互设备包括如下特性：具有双核处理器，4G内存，4个外部USB，4个输入和2个输出429总线(可选高、低速)，大容量固态硬盘，以太网端口，28伏直流输入，机上电源，镍氢备用电池，避免FAA对锂元素的顾虑，通过DO-160F标准，无线WiFi支持。</div>
+<div class="description-paragraph" id="p0123" num="0123">作为一个实施例，基于ADS-B和北斗技术，通过无线通信技术与ADS-B地面站的整合，可以实现对其他航空器发送的ADS-B OUT信息的接收，同时结合北斗提供的自身位置信息，从而实现在机载交互设备上实时显示空中交通信息，满足飞机交通导航的要求。系统具备主动询问功能，能够针对临近飞机的位置、方位、相对高度和距离等参数给出告警。</div>
+<div class="description-paragraph" id="p0124" num="0124">作为一种实施方式，所述机载终端为ADS-B设备，所述ADS-B设备接收北斗/GPS信号后，确定其在空中/地面的准确位置，结合其它数据后把位置信息通过航空无线专网发送给运行保障与服务中心。</div>
+<div class="description-paragraph" id="p0125" num="0125">针对通用航空气象数据、航行通告信息的种类和业务特点，通过对通用航空飞行情报信息涉及的数据种类、特点、来源和更新机制的深入研究，结合ADS-B、数据链、航空通信网等技术设计适合我国通航飞行数据管理特点的空空、空地数据搜集、集成和管理的运行保障与服务中心，实现多源航空飞行数据高效的信息融合与集成处理。相关关键信息如下：</div>
+<div class="description-paragraph" id="p0126" num="0126">对飞行器：GNSS位置信息、高度、速度、飞行态势、机型、识别码等。</div>
+<div class="description-paragraph" id="p0127" num="0127">对机组人员：空域需求、飞行计划等。</div>
+<div class="description-paragraph" id="p0128" num="0128">对地面空管：空域情况、空域划设、计划批复、飞行前资料公告、航图信息、气象情报、航行情报等。</div>
+<div class="description-paragraph" id="p0129" num="0129">实时的信息(语音/数据)交互对提升空域利用效率和交通管理效率至关重要。通过基于无线通信技术的航空专网，运行保障与服务中心可以对飞行器提供实时的飞行服务支持，飞行器也能够将自身飞行数据实时发送至运行保障与服务中心，最终实现空地信息的实时交互，支撑无人值守情况下快速自动完成通用航空飞行情报的发布和飞行信息交互等服务。</div>
+<div class="description-paragraph" id="p0130" num="0130">运行保障与服务中心是一个统一的网络平台，监视、通信、导航以及交通管理信息应都汇聚至一个统一的网络平台，进行统一的数据处理和需求响应。</div>
+<div class="description-paragraph" id="p0131" num="0131">根据对通用航空目标实施可靠监视的需求，实现多种信息源(多源监视数据、空管雷达、飞行计划、实时气象信息等)的异类数据融合、通用航空目标的航迹跟踪与预测、综合告警(低高度告警、冲突告警、重码、非许可区域侵入告警)，开发分布式的通用航空信息服务与飞行计划综合处理软件平台，具备异类数据融合、飞行数据处理、系统运行状态的记录与回放、系统综合航迹输出、综合信息发布、飞行计划管理与自动审批等功能。</div>
+<div class="description-paragraph" id="p0132" num="0132">统一平台将为众多用户和应用提供高质量和及时的数据。通过减少界面和系统数量及类型，统一平台将减少不必要的信息冗余，更好地促成多机构信息共享。</div>
+<div class="description-paragraph" id="p0133" num="0133">飞行器的飞行信息包括：飞行器的位置、飞行器的飞行速度、飞行器的高度、飞行器的飞行趋势、飞行器的飞行轨迹。</div>
+<div class="description-paragraph" id="p0134" num="0134">地面设备包括云计算中心，所述云计算中心能够进行实时的多维空间数据计算，数据计算的结果用于为各阶段运动的飞行器提供即时调整依据。</div>
+<div class="description-paragraph" id="p0135" num="0135">空域的管理在很大程度上依靠了广域的协同决策支持协同技术，随着飞机自主导航性能的提高以及地空数据链的发展，以及与云计算等信息技术的结合，实现空防监视、飞行安全管理的协同化、信息化，将成为一个业务和技术高度融合与交叉的应用领域，在深入进行业务流程研究和运行概念设计的基础上，空域管理与云计算技术的结合，可以显著提高系统处理复杂事物的能力，用户从中可以获得很大价值，具有广阔的推广前景。</div>
+<div class="description-paragraph" id="p0136" num="0136">云计算中心可以为地面监管系统提供强大的实时计算通航信息化运行管理能力，可以允许各种复杂的算法在多维空间(包括空域，飞行器位置，飞行器性能，飞行器意愿，多飞行器相互关系)进行计算，以期为在各阶段运动的飞行器提供实时监视与即时调整；为恶劣气象条件下的起降提供安全的计算依据，为多山多雾地区飞行器计算优化的航迹以及备份航迹。</div>
+<div class="description-paragraph" id="p0137" num="0137">本领域普通技术人员可以理解实现上述实施例方法中的全部或部分流程，是可以通过计算机程序来指令相关的硬件来完成，所述的程序可存储于一计算机可读取存储介质中，该程序在执行时，可包括如上述各方法的实施例的流程。其中，所述的存储介质可为磁碟、光盘、只读存储记忆体(Read-Only Memory，ROM)或随机存储记忆体(Random Access Memory，RAM)等。</div>
+<div class="description-paragraph" id="p0138" num="0138">以上所述，仅为本发明的具体实施方式，但本发明的保护范围并不局限于此，任何熟悉本技术领域的技术人员在本发明揭露的技术范围内，可轻易想到的变化或替换，都应涵盖在本发明的保护范围之内。因此，本发明的保护范围应以权利要求的保护范围为准。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

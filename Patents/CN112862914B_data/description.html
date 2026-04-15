@@ -1,0 +1,98 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN112862914B</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES451700888">
+<invention-title id="title1" lang="ZH">基于多层级多核心的低空飞行器防御区域可视化融合方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于低空飞行器防御技术领域的一种飞行器防御区域的可视化处理方法，具体涉及了一种基于多层级多核心的低空飞行器防范区域可视化融合方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着小型旋翼无人机、飞行汽车、飞行货箱等低空飞行器的不断民用化、普及化，在提供便利的同时也带来了较大的风险。特别是针对具有重大安全属性的建筑物的非法飞行入侵需要被及时发现与处置。</div>
+<div class="description-paragraph" id="p0005" num="0003">当前采用具有探测雷达、视频检测等感知手段的独立装置对特定空域进行防御，如CN209913833U就是提供了这一种方案，同时基于感知数据对不同飞行目标的威胁度进行识别也是一个重点技术领域，如CN111580083A。但是从城域或区域整体防御角度，需要形成基于地理信息的大范围空域协同探测监控的手段，就需要建立感知范围更广、具有信息可视化的指挥决策系统。</div>
+<div class="description-paragraph" id="p0006" num="0004">这种指挥系统需要以宏观的角度向防御值守人员显示多核心区域的各个不同危险等级的情况，更需要将确定的独立的、分散的防御建筑核心，及其相互关联的各防御层级区整体融合起来，进而实现低空飞行器的不同管控特征进行可控性融合显示。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明针对低空飞行器防御区在指挥系统中平面图形化显示的问题，提出了一种基于多层级多核心的低空飞行器防御区域可视化融合方法。</div>
+<div class="description-paragraph" id="p0009" num="0006">本发明所采用的技术方案是：</div>
+<div class="description-paragraph" id="p0010" num="0007">S1：选定低空飞行器防御二维可视地图范围，设定二维基础地图，并确定坐标系和显示层；</div>
+<div class="description-paragraph" id="p0011" num="0008">多边形标注是指拟合成多边形。</div>
+<div class="description-paragraph" id="p0012" num="0009">S2：设定低空飞行器的防御等级与显示色彩，按设定防御级别对应的显示图层，显示层的各级层按防御等级逐级叠加于基础地图上；</div>
+<div class="description-paragraph" id="p0013" num="0010">S3：通过低空飞行器的防御对象与防御等级的属性选择，形成多层多核心二维融合显示；</div>
+<div class="description-paragraph" id="p0014" num="0011">S4：当低空飞行器非法入侵时，按照预定层级逐级显示指示区域。</div>
+<div class="description-paragraph" id="p0015" num="0012">本发明所述的防御对象是指低空飞行器。</div>
+<div class="description-paragraph" id="p0016" num="0013">所述S2中，低空飞行器的防御等级具体为：</div>
+<div class="description-paragraph" id="p0017" num="0014">设定n个防御级别，分别按1至n整数方法给各防御级别赋值，相邻防御级别的差值为1，同时按多彩色或者单色灰度趋势变化设定属性值作为各防御级别的防御区的显示颜色值，多防御区间的交叠部分的显示属性按不叠加与叠加次数设置，非防御区的区域为透明无色，直接显示地图底色图案。</div>
+<div class="description-paragraph" id="p0018" num="0015">其中，多防御区交叠区域的显示属性按不叠加设置方式为：第1层与第2层是建筑实体和建筑周界，不会发生叠加，显示防御级别分别为最高级和次高级；从第3层开始k个不同防御区会发生交叠，交叠部分的防御级别按照交叠部分中所有防御区的防御级别最大进行显示。</div>
+<div class="description-paragraph" id="p0019" num="0016">其中，多防御区交叠区域的显示属性按叠加设置方式为：第1层与第2层是建筑实体和建筑周界，不会发生叠加，显示防御级别分别为最高级和次高级；从第3层开始k个不同防御区会发生交叠，交叠部分的防御级别按照交叠部分中所有防御区的防御级别之和加深进行显示。</div>
+<div class="description-paragraph" id="p0020" num="0017">所述步骤S1具体为：</div>
+<div class="description-paragraph" id="p0021" num="0018">二维基础地图分为建筑实体与建筑周界，将建筑实体和建筑周界拟合为四边形，均选取建筑实体的质心为坐标原点建立直角坐标系，由此确定建筑实体和建筑周界的四边形边界各个点坐标；</div>
+<div class="description-paragraph" id="p0022" num="0019">二维基础地图内，存在多个建筑实体，在显示层的第1层内对建筑实体所处地理空间信息进行标注，将各建筑实体的二维投影区域进行多边形标注并取形状质心O<sub>m</sub>，按最大相似面积方法拟合成一个四边形作为实体核心防御区A<sub>1</sub>，附注显示开关属性H<sub>1</sub>，对并设置实体核心防御区的显示开关属性；</div>
+<div class="description-paragraph" id="p0023" num="0020">.并且，在显示层的第2层内针对第1层内所标注的各建筑实体外围的建筑周界所围合的二维投影区域进行多边形标注，以质心O<sub>m</sub>按最大相似面积方法拟合成一个四边形，再减去实体核心防御区A<sub>1</sub>区域的部分作为围合防御区A<sub>2</sub>，附注显示开关属性H<sub>2</sub>；</div>
+<div class="description-paragraph" id="p0024" num="0021">在显示层的第3层至第n层内，以质心O<sub>m</sub>为圆心，以预设半径值R<sub>i</sub>为各层级半径作同心圆，i≥1，各圆半径值R<sub>i</sub>根据防御等级逐步增加；</div>
+<div class="description-paragraph" id="p0025" num="0022">不同防御对象的防御等级数量和半径值可以不同。第3层防御区为第一个圆与所述的A<sub>2</sub>四边形区域的差部分为防御区A<sub>3</sub>，附注显示与隐藏的属性H<sub>3</sub>，第i个圆与i+1个圆相减所得到的环形区域标注为第i+3级防御区域A<sub>i+3</sub>，附注显示与隐藏的属性H<sub>i+3</sub>。</div>
+<div class="description-paragraph" id="p0026" num="0023">以直角坐标系原点作为圆心，根据防御等级逐步增加的多个不同直径设置多个同心的圆形，每个圆形作为一个外围防御区，获得多个外围防御区；</div>
+<div class="description-paragraph" id="p0027" num="0024">从实体核心防御区、围合防御区、外围防御区从里往外依次按照1、2、3自然数依次为设置显示层的各层序数。</div>
+<div class="description-paragraph" id="p0028" num="0025">在显示层的第1层至第2层内，将各实体核心防御区和围合防御区拟合为一个四边形，取长边L与宽边W对角线交点作为防御质心O<sub>m</sub>，在显示层的第3层至第n层内，分别以各拟合的防御质心O<sub>m</sub>为中心标注各防御区的面积A<sub>n</sub>，并对各各实体核心防御区和围合防御区设置显示开关属性：</div>
+<div class="description-paragraph" id="p0029" num="0026">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0030" num="0027">其中：R/L为防御区半径与建筑实体长边的比值，V1、V2为预设的第一参考值、第二参考值；S<sub>b0</sub>为以实体核心防御区的四边形面积按预设比例放大后面积，S<sub>0</sub>为实体核心防御区的面积；S<sub>b4</sub>为以围合防御区的四边形面积按预设比例放大后的面积，S<sub>4</sub>为围合防御区的面积；S<sub>c0</sub>为显示层的第3层圆形区域的面积；S<sub>cn</sub>为显示层的第n+3层圆形区域，S<sub>cn-1</sub>为显示层的第n+2层圆形区域。</div>
+<div class="description-paragraph" id="p0031" num="0028">所述步骤S2具体为：</div>
+<div class="description-paragraph" id="p0032" num="0029">S2-1：在第1层按建筑实体的坐标标注防御区域，即为建筑实体拟合的四边形区域内；建筑实体例如为小区内的建筑房屋。</div>
+<div class="description-paragraph" id="p0033" num="0030">S2-2：在第2层按建筑周界的坐标标注防御区域，即为建筑周界拟合的四边形区域内、建筑实体拟合的四边形区域外的区域内；建筑周界例如为小区围墙。</div>
+<div class="description-paragraph" id="p0034" num="0031">S2-3：在显示层的第3层到第n层内，分别按防御对象分层级标注防御区域。</div>
+<div class="description-paragraph" id="p0035" num="0032">所述步骤S3中，基础地图开启后，仅开启第1层的全部实体核心防御区显示，即H<sub>1</sub>＝1，H<sub>1</sub>表示显示层第1层的显示开关属性，3层以上产生交叠区域时，默认防御交叠区域不叠加显示；选择防御等级数值，通过设置各个区域的显示开关属性H<sub>n</sub>＝(1,0)，1代表开启，0代表隐藏，开启对应等级范围的第2层至第n层级的防御区A<sub>n</sub>的是否显示；并且按时长临时授权方式T<sub>temp</sub>自动改变防御区A<sub>n</sub>的显示与隐藏属性H<sub>n</sub>，时长临时授权方式T<sub>temp</sub>为按秒计时的时段或按截至年月日时分的时刻计时方式。</div>
+<div class="description-paragraph" id="p0036" num="0033">基础地图开启后，仅默认开启第1层全部实体核心防御区显示，然后根据显示需要选择防御等级数值，对应开启显示层的第2层至第n层级的防御区域；通过配置防御区域的显示等级属性显示具有该防御等级以下的所有层级区域，层级区域显示默认防御交叠区域不加深显示颜色值，通过配置实体核心区隐藏属性选择需隐藏具体防御对象。</div>
+<div class="description-paragraph" id="p0037" num="0034">所述步骤S4中，当发现低空飞行器出现在防御区A<sub>n</sub>时，在防御区A<sub>n</sub>的显示色相、灰度不变的条件下，变化显示亮度值方式进行显示，按照防御等级n，对应为从低到高逐步提高各防御区的亮度值，并设置闪烁频率，最高级闪烁最快，最低级闪烁最慢。</div>
+<div class="description-paragraph" id="p0038" num="0035">所述步骤S4中，依据飞行器飞行方向，设置保留显示所有背离飞行方向的低空飞行器所关联的防御区H<sub>n</sub>＝1，隐藏所有背离飞行方向的低空飞行器所关联的防御区H<sub>n</sub>＝0。</div>
+<div class="description-paragraph" id="p0039" num="0036">本发明是面向低空飞行器防御指挥系统的一种可视化方法，是针对在指挥系统可视范围内的多个防护对象建筑实体特征构建的二维多层级低空飞行器入侵防御区域的融合显示及其控制方法进行的设计。系统融合显示基于底层地图信息选定防护对象确定各防御区域及相对应的防御等级，在同一平面上逐级叠加标注色彩信息，采用分层、分对象、分区域与识别控制交叉区域的控制方法实现融合显示。</div>
+<div class="description-paragraph" id="p0040" num="0037">本发明的有益效果是：</div>
+<div class="description-paragraph" id="p0041" num="0038">本发明中防御区域设定层级显示清晰明确，能充分显示不同对象、不同等级的防御区特征，且能突出显示交叠区域，整体控制方法简单、灵活、准确。</div>
+<div class="description-paragraph" id="p0042" num="0039">面对如今越来越多的黑飞无人机的出现，对社会安全构成一定程度威胁，本发明可在对无人机实现有效监视的基础上可视化出低空飞行器的防御区域，对无人机进行限飞监管。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0043">附图说明</div>
+<div class="description-paragraph" id="p0044" num="0040">图1是本发明的防御区融合示意图；</div>
+<div class="description-paragraph" id="p0045" num="0041">图2是本发明的防御区融合流程示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0046">具体实施方式</div>
+<div class="description-paragraph" id="p0047" num="0042">下面结合附图和具体实施对本发明作进一步说明。</div>
+<div class="description-paragraph" id="p0048" num="0043">如图2所示，本发明的实施例及其实施过程如下：</div>
+<div class="description-paragraph" id="p0049" num="0044">S1：选定低空飞行器防御二维可视地图范围，设定二维基础地图，并确定坐标系和显示层；</div>
+<div class="description-paragraph" id="p0050" num="0045">二维基础地图分为建筑实体与建筑周界，将建筑实体拟合为四边形，取长边L与宽边W对角线交点作为防御质心O<sub>1</sub>，O<sub>2</sub>,O<sub>3</sub>,O<sub>4</sub>,分别以各防御质心O<sub>1</sub>，O<sub>2</sub>,O<sub>3</sub>,O<sub>4</sub>为中心标注拟合的建筑实体四边形，形成核心防御区，选取建筑实体的质心O<sub>1</sub>，O<sub>2</sub>,O<sub>3</sub>,O<sub>4</sub>为坐标原点建立直角坐标系，东面为x轴正方向，北面为y轴正方向，由此确定建筑实体四边形边界各个点坐标。同时将建筑周界也拟合为四边形，依旧是选取建筑实体质心O<sub>1</sub>，O<sub>2</sub>,O<sub>3</sub>,O<sub>4</sub>为坐标原点建立的直角坐标系作为参考系，由此确定该四边形边界各个点坐标，形成围合防御区。</div>
+<div class="description-paragraph" id="p0051" num="0046">如图1所示，二维基础地图分为建筑实体与建筑周界，将建筑实体和建筑周界拟合为四边形，均选取建筑实体的质心为坐标原点建立直角坐标系，由此确定建筑实体和建筑周界的四边形边界各个点坐标；</div>
+<div class="description-paragraph" id="p0052" num="0047">二维基础地图内，存在4个建筑实体，在显示层的第1层内对建筑实体所处地理空间信息进行标注，将各建筑实体的二维投影区域进行多边形标注并取形状质心O<sub>1</sub>，O<sub>2</sub>,O<sub>3</sub>,O<sub>4</sub>，按最大相似面积方法拟合成一个四边形作为实体核心防御区A<sub>1</sub>，附注显示开关属性H<sub>1</sub>，对并设置实体核心防御区的显示开关属性，对应为最高防御等级；</div>
+<div class="description-paragraph" id="p0053" num="0048">.并且，在显示层的第2层内针对第1层内所标注的各建筑实体外围的建筑周界所围合的二维投影区域进行多边形标注，以质心O<sub>1</sub>，O<sub>2</sub>,O<sub>3</sub>,O<sub>4</sub>按最大相似面积方法各拟合成4个四边形，再减去实体核心防御区A<sub>1</sub>区域的部分作为围合防御区A<sub>2</sub>，附注显示开关属性H<sub>2</sub>，对应为次高防御等级；</div>
+<div class="description-paragraph" id="p0054" num="0049">在显示层的第3层至第n层内，以质心O<sub>1</sub>,O<sub>2</sub>,O<sub>3</sub>,O<sub>4</sub>为圆心，以设定值R<sub>1</sub>＝1.5d为各层级半径画同心圆，其中d为围合防御区的四边形最大边长，各圆半径R<sub>i</sub>(i≥1)值根据级别逐步增加，可设置为按等差数列式增长，即R<sub>i</sub>＝1.5d+(n-3)s，其中s为设置的等差数列的公差，不同防御对象的防御等级数量和相应半径值可以不同。第3层防御区为第一个圆与A<sub>2</sub>四边形区域的差部分为防御区A<sub>3</sub>，附注显示与隐藏的属性H<sub>3</sub>，；第i个圆与i+1个圆相减所得到的环形区域标注为第i+3级防御区域A<sub>i+3</sub>，附注显示与隐藏的属性H<sub>i+3</sub>。</div>
+<div class="description-paragraph" id="p0055" num="0050">以直角坐标系原点作为圆心，以等差比例的多个不同直径设置多个同心的圆形，每个圆形作为一个外围防御区，获得多个外围防御区；</div>
+<div class="description-paragraph" id="p0056" num="0051">从实体核心防御区、围合防御区、外围防御区从里往外依次按照1、2、3自然数依次为设置显示层的各层序数，最里面是第一层。</div>
+<div class="description-paragraph" id="p0057" num="0052">不同防御区域的防御等级数量和相应半径值可以不同。例如，第3层防御区为第一个圆与A<sub>2</sub>四边形区域的差部分为防御区A<sub>3</sub>，附注显示与隐藏的属性H<sub>3</sub>，；第i个圆与i+1个圆相减所得到的环形区域标注为第i+3级防御区域A<sub>i+3</sub>，附注显示与隐藏的属性H<sub>i+3</sub>。</div>
+<div class="description-paragraph" id="p0058" num="0053">在显示层的第1层至第2层内，将各实体核心防御区和围合防御区拟合为一个四边形，取长边L与宽边W对角线交点作为防御质心O<sub>m</sub>，在显示层的第3层至第n层内，分别以各拟合的防御质心O<sub>m</sub>为中心标注各防御区的面积A<sub>n</sub>，并对各各实体核心防御区和围合防御区设置显示开关属性：</div>
+<div class="description-paragraph" id="p0059" num="0054">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0060" num="0055">其中：R/L为防御区半径与建筑实体长边的比值，V1、V2为预设的第一参考值、第二参考值；S<sub>b0</sub>为以实体核心防御区的四边形面积按预设比例放大后面积，S<sub>0</sub>为实体核心防御区的面积；S<sub>b4</sub>为以围合防御区的四边形面积按预设比例放大后的面积，S<sub>4</sub>为围合防御区的面积；S<sub>c0</sub>为显示层的第3层圆形区域的面积；S<sub>cn</sub>为显示层的第n层圆形区域，S<sub>cn-1</sub>为显示层的第n-1层圆形区域。</div>
+<div class="description-paragraph" id="p0061" num="0056">显示层的第3层圆形区域的面积S<sub>c0</sub>的半径即R<sub>1</sub>，是根据围合防御区的四边形最大边长按照以下公式设置：R<sub>1</sub>＝1.5d，其中d为围合防御区的四边形最大边长。</div>
+<div class="description-paragraph" id="p0062" num="0057">S2：设定低空飞行器的防御等级与显示色彩，按设定防御级别对应的显示图层，显示层的各级层按防御等级逐级叠加于基础地图上；</div>
+<div class="description-paragraph" id="p0063" num="0058">S2-1：在第1层按建筑实体的坐标标注防御区域，即为建筑实体拟合的四边形区域内；</div>
+<div class="description-paragraph" id="p0064" num="0059">S2-2：在第2层按建筑周界的坐标标注防御区域，即为建筑周界拟合的四边形区域内、建筑实体拟合的四边形区域外的区域内；</div>
+<div class="description-paragraph" id="p0065" num="0060">S2-3：在显示层的第3层到第n层内，分别按防御对象分层级标注防御区域。</div>
+<div class="description-paragraph" id="p0066" num="0061">低空飞行器的防御等级具体为：设定n个防御级别，分别按1至n整数方法给各防御级别赋值，相邻防御级别的差值为1，同时按多彩色或者单色灰度趋势变化设定属性值作为各防御级别的防御区的显示颜色值，多防御区间的交叠部分的显示属性按不叠加与叠加次数设置，非防御区的区域为透明无色，直接显示地图底色图案。</div>
+<div class="description-paragraph" id="p0067" num="0062">其中，多防御区交叠区域的显示属性按不叠加设置方式为：第1层与第2层是建筑实体和建筑周界，不会发生叠加，显示防御级别分别为最高级和次高级；从第3层开始k个不同防御区会发生交叠，交叠部分的防御级别按照交叠部分中所有防御区的防御级别最大进行显示。</div>
+<div class="description-paragraph" id="p0068" num="0063">其中，多防御区交叠区域的显示属性按叠加设置方式为：第1层与第2层是建筑实体和建筑周界，不会发生叠加，显示防御级别分别为最高级和次高级；从第3层开始k个不同防御区会发生交叠，交叠部分的防御级别按照交叠部分中所有防御区的防御级别之和加深进行显示。</div>
+<div class="description-paragraph" id="p0069" num="0064">各级图层按等级逐级叠加于基础地图之上。</div>
+<div class="description-paragraph" id="p0070" num="0065">例如设定防御级别数量n是确定显示层的基础，如可设为7级，分别按1至7整数方法给各级赋值，各级差值为1，其中1级防御级别最高，同时按多彩色与单色灰度趋势变化设定属性值作为各级防御区的显示颜色值，如1级红色、2级橙色、3级黄色、4级绿色、5级为蓝色、6级为青色、7级为紫色；或采用单一红色，灰度从深红到浅红分为7级，同层内多防御区交叠区域的显示属性按不叠加与叠加次数设置，非防御区部分为透明无色。</div>
+<div class="description-paragraph" id="p0071" num="0066">同层内多防御区交叠区域的显示属性按不叠加设置方式为：第1层与第2层是建筑物实体，不会发生叠加，显示防御级别分别为1级和2级，从第3层开始k个不同建筑防御区会发生交叠，这部分的防御级别按照交叠部分中区域防御级别最大的显示，如两个不同建筑物的3层和4层发生交叠，该交叠部分按照4层的防御级别4级显示为绿色或4级表示深度的单一红色。</div>
+<div class="description-paragraph" id="p0072" num="0067">同层内多防御区交叠区域的显示属性按叠加设置方式为：第1层与第2层是建筑物实体，不会发生叠加，显示防御级别分别为1级和2级，从第3层开始k个不同建筑防御区会发生交叠，其各个交叠防御区域的防御级别按照交叠部分中各层级防御级别之和显示，如两个不同建筑物的3层和4层发生交叠，该交叠部分按照3层和4层的防御级别之和7级显示紫色或者显示为7级表示的最浅单一红色。</div>
+<div class="description-paragraph" id="p0073" num="0068">S3：通过低空飞行器的防御对象与防御等级的属性选择，形成多层多核心二维融合显示；</div>
+<div class="description-paragraph" id="p0074" num="0069">基础地图开启后，仅默认开启第1层的全部实体核心防御区显示，即H<sub>1</sub>＝1，H<sub>1</sub>表示显示层第1层的显示开关属性，第3层以上产生交叠区域时，默认防御交叠区域不叠加显示；根据显示需要选择防御等级数值，通过设置各个区域的显示开关属性H<sub>n</sub>＝(1,0)，1代表开启，0代表隐藏，开启对应等级范围的第2层至第n层级的防御区A<sub>n</sub>的是否显示；并且按时长临时授权方式T<sub>temp</sub>自动改变防御区A<sub>n</sub>的显示与隐藏属性H<sub>n</sub>，时长临时授权方式T<sub>temp</sub>为按秒计时的时段或按截至年月日时分的时刻计时方式。</div>
+<div class="description-paragraph" id="p0075" num="0070">S4：当低空飞行器非法入侵时，按照预定层级逐级显示指示区域。</div>
+<div class="description-paragraph" id="p0076" num="0071">当发现低空飞行器出现在防御区A<sub>n</sub>时，在防御区A<sub>n</sub>的显示色相、灰度不变的条件下，变化显示亮度值方式进行显示，按照防御等级n，对应为从低到高逐步提高各防御区的亮度值，并设置闪烁频率，最高级闪烁最快，最低级闪烁最慢。</div>
+<div class="description-paragraph" id="p0077" num="0072">依据飞行器飞行方向，设置保留显示所有背离飞行方向的低空飞行器所关联的防御区H<sub>n</sub>＝1，隐藏所有背离飞行方向的低空飞行器所关联的防御区H<sub>n</sub>＝0，突出显示飞行器的飞行目标。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

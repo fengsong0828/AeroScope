@@ -1,0 +1,64 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN114202721A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES326333327">
+<invention-title id="title1" lang="ZH">低空飞行器的检测方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="n0001">本发明涉及一种低空飞行器的检测方法。适用于低空目标检测及判断。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="n0002">随着低空飞行器技术的不断发展，低空飞行器飞行高度及续航能力的不断提高，隐私及安全问题受到的关注度明显提高。为了保护安全隐私，部分特殊区域设置禁飞区，由于场景特殊性，人工不可能实现24小时无间断监控。因此，在出现由于低空飞行器造成隐私泄露事件之后，难以追溯事件起源，监管困难，事件难以控制，在特殊区域可能造成严重的后果。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0005">发明内容</div>
+<div class="description-paragraph" id="p0006" num="n0003">本发明要解决的技术问题是：针对上述存在的问题，提供一种低空飞行器的检测方法。</div>
+<div class="description-paragraph" id="p0007" num="n0004">本发明所采用的技术方案是：一种低空飞行器的检测方法，其特征在于：</div>
+<div class="description-paragraph" id="p0008" num="n0005">获取待检测的视频文件；</div>
+<div class="description-paragraph" id="p0009" num="n0006">逐帧识别待检测视频文件，对待检测视频文件中的每一帧图像进行检测，识别出待检测视频文件的视频帧中是否存在低空飞行器目标；</div>
+<div class="description-paragraph" id="p0010" num="n0007">基于连续出现低空飞行器目标的视频帧帧数及该视频文件的帧率确定低空飞行器目标连续出现的时间；</div>
+<div class="description-paragraph" id="p0011" num="n0008">将待检测视频文件分割成若干视频片段，保存低空飞行器目标连续出现时间大于预设值的视频片段，作为检测证据留存。</div>
+<div class="description-paragraph" id="p0012" num="n0009">所述识别出待检测视频文件的视频帧中是否存在低空飞行器目标，包括：</div>
+<div class="description-paragraph" id="p0013" num="n0010">将视频帧输入经训练的目标识别模型，目标识别模型识别出视频帧中是否存在低空飞行器目标，若存在，输出目标所属类型及目标区域位置信息。</div>
+<div class="description-paragraph" id="p0014" num="n0011">待检测视频输入经训练的目标跟踪模型，目标跟踪模型基于前几帧视频中目标的位置信息预测目标在当前帧中可能出现的预测位置；</div>
+<div class="description-paragraph" id="p0015" num="n0012">基于目标跟踪模型预测的当前帧中目标预测位置和目标识别模型从当前帧中识别出的目标位置联合判断当前帧中是否出现目标。</div>
+<div class="description-paragraph" id="p0016" num="n0013">一种低空飞行器的检测装置，其特征在于，包括：</div>
+<div class="description-paragraph" id="p0017" num="n0014">文件获取模块，用于获取待检测的视频文件；</div>
+<div class="description-paragraph" id="p0018" num="n0015">目标识别模块，用于逐帧识别待检测视频文件，识别出待检测视频文件的视频帧中是否存在低空飞行器目标；</div>
+<div class="description-paragraph" id="p0019" num="n0016">时间计算模块，用于基于连续出现低空飞行器目标的视频帧帧数及该视频文件的帧率确定低空飞行器目标连续出现的时间；</div>
+<div class="description-paragraph" id="p0020" num="n0017">证据留存模块，用于将待检测视频文件分割成若干视频片段，保存低空飞行器目标连续出现时间大于预设值的视频片段，作为检测证据留存。</div>
+<div class="description-paragraph" id="p0021" num="n0018">所述识别出待检测视频文件的视频帧中是否存在低空飞行器目标，包括：</div>
+<div class="description-paragraph" id="p0022" num="n0019">将视频帧输入经训练的目标识别模型，目标识别模型识别出视频帧中是否存在低空飞行器目标，若存在，输出目标所属类型及目标区域位置信息。</div>
+<div class="description-paragraph" id="p0023" num="n0020">所述识别出待检测视频文件的视频帧中是否存在低空飞行器目标，还包括：</div>
+<div class="description-paragraph" id="p0024" num="n0021">待检测视频输入经训练的目标跟踪模型，目标跟踪模型基于前几帧视频中目标的位置信息预测目标在当前帧中可能出现的预测位置；</div>
+<div class="description-paragraph" id="p0025" num="n0022">基于目标跟踪模型预测的当前帧中目标预测位置和目标识别模型从当前帧中识别出的目标位置联合判断当前帧中是否出现目标。</div>
+<div class="description-paragraph" id="p0026" num="n0023">一种存储介质，其上存储有能被处理器执行的计算机程序，其特征在于：所述计算机程序被执行时实现所述低空飞行器的检测方法的步骤。</div>
+<div class="description-paragraph" id="p0027" num="n0024">一种低空飞行器的检测设备，具有存储器和处理器，存储器上存储有能被处理器执行的计算机程序，其特征在于：所述计算机程序被执行时实现所述低空飞行器的检测方法的步骤。</div>
+<div class="description-paragraph" id="p0028" num="n0025">本发明的有益效果是：本发明在识别出视频帧中是否存在低空飞行器目标后，根据连续出现低空飞行器目标的视频帧帧数确定低空飞行器目标连续出现的时间，并根据时间确定是否留存作为证据。</div>
+<div class="description-paragraph" id="p0029" num="n0026">本发明通过对连续多帧检测结果的分析，在普通仅检测的基础上加入了分析机制，一定程度上降低了误检率。本发明对低空飞行器检测结果信息仅仅是简单的分析，计算量较小，不影响实时检测。</div>
+<div class="description-paragraph" id="p0030" num="n0027">本发明的主要目的是为了检测低空飞行器，目标类型的检测首先是为了判断当前画面中是否有要检测的目标，其次是为了在通知用户时可以发送准确的检测类别信息；位置信息为了在检测图像中标注出低空飞行器出现的位置，在提醒用户时可以直接通知用户类别，方便用户做出相应处理。识别轨迹首先分析连续多帧检测结果，降低单帧图像误检率，其次在生成包含目标轨迹的视频，可以帮助用户在留存的视频证据中快速定位飞行器出现的位置。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0031">附图说明</div>
+<div class="description-paragraph" id="p0032" num="n0028">图1为实施例的流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0033">具体实施方式</div>
+<div class="description-paragraph" id="p0034" num="n0029">本实施例为一种低空飞行器的检测方法，具体包括以下步骤：</div>
+<div class="description-paragraph" id="p0035" num="n0030">S1、获取待检测的视频文件，视频文件采集至本地视频或网络摄像头等。</div>
+<div class="description-paragraph" id="p0036" num="n0031">S2、逐帧识别待检测视频文件，识别出待检测视频文件的视频帧中是否存在低空飞行器目标。</div>
+<div class="description-paragraph" id="p0037" num="n0032">将视频帧输入经训练的目标识别模型，目标识别模型识别出视频帧中是否存在低空飞行器目标，若存在，检测结果中通过矩形框对目标进行定位，同时输出目标所属类型及目标区域位置信息。</div>
+<div class="description-paragraph" id="p0038" num="n0033">同时将待检测视频输入经训练的目标跟踪模型，目标跟踪模型根据视频中当前帧之前连续几帧中由目标识别模型识别出的目标位置信息预测目标在当前帧中可能出现的位置，作为预测位置；根据当前帧的目标预测位置和目标识别模型从当前帧中识别出的位置信息联合判断当前帧中是否出现目标，降低检测的误检率，提高系统准确率。</div>
+<div class="description-paragraph" id="p0039" num="n0034">本实施例中通过分析预测位置与实际识别出位置的交并比，当交并比大于设置值时判断为目标出现，反之则认为识别出的目标并非所要检测的目标。</div>
+<div class="description-paragraph" id="p0040" num="n0035">S3、基于连续出现低空飞行器目标的视频帧帧数及该视频文件的帧率确定低空飞行器目标连续出现的时间。</div>
+<div class="description-paragraph" id="p0041" num="n0036">对连续出现的低空飞行器目标信息进行统计，包括目标位置信息、帧数等，根据连续出现低空飞行器目标的帧数结合该视频文件的帧率确定低空飞行器目标连续出现的时间，根据连续出现低空飞行器目标的位置信息确定低空飞行器目标连续出现的轨迹。</div>
+<div class="description-paragraph" id="p0042" num="n0037">S4、将待检测视频文件分割成若干10秒的视频片段，如某视频片段中低空飞行器目标连续出现时间大于1秒，则保存该10秒的视频片段，作为低空飞行器出现的证据留存，方便在事件发生后续查证阶段取证。</div>
+<div class="description-paragraph" id="p0043" num="n0038">本实施例还可以结合低空飞行器目标连续出现的轨迹进一步优化证据留存的方案，如轨迹需出现在某一特定范围内且出现时间大于预定值时才保存视频片段。</div>
+<div class="description-paragraph" id="p0044" num="n0039">本实施例还提供一种低空飞行器的检测装置，包括文件获取模块、目标识别模块、时间计算模块和证据留存模块。</div>
+<div class="description-paragraph" id="p0045" num="n0040">本例中文件获取模块用于获取待检测的视频文件；目标识别模块用于逐帧识别待检测视频文件，识别出待检测视频文件的视频帧中是否存在低空飞行器目标；时间计算模块用于基于连续出现低空飞行器目标的视频帧帧数及该视频文件的帧率确定低空飞行器目标连续出现的时间；证据留存模块用于将待检测视频文件分割成若干视频片段，保存低空飞行器目标连续出现时间大于预设值的视频片段，作为检测证据留存。</div>
+<div class="description-paragraph" id="p0046" num="n0041">本实施例为一种存储介质，其上存储有能被处理器执行的计算机程序，该计算机程序被执行时实现本例中低空飞行器的检测方法的步骤。</div>
+<div class="description-paragraph" id="p0047" num="n0042">本实施例为一种低空飞行器的检测设备，具有存储器和处理器，存储器上存储有能被处理器执行的计算机程序，该计算机程序被执行时实现本例中低空飞行器的检测方法的步骤。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

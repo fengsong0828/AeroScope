@@ -1,0 +1,126 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120998071A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES512404735">
+<invention-title id="title1" lang="ZH">一种低空飞行器的航路变更方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于低空交通领域，特别涉及一种低空飞行器的航路变更方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着城市空中交通(UAM)和物流无人机的大规模应用，低空空域内无人机运行密度呈指数级增长。面对城市复杂低空环境下规模化的异构航空器运行，在现有无人机自主避障技术，空域资源分配，无人机自动化管控技术缺陷下，规模化飞行器常态化安全运行是目前需要研究的重大问题，低空公共航路可以约束海量的飞行器的飞行方向和路径，使飞行器在规定的飞行路径内有序运行，因此航路网络的科学布局以及公共航路的构建尤为重要。对于规模化飞行器运行过程中任务实时变更，本模型的提出对于维持航路内规模化飞行器高速安全运行具有较高价值意义。</div>
+<div class="description-paragraph" id="p0005" num="0003">在对低空交通场景下的航路网络与低空航路构建方面，目前的相关研究较为缺乏，传统的航向变更占用较大的空域且耗时较长，此外传统无人机飞行缺乏速度过渡机制，使得无人机整体运行效率低下，难以满足低空交通场景下高密度高速无人机安全运行需求。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">为了解决上述背景技术提到的现有问题，本发明提出了一种低空飞行器的航路变更方法。</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明所述的一种低空飞行器的航路变更方法，步骤如下：</div>
+<div class="description-paragraph" id="p0009" num="0006">基于干线航路网络及支线航路网络构建的航路模型；</div>
+<div class="description-paragraph" id="p0010" num="0007">干线航路网络采用分层式三维航路结构；支线航路网络采用换向功能子网络及航速跃迁功能子网络构成；</div>
+<div class="description-paragraph" id="p0011" num="0008">航路变更方法包括航向调整及航速跃迁：</div>
+<div class="description-paragraph" id="p0012" num="0009">当低空飞行器得到航向调整指令后，低空飞行器进入换向功能子网络中的换向功能航路爬升、下降、转向，使低空飞行器完成航向变更；</div>
+<div class="description-paragraph" id="p0013" num="0010">当低空飞行器得到航速跃迁指令后，低空飞行器进入航速跃迁功能子网络中的航速跃迁功能航路，在分层式三维航路结构的各层之间进行航速变更。</div>
+<div class="description-paragraph" id="p0014" num="0011">本发明所述的低空飞行器的航路变更方法，所述换向功能航路采用螺旋结构航路；螺旋曲线切线与干线航路网络中的干线航路轴线夹角30°≤α≤60°，螺旋半径随高度层变化调整表述式如下：</div>
+<div class="description-paragraph" id="p0015" num="0012">ΔR＝K·h</div>
+<div class="description-paragraph" id="p0016" num="0013">其中K值由航速和航路周围环境决定；</div>
+<div class="description-paragraph" id="p0017" num="0014">航速跃迁功能航路采用螺旋结构航路，螺旋曲线切线与干线航路网络中的干线航路轴线夹角30°≤α≤60°，螺旋半径随速度变化调整表述式如下：</div>
+<div class="description-paragraph" id="p0018" num="0015">ΔR＝λ·ΔV/V<sub>0</sub> </div>
+<div class="description-paragraph" id="p0019" num="0016">其中λ为加速系数；</div>
+<div class="description-paragraph" id="p0020" num="0017">所述的分层式三维航路结构中各层航速基准值为：V<sub>0</sub>+ΔV、航向约束为θ+Δθ。</div>
+<div class="description-paragraph" id="p0021" num="0018">本发明所述的低空飞行器的航路变更方法，换向功能子网络的螺旋结构或航速跃迁航路子网络的螺旋结构中螺旋结构航路均采用顺时针与逆时针转向。</div>
+<div class="description-paragraph" id="p0022" num="0019">本发明所述的低空飞行器的航路变更方法，所述干线航路网络结构中设置低空飞行器的加速准备区，螺旋加速区，缓冲区；在加速准备区，螺旋加速区、缓冲区中飞行的低空飞行器之间设定水平安全间隔、垂直安全间隔。</div>
+<div class="description-paragraph" id="p0023" num="0020">本发明所述的低空飞行器的航路变更方法，所述的水平安全间隔D<sub>h</sub>表述式如下：</div>
+<div class="description-paragraph" id="p0024" num="0021">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0025" num="0022">t为飞行器响应时间，a<sub>b</sub>为最大制动加速度,Δ<sub>S</sub>为定位误差容限，γ为安全系数，取值为1.2-1.6；v为飞行器航速；</div>
+<div class="description-paragraph" id="p0026" num="0023">垂直安全间隔D<sub>v</sub>公式:</div>
+<div class="description-paragraph" id="p0027" num="0024">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0028" num="0025">其中h<sub>min</sub>为最小安全间隔，ρ为空气密度，v<sub>z</sub>为最大爬升率，η为湍流补偿系数。</div>
+<div class="description-paragraph" id="p0029" num="0026">本发明所述的低空飞行器的航路变更方法，所述的干线航路网络包括低速航路，反向航路，高速航路；</div>
+<div class="description-paragraph" id="p0030" num="0027">低速航路，反向航路，高速航路内均由多条平行的同向航路组成；</div>
+<div class="description-paragraph" id="p0031" num="0028">层内航路数可根据航路动态容量评估实时调整，其中单层航路理论容量评估可根据公式：</div>
+<div class="description-paragraph" id="p0032" num="0029">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0033" num="0030">其中，C<sub>L</sub>为单层航路容量，N<sub>L</sub>为评估依据并行航路数，V<sub>ave</sub>为航速基准值，L<sub>u</sub>为飞行器等效长度，g为重力加速度,D<sub>h</sub>为水平安全间隔。</div>
+<div class="description-paragraph" id="p0034" num="0031">本发明所述的低空飞行器的航路变更方法，所述的准备区为低空飞行器实时变更前的原航路段区域；</div>
+<div class="description-paragraph" id="p0035" num="0032">所述的螺旋加速区为低空飞行器离开原航路实施航速跃迁的螺旋航路；</div>
+<div class="description-paragraph" id="p0036" num="0033">所述的缓冲区为低空飞行器合并入新航路的速度缓冲区域；</div>
+<div class="description-paragraph" id="p0037" num="0034">准备区、螺旋加速区、缓冲区构成螺旋航速跃迁支线航路，换向功能航路由准备区、过渡区、缓冲区构成。</div>
+<div class="description-paragraph" id="p0038" num="0035">本发明所述的低空飞行器的航路变更方法，螺旋加速区的螺旋曲线长度L<sub>S</sub>表述式如下：</div>
+<div class="description-paragraph" id="p0039" num="0036">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0040" num="0037">其中λ为加速系数(1.2-2)，P为螺旋距参数，h<sub>p</sub>为高度层间距。</div>
+<div class="description-paragraph" id="p0041" num="0038">本发明所述的低空飞行器的航路变更方法，缓冲区长度L<sub>H</sub>的表述式如下：</div>
+<div class="description-paragraph" id="p0042" num="0039">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0043" num="0040">其中a为飞行器加速度，d为最近障碍物距离，航路合并余量Δ为3m，V<sub>1</sub>为目标速度。</div>
+<div class="description-paragraph" id="p0044" num="0041">有益效果</div>
+<div class="description-paragraph" id="p0045" num="0042">低空航路不同于传统航路的最大特点在于，其飞行器的高密度高速安全运行需求。基于这一特征，本发明创造性提出了一种低空飞行器的航路变更方法，能够满足规模化无人机在三维分层航路内高速运行过程中，面对任务变更或飞行状态调整时，具有较强的适应性，飞行器不仅可以实时变更飞行状态，还可以使原航路内飞行器高速运行的干扰降到最低。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0046">附图说明</div>
+<div class="description-paragraph" id="p0047" num="0043">图1为本发明的无人机航路变更流程示意图；</div>
+<div class="description-paragraph" id="p0048" num="0044">图2为本发明低空飞行器的航路变更方法的航路模型全局示意图；</div>
+<div class="description-paragraph" id="p0049" num="0045">图3为本发明低空飞行器的航路变更方法的换向支线航路模型剖面图；</div>
+<div class="description-paragraph" id="p0050" num="0046">图4为本发明低空飞行器的航路变更方法的航速跃迁支线航路模型剖面图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0051">具体实施方式</div>
+<div class="description-paragraph" id="p0052" num="0047">为使本发明实施例的目的和技术方案更加清楚，下面将结合本发明实施例的附图，对本发明实施例的技术方案进行清楚、完整地描述。显然，所描述的实施例是本发明的一部分实施例，而不是全部的实施例。基于所描述的本发明的实施例，本领域普通技术人员在无需创造性劳动的前提下所获得的所有其他实施例，都属于本发明保护的范围。</div>
+<div class="description-paragraph" id="p0053" num="0048">本发明提出了一种低空飞行器的航路变更方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0054" num="0049">(1)航路模型由干线航路网络和支线航路网络构成，所述支线航路网络包括换向功能子网络和航速跃迁功能子网络；</div>
+<div class="description-paragraph" id="p0055" num="0050">(2)所述干线航路网络采用分层式三维航路结构，各层航速设置有航速基准值(V<sub>0</sub>+ΔV)和航向约束(θ+Δθ)，相邻航路层之间保持安全间隔(H<sub>min</sub>)；</div>
+<div class="description-paragraph" id="p0056" num="0051">(3)所述换向功能子网络采用螺旋结构，其螺旋曲线切线与干线航路轴线夹角30°≤α≤60°，螺旋半径随高度层变化按ΔR＝K·h的关系调整，其中K值由航速和航路周围环境决定。</div>
+<div class="description-paragraph" id="p0057" num="0052">(4)所述航速跃迁航路子网络采用螺旋结构，其螺旋曲线切线与干线航路轴线夹角30°≤α≤60°，螺旋半径随速度变化调整ΔR＝λ·ΔV/V<sub>0</sub>的关系调整，其中λ为加速系数。</div>
+<div class="description-paragraph" id="p0058" num="0053">进一步地，所述的支线功能航路网络可根据城市地理状况与无人机飞行变更需求分布于干线航路网络两侧，螺旋结构支线航路可分别采用顺时针与逆时针转向；</div>
+<div class="description-paragraph" id="p0059" num="0054">优选地，当无人机原航路正常飞行时收到任务变更通知，实现在最小干扰航路内其他无人机的航路高度层变更，应设置加速准备区，螺旋加速区，缓冲区；</div>
+<div class="description-paragraph" id="p0060" num="0055">优选地，无人机在进行状态变更时，为确保飞行安全，应设定无人机的安全间隔，包括水平安全间隔和垂直安全间隔；</div>
+<div class="description-paragraph" id="p0061" num="0056">优选地，无人机安全间隔计算如下：</div>
+<div class="description-paragraph" id="p0062" num="0057">无人机水平安全间隔D<sub>h</sub>需要考虑无人机响应时间t，最大制动加速度a<sub>b</sub>,以及定位误差容限Δ<sub>S</sub>，可根据以下公式</div>
+<div class="description-paragraph" id="p0063" num="0058">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0064" num="0059">其中γ为安全系数，取值为1.2-1.6；</div>
+<div class="description-paragraph" id="p0065" num="0060">优选地，无人机垂直安全间隔需要提前设定最小强制间隔，同时可根据实际飞行情况进行调整，垂直安全间隔D<sub>v</sub>公式:</div>
+<div class="description-paragraph" id="p0066" num="0061">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0067" num="0062">其中h<sub>min</sub>为最小安全间隔，ρ为空气密度，v<sub>z</sub>为最大爬升率，η为湍流补偿系数；</div>
+<div class="description-paragraph" id="p0068" num="0063">优选地，干线航路网络包括低速航路，反向航路，高速航路，单层航路内由多条平行的同向航路组成，层内航路数可根据航路动态容量评估实时调整，其中单层航路理论容量评估可根据公式：</div>
+<div class="description-paragraph" id="p0069" num="0064">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0070" num="0065">其中，单层航路容量C<sub>L</sub>评估依据并行航路数N<sub>L</sub>，航速基准值V<sub>ave</sub>，飞行器等效长度L<sub>u</sub>，重力加速度g,水平安全间隔D<sub>h</sub>。</div>
+<div class="description-paragraph" id="p0071" num="0066">优选地，准备区为无人机实时变更前的原航路段区域，螺旋加速区为无人机离开原航路实施航速跃迁的螺旋航路，缓冲区为无人机合并入新航路的速度缓冲区域，此三者构成螺旋航速跃迁支线航路，同样地，换向支线航路由准备区、过渡区和缓冲区构成，过渡区为换向支线航路内准备区和缓冲区之间的区域；</div>
+<div class="description-paragraph" id="p0072" num="0067">优选地，螺旋曲线长度应考虑螺旋距，螺旋半径，速度差以及高度层间距等，其螺旋曲线长度L<sub>S</sub>公式为：</div>
+<div class="description-paragraph" id="p0073" num="0068">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0074" num="0069">其中λ为加速系数(1.2-2)，P为螺旋距参数，h<sub>p</sub>为高度层间距。</div>
+<div class="description-paragraph" id="p0075" num="0070">优选地，缓冲区存在无人机加速跃迁后的合并问题或无人机换向后的速度差问题，此外，还需留有一定的航路合并余量，缓冲区长度L<sub>H</sub>公式为：</div>
+<div class="description-paragraph" id="p0076" num="0071">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0077" num="0072">其中a为飞行器加速度，d为最近障碍物距离，航路合并余量Δ为3m，V<sub>1</sub>为目标速度。</div>
+<div class="description-paragraph" id="p0078" num="0073">实施例一：</div>
+<div class="description-paragraph" id="p0079" num="0074">某城市核心区低空航路网络采取“东单西双”的原则，采用东西向分层的三维航路结构。干线航路由三层组成，分别为：</div>
+<div class="description-paragraph" id="p0080" num="0075">低速层L1：(60-120m，航速基准值为10m/s,航向东向)；</div>
+<div class="description-paragraph" id="p0081" num="0076">反向层L2：(120-180m，航速基准值为10m/s,航向西向)；</div>
+<div class="description-paragraph" id="p0082" num="0077">高速层L3：(180-240m，航速基准值为30m/s,航向东向)；</div>
+<div class="description-paragraph" id="p0083" num="0078">相邻层间垂直间隔Hmin＝60m,支线功能航路分布于干线两侧，换向功能子网络采用初始螺旋半径为150m，螺旋曲线切线与干线夹角45°；</div>
+<div class="description-paragraph" id="p0084" num="0079">案例1(航速跃迁)：</div>
+<div class="description-paragraph" id="p0085" num="0080">L1层一架配送无人机运行速度10m/s，东向，接收到系统命令，需要减少配送时间，提前到达配送目的地，该无人机需紧急提速至L3层，安全系数γ为1.4，响应时间为2s，制动加速度为3m/s<sup>2</sup>，定位误差容限Δ<sub>S</sub>为5m，水平安全间距为35.7m,无人机确认前方空域无冲突后进入准备区，加速系数λ为1.5，螺旋距参数P为80m，螺旋曲线长度为612m。完成加速后无人机即将航路合并进入缓冲合并区，航路合并余量Δ为3m，缓冲区长度为56.34m，无人机在缓冲区内调整航向角，平稳进入L3高速层航路。</div>
+<div class="description-paragraph" id="p0086" num="0081">案列2(航向调整)</div>
+<div class="description-paragraph" id="p0087" num="0082">L1层一架巡检无人机运行速度10m/s，东向，在接到任务后需要调转方向，需要进入换向功能支线航路，螺旋半径为72m，无人机切入逆时针螺旋支路，通过72m半径螺旋路径爬升并反转航向180°，取空气密度ρ为1.225kg/m<sup>3</sup>，最大爬升率v<sub>z</sub>为5m/s，湍流补偿系数η为1.1，垂直间隔控制在51.8m，L2层航路并行航路数3，航速基准值为10m/s，无人机等效长度L<sub>u</sub>为8m，水平安全间隔D<sub>h</sub>为35.7m，容量评估为0.69架次/s。</div>
+<div class="description-paragraph" id="p0088" num="0083">实施例仅为说明本发明的技术思想，不能以此限定本发明的保护范围，凡是按照本发明提出的技术思想，在技术方案基础上所做的任何改动，均落入本发明保护范围之内。</div>
+<div class="description-paragraph" id="p0089" num="0084">以上所述，仅为本发明较佳的具体实施方式，但本发明的保护范围并不局限于此，任何熟悉本技术领域的技术人员在本发明揭露的技术范围内，可轻易想到的变化或替换，都应涵盖在本发明的保护范围之内。因此，本发明的保护范围应该以权利要求的保护范围为准。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

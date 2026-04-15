@@ -1,0 +1,61 @@
+{
+    "patent_id": "WO2018214969A1",
+    "title": "WO2018214969A1 - 低空飞行器监管系统、方法、设备和低空飞行器管理平台系统 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Beijing Garcia Union Technology Co Ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/WO2018214969A1/zh",
+    "citations": [
+        {
+            "Publication Number": "US8229659B2 (en) *",
+            "Priority Date": "2007-01-10",
+            "Publication Date": "2012-07-24",
+            "Assignee": "Honeywell International Inc.",
+            "Title": "Method and system to automatically generate a clearance request to deviate from a flight plan",
+            "Link": "https://patents.google.com/patent/US8229659B2/en"
+        },
+        {
+            "Publication Number": "US20120143482A1 (en) *",
+            "Priority Date": "2010-12-02",
+            "Publication Date": "2012-06-07",
+            "Assignee": "Honeywell International Inc.",
+            "Title": "Electronically file and fly unmanned aerial vehicle",
+            "Link": "https://patents.google.com/patent/US20120143482A1/en"
+        },
+        {
+            "Publication Number": "CN103646569A (zh) *",
+            "Priority Date": "2013-12-03",
+            "Publication Date": "2014-03-19",
+            "Assignee": "海丰通航科技有限公司",
+            "Title": "一种通用航空低空监视与服务系统",
+            "Link": "https://patents.google.com/patent/CN103646569A/zh"
+        },
+        {
+            "Publication Number": "CN103680215A (zh) *",
+            "Priority Date": "2013-12-04",
+            "Publication Date": "2014-03-26",
+            "Assignee": "海丰通航科技有限公司",
+            "Title": "低空航空服务站",
+            "Link": "https://patents.google.com/patent/CN103680215A/zh"
+        },
+        {
+            "Publication Number": "CN106297417A (zh) *",
+            "Priority Date": "2016-09-27",
+            "Publication Date": "2017-01-04",
+            "Assignee": "南京航空航天大学",
+            "Title": "一种无人机飞行服务与监管系统及方法",
+            "Link": "https://patents.google.com/patent/CN106297417A/zh"
+        },
+        {
+            "Publication Number": "CN106448271A (zh) *",
+            "Priority Date": "2016-10-09",
+            "Publication Date": "2017-02-22",
+            "Assignee": "北京国泰北斗科技有限公司",
+            "Title": "空域管理系统",
+            "Link": "https://patents.google.com/patent/CN106448271A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:18:01"
+}

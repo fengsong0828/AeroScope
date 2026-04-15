@@ -1,0 +1,166 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120930268A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES511188021">
+<invention-title id="title1" lang="ZH">一种低空飞行器环境噪声建模方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及噪声建模技术领域，尤其涉及一种低空飞行器环境噪声建模方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着航空技术的飞速发展，低空飞行器的应用日益广泛，但其在低空飞行时产生的环境噪声不仅会对居民生活、生态环境造成干扰，还可能影响机场周边等敏感区域的声学环境。因此噪声问题愈发受到关注。低空飞行器环境噪声建模作为应对这一问题的核心技术，精确模拟和预测飞行器噪声在不同环境不同位置的噪声强度图。</div>
+<div class="description-paragraph" id="p0005" num="0003">传统低空飞行器环境噪声建模方法主要依赖阵列麦克风等硬件测量与计算机数值模拟。阵列麦克风测量是一种传统的噪声测量方法，通过在指定地点布置麦克风阵列来测量飞行器飞越时的噪声水平。这种方法需要大量的硬件设备，并且每次测量都需要对设备进行重新配置，这使得其成本高昂且灵活性较差。例如，在城市环境中进行噪声测量时，需要在不同的地点布置多个麦克风阵列，以捕捉飞行器在不同位置产生的噪声。然而，这种方法只能在有限的地点进行测量，无法全面捕捉飞行器在整个飞行路径上的噪声分布。而且，由于麦克风阵列的布置受到地理条件和环境因素的限制，因此难以在复杂的城市环境中进行大规模的噪声测量。</div>
+<div class="description-paragraph" id="p0006" num="0004">计算机数值模拟方法则是通过计算机模拟声波传播，计算任意观察点的声压级。常见的数值模拟方法包括波浪型方法和几何型方法。波浪型方法如有限元方法、边界元方法和有限差分时域方法等，能够精确地模拟声波的传播过程，但这些方法需要求解大量的方程组，计算成本极高，尤其在模拟大规模城市环境时，需要耗费大量的时间和计算资源。几何型方法如高斯束追踪方法等，通过模拟声波的几何传播路径来计算噪声分布，虽然比波浪型方法更高效，但在处理复杂的几何环境和动态场景时，仍然存在计算复杂度高和计算成本大的问题。</div>
+<div class="description-paragraph" id="p0007" num="0005">为解决传统方法中硬件测量成本高昂、灵活性差以及数值模拟计算复杂度高、难以大规模推广等局限，深度学习技术的发展为低空飞行器环境噪声建模带来了新的机遇。有研究率先采用U-Net架构，将固定声源模型与城市建筑 2D 图作为输入，输出地面噪声分布。在通信传播领域，类似思路同样聚焦于 2D 地面信号映射，且声源形态局限于单极子、偶极子等简单模型。</div>
+<div class="description-paragraph" id="p0008" num="0006">尽管深度学习技术带来了新机遇，但现有的深度学习方法在处理多模态条件（如不同的飞行器类型、飞行高度、地形布局和大气条件）时，仍然存在一定的局限性，难以准确捕捉复杂的声学特征和环境因素的耦合效应。首先，现有的深度学习方法仅能处理预设声源，无法泛化到任意复杂飞行器。这是因为现有深度学习模型在训练时，所使用的声源数据往往是特定类型、固定参数的预设声源，其噪声特性相对简单且固定。而实际的低空飞行器，由于机型不同（如直升机、固定翼无人机、多旋翼无人机等），其发动机类型、螺旋桨数量与转速、飞行姿态等存在巨大差异，因此，当面对未在训练数据中出现的新型或复杂飞行器时，无法准确捕捉其噪声特性，自然也就难以实现泛化。其次，现有方法多以城市建筑 2D图作为输入，这种二维信息只能反映建筑的平面位置和大致轮廓，而噪声在传播过程中，会受到楼宇的三维遮挡作用，楼宇的各个立面会对噪声产生反射，不同角度和材质的立面，其反射系数和反射方向存在差异，会导致反射噪声在空间中的分布呈现复杂的三维特性。由于模型没有考虑这些三维因素，仅基于二维信息进行计算，就无法准确模拟噪声在三维空间中因遮挡和反射而产生的强弱变化，生成的 2D 地面图谱也就不能真实反映实际的噪声分布情况。此外，U-Net 的网络结构设计更侧重于对输入数据的空间映射学习，缺乏专门的机制来建模和融合这些多因素之间的非线性耦合关系，因此，U-Net 难以充分捕捉噪声与地形、大气等多因素耦合关系，无法将地形的高低起伏、大气的动态变化等信息与噪声传播特性之间的复杂关联充分挖掘出来，导致生成的噪声分布图精度较差。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0009">发明内容</div>
+<div class="description-paragraph" id="p0010" num="0007">为此，本发明所要解决的技术问题在于克服现有基于深度学习的低空飞行器环境噪声建模方法在声源处理上单一、忽略了三维影响因素以及U-Net难以充分捕捉噪声与地形、大气等多因素耦合关系，导致低空飞行器环境噪声建模精度较差的缺陷。</div>
+<div class="description-paragraph" id="p0011" num="0008">为解决上述技术问题，本发明提供了一种低空飞行器环境噪声建模方法，包括：</div>
+<div class="description-paragraph" id="p0012">构建待测环境的球坐标系，将低空飞行器在球坐标系下不同位置处的声源指向性数据，转换为声源指向性张量；</div>
+<div class="description-paragraph" id="p0013">将待测环境的三维环境地形信息、三维建筑物几何信息，转换为地形布局张量；</div>
+<div class="description-paragraph" id="p0014">分别提取声源指向性张量、地形布局张量的高级特征，当前时刻低空飞行器的频率特征、飞行高度特征；</div>
+<div class="description-paragraph" id="p0015">将声源指向性张量、地形布局张量的高级特征、当前时刻低空飞行器的频率特征、飞行高度特征进行融合，得到当前时刻多模态潜在特征；</div>
+<div class="description-paragraph" id="p0016">基于当前时刻多模态潜在特征，获取当前时刻低空飞行器的噪声强度图。</div>
+<div class="description-paragraph" id="p0017" num="0009">优选地，当前时刻多模态潜在特征的获取过程包括：</div>
+<div class="description-paragraph" id="p0018">将声源指向性张量、地形布局张量拼接后，通过第一U-Net模型的编码器，得到第一U-Net模型各编码器层的输出特征；</div>
+<div class="description-paragraph" id="p0019">将当前时刻低空飞行器的频率、飞行高度分别通过其对应的可学习的嵌入层，提取当前时刻低空飞行器的频率特征、飞行高度特征；</div>
+<div class="description-paragraph" id="p0020">将第一U-Net模型最后一个编码器层的输出特征、当前时刻低空飞行器的频率特征、飞行高度特征经过元素级加法融合后，通过第一U-Net模型的瓶颈层，得到第一U-Net模型的瓶颈层特征；</div>
+<div class="description-paragraph" id="p0021">将第一U-Net模型的瓶颈层特征、第一U-Net模型各编码器层的输出特征通过第一U-Net模型的解码器，得到当前时刻多模态潜在特征。</div>
+<div class="description-paragraph" id="p0022" num="0010">优选地，所述基于当前时刻多模态潜在特征，获取当前时刻低空飞行器的噪声强度图，包括：</div>
+<div class="description-paragraph" id="p0023">将当前时刻多模态潜在特征作为扩散模型的条件特征，通过<span class="patent-image-not-available"></span>个时间步的反向扩散过程，得到当前时刻低空飞行器的噪声强度图；其中，<span class="patent-image-not-available"></span>为预设时间步总数。</div>
+<div class="description-paragraph" id="p0024" num="0011">优选地，所述将当前时刻多模态潜在特征作为扩散模型的条件特征，通过<span class="patent-image-not-available"></span>个时间步的反向扩散过程，得到当前时刻低空飞行器的噪声强度图，包括：</div>
+<div class="description-paragraph" id="p0025">通过正弦位置编码生成每个时间步的时间嵌入向量；</div>
+<div class="description-paragraph" id="p0026">将第<span class="patent-image-not-available"></span>个时间步的噪声强度图、第<span class="patent-image-not-available"></span>个时间步的时间嵌入向量、当前时刻多模态潜在特征通过第<span class="patent-image-not-available"></span>个时间步的反向扩散过程，得到第<span class="patent-image-not-available"></span>个时间步的噪声强度图，包括：</div>
+<div class="description-paragraph" id="p0027">通过正弦位置编码生成每个时间步的时间嵌入向量；</div>
+<div class="description-paragraph" id="p0028">将第<span class="patent-image-not-available"></span>个时间步的噪声强度图、第<span class="patent-image-not-available"></span>个时间步的时间嵌入向量、当前时刻多模态潜在特征通过第<span class="patent-image-not-available"></span>个时间步的反向扩散过程，得到第<span class="patent-image-not-available"></span>个时间步的噪声强度图，包括：</div>
+<div class="description-paragraph" id="p0029">将第<span class="patent-image-not-available"></span>个时间步的噪声强度图、第<span class="patent-image-not-available"></span>个时间步的时间嵌入向量、当前时刻多模态潜在特征通过元素级加法进行融合，得到第<span class="patent-image-not-available"></span>个时间步的融合特征图；其中，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为时间步索引，第<span class="patent-image-not-available"></span>个时间步的噪声强度图通过标准正态分布采样得到；</div>
+<div class="description-paragraph" id="p0030">将第<span class="patent-image-not-available"></span>个时间步的融合特征图，通过第二U-Net模型的编码器，得到第<span class="patent-image-not-available"></span>个时间步第二U-Net模型<span class="patent-image-not-available"></span>个编码器层输出的目标特征图；其中，<span class="patent-image-not-available"></span>为第二U-Net模型的编码器总层数；</div>
+<div class="description-paragraph" id="p0031">分别将第<span class="patent-image-not-available"></span>个时间步第二U-Net模型<span class="patent-image-not-available"></span>个编码器层输出的目标特征图通过多头自注意力块，得到第<span class="patent-image-not-available"></span>个时间步第二U-Net模型<span class="patent-image-not-available"></span>个编码器层对应的多头自注意力特征图；</div>
+<div class="description-paragraph" id="p0032">将第<span class="patent-image-not-available"></span>个时间步第二U-Net模型<span class="patent-image-not-available"></span>个编码器层对应的多头自注意力特征图通过第二U-Net模型的瓶颈层，得到第<span class="patent-image-not-available"></span>个时间步第二U-Net模型的瓶颈特征图；</div>
+<div class="description-paragraph" id="p0033">将第<span class="patent-image-not-available"></span>个时间步第二U-Net模型的瓶颈特征图、<span class="patent-image-not-available"></span>个编码器层对应的多头自注意力特征图通过第二U-Net模型带有残差连接的解码器，得到第<span class="patent-image-not-available"></span>个时间步的噪声强度图；</div>
+<div class="description-paragraph" id="p0034">将第0个时间步的噪声强度图，作为当前时刻低空飞行器的噪声强度图。</div>
+<div class="description-paragraph" id="p0035" num="0012">优选地，所述将第<span class="patent-image-not-available"></span>个时间步第二U-Net模型的瓶颈特征图、<span class="patent-image-not-available"></span>个编码器层对应的多头自注意力特征图通过第二U-Net模型带有残差连接的解码器，得到第<span class="patent-image-not-available"></span>个时间步的噪声强度图，包括：</div>
+<div class="description-paragraph" id="p0036">将第<span class="patent-image-not-available"></span>个时间步第二U-Net模型上采样后的瓶颈特征图与第<span class="patent-image-not-available"></span>个时间步第二U-Net模型第<span class="patent-image-not-available"></span>个编码器层对应的多头自注意力特征图沿通道维度拼接后，通过第二U-Net模型第一个解码器层，得到第<span class="patent-image-not-available"></span>个时间步第二U-Net模型第一个解码器层的解码融合特征图；</div>
+<div class="description-paragraph" id="p0037">将第<span class="patent-image-not-available"></span>个时间步第二U-Net模型第一个解码器层的解码融合特征图、第<span class="patent-image-not-available"></span>个时间步第二U-Net模型上采样后的瓶颈特征图，通过元素级加法，得到第<span class="patent-image-not-available"></span>个时间步第二U-Net模型第一个解码器层的目标融合特征图；</div>
+<div class="description-paragraph" id="p0038">将第<span class="patent-image-not-available"></span>个时间步第二U-Net模型第<span class="patent-image-not-available"></span>个解码器层上采样后的目标融合特征图与第<span class="patent-image-not-available"></span>个时间步第二U-Net模型第<span class="patent-image-not-available"></span>个编码器层输出的第<span class="patent-image-not-available"></span>个时间步的目标特征图沿通道维度拼接后，通过第二U-Net模型第<span class="patent-image-not-available"></span>个解码器层，得到第<span class="patent-image-not-available"></span>个时间步第二U-Net模型第<span class="patent-image-not-available"></span>个解码器层的解码融合特征图；其中，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为解码器层索引；</div>
+<div class="description-paragraph" id="p0039">将第<span class="patent-image-not-available"></span>个时间步第二U-Net模型第<span class="patent-image-not-available"></span>个解码器层的解码融合特征图、第<span class="patent-image-not-available"></span>个时间步第二U-Net模型第<span class="patent-image-not-available"></span>个解码器层上采样后的目标融合特征图，通过元素级加法，得到第<span class="patent-image-not-available"></span>个时间步第二U-Net模型第<span class="patent-image-not-available"></span>个解码器层的目标融合特征图；</div>
+<div class="description-paragraph" id="p0040">将第<span class="patent-image-not-available"></span>个时间步第二U-Net模型第<span class="patent-image-not-available"></span>个解码器层的目标融合特征图，作为第<span class="patent-image-not-available"></span>个时间步的噪声强度图。</div>
+<div class="description-paragraph" id="p0041" num="0013">优选地，基于多模态条件编码器、扩散模型，构建飞行器噪声评估模型；</div>
+<div class="description-paragraph" id="p0042">飞行器噪声评估模型的损失函数包括：</div>
+<div class="description-paragraph" id="p0043">当前时刻低空飞行器的噪声强度图与真实噪声强度图之间的扩散去噪损失；</div>
+<div class="description-paragraph" id="p0044">当前时刻多模态潜在特征、真实噪声强度图之间的平滑 L1 损失。</div>
+<div class="description-paragraph" id="p0045" num="0014">优选地，声源指向性数据包括：声音的频率特性、强度特性。</div>
+<div class="description-paragraph" id="p0046" num="0015">优选地，构建待测环境的球坐标系，将低空飞行器在球坐标系下不同位置处的声源指向性数据，重投影至半球面后，将半球面数据转换为声源指向性张量。</div>
+<div class="description-paragraph" id="p0047" num="0016">优选地，获取各个时刻低空飞行器的噪声强度图，对于属于同一飞行高度的每张噪声强度图，将其进行噪声足迹处理，得到属于同一飞行高度下的多张2D图像；</div>
+<div class="description-paragraph" id="p0048">将属于同一飞行高度下的多张2D图像，通过插值，生成 3D 噪声分布可视化结果。</div>
+<div class="description-paragraph" id="p0049" num="0017">本发明还提供了一种低空飞行器环境噪声建模系统，包括：</div>
+<div class="description-paragraph" id="p0050">第一量化模块，用于构建待测环境的球坐标系，将低空飞行器在球坐标系下不同位置处的声源指向性数据，转换为声源指向性张量；</div>
+<div class="description-paragraph" id="p0051">第二量化模块，用于将待测环境的三维环境地形信息、三维建筑物几何信息，转换为地形布局张量；</div>
+<div class="description-paragraph" id="p0052">特征提取模块，用于分别提取声源指向性张量、地形布局张量的高级特征，当前时刻低空飞行器的频率特征、飞行高度特征；</div>
+<div class="description-paragraph" id="p0053">融合模块，用于将声源指向性张量、地形布局张量的高级特征、当前时刻低空飞行器的频率特征、飞行高度特征进行融合，得到当前时刻多模态潜在特征；</div>
+<div class="description-paragraph" id="p0054">预测模块，用于基于当前时刻多模态潜在特征，获取当前时刻低空飞行器的噪声强度图。</div>
+<div class="description-paragraph" id="p0055" num="0018">本发明的上述技术方案相比现有技术具有以下有益效果：</div>
+<div class="description-paragraph" id="p0056">本发明所述的一种低空飞行器环境噪声建模方法及系统，本发明通过构建待测环境的球坐标系，将低空飞行器在该坐标系下不同位置的声源指向性数据重投影至半球面并转换为二维张量，以此涵盖不同机型、飞行姿态等带来的复杂噪声特性，实现对任意复杂飞行器的泛化；同时，将环境地形信息、建筑物几何信息转换为地形布局张量，充分纳入地形高低起伏、建筑物三维结构等信息，准确反映噪声在传播过程中受到的三维遮挡及不同立面的反射影响，避免了二维信息输入导致的偏差；通过飞行器噪声评估模型的第一U-Net模型的编码器，提取声源指向性张量和地形布局张量拼接后的高级几何特征，结合经可学习嵌入层提取的当前时刻频率特征、飞行高度特征，经元素级加法融合后，通过瓶颈层后，与第一U-Net模型的编码器层的输出特征一同输入第一U-Net模型的解码器得到多模态潜在特征，最后输入扩散模型输出噪声强度图，能深度挖掘地形、大气等环境因素与噪声传播特性之间的复杂关联，精准建模多因素间的非线性耦合关系，将当前时刻多模态潜在特征输入飞行器噪声评估模型的扩散模型，输出当前时刻低空飞行器的噪声强度图，扩散模型符合噪声从声源向外扩散、受环境因素逐步调制的物理逻辑，通过后向去噪过程逐步学习从噪声到真实分布的映射，优化了噪声估计的计算流程，显著提高了噪声建模的效率，能够有效提高低空飞行器的噪声强度图的预测精度。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0057">附图说明</div>
+<div class="description-paragraph" id="p0058" num="0019">为了使本发明的内容更容易被清楚的理解，下面根据本发明的具体实施例并结合附图，对本发明作进一步详细的说明，其中：</div>
+<div class="description-paragraph" id="p0059">图1是本发明一种低空飞行器环境噪声建模方法的流程示意图。</div>
+<div class="description-paragraph" id="p0060" num="0020">图2是在上海市区的无人机噪声追踪建模与可视化结果示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0061">具体实施方式</div>
+<div class="description-paragraph" id="p0062" num="0021">下面结合附图和具体实施例对本发明作进一步说明，以使本领域的技术人员可以更好地理解本发明并能予以实施，但所举实施例不作为对本发明的限定。</div>
+<div class="description-paragraph" id="p0063" num="0022">参照图1所示，本实施例一提供了一种低空飞行器环境噪声建模方法，包括：</div>
+<div class="description-paragraph" id="p0064">针对现有技术在处理多模态条件时的不足，本发明设计了独特的多模态感知模块和多模态条件编码机制，能够精准捕捉并融合低空飞行器噪声源特性、地形布局以及飞行高度等复杂多模态条件，有效提升了噪声建模的精度和泛化能力，更好地满足了城市低空飞行器噪声管理的复杂需求。多模态感知模块如步骤S1-S2所示。</div>
+<div class="description-paragraph" id="p0065" num="0023">步骤S1：构建待测环境的球坐标系，将低空飞行器在球坐标系下不同位置处的声源指向性数据，重投影至半球面后，转换为声源指向性张量；</div>
+<div class="description-paragraph" id="p0066">通过球坐标系获取低空飞行器在不同空间位置的声源指向性数据后，采用重投影技术将其映射至半球面，实现对飞行器声源空间特性的降维处理。此举旨在与另一模态的输入数据（128*128规格的城市模型）形成维度匹配。该方法创新性地将高维空间特性转化为多层图像格式（128*128*2），并将其输入深度学习模型进行后续处理。</div>
+<div class="description-paragraph" id="p0067" num="0024">本实施例中，具体地，声源指向性数据包括：声音的频率特性、强度特性（如声压级、声功率）。</div>
+<div class="description-paragraph" id="p0068" num="0025">本实施例基于低空飞行器的结构参数（含旋翼、机身等关键部件）及操作工况（如飞行速度、载荷条件等）进行提取低空飞行器的声源特性，并从声源指向性与频率特性两个维度完成表征：</div>
+<div class="description-paragraph" id="p0069">基于球坐标格式的原始声源模型数据，通过空间重投影技术将其映射至半球面；进一步采用投影算法将该半球面数据转化为 128×128 维度的张量<span class="patent-image-not-available"></span>，以此量化描述声源在空间中的方向性分布规律。</div>
+<div class="description-paragraph" id="p0070" num="0026">频率特性表征则在后续以标量形式对声源的频率参数进行直接建模，作为独立维度输入，用于反映声源的频谱特征。</div>
+<div class="description-paragraph" id="p0071" num="0027">传统技术对低空飞行器声源特性的描述存在显著局限性：仅将声源信息抽象为孤立标量（如 “5m/s 速度下朝x正方向飞行”仅用 “5m/s”和 “+1” 两个标量表示），这种简化完全丢失了声源在三维空间中的辐射方向性细节，无法反映不同机型、飞行姿态（如仰角、侧偏）下噪声在各个方向的强度差异（例如，螺旋桨飞机向前方的噪声辐射与向后方的辐射强度可能相差数倍）。</div>
+<div class="description-paragraph" id="p0072" num="0028">本发明通过构建待测环境的球坐标系，将低空飞行器在任意位置的声源指向性数据重投影至半球面，形成三维通用指向性球体模型。该模型通过声源指向性张量量化声源在三维空间中每个方向的辐射强度，无需依赖特定机型的预设参数，可适配任意飞行器（固定翼、多旋翼、直升机等），真正实现了声源特性的通用化、精细化表征。</div>
+<div class="description-paragraph" id="p0073" num="0029">本发明选择以标量形式输入频率特性，主要基于飞行器噪声的动态特性与工程应用实践的双重考量。尽管飞行器在飞行过程中频率特性呈现动态变化，但这种变化可通过时间维度的离散化处理得到充分体现——当飞行器沿预定轨迹运动时，模型在每个时刻均基于当前位置的频率特征进行独立预测，此时输入的频率标量严格对应于该时刻的噪声特性，相邻时刻的频率参数因分属不同时间节点而不存在冲突。对于飞行器噪声的宽频特性，模型采用单次输入单一频率的处理方式，这一设计既符合工业界与学术界将宽频特性拆解为1-20个离散频率进行分析的常规做法，又具备良好的灵活性。若需完整评估宽频范围内的噪声特性，可通过同步运行对应数量的模型实例实现，每个实例专注处理一个离散频率分量，最终整合各频率下的预测结果即可获得全频段分析结论。</div>
+<div class="description-paragraph" id="p0074" num="0030">这种处理方式既保证了对频率动态变化的准确捕捉，又兼顾了宽频特性分析的完整性，同时与工程实践中的常规方法保持一致，体现了理论严谨性与应用可行性的有机统一。</div>
+<div class="description-paragraph" id="p0075" num="0031">低空飞行器所产生的声音具有时间、空间、频率三个维度的特征，其中，声源指向性可以通过指向性球体来表示球面波在空间方向上的传播特性；时间特性被隐含在飞行器的坐标上，飞行器坐标影响声音传播距离和辐射范围，随着飞行器坐标移动，其周围的城市环境随之移动（飞行器始终位于城市中心位置正上方）；频率特性被单独拿出来作为一个维度是因为不同频率声音在大气中的衰减因子不同、被壁面吸收因子也不同（即反射系数不同），这些多模态的输入都和声学密切相关。</div>
+<div class="description-paragraph" id="p0076" num="0032">步骤S2：将待测环境的三维环境地形信息、三维建筑物几何信息，转换为地形布局张量；</div>
+<div class="description-paragraph" id="p0077">本实施例中，利用地理信息系统的数字高程模型，获取三维环境地形信息；</div>
+<div class="description-paragraph" id="p0078">通过 OpenStreetMap、Google Maps、Open3Dhk 等公开数据集提取建筑物的分布、形状及高度特征，以此获得三维建筑物几何信息；</div>
+<div class="description-paragraph" id="p0079">利用建模软件将上述两类信息合成为.stl、.vtk等格式的几何形式城市模型，再将该模型沿水平方向切割为同等大小的范围，形成标准化模型，最终将其通过量化操作，转换为一个 128×128 的水平 2D地形布局张量<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0080">同时，将地形高度投影到地面平面，形成结构化的表示，以便于飞行器噪声评估模型处理。</div>
+<div class="description-paragraph" id="p0081" num="0033">步骤S3：分别提取声源指向性张量、地形布局张量的高级特征，当前时刻低空飞行器的频率特征、飞行高度特征：</div>
+<div class="description-paragraph" id="p0082">对量化后的地形数据进行编码，提取关键的几何特征，形成一个紧凑的表示形式，用于噪声传播建模。这些特征包括建筑物的分布、高度以及地形的起伏等信息，能够反映地形对声波传播的影响。</div>
+<div class="description-paragraph" id="p0083" num="0034">步骤S4：将声源指向性张量、地形布局张量的高级特征、当前时刻低空飞行器的频率特征、飞行高度特征进行融合，得到当前时刻多模态潜在特征；</div>
+<div class="description-paragraph" id="p0084">步骤S5：基于当前时刻多模态潜在特征，获取当前时刻低空飞行器的噪声强度图。</div>
+<div class="description-paragraph" id="p0085" num="0035">本实施例中，优选地，当前时刻多模态潜在特征的获取过程包括：</div>
+<div class="description-paragraph" id="p0086">如图1所示，图1中多模态条件编码器即为第一U-Net模型的编码器，多模态条件解码器即为第一U-Net模型的解码器；</div>
+<div class="description-paragraph" id="p0087">将声源指向性张量<span class="patent-image-not-available"></span>、地形布局张量<span class="patent-image-not-available"></span>拼接后，通过第一U-Net模型的编码器，得到第一U-Net模型各编码器层的输出特征；</div>
+<div class="description-paragraph" id="p0088">将当前时刻低空飞行器的频率、飞行高度分别通过其对应的可学习的嵌入层，提取当前时刻低空飞行器的频率特征、飞行高度特征；</div>
+<div class="description-paragraph" id="p0089">将第一U-Net模型最后一个编码器层的输出特征、当前时刻低空飞行器的频率特征、飞行高度特征经过元素级加法融合后，通过第一U-Net模型的瓶颈层，得到第一U-Net模型的瓶颈层特征，公式为：</div>
+<div class="description-paragraph" id="p0090"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0091">其中，<span class="patent-image-not-available"></span>为第一U-Net模型的瓶颈层特征，<span class="patent-image-not-available"></span>为第一U-Net模型的编码器，<span class="patent-image-not-available"></span>为元素级加法，<span class="patent-image-not-available"></span>为当前时刻低空飞行器的频率对应的可学习的嵌入层，<span class="patent-image-not-available"></span>为当前时刻低空飞行器的频率，<span class="patent-image-not-available"></span>为当前时刻低空飞行器的飞行高度对应的可学习的嵌入层，<span class="patent-image-not-available"></span>为当前时刻低空飞行器的飞行高度，<span class="patent-image-not-available"></span>为拼接操作，<span class="patent-image-not-available"></span>表示声源指向性张量、<span class="patent-image-not-available"></span>表示地形布局张量。</div>
+<div class="description-paragraph" id="p0092" num="0036">将第一U-Net模型的瓶颈层特征、第一U-Net模型各编码器层的输出特征通过第一U-Net模型的解码器，得到当前时刻多模态潜在特征。</div>
+<div class="description-paragraph" id="p0093" num="0037">本实施例中，优选地，所述基于当前时刻多模态潜在特征，获取当前时刻低空飞行器的噪声强度图，包括：</div>
+<div class="description-paragraph" id="p0094">将当前时刻多模态潜在特征作为扩散模型的条件特征，通过<span class="patent-image-not-available"></span>个时间步的反向扩散过程，得到当前时刻低空飞行器的噪声强度图；其中，<span class="patent-image-not-available"></span>为预设时间步总数。</div>
+<div class="description-paragraph" id="p0095" num="0038">扩散模型采用基于U-Net模型的编码器-解码器结构，包含编码器<span class="patent-image-not-available"></span>和带有残差连接的解码器<span class="patent-image-not-available"></span>。扩散模型通过一个预定义的序列<span class="patent-image-not-available"></span>步长，逐步将噪声强度图添加高斯噪声进行前向扩散过程；在后向扩散过程中，训练一个神经网络来逐步去噪，以恢复原始的噪声强度图。</div>
+<div class="description-paragraph" id="p0096" num="0039">本实施例中，具体地，所述将当前时刻多模态潜在特征输入扩散模型，输出当前时刻低空飞行器的噪声强度图，包括：</div>
+<div class="description-paragraph" id="p0097">将当前时刻多模态潜在特征作为扩散模型的条件特征，通过<span class="patent-image-not-available"></span>个时间步的反向扩散过程，得到当前时刻低空飞行器的噪声强度图；其中，<span class="patent-image-not-available"></span>为预设时间步总数。</div>
+<div class="description-paragraph" id="p0098" num="0040">本实施例中，优选地，所述将当前时刻多模态潜在特征作为扩散模型的条件特征，通过<span class="patent-image-not-available"></span>个时间步的反向扩散过程，得到当前时刻低空飞行器的噪声强度图，包括：</div>
+<div class="description-paragraph" id="p0099">如图2所示，图2中噪声估计编码器即为第二U-Net模型的编码器，噪声估计解码器即为第二U-Net模型带有残差连接的解码器；</div>
+<div class="description-paragraph" id="p0100">通过正弦位置编码生成每个时间步的时间嵌入向量；</div>
+<div class="description-paragraph" id="p0101">将第<span class="patent-image-not-available"></span>个时间步的噪声强度图<span class="patent-image-not-available"></span>、第<span class="patent-image-not-available"></span>个时间步的时间嵌入向量<span class="patent-image-not-available"></span>、当前时刻多模态潜在特征<span class="patent-image-not-available"></span>通过第<span class="patent-image-not-available"></span>个时间步的反向扩散过程，得到第<span class="patent-image-not-available"></span>个时间步的噪声强度图，包括：</div>
+<div class="description-paragraph" id="p0102">将第<span class="patent-image-not-available"></span>个时间步的噪声强度图<span class="patent-image-not-available"></span>、第<span class="patent-image-not-available"></span>个时间步的时间嵌入向量<span class="patent-image-not-available"></span>、当前时刻多模态潜在特征<span class="patent-image-not-available"></span>通过元素级加法进行融合，得到第<span class="patent-image-not-available"></span>个时间步的融合特征图；其中，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>为时间步索引，第<span class="patent-image-not-available"></span>个时间步的噪声强度图通过标准正态分布采样得到；</div>
+<div class="description-paragraph" id="p0103">将第<span class="patent-image-not-available"></span>个时间步的融合特征图，通过第二U-Net模型的编码器，得到第<span class="patent-image-not-available"></span>个时间步第二U-Net模型<span class="patent-image-not-available"></span>个编码器层输出的目标特征图；其中，<span class="patent-image-not-available"></span>为第二U-Net模型的编码器总层数，公式为：</div>
+<div class="description-paragraph" id="p0104">公式为：</div>
+<div class="description-paragraph" id="p0105"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0106">其中，<span class="patent-image-not-available"></span>为第<span class="patent-image-not-available"></span>个时间步第二U-Net模型<span class="patent-image-not-available"></span>个编码器层输出的目标特征图，<span class="patent-image-not-available"></span>为噪声估计编码器，<span class="patent-image-not-available"></span>为第<span class="patent-image-not-available"></span>个时间步的噪声强度图，<span class="patent-image-not-available"></span>为当前时刻多模态潜在特征，<span class="patent-image-not-available"></span>为第<span class="patent-image-not-available"></span>个时间步的时间嵌入向量。</div>
+<div class="description-paragraph" id="p0107" num="0041">分别将第<span class="patent-image-not-available"></span>个时间步第二U-Net模型<span class="patent-image-not-available"></span>个编码器层输出的目标特征图通过多头自注意力块，增强空间依赖关系的建模，将每个空间位置与条件相关的区域关联起来，以更好地学习声学干扰纹理，得到第<span class="patent-image-not-available"></span>个时间步第二U-Net模型<span class="patent-image-not-available"></span>个编码器层对应的多头自注意力特征图，公式为：</div>
+<div class="description-paragraph" id="p0108"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0109">其中，<span class="patent-image-not-available"></span>为多头自注意力块，<span class="patent-image-not-available"></span>为第<span class="patent-image-not-available"></span>个时间步第二U-Net模型<span class="patent-image-not-available"></span>个编码器层对应的多头自注意力特征图，<span class="patent-image-not-available"></span>为查询（Query）权重矩阵，<span class="patent-image-not-available"></span>为键（Key）权重矩阵，<span class="patent-image-not-available"></span>为值（Value）权重矩阵。</div>
+<div class="description-paragraph" id="p0110" num="0042">将第<span class="patent-image-not-available"></span>个时间步第二U-Net模型<span class="patent-image-not-available"></span>个编码器层对应的多头自注意力特征图通过第二U-Net模型的瓶颈层，得到第<span class="patent-image-not-available"></span>个时间步第二U-Net模型的瓶颈特征图；</div>
+<div class="description-paragraph" id="p0111">将第<span class="patent-image-not-available"></span>个时间步第二U-Net模型的瓶颈特征图、<span class="patent-image-not-available"></span>个编码器层对应的多头自注意力特征图通过第二U-Net模型带有残差连接的解码器，得到第<span class="patent-image-not-available"></span>个时间步的噪声强度图，公式为：</div>
+<div class="description-paragraph" id="p0112"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0113">其中，<span class="patent-image-not-available"></span>为第<span class="patent-image-not-available"></span>个时间步的噪声强度图，<span class="patent-image-not-available"></span>为第二U-Net模型带有残差连接的解码器的去噪过程，<span class="patent-image-not-available"></span>为第<span class="patent-image-not-available"></span>个时间步第二U-Net模型<span class="patent-image-not-available"></span>个编码器层对应的多头自注意力特征图。</div>
+<div class="description-paragraph" id="p0114" num="0043">将第0个时间步的噪声强度图<span class="patent-image-not-available"></span>，作为当前时刻低空飞行器的噪声强度图。</div>
+<div class="description-paragraph" id="p0115" num="0044">本实施例中，优选地，飞行器噪声评估模型的损失函数包括：</div>
+<div class="description-paragraph" id="p0116">当前时刻低空飞行器的噪声强度图与真实噪声强度图之间的扩散去噪损失；扩散去噪损失用于优化模型预测在每个前向扩散步骤中添加的噪声成分的能力。</div>
+<div class="description-paragraph" id="p0117" num="0045">当前时刻多模态潜在特征、真实噪声强度图之间的平滑 L1 损失，公式为：</div>
+<div class="description-paragraph" id="p0118"> <span class="patent-image-not-available"></span>，</div>
+<div class="description-paragraph" id="p0119">其中，<span class="patent-image-not-available"></span>为多模态条件对齐损失，即为当前时刻多模态潜在特征、真实噪声强度图之间的平滑 L1 损失，<span class="patent-image-not-available"></span>为当前时刻真实噪声强度图的高度，<span class="patent-image-not-available"></span>当前时刻真实噪声强度图的宽度，<span class="patent-image-not-available"></span>为像素点的高度索引，<span class="patent-image-not-available"></span>为像素点的宽度索引，<span class="patent-image-not-available"></span>为当前时刻多模态潜在特征中第<span class="patent-image-not-available"></span>行第<span class="patent-image-not-available"></span>列的像素值，<span class="patent-image-not-available"></span>为当前时刻真实噪声强度图中第<span class="patent-image-not-available"></span>行第<span class="patent-image-not-available"></span>列的像素值，<span class="patent-image-not-available"></span>为平滑 L1 损失函数。</div>
+<div class="description-paragraph" id="p0120" num="0046">多模态条件对齐损失用于确保编码的条件准确地捕获输入模态中的物理有意义的模式，以强制<span class="patent-image-not-available"></span>与<span class="patent-image-not-available"></span>的结构一致性。</div>
+<div class="description-paragraph" id="p0121" num="0047">本实施例中，飞行器噪声评估模型的训练过程包括：</div>
+<div class="description-paragraph" id="p0122">初始化扩散模型的参数，包括第二U-Net模型编码器和带有残差连接的解码器的权重、可学习的嵌入层的参数等。</div>
+<div class="description-paragraph" id="p0123" num="0048">在前向扩散过程中，对于输入的噪声强度图，通过预定义的序列<span class="patent-image-not-available"></span>步长，逐步添加高斯噪声，得到<span class="patent-image-not-available"></span>个时间步对应的加入高斯噪声的噪声强度图<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0124">基于多模态感知模块输出的声源指向性张量、地形布局张量、当前时刻低空飞行器的频率、飞行高度，获取当前时刻多模态潜在特征；</div>
+<div class="description-paragraph" id="p0125">从<span class="patent-image-not-available"></span>个时间步对应的加入高斯噪声的噪声强度图<span class="patent-image-not-available"></span>开始，通过<span class="patent-image-not-available"></span>步的后向扩散过程，逐步去噪，生成最终的噪声强度图<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0126">计算扩散去噪损失和多模态条件对齐损失，扩散去噪损失用于衡量模型预测的噪声成分与真实噪声成分之间的差异；多模态条件对齐损失用于衡量预测的当前时刻多模态潜在特征<span class="patent-image-not-available"></span>与真实噪声强度图<span class="patent-image-not-available"></span>之间的结构一致性；</div>
+<div class="description-paragraph" id="p0127">根据计算得到的损失值，更新扩散模型的参数，包括U-Net 编码器和解码器的权重、可学习的嵌入层的参数等；</div>
+<div class="description-paragraph" id="p0128">重复执行前向扩散、条件编码、后向扩散、损失计算和参数更新步骤，直到飞行器噪声评估模型收敛，即损失值达到预设的阈值或训练达到预设的迭代次数，将训练好的飞行器噪声评估模型，作为目标飞行器噪声评估模型。</div>
+<div class="description-paragraph" id="p0129" num="0049">本实施例中，优选地，获取各个时刻低空飞行器的噪声强度图，对于属于同一飞行高度的每张噪声强度图，将其进行噪声足迹处理，得到属于同一飞行高度下的多张2D图像；</div>
+<div class="description-paragraph" id="p0130">噪声足迹指低空飞行器在某一高度、某一时刻飞行时，其噪声在地面（或观测平面）上形成的有效影响范围，而噪声足迹映射的核心作用，就是将噪声强度图中的数值转化为空间上的噪声影响范围，即通过设定阈值，从原始噪声强度图中提取出有效噪声区域的轮廓和分布，生成一张只聚焦噪声影响范围的 2D 图像。</div>
+<div class="description-paragraph" id="p0131" num="0050">将属于同一飞行高度下的多张2D图像，通过插值，生成 3D 噪声分布可视化结果。</div>
+<div class="description-paragraph" id="p0132" num="0051">本实施例中，噪声足迹重建模块用于生成详细的噪声分布可视化的2D和3D图像，为城市规划和噪声缓解策略提供直观的决策依据。2D可视化展示不同高度层的噪声水平，其中，H=0 层代表地面噪声，而更高的层则展示建筑物表面和空气中的噪声水平，对于不同高度层的噪声数据，分别进行可视化处理，得到 2D 的噪声分布图像。H=0 层表示地面噪声，H=50、100、150、200 层表示不同高度的噪声水平。</div>
+<div class="description-paragraph" id="p0133" num="0052">3D可视化通过将分层噪声数据(2D的噪声数据)插值到3D环境模型上，生成3D 的噪声分布的空间表示。通过 3D 可视化，可以更直观地展示噪声在空间中的传播和分布情况，分析噪声分布的可视化结果，识别出噪声热点区域，即噪声水平较高的区域，这些热点区域对于评估噪声缓解策略的有效性和制定针对性的噪声控制措施至关重要。</div>
+<div class="description-paragraph" id="p0134" num="0053">本发明旨在解决低空飞行器环境噪声建模领域面临的多个关键问题。首先，针对传统硬件测量方法成本高、灵活性差的缺点，本发明提出了一种低空飞行器环境噪声建模方法，旨在有效降低测量成本并提升建模的灵活性。其次，针对数值模拟方法计算复杂度高的问题，本发明通过创新性地引入扩散模型，优化了噪声估计的计算流程，从而显著提高了建模效率，使其更适用于大规模城市环境的噪声模拟。</div>
+<div class="description-paragraph" id="p0135" num="0054">本发明通过创新的多模态感知模块和扩散模型，优化了噪声估计的计算流程，显著提高了噪声建模的效率。与传统数值模拟方法相比，本发明能够在更短的时间内完成大规模城市环境的噪声模拟，为城市低空飞行器噪声管理提供了更高效的解决方案。本发明有效降低了噪声建模的成本，传统硬件测量方法需要大量的麦克风阵列和复杂的设备配置，成本高昂，而本发明利用深度学习模型和扩散模型的强大计算能力，减少了对硬件设备的依赖，降低了测量成本。同时，该方法还提高了模型的灵活性和可扩展性，使其能够更好地适应不同的应用场景和需求。</div>
+<div class="description-paragraph" id="p0136" num="0055">本发明设计的多模态感知模块能够精准捕捉低空飞行器噪声源特性、地形布局以及飞行高度等多种复杂多模态条件。通过将这些条件进行有效的融合和编码，模型能够更准确地模拟噪声传播过程，提高了噪声建模的精度和泛化能力。这使得本发明能够更好地适应城市低空飞行器噪声管理的复杂多变需求，为制定有效的噪声控制策略提供更可靠的数据支持。</div>
+<div class="description-paragraph" id="p0137" num="0056">本发明提出的噪声足迹重建模块能够生成详细的噪声分布可视化的 2D 和 3D图像，为城市规划和噪声缓解策略提供直观的决策依据。通过分析噪声分布的可视化结果，可以清晰地识别出噪声热点区域，评估噪声缓解策略的有效性，并制定针对性的噪声控制措施。这对于城市管理者和政策制定者来说具有重要的意义，有助于实现城市低空飞行器噪声的精细化管理。</div>
+<div class="description-paragraph" id="p0138" num="0057">本实施例中，将噪声热点区域设为噪声水平高于 70dB 的区域，通过本发明提出的一种低空飞行器环境噪声建模方法对上海市区的无人机噪声追踪建模。如图2所示，图2为在上海市区的无人机噪声追踪建模与可视化结果示意图。</div>
+<div class="description-paragraph" id="p0139" num="0058">本发明实施例二提供了一种低空飞行器环境噪声建模系统，包括：</div>
+<div class="description-paragraph" id="p0140">第一量化模块，用于构建待测环境的球坐标系，将低空飞行器在球坐标系下不同位置处的声源指向性数据，转换为声源指向性张量；</div>
+<div class="description-paragraph" id="p0141">第二量化模块，用于将待测环境的三维环境地形信息、三维建筑物几何信息，转换为地形布局张量；</div>
+<div class="description-paragraph" id="p0142">特征提取模块，用于分别提取声源指向性张量、地形布局张量的高级特征，当前时刻低空飞行器的频率特征、飞行高度特征；</div>
+<div class="description-paragraph" id="p0143">融合模块，用于将声源指向性张量、地形布局张量的高级特征、当前时刻低空飞行器的频率特征、飞行高度特征进行融合，得到当前时刻多模态潜在特征；</div>
+<div class="description-paragraph" id="p0144">预测模块，用于基于当前时刻多模态潜在特征，获取当前时刻低空飞行器的噪声强度图。</div>
+<div class="description-paragraph" id="p0145" num="0059">本领域内的技术人员应明白，本申请的实施例可提供为方法、系统、或计算机程序产品。因此，本申请可采用完全硬件实施例、完全软件实施例、或结合软件和硬件方面的实施例的形式。而且，本申请可采用在一个或多个其中包含有计算机可用程序代码的计算机可用存储介质（包括但不限于磁盘存储器、CD-ROM、光学存储器等）上实施的计算机程序产品的形式。</div>
+<div class="description-paragraph" id="p0146" num="0060">本申请是参照根据本申请实施例的方法、设备（系统）、和计算机程序产品的流程图和／或方框图来描述的。应理解可由计算机程序指令实现流程图和／或方框图中的每一流程和／或方框、以及流程图和／或方框图中的流程和／或方框的结合。可提供这些计算机程序指令到通用计算机、专用计算机、嵌入式处理机或其他可编程数据处理设备的处理器以产生一个机器，使得通过计算机或其他可编程数据处理设备的处理器执行的指令产生用于实现在流程图一个流程或多个流程和／或方框图一个方框或多个方框中指定的功能的装置。</div>
+<div class="description-paragraph" id="p0147" num="0061">这些计算机程序指令也可存储在能引导计算机或其他可编程数据处理设备以特定方式工作的计算机可读存储器中，使得存储在该计算机可读存储器中的指令产生包括指令装置的制造品，该指令装置实现在流程图一个流程或多个流程和／或方框图一个方框或多个方框中指定的功能。</div>
+<div class="description-paragraph" id="p0148" num="0062">这些计算机程序指令也可装载到计算机或其他可编程数据处理设备上，使得在计算机或其他可编程设备上执行一系列操作步骤以产生计算机实现的处理，从而在计算机或其他可编程设备上执行的指令提供用于实现在流程图一个流程或多个流程和／或方框图一个方框或多个方框中指定的功能的步骤。</div>
+<div class="description-paragraph" id="p0149" num="0063">显然，上述实施例仅仅是为清楚地说明所作的举例，并非对实施方式的限定。对于所属领域的普通技术人员来说，在上述说明的基础上还可以做出其它不同形式变化或变动。这里无需也无法对所有的实施方式予以穷举。而由此所引伸出的显而易见的变化或变动仍处于本发明创造的保护范围之中。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

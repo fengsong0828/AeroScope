@@ -1,0 +1,65 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN206547087U</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES359933906">
+<invention-title id="tilte1" lang="ZH">一种低空飞行器管制器</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001" num="0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0002">本实用新型涉及射频信号技术领域，具体为一种低空飞行器管制器。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003" num="0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0004">近年来，民用低空飞行器的发展非常迅猛，低空飞行器的应用在民用领域悄然兴起，航空拍摄、地理测绘、森林防火、农田灭虫、水上探测、区域管控、广告宣传，等等，低空飞行区无法获得足够精确的自身坐标数据。因此，各国低空飞行器的飞行控制均采用GPS卫星导航系统与惯性导航系统相结合的方式。低空飞行器在照相时还需要知道自己的精确位置，因此低空飞行器上安装了GPS信号接收机。</div>
+<div class="description-paragraph" id="p0005" num="0005">许多行业开始借助低空飞行器当助手，促进了生产力的提高。不仅如此，有专家预判，快速发展的民用低空飞行器还将涌入人们的日常生活，比如快递、点餐、娱乐等还有许多我们现在没有想到的事情，将来可能由低空飞行器唱主角，各地区将面临低空领域安全管理的压力和挑战。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006" num="0006">实用新型内容</div>
+<div class="description-paragraph" id="p0007" num="0007">本实用新型的目的在于提供一种低空飞行器管制器，以解决上述背景技术中提出的问题。所述低空飞行器管制器具有实现多功能、多选择性对常规低空飞行器进行有效管制。使用方便，完全实现一体化，操作简单易于应对突发事件。自主研发的最新信号生成器，干扰距离更远等特点。</div>
+<div class="description-paragraph" id="p0008" num="0008">为实现上述目的，本实用新型提供如下技术方案：</div>
+<div class="description-paragraph" id="p0009" num="0009">一种低空飞行器管制器，包括电池、控制板、信号发射器及射频功率放大器，所述电池为控制板、信号发射器及射频功率放大器供电，所述控制板包括TPS5430芯片U1，所述信号发射器与TPS5430芯片U1 VEN端连接，同时分别通过场效应管IRF5350将GPS、2.4/5.8信号送至TPS5430芯片U1；所述射频功率放大器包括STM32F030F4芯片U13，信号通过TPS5430芯片U1输入到压控振荡器，再经过AT108芯片、YG602020芯片两级输出后，由两级连接的YG602020芯片及高频管AFT27S010NT1输出至GLQ945芯片U3输入端；两个AT108芯片经74LVC2G14芯片U5与STM32F030F4芯片U13的PA-ALC及PA-GAN端连接，所述STM32F030F4芯片U13的VSWR端连接LT5581芯片U7；PA-UP-SW端连接74LVC2G14芯片U6，并且74LVC2G14芯片U6串接FDW2521C芯片U8；UART1RX及UART1TX端连接SP3485芯片U9构成通路，所述SP3485芯片U9通过RS-485-28V插口J1与PA-UP-SW端连接。</div>
+<div class="description-paragraph" id="p0010" num="0010">优选的，所述信号发射器还连接有LCD显示屏。</div>
+<div class="description-paragraph" id="p0011" num="0011">优选的，经所述GLQ945芯片输入端的信号经电感、三极管构成电感高频补偿电路。</div>
+<div class="description-paragraph" id="p0012" num="0012">优选的，所述STM32F030F4芯片U13的RF-POWER端口经三极管Q3连入到GLQ945芯片U3输入端。</div>
+<div class="description-paragraph" id="p0013" num="0013">优选的，所述STM32F030F4芯片U13的SWCLK、SWDIO端口连接到ISP调试口U12。</div>
+<div class="description-paragraph" id="p0014" num="0014">与现有技术相比，本实用新型的有益效果是：可以根据环境需求通过控制板控制对信号发射器经功率放大器对低空飞行器发送不同指令：只打开手控模式：干扰掉低空飞行器手控通讯，使低空飞行器自动返航；同时打开手控和导航模式：低空飞行器会缓慢原地降落。</div>
+<div class="description-paragraph" id="p0015" num="0015">打开信号生成器开关SIGNAL使设备处于待机状态，然后根据实际情况需要选择另外两个开关。只选择打开2.4G/5.8G开关，会切断低空飞行器的手控连接，迫使其启动自动返航功能；选择2.4G/5.8G和GPS同时开启，低空飞行器会原地或飘移降落。只打开GPS只能切断低空飞行器的智能飞行，但能人工手动控制。</div>
+<div class="description-paragraph" id="p0016" num="0016">本射频功率放大器通过前端信号生成器产生数字信号(由于数字信号是用两种物理状态来表示0和1的，故其抵抗材料本身干扰和环境干扰的能力都比模拟信号强很多)，然后通过自主研发的放大器使频道间的谐波分量降到了最低，使我们需要的发射频道之间不会相互干扰。管控距离能达到1500米左右，极大的提升了设备的管制距离。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0017" num="0017">附图说明</div>
+<div class="description-paragraph" id="p0018" num="0018">图1为本实用新型射频功率放大器中STM32F030F4芯片U13电路图；</div>
+<div class="description-paragraph" id="p0019" num="0019">图2为本实用新型与STM32F030F4芯片U13连接的电子元器件电路图一；</div>
+<div class="description-paragraph" id="p0020" num="0020">图3为本实用新型电感高频补偿电路图；</div>
+<div class="description-paragraph" id="p0021" num="0021">图4为本实用新型与STM32F030F4芯片U13连接的电子元器件电路图二；</div>
+<div class="description-paragraph" id="p0022" num="0022">图5为本实用新型与STM32F030F4芯片U13连接的电子元器件电路图三；</div>
+<div class="description-paragraph" id="p0023" num="0023">图6为本实用新型与STM32F030F4芯片U13连接的电子元器件电路图四；</div>
+<div class="description-paragraph" id="p0024" num="0024">图7为本实用新型与STM32F030F4芯片U13连接的电子元器件电路图五；</div>
+<div class="description-paragraph" id="p0025" num="0025">图8为本实用新型与STM32F030F4芯片U13连接的电子元器件电路图六；</div>
+<div class="description-paragraph" id="p0026" num="0026">图9为本实用新型与STM32F030F4芯片U13连接的电子元器件电路图七；</div>
+<div class="description-paragraph" id="p0027" num="0027">图10为本实用新型与STM32F030F4芯片U13连接的电子元器件电路图八；</div>
+<div class="description-paragraph" id="p0028" num="0028">图11为本实用新型与STM32F030F4芯片U13连接的电子元器件电路图九；</div>
+<div class="description-paragraph" id="p0029" num="0029">图12为本实用新型与STM32F030F4芯片U13连接的电子元器件电路图十；</div>
+<div class="description-paragraph" id="p0030" num="0030">图13为本实用新型与STM32F030F4芯片U13连接的电子元器件电路图十一；</div>
+<div class="description-paragraph" id="p0031" num="0031">图14为本实用新型与STM32F030F4芯片U13连接的电子元器件电路图十二；</div>
+<div class="description-paragraph" id="p0032" num="0032">图15为本实用新型控制板SING控制GSP、2.4/5.8信号的部分电路图一；</div>
+<div class="description-paragraph" id="p0033" num="0033">图16为本实用新型控制板信号进入的TPS5430芯片U1电路图；</div>
+<div class="description-paragraph" id="p0034" num="0034">图17为本实用新型控制板SING控制LCD显示屏的电路图；</div>
+<div class="description-paragraph" id="p0035" num="0035">图18为本实用新型控制板的SING、GSP、2.4/5.8调试示意图；</div>
+<div class="description-paragraph" id="p0036" num="0036">图19为本实用新型控制板的部分电路图二。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0037" num="0037">具体实施方式</div>
+<div class="description-paragraph" id="p0038" num="0038">下面将结合本实用新型实施例中的附图，对本实用新型实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本实用新型一部分实施例，而不是全部的实施例。基于本实用新型中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本实用新型保护的范围。</div>
+<div class="description-paragraph" id="p0039" num="0039">请参阅图1-19，本实用新型提供一种技术方案：</div>
+<div class="description-paragraph" id="p0040" num="0040">一种低空飞行器管制器，包括电池、控制板、信号发射器及射频功率放大器，电池为控制板、信号发射器及射频功率放大器供电，控制板包括TPS5430芯片U1，信号发射器与TPS5430芯片U1VEN端连接，同时分别通过场效应管IRF5350将GPS、2.4/5.8信号送至TPS5430芯片U1；射频功率放大器包括STM32F030F4芯片U13，信号通过TPS5430芯片U1输入到压控振荡器，再经过AT108芯片、YG602020芯片两级输出后，由两级连接的YG602020芯片及高频管AFT27S010NT1输出至GLQ945芯片U3输入端；两个AT108芯片经74LVC2G14芯片U5与STM32F030F4芯片U13的PA-ALC及PA-GAN端连接，STM32F030F4芯片U13的VSWR端连接LT5581芯片U7；PA-UP-SW端连接74LVC2G14芯片U6，并且74LVC2G14芯片U6串接FDW2521C芯片U8；UART1RX及UART1TX端连接SP3485芯片U9构成通路，SP3485芯片U9通过RS-485-28V插口J1与PA-UP-SW端连接，信号发射器还连接有LCD显示屏，经GLQ945芯片输入端的信号经电感、三极管构成电感高频补偿电路，STM32F030F4芯片U13的RF-POWER端口经三极管Q3连入到GLQ945芯片U3输入端，STM32F030F4芯片U13的SWCLK、SWDIO端口连接到ISP调试口U12。</div>
+<div class="description-paragraph" id="p0041" num="0041">可以根据环境需求通过控制板控制对信号发射器经功率放大器对低空飞行器发送不同指令：只打开手控模式：干扰掉低空飞行器手控通讯，使低空飞行器自动返航；同时打开手控和导航模式：低空飞行器会缓慢原地降落。</div>
+<div class="description-paragraph" id="p0042" num="0042">打开信号生成器开关SIGNAL使设备处于待机状态，然后根据实际情况需要选择另外两个开关。只选择打开2.4G/5.8G开关，会切断低空飞行器的手控连接，迫使其启动自动返航功能；选择2.4G/5.8G和GPS同时开启，低空飞行器会原地或飘移降落。只打开GPS只能切断低空飞行器的智能飞行，但能人工手动控制。</div>
+<div class="description-paragraph" id="p0043" num="0043">射频功率放大器是发送设备的重要组成部分。射频功率放大器的主要技术指标是输出功率与效率。除此之外，输出中的谐波分量还应该尽可能地小，以避免对其他频道产生干扰。</div>
+<div class="description-paragraph" id="p0044" num="0044">射频功率放大器是对输出功率、激励电平、功耗、失真、效率、尺寸和重量等问题作综合考虑的电子电路。在发射系统中，射频功率放大器输出功率的范围可以小至mW，大至数kW，但是这是指末级功率放大器的输出功率。为了实现大功率输出，末前级就必须要有足够高的激励功率电平。</div>
+<div class="description-paragraph" id="p0045" num="0045">射频功率放大器的主要技术指标是输出功率与效率，是研究射频功率放大器的关键。而对功率晶体管的要求，主要是考虑击穿电压、最大集电极电流和最大管耗等参数。为了实现有效的能量传输，天线和放大器之间需要采用阻抗匹配网络。</div>
+<div class="description-paragraph" id="p0046" num="0046">本射频功率放大器通过前端信号生成器产生数字信号(由于数字信号是用两种物理状态来表示0和1的，故其抵抗材料本身干扰和环境干扰的能力都比模拟信号强很多)，然后通过自主研发的放大器使频道间的谐波分量降到了最低，使我们需要的发射频道之间不会相互干扰。采用自主研发PCB天线，与传统天线相比体积小、增益高。待机状态毫秒级响应速度，从容面对各种突发事件。管控距离能达到1500米左右，极大的提升了设备的管制距离。</div>
+<div class="description-paragraph" id="p0047" num="0047">本设备结构新颖，使用方便，完全实现一体化，操作简单易于应对突发事件。自主研发的最新信号生成器，干扰距离更远。与其他同类产品具有更大的优势。</div>
+<div class="description-paragraph" id="p0048" num="0048">尽管已经示出和描述了本实用新型的实施例，对于本领域的普通技术人员而言，可以理解在不脱离本实用新型的原理和精神的情况下可以对这些实施例进行多种变化、修改、替换和变型，本实用新型的范围由所附权利要求及其等同物限定。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

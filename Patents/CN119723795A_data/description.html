@@ -1,0 +1,177 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119723795A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES491191077">
+<invention-title id="title1" lang="ZH">一种基于气象观测的低空飞行器结冰预警方法及系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于低空飞行器结冰预警技术领域，特别涉及一种基于气象观测的低空飞行器结冰预警方法及系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空飞行器是指在距地面较低高度范围内飞行的各类飞行器。低空飞行器一般在1000米以下空域飞行，在0-3000米的云层范围内都有结冰风险，尤其是在1500米到3000米高度，是直升机等低空飞行器常见的结冰高发区域。</div>
+<div class="description-paragraph" id="p0005" num="0003">为了降低有人驾驶的低空飞行器在执行飞行任务时遇到飞行器结冰的风险，通常会获取预测的气象数据，并根据预测的气象数据制定飞行路线，但这种方式较为依赖气象预测的精准度，可以理解的，预测的气象数据越准确，制定的飞行路线越合理，飞行器结冰的概率也就越低，换句话说，若气象突变，而飞行员仍按照既定路线飞行，或者较晚采取应对措施，会有较大的安全隐患。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">基于此，本发明实施例当中提供了一种基于气象观测的低空飞行器结冰预警方法及系统，旨在实时根据气象数据，评估飞行器的结冰情况，以降低飞行风险。</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明实施例的第一方面提供了一种基于气象观测的低空飞行器结冰预警方法，所述方法包括：</div>
+<div class="description-paragraph" id="p0009">获取低空飞行器同一时期的历史气象数据、历史飞行数据、飞行器自身数据以及积冰情况，所述历史气象数据包括温度、湿度、风速、风向、气压、降水类型以及云层相对位置，历史飞行数据包括飞行高度、飞行速度以及飞行时间，所述飞行器自身数据包括材质和表面特性，所述积冰情况包括积冰部件、积冰厚度和积冰类型；</div>
+<div class="description-paragraph" id="p0010">根据积冰部件的划分，分别建立对应的神经网络模型，并分别进行训练，得到对应的目标神经网络模型，具体的，将历史气象数据、历史飞行数据以及飞行器自身数据作为所述神经网络模型的输入，将间隔预设时间的积冰厚度和积冰类型作为所述神经网络模型的输出；</div>
+<div class="description-paragraph" id="p0011">实时获取低空飞行器采集的气象数据、飞行数据以及飞行器自身数据，分别输入至各积冰部件对应的目标神经网络模型中，输出对应的积冰厚度和积冰类型；</div>
+<div class="description-paragraph" id="p0012">根据目标神经网络模型的输出结果，判断预设积冰部件是否达到预警标准；</div>
+<div class="description-paragraph" id="p0013">若判断预设积冰部件达到预警标准，则进行第一预警；</div>
+<div class="description-paragraph" id="p0014">若判断预设积冰部件未达到预警标准，则根据各积冰部件的积冰厚度和积冰类型，进行加权处理，得到评价值；</div>
+<div class="description-paragraph" id="p0015">判断所述评价值是否大于阈值；</div>
+<div class="description-paragraph" id="p0016">若判断所述评价值大于阈值，则进行第二预警。</div>
+<div class="description-paragraph" id="p0017" num="0006">进一步的，所述方法还包括：</div>
+<div class="description-paragraph" id="p0018">获取初始规划路径，根据预警情况，调整所述初始规划路径。</div>
+<div class="description-paragraph" id="p0019" num="0007">进一步的，所述获取初始规划路径，根据预警情况，调整所述初始规划路径的步骤包括：</div>
+<div class="description-paragraph" id="p0020">获取当前低空飞行器飞行位置的三维卫星云图，确定三维卫星云图中有利于缓解结冰的目标区域；</div>
+<div class="description-paragraph" id="p0021">当预警情况为所述第一预警时，则根据距离当前低空飞行器飞行位置最近的第一目标区域，规划低空飞行器驶入所述第一目标区域的第一飞行路径，并根据所述第一飞行路径，调整所述初始规划路径；</div>
+<div class="description-paragraph" id="p0022">当预警情况为所述第二预警时，则根据所述三维卫星云图，修正气象预测数据，并根据修正后的气象预测数据生成目标三维卫星云图，规划低空飞行器偏离所述初始规划路径程度最小的第二飞行路径，并根据所述第二飞行路径，调整所述初始规划路径。</div>
+<div class="description-paragraph" id="p0023" num="0008">进一步的，所述根据修正后的气象预测数据生成目标三维卫星云图，规划低空飞行器偏离所述初始规划路径程度最小的第二飞行路径的步骤包括：</div>
+<div class="description-paragraph" id="p0024">将所述初始规划路径映射至所述目标三维卫星云图中，并将所述间隔预设时间飞行路径对应的线段从所述初始规划路径中移除，形成缺口；</div>
+<div class="description-paragraph" id="p0025">获取所述间隔预设时间飞行路径对应的预设空间范围中的目标气象预测数据，将所述目标气象预测数据分别输入至各积冰部件对应的目标神经网络模型中，输出对应的预测积冰厚度和预测积冰类型；</div>
+<div class="description-paragraph" id="p0026">根据预测积冰厚度和预测积冰类型，确定目标规划路线；</div>
+<div class="description-paragraph" id="p0027">将所述目标规划路线对应的线段合并至所述缺口处，得到所述第二飞行路径。</div>
+<div class="description-paragraph" id="p0028" num="0009">进一步的，所述根据预测积冰厚度和预测积冰类型，确定目标规划路线的步骤包括：</div>
+<div class="description-paragraph" id="p0029">根据积冰部件的重要程度，以及积冰部件对应的预测积冰厚度和预测积冰类型，确定预测积冰厚度和预测积冰类型满足要求的，且在所述预设空间范围中的第二目标区域；</div>
+<div class="description-paragraph" id="p0030">在所述第二目标区域中，确定低空飞行器的最短飞行路线为所述目标规划路线。</div>
+<div class="description-paragraph" id="p0031" num="0010">进一步的，所述神经网络模型由输入层、隐藏层和输出层构成，所述输入层包含若干输入节点，输入节点数量与输入数据种类数相同，用于接收不同类型的输入数据；</div>
+<div class="description-paragraph" id="p0032">所述隐藏层由五个子层组成，第一隐藏子层有64个节点，通过LeakyReLU函数对输入数据进行特征提取，找出与输出结果相关的关键特征，第二隐藏子层和第三隐藏子层各有128个节点，运用Sigmoid函数，进一步挖掘第一隐藏子层输出数据的特征，捕捉节点间的内在联系，第四隐藏子层和第五隐藏子层各含64个节点，借助ReLU激活函数，对第三隐藏子层输出的数据特征做二次处理；</div>
+<div class="description-paragraph" id="p0033">所述输出层设有若干输出节点，输出节点数量与输出数据种类数对应，所述输出层采用线性激活函数，输出最终的预测结果。</div>
+<div class="description-paragraph" id="p0034" num="0011">进一步的，所述根据各积冰部件的积冰厚度和积冰类型，进行加权处理，得到评价值的步骤中，加权处理的表达式为：</div>
+<div class="description-paragraph" id="p0035">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0036" num="0012">其中，P表示评价值，<span class="patent-image-not-available"></span>表示第k个积冰部件的权重系数，<span class="patent-image-not-available"></span>表示第k个积冰部件根据积冰厚度和积冰类型确定的分数值。</div>
+<div class="description-paragraph" id="p0037" num="0013">本发明实施例的第二方面提供了一种基于气象观测的低空飞行器结冰预警系统，用于实现第一方面所述的基于气象观测的低空飞行器结冰预警方法，所述系统包括：</div>
+<div class="description-paragraph" id="p0038">第一获取模块，用于获取低空飞行器同一时期的历史气象数据、历史飞行数据、飞行器自身数据以及积冰情况，所述历史气象数据包括温度、湿度、风速、风向、气压、降水类型以及云层相对位置，历史飞行数据包括飞行高度、飞行速度以及飞行时间，所述飞行器自身数据包括材质和表面特性，所述积冰情况包括积冰部件、积冰厚度和积冰类型；</div>
+<div class="description-paragraph" id="p0039">模型训练模块，用于根据积冰部件的划分，分别建立对应的神经网络模型，并分别进行训练，得到对应的目标神经网络模型，具体的，将历史气象数据、历史飞行数据以及飞行器自身数据作为所述神经网络模型的输入，将间隔预设时间的积冰厚度和积冰类型作为所述神经网络模型的输出；</div>
+<div class="description-paragraph" id="p0040">第二获取模块，用于实时获取低空飞行器采集的气象数据、飞行数据以及飞行器自身数据，分别输入至各积冰部件对应的目标神经网络模型中，输出对应的积冰厚度和积冰类型；</div>
+<div class="description-paragraph" id="p0041">第一判断模块，用于根据目标神经网络模型的输出结果，判断预设积冰部件是否达到预警标准；</div>
+<div class="description-paragraph" id="p0042">第一预警模块，用于若判断预设积冰部件达到预警标准，则进行第一预警；</div>
+<div class="description-paragraph" id="p0043">加权处理模块，用于若判断预设积冰部件未达到预警标准，则根据各积冰部件的积冰厚度和积冰类型，进行加权处理，得到评价值；</div>
+<div class="description-paragraph" id="p0044">第二判断模块，用于判断所述评价值是否大于阈值；</div>
+<div class="description-paragraph" id="p0045">第二预警模块，用于若判断所述评价值大于阈值，则进行第二预警。</div>
+<div class="description-paragraph" id="p0046" num="0014">本发明实施例的第三方面提供了一种计算机可读存储介质，其上存储有计算机程序，该程序被处理器执行时实现第一方面提供的基于气象观测的低空飞行器结冰预警方法。</div>
+<div class="description-paragraph" id="p0047" num="0015">本发明实施例的第四方面提供了一种电子设备，包括存储器、处理器以及存储在存储器上并可在处理器上运行的计算机程序，所述处理器执行所述程序时实现第一方面提供的基于气象观测的低空飞行器结冰预警方法。</div>
+<div class="description-paragraph" id="p0048" num="0016">本发明实施例当中提供的一种基于气象观测的低空飞行器结冰预警方法及系统，该方法通过获取低空飞行器同一时期的历史气象数据、历史飞行数据、飞行器自身数据以及积冰情况；根据积冰部件的划分，分别建立对应的神经网络模型，并分别进行训练，得到对应的目标神经网络模型；实时获取低空飞行器采集的气象数据、飞行数据以及飞行器自身数据，分别输入至各积冰部件对应的目标神经网络模型中，输出对应的积冰厚度和积冰类型；根据目标神经网络模型的输出结果，判断预设积冰部件是否达到预警标准；若是，则进行第一预警；若否，则根据各积冰部件的积冰厚度和积冰类型，进行加权处理，得到评价值；判断评价值是否大于阈值；若判断评价值大于阈值，则进行第二预警，具体的，通过评估飞行器的结冰情况，可以有效降低飞行风险。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0049">附图说明</div>
+<div class="description-paragraph" id="p0050" num="0017">图1为本发明实施例一提供的一种基于气象观测的低空飞行器结冰预警方法的实现流程图；</div>
+<div class="description-paragraph" id="p0051">图2为本发明实施例二提供的一种基于气象观测的低空飞行器结冰预警系统的结构框图；</div>
+<div class="description-paragraph" id="p0052">图3为本发明实施例三提供的一种电子设备的结构框图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0053">具体实施方式</div>
+<div class="description-paragraph" id="p0054" num="0018">为了便于理解本发明，下面将参照相关附图对本发明进行更全面的描述。附图中给出了本发明的若干实施例。但是，本发明可以以许多不同的形式来实现，并不限于本文所描述的实施例。相反地，提供这些实施例的目的是使对本发明的公开内容更加透彻全面。</div>
+<div class="description-paragraph" id="p0055" num="0019">需要说明的是，当元件被称为“固设于”另一个元件，它可以直接在另一个元件上或者也可以存在居中的元件。当一个元件被认为是“连接”另一个元件，它可以是直接连接到另一个元件或者可能同时存在居中元件。本文所使用的术语“垂直的”、“水平的”、“左”、“右”以及类似的表述只是为了说明的目的。</div>
+<div class="description-paragraph" id="p0056" num="0020">除非另有定义，本文所使用的所有的技术和科学术语与属于本发明的技术领域的技术人员通常理解的含义相同。本文中在本发明的说明书中所使用的术语只是为了描述具体的实施例的目的，不是旨在于限制本发明。本文所使用的术语“及／或”包括一个或多个相关的所列项目的任意的和所有的组合。</div>
+<div class="description-paragraph" id="p0057" num="0021">实施例一</div>
+<div class="description-paragraph" id="p0058">根据本发明实施例，提供了一种基于气象观测的低空飞行器结冰预警方法实施例，需要说明的是，在附图的流程图示出的步骤可以在诸如一组计算机可执行指令的计算机系统中执行，并且，虽然在流程图中示出了逻辑顺序，但是在某些情况下，可以以不同于此处的顺序执行所示出或描述的步骤。</div>
+<div class="description-paragraph" id="p0059" num="0022">在本实施例一中提供了一种基于气象观测的低空飞行器结冰预警方法，可用于电子设备中，如计算机中。请参阅图1，图1示出了本发明实施例一提供的一种基于气象观测的低空飞行器结冰预警方法的实现流程图，具体包括步骤S01至步骤S08。</div>
+<div class="description-paragraph" id="p0060" num="0023">步骤S01，获取低空飞行器同一时期的历史气象数据、历史飞行数据、飞行器自身数据以及积冰情况。</div>
+<div class="description-paragraph" id="p0061" num="0024">具体的，历史气象数据包括温度、湿度、风速、风向、气压、降水类型以及云层相对位置，历史飞行数据包括飞行高度、飞行速度以及飞行时间，飞行器自身数据包括材质和表面特性，积冰情况包括积冰部件、积冰厚度和积冰类型，需要说明的是，上述的数据对低空飞行器的结冰均有不同程度的影响。</div>
+<div class="description-paragraph" id="p0062" num="0025">其中，对于温度来说，机体表面结冰通常发生于0℃至-20℃温度范围内，而强结冰多发生于-2℃至-10℃；对于湿度、气压来说，当云中的空气湿度达到温度露点差在0℃至5℃之间时，更容易发生结冰；对于风速、风向来说，可以结合飞机的飞行速度，当相对速度较大时，飞行器与过冷水滴的碰撞频率和能量增加，过冷水滴更容易在飞行器表面附着并迅速冻结；对于降水类型来说，在冻雨、毛毛雨天气中，外界温度在0℃以下时，过冷状态的雨滴一旦与飞行器接触便容易结冰。在雨夹雪的环境中，雪花与过冷水滴同时存在，也会增加飞行器结冰的可能性；对于云层相对位置来说，当飞行穿越积雨云或浓积云的上方时，机体表面通常会出现强结冰；而穿越层云或层积云时，通常发生弱积冰或中积冰；对于飞行高度来说，在1500米到3000米高度，是常见的结冰高发区域；对于材质和表面特性来说，飞行器表面如果是导热性好的金属材质，在低温环境下更容易使表面温度快速降低，促使水汽凝结结冰。若表面粗糙不平，会增加过冷水滴的附着概率，也更容易结冰。</div>
+<div class="description-paragraph" id="p0063" num="0026">另外，根据积冰部件的功能和位置的不同，积冰效果也存在差异，例如，直升机的旋翼等转动部件，由于转动过程中与空气的热交换以及复杂的气流情况，比固定部件更容易出现结冰情况。发动机进气口、空速管、风挡玻璃、天线等突出部位，也因更容易与过冷水滴接触而容易结冰。</div>
+<div class="description-paragraph" id="p0064" num="0027">上述的数据均由低空飞行器上搭载的各类传感器收集得到，示例性的，积冰厚度以及云层相对位置等可以通过在飞行器上安装视觉传感器，如摄像头等，拍摄飞行器表面的图像。通过图像识别技术，对图像中的积冰区域进行分析和处理。</div>
+<div class="description-paragraph" id="p0065" num="0028">在本发明其他一些实施例当中，还可以借鉴高山气象站积冰观测资料以及风、湿、温、压等气象数据。</div>
+<div class="description-paragraph" id="p0066" num="0029">步骤S02，根据积冰部件的划分，分别建立对应的神经网络模型，并分别进行训练，得到对应的目标神经网络模型。</div>
+<div class="description-paragraph" id="p0067" num="0030">其中，将历史气象数据、历史飞行数据以及飞行器自身数据作为所述神经网络模型的输入，将间隔预设时间的积冰厚度和积冰类型作为所述神经网络模型的输出。在数据输入神经网络模型之前，可以进行数据预处理，包括缺失值处理（插值法）、异常值剔除（基于物理约束）、特征工程（Z-score归一化）以及标准化（Z-score归一化）等。</div>
+<div class="description-paragraph" id="p0068" num="0031">在本实施例当中，神经网络模型由输入层、隐藏层和输出层构成，输入层包含若干输入节点，输入节点数量与输入数据种类数相同，用于接收不同类型的输入数据；</div>
+<div class="description-paragraph" id="p0069">隐藏层由五个子层组成，第一隐藏子层有64个节点，通过LeakyReLU函数对输入数据进行特征提取，找出与输出结果相关的关键特征，第二隐藏子层和第三隐藏子层各有128个节点，运用Sigmoid函数，进一步挖掘第一隐藏子层输出数据的特征，捕捉节点间的内在联系，第四隐藏子层和第五隐藏子层各含64个节点，借助ReLU激活函数，对第三隐藏子层输出的数据特征做二次处理；</div>
+<div class="description-paragraph" id="p0070">输出层设有若干输出节点，输出节点数量与输出数据种类数对应，输出层采用线性激活函数，输出最终的预测结果。</div>
+<div class="description-paragraph" id="p0071" num="0032">具体的，取随机打乱后数据集样本中的80%用作训练集样本，另外的20%用作测试集样本，其中，隐藏层和输出层的神经元公式可以表示为：</div>
+<div class="description-paragraph" id="p0072">第一隐藏子层：</div>
+<div class="description-paragraph" id="p0073">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0074" num="0033">第二隐藏子层：</div>
+<div class="description-paragraph" id="p0075">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0076" num="0034">第三隐藏子层：</div>
+<div class="description-paragraph" id="p0077">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0078" num="0035">第四隐藏子层：</div>
+<div class="description-paragraph" id="p0079">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0080" num="0036">第五隐藏子层：</div>
+<div class="description-paragraph" id="p0081">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0082" num="0037">输出层：</div>
+<div class="description-paragraph" id="p0083">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0084" num="0038">其中，x<sub>j</sub>和y<sub>i</sub>分别表示输入层的第j个节点和输出层的第i个节点，<span class="patent-image-not-available"></span>表示连接第<span class="patent-image-not-available"></span>层第j个节点和输出层第i个节点的权重，<span class="patent-image-not-available"></span>表示第<span class="patent-image-not-available"></span>层第i个节点的偏置项，示例性的，<span class="patent-image-not-available"></span>表示为第一隐藏子层的第i个神经元，<span class="patent-image-not-available"></span>表示为第二隐藏子层的第i个神经元，<span class="patent-image-not-available"></span>表示为第三隐藏子层的第i个神经元，<span class="patent-image-not-available"></span>表示为第四隐藏子层的第i个神经元，<span class="patent-image-not-available"></span>表示为第五隐藏子层的第i个神经元，同理，<span class="patent-image-not-available"></span>表示为第一隐藏子层的第j个神经元，<span class="patent-image-not-available"></span>表示为第二隐藏子层的第j个神经元，<span class="patent-image-not-available"></span>表示为第三隐藏子层的第j个神经元，<span class="patent-image-not-available"></span>表示为第四隐藏子层的第j个神经元，<span class="patent-image-not-available"></span>表示为第五隐藏子层的第j个神经元。LeakyReLU、Sigmoid以及ReLU为激活函数。</div>
+<div class="description-paragraph" id="p0085" num="0039">步骤S03，实时获取低空飞行器采集的气象数据、飞行数据以及飞行器自身数据，分别输入至各积冰部件对应的目标神经网络模型中，输出对应的积冰厚度和积冰类型。</div>
+<div class="description-paragraph" id="p0086" num="0040">步骤S04，根据目标神经网络模型的输出结果，判断预设积冰部件是否达到预警标准，若是，则执行步骤S05，若否，则执行步骤S06。</div>
+<div class="description-paragraph" id="p0087" num="0041">可以理解的，预设积冰部件可以包括关键气动部件、动力系统相关部件以及传感器部件等，示例性的，发动机进气口、螺旋桨等动力系统部件积冰，会影响发动机的正常工作，导致动力下降、振动增大等问题，一旦发现这些部位有积冰迹象，哪怕只是少量积冰，也应及时预警。</div>
+<div class="description-paragraph" id="p0088" num="0042">步骤S05，则进行第一预警。</div>
+<div class="description-paragraph" id="p0089" num="0043">其中，可以通过声音警报和字幕滚动的方式，提醒飞行员将可能会结冰，请注意采取安全防范措施。</div>
+<div class="description-paragraph" id="p0090" num="0044">步骤S06，则根据各积冰部件的积冰厚度和积冰类型，进行加权处理，得到评价值。</div>
+<div class="description-paragraph" id="p0091" num="0045">具体的，加权处理的表达式为：</div>
+<div class="description-paragraph" id="p0092">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0093" num="0046">其中，P表示评价值，<span class="patent-image-not-available"></span>表示第k个积冰部件的权重系数，<span class="patent-image-not-available"></span>表示第k个积冰部件根据积冰厚度和积冰类型确定的分数值，需要说明的是，越关键的积冰部件的权重系数越大，另外，建立各积冰部件的积冰厚度和积冰类型与分数值的映射关系，以根据映射关系确定分数值。</div>
+<div class="description-paragraph" id="p0094" num="0047">步骤S07，判断所述评价值是否大于阈值，若是，则执行步骤S08。</div>
+<div class="description-paragraph" id="p0095" num="0048">步骤S08，则进行第二预警。</div>
+<div class="description-paragraph" id="p0096" num="0049">同样可以通过声音警报和字幕滚动的方式，提醒飞行员可能会结冰，请注意采取安全防范措施。在本发明其他一些实施例当中，在进行预警后，可以更为智能帮助用户规划飞行路径，以进一步降低飞行风险，具体的，获取初始规划路径，根据预警情况，调整该初始规划路径，其中，初始规划路径是根据气象数据、飞行距离以及地势等综合考量的结果，需要说明的是，获取当前低空飞行器飞行位置的三维卫星云图，确定三维卫星云图中有利于缓解结冰的目标区域，其中，三维卫星云图是基于体渲染等技术实现的，目前的云幻（CloudFantasy）系统已具备该功能，由于三维卫星云图是根据气象数据渲染完成的，那么可以获取到当前低空飞行器飞行位置周围的气象数据，再将该气象数据输入目标神经网络中，从而可以确定三维卫星云图中有利于缓解结冰的目标区域；</div>
+<div class="description-paragraph" id="p0097">当预警情况为第一预警时，说明气象变化急剧，情况比较紧急，需要迅速避险，则根据距离当前低空飞行器飞行位置最近的第一目标区域，规划低空飞行器驶入第一目标区域的第一飞行路径，并根据第一飞行路径，调整初始规划路径；</div>
+<div class="description-paragraph" id="p0098">当预警情况为第二预警时，说明存在潜在风险，适应性调整路径即可，则根据三维卫星云图，修正气象预测数据，并根据修正后的气象预测数据生成目标三维卫星云图，规划低空飞行器偏离初始规划路径程度最小的第二飞行路径，并根据第二飞行路径，调整初始规划路径，可以理解的，获取的是实时的三维卫星云图，也即气象数据的准确度较高，通过准确度较高的气象数据修正之前预测的气象数据，以此获得修正后的较为准确的目标三维卫星云图。</div>
+<div class="description-paragraph" id="p0099" num="0050">具体的，将初始规划路径映射至目标三维卫星云图中，并将间隔预设时间飞行路径对应的线段从初始规划路径中移除，形成缺口；</div>
+<div class="description-paragraph" id="p0100">获取间隔预设时间飞行路径对应的预设空间范围中的目标气象预测数据，将目标气象预测数据分别输入至各积冰部件对应的目标神经网络模型中，输出对应的预测积冰厚度和预测积冰类型，可以理解的，预设空间范围指的是以间隔预设时间飞行路径对应的线段为基准，在高度上进行扩展，得到的矩形、球形等空间范围，目标气象预测数据则是根据目标三维卫星云图获取的；</div>
+<div class="description-paragraph" id="p0101">根据预测积冰厚度和预测积冰类型，确定目标规划路线，其中，根据积冰部件的重要程度，以及积冰部件对应的预测积冰厚度和预测积冰类型，确定预测积冰厚度和预测积冰类型满足要求的，且在预设空间范围中的第二目标区域，示例性的，若存在a、b、c、d、e、f、g这7个积冰部件，其中，a、b、c为关键积冰部件，d、e、f、g为普通积冰部件，根据a、b、c的重要等级，依次在预设空间范围内剔除不满足要求的位置点，不满足要求可以理解为积冰类型不满足、积冰厚度超标等，在剔除不满足要求的位置点后的预设空间范围内，确定d、e、f、g这四个普通积冰部件均满足要求的位置点，并将该位置点合并，形成第二目标区域；</div>
+<div class="description-paragraph" id="p0102">在第二目标区域中，确定低空飞行器的最短飞行路线为目标规划路线；</div>
+<div class="description-paragraph" id="p0103">将目标规划路线对应的线段合并至缺口处，得到第二飞行路径。</div>
+<div class="description-paragraph" id="p0104" num="0051">综上，本发明上述实施例当中的基于气象观测的低空飞行器结冰预警方法，该方法通过获取低空飞行器同一时期的历史气象数据、历史飞行数据、飞行器自身数据以及积冰情况；根据积冰部件的划分，分别建立对应的神经网络模型，并分别进行训练，得到对应的目标神经网络模型；实时获取低空飞行器采集的气象数据、飞行数据以及飞行器自身数据，分别输入至各积冰部件对应的目标神经网络模型中，输出对应的积冰厚度和积冰类型；根据目标神经网络模型的输出结果，判断预设积冰部件是否达到预警标准；若是，则进行第一预警；若否，则根据各积冰部件的积冰厚度和积冰类型，进行加权处理，得到评价值；判断评价值是否大于阈值；若判断评价值大于阈值，则进行第二预警，具体的，通过评估飞行器的结冰情况，可以有效降低飞行风险。</div>
+<div class="description-paragraph" id="p0105" num="0052">实施例二</div>
+<div class="description-paragraph" id="p0106">请参阅图2，图2是本发明实施例二提供的一种基于气象观测的低空飞行器结冰预警系统的结构框图，该基于气象观测的低空飞行器结冰预警系统200用于实现上述实施例及优选实施方式，已经进行过说明的不再赘述。如以下所使用的，术语“模块”可以实现预定功能的软件和/或硬件的组合。尽管以下实施例所描述的装置较佳地以软件来实现，但是硬件，或者软件和硬件的组合的实现也是可能并被构想的。</div>
+<div class="description-paragraph" id="p0107" num="0053">具体的，所述基于气象观测的低空飞行器结冰预警系统200包括：第一获取模块21、模型训练模块22、第二获取模块23、第一判断模块24、第一预警模块25、加权处理模块26、第二判断模块27以及第二预警模块28，其中：</div>
+<div class="description-paragraph" id="p0108">第一获取模块21，用于获取低空飞行器同一时期的历史气象数据、历史飞行数据、飞行器自身数据以及积冰情况，所述历史气象数据包括温度、湿度、风速、风向、气压、降水类型以及云层相对位置，历史飞行数据包括飞行高度、飞行速度以及飞行时间，所述飞行器自身数据包括材质和表面特性，所述积冰情况包括积冰部件、积冰厚度和积冰类型；</div>
+<div class="description-paragraph" id="p0109">模型训练模块22，用于根据积冰部件的划分，分别建立对应的神经网络模型，并分别进行训练，得到对应的目标神经网络模型，具体的，将历史气象数据、历史飞行数据以及飞行器自身数据作为所述神经网络模型的输入，将间隔预设时间的积冰厚度和积冰类型作为所述神经网络模型的输出，所述神经网络模型由输入层、隐藏层和输出层构成，所述输入层包含若干输入节点，输入节点数量与输入数据种类数相同，用于接收不同类型的输入数据；</div>
+<div class="description-paragraph" id="p0110">所述隐藏层由五个子层组成，第一隐藏子层有64个节点，通过LeakyReLU函数对输入数据进行特征提取，找出与输出结果相关的关键特征，第二隐藏子层和第三隐藏子层各有128个节点，运用Sigmoid函数，进一步挖掘第一隐藏子层输出数据的特征，捕捉节点间的内在联系，第四隐藏子层和第五隐藏子层各含64个节点，借助ReLU激活函数，对第三隐藏子层输出的数据特征做二次处理；</div>
+<div class="description-paragraph" id="p0111">所述输出层设有若干输出节点，输出节点数量与输出数据种类数对应，所述输出层采用线性激活函数，输出最终的预测结果；</div>
+<div class="description-paragraph" id="p0112">第二获取模块23，用于实时获取低空飞行器采集的气象数据、飞行数据以及飞行器自身数据，分别输入至各积冰部件对应的目标神经网络模型中，输出对应的积冰厚度和积冰类型；</div>
+<div class="description-paragraph" id="p0113">第一判断模块24，用于根据目标神经网络模型的输出结果，判断预设积冰部件是否达到预警标准；</div>
+<div class="description-paragraph" id="p0114">第一预警模块25，用于若判断预设积冰部件达到预警标准，则进行第一预警；</div>
+<div class="description-paragraph" id="p0115">加权处理模块26，用于若判断预设积冰部件未达到预警标准，则根据各积冰部件的积冰厚度和积冰类型，进行加权处理，得到评价值，加权处理的表达式为：</div>
+<div class="description-paragraph" id="p0116">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0117" num="0054">其中，P表示评价值，<span class="patent-image-not-available"></span>表示第k个积冰部件的权重系数，<span class="patent-image-not-available"></span>表示第k个积冰部件根据积冰厚度和积冰类型确定的分数值；</div>
+<div class="description-paragraph" id="p0118">第二判断模块27，用于判断所述评价值是否大于阈值；</div>
+<div class="description-paragraph" id="p0119">第二预警模块28，用于若判断所述评价值大于阈值，则进行第二预警。</div>
+<div class="description-paragraph" id="p0120" num="0055">进一步的，在本发明一些可选实施例当中，所述基于气象观测的低空飞行器结冰预警系统200还包括：</div>
+<div class="description-paragraph" id="p0121">调整模块，用于获取初始规划路径，根据预警情况，调整所述初始规划路径。</div>
+<div class="description-paragraph" id="p0122" num="0056">进一步的，在本发明一些可选实施例当中，所述调整模块包括：</div>
+<div class="description-paragraph" id="p0123">获取单元，用于获取当前低空飞行器飞行位置的三维卫星云图，确定三维卫星云图中有利于缓解结冰的目标区域；</div>
+<div class="description-paragraph" id="p0124">第一调整单元，用于当预警情况为所述第一预警时，则根据距离当前低空飞行器飞行位置最近的第一目标区域，规划低空飞行器驶入所述第一目标区域的第一飞行路径，并根据所述第一飞行路径，调整所述初始规划路径；</div>
+<div class="description-paragraph" id="p0125">第二调整单元，用于当预警情况为所述第二预警时，则根据所述三维卫星云图，修正气象预测数据，并根据修正后的气象预测数据生成目标三维卫星云图，规划低空飞行器偏离所述初始规划路径程度最小的第二飞行路径，并根据所述第二飞行路径，调整所述初始规划路径。</div>
+<div class="description-paragraph" id="p0126" num="0057">进一步的，在本发明一些可选实施例当中，所述第二调整单元包括：</div>
+<div class="description-paragraph" id="p0127">映射子单元，用于将所述初始规划路径映射至所述目标三维卫星云图中，并将所述间隔预设时间飞行路径对应的线段从所述初始规划路径中移除，形成缺口；</div>
+<div class="description-paragraph" id="p0128">获取子单元，用于获取所述间隔预设时间飞行路径对应的预设空间范围中的目标气象预测数据，将所述目标气象预测数据分别输入至各积冰部件对应的目标神经网络模型中，输出对应的预测积冰厚度和预测积冰类型；</div>
+<div class="description-paragraph" id="p0129">确定子单元，用于根据预测积冰厚度和预测积冰类型，确定目标规划路线，具体的，根据积冰部件的重要程度，以及积冰部件对应的预测积冰厚度和预测积冰类型，确定预测积冰厚度和预测积冰类型满足要求的，且在所述预设空间范围中的第二目标区域；</div>
+<div class="description-paragraph" id="p0130">在所述第二目标区域中，确定低空飞行器的最短飞行路线为所述目标规划路线；</div>
+<div class="description-paragraph" id="p0131">合并子单元，用于将所述目标规划路线对应的线段合并至所述缺口处，得到所述第二飞行路径。</div>
+<div class="description-paragraph" id="p0132" num="0058">实施例三</div>
+<div class="description-paragraph" id="p0133">本发明另一方面还提出一种电子设备，请参阅图3，所示为本发明实施例三当中的电子设备，包括存储器20、处理器10以及存储在存储器上并可在处理器上运行的计算机程序30，所述处理器10执行所述计算机程序30时实现如上述的基于气象观测的低空飞行器结冰预警方法。</div>
+<div class="description-paragraph" id="p0134" num="0059">其中，处理器10在一些实施例中可以是中央处理器（CentralProcessingUnit,CPU）、控制器、微控制器、微处理器或其他数据处理芯片，用于运行存储器20中存储的程序代码或处理数据，例如执行访问限制程序等。</div>
+<div class="description-paragraph" id="p0135" num="0060">其中，存储器20至少包括一种类型的可读存储介质，所述可读存储介质包括闪存、硬盘、多媒体卡、卡型存储器（例如，SD或DX存储器等）、磁性存储器、磁盘、光盘等。存储器20在一些实施例中可以是电子设备的内部存储单元，例如该电子设备的硬盘。存储器20在另一些实施例中也可以是电子设备的外部存储装置，例如电子设备上配备的插接式硬盘，智能存储卡（SmartMediaCard,SMC），安全数字（SecureDigital,SD）卡，闪存卡（FlashCard）等。进一步地，存储器20还可以既包括电子设备的内部存储单元也包括外部存储装置。存储器20不仅可以用于存储电子设备的应用软件及各类数据，还可以用于暂时地存储已经输出或者将要输出的数据。</div>
+<div class="description-paragraph" id="p0136" num="0061">需要指出的是，图3示出的结构并不构成对电子设备的限定，在其它实施例当中，该电子设备可以包括比图示更少或者更多的部件，或者组合某些部件，或者不同的部件布置。</div>
+<div class="description-paragraph" id="p0137" num="0062">本发明实施例还提出一种计算机可读存储介质，其上存储有计算机程序，该程序被处理器执行时实现如上述的基于气象观测的低空飞行器结冰预警方法。</div>
+<div class="description-paragraph" id="p0138" num="0063">本领域技术人员可以理解，在流程图中表示或在此以其他方式描述的逻辑和/或步骤，例如，可以被认为是用于实现逻辑功能的可执行指令的定序列表，可以具体实现在任何计算机可读介质中，以供指令执行系统、装置或设备（如基于计算机的系统、包括处理器的系统或其他可以从指令执行系统、装置或设备取指令并执行指令的系统）使用，或结合这些指令执行系统、装置或设备而使用。就本说明书而言，“计算机可读介质”可以是任何可以包含、存储、通信、传播或传输程序以供指令执行系统、装置或设备或结合这些指令执行系统、装置或设备而使用的装置。</div>
+<div class="description-paragraph" id="p0139" num="0064">计算机可读介质的更具体的示例（非穷尽性列表）包括以下：具有一个或多个布线的电连接部（电子装置），便携式计算机盘盒（磁装置），随机存取存储器（RAM），只读存储器（ROM），可擦除可编辑只读存储器（EPROM或闪速存储器），光纤装置，以及便携式光盘只读存储器（CDROM）。另外，计算机可读介质甚至可以是可在其上打印所述程序的纸或其他合适的介质，因为可以例如通过对纸或其他介质进行光学扫描，接着进行编辑、解译或必要时以其他合适方式进行处理来以电子方式获得所述程序，然后将其存储在计算机存储器中。</div>
+<div class="description-paragraph" id="p0140" num="0065">应当理解，本发明的各部分可以用硬件、软件、固件或它们的组合来实现。在上述实施方式中，多个步骤或方法可以用存储在存储器中且由合适的指令执行系统执行的软件或固件来实现。例如，如果用硬件来实现，和在另一实施方式中一样，可用本领域公知的下列技术中的任一项或它们的组合来实现：具有用于对数据信号实现逻辑功能的逻辑门电路的离散逻辑电路，具有合适的组合逻辑门电路的专用集成电路，可编程门阵列（PGA），现场可编程门阵列（FPGA）等。</div>
+<div class="description-paragraph" id="p0141" num="0066">在本说明书的描述中，参考术语“一个实施例”、“一些实施例”、“示例”、“具体示例”、或“一些示例”等的描述意指结合该实施例或示例描述的具体特征、结构、材料或者特点包含于本发明的至少一个实施例或示例中。在本说明书中，对上述术语的示意性表述不一定指的是相同的实施例或示例。而且，描述的具体特征、结构、材料或者特点可以在任何的一个或多个实施例或示例中以合适的方式结合。</div>
+<div class="description-paragraph" id="p0142" num="0067">以上实施例仅表达了本发明的几种实施方式，其描述较为具体和详细，但并不能因此而理解为对本发明专利范围的限制。应当指出的是，对于本领域的普通技术人员来说，在不脱离本发明构思的前提下，还可以做出若干变形和改进，这些都属于本发明的保护范围。因此，本发明专利的保护范围应以所附权利要求为准。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

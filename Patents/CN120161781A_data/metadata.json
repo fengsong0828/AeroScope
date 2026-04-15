@@ -1,0 +1,109 @@
+{
+    "patent_id": "CN120161781A",
+    "title": "CN120161781A - 一种面向地效基于自抗扰的旋翼低空飞行器控制方法 - Google Patents",
+    "status": "Unknown",
+    "assignee": "Hangzhou Zhiyuan Research Institute Co ltd",
+    "inventor": "",
+    "url": "https://patents.google.com/patent/CN120161781A/zh",
+    "citations": [
+        {
+            "Publication Number": "CN106444826A (zh) *",
+            "Priority Date": "2016-09-07",
+            "Publication Date": "2017-02-22",
+            "Assignee": "广西师范大学",
+            "Title": "四旋翼无人飞行器的飞行控制方法",
+            "Link": "https://patents.google.com/patent/CN106444826A/zh"
+        },
+        {
+            "Publication Number": "CN106347650A (zh) *",
+            "Priority Date": "2016-10-09",
+            "Publication Date": "2017-01-25",
+            "Assignee": "北京理工大学",
+            "Title": "一种纵列双涵道式飞行机器人及其动力学协同控制方法",
+            "Link": "https://patents.google.com/patent/CN106347650A/zh"
+        },
+        {
+            "Publication Number": "CN109856976A (zh) *",
+            "Priority Date": "2019-03-12",
+            "Publication Date": "2019-06-07",
+            "Assignee": "哈尔滨工程大学",
+            "Title": "一种基于自适应交叉粒子群优化的气垫船航迹跟踪自抗扰控制方法",
+            "Link": "https://patents.google.com/patent/CN109856976A/zh"
+        },
+        {
+            "Publication Number": "CN112346470A (zh) *",
+            "Priority Date": "2020-10-29",
+            "Publication Date": "2021-02-09",
+            "Assignee": "中国地质大学（武汉）",
+            "Title": "一种基于改进自抗扰控制的四旋翼姿态控制方法",
+            "Link": "https://patents.google.com/patent/CN112346470A/zh"
+        },
+        {
+            "Publication Number": "CN113093809A (zh) *",
+            "Priority Date": "2021-04-12",
+            "Publication Date": "2021-07-09",
+            "Assignee": "北京理工大学",
+            "Title": "一种复合翼无人机的自抗扰控制器及其建立方法",
+            "Link": "https://patents.google.com/patent/CN113093809A/zh"
+        },
+        {
+            "Publication Number": "CN113359805A (zh) *",
+            "Priority Date": "2021-07-13",
+            "Publication Date": "2021-09-07",
+            "Assignee": "北京航空航天大学",
+            "Title": "基于原鸽多行为智能的无人机抗干扰控制系统及方法",
+            "Link": "https://patents.google.com/patent/CN113359805A/zh"
+        },
+        {
+            "Publication Number": "CN114564038A (zh) *",
+            "Priority Date": "2022-03-24",
+            "Publication Date": "2022-05-31",
+            "Assignee": "中国科学院电工研究所",
+            "Title": "一种基于改进的自抗扰的四旋翼无人机轨迹跟踪控制系统",
+            "Link": "https://patents.google.com/patent/CN114564038A/zh"
+        },
+        {
+            "Publication Number": "CN115993776A (zh) *",
+            "Priority Date": "2022-06-07",
+            "Publication Date": "2023-04-21",
+            "Assignee": "北京理工大学",
+            "Title": "一种基于改进自抗扰的四旋翼前飞解耦的控制方法",
+            "Link": "https://patents.google.com/patent/CN115993776A/zh"
+        },
+        {
+            "Publication Number": "CN115202213A (zh) *",
+            "Priority Date": "2022-08-02",
+            "Publication Date": "2022-10-18",
+            "Assignee": "北京理工大学",
+            "Title": "一种基于自抗扰控制的四旋翼飞行器控制方法",
+            "Link": "https://patents.google.com/patent/CN115202213A/zh"
+        },
+        {
+            "Publication Number": "CN118295439A (zh) *",
+            "Priority Date": "2024-06-06",
+            "Publication Date": "2024-07-05",
+            "Assignee": "西北工业大学",
+            "Title": "一种针对高速飞行器姿态控制的预定性能控制方法",
+            "Link": "https://patents.google.com/patent/CN118295439A/zh"
+        },
+        {
+            "Publication Number": "CN119511829A (zh) *",
+            "Priority Date": "2024-11-01",
+            "Publication Date": "2025-02-25",
+            "Assignee": "中国特种飞行器研究所",
+            "Title": "一种用于地效飞行器地效区内纵向模型的抗扰控制方法",
+            "Link": "https://patents.google.com/patent/CN119511829A/zh"
+        },
+        {
+            "Publication Number": "CN119512187A (zh) *",
+            "Priority Date": "2024-11-04",
+            "Publication Date": "2025-02-25",
+            "Assignee": "杭州智元研究院有限公司",
+            "Title": "一种带航向舵的三涵道飞行器姿态控制方法",
+            "Link": "https://patents.google.com/patent/CN119512187A/zh"
+        }
+    ],
+    "cited_by": [],
+    "similar_documents": [],
+    "last_updated": "2025-12-23 11:07:54"
+}

@@ -1,0 +1,141 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120085678A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES496237675">
+<invention-title id="title1" lang="ZH">一种基于自适应控制的低空飞行器稳定性增强系统</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于飞行器低空控制技术领域，具体的说是一种基于自适应控制的低空飞行器稳定性增强系统。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空飞行器（如无人机、直升机、小型飞机等）在执行任务时，通常面临复杂的飞行环境。与高空飞行相比，低空飞行器更容易受到地形、气流、天气、风速、气流湍流等因素的影响；这些因素往往表现为高频扰动、非线性变化及环境不确定性，严重影响飞行器的飞行稳定性、控制精度以及任务完成效率。在低空飞行过程中，飞行器需要快速应对突发的气流变化、气候条件变化及周围环境的扰动。</div>
+<div class="description-paragraph" id="p0005" num="0003">传统的低空飞行器控制方法，如PID控制、LQR控制等，通常基于飞行器的线性动力学模型进行设计。这些方法在飞行器受扰动较小、飞行环境较为稳定的情况下能表现出较好的控制效果，但当飞行器遇到复杂的气流扰动、地形变化以及非线性因素时，这些传统方法的控制效果往往难以满足要求。尤其是在复杂、动态、非线性的低空飞行环境中，传统控制方法容易出现反应迟钝、精度低，甚至系统失稳的现象。</div>
+<div class="description-paragraph" id="p0006" num="0004">因此，随着飞行器技术的不断发展，特别是在低空飞行的应用场景日益增多（如环境监测、农业喷洒、城市空中运输等），如何提升低空飞行器在复杂飞行环境中的稳定性和控制精度，成为了当前飞行器控制领域的研究热点。现有技术多依赖于扰动补偿、模型参考控制等方式来处理低空飞行中的复杂环境，但这些方法仍然存在一定的局限性，难以应对飞行器动态性能的变化和复杂非线性扰动的实时处理。</div>
+<div class="description-paragraph" id="p0007" num="0005">自适应控制技术能够实时调节控制系统参数，适应系统动态变化和不确定性，在低空飞行器控制中，自适应控制能够根据飞行器在复杂环境中遇到的不同扰动和变化进行参数调整，从而增强系统的鲁棒性和稳定性。然而，现有的自适应控制方法仍然面临诸多挑战，如何快速响应突发扰动、如何处理非线性飞行器动态特性、如何实现多模式飞行器控制等，这些问题亟待解决。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0008">发明内容</div>
+<div class="description-paragraph" id="p0009" num="0006">针对现有技术的不足，本发明提出了一种基于自适应控制的低空飞行器稳定性增强系统，通过设计自适应控制器来实时调整控制策略，从而提升低空飞行器的稳定性，能够有效应对飞行器在不同飞行阶段、不同环境条件下的动态变化，实现对飞行器在低空环境中的精准控制和高效稳定。</div>
+<div class="description-paragraph" id="p0010" num="0007">为实现上述目的，本发明提供如下技术方案：</div>
+<div class="description-paragraph" id="p0011">一种基于自适应控制的低空飞行器稳定性增强系统，包括：数据采集模块、数据处理模块、自适应控制模块和执行模块；</div>
+<div class="description-paragraph" id="p0012">所述数据采集模块，用于实时采集低空飞行器的飞行数据，并对采集的低空飞行器的飞行数据进行预处理；</div>
+<div class="description-paragraph" id="p0013">所述数据处理模块，用于接收来自数据采集模块预处理后的低空飞行器的飞行数据，并对其接收的来自数据采集模块的飞行数据进行处理和分析；</div>
+<div class="description-paragraph" id="p0014">所述自适应控制模块，用于运用自适应控制算法实时调整低空飞行器的控制参数，输出控制指令；</div>
+<div class="description-paragraph" id="p0015">所述执行模块，用于接收来自自适应控制模块的控制指令，并将控制指令转化为实际的动作，调整低空飞行器的飞行姿态和轨迹。</div>
+<div class="description-paragraph" id="p0016" num="0008">具体的，所述数据处理模块包括：扰动感知与分类单元和扰动模型建立单元；</div>
+<div class="description-paragraph" id="p0017">所述扰动感知与分类单元，用于对外部环境扰动进行感知，并对外部扰动进行分类；</div>
+<div class="description-paragraph" id="p0018">所述扰动模型建立单元，用于对飞行器的状态进行估计，并根据外部环境扰动建立扰动源模型，结合飞行器的实时状态，对飞行器飞行风险进行评估。</div>
+<div class="description-paragraph" id="p0019" num="0009">具体的，所述对外部环境扰动进行感知，并对外部扰动进行分类，包括：</div>
+<div class="description-paragraph" id="p0020">根据飞行器所处环境的风速和风向，结合地面风速数据和飞行器的实时飞行轨迹，使用风场建模技术对飞行器周围的风速分布进行实时计算；</div>
+<div class="description-paragraph" id="p0021">对飞行器前方和侧方的气流进行定向感知；</div>
+<div class="description-paragraph" id="p0022">识别地形障碍物和变化的地貌，感知飞行器周围的地形特征。</div>
+<div class="description-paragraph" id="p0023" num="0010">具体的，所述对飞行器的状态进行估计，并根据外部环境扰动建立扰动源模型，结合飞行器的实时状态，对飞行器飞行风险进行评估，包括：</div>
+<div class="description-paragraph" id="p0024">基于预处理后的低空飞行器的飞行数据，使用滤波算法对飞行器的动态状态进行计算，得到飞行器的实时状态；</div>
+<div class="description-paragraph" id="p0025">基于风速感知、气流扰动和地形影响，通过分析历史数据和实时监测的扰动信息，对外部扰动源进行实时建模和识别；</div>
+<div class="description-paragraph" id="p0026">基于建立的扰动源模型，结合飞行器的实时状态，采用基于自适应采样的仿真方法评估外部扰动对飞行器造成的影响。</div>
+<div class="description-paragraph" id="p0027" num="0011">具体的，所述对外部扰动源进行实时建模和识别，包括：</div>
+<div class="description-paragraph" id="p0028">提取扰动数据特征，包括时域特征、频域特征、非线性动态特征和统计学特征；</div>
+<div class="description-paragraph" id="p0029">基于飞行器的实时状态和外部环境的实时数据，采用数据驱动的机器学习方法对扰动源进行建模，得到扰动源模型；</div>
+<div class="description-paragraph" id="p0030">将提取的扰动数据特征输入至扰动源模型中，进行识别与分类。</div>
+<div class="description-paragraph" id="p0031" num="0012">具体的，所述基于建立的扰动源模型，结合飞行器的实时状态，采用基于自适应采样的仿真方法评估外部扰动对飞行器造成的影响，包括：</div>
+<div class="description-paragraph" id="p0032">对飞行器的飞行状态进行灵敏度分析，评估不同扰动源对飞行器状态的敏感程度；</div>
+<div class="description-paragraph" id="p0033">基于对扰动源的识别和分类，采用基于自适应采样的仿真方法对飞行器在不同环境扰动下的行为进行多场景与多模式仿真，评估外部扰动对飞行器造成的影响范围，所述自适应采样的过程中包含采样数据和校验帧，所述校验帧包括采样帧和数据校验帧；</div>
+<div class="description-paragraph" id="p0034">基于飞行器的状态响应、扰动源的强度与持续时间因素，构建多维度的风险评估指标，包括：失稳概率、能量消耗增量和操控性降低指数；</div>
+<div class="description-paragraph" id="p0035">根据评估结果，通过实时计算的风险评估指标，自动触发相应的警告或应急措施。</div>
+<div class="description-paragraph" id="p0036" num="0013">具体的，所述自适应控制模块，包括：模型与期望输出单元、非线性控制与补偿单元和多模式自适应控制单元；</div>
+<div class="description-paragraph" id="p0037">所述模型与期望输出单元，用于建立飞行器的运动模型，并基于需求设计期望输出；</div>
+<div class="description-paragraph" id="p0038">所述非线性控制与补偿单元，用于对飞行器的非线性特征进行控制和补偿；</div>
+<div class="description-paragraph" id="p0039">所述多模式自适应控制单元，用于在不同飞行条件和模式情况下，自适应控制飞行器。</div>
+<div class="description-paragraph" id="p0040" num="0014">具体的，所述建立飞行器的运动模型，并基于需求设计期望输出，包括：</div>
+<div class="description-paragraph" id="p0041">建立飞行器的线性和非线性运动方程，通过飞行器的质量、惯性矩、空气动力学特性等参数，推导出飞行器的运动模型；</div>
+<div class="description-paragraph" id="p0042">定义容忍范围，根据不同的飞行任务设计期望输出。</div>
+<div class="description-paragraph" id="p0043" num="0015">具体的，所述在不同飞行条件和模式情况下，自适应控制飞行器，包括：</div>
+<div class="description-paragraph" id="p0044">通过比较飞行器的实际状态和模型的期望输出，计算控制误差，并对控制误差的动态变化进行分析；</div>
+<div class="description-paragraph" id="p0045">采用自适应增益调节算法，实时调整控制器增益，并自适应修正误差；</div>
+<div class="description-paragraph" id="p0046">基于预处理后的低空飞行器的飞行数据，实时检测飞行器当前的飞行模式，根据不同模式下的飞行任务，自动切换适合的控制策略。</div>
+<div class="description-paragraph" id="p0047" num="0016">与现有技术相比，本发明的有益效果是：</div>
+<div class="description-paragraph" id="p0048">1.本发明提出一种基于自适应控制的低空飞行器稳定性增强系统，自适应控制能够根据飞行器的实时状态以及外部扰动动态调整控制参数，确保飞行器在复杂、动态、非线性的低空飞行环境中保持稳定性。</div>
+<div class="description-paragraph" id="p0049" num="0017">2.本发明提出一种基于自适应控制的低空飞行器稳定性增强系统，通过综合多种传感器数据，实时识别外部扰动的类型、强度以及可能的影响，能够根据扰动源的变化，自动调整控制策略，补偿飞行器因气流扰动、地形影响等因素造成的偏差，使飞行器在整个飞行过程中始终处于稳定的控制状态。</div>
+<div class="description-paragraph" id="p0050" num="0018">3.本发明提出一种基于自适应控制的低空飞行器稳定性增强系统，通过非线性控制和补偿，设计了适应飞行器非线性动态特性的控制策略，处理飞行器在遇到强气流扰动或快速机动时的非线性响应，此外，能够根据飞行任务的不同，自动切换飞行模式（如巡航、机动、下降等），确保飞行器在各种飞行阶段下都能够保持良好的稳定性和控制精度。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0051">附图说明</div>
+<div class="description-paragraph" id="p0052" num="0019">图1为本发明提供的一种基于自适应控制的低空飞行器稳定性增强系统架构图；</div>
+<div class="description-paragraph" id="p0053">图2为本发明提供的数据处理流程图；</div>
+<div class="description-paragraph" id="p0054">图3为本发明提供的自适应采样示意图；</div>
+<div class="description-paragraph" id="p0055">图4为本发明提供的自适应控制流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0056">具体实施方式</div>
+<div class="description-paragraph" id="p0057" num="0020">下面结合具体实施例对本申请进行详细说明。以下实施例将有助于本领域的技术人员进一步理解本申请，但不以任何形式限制本申请。应当指出的是，对本领域的普通技术人员来说，在不脱离本申请构思的前提下，还可以做出若干变形和改进。这些都属于本申请的保护范围。</div>
+<div class="description-paragraph" id="p0058" num="0021">为了使本申请的目的、技术方案及优点更加清楚明白，以下结合附图及实施例，对本申请进行进一步详细说明。应当理解，此处所描述的具体实施例仅用以解释本申请，并不用于限定本申请。</div>
+<div class="description-paragraph" id="p0059" num="0022">需要说明的是，如果不冲突，本申请实施例中的各个特征可以相互结合，均在本申请的保护范围之内。另外，虽然在装置示意图中进行了功能模块划分，在流程图中示出了逻辑顺序，但是在某些情况下，可以以不同于装置中的模块划分，或流程图中的顺序执行所示出或描述的步骤。此外，本申请所采用的“第一”、“第二”、“第三”等字样并不对数据和执行次序进行限定，仅是对功能和作用基本相同的相同项或相似项进行区分。</div>
+<div class="description-paragraph" id="p0060" num="0023">除非另有定义，本说明书所使用的所有的技术和科学术语与属于本申请的技术领域的技术人员通常理解的含义相同。本说明书中在本申请的说明书中所使用的术语只是为了描述具体的实施方式的目的，不是用于限制本申请。本说明书所使用的术语“和/或”包括一个或多个相关的所列项目的任意的和所有的组合。</div>
+<div class="description-paragraph" id="p0061" num="0024">请参阅图1-图4，本发明提供的一种实施例：一种基于自适应控制的低空飞行器稳定性增强系统，包括：数据采集模块、数据处理模块、自适应控制模块和执行模块；</div>
+<div class="description-paragraph" id="p0062">所述数据采集模块，用于实时采集低空飞行器的飞行数据，并对采集的低空飞行器的飞行数据进行预处理；</div>
+<div class="description-paragraph" id="p0063">所述低空飞行器的飞行数据包括飞行器的姿态角（俯仰角、滚转角、偏航角）、加速度、角速度、高度、空速等信息；</div>
+<div class="description-paragraph" id="p0064">还包括：低空环境中的气流状况、飞行器所处低空区域的大气密度、地形和气温等；</div>
+<div class="description-paragraph" id="p0065">所述预处理，如滤波处理，通过去除噪声干扰，保证数据的稳定性和可靠性，为后续的控制算法提供高质量的数据输入。</div>
+<div class="description-paragraph" id="p0066" num="0025">所述数据处理模块，用于接收来自数据采集模块预处理后的低空飞行器的飞行数据，并对其接收的来自数据采集模块的飞行数据进行深度处理和分析；</div>
+<div class="description-paragraph" id="p0067">所述数据处理模块包括：扰动感知与分类单元和扰动模型建立单元；</div>
+<div class="description-paragraph" id="p0068">所述扰动感知与分类单元，用于对外部环境扰动进行感知，并对外部扰动进行分类；</div>
+<div class="description-paragraph" id="p0069">所述对外部环境扰动进行感知，并对外部扰动进行分类，具体步骤包括：</div>
+<div class="description-paragraph" id="p0070">步骤A1：根据飞行器所处环境的风速和风向，结合地面风速数据和飞行器的实时飞行轨迹，使用风场建模技术对飞行器周围的风速分布进行实时计算；</div>
+<div class="description-paragraph" id="p0071">这能帮助识别飞行过程中遇到的风切变或强气流区域，为后续控制策略做出提前预警。</div>
+<div class="description-paragraph" id="p0072" num="0026">步骤A2：对飞行器前方和侧方的气流进行定向感知；</div>
+<div class="description-paragraph" id="p0073">通过气流扰动模型，可以识别由外部因素引起的瞬时气流变化，推算出扰动源的位置和强度，为控制器的反应提供依据。</div>
+<div class="description-paragraph" id="p0074" num="0027">步骤A3：识别地形障碍物和变化的地貌，感知飞行器周围的地形特征。</div>
+<div class="description-paragraph" id="p0075" num="0028">特别是在近地面飞行时，激光雷达可以生成高精度的地面高度图，提前预测飞行路径中的潜在危险。</div>
+<div class="description-paragraph" id="p0076" num="0029">所述扰动模型建立单元，用于对飞行器的状态进行估计，并根据外部环境扰动建立扰动源模型，结合飞行器的实时状态，对飞行器飞行风险进行评估。</div>
+<div class="description-paragraph" id="p0077" num="0030">所述对飞行器的状态进行估计，并根据外部环境扰动建立扰动源模型，结合飞行器的实时状态，对飞行器飞行风险进行评估，具体步骤包括：</div>
+<div class="description-paragraph" id="p0078">步骤B1：基于预处理后的低空飞行器的飞行数据，使用滤波算法对飞行器的动态状态进行计算，得到飞行器的实时状态；</div>
+<div class="description-paragraph" id="p0079">步骤B2：基于风速感知、气流扰动和地形影响，通过分析历史数据和实时监测的扰动信息，对外部扰动源进行实时建模和识别；</div>
+<div class="description-paragraph" id="p0080">步骤B2的具体步骤为：</div>
+<div class="description-paragraph" id="p0081">步骤B21：提取扰动数据特征，扰动数据包括：风速、气流和地形等数据，包括时域特征、频域特征、非线性动态特征和统计学特征；</div>
+<div class="description-paragraph" id="p0082">在本实施例中，时域特征通过分析风速、气压等信号的时域波形，提取扰动的起始时间、持续时间、峰值、变化速率等基本特征，判断扰动是否为突发型扰动（如雷暴、气流突变）或持续型扰动（如持续的风速变化）；频域特征采用快速傅里叶变换（FFT）对时域信号进行频域分析，提取扰动的频率成分，例如，湍流通常表现为高频波动，而横风则表现为较为平稳的低频变化，通过频谱分析，可以有效地区分不同类型的扰动源；非线性动态特征，飞行器的非线性响应特征，例如控制输入的急剧变化、姿态的非线性波动等，可以通过引入Lyapunov指数、Fractal维度等非线性动力学分析工具提取，帮助揭示飞行器在遇到复杂扰动（如复杂湍流、强气流变动）时的响应模式；统计学特征，通过统计分析提取扰动信号的均值、方差、偏度、峰度等特征，识别扰动源的类型（如气流扰动、突发横风等），并为后续的模型学习提供输入。</div>
+<div class="description-paragraph" id="p0083" num="0031">步骤B22：基于飞行器的实时状态和外部环境的实时数据，采用数据驱动的机器学习方法对扰动源进行建模，得到扰动源模型；</div>
+<div class="description-paragraph" id="p0084">数据驱动的机器学习方法，如支持向量机（SVM）、神经网络等；</div>
+<div class="description-paragraph" id="p0085">步骤B23：将提取的扰动数据特征输入至扰动源模型中，进行识别与分类；</div>
+<div class="description-paragraph" id="p0086">通过识别与分类能够自动区分是横风、气流湍流、地形效应还是其他突发性扰动。</div>
+<div class="description-paragraph" id="p0087" num="0032">步骤B3：基于建立的扰动源模型，结合飞行器的实时状态，采用基于自适应采样的仿真方法评估外部扰动对飞行器造成的影响。</div>
+<div class="description-paragraph" id="p0088" num="0033">步骤B3的具体步骤为：</div>
+<div class="description-paragraph" id="p0089">步骤B31：对飞行器的飞行状态进行灵敏度分析，评估不同扰动源对飞行器状态的敏感程度；</div>
+<div class="description-paragraph" id="p0090">示例性的，分析横风、升力变化和气流湍流对飞行器姿态和轨迹的影响，识别哪些扰动源对飞行器的稳定性和安全性威胁最大，敏感度较高的扰动源应当优先考虑在风险评估中进行加权。</div>
+<div class="description-paragraph" id="p0091" num="0034">步骤B32：基于对扰动源的识别和分类，采用基于自适应采样的仿真方法对飞行器在不同环境扰动下的行为进行多场景与多模式仿真，评估外部扰动对飞行器造成的影响范围，所述自适应采样的过程中包含采样数据和校验帧，所述校验帧包括采样帧和数据校验帧；</div>
+<div class="description-paragraph" id="p0092">参看图3，例如：在平稳飞行阶段，由于飞行比较稳定，采样帧会提供更大范围的采样间隔，在起飞阶段以每秒100个样本采集俯仰角与滚转角，确保飞行器保持水平稳定滑跑；</div>
+<div class="description-paragraph" id="p0093">数据校验帧用于校验处于哪个飞行阶段和校验数据是否正确，数据校验帧校正飞行器所处的阶段后，自动生成采样帧，根据实时采样的数据和各飞行阶段的关键参数设定动态阈值比较，可以判断出数据是否正确。</div>
+<div class="description-paragraph" id="p0094" num="0035">使用采样帧可以有效节省系统资源，减少数据传输次数，使用数据校验帧对飞行阶段的校验功能极大地增强了容错性，若因外界干扰、传感器故障等原因导致飞行阶段判断失误，校验帧可及时发现并纠正，避免后续采样策略的错误执行。</div>
+<div class="description-paragraph" id="p0095" num="0036">在本实施例中，本申请提出了自适应采样方法，通过动态调整采样策略，提高仿真效率并增强扰动模拟的精度，包括：重要性采样，根据扰动源的概率分布和飞行器的动态响应模型，采用重要性采样方法提高高风险扰动（例如风速剧烈变化、气流湍流等）发生时的采样频率，通过加大对高影响扰动源的采样密度，避免低概率但高风险的情况被忽略，确保仿真结果的代表性；自适应重采样，在每一轮仿真过程中，根据前一轮仿真得到的扰动影响评估结果，实时调整采样策略，如果某些扰动源的影响较大，加大对扰动源的采样，反之，如果某些扰动源对飞行器影响较小，则会降低其采样密度，通过自适应调整，仿真效率得到了显著提高，且能够在局部“高风险区域”提供更为精准的模拟。</div>
+<div class="description-paragraph" id="p0096" num="0037">多场景与多模式仿真包括：多飞行场景模拟，模拟飞行器在多种飞行环境和任务条件下的表现，包括城市区域、山区、森林区域等复杂地形，以及不同气象条件（如大风、暴雨、雷电等），每种场景下，飞行器所受扰动的性质和强度不同，因此需要分别进行仿真，并对每种环境下的飞行器响应进行统计分析；任务模式切换仿真，飞行器的任务模式通常包括爬升、巡航、下降、机动等多个阶段，每个阶段的飞行环境和扰动特性都有所不同，通过设定不同的任务模式和飞行阶段，能够在不同的飞行状态下进行扰动影响预测和评估，确保仿真覆盖各种飞行情况；极端场景仿真，为保障飞行安全，设计极端扰动场景仿真，例如，在飞行器遇到强气流、突发雷暴或极端风速时的表现，虽然发生概率较低，但对飞行器造成较大的威胁，因此需要进行充分的仿真，评估飞行器的应对能力。</div>
+<div class="description-paragraph" id="p0097" num="0038">步骤B33：基于飞行器的状态响应、扰动源的强度与持续时间等因素，构建一套多维度的风险评估指标，包括：</div>
+<div class="description-paragraph" id="p0098">失稳概率：根据扰动对飞行器的影响，计算飞行器在特定环境下失稳或偏离轨迹的概率；</div>
+<div class="description-paragraph" id="p0099">能量消耗增量：评估扰动对飞行器能量消耗的影响，尤其是在高强度气流变化时飞行器需要的额外功率；</div>
+<div class="description-paragraph" id="p0100">操控性降低指数：评估扰动对飞行器控制系统精度和响应速度的影响，给出操控性下降的量化指标；</div>
+<div class="description-paragraph" id="p0101">步骤B34：根据评估结果，通过实时计算的风险评估指标，自动触发相应的警告或应急措施。</div>
+<div class="description-paragraph" id="p0102" num="0039">当风险高时，飞行器可根据控制策略调整飞行路径或高度，避免进入高风险区域；当风险达到预设阈值时，系统会自动调整飞行器的控制参数，或建议飞行员采取应急措施。</div>
+<div class="description-paragraph" id="p0103" num="0040">所述自适应控制模块，用于运用自适应控制算法实时调整飞行器的控制参数，输出控制指令；</div>
+<div class="description-paragraph" id="p0104">所述自适应控制模块，包括：模型与期望输出单元、非线性控制与补偿单元和多模式自适应控制单元；</div>
+<div class="description-paragraph" id="p0105">所述模型与期望输出单元，用于建立飞行器的运动模型，并基于需求设计期望输出；</div>
+<div class="description-paragraph" id="p0106">所述建立飞行器的运动模型，并基于需求设计期望输出，包括：</div>
+<div class="description-paragraph" id="p0107">建立飞行器的线性和非线性运动方程，通过飞行器的质量、惯性矩、空气动力学特性等参数，推导出飞行器的运动模型；</div>
+<div class="description-paragraph" id="p0108">在本实施例中，在低空飞行时，考虑到气流干扰、地形效应等因素，模型的设计要能够应对高度变化、飞行速度和姿态的剧烈变化；</div>
+<div class="description-paragraph" id="p0109">定义一个容忍范围，根据不同的飞行任务设计期望输出。</div>
+<div class="description-paragraph" id="p0110" num="0041">例如，在巡航飞行模式下，模型的输出应保持平稳的飞行状态；在执行机动飞行或应急避障任务时，模型则应提供更加灵活的姿态控制需求，通过设定不同飞行模式的参考轨迹，控制器能够自适应地调整飞行器的飞行行为，容忍范围，用于处理实际飞行过程中出现的小幅度偏差，保证系统的鲁棒性和适应性。</div>
+<div class="description-paragraph" id="p0111" num="0042">所述非线性控制与补偿单元，用于对飞行器的非线性特征进行控制和补偿；</div>
+<div class="description-paragraph" id="p0112">在低空飞行中，飞行器的动力学模型常常呈现明显的非线性特征，如升力和攻角的非线性关系、风速与飞行轨迹的非线性影响等，非线性因素需要通过专门的非线性补偿策略进行处理，常见的非线性补偿方法是通过反馈线性化技术，将飞行器的非线性动力学模型通过适当的控制输入进行线性化处理，采用滑模控制技术对飞行器的控制误差进行补偿或神经网络作为补偿；</div>
+<div class="description-paragraph" id="p0113">所述多模式自适应控制单元，用于在不同飞行条件和模式情况下，自适应控制飞行器。</div>
+<div class="description-paragraph" id="p0114" num="0043">所述在不同飞行条件和模式情况下，自适应控制飞行器，包括：</div>
+<div class="description-paragraph" id="p0115">通过比较飞行器的实际状态和模型的期望输出，计算控制误差，并对控制误差的动态变化进行分析；</div>
+<div class="description-paragraph" id="p0116">例如，可以计算位置误差、速度误差、姿态误差等多个维度的误差，以综合评估飞行器的偏差；</div>
+<div class="description-paragraph" id="p0117">采用自适应增益调节算法，如L1自适应控制、增益调度方法等，实时调整控制器增益，并自适应修正误差，确保飞行器在受到扰动或动态环境变化时依然能够快速响应；</div>
+<div class="description-paragraph" id="p0118">例如，在强烈横风或气流变化下，系统会增加俯仰角控制增益，提升飞行器的稳定性；而在平稳飞行时，控制增益则可以适当降低，以减少能量消耗；</div>
+<div class="description-paragraph" id="p0119">当检测到较大的误差或不稳定趋势时，自适应机制会启动修正过程。该过程通过调整飞行器的控制指令（如舵面角度、推力等），以逐步减小误差并恢复飞行器到期望状态，在遇到突发性扰动时，系统会迅速调整控制策略，以最小化扰动带来的不良影响。</div>
+<div class="description-paragraph" id="p0120" num="0044">基于预处理后的低空飞行器的飞行数据，实时检测飞行器当前的飞行模式，根据不同模式下的飞行任务，自动切换适合的控制策略，输出控制指令。</div>
+<div class="description-paragraph" id="p0121" num="0045">例如，在飞行器执行复杂机动任务时，控制器会激活高增益控制模式，而在巡航过程中，则采用较低增益的稳定控制模式，在突发气流扰动下，控制器需要自动调整飞行路径，以保持飞行稳定；在应急避障任务中，飞行器的控制器会迅速进入较为激进的机动模式，以避开障碍物。</div>
+<div class="description-paragraph" id="p0122" num="0046">所述执行模块，用于接收来自自适应控制模块的控制指令，并将控制指令转化为实际的动作，调整低空飞行器的飞行姿态和轨迹。</div>
+<div class="description-paragraph" id="p0123" num="0047">另外，本申请的实施方式中提供的上述技术方案中与现有技术中对应技术方案实现原理一致的部分并未详细说明，以免过多赘述。</div>
+<div class="description-paragraph" id="p0124" num="0048">如上所述的具体实施方式，对本发明的目的、技术方案和有益效果进行了进一步详细说明。应理解的是，以上所述仅为本发明的具体实施方式，并不用于限制本发明。凡在本发明的精神和原则之内，所做的任何修改、等同替换、改进等均应包含在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

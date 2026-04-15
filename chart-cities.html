@@ -149,6 +149,15 @@
 
         // 存储聚合后的数据
         let mapData = [];
+        let provinceStats = {}; // 新增：省份数据存储
+
+        // 省份白名单 (对应 china.json 的标准名称)
+        const provinceList = [
+            '北京', '天津', '上海', '重庆', '河北', '山西', '辽宁', '吉林', '黑龙江', 
+            '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', 
+            '广东', '海南', '四川', '贵州', '云南', '陕西', '甘肃', '青海', '台湾', 
+            '内蒙古', '广西', '西藏', '宁夏', '新疆', '香港', '澳门'
+        ];
 
         document.addEventListener('DOMContentLoaded', async function() {
             checkUserLogin();
@@ -166,35 +175,46 @@
 
             if (error || !policies) return;
 
-            // 临时对象存储统计结果
-            // 结构: { '深圳': { count: 0, policies: [] } }
+            // 1. 城市统计 (原有逻辑)
             let cityStats = {};
-
-            // 初始化
             for (let city in cityCoordinates) {
                 cityStats[city] = { count: 0, policies: [] };
             }
 
-            // 遍历政策，根据标题或部门关键词匹配城市
+            // 2. 省份统计 (新增逻辑)
+            provinceStats = {};
+            provinceList.forEach(p => {
+                provinceStats[p] = { count: 0, policies: [] };
+            });
+
+            // 遍历政策，进行匹配
             policies.forEach(p => {
                 const text = (p.title + p.department).toLowerCase();
+                
+                // 匹配城市
                 for (let city in cityCoordinates) {
                     if (text.includes(city)) {
                         cityStats[city].count++;
                         cityStats[city].policies.push(p);
-                        // 一条政策可能归属多个(极少情况)，这里简化为匹配到即算
-                        // 可以加 break 防止重复计数，但有些政策是"京沪"联合，算两次也无妨
+                    }
+                }
+
+                // 匹配省份
+                for (const prov of provinceList) {
+                    if (text.includes(prov)) {
+                        provinceStats[prov].count++;
+                        provinceStats[prov].policies.push(p);
                     }
                 }
             });
 
-            // 转换为 ECharts 需要的格式
+            // 转换为 ECharts 需要的格式 (城市)
             mapData = [];
             for (let city in cityStats) {
                 if (cityStats[city].count > 0) {
                     mapData.push({
                         name: city,
-                        value: [...cityCoordinates[city], cityStats[city].count * 10], // value[2]是大小权重，乘以10让圈圈明显点
+                        value: [...cityCoordinates[city], cityStats[city].count * 10], 
                         rawCount: cityStats[city].count,
                         policies: cityStats[city].policies
                     });
@@ -213,12 +233,49 @@
                     myChart.hideLoading();
                     echarts.registerMap('china', geoJson);
 
+                    // 准备热力图数据
+                    const mapSeriesData = geoJson.features.map(feature => {
+                        const fullName = feature.properties.name;
+                        // 查找匹配的简称
+                        const key = provinceList.find(short => fullName.indexOf(short) !== -1);
+                        const pData = key ? provinceStats[key] : null;
+                        return {
+                            name: fullName,
+                            value: pData ? pData.count : 0,
+                            // 传递 policies 供点击事件使用
+                            policies: pData ? pData.policies : [],
+                            rawCount: pData ? pData.count : 0
+                        };
+                    });
+                    
+                    // 计算最大值用于 VisualMap
+                    const maxCount = Math.max(...mapSeriesData.map(d => d.value), 10);
+
                     var option = {
                         backgroundColor: '#f8fafc',
+                        visualMap: {
+                            min: 0,
+                            max: maxCount,
+                            left: 'left',
+                            bottom: '20',
+                            text: ['高', '低'],
+                            calculable: true,
+                            inRange: {
+                                color: ['#e2e8f0', '#bfdbfe', '#60a5fa', '#2563eb', '#1e3a8a'] // 从浅灰蓝到深蓝
+                            }
+                        },
                         tooltip: {
                             trigger: 'item',
                             formatter: function(params) {
-                                return `${params.name}<br/>关联政策: <b>${params.data.rawCount}</b> 条`;
+                                if (params.seriesType === 'map' || params.componentType === 'geo') {
+                                    // 地图名为全称 (如"湖南省")，数据键值为简称 (如"湖南")
+                                    // 查找匹配的简称键值
+                                    const key = provinceList.find(short => params.name.indexOf(short) !== -1);
+                                    const pData = key ? provinceStats[key] : null;
+                                    const count = pData ? pData.count : 0;
+                                    return `${params.name}<br/>${t('policy')}: <b>${count}</b>`;
+                                }
+                                return `${params.name}<br/>${t('policy')}: <b>${params.data.rawCount}</b>`;
                             }
                         },
                         geo: {
@@ -226,7 +283,7 @@
                             roam: false, // 禁止缩放
                             center: [105, 36], 
                             zoom: 1.6,
-                            label: { emphasis: { show: false } },
+                            label: { emphasis: { show: true, color: '#333' } }, // 鼠标悬停显示省份名
                             itemStyle: {
                                 normal: {
                                     areaColor: '#e2e8f0', // 陆地颜色
@@ -239,6 +296,12 @@
                             }
                         },
                         series: [
+                            {
+                                name: '省份热力',
+                                type: 'map',
+                                geoIndex: 0, // 复用 Geo 组件
+                                data: mapSeriesData
+                            },
                             {
                                 name: '试点城市',
                                 type: 'effectScatter',
@@ -276,6 +339,27 @@
                     myChart.on('click', function (params) {
                         if (params.seriesType === 'effectScatter') {
                             showCityDetails(params.data);
+                        } else if (params.seriesType === 'map' || params.componentType === 'geo') {
+                            // 处理省份点击
+                            // 优先使用 series data 中的数据
+                            if (params.data && params.data.policies) {
+                                showCityDetails({
+                                    name: params.name,
+                                    rawCount: params.data.rawCount,
+                                    policies: params.data.policies
+                                });
+                                return;
+                            }
+
+                            // 备用逻辑：直接匹配
+                            const key = provinceList.find(short => params.name.indexOf(short) !== -1);
+                            if (key && provinceStats[key]) {
+                                showCityDetails({
+                                    name: params.name, // 显示全称
+                                    rawCount: provinceStats[key].count,
+                                    policies: provinceStats[key].policies
+                                });
+                            }
                         }
                     });
                 })

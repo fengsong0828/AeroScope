@@ -1,0 +1,237 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN121070031A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES513704169">
+<invention-title id="title1" lang="ZH">一种低空垂直起降飞行器动态安全间隔设置方法、设备、介质
+及产品</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本申请涉及飞行器安全技术领域，特别是涉及一种低空垂直起降飞行器动态安全间隔设置方法、设备、介质及产品。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空垂直起降飞行器是指能在低空(通常1000米以下空域)无需长跑道就能实现垂直起飞和降落的飞行器。现有的低空垂直起降飞行器，其安全区域是固定的，不能变化。</div>
+<div class="description-paragraph" id="p0005" num="0003">为了应对现有三维间隔保护区域技术的局限性，本领域亟需一种能够变化的安全区域，以最大限度地利用空域资源。本研究提出了一种动态三维间隔保护区域设计方案。该方案能够实时调整三维间隔保护区域的大小，确保飞行器在飞行过程中始终处于安全状态，并且最大限度地利用空域资源，从而满足未来民航领域对飞行器安全监管的需求。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本申请的目的是提供一种低空垂直起降飞行器动态安全间隔设置方法、设备、介质及产品，可依据飞行器性能的不同，使得飞行器周围的安全区域发生实时变化，并可以最大限度地利用空域资源。</div>
+<div class="description-paragraph" id="p0008" num="0005">为实现上述目的，本申请提供了如下方案：</div>
+<div class="description-paragraph" id="p0009" num="0006">第一方面，本申请提供了一种低空垂直起降飞行器动态安全间隔设置方法，包括：</div>
+<div class="description-paragraph" id="p0010" num="0007">根据飞行器的机身尺寸与安全冗余系数，确定每个飞行器的保护区内层；</div>
+<div class="description-paragraph" id="p0011" num="0008">根据飞行器的机载通信、导航和监视系统导致的x轴或y轴方向上的最大定位误差，确定每个飞行器的保护区外层；</div>
+<div class="description-paragraph" id="p0012" num="0009">将所述保护区内层和所述保护区外层叠加，得到每个飞行器的安全区域；</div>
+<div class="description-paragraph" id="p0013" num="0010">根据每个飞行器的第一性能标准差，分别计算两个飞行器在纵向、侧向和垂直方向的第一性能标准差的标准差；所述第一性能标准差为飞行器的通信性能、导航性能、监视性能以及避障性能的标准差；</div>
+<div class="description-paragraph" id="p0014" num="0011">根据两个飞行器在纵向、侧向和垂直方向的第一性能标准差的标准差，分别计算两个飞行器在纵向、侧向和垂直方向的最小间隔，计算公式为：</div>
+<div class="description-paragraph" id="p0015">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0016">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0017">其中，d<sub>x</sub>、d<sub>y</sub>和d<sub>z</sub>分别是两架飞行器纵向、侧向和垂直方向的最小间隔；σ<sub>x</sub>、σ<sub>y</sub>和σ<sub>z</sub>分别表示两个飞行器在纵向、侧向和垂直方向的第一性能标准差的标准差；a表示纵向实际距离小于a时，两个飞行器的安全区域发生了纵向重叠；b表示侧向实际距离小于b时，两个飞行器的安全区域发生了侧向重叠；c表示垂直方向实际距离小于c时，两个飞行器的安全区域发生了垂直方向重叠；</div>
+<div class="description-paragraph" id="p0018" num="0012">利用相对距离向量表示若干个飞行器之间的空间距离；相对距离向量为：D＝{d<sub>ij</sub>,i、j＝1,2.....n,i≠j}，其中，d<sub>ij</sub>为第i个与第j个飞行器间的空间距离，其计算公式为<span class="patent-image-not-available"></span>式中，(x<sub>i</sub>,x<sub>j</sub>)分别表示两个飞行器在x轴方向的位置坐标；(y<sub>i</sub>,y<sub>j</sub>)分别表示两个飞行器在y轴方向的坐标，(z<sub>i</sub>,z<sub>j</sub>)分别表示两个飞行器在z轴方向的高度；</div>
+<div class="description-paragraph" id="p0019" num="0013">以<span class="patent-image-not-available"></span>为目标函数，利用粒子群优化算法进行优化，得到预设区域内，在满足最小间隔的前提下，能够容纳的飞行器数量；其中，S<sub>min</sub>(C)表示两个飞行器在纵向、侧向和垂直方向的最小间隔的标准差；Ω为空域几何及拓扑约束集；α和β是权重系数，分别控制安全间距和飞行器容量在综合优化中的重要性。</div>
+<div class="description-paragraph" id="p0020" num="0014">可选地，所述根据飞行器的机身尺寸与安全冗余系数，确定每个飞行器的保护区内层，计算公式为：</div>
+<div class="description-paragraph" id="p0021" num="0015">R<sub>inner</sub>＝1.1R<sub>span</sub>；</div>
+<div class="description-paragraph" id="p0022" num="0016">式中，R<sub>inner</sub>为保护区内层半径，R<sub>span</sub>为飞行器的机身尺寸半径。</div>
+<div class="description-paragraph" id="p0023" num="0017">可选地，所述根据飞行器的机载通信、导航和监视系统导致的x轴或y轴方向上的最大定位误差，确定每个飞行器的保护区外层，具体包括：</div>
+<div class="description-paragraph" id="p0024" num="0018">计算飞行器的机载通信、导航和监视系统导致的x轴方向上定位误差，计算公式为：</div>
+<div class="description-paragraph" id="p0025">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0026">式中，δ<sub>Cx</sub>、δ<sub>Nx</sub>和δ<sub>Sx</sub>分别表示x轴方向上的通信能力误差、导航能力误差和监视能力误差；</div>
+<div class="description-paragraph" id="p0027" num="0019">计算飞行器的机载通信、导航和监视系统导致的y轴方向上定位误差，计算公式为：</div>
+<div class="description-paragraph" id="p0028">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0029">式中，δ<sub>Cy</sub>、δ<sub>Ny</sub>和δ<sub>Sy</sub>分别表示y轴方向上的通信能力误差、导航能力误差和监视能力误差；</div>
+<div class="description-paragraph" id="p0030" num="0020">确定保护区外层，计算公式为：R<sub>exterior</sub>＝max(δ<sub>x</sub>,δ<sub>y</sub>)；式中，R<sub>exterior</sub>表示保护区外层的半径。</div>
+<div class="description-paragraph" id="p0031" num="0021">可选地，将所述保护区内层和所述保护区外层叠加，得到每个飞行器的安全区域的计算公式为：</div>
+<div class="description-paragraph" id="p0032" num="0022">R＝R<sub>inner</sub>+R<sub>exterior</sub>；</div>
+<div class="description-paragraph" id="p0033" num="0023">其中，R表示安全区域的半径；R<sub>inner</sub>表示保护区内层半径；R<sub>exterior</sub>表示保护区外层的半径。</div>
+<div class="description-paragraph" id="p0034" num="0024">可选地，计算两个飞行器在纵向的第一性能标准差的标准差的计算公式为：</div>
+<div class="description-paragraph" id="p0035" num="0025">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0036" num="0026">其中，σ<sub>x</sub>表示两个飞行器在纵向的第一性能标准差的标准差，σ<sub>1</sub>表示第一个飞行器在纵向的第一性能标准差，σ<sub>2</sub>表示第二个飞行器在纵向的第一性能标准差。</div>
+<div class="description-paragraph" id="p0037" num="0027">可选地，在所述根据两个飞行器在纵向、侧向和垂直方向的第一性能标准差的标准差，分别计算两个飞行器在纵向、侧向和垂直方向的最小间隔之后，还包括：</div>
+<div class="description-paragraph" id="p0038" num="0028">将两个飞行器在纵向、侧向和垂直方向的最小间隔分别除以避障精度值。</div>
+<div class="description-paragraph" id="p0039" num="0029">可选地，利用粒子群优化算法进行优化时：</div>
+<div class="description-paragraph" id="p0040" num="0030">每一个粒子代表一种三维间距配置方案；</div>
+<div class="description-paragraph" id="p0041" num="0031">种群代表一组并行评估的间距配置方案；</div>
+<div class="description-paragraph" id="p0042" num="0032">对应位置向量x<sub>i</sub>＝[S<sub>X</sub>,S<sub>Y</sub>,S<sub>Z</sub>],S<sub>X</sub>,S<sub>Y</sub>,S<sub>Z</sub>分别表示粒子对应的纵向、侧向、垂直方向最小安全间距。</div>
+<div class="description-paragraph" id="p0043" num="0033">第二方面，本申请提供了一种计算机设备，包括：存储器、处理器以及存储在存储器上并可在处理器上运行的计算机程序，所述处理器执行所述计算机程序以实现上述中任一项所述的低空垂直起降飞行器动态安全间隔设置方法。</div>
+<div class="description-paragraph" id="p0044" num="0034">第三方面，本申请提供了一种计算机可读存储介质，其上存储有计算机程序，该计算机程序被处理器执行时实现上述中任一项所述的低空垂直起降飞行器动态安全间隔设置方法。</div>
+<div class="description-paragraph" id="p0045" num="0035">第四方面，本申请提供了一种计算机程序产品，包括计算机程序，该计算机程序被处理器执行时实现上述中任一项所述的低空垂直起降飞行器动态安全间隔设置方法。</div>
+<div class="description-paragraph" id="p0046" num="0036">根据本申请提供的具体实施例，本申请公开了以下技术效果：</div>
+<div class="description-paragraph" id="p0047" num="0037">本申请提供了一种低空垂直起降飞行器动态安全间隔设置方法、设备、介质及产品，该方法包括：根据飞行器的机身尺寸与安全冗余系数，确定每个飞行器的保护区内层；根据飞行器的机载通信、导航和监视系统导致的x轴或y轴方向上的最大定位误差，确定每个飞行器的保护区外层；将所述保护区内层和所述保护区外层叠加，得到每个飞行器的安全区域；根据每个飞行器的第一性能标准差，分别计算两个飞行器在纵向、侧向和垂直方向的第一性能标准差的标准差；所述第一性能标准差为飞行器的通信性能、导航性能、监视性能以及避障性能的标准差；根据两个飞行器在纵向、侧向和垂直方向的第一性能标准差的标准差，分别计算两个飞行器在纵向、侧向和垂直方向的最小间隔，计算公式为：</div>
+<div class="description-paragraph" id="p0048">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0049">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0050">其中，d<sub>x</sub>、d<sub>y</sub>和d<sub>z</sub>分别是两架飞行器纵向、侧向和垂直方向的最小间隔；σ<sub>x</sub>、σ<sub>y</sub>和σ<sub>z</sub>分别表示两个飞行器在纵向、侧向和垂直方向的第一性能标准差的标准差；a表示纵向实际距离小于a时，两个飞行器的安全区域发生了纵向重叠；b表示侧向实际距离小于b时，两个飞行器的安全区域发生了侧向重叠；c表示垂直方向实际距离小于c时，两个飞行器的安全区域发生了垂直方向重叠；利用相对距离向量表示若干个飞行器之间的空间距离；相对距离向量为：D＝{d<sub>ij</sub>,i、j＝1,2.....n,i≠j}，其中，d<sub>ij</sub>为第i个与第j个飞行器间的空间距离，其计算公式为<span class="patent-image-not-available"></span>式中，(x<sub>i</sub>,x<sub>j</sub>)分别表示两个飞行器在x轴方向的位置坐标；(y<sub>i</sub>,y<sub>j</sub>)分别表示两个飞行器在y轴方向的坐标，(z<sub>i</sub>,z<sub>j</sub>)分别表示两个飞行器在z轴方向的高度，(z<sub>i</sub>,z<sub>j</sub>)表示两个飞行器在z轴方向的高度；以<span class="patent-image-not-available"></span>为目标函数，利用粒子群优化算法进行优化，得到预设区域内，在满足最小间隔的前提下，能够容纳的飞行器数量；其中，S<sub>min</sub>(C)表示两个飞行器在纵向、侧向和垂直方向的最小间隔的标准差；Ω为空域几何及拓扑约束集；α和β是权重系数，分别控制安全间距和飞行器容量在综合优化中的重要性。本申请可依据飞行器性能的不同，使得飞行器周围的安全区域发生实时变化，并且根据计算出的最小间隔进行粒子群优化，从而最大限度地利用空域资源。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0051">附图说明</div>
+<div class="description-paragraph" id="p0052" num="0038">为了更清楚地说明本申请实施例或现有技术中的技术方案，下面将对实施例中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本申请的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0053" num="0039">图1为本申请一实施例提供的一种低空垂直起降飞行器动态安全间隔设置方法的流程示意图。</div>
+<div class="description-paragraph" id="p0054" num="0040">图2为本申请一实施例提供的保护区示意图。</div>
+<div class="description-paragraph" id="p0055" num="0041">图3为本申请一实施例提供的确定保护区过程示意图。</div>
+<div class="description-paragraph" id="p0056" num="0042">图4为本申请一实施例提供的保护区与安全间隔的关系示意图。</div>
+<div class="description-paragraph" id="p0057" num="0043">图5为本申请一实施例提供的对两飞行器在最后接近阶段执行避撞机动和系统反应的时间线分析示意图。</div>
+<div class="description-paragraph" id="p0058" num="0044">图6为本申请一实施例提供的两飞行器碰撞区域分析过程示意图。</div>
+<div class="description-paragraph" id="p0059" num="0045">图7为本申请一实施例提供的避障距离示意图。</div>
+<div class="description-paragraph" id="p0060" num="0046">图8为本申请一实施例提供的碰撞间隔和保护区确定示意图。</div>
+<div class="description-paragraph" id="p0061" num="0047">图9为本申请一实施例提供的飞行器三维分布示意图。</div>
+<div class="description-paragraph" id="p0062" num="0048">图10为本申请一实施例提供的飞行器三维分布的截面示意图。</div>
+<div class="description-paragraph" id="p0063" num="0049">图11为本申请一实施例提供的粒子群优化算法的求解流程示意图。</div>
+<div class="description-paragraph" id="p0064" num="0050">图12为本申请一实施例提供的一种计算机设备的结构示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0065">具体实施方式</div>
+<div class="description-paragraph" id="p0066" num="0051">下面将结合本申请实施例中的附图，对本申请实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本申请一部分实施例，而不是全部的实施例。基于本申请中的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本申请保护的范围。</div>
+<div class="description-paragraph" id="p0067" num="0052">为了应对现有三维间隔保护区域技术的局限性，本申请提出了一种动态三维间隔保护区域设计方案。该方案能够实时调整三维间隔保护区域的大小，确保飞行器在飞行过程中始终处于安全状态，并且最大限度地利用空域资源，从而满足未来民航领域对飞行器安全监管的需求。</div>
+<div class="description-paragraph" id="p0068" num="0053">现有技术中的安全区域是固定的，不能随CNS(CommunicationNavigationSurveillance)变化而变化。本申请依据CNS能力的不同，可以使得飞行器周围的安全区域发生实时变化。例如在导航精度发生波动时，可以通过计算来使得安全区域也随之改变。</div>
+<div class="description-paragraph" id="p0069" num="0054">使本申请的上述目的、特征和优点能够更加明显易懂，下面结合附图和具体实施方式对本申请作进一步详细的说明。</div>
+<div class="description-paragraph" id="p0070" num="0055">在一个示例性的实施例中，如图1所示，提供了一种低空垂直起降飞行器动态安全间隔设置方法，包括以下步骤S1至步骤S7。其中：</div>
+<div class="description-paragraph" id="p0071" num="0056">S1、根据飞行器的机身尺寸与安全冗余系数，确定每个飞行器的保护区内层。</div>
+<div class="description-paragraph" id="p0072" num="0057">本实施例中，建立垂直起降飞行器的保护区模型；以得到飞行器安全区域，即保护区的确定。</div>
+<div class="description-paragraph" id="p0073" num="0058">基于飞行器动力学特性的双层保护区，如下图2和图3所示，其中，保护区外层为冲突告警层，通过模拟入侵机不同的运动模式下的飞行轨迹，确定其航迹可达范围；保护区内层为碰撞层，参照飞行器规格参数及机载设备性能，满足位置不确定情况下的机身防撞需要。</div>
+<div class="description-paragraph" id="p0074" num="0059">飞行器避撞过程分为3个阶段：态势感知、冲突预测和避撞机动。</div>
+<div class="description-paragraph" id="p0075" num="0060">基于上述阶段，设计飞行器双层保护区来模拟避撞过程，利用外层保护区进行避撞决策判断，防止间距继续缩小至内层保护区。针对飞行器飞行速度与方向随机、避让灵活性大等特点，设计飞行器双层保护区，具体包括表征航迹可达区域的外层冲突告警层和表征飞行器位置不确定性的内层碰撞层。当飞行器在探测范围内感知得到入侵机实时飞行状态信息(通过机载传感器等可信系统获取位置、航向、速度等)后，将对入侵机飞行航迹进行跟踪，在入侵机与飞行器进一步接近到一定距离(即保护区外层)时，飞行器将采飞行措施，防止两机距离进一步缩小(即保护区内层)造成机身碰撞。</div>
+<div class="description-paragraph" id="p0076" num="0061">外层保护区由预测入侵机航迹可达区域确定。入侵机的航迹可达区域表征了给定时间内入侵飞行器可能覆盖的威胁范围，随其机动性能(如转弯速度、倾斜角度)等动态变化。通过合理预测入侵机可达范围，确保飞行器触及保护区外层时及时触发避让动作，能够降低后续碰撞发生的可能性。</div>
+<div class="description-paragraph" id="p0077" num="0062">保护区内层设计：</div>
+<div class="description-paragraph" id="p0078" num="0063">飞行器与入侵机接近的过程中，可以通过监视设备快速计算出相对位置。由于设备的延迟影响，飞行过程中将存在定位误差。因此，设置保护区内层为R<sub>inner</sub>，将基准机身尺寸R<sub>span</sub>与安全冗余系数相乘，以确保在最坏情况下，航空器的实际位置仍然位于内层保护区内。计算公式为：</div>
+<div class="description-paragraph" id="p0079" num="0064">R<sub>inner</sub>＝1.1R<sub>span</sub>；</div>
+<div class="description-paragraph" id="p0080" num="0065">式中，R<sub>inner</sub>为保护区内层半径，R<sub>span</sub>为飞行器的机身尺寸半径。式中，基准飞行器机身尺寸的系数设为1.1(安全冗余系数)，旨在为气象因素、操作裕度和其他误差因素提供额外的安全裕度。</div>
+<div class="description-paragraph" id="p0081" num="0066">S2、根据飞行器的机载通信、导航和监视系统导致的x轴或y轴方向上的最大定位误差，确定每个飞行器的保护区外层。</div>
+<div class="description-paragraph" id="p0082" num="0067">本实施例根据现有基于性能的通信导航监视(CNS，Communication NavigationSurveillance)概念，通信、导航、监视等因素造成的位置误差相互独立，且均服从均值为0的高斯分布。以基于性能的导航为例，所需导航性能(RequiredNavigationPerformance)RNP，RNP-q代表航空器偏离误差小于q米的概率为95％。所需导航性能RNP-q、所需通信性能RCP-w和所需监视性能RSP-r(w、r的含义是小于w米和小于r米)，在同一个方向x轴上的性能误差δ<sub>C</sub>、δ<sub>N</sub>、δ<sub>S</sub>(C是communication通信、N是navigation导航、S是surveillance监视)分别满足：</div>
+<div class="description-paragraph" id="p0083" num="0068">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0084" num="0069">由机载通信、导航、监视系统导致的x轴方向上定位误差δ<sub>x</sub>为：</div>
+<div class="description-paragraph" id="p0085" num="0070">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0086" num="0071">式中，δ<sub>Cx</sub>、δ<sub>Nx</sub>和δ<sub>Sx</sub>分别表示x轴方向上的通信能力误差、导航能力误差和监视能力误差。</div>
+<div class="description-paragraph" id="p0087" num="0072">y轴方向上的定位误差δ<sub>y</sub>为：</div>
+<div class="description-paragraph" id="p0088" num="0073">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0089" num="0074">式中，δ<sub>Cy</sub>、δ<sub>Ny</sub>和δ<sub>Sy</sub>分别表示y轴方向上的通信能力误差、导航能力误差和监视能力误差。飞行器在不同方向的CNS能力是不同的，所以这里区分x和y轴。</div>
+<div class="description-paragraph" id="p0090" num="0075">可以计算</div>
+<div class="description-paragraph" id="p0091" num="0076">R<sub>exterior</sub>＝max(δ<sub>x</sub>,δ<sub>y</sub>)；</div>
+<div class="description-paragraph" id="p0092" num="0077">式中，R<sub>exterior</sub>表示保护区外层的半径。</div>
+<div class="description-paragraph" id="p0093" num="0078">S3、将所述保护区内层和所述保护区外层叠加，得到每个飞行器的安全区域。</div>
+<div class="description-paragraph" id="p0094" num="0079">总的保护区(安全区域)：</div>
+<div class="description-paragraph" id="p0095" num="0080">R＝R<sub>inner</sub>+R<sub>exterior</sub>；</div>
+<div class="description-paragraph" id="p0096" num="0081">其中，R表示安全区域的半径；R<sub>inner</sub>表示保护区内层半径；R<sub>exterior</sub>表示保护区外层的半径。</div>
+<div class="description-paragraph" id="p0097" num="0082">举例：</div>
+<div class="description-paragraph" id="p0098" num="0083">定义q＝15、10、5的航路定位精度(即95％的时间预计能达到的导航性能精度为q米)分别对应低精度、中精度和高精度。选取亿航216-s型参数如下表1所示：</div>
+<div class="description-paragraph" id="p0099" num="0084">表1亿航216-s型参数表</div>
+<div class="description-paragraph" id="p0100" num="0085">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0101" num="0086">根据上述得到的安全区域(总的保护区)，得到飞行器之间的碰撞风险；即两个飞行器之间保持多少距离是可以的。要求碰撞概率在5％以下，进而计算出安全间隔，如图4所示，图4中d表示安全间隔。</div>
+<div class="description-paragraph" id="p0102" num="0087">1.避障精度的确定(确定95％这个参数)。</div>
+<div class="description-paragraph" id="p0103" num="0088">对于RAP(RequirementAvoid Performance，避障性能要求)定义的要求航空器至少有95％的飞行时间内能够达到预计避障精度的数值，有如下精确计算与验证。</div>
+<div class="description-paragraph" id="p0104" num="0089">①碰撞区域：</div>
+<div class="description-paragraph" id="p0105" num="0090">通过对两飞行器在最后接近阶段执行避撞机动和系统反应的时间线分析，可以大致分为如图5所示的4个部分。</div>
+<div class="description-paragraph" id="p0106" num="0091">则从检测到冲突到最终成功避让碰撞所需的安全间隔为</div>
+<div class="description-paragraph" id="p0107" num="0092">d＝d<sub>avoid</sub>+c(t<sub>tracking</sub>+t<sub>sep</sub>+t<sub>auto</sub>)；</div>
+<div class="description-paragraph" id="p0108" num="0093">d<sub>avoid</sub>为在避撞机动开始时两架飞行器应分隔的距离，以使它们到达最近点PCA时的间隔距离大于组合碰撞区域的半径；d为安全间隔；c为两机间的相对速度；t<sub>auto</sub>为自动驾驶系统处理所需的时间；t<sub>sep</sub>为间隔服务响应时间；t<sub>tracking</sub>为检测跟踪所需的时间。</div>
+<div class="description-paragraph" id="p0109" num="0094">碰撞区域考虑最坏情况(180°对向飞行)下所需的间隔，即计算该碰撞区域能满足剩余任何条件的安全间隔，如图6所示，其中V1，V2分别表示两个飞行器的速度，d<sub>min</sub>表示最小间隔。</div>
+<div class="description-paragraph" id="p0110" num="0095">考虑飞行器的定位方式的精度标准，设以上影响因素服从正态分布，则总误差为：</div>
+<div class="description-paragraph" id="p0111" num="0096">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0112" num="0097">其中σ<sub>avoid</sub>为避撞机动所需距离的标准差；σ<sub>tracking</sub>为检测跟踪所需时间的标准差；σ<sub>sep</sub>为间隔服务响应时间的标准差；σ<sub>pilot</sub>为驾驶员或自动驾驶系统处理所需时间的标准差。</div>
+<div class="description-paragraph" id="p0113" num="0098">由于这里使用的安全间隔是使用组合碰撞区得到的安全间隔，因此入侵飞行器依然视为一个质点，当质点进入冲突体积时，即视为两架飞行器之间发生冲突。可得，瞬时冲突体积为：</div>
+<div class="description-paragraph" id="p0114" num="0099">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0115" num="0100">其中，X、Y、Z分别为横向、纵向、垂直方向的冲突距离(本实施例中冲突距离即为安全间隔)。</div>
+<div class="description-paragraph" id="p0116" num="0101">②精度计算：</div>
+<div class="description-paragraph" id="p0117" num="0102">接下来确认避障精度，以此在CNS性能的基础上将碰撞空间减小，从而可以在相同的空域内容纳下更多的航空器，提升空域效率以及流量。</div>
+<div class="description-paragraph" id="p0118" num="0103">S4、根据每个飞行器的第一性能标准差，分别计算两个飞行器在纵向、侧向和垂直方向的第一性能标准差的标准差；所述第一性能标准差为飞行器的通信性能、导航性能、监视性能以及避障性能的标准差。</div>
+<div class="description-paragraph" id="p0119" num="0104">S5、根据两个飞行器在纵向、侧向和垂直方向的第一性能标准差的标准差，分别计算两个飞行器在纵向、侧向和垂直方向的最小间隔，计算公式为：</div>
+<div class="description-paragraph" id="p0120">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0121">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0122">其中，d<sub>x</sub>、d<sub>y</sub>和d<sub>z</sub>分别是两架飞行器纵向、侧向和垂直方向的最小间隔；σ<sub>x</sub>、σ<sub>y</sub>和σ<sub>z</sub>分别表示两个飞行器在纵向、侧向和垂直方向的第一性能标准差的标准差；a表示纵向实际距离小于a时，两个飞行器的安全区域发生了纵向重叠；b表示侧向实际距离小于b时，两个飞行器的安全区域发生了侧向重叠；c表示垂直方向实际距离小于c时，两个飞行器的安全区域发生了垂直方向重叠。</div>
+<div class="description-paragraph" id="p0123" num="0105">根据上述避障精度(即上述得到的95％)，在PBC/PBN/PBS的基础上提出PBA(Performance based on avoidance)——基于避障性能的标准，以得到最终的dx_final、dy_final、dz_final(三个方向的最小间隔)，如图7所示。</div>
+<div class="description-paragraph" id="p0124" num="0106">RCP、RNP、RSP、RAP定义要求航空器至少有95％的飞行时间内能够达到预计通信、导航、监视、避障精度的数值。基于CNSA(国家航天局)的参数满足下列公式:</div>
+<div class="description-paragraph" id="p0125" num="0107">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0126" num="0108">其中，σ<sub>C</sub>、σ<sub>N</sub>、σ<sub>S</sub>、σ<sub>A</sub>分别表示通信、导航、监视、避障的标准差，q、w、r、e分别表示RCP、RNP、RSP、RAP值，v表示航空器速度。</div>
+<div class="description-paragraph" id="p0127" num="0109">对监视、通讯、导航、避障求平方可得两个飞行器各自的第一性能标准差σ<sub>1</sub>、σ<sub>2</sub>(下标1代表飞行器1、下标2代表飞行器2)，如下式：</div>
+<div class="description-paragraph" id="p0128" num="0110">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0129" num="0111">国际民航组织ICAO规定，在空域中，飞行器在纵向、侧向以及垂直三个方向中的任意一方向上发生碰撞的安全目标水平是5×10<sup>-9</sup>次/飞行小时。研究不同导航精度下三个方向间隔变化对应的碰撞风险变化的不同情况。</div>
+<div class="description-paragraph" id="p0130" num="0112">在CNSA能力下：</div>
+<div class="description-paragraph" id="p0131" num="0113">满足以下式子，计算最小纵向、侧向、垂直间隔d<sub>x</sub>、d<sub>y</sub>、d<sub>z</sub>；其中，d<sub>x</sub>是两架飞行器沿着x轴(纵向)的最小间隔，d<sub>y</sub>是两架飞行器沿着y轴(侧向)的最小间隔，d<sub>z</sub>是两架飞行器沿着z轴(垂直)的最小间隔。</div>
+<div class="description-paragraph" id="p0132" num="0114">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0133" num="0115">其中<span class="patent-image-not-available"></span>代表两个飞行器在纵向的第一性能标准差的标准差，同理σ<sub>y</sub>、σ<sub>z</sub>分别代表两个飞行器在侧向的第一性能标准差的标准差和两个飞行器在垂直方向的第一性能标准差的标准差。此处三个参数的公式相同，但是差别是，在XYZ三个不同的轴上有着不同的σ<sub>C</sub>、σ<sub>N</sub>、σ<sub>S</sub>、σ<sub>P</sub>的值。</div>
+<div class="description-paragraph" id="p0134" num="0116">当导航精度q＝15、10、5时，根据<span class="patent-image-not-available"></span>可得对应的标准差为σ<sub>y</sub>＝7.65、5.1、2.55，又根据<span class="patent-image-not-available"></span>可得到当d<sub>y</sub>＝0时，P<sub>y</sub>(0)＝0.5382、0.7304、0.9739。0.5382(低精度)、0.7304(中精度)、0.9739(高精度)。P<sub>y</sub>(0)为当两个飞行器之间的侧向距离d<sub>y</sub>＝0时的概率，也就是侧向重叠的概率。</div>
+<div class="description-paragraph" id="p0135" num="0117">同理可得P<sub>x</sub>(0)、P<sub>z</sub>(0)。依据三个不同的精度可以得到三个精度下的安全区域R。</div>
+<div class="description-paragraph" id="p0136" num="0118">设置两个飞行器均为亿航216-s型号，其数据表如上，飞行器1的标准差σ<sub>1</sub>＝5m，飞行器2的标准差σ<sub>2</sub>＝2m.速度标准差σ<sub>v</sub>＝2km/h。不同精度下可以得到σ<sub>x</sub>、σ<sub>y</sub>、σ<sub>z</sub>。</div>
+<div class="description-paragraph" id="p0137" num="0119">在低精度(q＝15m)导航条件下，最小纵向、侧向、垂直间隔分别是45.2m、68.0m、15.8m。</div>
+<div class="description-paragraph" id="p0138" num="0120">在中精度(q＝10m)导航条件下，最小纵向、侧向、垂直间隔分别是45.5m、47.2m、16m。</div>
+<div class="description-paragraph" id="p0139" num="0121">在高精度(q＝5m)导航条件下，最小纵向、侧向、垂直间隔分别是45.9m、26.4m、16.1m。</div>
+<div class="description-paragraph" id="p0140" num="0122">考虑避障能力：</div>
+<div class="description-paragraph" id="p0141" num="0123">由于避障精度是95％，可以考虑在原来安全间隔的基础上，再扩大95％，以确保飞行器能安全避开：</div>
+<div class="description-paragraph" id="p0142" num="0124">d<sub>x_final</sub>＝d<sub>x</sub>÷0.95</div>
+<div class="description-paragraph" id="p0143" num="0125">d<sub>y_final</sub>＝d<sub>y</sub>÷0.95；</div>
+<div class="description-paragraph" id="p0144" num="0126">d<sub>z_final</sub>＝d<sub>z</sub>÷0.95</div>
+<div class="description-paragraph" id="p0145" num="0127">故而，在高精度(q＝5m)导航条件下，最小纵向、侧向、垂直间隔分别是43.605m、25.08m、15.295m。</div>
+<div class="description-paragraph" id="p0146" num="0128">根据上述步骤得到的碰撞风险，以得到安全区域容量；如图8所示，选取在高精度导航条件下，最小纵向、侧向、垂直间隔分别是43.605m、25.08m、15.295m。需要注意的是该间隔为飞行器的保护区外层之间的间隔。</div>
+<div class="description-paragraph" id="p0147" num="0129">飞行器在范围为长度44.41m、高度41.86m、宽度39.31m的椭球形状中，任意两个飞行器之间纵向、侧向、垂直间隔分别是43.605m、25.08m、15.295m，考虑在1km*1km*1km区域中能放多少飞行器。利用matlab计算为2970个，可视化图像如图9和图10所示。</div>
+<div class="description-paragraph" id="p0148" num="0130">S6、利用相对距离向量表示若干个飞行器之间的空间距离；相对距离向量为：D＝{d<sub>ij</sub>,i、j＝1,2.....n,i≠j}，其中，d<sub>ij</sub>为第i个与第j个飞行器间的空间距离，其计算公式为<span class="patent-image-not-available"></span>式中，i与j表示两个飞行器，比如，(x<sub>i</sub>,x<sub>j</sub>)分别表示两个飞行器在x轴方向的位置坐标；(y<sub>i</sub>,y<sub>j</sub>)分别表示两个飞行器在y轴方向的坐标，(z<sub>i</sub>,z<sub>j</sub>)分别表示两个飞行器在z轴方向的高度。</div>
+<div class="description-paragraph" id="p0149" num="0131">S7、以<span class="patent-image-not-available"></span>为目标函数，利用粒子群优化算法进行优化，得到预设区域内，在满足最小间隔的前提下，能够容纳的飞行器数量；其中，S<sub>min</sub>(C)表示两个飞行器在纵向、侧向和垂直方向的最小间隔的标准差；Ω为空域几何及拓扑约束集；α和β是权重系数，分别控制安全间距和飞行器容量在综合优化中的重要性。</div>
+<div class="description-paragraph" id="p0150" num="0132">本实施例针对上述安全容量，优化飞行器距离，根据该距离进一步提升安全区域避障能力。</div>
+<div class="description-paragraph" id="p0151" num="0133">在上述安全容量的基础上，进一步考虑避障精度、空域限制条件，来计算更精确的空域容量，从而提升安全区域避障能力。</div>
+<div class="description-paragraph" id="p0152" num="0134">假设任意飞行器的相对距离向量为：D＝{d<sub>ij</sub>,i、j＝1,2.....n,i≠j}，其中d<sub>ij</sub>为第i个与第j个飞行器间的空间距离，其计算公式为<span class="patent-image-not-available"></span> </div>
+<div class="description-paragraph" id="p0153" num="0135">建立容量–距离映射函数C＝f(D)，表示当前间距配置下的最大安全容量，其主要目的是把各个飞行器之间的间距配置D转化成一个可量化的“安全容量”指标C，能够定量地评估在给定的距离配置下，这个空域最多还能容纳多少架飞行器而不会违反最小安全距离，飞行器保护区为椭球体，此方法一种理论最大容量估算，考虑飞行器间无空隙密堆积(实际中不现实)。</div>
+<div class="description-paragraph" id="p0154" num="0136">可考虑乘以一个堆积系数来修正，f(D)<sub>实际</sub>＝f(D)·η；构造优化目标函数：</div>
+<div class="description-paragraph" id="p0155" num="0137">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0156" num="0138">式中：S<sub>min</sub>(C)是该空域安全间隔下限(考虑避障精度后的)，可来自安全间隔表或计算<span class="patent-image-not-available"></span>(其中Sx＝dx_final，Sy＝dy_final，Sz＝dz_final)，Ω为空域几何及拓扑约束集，包含空域边界、飞行高度层等限制条件。</div>
+<div class="description-paragraph" id="p0157" num="0139">α、β是权重系数，分别控制两个目标(安全间距和飞行器容量)在综合优化中的重要性。α是“最小间隔”这一项的权重系数，数值越大，优化更偏向于拉大最小间距，强调避障安全性；数值越小，则对安全冗余的关注减弱。β是“容量”这一项的权重系数，数值越大，优化更偏向于提升编队容量C，强调高通量或稠密编队；数值越小，则更看重最大化最小间隔。</div>
+<div class="description-paragraph" id="p0158" num="0140">函数可采取粒子群优化算法对该问题来进行求解，其核心迭代算式为：</div>
+<div class="description-paragraph" id="p0159" num="0141">
+<span class="patent-image-not-available"></span>
+</div>
+<div class="description-paragraph" id="p0160" num="0142">其中D<sub>k</sub>、v<sub>k</sub>分别为第k代的距离配置和速度向量，p<sub>k</sub>为个体最优解，g<sub>k</sub>为全局最优解，w、c<sub>1</sub>、c<sub>2</sub>为算法参数，r<sub>1</sub>,r<sub>2</sub>～U(0,1)。</div>
+<div class="description-paragraph" id="p0161" num="0143">PSO中的“种群”指所有候选解(粒子)的集合，每一个粒子代表一种三维间距配置方案D，种群则是一组并行评估的间距配置方案；种群中的每个“个体”即一个粒子，携带当前解的位置和历史最优信息，在本发明中的对应位置向量x<sub>i</sub>＝[S<sub>X</sub>,S<sub>Y</sub>,S<sub>Z</sub>],S<sub>X</sub>,S<sub>Y</sub>,S<sub>Z</sub>分别表示粒子对应的纵向、侧向、垂直最小安全间距，个体最优为p<sub>i</sub>；对每个维度的S<sub>X</sub>,S<sub>Y</sub>,S<sub>Z</sub>需设置上下界以保证物理可行性和安全要求，每个粒子在各维度的位置x<sub>i</sub>(0)采用均匀随机分布于上述边界区间内；速度v<sub>i</sub>决定粒子下一代的位置变化量，在速度设置时，由惯性权重和速度因子，惯性权重w代表控制粒子沿当前速度方向搜索的能力，同时还要设置速度边界，防止粒子飞出解空间。</div>
+<div class="description-paragraph" id="p0162" num="0144">其求解流程图如图11所示，经过计算可得出飞行器之间的最佳间距配置D。</div>
+<div class="description-paragraph" id="p0163" num="0145">本实施例相较于传统CNS和碰撞方式有以下三方面的提升:</div>
+<div class="description-paragraph" id="p0164" num="0146">①安全性提高：</div>
+<div class="description-paragraph" id="p0165" num="0147">通过根据飞行状态和环境动态调整三维间隔保护区域的大小，飞行器能够始终处于安全状态。相比传统的固定三维间隔保护区域，该方案能实时应对复杂和变化的飞行环境，避免了空域资源浪费。当飞行在空旷区域时，三维间隔保护区域缩小，提高空域利用率；而在遇到潜在风险时，及时扩大三维间隔保护区域的范围，有效保护飞行安全。此外，方案引入了基于4D轨迹的飞行方式和性能评估标(PBC/PBN/PBS/PBA)，确保飞行器在飞行过程中实现轨迹一致性和安全分离，减少碰撞风险。</div>
+<div class="description-paragraph" id="p0166" num="0148">②飞行容量增大：</div>
+<div class="description-paragraph" id="p0167" num="0149">该方案通过动态调整风险体积，实现碰撞风险的量化。风险区域出现时，能够立即触发避碰措施，确保飞行任务的精确度和可靠性。在空旷区域时，三维间隔保护区域缩小，提高空域利用率，从而增加飞行容量。同时，考虑到通信延迟、环境干扰等因素，方案能够更精确地反映飞行中的不确定性，并为碰撞风险评估提供可靠依据。</div>
+<div class="description-paragraph" id="p0168" num="0150">③适应性增强：</div>
+<div class="description-paragraph" id="p0169" num="0151">方案将飞行器的传感器、导航系统和避碰功能有机结合，能够根据传感器反馈的信息实时调整飞行策略，增强了飞行器在复杂环境中的适应能力。在面对不同飞行环境和潜在风险时，能够灵活调整飞行路径和避碰策略，提高了飞行控制的主动性和精准性。</div>
+<div class="description-paragraph" id="p0170" num="0152">在一示例性的实施例中，提供了一种计算机设备，该计算机设备可以是服务器或者终端，其内部结构图可以如图12所示。该计算机设备包括处理器、存储器、输入/输出接口(Input/Output，简称I/O)和通信接口。其中，处理器、存储器和输入/输出接口通过系统总线连接，通信接口通过输入/输出接口连接到系统总线。其中，该计算机设备的处理器用于提供计算和控制能力。该计算机设备的存储器包括非易失性存储介质和内存储器。该非易失性存储介质存储有操作系统、计算机程序和数据库。该内存储器为非易失性存储介质中的操作系统和计算机程序的运行提供环境。该计算机设备的输入/输出接口用于处理器与外部设备之间交换信息。该计算机设备的通信接口用于与外部的终端通过网络连接通信。该计算机程序被处理器执行时以实现一种低空垂直起降飞行器动态安全间隔设置方法。</div>
+<div class="description-paragraph" id="p0171" num="0153">本领域技术人员可以理解，图12中示出的结构，仅仅是与本申请方案相关的部分结构的框图，并不构成对本申请方案所应用于其上的计算机设备的限定，具体的计算机设备可以包括比图中所示更多或更少的部件，或者组合某些部件，或者具有不同的部件布置。</div>
+<div class="description-paragraph" id="p0172" num="0154">在一个示例性的实施例中，还提供了一种计算机设备，包括存储器和处理器，存储器中存储有计算机程序，该处理器执行计算机程序时实现上述各方法实施例中的步骤。</div>
+<div class="description-paragraph" id="p0173" num="0155">在一个示例性的实施例中，提供了一种计算机可读存储介质，存储有计算机程序，该计算机程序被处理器执行时实现上述各方法实施例中的步骤。</div>
+<div class="description-paragraph" id="p0174" num="0156">在一个示例性的实施例中，提供了一种计算机程序产品，包括计算机程序，该计算机程序被处理器执行时实现上述各方法实施例中的步骤。</div>
+<div class="description-paragraph" id="p0175" num="0157">需要说明的是，本申请所涉及的用户信息(包括但不限于用户设备信息、用户个人信息等)和数据(包括但不限于用于分析的数据、存储的数据、展示的数据等)，均为经用户授权或者经过各方充分授权的信息和数据，且相关数据的收集、使用和处理需要符合相关规定。</div>
+<div class="description-paragraph" id="p0176" num="0158">本领域普通技术人员可以理解实现上述实施例方法中的全部或部分流程，是可以通过计算机程序来指令相关的硬件来完成，所述的计算机程序可存储于一非易失性计算机可读取存储介质中，该计算机程序在执行时，可包括如上述各方法的实施例的流程。其中，本申请所提供的各实施例中所使用的对存储器、数据库或其它介质的任何引用，均可包括非易失性和易失性存储器中的至少一种。非易失性存储器可包括只读存储器(Read-OnlyMemory，ROM)、磁带、软盘、闪存、光存储器、高密度嵌入式非易失性存储器、阻变存储器(ReRAM)、磁变存储器(Magnetoresistive RandomAccess Memory，MRAM)、铁电存储器(Ferroelectric RandomAccess Memory，FRAM)、相变存储器(Phase Change Memory，PCM)、石墨烯存储器等。易失性存储器可包括随机存取存储器(RandomAccess Memory，RAM)或外部高速缓冲存储器等。作为说明而非局限，RAM可以是多种形式，比如静态随机存取存储器(Static RandomAccess Memory，SRAM)或动态随机存取存储器(Dynamic RandomAccessMemory，DRAM)等。</div>
+<div class="description-paragraph" id="p0177" num="0159">本申请所提供的各实施例中所涉及的数据库可包括关系型数据库和非关系型数据库中至少一种。非关系型数据库可包括基于区块链的分布式数据库等，不限于此。本申请所提供的各实施例中所涉及的处理器可为通用处理器、中央处理器、图形处理器、数字信号处理器、可编程逻辑器、基于量子计算的数据处理逻辑器等，不限于此。</div>
+<div class="description-paragraph" id="p0178" num="0160">以上实施例的各技术特征可以进行任意的组合，为使描述简洁，未对上述实施例中的各个技术特征所有可能的组合都进行描述，然而，只要这些技术特征的组合不存在矛盾，都应当认为是本说明书记载的范围。</div>
+<div class="description-paragraph" id="p0179" num="0161">本文中应用了具体个例对本申请的原理及实施方式进行了阐述，以上实施例的说明只是用于帮助理解本申请的方法及其核心思想；同时，对于本领域的一般技术人员，依据本申请的思想，在具体实施方式及应用范围上均会有改变之处。综上所述，本说明书内容不应理解为对本申请的限制。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

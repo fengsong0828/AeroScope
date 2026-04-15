@@ -1,0 +1,105 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120702524A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES506652866">
+<invention-title id="title1" lang="ZH">一种基于低空飞行器的环境监测方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明涉及低空飞行器技术领域，特别涉及一种基于低空飞行器的环境监测方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着低空飞行器在环境监测、城市治理、应急救援等领域的应用拓展，复杂环境下的高精度数据采集与实时决策需求日益迫切。传统低空监测系统依赖单一传感器或简单传感器组合，在高湿、振动、电磁干扰等复杂工况下，面临数据可靠性差、融合精度低、决策支持不足等问题，难以满足精细化监测任务要求。因此，对飞行器的传感器可靠性、数据融合精度、导航通信稳定性以及云端数据处理能力等方面提出了更高技术要求。</div>
+<div class="description-paragraph" id="p0005" num="0003">迄今为止，针对基于低空飞行器的环境监测技术的研究尚属鲜见，作者为陈涛，乔雪松等人的专利公开了《基于时空遥感的区域环境监测系统及方法和装置》，其方案的核心在于通过动态窗口范围的优化调整，结合多种算法的协同作用，应用时空数据插补技术，显著提升了区域环境监测的准确性和完整性，能够灵活适应不同时空条件下的数据变化，实现更高的精度和更全面的覆盖。然而，该方案对传感器原始数据的质量依赖度较高，协同能力不足，导致在不同数据模态下的数据准确度和协同处理影响较大。学者于忠亮等人在其论文《微压传感器灵敏度与过载阻抗协同及动态干扰解耦研究》中，提出了采用差动工作机制来有效抑制振动干扰的创新方法，这一方法在理论上具有显著的优势，能够提升系统的稳定性和抗干扰能力。然而，在实际应用过程中，该研究尚未能够彻底解决在高湿环境下出现的冷凝现象所带来的难题。</div>
+<div class="description-paragraph" id="p0006" num="0004">因此，需要一种低空飞行器环境监测技术，针对传统系统在复杂工况下的数据可靠性、融合精度和决策支持问题，实施此技术可克服现有技术对原始数据质量的依赖、协同能力不足和环境适应性有限的瓶颈。这将满足低空飞行器在环境监测和城市治理等领域对高精度实时监测的需求，提高系统性能和实用性，为相关领域提供技术支撑。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0007">发明内容</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明的主要目的在于提供一种基于低空飞行器的环境监测方法，可以有效解决背景技术中提到的问题。</div>
+<div class="description-paragraph" id="p0009" num="0006">为实现上述目的，本发明采取的技术方案为：</div>
+<div class="description-paragraph" id="p0010">一种基于低空飞行器的环境监测方法，包括以下步骤：</div>
+<div class="description-paragraph" id="p0011">S01.传感器舱体构建：将低空飞行器的传感器舱体设置为六边形棱柱结构，对舱体表面进行硬质阳极氧化处理，在舱体内部构建蜂窝状支撑骨架，并通过钛合金螺栓连接骨架与舱体框架；</div>
+<div class="description-paragraph" id="p0012">S02.传感器集成与电路防护：在舱体六个侧面安装环境传感器，为每个传感器配置独立的PCB转接板，通过柔性扁平电缆与主控制板连接；所述PCB转接板上集成ESD静电保护二极管和共模电感；</div>
+<div class="description-paragraph" id="p0013">S03.动态实时校准：基于BP神经网络构建动态校准算法，利用该算法实时补偿传感器因温湿度变化产生的测量漂移；</div>
+<div class="description-paragraph" id="p0014">S04.多源数据时空对齐与建模：针对不同采样频率的传感器数据，建立时间戳映射矩阵；通过扩展卡尔曼滤波算法实现多源数据的时空对齐，融合处理后生成三维环境网格模型；</div>
+<div class="description-paragraph" id="p0015">S05.导航与通信冗余设计：采用北斗卫星导航系统与惯性测量单元融合的导航路线技术，根据信号质量自动切换导航模式；同时构建双链路冗余通信系统：主链路采用5G专网连接移动边缘计算节点，备份链路采用UWB超宽带通信模块；</div>
+<div class="description-paragraph" id="p0016">S06.污染物浓度场初始建模：基于反距离加权算法处理离散监测点数据：确定参与插值的监测点集合，计算目标点与各监测点的欧氏距离，对各监测点浓度值加权求和生成初始二维浓度场；</div>
+<div class="description-paragraph" id="p0017">S07.浓度场优化与可视化：利用克里金算法优化初始浓度场：通过变异函数分析空间变异特征，确定半变异函数模型参数，基于无偏最优估计原则计算目标点预测值，生成三维AQI热力图；</div>
+<div class="description-paragraph" id="p0018">S08.自适应航线规划：根据三维AQI热力图识别污染高值区域，自动规划复合航线：在污染热点区域采用螺旋上升航线进行精细化监测，在非热点区域采用网格航线提高覆盖效率；</div>
+<div class="description-paragraph" id="p0019">S09.污染物扩散预测：当接收到区域监测数据后，基于历史污染扩散数据与实时气象条件，通过随机森林算法预测污染物扩散速度。</div>
+<div class="description-paragraph" id="p0020" num="0007">优选的，所述S02中的传感器舱体硬件架构，包括：</div>
+<div class="description-paragraph" id="p0021">S21.将温湿度传感器、气压传感器、超声波风速仪分别安装于舱体三个侧面，采用铝合金支架固定传感器，支架与舱体框架通过螺丝连接；</div>
+<div class="description-paragraph" id="p0022">S22.微型差分吸收光谱仪与PM2.5激光传感器安装于同一侧面，光谱仪通过导热硅胶垫与舱体外壳贴合，激光传感器周围设计导流槽，采用微型气泵构建主动进气系统，进气口安装防水透气膜；</div>
+<div class="description-paragraph" id="p0023">S23.激光雷达与多光谱摄像头安装于舱体顶部，使用电子水平仪辅助安装，所有传感器线缆通过舱体内部的理线槽固定，采用屏蔽双绞线传输信号，并在接口处使用金属屏蔽接头；</div>
+<div class="description-paragraph" id="p0024">S24.对舱体表面进行喷砂处理，并采用化学气相沉积技术覆盖超疏水涂层；</div>
+<div class="description-paragraph" id="p0025">S25.每个传感器通过4个呈矩形分布的减震垫安装。</div>
+<div class="description-paragraph" id="p0026" num="0008">优选的，所述S03的动态实时校准通过边缘计算处理单元实现，包括：</div>
+<div class="description-paragraph" id="p0027">S31.搭建包含3层隐含层的BP神经网络模型，第一层隐含层设64个神经元，第二层设32个神经元，第三层设16个神经元；输入层接收温湿度原始信号及温度补偿系数，输出层输出校准参数；</div>
+<div class="description-paragraph" id="p0028">S32.通过高精度温湿度检定箱生成标准环境，同步采集传感器原始输出与标准值构建训练数据集；</div>
+<div class="description-paragraph" id="p0029">S33.采用Adam优化算法对神经网络进行500周期训练，边缘计算单元以50ms为周期，将实时数据输入训练好的模型输出校准参数。</div>
+<div class="description-paragraph" id="p0030" num="0009">优选的，所述S04中生成三维环境网格模型的具体步骤包括：</div>
+<div class="description-paragraph" id="p0031">S41.采用扩展卡尔曼滤波算法，在预测阶段根据上一时刻状态估计值预测当前状态；</div>
+<div class="description-paragraph" id="p0032">S42.在更新阶段将实际测量值与预测值融合；</div>
+<div class="description-paragraph" id="p0033">S43.重复S41-S42迭代计算，使时间戳对齐误差≤±10μs；</div>
+<div class="description-paragraph" id="p0034">S44.融合时空对齐的激光雷达点云与摄像头图像数据，通过点云分割算法提取障碍物轮廓；</div>
+<div class="description-paragraph" id="p0035">S45.利用光流法计算流场矢量，以10cm<sup>3</sup>网格分辨率生成含障碍物分布及流场特征的三维环境网格模型。</div>
+<div class="description-paragraph" id="p0036" num="0010">优选的，所述S05的导航通信系统实现方式包括：</div>
+<div class="description-paragraph" id="p0037">S51.采用北斗三号RTK接收机配合高精度IMU的组合导航方案；</div>
+<div class="description-paragraph" id="p0038">S52.接收地基增强站差分改正数据实现厘米级定位，数据更新率10Hz；</div>
+<div class="description-paragraph" id="p0039">S53.当北斗信号质量下降时自动切换至视觉SLAM导航模式；</div>
+<div class="description-paragraph" id="p0040">S54.采用ORB-SLAM3算法框架，搭载8K摄像头，通过FAST角点检测与BRIEF描述子以500fps速度提取特征点；</div>
+<div class="description-paragraph" id="p0041">S55.结合IMU数据进行视觉惯性紧耦合，实现单目视觉定位精度±0.5m，并通过卡尔曼滤波校验导航数据一致性；</div>
+<div class="description-paragraph" id="p0042">S56.主链路采用支持5G NR标准的模组连接移动边缘计算节点，配置20MHz带宽载波，端到端时延＜10ms；</div>
+<div class="description-paragraph" id="p0043">S57.备份链路采用DS-UWB调制技术的UWB模块（工作频段3.1-10.6GHz），主链路中断时自动切换；</div>
+<div class="description-paragraph" id="p0044">S58.集成2-18GHz宽带频谱侦测模块，以10ms周期扫描电磁环境，当干扰信号功率＞-60dBm时触发频段切换。</div>
+<div class="description-paragraph" id="p0045" num="0011">与现有技术相比，本发明具有如下有益效果：</div>
+<div class="description-paragraph" id="p0046">本发明提出了一套创新的智能监测系统，用于解决低空飞行器在复杂环境下的监测难题。采用六边形棱柱式传感器舱体，集成高精度探测单元，并通过特殊涂层和减震结构，显著提升了传感器的准确性和数据率；利用边缘计算和先进算法，大幅降低了传感器误差，并提高了多源数据的对齐精度，生成高精度三维环境模型；导航系统和冗余通信技术确保了高精度定位和数据传输的可靠性；云端平台通过高级算法构建了精确的三维AQI热力图，并通过决策模型提升了污染监测效率。整体上，该系统在多个技术指标上实现了显著提升，有效提高了低空飞行器环境监测的性能。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0047">附图说明</div>
+<div class="description-paragraph" id="p0048" num="0012">图1为本发明的硬件架构构建流程图；</div>
+<div class="description-paragraph" id="p0049">图2为本发明的数据处理流程图；</div>
+<div class="description-paragraph" id="p0050">图3为本发明的导航通信系统流程图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0051">具体实施方式</div>
+<div class="description-paragraph" id="p0052" num="0013">为使本发明实现的技术手段、创作特征、达成目的与功效易于明白了解，下面结合具体实施方式，进一步阐述本发明。</div>
+<div class="description-paragraph" id="p0053" num="0014">本发明提供了一种基于低空飞行器的环境监测系统及方法，其步骤为：</div>
+<div class="description-paragraph" id="p0054">S01、如图1所示硬件架构构建流程图，本发明所述的低空飞行器以六边形棱柱式传感器舱体为核心载体，舱体采用六边形棱柱结构，表面进行硬质阳极氧化处理。在舱体内部构建蜂窝状支撑骨架，骨架与舱体框架通过钛合金螺栓连接；</div>
+<div class="description-paragraph" id="p0055">S02、舱体六个侧面安装配件，为每个传感器设计独立的PCB转接板，通过柔性扁平电缆与主控制板连接，在转接板上集成ESD静电保护二极管和共模电感；</div>
+<div class="description-paragraph" id="p0056">S21、将温湿度传感器、气压传感器、超声波风速仪分别安装于舱体三个侧面，采用铝合金支架固定传感器，支架与舱体框架通过螺丝连接，确保安装牢固；</div>
+<div class="description-paragraph" id="p0057">例如，舱体侧面硬件的安装遵循了功能分区与抗干扰设计原则：温湿度传感器、气压传感器、超声波风速仪分别嵌入舱体前、左、右三个侧面中部，通过L型铝合金支架实现立体安装——支架底部以M3钛合金螺丝与舱体框架预设螺孔紧固，顶部采用弹性卡扣嵌套传感器主体，预留3mm膨胀间隙以适应热胀冷缩。每个传感器配备独立PCB转接板，板载1206封装ESD静电保护二极管与80μH共模电感，通过0.3mm间距柔性扁平电缆与主控制板连接，线缆外层包裹镀锡铜编织屏蔽网，末端压接金属屏蔽接头并接地。</div>
+<div class="description-paragraph" id="p0058" num="0015">S22、微型差分吸收光谱仪PM2.5激光传感器安装于同一侧面，光谱仪通过导热硅胶垫与舱体外壳贴合，利用外壳进行被动散热，激光传感器周围设计导流槽，采用微型气泵构建主动进气系统，在进气口安装防水透气膜，防止液体进入的同时保证气体正常流通；</div>
+<div class="description-paragraph" id="p0059">S23、激光雷达与多光谱摄像头安装于舱体顶部，使用电子水平仪辅助安装，所有传感器线缆通过舱体内部的理线槽进行固定和整理，采用屏蔽双绞线传输信号，并在接口处使用金属屏蔽接头；</div>
+<div class="description-paragraph" id="p0060">S24、对舱体表面进行喷砂处理，并且采用化学气相沉积技术，覆盖超疏水涂层；</div>
+<div class="description-paragraph" id="p0061">S25、为每个传感器使用4个减震垫，呈矩形分布安装；</div>
+<div class="description-paragraph" id="p0062">S03、基于BP神经网络的动态校准算法，用于实时补偿传感器因温湿度变化产生的测量漂移；</div>
+<div class="description-paragraph" id="p0063">S31、如图2所示数据处理流程图，搭建包含3层隐含层的BP神经网络模型，其中第一层隐含层设置64个神经元，第二层隐含层设置32个神经元，第三层隐含层设置16个神经元。输入层接收温湿度传感器的原始信号以及温度补偿系数，输出层输出校准后的温湿度参数；</div>
+<div class="description-paragraph" id="p0064">S32、采集工况数据，通过高精度温湿度检定箱生成标准环境，同步采集传感器原始输出与标准值，构建训练数据集；</div>
+<div class="description-paragraph" id="p0065">S33、采用Adam优化算法对BP神经网络进行500个训练周期训练，边缘计算单元以50ms为周期，将实时采集的温湿度原始信号及温度补偿系数输入训练好的BP神经网络模型，输出校准参数对传感器数据进行修正；</div>
+<div class="description-paragraph" id="p0066">例如，在训练阶段，通过恒温恒湿箱模拟环境条件，采集2000组传感器信号及其对应的标准值。随后，对数据执行Z-score标准化处理，并将处理后的数据输入神经网络进行训练。传感器以200赫兹的频率输出信号，经过隔离放大电路滤除干扰后，边缘计算单元每50毫秒对温湿度值和补偿系数进行打包处理，输入至BP神经网络模型。校准参数通过I2C总线同步传输至数据采集模块，经过修正的数据与气象数据同步存储于双端口随机存取存储器中，形成带有硬件时间戳的原始数据集，为时间戳映射矩阵提供高频校准后的数据源，确保多传感器时间维度对齐的基准数据精度。</div>
+<div class="description-paragraph" id="p0067" num="0016">S04、针对激光雷达、摄像头、气象传感器等不同采样频率的传感器，建立时间戳映射矩阵，通过记录各传感器数据的采集时刻，构建时间-数据索引表，实现数据的时间维度对齐基础；</div>
+<div class="description-paragraph" id="p0068">S41、采用扩展卡尔曼滤波算法，对不同传感器数据进行预测与更新操作，在预测阶段，根据上一时刻的状态估计值和系统模型，预测当前时刻的状态；</div>
+<div class="description-paragraph" id="p0069">S42、在更新阶段，将实际测量值与预测值进行融合，得到更准确的状态估计；</div>
+<div class="description-paragraph" id="p0070">S43、重复S41、S42操作，通过迭代计算，将多源数据的时间基准统一，时间戳对齐误差控制在±10μs以内。</div>
+<div class="description-paragraph" id="p0071" num="0017">S44、将经过时空对齐的激光雷达点云数据与摄像头图像数据进行融合处理，通过点云分割算法提取障碍物轮廓；</div>
+<div class="description-paragraph" id="p0072">S45、利用光流法计算流场矢量，以10cm×10cm×10cm为网格分辨率，生成包含障碍物空间分布、流场运动特征的三维环境网格模型；</div>
+<div class="description-paragraph" id="p0073">S05、采用融合导航路线技术与双链路冗余通信进行设计，构建了北斗卫星导航系统+惯性测量单元组合相融合的导航路线技术体系，根据信号环境自动切换导航模式；</div>
+<div class="description-paragraph" id="p0074">S51、采用北斗卫星导航系统与惯性测量单元的组合导航方案，选用支持北斗三号系统的RTK接收机，配合高精度IMU；</div>
+<div class="description-paragraph" id="p0075">S52、通过实时接收地基增强站的差分改正数据，实现厘米级定位，数据更新率为10Hz；</div>
+<div class="description-paragraph" id="p0076">S53、当北斗卫星导航系统信号质量下降时，系统自动切换至视觉SLAM导航模式；</div>
+<div class="description-paragraph" id="p0077">S54、采用ORB-SLAM3算法作为核心处理框架，搭载8K分辨率的视觉摄像头，利用FAST角点检测与BRIEF描述子提取特征点，特征点提取速度可达500fps；</div>
+<div class="description-paragraph" id="p0078">S55、结合IMU数据进行视觉惯性紧耦合，实现单目视觉定位精度±0.5m，系统内置导航模式切换判定逻辑，通过卡尔曼滤波对北斗卫星导航系统与视觉SLAM数据进行一致性校验；</div>
+<div class="description-paragraph" id="p0079">例如，导航模式转换逻辑涉及对信号质量的综合评估，包括对全球导航卫星系统接收机载波信噪比和多路径误差的监测。当连续五个周期的C/N0值低于35dBHz，并且误差超过1.5米时，将激活视觉同步定位与地图构建模式的转换。卡尔曼滤波模块利用马氏距离对GNSS数据与视觉SLAM数据进行评估，一旦发现数据超出设定阈值，则将异常数据排除在外，以确保视觉定位的精度维持在±0.5米范围内，并向通信系统发出模式转换信号，以实现数据传输的优化。</div>
+<div class="description-paragraph" id="p0080" num="0018">S56、主链路通信：采用5G专网作为主要数据传输通道，连接至移动边缘计算节点；</div>
+<div class="description-paragraph" id="p0081">S57、选用支持5GNR标准的通信模组，配置20MHz带宽载波，用于传输原始传感器数据，依托MEC节点实现数据的本地处理，端到端时延控制在＜10ms；</div>
+<div class="description-paragraph" id="p0082">S58、部署UWB超宽带通信模块作为备份链路，工作频段为3.1-10.6GHz，采用DS-UWB调制技术，当主链路因信号遮挡、干扰等原因中断时，系统自动无缝切换至备份链路；</div>
+<div class="description-paragraph" id="p0083">S59、集成2-18GHz宽带频谱侦测模块，以10ms为周期实时扫描电磁环境，当检测到干扰信号功率＞-60dBm时，触发频段切换逻辑；</div>
+<div class="description-paragraph" id="p0084">S06、基于反距离加权算法对离散监测点数据进行处理，确定参与插值的监测点集合，计算目标点与各监测点的欧氏距离；对各监测点的浓度值进行加权求和，生成初始的二维浓度场，建立污染物浓度的空间分布雏形；</div>
+<div class="description-paragraph" id="p0085">S07、利用克里金算法对初始浓度场进行优化，通过变异函数分析监测数据的空间变异特征，确定半变异函数模型参数，基于无偏最优估计原则，计算目标点的预测值，生成三维AQI热力图；</div>
+<div class="description-paragraph" id="p0086">S08、根据三维AQI热力图识别污染高值区域，自动规划“螺旋+网格”复合航线，在污染热点区域采用螺旋上升航线进行精细化监测，在非热点区域采用网格航线提高覆盖效率；</div>
+<div class="description-paragraph" id="p0087">S09、当接收到区域数据后，模型基于历史污染扩散数据与实时气象条件，通过随机森林算法预测污染物扩散速度。</div>
+<div class="description-paragraph" id="p0088" num="0019">以上显示和描述了本发明的基本原理和主要特征和本发明的优点。本行业的技术人员应该了解，本发明不受上述实施例的限制，上述实施例和说明书中描述的只是说明本发明的原理，在不脱离本发明精神和范围的前提下，本发明还会有各种变化和改进，这些变化和改进都落入要求保护的本发明范围内。本发明要求保护范围由所附的权利要求书及其等效物界定。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

@@ -1,0 +1,512 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN120636204A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES505371778">
+<invention-title id="title1" lang="ZH">一种基于飞行需求的低空飞行器公共航路网规划方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本申请涉及低空航路规划技术领域，尤其涉及一种基于飞行需求的低空飞行器公共航路网规划方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">低空公共数字航路是指通过数字化建模的方式为低空飞行器在低空空域生成的结构化导航路径，其设计的核心目标是实现多类型飞行器的有序运行。现有技术中，低空航路规划主要基于空域网格化分层方法。</div>
+<div class="description-paragraph" id="p0005" num="0003">现有方法存在显著局限性：一方面，空域分层规则与任务类型脱节，未针对载物、载人、应急任务分别设计独立空域层及优先级策略。在未来高密度低空飞行器运行的情况下，载人和载物飞行器飞行速度不同，如果在同一高度中混合飞行，容易降低飞行效率，也增加了碰撞风险。同时，载人飞行器噪声大，载物飞行器噪声小，两者适合在不同高度的空域飞行，以降低飞行器噪声对居民的影响。另一方面，航路规划缺乏对实际起降点通行能力与飞行需求量的综合考虑。距离较远且飞行需求量较大的起降点之间更适合建立一条飞行高度较高的航路，类似于高速公路，在该航路中，飞行器可以更快的飞行速度飞行，以提升整体低空航路网的效率。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">本申请实施例的主要目的在于提出一种基于飞行需求的低空飞行器公共航路网规划方法，以至少解决一个现有技术存在的问题。</div>
+<div class="description-paragraph" id="p0008" num="0005">为实现上述目的，本申请实施例的一方面提出了一种基于飞行需求的低空飞行器公共航路网规划方法，所述方法包括以下步骤：</div>
+<div class="description-paragraph" id="p0009" num="0006">将空域根据高度划分为载物层、载人层、应急层；</div>
+<div class="description-paragraph" id="p0010" num="0007">将载物层根据高度划分为多个子载物层；</div>
+<div class="description-paragraph" id="p0011" num="0008">根据载物飞行需求量和起降点通行能力，计算每两个起降点之间的载物航路需求容量指数；</div>
+<div class="description-paragraph" id="p0012" num="0009">按照从高到低的顺序规划子载物层内的航路；</div>
+<div class="description-paragraph" id="p0013" num="0010">在每个子载物层内，计算起降点对的航路优先级，根据起降点对的航路优先级从大到小遍历起降点对，如果各个起降点对未在任何一个子载物层中存在已规划的航路，且对应起降点对的连线未与当前子载物层其他航路相交，则在对应起降点对之间规划一条航路；</div>
+<div class="description-paragraph" id="p0014" num="0011">利用与规划载物层相同的方法规划载人层的航路，对应急层则不进行航路规划。</div>
+<div class="description-paragraph" id="p0015" num="0012">在一些实施例中，所述将空域根据高度划分为载物层、载人层、应急层，包括以下步骤：</div>
+<div class="description-paragraph" id="p0016" num="0013">将空域根据海拔高度划分为3个层级，最低一层为载物层，中间一层为应急层，最高一层为载人层，且载物层的最低海拔高度高于所述空域内最高的建筑物海拔高度。</div>
+<div class="description-paragraph" id="p0017" num="0014">在一些实施例中，所述根据载物飞行需求量和起降点通行能力，计算每两个起降点之间的载物航路需求容量指数，包括以下步骤：</div>
+<div class="description-paragraph" id="p0018" num="0015">对所有的起降点进行两两组合，并计算两个起降点之间的载物航路需求容量指数，载物航路需求容量指数计算公式为：</div>
+<div class="description-paragraph" id="p0019" num="0016"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0020" num="0017">其中，<span class="patent-image-not-available"></span> 为起降点A和起降点B之间的载物航路需求容量指数，<span class="patent-image-not-available"></span> 为起降点A和起降点B之间的日均载物飞行需求量，<span class="patent-image-not-available"></span> 为起降点A的日载物通行能力，<span class="patent-image-not-available"></span> 为起降点B的日载物通行能力，<span class="patent-image-not-available"></span> 为可调整的系数。</div>
+<div class="description-paragraph" id="p0021" num="0018">在一些实施例中，所述在每个子载物层内，计算起降点对的航路优先级，包括以下步骤：</div>
+<div class="description-paragraph" id="p0022" num="0019">计算每个子载物层的每个起降点对的航路优先级，航路优先级计算公式如下：</div>
+<div class="description-paragraph" id="p0023" num="0020"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0024" num="0021">其中，<span class="patent-image-not-available"></span> 为起降点A和起降点B之间在子载物层 <span class="patent-image-not-available"></span> 设置航路的优先级，<span class="patent-image-not-available"></span>为起降点A和起降点B之间的地面直线距离，<span class="patent-image-not-available"></span> 为子载物层层数；</div>
+<div class="description-paragraph" id="p0025" num="0022">所述根据起降点对的航路优先级从大到小遍历起降点对，如果各个起降点对未在任何一个子载物层中存在已规划的航路，且对应起降点对的连线未与当前子载物层其他航路相交，则在对应起降点对之间规划一条航路，包括以下步骤：</div>
+<div class="description-paragraph" id="p0026" num="0023">在子载物层N中，按起降点对的航路优先级从大到小遍历起降点对，如果起降点对未在所有子载物层中存在已规划的航路，且对应起降点对在子载物层N中的连线未与子载物层N中的其他航路存在交点，则在对应起降点对之间规划一条航路；</div>
+<div class="description-paragraph" id="p0027" num="0024">当遍历完所有的起降点对之后，结束子载物层N的航路规划；</div>
+<div class="description-paragraph" id="p0028" num="0025">继续按子载物层N-1……子载物层2、子载物层1的顺序对其余子载物层内的航路进行规划，直至完成各个子载物层的规划。</div>
+<div class="description-paragraph" id="p0029" num="0026">在一些实施例中，根据载人飞行需求量和起降点通行能力，计算每两个起降点之间的载人航路需求容量指数，包括以下步骤：</div>
+<div class="description-paragraph" id="p0030" num="0027">对所有的起降点进行两两组合，并计算两个起降点之间的载人航路需求容量指数，载人航路需求容量指数计算公式为：</div>
+<div class="description-paragraph" id="p0031" num="0028"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0032" num="0029">其中，<span class="patent-image-not-available"></span> 为起降点A和起降点B之间的载人航路需求容量指数，<span class="patent-image-not-available"></span> 为起降点A和起降点B之间的日均载人飞行需求量，<span class="patent-image-not-available"></span> 为起降点A的日载人通行能力，<span class="patent-image-not-available"></span> 为起降点B的日载人通行能力，<span class="patent-image-not-available"></span> 为可调整的系数。</div>
+<div class="description-paragraph" id="p0033" num="0030">在一些实施例中，在每个子载人层内，计算起降点对的航路优先级，包括以下步骤：</div>
+<div class="description-paragraph" id="p0034" num="0031">计算每个子载人层的每个起降点对的航路优先级，航路优先级计算公式如下：</div>
+<div class="description-paragraph" id="p0035" num="0032"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0036" num="0033">其中，<span class="patent-image-not-available"></span> 为起降点A和起降点B之间在子载人层 <span class="patent-image-not-available"></span> 设置航路的优先级，<span class="patent-image-not-available"></span>为起降点A和起降点B之间的地面直线距离，<span class="patent-image-not-available"></span> 为子载人层层数；</div>
+<div class="description-paragraph" id="p0037" num="0034">根据起降点对的航路优先级从大到小遍历起降点对，如果起降点对未在任何一个子载人层中存在已规划的航路，且对应起降点对的连线未与当前子载人层其他航路相交，则在对应起降点对之间规划一条航路，包括以下步骤：</div>
+<div class="description-paragraph" id="p0038" num="0035">在子载人层M中，按起降点对的航路优先级从大到小遍历起降点对，如果起降点对未在所有子载人层中存在已规划的航路，且对应起降点对在子载人层M中的连线未与子载人层M中的其他航路存在交点，则在对应起降点对之间规划一条航路；</div>
+<div class="description-paragraph" id="p0039" num="0036">当遍历完所有的起降点对之后，结束子载人层M的航路规划工作；</div>
+<div class="description-paragraph" id="p0040" num="0037">继续按子载人层M-1……子载人层2、子载人层1的顺序对其余子载人层内的航路进行规划，直至完成各个子载人层的规划。</div>
+<div class="description-paragraph" id="p0041" num="0038">在一些实施例中，所述方法还包括以下步骤：</div>
+<div class="description-paragraph" id="p0042" num="0039">将所述空域设置为1000米以下的开放空域；</div>
+<div class="description-paragraph" id="p0043" num="0040">将所述航路设置为低空数字航路；</div>
+<div class="description-paragraph" id="p0044" num="0041">将所述起降点设置为低空飞行器垂直起降点；</div>
+<div class="description-paragraph" id="p0045" num="0042">将所述飞行需求量设置为两个起降点之间的往返的每日平均飞行需求量之和；</div>
+<div class="description-paragraph" id="p0046" num="0043">将所述起降点通行能力设置为对应起降点的一天内的最大起飞和降落次数之和。</div>
+<div class="description-paragraph" id="p0047" num="0044">在一些实施例中，所述将载物层根据高度划分为多个子载物层，包括以下步骤：</div>
+<div class="description-paragraph" id="p0048" num="0045">将载物层根据海拔高度划分为 N 个子载物层，其中，N 为预先设置的子载物层数量，子载物层从低到高分别为：子载物层1、子载物层2、子载物层3，直至子载物层N。</div>
+<div class="description-paragraph" id="p0049" num="0046">在一些实施例中，所述按照从高到低的顺序规划子载物层内的航路，包括以下步骤：</div>
+<div class="description-paragraph" id="p0050" num="0047">按照子载物层N、子载物层N-1，直至子载物层2、子载物层1的顺序规划子载物层内的航路。</div>
+<div class="description-paragraph" id="p0051" num="0048">在一些实施例中，将载人层根据高度划分为多个子载人层，包括以下步骤：</div>
+<div class="description-paragraph" id="p0052" num="0049">将载人层根据海拔高度划分为M个子载人层，其中，M 为预先设置的子载人层数量，子载人层从低到高分别为：子载人层1、子载人层2、子载人层3，直至子载人层M；</div>
+<div class="description-paragraph" id="p0053" num="0050">按照从高到低的顺序规划子载人层内的航路，包括以下步骤：</div>
+<div class="description-paragraph" id="p0054" num="0051">按照子载人层M、子载人层M-1，直至子载人层2、子载人层1的顺序规划子载人层内的航路。</div>
+<div class="description-paragraph" id="p0055" num="0052">本申请实施例至少包括以下有益效果：</div>
+<div class="description-paragraph" id="p0056" num="0053">本申请充分考虑低空不同类型飞行器混合飞行的复杂性，针对载物、载人、应急任务分别设计独立空域层，对载人和载物层再细分子层，同时综合考虑起降点通行能力与飞行需求量，设计不同层级之间的低空公共数字航路网，可以提升整体低空航路网的运行效率，减少碰撞风险，同时降低飞行器噪声对居民的影响。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0057">附图说明</div>
+<div class="description-paragraph" id="p0058" num="0054">为了更清楚地说明本申请实施例中的技术方案，下面将对实施例描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本申请的一些实施例，对于本领域普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他的附图。</div>
+<div class="description-paragraph" id="p0059" num="0055">图1是本申请实施例提供的一种基于飞行需求的低空飞行器公共航路网规划方法的步骤流程图；</div>
+<div class="description-paragraph" id="p0060" num="0056">图2是本申请实施例中的空域分层图；</div>
+<div class="description-paragraph" id="p0061" num="0057">图3是本申请实施例中的航路规划侧视图；</div>
+<div class="description-paragraph" id="p0062" num="0058">图4是本申请实施例中的航路规划俯视图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0063">具体实施方式</div>
+<div class="description-paragraph" id="p0064" num="0059">为了使本申请的目的、技术方案及优点更加清楚明白，以下结合附图及实施例，对本申请进行进一步详细说明。应当理解，此处所描述的具体实施例仅仅用以解释本申请，并不用于限定本申请。下面的描述涉及附图时，除非另有表示，不同附图中的相同数字表示相同或相似的要素。以下示例性实施例中所描述的实施方式并不代表与本申请实施例相一致的所有实施方式，它们仅是与如所附权利要求书中所详述的、本申请实施例的一些方面相一致的装置和方法的例子。</div>
+<div class="description-paragraph" id="p0065" num="0060">可以理解，本申请所使用的术语“第一”、“第二”等可在本文中用于描述各种概念，但除非特别说明，这些概念不受这些术语限制。这些术语仅用于将一个概念与另一个概念区分。例如，在不脱离本申请实施例范围的情况下，第一信息也可以被称为第二信息，类似地，第二信息也可以被称为第一信息。取决于语境，如在此所使用的词语“若”、“如果”可以被解释成为“在……时”或“当……时”或“响应于确定”。</div>
+<div class="description-paragraph" id="p0066" num="0061">本申请所使用的术语“至少一个”、“多个”、“每个”、“任一”等，至少一个包括一个、两个或两个以上，多个包括两个或两个以上，每个是指对应的多个中的每一个，任一是指多个中的任意一个。</div>
+<div class="description-paragraph" id="p0067" num="0062">除非另有定义，本文所使用的所有的技术和科学术语与属于本申请的技术领域的技术人员通常理解的含义相同。本文中所使用的术语只是为了描述本申请实施例的目的，不是旨在限制本申请。</div>
+<div class="description-paragraph" id="p0068" num="0063">本申请旨在解决低空航路网运行效率低下、安全风险突出的问题，通过一种基于飞行需求的低空飞行器公共航路网规划方法，提升整体低空航路网的运行效率，减少碰撞风险，同时降低飞行器噪声对居民的影响。</div>
+<div class="description-paragraph" id="p0069" num="0064">如图1所示，本实施例提供一种基于飞行需求的低空飞行器公共航路网规划方法，该方法充分考虑低空不同类型飞行器混合飞行的复杂性，针对载物、载人、应急任务分别设计独立空域层，对载人和载物层再细分子层，同时综合考虑起降点通行能力与飞行需求量，设计不同层级之间的低空公共数字航路网，可以提升整体低空航路网的运行效率，减少碰撞风险，同时降低飞行器噪声对居民的影响。该方法具体包括以下步骤：</div>
+<div class="description-paragraph" id="p0070" num="0065">S1、将空域根据高度划分为载物层、载人层、应急层。</div>
+<div class="description-paragraph" id="p0071" num="0066">在本实施例中，将空域根据海拔高度划分为3个层级，100米高度到300米高度为载物层，300米高度到400米高度为应急层，400米高度到750米高度为载人层，在本实施例中，载物层的最低高度大于建筑物的最高海拔高度。</div>
+<div class="description-paragraph" id="p0072" num="0067">S2、将载物层根据高度划分为多个子载物层。</div>
+<div class="description-paragraph" id="p0073" num="0068">在本实施例中，将载物层根据高度进行划分为4个子载物层，如图2所示，100米高度到150米高度为子载物层1，150米高度到200米高度为子载物层2，200米高度到250米高度为子载物层3，250米高度到300米高度为子载物层4。</div>
+<div class="description-paragraph" id="p0074" num="0069">S3、根据载物飞行需求量和起降点通行能力，计算每两个起降点之间的载物航路需求容量指数。</div>
+<div class="description-paragraph" id="p0075" num="0070">在本实施例中，共有8个起降点，起降点的x、y、z坐标以及日载物通行能力，具体数据如表1所示。在本实施例中，起降点均设置在建筑物的楼顶。</div>
+<div class="description-paragraph" id="p0076" num="0071">
+<tables>
+<patent-tables>
+<table class="description-table" cols="5" width="100%">
+<tbody><tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">序号</td>
+<td class="description-td" morerows="1" rowspan="2">x坐标（米）</td>
+<td class="description-td" morerows="1" rowspan="2">y坐标（米）</td>
+<td class="description-td" morerows="1" rowspan="2">z坐标（米）</td>
+<td class="description-td" morerows="1" rowspan="2">日载物通行能力</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">1</td>
+<td class="description-td" morerows="1" rowspan="2">65</td>
+<td class="description-td" morerows="1" rowspan="2">15</td>
+<td class="description-td" morerows="1" rowspan="2">50</td>
+<td class="description-td" morerows="1" rowspan="2">200</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">2</td>
+<td class="description-td" morerows="1" rowspan="2">265</td>
+<td class="description-td" morerows="1" rowspan="2">115</td>
+<td class="description-td" morerows="1" rowspan="2">25</td>
+<td class="description-td" morerows="1" rowspan="2">200</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">3</td>
+<td class="description-td" morerows="1" rowspan="2">10</td>
+<td class="description-td" morerows="1" rowspan="2">155</td>
+<td class="description-td" morerows="1" rowspan="2">25</td>
+<td class="description-td" morerows="1" rowspan="2">400</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">4</td>
+<td class="description-td" morerows="1" rowspan="2">415</td>
+<td class="description-td" morerows="1" rowspan="2">60</td>
+<td class="description-td" morerows="1" rowspan="2">50</td>
+<td class="description-td" morerows="1" rowspan="2">500</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">5</td>
+<td class="description-td" morerows="1" rowspan="2">315</td>
+<td class="description-td" morerows="1" rowspan="2">265</td>
+<td class="description-td" morerows="1" rowspan="2">75</td>
+<td class="description-td" morerows="1" rowspan="2">1500</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">6</td>
+<td class="description-td" morerows="1" rowspan="2">500</td>
+<td class="description-td" morerows="1" rowspan="2">400</td>
+<td class="description-td" morerows="1" rowspan="2">50</td>
+<td class="description-td" morerows="1" rowspan="2">300</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">7</td>
+<td class="description-td" morerows="1" rowspan="2">315</td>
+<td class="description-td" morerows="1" rowspan="2">565</td>
+<td class="description-td" morerows="1" rowspan="2">75</td>
+<td class="description-td" morerows="1" rowspan="2">300</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">8</td>
+<td class="description-td" morerows="1" rowspan="2">50</td>
+<td class="description-td" morerows="1" rowspan="2">400</td>
+<td class="description-td" morerows="1" rowspan="2">45</td>
+<td class="description-td" morerows="1" rowspan="2">200</td>
+</tr>
+</tbody></table>
+</patent-tables>
+</tables>
+</div>
+<div class="description-paragraph" id="p0077" num="0072">表1</div>
+<div class="description-paragraph" id="p0078" num="0073">在本实施例中，各个起降点之间的日均载物飞行需求量如表2所示。</div>
+<div class="description-paragraph" id="p0079" num="0074">
+<tables>
+<patent-tables>
+<table class="description-table" cols="9" width="100%">
+<tbody><tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">日均载物飞行需求</td>
+<td class="description-td" morerows="1" rowspan="2">起降点1</td>
+<td class="description-td" morerows="1" rowspan="2">起降点2</td>
+<td class="description-td" morerows="1" rowspan="2">起降点3</td>
+<td class="description-td" morerows="1" rowspan="2">起降点4</td>
+<td class="description-td" morerows="1" rowspan="2">起降点5</td>
+<td class="description-td" morerows="1" rowspan="2">起降点6</td>
+<td class="description-td" morerows="1" rowspan="2">起降点7</td>
+<td class="description-td" morerows="1" rowspan="2">起降点8</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点1</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">50</td>
+<td class="description-td" morerows="1" rowspan="2">10</td>
+<td class="description-td" morerows="1" rowspan="2">20</td>
+<td class="description-td" morerows="1" rowspan="2">30</td>
+<td class="description-td" morerows="1" rowspan="2">40</td>
+<td class="description-td" morerows="1" rowspan="2">30</td>
+<td class="description-td" morerows="1" rowspan="2">20</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点2</td>
+<td class="description-td" morerows="1" rowspan="2">50</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">10</td>
+<td class="description-td" morerows="1" rowspan="2">30</td>
+<td class="description-td" morerows="1" rowspan="2">40</td>
+<td class="description-td" morerows="1" rowspan="2">50</td>
+<td class="description-td" morerows="1" rowspan="2">10</td>
+<td class="description-td" morerows="1" rowspan="2">10</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点3</td>
+<td class="description-td" morerows="1" rowspan="2">10</td>
+<td class="description-td" morerows="1" rowspan="2">10</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">110</td>
+<td class="description-td" morerows="1" rowspan="2">60</td>
+<td class="description-td" morerows="1" rowspan="2">70</td>
+<td class="description-td" morerows="1" rowspan="2">50</td>
+<td class="description-td" morerows="1" rowspan="2">50</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点4</td>
+<td class="description-td" morerows="1" rowspan="2">20</td>
+<td class="description-td" morerows="1" rowspan="2">30</td>
+<td class="description-td" morerows="1" rowspan="2">110</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">60</td>
+<td class="description-td" morerows="1" rowspan="2">40</td>
+<td class="description-td" morerows="1" rowspan="2">20</td>
+<td class="description-td" morerows="1" rowspan="2">30</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点5</td>
+<td class="description-td" morerows="1" rowspan="2">30</td>
+<td class="description-td" morerows="1" rowspan="2">40</td>
+<td class="description-td" morerows="1" rowspan="2">60</td>
+<td class="description-td" morerows="1" rowspan="2">60</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">60</td>
+<td class="description-td" morerows="1" rowspan="2">170</td>
+<td class="description-td" morerows="1" rowspan="2">60</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点6</td>
+<td class="description-td" morerows="1" rowspan="2">40</td>
+<td class="description-td" morerows="1" rowspan="2">50</td>
+<td class="description-td" morerows="1" rowspan="2">70</td>
+<td class="description-td" morerows="1" rowspan="2">40</td>
+<td class="description-td" morerows="1" rowspan="2">60</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">10</td>
+<td class="description-td" morerows="1" rowspan="2">20</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点7</td>
+<td class="description-td" morerows="1" rowspan="2">30</td>
+<td class="description-td" morerows="1" rowspan="2">10</td>
+<td class="description-td" morerows="1" rowspan="2">50</td>
+<td class="description-td" morerows="1" rowspan="2">20</td>
+<td class="description-td" morerows="1" rowspan="2">170</td>
+<td class="description-td" morerows="1" rowspan="2">10</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">10</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点8</td>
+<td class="description-td" morerows="1" rowspan="2">20</td>
+<td class="description-td" morerows="1" rowspan="2">10</td>
+<td class="description-td" morerows="1" rowspan="2">50</td>
+<td class="description-td" morerows="1" rowspan="2">30</td>
+<td class="description-td" morerows="1" rowspan="2">60</td>
+<td class="description-td" morerows="1" rowspan="2">20</td>
+<td class="description-td" morerows="1" rowspan="2">10</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+</tr>
+</tbody></table>
+</patent-tables>
+</tables>
+</div>
+<div class="description-paragraph" id="p0080" num="0075">表2</div>
+<div class="description-paragraph" id="p0081" num="0076">在本实施例中，计算两个起降点之间的载物航路需求容量指数，载物航路需求容量指数计算公式为：</div>
+<div class="description-paragraph" id="p0082" num="0077"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0083" num="0078">其中，<span class="patent-image-not-available"></span> 为起降点A和起降点B之间的载物航路需求容量指数，<span class="patent-image-not-available"></span> 为起降点A和起降点B之间的日均载物飞行需求量，<span class="patent-image-not-available"></span> 为起降点A的日载物通行能力，<span class="patent-image-not-available"></span> 为起降点B的日载物通行能力，<span class="patent-image-not-available"></span> 为可调整的系数，在本实施例中，<span class="patent-image-not-available"></span> 取值为2，<span class="patent-image-not-available"></span> 取值为1。本实施例计算出来的航路需求容量指数如表3所示。</div>
+<div class="description-paragraph" id="p0084" num="0079">
+<tables>
+<patent-tables>
+<table class="description-table" cols="9" width="100%">
+<tbody><tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">航路需求容量指数</td>
+<td class="description-td" morerows="1" rowspan="2">起降点1</td>
+<td class="description-td" morerows="1" rowspan="2">起降点2</td>
+<td class="description-td" morerows="1" rowspan="2">起降点3</td>
+<td class="description-td" morerows="1" rowspan="2">起降点4</td>
+<td class="description-td" morerows="1" rowspan="2">起降点5</td>
+<td class="description-td" morerows="1" rowspan="2">起降点6</td>
+<td class="description-td" morerows="1" rowspan="2">起降点7</td>
+<td class="description-td" morerows="1" rowspan="2">起降点8</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点1</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">500</td>
+<td class="description-td" morerows="1" rowspan="2">620</td>
+<td class="description-td" morerows="1" rowspan="2">740</td>
+<td class="description-td" morerows="1" rowspan="2">1760</td>
+<td class="description-td" morerows="1" rowspan="2">580</td>
+<td class="description-td" morerows="1" rowspan="2">560</td>
+<td class="description-td" morerows="1" rowspan="2">440</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点2</td>
+<td class="description-td" morerows="1" rowspan="2">500</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">620</td>
+<td class="description-td" morerows="1" rowspan="2">760</td>
+<td class="description-td" morerows="1" rowspan="2">1780</td>
+<td class="description-td" morerows="1" rowspan="2">600</td>
+<td class="description-td" morerows="1" rowspan="2">520</td>
+<td class="description-td" morerows="1" rowspan="2">420</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点3</td>
+<td class="description-td" morerows="1" rowspan="2">620</td>
+<td class="description-td" morerows="1" rowspan="2">620</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">1120</td>
+<td class="description-td" morerows="1" rowspan="2">2020</td>
+<td class="description-td" morerows="1" rowspan="2">840</td>
+<td class="description-td" morerows="1" rowspan="2">800</td>
+<td class="description-td" morerows="1" rowspan="2">700</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点4</td>
+<td class="description-td" morerows="1" rowspan="2">740</td>
+<td class="description-td" morerows="1" rowspan="2">760</td>
+<td class="description-td" morerows="1" rowspan="2">1120</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">2120</td>
+<td class="description-td" morerows="1" rowspan="2">880</td>
+<td class="description-td" morerows="1" rowspan="2">840</td>
+<td class="description-td" morerows="1" rowspan="2">760</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点5</td>
+<td class="description-td" morerows="1" rowspan="2">1760</td>
+<td class="description-td" morerows="1" rowspan="2">1780</td>
+<td class="description-td" morerows="1" rowspan="2">2020</td>
+<td class="description-td" morerows="1" rowspan="2">2120</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">1920</td>
+<td class="description-td" morerows="1" rowspan="2">2140</td>
+<td class="description-td" morerows="1" rowspan="2">1820</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点6</td>
+<td class="description-td" morerows="1" rowspan="2">580</td>
+<td class="description-td" morerows="1" rowspan="2">600</td>
+<td class="description-td" morerows="1" rowspan="2">840</td>
+<td class="description-td" morerows="1" rowspan="2">880</td>
+<td class="description-td" morerows="1" rowspan="2">1920</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">620</td>
+<td class="description-td" morerows="1" rowspan="2">540</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点7</td>
+<td class="description-td" morerows="1" rowspan="2">560</td>
+<td class="description-td" morerows="1" rowspan="2">520</td>
+<td class="description-td" morerows="1" rowspan="2">800</td>
+<td class="description-td" morerows="1" rowspan="2">840</td>
+<td class="description-td" morerows="1" rowspan="2">2140</td>
+<td class="description-td" morerows="1" rowspan="2">620</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">520</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点8</td>
+<td class="description-td" morerows="1" rowspan="2">440</td>
+<td class="description-td" morerows="1" rowspan="2">420</td>
+<td class="description-td" morerows="1" rowspan="2">700</td>
+<td class="description-td" morerows="1" rowspan="2">760</td>
+<td class="description-td" morerows="1" rowspan="2">1820</td>
+<td class="description-td" morerows="1" rowspan="2">540</td>
+<td class="description-td" morerows="1" rowspan="2">520</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+</tr>
+</tbody></table>
+</patent-tables>
+</tables>
+</div>
+<div class="description-paragraph" id="p0085" num="0080">表3</div>
+<div class="description-paragraph" id="p0086" num="0081">S4、按照从高到低的顺序规划子载物层内的航路。</div>
+<div class="description-paragraph" id="p0087" num="0082">在本实施例中，先规划子载物层4，再规划子载物层3，再规划子载物层2，最后规划子载物层1。</div>
+<div class="description-paragraph" id="p0088" num="0083">S5、在每个子载物层内，计算起降点对的航路优先级，根据起降点对的航路优先级从大到小遍历起降点对，如果该起降点对未在任何一个子载物层中存在已规划的航路，且该起降点对的连线未与该层其他航路相交，则在该起降点对之间规划一条航路。</div>
+<div class="description-paragraph" id="p0089" num="0084">首先计算每个子载物层的每个起降点对的航路优先级，航路优先级计算公式如下：</div>
+<div class="description-paragraph" id="p0090" num="0085"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0091" num="0086">其中，<span class="patent-image-not-available"></span> 为起降点A和起降点B之间在子载物层 <span class="patent-image-not-available"></span> 设置航路的优先级，<span class="patent-image-not-available"></span>为起降点A和起降点B之间的地面直线距离，<span class="patent-image-not-available"></span> 为子载物层层数；</div>
+<div class="description-paragraph" id="p0092" num="0087">在本实施例中，子载物层4的起降点对的航路优先级计算结果如表4所示。</div>
+<div class="description-paragraph" id="p0093" num="0088">
+<tables>
+<patent-tables>
+<table class="description-table" cols="9" width="100%">
+<tbody><tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">航路优先级</td>
+<td class="description-td" morerows="1" rowspan="2">起降点1</td>
+<td class="description-td" morerows="1" rowspan="2">起降点2</td>
+<td class="description-td" morerows="1" rowspan="2">起降点3</td>
+<td class="description-td" morerows="1" rowspan="2">起降点4</td>
+<td class="description-td" morerows="1" rowspan="2">起降点5</td>
+<td class="description-td" morerows="1" rowspan="2">起降点6</td>
+<td class="description-td" morerows="1" rowspan="2">起降点7</td>
+<td class="description-td" morerows="1" rowspan="2">起降点8</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点1</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">111800</td>
+<td class="description-td" morerows="1" rowspan="2">93248</td>
+<td class="description-td" morerows="1" rowspan="2">261146</td>
+<td class="description-td" morerows="1" rowspan="2">622336</td>
+<td class="description-td" morerows="1" rowspan="2">336922</td>
+<td class="description-td" morerows="1" rowspan="2">338352</td>
+<td class="description-td" morerows="1" rowspan="2">169532</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点2</td>
+<td class="description-td" morerows="1" rowspan="2">111800</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">160022</td>
+<td class="description-td" morerows="1" rowspan="2">121448</td>
+<td class="description-td" morerows="1" rowspan="2">281418</td>
+<td class="description-td" morerows="1" rowspan="2">221640</td>
+<td class="description-td" morerows="1" rowspan="2">235456</td>
+<td class="description-td" morerows="1" rowspan="2">149940</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点3</td>
+<td class="description-td" morerows="1" rowspan="2">93248</td>
+<td class="description-td" morerows="1" rowspan="2">160022</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">465920</td>
+<td class="description-td" morerows="1" rowspan="2">654884</td>
+<td class="description-td" morerows="1" rowspan="2">460152</td>
+<td class="description-td" morerows="1" rowspan="2">408800</td>
+<td class="description-td" morerows="1" rowspan="2">173740</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点4</td>
+<td class="description-td" morerows="1" rowspan="2">261146</td>
+<td class="description-td" morerows="1" rowspan="2">121448</td>
+<td class="description-td" morerows="1" rowspan="2">465920</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">483572</td>
+<td class="description-td" morerows="1" rowspan="2">308440</td>
+<td class="description-td" morerows="1" rowspan="2">432432</td>
+<td class="description-td" morerows="1" rowspan="2">379088</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点5</td>
+<td class="description-td" morerows="1" rowspan="2">622336</td>
+<td class="description-td" morerows="1" rowspan="2">281418</td>
+<td class="description-td" morerows="1" rowspan="2">645884</td>
+<td class="description-td" morerows="1" rowspan="2">483572</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">439680</td>
+<td class="description-td" morerows="1" rowspan="2">642000</td>
+<td class="description-td" morerows="1" rowspan="2">541268</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点6</td>
+<td class="description-td" morerows="1" rowspan="2">336922</td>
+<td class="description-td" morerows="1" rowspan="2">221640</td>
+<td class="description-td" morerows="1" rowspan="2">460152</td>
+<td class="description-td" morerows="1" rowspan="2">308440</td>
+<td class="description-td" morerows="1" rowspan="2">439680</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">153698</td>
+<td class="description-td" morerows="1" rowspan="2">243000</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点7</td>
+<td class="description-td" morerows="1" rowspan="2">338352</td>
+<td class="description-td" morerows="1" rowspan="2">235456</td>
+<td class="description-td" morerows="1" rowspan="2">408800</td>
+<td class="description-td" morerows="1" rowspan="2">432432</td>
+<td class="description-td" morerows="1" rowspan="2">642000</td>
+<td class="description-td" morerows="1" rowspan="2">153698</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+<td class="description-td" morerows="1" rowspan="2">162344</td>
+</tr>
+<tr class="description-tr">
+<td class="description-td" morerows="1" rowspan="2">起降点8</td>
+<td class="description-td" morerows="1" rowspan="2">169532</td>
+<td class="description-td" morerows="1" rowspan="2">149940</td>
+<td class="description-td" morerows="1" rowspan="2">173740</td>
+<td class="description-td" morerows="1" rowspan="2">379088</td>
+<td class="description-td" morerows="1" rowspan="2">541268</td>
+<td class="description-td" morerows="1" rowspan="2">243000</td>
+<td class="description-td" morerows="1" rowspan="2">1623440</td>
+<td class="description-td" morerows="1" rowspan="2"> </td>
+</tr>
+</tbody></table>
+</patent-tables>
+</tables>
+</div>
+<div class="description-paragraph" id="p0094" num="0089">表4</div>
+<div class="description-paragraph" id="p0095" num="0090">在子载物层4中，按起降点对的航路优先级从大到小遍历起降点对，如果该起降点对未在所有子载物层中存在已规划的航路，且这对起降点在子载物层N中的连线未与子载物层N中的其他航路存在交点，则在这对起降点之间规划一条航路。</div>
+<div class="description-paragraph" id="p0096" num="0091">在本实施例中，按照上述方法在子载物层4规划航路，在两个起降点之间所规划的航路结果如下：起降点5与起降点3、起降点7与起降点5、起降点5与起降点1、起降点8与起降点5、起降点5与起降点4、起降点6与起降点5、起降点6与起降点4、起降点5与起降点2、起降点4与起降点1、起降点8与起降点3、起降点8与起降点7、起降点7与起降点6、起降点4与起降点2、起降点2与起降点1、起降点3与起降点1。</div>
+<div class="description-paragraph" id="p0097" num="0092">在本实施例中，同样按照上述方法，在子载物层3规划航路，在两个起降点之间所规划的航路结果如下：起降点4与起降点3、起降点6与起降点3、起降点7与起降点3、起降点6与起降点2、起降点3与起降点2。</div>
+<div class="description-paragraph" id="p0098" num="0093">在本实施例中，同样按照上述方法，在子载物层2规划航路，在两个起降点之间所规划的航路结果如下：起降点7与起降点4、起降点8与起降点4、起降点8与起降点1、起降点8与起降点2。</div>
+<div class="description-paragraph" id="p0099" num="0094">在本实施例中，同样按照上述方法，在子载物层1规划航路，在两个起降点之间所规划的航路结果如下：起降点8与起降点6、起降点6与起降点1。</div>
+<div class="description-paragraph" id="p0100" num="0095">完成所有子载物层的规划，即完成整个载物层的规划，载物层的规划结果如图3、图4所示。</div>
+<div class="description-paragraph" id="p0101" num="0096">S6、载人层的规划方法同载物层，应急层则不进行航路规划。</div>
+<div class="description-paragraph" id="p0102" num="0097">本申请实施例描述的实施例是为了更加清楚的说明本申请实施例的技术方案，并不构成对于本申请实施例提供的技术方案的限定，本领域技术人员可知，随着技术的演变和新应用场景的出现，本申请实施例提供的技术方案对于类似的技术问题，同样适用。</div>
+<div class="description-paragraph" id="p0103" num="0098">本领域技术人员可以理解的是，图中示出的技术方案并不构成对本申请实施例的限定，可以包括比图示更多或更少的步骤，或者组合某些步骤，或者不同的步骤。</div>
+<div class="description-paragraph" id="p0104" num="0099">本领域普通技术人员可以理解，上文中所公开方法中的全部或某些步骤、系统、设备中的功能模块/单元可以被实施为软件、固件、硬件及其适当的组合。</div>
+<div class="description-paragraph" id="p0105" num="0100">本申请的说明书及上述附图中的术语“第一”、“第二”、“第三”、“第四”等(如果存在)是用于区别类似的对象，而不必用于描述特定的顺序或先后次序。应该理解这样使用的数据在适当情况下可以互换，以便这里描述的本申请的实施例能够以除了在这里图示或描述的那些以外的顺序实施。此外，术语“包括”和“具有”以及他们的任何变形，意图在于覆盖不排他的包含，例如，包含了一系列步骤或单元的过程、方法、系统、产品或设备不必限于清楚地列出的那些步骤或单元，而是可包括没有清楚地列出的或对于这些过程、方法、产品或设备固有的其它步骤或单元。</div>
+<div class="description-paragraph" id="p0106" num="0101">应当理解，在本申请中，“至少一个(项)”是指一个或者多个，“多个”是指两个或两个以上。“和/或”，用于描述关联对象的关联关系，表示可以存在三种关系，例如，“A和/或B”可以表示：只存在A，只存在B以及同时存在A和B三种情况，其中A，B可以是单数或者复数。字符“/”一般表示前后关联对象是一种“或”的关系。“以下至少一项(个)”或其类似表达，是指这些项中的任意组合，包括单项(个)或复数项(个)的任意组合。例如，a，b或c中的至少一项(个)，可以表示：a，b，c，“a和b”，“a和c”，“b和c”，或“a和b和c”，其中a，b，c可以是单个，也可以是多个。</div>
+<div class="description-paragraph" id="p0107" num="0102">以上参照附图说明了本申请实施例的优选实施例，并非因此局限本申请实施例的权利范围。本领域技术人员不脱离本申请实施例的范围和实质内所作的任何修改、等同替换和改进，均应在本申请实施例的权利范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>

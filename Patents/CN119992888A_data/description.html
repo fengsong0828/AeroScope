@@ -1,0 +1,100 @@
+<html><head><meta charset='utf-8'></head><body><h1>CN119992888A</h1><section itemprop="description" itemscope="">
+<h2>Description</h2>
+<div html="" itemprop="content"><div class="description" lang="ZH" load-source="patent-office" mxw-id="PDES494867276">
+<invention-title id="title1" lang="ZH">一种低空飞行器的航线路径计算与防碰撞方法</invention-title>
+<technical-field>
+<div class="description-paragraph" id="p0001">技术领域</div>
+<div class="description-paragraph" id="p0002" num="0001">本发明属于低空空域飞行器飞行技术领域，尤其涉及一种低空飞行器的航线路径计算与防碰撞方法。</div>
+</technical-field>
+<background-art>
+<div class="description-paragraph" id="p0003">背景技术</div>
+<div class="description-paragraph" id="p0004" num="0002">随着飞行器数量在低空空域的持续增加，如何有效预防飞行器之间的碰撞，已经成为低空产业发展中迫切需要解决的关键技术难题。这一挑战不仅关系到飞行安全，也直接影响到低空经济的可持续发展和整个空域管理的效率。在这一背景下，各种先进的飞行监控技术、智能避碰系统以及无人机自主飞行技术正在被积极研发和应用，以期构建一个更加安全、高效和智能的低空飞行环境。</div>
+<div class="description-paragraph" id="p0005" num="0003">对于低空空域飞行器的防碰撞研究，首先是需要获取飞行器的航线路径，现有技术中，一般是直接记录经纬度坐标，但是坐标数据不能直观体现飞行器位置，特别是只能记录采样时刻点的位置，两个采样点之间的路径信息无法体现出。另外，在飞行器之间的防碰撞计算时，一般也只是计算坐标距离，不能根据不同的位置情况进行分别预警。</div>
+</background-art>
+<disclosure>
+<div class="description-paragraph" id="p0006">发明内容</div>
+<div class="description-paragraph" id="p0007" num="0004">鉴于上述问题，本发明的目的在于提供一种低空飞行器的航线路径计算与防碰撞方法，旨在解决现有技术中，路径计算显示不直观、不完全以及防碰撞预警不够具体的技术问题。</div>
+<div class="description-paragraph" id="p0008" num="0005">本发明采用如下技术方案：</div>
+<div class="description-paragraph" id="p0009">一方面，所述低空飞行器的航线路径计算方法，包括下述步骤：</div>
+<div class="description-paragraph" id="p0010">步骤S1、获取飞行器的三维尺寸数据，根据地球网格层级的地球网格单元大小，以尺寸最大值确定当前飞行器对应的地球网格层级；</div>
+<div class="description-paragraph" id="p0011">步骤S2、获取飞行器的飞行路径数据建立路径数据集合，其中所述飞行路径数据为各时刻点的地球空间坐标数据；</div>
+<div class="description-paragraph" id="p0012">步骤S3、根据所述路径数据集合，计算飞行器飞行路径所经过当前地球网格层级的网格集合。</div>
+<div class="description-paragraph" id="p0013" num="0006">另外还包括：</div>
+<div class="description-paragraph" id="p0014">步骤S4、在三维空间中，显示出飞行器所经过的网格集合作为飞行器的航线路径。</div>
+<div class="description-paragraph" id="p0015" num="0007">另一方面，所述低空飞行器的防碰撞方法，包括所述低空飞行器的航线路径计算方法，进一步还包括：</div>
+<div class="description-paragraph" id="p0016">步骤S5、对于两架飞行器F1和F2，从对应航线路径的网格集合中获取t时刻点位置点<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>所在的网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，并得到对应的编码<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0017">步骤S6、根据<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>的关系，以及网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>的中心点距离，判断网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>之间的空间关系<span class="patent-image-not-available"></span>，包括重合、包含、相邻、相离；</div>
+<div class="description-paragraph" id="p0018">步骤S7、如果网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>之间的空间关系<span class="patent-image-not-available"></span>是重合或包含关系，则飞行器F1和F2会发生碰撞；若网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>之间的关系<span class="patent-image-not-available"></span>是相邻关系，则飞行器F1和F2存在发生碰撞的风险；若网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>之间的关系<span class="patent-image-not-available"></span>是相离关系，则飞行器F1和F2不会发生碰撞。</div>
+<div class="description-paragraph" id="p0019" num="0008">本发明的有益效果是：本发明技术方案中，按照地球网格将空间进行划分的方式，记录飞行器航线路径所经过的地球网格单元，生成网格集合，不以坐标点形式显示路径，以三维空间的地球网格单元形式显示航线路径，使得路径显示更直观、位置更现实更全面，而且也有利于后续的碰撞分析。另外，本发明通过判断飞行器所在网格单元之间的空间关系，分析低空飞行器之间是否会或者可能会发生碰撞，解决了飞行器在低空空域飞行过程中的防碰撞检测的问题。</div>
+</disclosure>
+<description-of-drawings>
+<div class="description-paragraph" id="p0020">附图说明</div>
+<div class="description-paragraph" id="p0021" num="0009">图1是本发明实施例提供的低空飞行器航线路径计算方法的流程图；</div>
+<div class="description-paragraph" id="p0022">图2是不同层级的地球网格划分示意图；</div>
+<div class="description-paragraph" id="p0023">图3是遍历两点对应网格单元编码相同情况的示意图；</div>
+<div class="description-paragraph" id="p0024">图4是遍历两点对应网格单元编码不同情况的示意图；</div>
+<div class="description-paragraph" id="p0025">图5是本发明实施例提供的低空飞行器的防碰撞方法的流程图；</div>
+<div class="description-paragraph" id="p0026">图6是同层级以及不同层级的地球网格单元空间关系平面示意图。</div>
+</description-of-drawings>
+<mode-for-invention>
+<div class="description-paragraph" id="p0027">具体实施方式</div>
+<div class="description-paragraph" id="p0028" num="0010">为了使本发明的目的、技术方案及优点更加清楚明白，以下结合附图及实施例，对本发明进行进一步详细说明。应当理解，此处所描述的具体实施例仅仅用以解释本发明，并不用于限定本发明。</div>
+<div class="description-paragraph" id="p0029" num="0011">为了说明本发明所述的技术方案，下面通过具体实施例来进行说明。</div>
+<div class="description-paragraph" id="p0030" num="0012">实施例一：</div>
+<div class="description-paragraph" id="p0031">如图1所示，本实施例提供了一种低空飞行器航线路径计算方法，包括下述步骤：</div>
+<div class="description-paragraph" id="p0032">步骤S1、获取飞行器的三维尺寸数据，根据地球网格层级的地球网格单元大小，以尺寸最大值确定当前飞行器对应的地球网格层级。</div>
+<div class="description-paragraph" id="p0033" num="0013">低空飞行器有长宽高三个尺寸数据，假设当前飞行器的长宽高三维尺寸数据为<span class="patent-image-not-available"></span>，飞行器尺寸最大值<i>dF1=</i> <span class="patent-image-not-available"></span>，其中max为求最大值。</div>
+<div class="description-paragraph" id="p0034" num="0014">地球空间划分为不同层级的立体网格，不同层级地球网格的网格单元大小不同。比如作为一种划分方式，如图2所示，上级网格单元的边长为下级网格单元变成的2倍，即一个上级网格单元可对应8个下级网格单元，可以从上向下将地球空间划分为不同层级的网格单元。每个层级均是划分整个地球空间。</div>
+<div class="description-paragraph" id="p0035" num="0015">网格划分完后，每个层级的网格单元均有对应的大小长度。用<span class="patent-image-not-available"></span>表示<span class="patent-image-not-available"></span>的下一层级网格单元，<span class="patent-image-not-available"></span>表示第<span class="patent-image-not-available"></span>级地球网格单元大小的长度。根据飞行器F1的尺寸dF1以及地球网格单元的大小，确定飞行器F1对应的地球网格层级<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0036" num="0016">如果<span class="patent-image-not-available"></span> <i>＜dF1≤</i> <span class="patent-image-not-available"></span>，则认为当前飞行器对应的地球网格层级为<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0037" num="0017">步骤S2、获取飞行器的飞行路径数据建立路径数据集合，其中所述飞行路径数据为各时刻点的地球空间坐标数据。</div>
+<div class="description-paragraph" id="p0038" num="0018">比如有记录有n个时刻点的地球空间坐标数据，建立的路径数据集合为：<span class="patent-image-not-available"></span>，集合中有每个地球空间坐标数据由经度、维度和高度数据组成。</div>
+<div class="description-paragraph" id="p0039" num="0019">步骤S3、根据所述路径数据集合，计算飞行器飞行路径所经过当前地球网格层级的网格集合。</div>
+<div class="description-paragraph" id="p0040" num="0020">还是以低空飞行器F1为例，其路径数据集合为：<span class="patent-image-not-available"></span>，本步骤具体过程如下：</div>
+<div class="description-paragraph" id="p0041">S31、遍历路径数据集合<span class="patent-image-not-available"></span>的各个地球空间坐标数据，依次取出相邻两点，对于当前获取的两点<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，其中1≤i≤n-1，构建两点的线段方程<span class="patent-image-not-available"></span>：</div>
+<div class="description-paragraph" id="p0042"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0043" num="0021">S32、根据两点<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>的坐标数据，判断两点是否在同一个网格单元内，并建立网格集合。本步骤判断流程具体过程如下：</div>
+<div class="description-paragraph" id="p0044">321、计算两点所在<span class="patent-image-not-available"></span>层级的地球网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，其中点<span class="patent-image-not-available"></span>所在<span class="patent-image-not-available"></span>层级的地球网格单元<span class="patent-image-not-available"></span>的计算方式如下：</div>
+<div class="description-paragraph" id="p0045"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0046">其中，<span class="patent-image-not-available"></span>为向上取整，<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>分别表示地球网格单元<span class="patent-image-not-available"></span>在当前层级地球网格中经度、维度、高度方向上的序号值。</div>
+<div class="description-paragraph" id="p0047" num="0022">对于点<span class="patent-image-not-available"></span>，其三维坐标为<span class="patent-image-not-available"></span>，由于地球网格划分是在经度、维度和高度反向对地球空间进行划分立体网格，因此用坐标分量除以网格单元大小，然后向上取整，即可知道当前点<span class="patent-image-not-available"></span>所在的网格单元在整个地球空间的相对位置。</div>
+<div class="description-paragraph" id="p0048" num="0023">322、按照编号方式获取地球网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>对应的编码，分别为<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，并将地球网格单元<span class="patent-image-not-available"></span>加入至网格集合<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0049" num="0024">本实施例的地球空间划分及其编码参考《地球表面空间网格与编码》（GJB 8896-2017），每个层级的网格单元都有固定的编码方式，因此不同层级网格单元的编码不同。</div>
+<div class="description-paragraph" id="p0050" num="0025">因此在得到地球网格单元<span class="patent-image-not-available"></span> <i>、</i> <span class="patent-image-not-available"></span>的位置信息后，按照固定编码方式进行编码，即可得到对应的编码<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>。然后将<span class="patent-image-not-available"></span>加入至网格集合<span class="patent-image-not-available"></span>中。</div>
+<div class="description-paragraph" id="p0051" num="0026">323、如果<span class="patent-image-not-available"></span>，则说明两点在同一地球网格单元<span class="patent-image-not-available"></span>内，此时如图3所示，说明点<span class="patent-image-not-available"></span>到<span class="patent-image-not-available"></span>之间的路径只经过了网格单元<span class="patent-image-not-available"></span>，此时可以不动作。然后返回至步骤S31遍历下一相邻两点，即取<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，并按照上述方式将<span class="patent-image-not-available"></span>加入至网格集合<span class="patent-image-not-available"></span>中。</div>
+<div class="description-paragraph" id="p0052" num="0027">如果<span class="patent-image-not-available"></span>，则说明点<span class="patent-image-not-available"></span>和点<span class="patent-image-not-available"></span>在不同的网格单元内，如图4所示，以<span class="patent-image-not-available"></span>为球心，<span class="patent-image-not-available"></span>为球半径，构建球方程<span class="patent-image-not-available"></span>：</div>
+<div class="description-paragraph" id="p0053"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0054">联立线段方程<span class="patent-image-not-available"></span>和球方程<span class="patent-image-not-available"></span>，求相交点<span class="patent-image-not-available"></span>，然后以点<span class="patent-image-not-available"></span>和点<span class="patent-image-not-available"></span>构建线段方程<span class="patent-image-not-available"></span>，然后重复步骤S32方式，判断点<span class="patent-image-not-available"></span>和点<span class="patent-image-not-available"></span>是否在同一网格单元内（即判断对应的编码是否相同）；如果在同一网格单元内（图示中，<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>在同样网格单元内），则将点<span class="patent-image-not-available"></span>对应的地球网格单元<span class="patent-image-not-available"></span>加入至网格集合<span class="patent-image-not-available"></span>中，如果在不同的网格单元内，则再次构建球方程和线段方程进行判断，连续更新网格集合。</div>
+<div class="description-paragraph" id="p0055" num="0028">因此通过上述判断方式，每次取两个相邻点时，将起始点以及两点之间经过的网格单元都加入至网格集合<span class="patent-image-not-available"></span>中。</div>
+<div class="description-paragraph" id="p0056" num="0029">S33、路径数据集合遍历完成后，得到表示飞行器的航线路径的最终网格集合。</div>
+<div class="description-paragraph" id="p0057" num="0030">步骤S4、在三维空间中，显示出飞行器所经过的网格集合作为飞行器的航线路径。</div>
+<div class="description-paragraph" id="p0058" num="0031">为了便于显示路径，本实施例中，飞行器在三维空间界面上，将网格集合中的各个网格单元进行显示，以作为飞行器的航线路径，通过此方式显示更能直观观测到飞行器的位置，同时也便于显示出各采样点之间经过的网格单元，数据更丰富。而且通过此网格集合，为后续进行防碰撞判断奠定基础。</div>
+<div class="description-paragraph" id="p0059" num="0032">实施例二：</div>
+<div class="description-paragraph" id="p0060">本实施例提供了一种所述低空飞行器的防碰撞方法，如图5所示，包括下述步骤：</div>
+<div class="description-paragraph" id="p0061">步骤S5、对于两架飞行器F1和F2，从对应航线路径的网格集合中获取t时刻点位置点<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>所在的网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，并得到对应的编码<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0062" num="0033">当需要判断两架飞行器F1和F2的空间关系时，实施例一中已经获取到飞行器F1对应航线路径的网格集合，同理也可以获取到飞行器F2对应航线路径的网格集合，具体过程这里不赘述。</div>
+<div class="description-paragraph" id="p0063" num="0034">虽然网格集合保存的是各采样时刻点飞行器所在的网格单元以及采样点之间飞行器经过的网格单元，且按顺序进行保存，网格集合中的每个网格单元都具有时刻点信息，因此可以直接获取到时刻点t对应的位置点所在的网格单元，然后进行编码，分别为<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>。</div>
+<div class="description-paragraph" id="p0064" num="0035">步骤S6、根据<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>的关系，以及网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>的中心点距离，判断网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>之间的空间关系<span class="patent-image-not-available"></span>，包括重合、包含、相邻、相离。</div>
+<div class="description-paragraph" id="p0065" num="0036">结合图6所示，重合是指两个网格单元是同一个网格单元；包含是指其中一个小的网格单元在另一个大的网格单元中；相邻是指两个网格单元存在一个相邻面或者相邻边或者相邻顶点；相离是指两个网格单元不存在相邻的点、边、面，且不是包含或者重合关系。</div>
+<div class="description-paragraph" id="p0066" num="0037">本步骤具体过程如下：</div>
+<div class="description-paragraph" id="p0067">S61、飞行器F1所在的层级为<span class="patent-image-not-available"></span>，飞行器F2所在的层级为<span class="patent-image-not-available"></span>，获取两个飞行器所在的网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>，根据地球网格划分规则，得到网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>对应的中心点坐标，分别为<span class="patent-image-not-available"></span>（<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>）、<span class="patent-image-not-available"></span>（<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>），以及网格单元的大小边长和角对角线长度，其中网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>的大小边长分别为<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>，角对角线长度分别为<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0068">S62、根据中心点坐标<span class="patent-image-not-available"></span>（<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>）、<span class="patent-image-not-available"></span>（<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>，<span class="patent-image-not-available"></span>），计算<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>之间的距离<span class="patent-image-not-available"></span>：</div>
+<div class="description-paragraph" id="p0069"> <span class="patent-image-not-available"></span>；</div>
+<div class="description-paragraph" id="p0070">如果<span class="patent-image-not-available"></span>，则<span class="patent-image-not-available"></span>为重合；</div>
+<div class="description-paragraph" id="p0071">如果<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>，则<span class="patent-image-not-available"></span>为相邻；</div>
+<div class="description-paragraph" id="p0072">如果<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>，则<span class="patent-image-not-available"></span>为相离；</div>
+<div class="description-paragraph" id="p0073">如果<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>，则<span class="patent-image-not-available"></span>为包含，其中<span class="patent-image-not-available"></span>表示取编码<span class="patent-image-not-available"></span>的前<span class="patent-image-not-available"></span>位编码；</div>
+<div class="description-paragraph" id="p0074">如果<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>，则<span class="patent-image-not-available"></span>为相邻；</div>
+<div class="description-paragraph" id="p0075">如果<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>，则<span class="patent-image-not-available"></span>为相邻；</div>
+<div class="description-paragraph" id="p0076">如果<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>，则<span class="patent-image-not-available"></span>为相离；</div>
+<div class="description-paragraph" id="p0077">如果<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>且<span class="patent-image-not-available"></span>，则<span class="patent-image-not-available"></span>为相离。</div>
+<div class="description-paragraph" id="p0078" num="0038">步骤S7、根据空间关系，判断两个飞行器的碰撞情况：如果网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>之间的空间关系<span class="patent-image-not-available"></span>是重合或包含关系，则飞行器F1和F2会发生碰撞；若网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>之间的关系<span class="patent-image-not-available"></span>是相邻关系，则飞行器F1和F2存在发生碰撞的风险；若网格单元<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>之间的关系<span class="patent-image-not-available"></span>是相离关系，则飞行器F1和F2不会发生碰撞。</div>
+<div class="description-paragraph" id="p0079" num="0039">因此通过上述判断方式，根据低空空域航空飞行器的尺寸大小，获取航线路径的网格集合，然后根据不同时刻点下网格单元之间的空间关系，即可对低空空域内飞行的飞行器进行碰撞分析，有助于提高低空空域飞行器飞行安全。</div>
+<div class="description-paragraph" id="p0080" num="0040">实施例三：</div>
+<div class="description-paragraph" id="p0081">本实施例提供了一种所述低空飞行器的防碰撞方法，本实施例与实施例二不同之处在于，实施例二在分析t时刻点时两个飞行器之间的空间关系时直接采用t时刻点下两个飞行器的瞬时位置所在的网格单元进行位置分析；本实施例进一步采用两个飞行器在t-1时刻点到t时刻点所经过的网格单元两两之间进行位置分析，即计算<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>之间的距离<span class="patent-image-not-available"></span>是两个飞行器在时刻点对应的时间段内所经过的网格单元中心点之间最近的距离，此方式分析碰撞状态也更精确。</div>
+<div class="description-paragraph" id="p0082" num="0041">综上，本发明首先通过求取飞行器飞行路径所经过的网格单元来表示飞行器的航线路径，得到网格集合，然后通过判断飞行器之间的空间关系，解决了飞行器在低空空域飞行过程中是否发生碰撞的技术问题。</div>
+<div class="description-paragraph" id="p0083" num="0042">以上所述仅为本发明的较佳实施例而已，并不用以限制本发明，凡在本发明的精神和原则之内所作的任何修改、等同替换和改进等，均应包含在本发明的保护范围之内。</div>
+</mode-for-invention>
+</div>
+</div>
+</section></body></html>
