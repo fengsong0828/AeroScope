@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>产品详情 | AeroScope Insight</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .breadcrumb { padding: 20px 0 10px; color: #64748b; font-size: 0.9rem; }
+        .breadcrumb a { color: #64748b; text-decoration: none; }
+        .breadcrumb a:hover { color: #3b82f6; }
+        .detail-hero { background: white; border-bottom: 1px solid #e2e8f0; padding: 30px 0; margin-bottom: 30px; }
+        .detail-title { font-size: 1.8rem; font-weight: 700; color: #1e293b; margin-bottom: 15px; line-height: 1.3; }
+        .detail-meta-row { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; color: #64748b; font-size: 0.9rem; }
+        .meta-item { display: flex; align-items: center; gap: 6px; }
+        .status-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; display: inline-block; vertical-align: middle; margin-left: 10px; }
+        .status-certified { background: #dcfce7; color: #166534; }
+        .status-testing { background: #fde68a; color: #92400e; }
+        .status-concept { background: #e0e7ff; color: #3730a3; }
+        .detail-layout { display: grid; grid-template-columns: 2.5fr 1fr; gap: 30px; margin-bottom: 60px; }
+        .content-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 30px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .card-title { font-size: 1.2rem; font-weight: 700; color: #0f172a; margin-bottom: 20px; border-left: 4px solid #3b82f6; padding-left: 12px; }
+        .specs-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; background: #f8fafc; padding: 20px; border-radius: 8px; text-align: center; }
+        .spec-val { font-weight: 700; color: #334155; font-size: 1rem; }
+        .spec-label { font-size: 0.75rem; color: #94a3b8; margin-top: 2px; }
+        .desc-text { color: #334155; line-height: 1.8; font-size: 0.95rem; text-align: justify; }
+        @media (max-width: 768px) { .specs-grid { grid-template-columns: 1fr 1fr; } }
+        .image-box { width: 100%; height: 340px; background: #f1f5f9; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .image-box img { width: 100%; height: 100%; object-fit: cover; }
+        @media (max-width: 768px) { .detail-layout { grid-template-columns: 1fr; } .detail-title { font-size: 1.5rem; } .specs-grid { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="standard-container">
+            <div class="nav-inner">
+                <a href="../index.html" class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    AeroScope<span>Insight</span>
+                </a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <nav class="nav-links" id="navMenu">
+                    <a href="../index.html">首页</a>
+                    <a href="news.html">资讯快报</a>
+                    <a href="policies.html">政策法规</a>
+                    <a href="tech.html">技术前沿</a>
+                    <a href="companies.html">行业图谱</a>
+                    <a href="forum.html">论坛交流</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-component">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)">
+                        </div>
+                        <div id="search-dropdown"></div>
+                    </div>
+                    <button class="btn btn-primary" id="auth-btn" onclick="location.href='../login.html'">登录/注册</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="standard-container">
+        <div class="breadcrumb">
+            <a href="../index.html">首页</a> &gt; <a href="products.html">产品库</a> &gt; <span id="bread-title">加载中...</span>
+        </div>
+    </div>
+    <section class="detail-hero">
+        <div class="standard-container">
+            <div id="hero-loading" style="display:block; text-align:center; padding:20px; color:#94a3b8;">加载中...</div>
+            <div id="hero-content" style="display:none;">
+                <h1 class="detail-title">
+                    <span id="p-name">--</span>
+                    <span class="status-badge" id="p-status">--</span>
+                </h1>
+                <div class="detail-meta-row">
+                    <div class="meta-item"><span>🏢 厂商：</span><a href="#" id="p-maker-link" style="color:#3b82f6; text-decoration:none;">--</a></div>
+                    <div class="meta-item"><span>🔖 类型：</span><span id="p-type">--</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="standard-container detail-layout">
+        <main>
+            <div class="content-card">
+                <h3 class="card-title">产品概览</h3>
+                <div class="image-box"><img id="p-image" src="" alt=""></div>
+                <p id="p-desc" style="margin-top:16px; color:#334155; line-height:1.8;">--</p>
+            </div>
+            <div class="content-card">
+                <h3 class="card-title">核心参数</h3>
+                <div class="specs-grid" id="specs-grid">
+                    <div><div class="spec-val" id="spec-range">-</div><div class="spec-label">航程 (km)</div></div>
+                    <div><div class="spec-val" id="spec-speed">-</div><div class="spec-label">最大速度 (km/h)</div></div>
+                    <div><div class="spec-val" id="spec-payload">-</div><div class="spec-label">最大载重 (kg)</div></div>
+                    <div><div class="spec-val" id="spec-mtow">-</div><div class="spec-label">起飞重量 (kg)</div></div>
+                    <div><div class="spec-val" id="spec-passengers">-</div><div class="spec-label">最大乘员</div></div>
+                    <div><div class="spec-val" id="spec-endurance">-</div><div class="spec-label">续航时间 (min)</div></div>
+                    <div><div class="spec-val" id="spec-configuration">-</div><div class="spec-label">构型</div></div>
+                    <div><div class="spec-val" id="spec-propulsion">-</div><div class="spec-label">动力类型</div></div>
+                </div>
+            </div>
+        </main>
+        <aside>
+            <div class="content-card">
+                <h3 class="card-title">基本信息</h3>
+                <ul class="info-list" style="list-style:none; padding:0; margin:0;">
+                    <li style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px dashed #e2e8f0;"><span style="color:#64748b;">适航状态</span><span id="info-status" style="color:#1e293b; font-weight:500;">--</span></li>
+                    <li style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px dashed #e2e8f0;"><span style="color:#64748b;">机型类型</span><span id="info-type" style="color:#1e293b; font-weight:500;">--</span></li>
+                    <li style="display:flex; justify-content:space-between; padding:10px 0;"><span style="color:#64748b;">更新日期</span><span id="info-updated" style="color:#1e293b; font-weight:500;">--</span></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+    <footer>
+        <div class="standard-container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <h4 style="font-size:1.2rem;">AeroScope Insight</h4>
+                    <p style="font-size:0.9rem; color:#94a3b8; line-height: 1.6; margin-bottom: 20px;">连接政策、资本与技术，打造低空经济领域的数字化基础设施与决策引擎。</p>
+                </div>
+                <div class="footer-col"><h4>核心板块</h4><ul><li><a href="news.html">资讯快报</a></li><li><a href="policies.html">政策法规</a></li><li><a href="companies.html">企业数据库</a></li></ul></div>
+                <div class="footer-col"><h4>数据图谱</h4><ul><li><a href="../charts/chart-funding.html">全球融资趋势</a></li><li><a href="../charts/chart-cities.html">试点城市分布</a></li><li><a href="../charts/chart-companies.html">产业链全景图</a></li></ul></div>
+                <div class="footer-col"><h4>关于</h4><ul><li><a href="about.html">团队愿景</a></li><li><a href="submit-report.html">寻求报道</a></li><li><a href="contact.html">商务合作</a></li></ul></div>
+            </div>
+            <div class="copyright" style="border-top:1px solid #334155; padding-top:20px; margin-top:20px; text-align:center; color:#64748b; font-size:0.85rem;">
+                &copy; 2025 AeroScope Insight. All rights reserved. 京ICP备XXXXXXXX号
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/translations.js"></script>
+    <script>
+        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        async function checkUserLogin() {
+            const { data: { session } } = await _supabase.auth.getSession();
+            const btn = document.getElementById('auth-btn');
+            if (session) { btn.innerText = session.user.email.split('@')[0]; btn.onclick = () => location.href = '../profile.html'; }
+        }
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        function getQueryParam(param) { const urlParams = new URLSearchParams(window.location.search); return urlParams.get(param); }
+        function formatDate(dateStr) { if (!dateStr) return '--'; return new Date(dateStr).toLocaleDateString('zh-CN'); }
+        function getStatusConfig(status) {
+            const label = t(status);
+            if(label) {
+                const s = String(status).toLowerCase();
+                if(s === 'certified') return { text: label, class: 'status-certified' };
+                if(s === 'testing' || s === 'prototype') return { text: label, class: 'status-testing' };
+                return { text: label, class: 'status-concept' };
+            }
+            if(status === 'Certified') return { text: '已取证', class: 'status-certified' };
+            if(status === 'Testing') return { text: '试飞中', class: 'status-testing' };
+            if(status === 'Prototype') return { text: '原型机', class: 'status-testing' };
+            return { text: status || '研发中', class: 'status-concept' };
+        }
+        document.addEventListener('DOMContentLoaded', async function() {
+            checkUserLogin();
+            const pid = getQueryParam('id');
+            if (!pid) { document.getElementById('hero-loading').innerText = '错误：未提供产品ID'; return; }
+            try {
+                const { data: p, error } = await _supabase.from('products').select('*, companies ( id, name, country_code )').eq('id', pid).single();
+                if (error) throw error;
+                if (!p) throw new Error('未找到该产品');
+                document.getElementById('hero-loading').style.display = 'none';
+                document.getElementById('hero-content').style.display = 'block';
+                document.title = `${p.name} | AeroScope Insight`;
+                document.getElementById('bread-title').innerText = p.name;
+                document.getElementById('p-name').innerText = p.name || '--';
+                const statusCfg = getStatusConfig(p.certification_status);
+                const statusEl = document.getElementById('p-status');
+                statusEl.innerText = statusCfg.text;
+                statusEl.className = `status-badge ${statusCfg.class}`;
+                const makerLink = document.getElementById('p-maker-link');
+                makerLink.innerText = p.companies?.name || p.manufacturer_name || '未知厂商';
+                if (p.companies?.id) { makerLink.href = `company-detail.html?id=${p.companies.id}`; } else { makerLink.removeAttribute('href'); makerLink.style.color = '#64748b'; makerLink.style.cursor = 'default'; }
+                document.getElementById('p-type').innerText = t(p.type) || '--';
+                const imgUrl = p.image_url || 'https://via.placeholder.com/800x450?text=No+Image';
+                document.getElementById('p-image').src = imgUrl;
+                const specsRaw = p.specs || {};
+                let specs = specsRaw;
+                if (typeof specs === 'string') {
+                    try { specs = JSON.parse(specs); } catch(e) { specs = {}; }
+                }
+                document.getElementById('p-desc').innerText = p.description || (specs.description || '暂无简介');
+                (document.getElementById('p-image').parentElement.style.background = 'none');
+                
+                document.getElementById('spec-range').innerText = specs.range_km != null ? (specs.range_km + ' km') : '-';
+                document.getElementById('spec-speed').innerText = specs.speed_kmh != null ? (specs.speed_kmh + ' km/h') : '-';
+                document.getElementById('spec-payload').innerText = specs.payload_kg != null ? (specs.payload_kg + ' kg') : '-';
+                document.getElementById('spec-mtow').innerText = specs.mtow_kg != null ? (specs.mtow_kg + ' kg') : '-';
+                document.getElementById('spec-passengers').innerText = specs.passengers != null ? (specs.passengers + (specs.passengers === 0 ? ' (货运)' : ' 人')) : '-';
+                document.getElementById('spec-endurance').innerText = specs.endurance_min != null ? (specs.endurance_min + ' min') : '-';
+                document.getElementById('spec-configuration').innerText = specs.configuration || '-';
+                document.getElementById('spec-propulsion').innerText = t(specs.propulsion) || specs.propulsion || '-';
+                document.getElementById('info-status').innerText = statusCfg.text;
+                document.getElementById('info-type').innerText = t(p.type) || '--';
+                document.getElementById('info-updated').innerText = formatDate(p.updated_at || p.created_at);
+            } catch (err) {
+                console.error(err);
+                document.getElementById('hero-loading').innerHTML = `<span style="color:red;">加载失败: ${err.message}</span>`;
+            }
+        });
+    </script>
+<script src="../js/ai-widget.js"></script>
+</body>
+</html>
+

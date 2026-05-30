@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>最新动态 | AeroScope Insight</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* --- 新闻列表专属 --- */
+        .news-feed { display: flex; flex-direction: column; }
+
+        .news-content h3 a { color: #1e293b; text-decoration: none; transition: 0.2s; }
+        .news-content h3 a:hover { color: #3b82f6; }
+
+        .news-content p {
+            font-size: 0.88rem; color: #64748b; margin-top: 4px;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- 侧边栏 & 标签 --- */
+        .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; }
+        .tag-item { 
+            display: block; padding: 6px 12px; border-radius: 4px; 
+            background: white; border: 1px solid #e2e8f0; 
+            color: #64748b; font-size: 0.85rem; cursor: pointer; 
+            transition: all 0.2s ease; text-align: center; 
+        }
+        .tag-item:hover, .tag-item.active { background: #eff6ff; border-color: #3b82f6; color: #3b82f6; font-weight: 500; }
+
+        .sidebar-widget { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 25px; }
+        .widget-title { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 15px; border-left: 4px solid #3b82f6; padding-left: 10px; }
+        .newsletter-box { background: #f0fdf4; border: 1px solid #bbf7d0; text-align: center; }
+        .newsletter-input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; margin-bottom: 10px; font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .news-item { flex-direction: column; }
+            .news-image { width: 100%; height: 180px; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .social-icons { justify-content: center; }
+            .search-component { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Header -->
+    <header>
+        <div class="standard-container">
+            <div class="nav-inner">
+                <a href="../index.html" class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    AeroScope<span>Insight</span>
+                </a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <nav class="nav-links" id="navMenu">
+                    <a href="../index.html">首页</a>
+                    <a href="news.html" class="active">资讯快报</a>
+                    <a href="policies.html">政策法规</a>
+                    <a href="tech.html">技术前沿</a>
+                    <a href="companies.html">行业图谱</a>
+                    <a href="forum.html">论坛交流</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-component">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)">
+                        </div>
+                        <div id="search-dropdown"></div>
+                    </div>
+                    <button class="btn btn-primary" id="auth-btn" onclick="location.href='../login.html'">登录/注册</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面标题 -->
+    <section class="page-hero">
+        <div class="standard-container">
+            <h1>行业资讯快报</h1>
+            <p>汇聚全球低空经济最新情报</p>
+        </div>
+    </section>
+
+    <!-- 主布局 -->
+    <div class="standard-container">
+        <div class="main-layout-grid">
+            <!-- 左侧：新闻列表 -->
+            <main>
+                <div class="news-feed" id="news-container">
+                    <div style="text-align:center; padding:40px; color:#94a3b8;">加载中...</div>
+                </div>
+
+                <!-- 分页控件 -->
+                <div id="pagination-controls" class="pagination-container" style="display: none;">
+                    <button class="page-btn" id="prev-page" onclick="changePage(-1)">上一页</button>
+                    <span class="page-info" id="page-info">第 1 页 / 共 1 页</span>
+                    <button class="page-btn" id="next-page" onclick="changePage(1)">下一页</button>
+                </div>
+            </main>
+
+            <!-- 右侧：侧边栏 -->
+            <aside class="sidebar">
+                <div class="sidebar-widget">
+                    <div class="widget-title">热门标签</div>
+                    <!-- 动态标签云 -->
+                    <div class="tag-cloud" id="tag-container">
+                        <p style="color:#999; font-size:0.8rem;">正在分析热度...</p>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget newsletter-box">
+                    <div style="font-weight:700; color:#3b82f6; text-align:center;">订阅行业日报</div>
+                    <p style="font-size:0.85rem; color:#64748b; margin-bottom:10px; text-align:center;">每早8点，获取核心情报。</p>
+                    <p style="text-align:center; color:#94a3b8; font-size:0.85rem; padding:10px; border:1px dashed #cbd5e1; border-radius:6px;">订阅功能即将上线</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="standard-container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <h4 style="font-size:1.2rem;">AeroScope Insight</h4>
+                    <p style="font-size:0.9rem; color:#94a3b8; line-height: 1.6; margin-bottom: 20px;">
+                        连接政策、资本与技术，打造低空经济领域的数字化基础设施与决策引擎。
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></a>
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                        <a href="mailto:contact@aeroscope.cn" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col"><h4>核心板块</h4><ul><li><a href="news.html">资讯快报</a></li><li><a href="policies.html">政策法规</a></li><li><a href="companies.html">企业数据库</a></li></ul></div>
+                <div class="footer-col"><h4>数据图谱</h4><ul><li><a href="../charts/chart-funding.html">全球融资趋势</a></li><li><a href="../charts/chart-cities.html">试点城市分布</a></li><li><a href="../charts/chart-companies.html">产业链全景图</a></li></ul></div>
+                <div class="footer-col"><h4>关于</h4><ul><li><a href="about.html">团队愿景</a></li><li><a href="submit-report.html">寻求报道</a></li><li><a href="contact.html">商务合作</a></li></ul></div>
+            </div>
+            <div class="copyright" style="border-top:1px solid #334155; padding-top:20px; margin-top:20px; text-align:center; color:#64748b; font-size:0.85rem;">&copy; 2025 AeroScope Insight. All rights reserved. 京ICP备XXXXXXXX号</div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/translations.js"></script>
+    <script>
+        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        let currentPage = 1;
+        let totalCount = 0;
+        let activeTag = 'all';
+        const itemsPerPage = 6;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            checkUserLogin();
+            await loadHotTags();
+            await fetchPage();
+        });
+
+        async function loadHotTags() {
+            const { data } = await _supabase.from('news').select('tags').eq('draft', false).order('publish_date', {ascending: false}).limit(200);
+            if (!data) return;
+            const tagCounts = {};
+            data.forEach(item => {
+                if (item.tags && Array.isArray(item.tags)) {
+                    item.tags.forEach(tag => { if(tag && tag.trim()) tagCounts[tag] = (tagCounts[tag] || 0) + 1; });
+                }
+            });
+            const sortedTags = Object.entries(tagCounts).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
+            const container = document.getElementById('tag-container');
+            if (sortedTags.length === 0) { container.innerHTML = '<p style="color:#999; font-size:0.8rem;">暂无标签</p>'; return; }
+            let html = `<div class="tag-item active" onclick="filterByTag('all', this)">全部</div>`;
+            sortedTags.slice(0, 20).forEach(tagObj => { html += `<div class="tag-item" onclick="filterByTag('${tagObj.name}', this)">${t(tagObj.name)}</div>`; });
+            container.innerHTML = html;
+        }
+
+        async function fetchPage() {
+            const container = document.getElementById('news-container');
+            container.innerHTML = '<p style="text-align:center; padding:20px;">加载中...</p>';
+
+            let query = _supabase.from('news').select('*', { count: 'exact', head: false })
+                .eq('draft', false)
+                .order('publish_date', {ascending: false});
+
+            if (activeTag !== 'all') {
+                query = query.contains('tags', [activeTag]);
+            }
+
+            const from = (currentPage - 1) * itemsPerPage;
+            const to = from + itemsPerPage - 1;
+            const { data, error, count } = await query.range(from, to);
+
+            if(error || !data || !data.length) {
+                container.innerHTML = '<p style="text-align:center; padding:40px; color:#999;">暂无新闻内容</p>';
+                document.getElementById('pagination-controls').style.display = 'none';
+                return;
+            }
+
+            totalCount = count || 0;
+            renderCards(data);
+            updatePaginationControls();
+        }
+
+        function renderCards(items) {
+            const container = document.getElementById('news-container');
+            container.innerHTML = '';
+
+            items.forEach(item => {
+                let imgUrl = item.image_url;
+                if (!imgUrl && item.content) {
+                    const mdMatch = item.content.match(/!\[.*?\]\((.*?)\)/);
+                    if (mdMatch && mdMatch[1]) { imgUrl = mdMatch[1]; }
+                    else {
+                        const htmlMatch = item.content.match(/<img[^>]+src=['"]([^'"]+)['"]/);
+                        if (htmlMatch && htmlMatch[1]) { imgUrl = htmlMatch[1]; }
+                    }
+                }
+
+                let bgStyle;
+                let innerContent = '';
+                if (imgUrl) {
+                    bgStyle = `background: #cbd5e1 url('${imgUrl}') center/cover no-repeat; display:block;`;
+                } else {
+                    const tagText = t(item.category || 'News');
+                    bgStyle = `background: #f1f5f9; display:flex; align-items:center; justify-content:center; color:#94a3b8; font-weight:bold; font-size:1.2rem;`;
+                    innerContent = tagText;
+                }
+
+                let itemTagsHtml = '';
+                if(item.tags && Array.isArray(item.tags)) {
+                    item.tags.slice(0,3).forEach(tag => {
+                        itemTagsHtml += `<span style="color:#3b82f6; background:#eff6ff; padding:2px 6px; border-radius:4px; font-size:0.7rem; margin-right:5px;">#${t(tag)}</span>`;
+                    });
+                }
+
+                container.innerHTML += `
+                    <article class="news-item">
+                        <a href="news-detail.html?id=${item.id}" class="news-image" style="${bgStyle}">${innerContent}</a>
+                        <div class="news-content">
+                            <h3><a href="news-detail.html?id=${item.id}">${item.title}</a></h3>
+                            <div class="news-meta">
+                                <span class="tag" style="background:#f1f5f9; padding:2px 6px; border-radius:4px; color:#475569;">${t(item.category)||'资讯'}</span>
+                                <span>${item.publish_date}</span>
+                                <span style="margin-left:10px; color:#ccc;">${item.source||''}</span>
+                            </div>
+                            <div style="margin: 6px 0;">${itemTagsHtml}</div>
+                            <p>${item.summary||''}</p>
+                        </div>
+                    </article>
+                `;
+            });
+        }
+
+        function filterByTag(tagName, domEl) {
+            document.querySelectorAll('.tag-item').forEach(el => el.classList.remove('active'));
+            domEl.classList.add('active');
+            activeTag = tagName;
+            currentPage = 1;
+            fetchPage();
+        }
+
+        function updatePaginationControls() {
+            const paginationEl = document.getElementById('pagination-controls');
+            const totalPages = Math.ceil(totalCount / itemsPerPage);
+            if (totalPages <= 1) { paginationEl.style.display = 'none'; return; }
+            paginationEl.style.display = 'flex';
+            document.getElementById('page-info').innerText = `第 ${currentPage} 页 / 共 ${totalPages} 页`;
+            document.getElementById('prev-page').disabled = (currentPage === 1);
+            document.getElementById('next-page').disabled = (currentPage === totalPages);
+        }
+
+        function changePage(direction) {
+            const totalPages = Math.ceil(totalCount / itemsPerPage);
+            const newPage = currentPage + direction;
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                fetchPage();
+                const listTop = document.querySelector('.main-layout-grid').offsetTop - 80;
+                window.scrollTo({top: listTop, behavior: 'smooth'});
+            }
+        }
+
+        async function checkUserLogin() {
+            const { data: { session } } = await _supabase.auth.getSession();
+            const btn = document.getElementById('auth-btn');
+            if (session) { btn.innerText = session.user.email.split('@')[0]; btn.onclick = () => location.href = '../profile.html'; }
+        }
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        
+        let searchTimeout;
+        async function performGlobalSearch(keyword) {
+            const dropdown = document.getElementById('search-dropdown');
+            if (!keyword || keyword.length < 1) { dropdown.style.display = 'none'; return; }
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(async () => {
+                dropdown.style.display = 'block';
+                const { data } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
+                if (!data || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
+                let html = '';
+                data.forEach(item => {
+                    let link='#', color='#3b82f6', typeName='资讯';
+                    if(item.type==='company') { link='companies.html'; color='#f59e0b'; typeName='公司'; }
+                    else if(item.type==='policy') { link=`policy-detail.html?id=${item.id}`; color='#ef4444'; typeName='政策'; }
+                    else if(item.type==='tech') { link=`tech-detail.html?id=${item.id}`; color='#8b5cf6'; typeName='技术'; }
+                    else { link=`news-detail.html?id=${item.id}`; }
+                    html += `<a href="${link}" class="search-result-item"><div style="font-weight:600; font-size:0.9rem;">${item.title}</div><div class="result-meta"><span class="result-tag" style="color:${color}; background:${color}15;">${typeName}</span><span>${item.publish_date || ''}</span></div></a>`;
+                });
+                dropdown.innerHTML = html;
+            }, 500);
+        }
+        document.addEventListener('click', (e) => { if(!document.querySelector('.search-component').contains(e.target)) document.getElementById('search-dropdown').style.display='none'; });
+    </script>
+<script src="../js/ai-widget.js"></script>
+</body>
+</html>

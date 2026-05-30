@@ -12,7 +12,7 @@
         .main-layout-grid {
             display: grid;
             grid-template-columns: 2.5fr 1fr;
-            gap: 30px;
+            gap: 32px;
             align-items: start;
         }
 
@@ -184,14 +184,6 @@
         .expert-title { font-size: 0.95rem; font-weight: 600; color: #334155; margin-bottom: 6px; line-height: 1.4; transition: color 0.2s; }
         .expert-quote { font-size: 0.85rem; color: #64748b; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-style: italic; }
         
-        .news-item { display: flex; background: white; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; transition: 0.2s; min-height: 60px; margin-bottom: 2px; text-decoration: none; }
-        .news-item:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.05); border-color: #3b82f6; }
-        .news-image { width: 100px; min-width: 100px; background-color: #f8fafc; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #94a3b8; background-size: cover; background-position: center; border-right: 1px solid #f1f5f9; }
-        .news-content { padding: 6px 10px; flex: 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
-        .news-content h3 { margin: 0 0 2px 0; font-size: 0.95rem; line-height: 1.3; color: #1e293b; }
-        .news-meta { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: #64748b; margin-bottom: 2px; }
-        .news-content p { font-size: 0.85rem; color: #64748b; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5; }
-        
         @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
@@ -208,11 +200,11 @@
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
                 <nav class="nav-links" id="navMenu">
                     <a href="index.html" class="active">首页</a>
-                    <a href="news.html">资讯快报</a>
-                    <a href="policies.html">政策法规</a>
-                    <a href="tech.html">技术前沿</a>
-                    <a href="companies.html">行业图谱</a>
-                    <a href="forum.html">论坛交流</a>
+                    <a href="pages/news.html">资讯快报</a>
+                    <a href="pages/policies.html">政策法规</a>
+                    <a href="pages/tech.html">技术前沿</a>
+                    <a href="pages/companies.html">行业图谱</a>
+                    <a href="pages/forum.html">论坛交流</a>
                 </nav>
                 <div class="header-actions">
                     <div class="search-component">
@@ -233,7 +225,7 @@
         <div class="standard-container">
             <h1>构建低空经济时代数字基础设施</h1>
             <p>实时洞察全球 eVTOL、无人机物流及城市空中交通（UAM）的政策、技术与资本动态</p>
-            <a href="products.html" class="btn btn-primary" style="padding: 12px 32px; display:inline-block; margin-top:20px;">浏览全球低空飞行器产品库</a>
+            <a href="pages/products.html" class="btn btn-primary" style="padding: 12px 32px; display:inline-block; margin-top:20px;">浏览全球低空飞行器产品库</a>
         </div>
     </section>
 
@@ -241,25 +233,25 @@
     <div class="standard-container">
         <div class="dashboard-grid">
             <!-- 1. 全球融资总额 -->
-            <a href="chart-funding.html" class="data-card" id="funding-card">
+            <a href="charts/chart-funding.html" class="data-card" id="funding-card">
                 <div class="data-label">全球融资概况</div>
                 <div class="data-value" id="val-funding">--</div>
                 <span class="trend-indicator">▲ 实时统计中</span>
             </a>
             <!-- 2. 试点城市 -->
-            <a href="chart-cities.html" class="data-card" id="cities-card">
+            <a href="charts/chart-cities.html" class="data-card" id="cities-card">
                 <div class="data-label">政策试点城市</div>
                 <div class="data-value" id="val-cities">--</div>
                 <span class="trend-indicator">查看分布地图 →</span>
             </a>
             <!-- 3. 技术专利 -->
-            <a href="chart-patents.html" class="data-card">
+            <a href="charts/chart-patents.html" class="data-card">
                 <div class="data-label">收录技术专利</div>
                 <div class="data-value" id="val-patents">--</div>
                 <span class="trend-indicator">查看专利分布 →</span>
             </a>
             <!-- 4. 产业链企业 -->
-            <a href="chart-companies.html" class="data-card">
+            <a href="charts/chart-companies.html" class="data-card">
                 <div class="data-label">产业链企业</div>
                 <div class="data-value" id="val-companies">--</div>
                 <span class="trend-indicator">查看全景图谱 →</span>
@@ -309,14 +301,13 @@
                 <div class="sidebar-widget newsletter-box">
                     <div style="font-weight:700; color:#3b82f6; text-align:center;">订阅行业日报</div>
                     <p style="font-size:0.85rem; color:#64748b; margin-bottom:10px; text-align:center;">每早8点，获取核心情报。</p>
-                    <input type="email" class="newsletter-input" placeholder="输入邮箱地址">
-                    <button class="btn btn-primary" style="width: 100%;">免费订阅</button>
+                    <p style="text-align:center; color:#94a3b8; font-size:0.85rem; padding:10px; border:1px dashed #cbd5e1; border-radius:6px;">订阅功能即将上线</p>
                 </div>
 
                 <div class="sidebar-widget">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom: 1px solid #e2e8f0; padding-bottom:10px;">
                         <div class="widget-title" style="margin-bottom:0; border:none; padding:0;">深度报告</div>
-                        <a href="reports.html" style="font-size:0.85rem; color:#3b82f6; font-weight:600;">查看更多 &gt;</a>
+                        <a href="pages/reports.html" style="font-size:0.85rem; color:#3b82f6; font-weight:600;">查看更多 &gt;</a>
                     </div>
                     <div id="home-report-list">
                         <p style="color:#999; font-size:0.85rem; text-align:center;">加载中...</p>
@@ -327,7 +318,7 @@
                 <div class="sidebar-widget">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom: 1px solid #e2e8f0; padding-bottom:10px;">
                         <div class="widget-title" style="margin-bottom:0; border:none; padding:0;">专家观点</div>
-                        <a href="forum.html" style="font-size:0.85rem; color:#3b82f6; font-weight:600;">更多 &gt;</a>
+                        <a href="pages/forum.html" style="font-size:0.85rem; color:#3b82f6; font-weight:600;">更多 &gt;</a>
                     </div>
                     
                     <div id="home-expert-list" class="expert-list-container">
@@ -360,26 +351,26 @@
                 <div class="footer-col">
                     <h4>核心板块</h4>
                     <ul>
-                        <li><a href="news.html">资讯快报</a></li>
-                        <li><a href="policies.html">政策法规</a></li>
-                        <li><a href="companies.html">企业数据库</a></li>
+                        <li><a href="pages/news.html">资讯快报</a></li>
+                        <li><a href="pages/policies.html">政策法规</a></li>
+                        <li><a href="pages/companies.html">企业数据库</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
                     <h4>数据图谱</h4>
                     <ul>
-                        <li><a href="chart-funding.html">全球融资趋势</a></li>
-                        <li><a href="chart-cities.html">试点城市分布</a></li>
-                        <li><a href="chart-companies.html">产业链全景图</a></li>
+                        <li><a href="charts/chart-funding.html">全球融资趋势</a></li>
+                        <li><a href="charts/chart-cities.html">试点城市分布</a></li>
+                        <li><a href="charts/chart-companies.html">产业链全景图</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>关于</h4>
                     <ul>
-                        <li><a href="about.html">团队愿景</a></li>
-                        <li><a href="submit-report.html">寻求报道</a></li>
-                        <li><a href="contact.html">商务合作</a></li>
+                        <li><a href="pages/about.html">团队愿景</a></li>
+                        <li><a href="pages/submit-report.html">寻求报道</a></li>
+                        <li><a href="pages/contact.html">商务合作</a></li>
                     </ul>
                 </div>
             </div>
@@ -398,15 +389,13 @@
 
         // 全局状态管理
         let currentMainTab = 'news'; // 'news' or 'columns'
-        let allFeedData = []; 
         let currentPage = 1;
         const itemsPerPage = 5;
-        let totalCount = 0; // 用于分页计数
+        let totalCount = 0;
 
         document.addEventListener('DOMContentLoaded', async function() {
             checkUserLogin();
             loadDashboardStats(); 
-            // 默认加载 News Tab
             loadUnifiedFeed();
             loadHomeReports();
             loadHomeExperts();
@@ -418,20 +407,12 @@
             currentMainTab = tab;
             currentPage = 1;
 
-            // UI 更新：所有 Tab 按钮移除 active
             document.querySelectorAll('.feed-tab-btn').forEach(b => b.classList.remove('active'));
-            // 当前按钮添加 active
             btn.classList.add('active');
 
-            // 按钮显示逻辑：只有在 columns 标签下显示写文章按钮
             const writeBtn = document.getElementById('write-btn-container');
-            if (tab === 'columns') {
-                writeBtn.style.display = 'block';
-            } else {
-                writeBtn.style.display = 'none';
-            }
+            writeBtn.style.display = (tab === 'columns') ? 'block' : 'none';
 
-            // 数据加载
             if (tab === 'news') {
                 loadUnifiedFeed();
             } else {
@@ -439,62 +420,37 @@
             }
         }
 
-        // 2. 加载混合新闻流 (News Tab)
+        // 2. 加载统一信息流 (News Tab) — 使用数据库视图 + 服务端分页
         async function loadUnifiedFeed() {
             const container = document.getElementById('main-list-container');
             container.innerHTML = '<div style="text-align:center; padding:40px; color:#94a3b8;">正在聚合多源数据...</div>';
 
-            const start = (currentPage - 1) * itemsPerPage;
-            // 注意：这里为了简化展示，暂不处理复杂的混合分页，而是直接拉取一批数据前端分页
-            
-            const [newsRes, policyRes, techRes] = await Promise.all([
-                _supabase.from('news').select('id, title, summary, content, publish_date, category, image_url').eq('draft', false).order('publish_date', {ascending:false}).limit(15),
-                _supabase.from('policies').select('id, title, summary, content, publish_date, department').eq('draft', false).order('publish_date', {ascending:false}).limit(10),
-                _supabase.from('tech_trends').select('id, title, summary, content, publish_date, type, image_url').eq('draft', false).order('publish_date', {ascending:false}).limit(10)
-            ]);
+            const from = (currentPage - 1) * itemsPerPage;
+            const to = from + itemsPerPage - 1;
 
-            let feed = [];
-            if(newsRes.data) feed = feed.concat(newsRes.data.map(i => ({...i, type: 'news', tag: i.category || '资讯', link: `news-detail.html?id=${i.id}`})));
-            if(policyRes.data) feed = feed.concat(policyRes.data.map(i => ({...i, type: 'policy', tag: '政策', link: `policy-detail.html?id=${i.id}`, image_url: null})));
-            if(techRes.data) feed = feed.concat(techRes.data.map(i => ({...i, type: 'tech', tag: i.type || '技术', link: `tech-detail.html?id=${i.id}`})));
+            const { data, error, count } = await _supabase
+                .from('unified_feed')
+                .select('*', { count: 'exact', head: false })
+                .order('publish_date', { ascending: false })
+                .range(from, to);
 
-            feed.sort((a, b) => new Date(b.publish_date) - new Date(a.publish_date));
-            allFeedData = feed;
-            
-            // 模拟分页渲染
-            totalCount = feed.length;
-            renderNewsList(1);
-        }
-
-        function renderNewsList(page) {
-            const container = document.getElementById('main-list-container');
-            const start = (page - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            const pageData = allFeedData.slice(start, end);
-
-            container.innerHTML = '';
-            if (pageData.length === 0) {
+            if (error || !data || data.length === 0) {
                 container.innerHTML = '<p style="text-align:center; color:#999; padding:30px;">暂无数据</p>';
                 updatePaginationUI(0);
                 return;
             }
 
-            pageData.forEach(item => {
-                // 优先级：封面图 > 正文首图 > 文字Fallback
+            totalCount = count || 0;
+            container.innerHTML = '';
+
+            data.forEach(item => {
                 let imgUrl = item.image_url;
-                
-                // 如果没有封面图，尝试从正文提取第一张图片
                 if (!imgUrl && item.content) {
-                    // 匹配 Markdown 图片 ![alt](url)
                     const mdMatch = item.content.match(/!\[.*?\]\((.*?)\)/);
-                    if (mdMatch && mdMatch[1]) {
-                        imgUrl = mdMatch[1];
-                    } else {
-                        // 匹配 HTML 图片 <img src="url">
+                    if (mdMatch && mdMatch[1]) { imgUrl = mdMatch[1]; }
+                    else {
                         const htmlMatch = item.content.match(/<img[^>]+src=['"]([^'"]+)['"]/);
-                        if (htmlMatch && htmlMatch[1]) {
-                            imgUrl = htmlMatch[1];
-                        }
+                        if (htmlMatch && htmlMatch[1]) { imgUrl = htmlMatch[1]; }
                     }
                 }
 
@@ -502,17 +458,21 @@
                 if (imgUrl) {
                     imgHtml = `<div class="news-image" style="background-image:url('${imgUrl}')"></div>`;
                 } else {
-                    // 无图时使用文字Fallback
-                    const tagText = t(item.tag || item.category || 'News');
+                    const tagText = t(item.tag || 'News');
                     imgHtml = `<div class="news-image" style="background:#f1f5f9; display:flex; align-items:center; justify-content:center; color:#94a3b8; font-weight:bold; border-right:1px solid #e2e8f0;">${tagText}</div>`;
                 }
-                
+
+                // 构建详情链接
+                let detailLink = `pages/news-detail.html?id=${item.id}`;
+                if (item.feed_type === 'policy') detailLink = `pages/policy-detail.html?id=${item.id}`;
+                else if (item.feed_type === 'tech') detailLink = `pages/tech-detail.html?id=${item.id}`;
+
                 let tagStyle = '';
-                if(item.type === 'policy') tagStyle = 'background:#0f172a; color:white;';
-                if(item.type === 'tech') tagStyle = 'background:#8b5cf6; color:white;';
+                if (item.feed_type === 'policy') tagStyle = 'background:#0f172a; color:white;';
+                if (item.feed_type === 'tech') tagStyle = 'background:#8b5cf6; color:white;';
 
                 container.innerHTML += `
-                    <a href="${item.link}" class="news-item">
+                    <a href="${detailLink}" class="news-item">
                         ${imgHtml}
                         <div class="news-content">
                             <h3>${item.title}</h3>
@@ -522,7 +482,7 @@
                     </a>
                 `;
             });
-            
+
             updatePaginationUI(totalCount);
         }
 
@@ -572,7 +532,7 @@
                         : ''; 
 
                     container.innerHTML += `
-                        <a href="article-detail.html?id=${item.id}" class="article-card-item">
+                        <a href="pages/article-detail.html?id=${item.id}" class="article-card-item">
                             <div class="article-main-content">
                                 <div class="article-author-row">
                                     <div class="author-avatar-xs">${avatarChar}</div>
@@ -622,18 +582,13 @@
         function changePage(offset) {
             const newPage = currentPage + offset;
             const totalPages = Math.ceil(totalCount / itemsPerPage);
-            
             if (newPage < 1 || newPage > totalPages) return;
-            
             currentPage = newPage;
-            
             if (currentMainTab === 'news') {
-                renderNewsList(currentPage);
+                loadUnifiedFeed();
             } else {
                 loadUserColumns();
             }
-            
-            // 滚动回列表顶部
             document.querySelector('.feed-tabs-container').scrollIntoView({behavior: 'smooth'});
         }
 
@@ -668,7 +623,7 @@
             if(data && data.length){
                 container.innerHTML = '';
                 data.forEach(i => {
-                    container.innerHTML += `<div style="margin-bottom:10px; border-bottom:1px dashed #eee; padding-bottom:8px;"><a href="report-detail.html?id=${i.id}" style="color:#333; font-size:0.9rem; font-weight:500; text-decoration:none;">${i.title}</a><div style="font-size:0.75rem; color:#999; margin-top:4px;">${i.publish_date}</div></div>`;
+                    container.innerHTML += `<div style="margin-bottom:10px; border-bottom:1px dashed #eee; padding-bottom:8px;"><a href="pages/report-detail.html?id=${i.id}" style="color:#333; font-size:0.9rem; font-weight:500; text-decoration:none;">${i.title}</a><div style="font-size:0.75rem; color:#999; margin-top:4px;">${i.publish_date}</div></div>`;
                 });
             } else { container.innerHTML = '<p style="color:#ccc; text-align:center;">暂无报告</p>'; }
         }
@@ -681,7 +636,7 @@
                 data.forEach(i => {
                     let name = i.user_email ? i.user_email.split('@')[0] : '专家';
                     let av = i.author_avatar_text || name[0];
-                    container.innerHTML += `<a href="forum-topic.html?id=${i.id}" class="home-expert-card"><div class="expert-header"><div class="expert-av">${av}</div><div class="expert-name">${name}</div></div><div class="expert-title">${i.title}</div></a>`;
+                    container.innerHTML += `<a href="pages/forum-topic.html?id=${i.id}" class="home-expert-card"><div class="expert-header"><div class="expert-av">${av}</div><div class="expert-name">${name}</div></div><div class="expert-title">${i.title}</div></a>`;
                 });
             } else { container.innerHTML = '<p style="color:#ccc; text-align:center;">暂无观点</p>'; }
         }
@@ -698,10 +653,10 @@
                 if (!data || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
                 let html = '';
                 data.forEach(item => {
-                    let link=`news-detail.html?id=${item.id}`;
-                    if(item.type==='company') link='companies.html';
-                    else if(item.type==='policy') link=`policy-detail.html?id=${item.id}`;
-                    else if(item.type==='tech') link=`tech-detail.html?id=${item.id}`;
+                    let link=`pages/news-detail.html?id=${item.id}`;
+                    if(item.type==='company') link='pages/companies.html';
+                    else if(item.type==='policy') link=`pages/policy-detail.html?id=${item.id}`;
+                    else if(item.type==='tech') link=`pages/tech-detail.html?id=${item.id}`;
                     html += `<a href="${link}" class="search-result-item">${item.title}</a>`;
                 });
                 dropdown.innerHTML = html;
@@ -711,5 +666,6 @@
         async function checkUserLogin() { const {data:{session}} = await _supabase.auth.getSession(); const btn=document.getElementById('auth-btn'); if(session){btn.innerText=session.user.email.split('@')[0]; btn.onclick=()=>location.href='profile.html';}}
         function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
     </script>
+    <script src="js/ai-widget.js"></script>
 </body>
 </html>

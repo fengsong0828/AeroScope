@@ -1,0 +1,458 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>政策法规 | AeroScope Insight</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* --- 1. 复用组件样式 (Header/Footer/Search) --- */
+        .search-component { position: relative; margin-right: 15px; }
+        .search-box { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 20px; background: white; padding: 5px 12px; transition: 0.3s; }
+        .search-box:focus-within { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+        .search-icon { font-size: 1rem; color: #64748b; margin-right: 8px; }
+        .search-input { border: none; outline: none; font-size: 0.9rem; width: 160px; color: #1e293b; }
+        
+        #search-dropdown { position: absolute; top: 45px; right: 0; width: 280px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 2000; display: none; max-height: 400px; overflow-y: auto; }
+        .search-result-item { display: block; padding: 12px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: #1e293b; transition: 0.2s; }
+        .search-result-item:hover { background: #f8fafc; }
+        .result-meta { font-size: 0.75rem; color: #64748b; display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+        .result-tag { padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; }
+
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
+        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 1rem; font-weight: 600; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+        .footer-col a:hover { color: #3b82f6; }
+        .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+        .social-btn { width: 36px; height: 36px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; }
+        .social-btn:hover { background: #3b82f6; transform: translateY(-2px); }
+
+        /* --- 2. 政策列表核心样式 (紧凑版) --- */
+        .news-feed { display: flex; flex-direction: column; gap: 2px; } /* 减少间距 */
+        
+        .news-item { 
+            display: flex; 
+            background: white; 
+            /* 浅色边框，避免太深 */
+            border: 1px solid #e2e8f0; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            transition: 0.2s; 
+            min-height: 60px; /* 压缩最小高度 */
+        }
+        .news-item:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.05); border-color: #3b82f6; }
+        
+        /* 左侧色块容器：比新闻图片窄一些，适合放文字 */
+        .news-image { 
+            width: 100px; min-width: 100px; 
+            background-color: #f8fafc; 
+            display: block; 
+            border-right: 1px solid #f1f5f9;
+        }
+        
+        /* 政策特有的色块样式 */
+        .policy-level-box {
+            width: 100%; height: 100%;
+            background: #f0f9ff; color: #0284c7; 
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.9rem;
+            text-align: center; padding: 10px;
+        }
+
+        /* 右侧内容：紧凑排版 */
+        .news-content { 
+            padding: 6px 10px; /* 压缩内边距 */
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            min-width: 0; 
+        }
+        
+        .news-content h3 { margin: 0 0 2px 0; font-size: 1.05rem; line-height: 1.3; }
+        .news-content h3 a { color: #1e293b; text-decoration: none; transition: 0.2s; }
+        .news-content h3 a:hover { color: #3b82f6; }
+        
+        .news-meta { 
+            display: flex; align-items: center; gap: 10px; 
+            font-size: 0.75rem; color: #64748b; 
+            margin-bottom: 2px; 
+            flex-wrap: wrap; 
+        }
+        
+        .news-content p {
+            font-size: 0.85rem; color: #64748b; margin-top: 2px;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+            line-height: 1.5;
+        }
+
+        /* --- 3. 侧边栏 & 标签 --- */
+        .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; }
+        .tag-item { 
+            display: block; padding: 6px 12px; border-radius: 4px; 
+            background: white; border: 1px solid #e2e8f0; 
+            color: #64748b; font-size: 0.85rem; cursor: pointer; 
+            transition: all 0.2s ease; text-align: center; 
+        }
+        .tag-item:hover, .tag-item.active { background: #eff6ff; border-color: #3b82f6; color: #3b82f6; font-weight: 500; }
+
+        .sidebar-widget { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 25px; }
+        .widget-title { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 15px; border-left: 4px solid #3b82f6; padding-left: 10px; }
+        .newsletter-box { background: #f0fdf4; border: 1px solid #bbf7d0; text-align: center; }
+        .newsletter-input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; margin-bottom: 10px; font-size: 0.9rem; }
+
+        /* --- 4. 分页控件样式 --- */
+        .pagination-container { 
+            display: flex; justify-content: center; align-items: center; gap: 15px; 
+            margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0; 
+        }
+        .page-btn { 
+            padding: 6px 14px; background: white; border: 1px solid #cbd5e1; 
+            border-radius: 6px; color: #334155; cursor: pointer; transition: 0.2s; font-size: 0.85rem; 
+        }
+        .page-btn:hover:not(:disabled) { border-color: #3b82f6; color: #3b82f6; background: #f8fafc; }
+        .page-btn:disabled { opacity: 0.5; cursor: not-allowed; background: #f1f5f9; }
+        .page-info { color: #64748b; font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            .news-item { flex-direction: column; }
+            .news-image { width: 100%; height: 60px; border-right: none; border-bottom: 1px solid #f1f5f9; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .social-icons { justify-content: center; }
+            .search-component { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="standard-container">
+            <div class="nav-inner">
+                <a href="../index.html" class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    AeroScope<span>Insight</span>
+                </a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <nav class="nav-links" id="navMenu">
+                    <a href="../index.html">首页</a>
+                    <a href="news.html">资讯快报</a>
+                    <a href="policies.html" class="active">政策法规</a>
+                    <a href="tech.html">技术前沿</a>
+                    <a href="companies.html">行业图谱</a>
+                    <a href="forum.html">论坛交流</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-component">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)">
+                        </div>
+                        <div id="search-dropdown"></div>
+                    </div>
+                    <button class="btn btn-primary" id="auth-btn" onclick="location.href='../login.html'">登录/注册</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面标题 -->
+    <section class="page-hero">
+        <div class="standard-container">
+            <h1>政策法规库</h1>
+            <p>汇聚全球低空经济最新政策与监管动态</p>
+        </div>
+    </section>
+
+    <!-- 主布局 -->
+    <div class="standard-container">
+        <div class="main-layout-grid">
+            <!-- 左侧：列表 -->
+            <main>
+                <div class="news-feed" id="policy-container">
+                    <div style="text-align:center; padding:40px; color:#94a3b8;">加载中...</div>
+                </div>
+
+                <!-- 分页控件 -->
+                <div id="pagination-controls" class="pagination-container" style="display: none;">
+                    <button class="page-btn" id="prev-page" onclick="changePage(-1)">上一页</button>
+                    <span class="page-info" id="page-info">第 1 页 / 共 1 页</span>
+                    <button class="page-btn" id="next-page" onclick="changePage(1)">下一页</button>
+                </div>
+            </main>
+
+            <!-- 右侧：侧边栏 -->
+            <aside class="sidebar">
+                <div class="sidebar-widget">
+                    <div class="widget-title">按发文单位筛选</div>
+                    <!-- 动态部门标签 -->
+                    <div class="tag-cloud" id="dept-container">
+                        <p style="color:#999; font-size:0.8rem;">正在分析...</p>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget newsletter-box">
+                    <div style="font-weight:700; color:#3b82f6; text-align:center;">订阅政策周报</div>
+                    <p style="font-size:0.85rem; color:#64748b; margin-bottom:10px; text-align:center;">不错过任何一条重磅新规。</p>
+                    <p style="text-align:center; color:#94a3b8; font-size:0.85rem; padding:10px; border:1px dashed #cbd5e1; border-radius:6px;">订阅功能即将上线</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="standard-container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <h4 style="font-size:1.2rem;">AeroScope Insight</h4>
+                    <p style="font-size:0.9rem; color:#94a3b8; line-height: 1.6; margin-bottom: 20px;">
+                        连接政策、资本与技术，打造低空经济领域的数字化基础设施与决策引擎。
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></a>
+                        <a href="#" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                        <a href="mailto:contact@aeroscope.cn" class="social-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>核心板块</h4>
+                    <ul>
+                        <li><a href="news.html">资讯快报</a></li>
+                        <li><a href="policies.html">政策法规</a></li>
+                        <li><a href="companies.html">企业数据库</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>数据图谱</h4>
+                    <ul>
+                        <li><a href="../charts/chart-funding.html">全球融资趋势</a></li>
+                        <li><a href="../charts/chart-cities.html">试点城市分布</a></li>
+                        <li><a href="../charts/chart-companies.html">产业链全景图</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于</h4>
+                    <ul>
+                        <li><a href="about.html">团队愿景</a></li>
+                        <li><a href="submit-report.html">寻求报道</a></li>
+                        <li><a href="contact.html">商务合作</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright" style="border-top:1px solid #334155; padding-top:20px; margin-top:20px; text-align:center; color:#64748b; font-size:0.85rem;">
+                &copy; 2025 AeroScope Insight. All rights reserved. 京ICP备XXXXXXXX号
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/translations.js"></script>
+    <script>
+        const supabaseUrl = 'https://ulfktuvatxyakrdrwxfq.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsZmt0dXZhdHh5YWtyZHJ3eGZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ2NDYyMjksImV4cCI6MjA4MDIyMjIyOX0.SBvHgp9HK_Lr5vXCgwu4Ae-Q6hH4dhMx3JSRbLiU0fU';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        let allPolicies = [];
+        let filteredPolicies = []; // 筛选后的数据
+        let currentPage = 1;
+        const itemsPerPage = 6;    // 每页6条
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            checkUserLogin();
+            await fetchPolicies();
+        });
+
+        async function fetchPolicies() {
+            const container = document.getElementById('policy-container');
+            container.innerHTML = '<p style="text-align:center; padding:20px;">加载中...</p>';
+            
+            const { data, error } = await _supabase
+                .from('policies')
+                .select('*')
+                .eq('draft', false)
+                .order('publish_date', {ascending:false});
+            
+            if(!data || !data.length) { 
+                container.innerHTML = '<p style="text-align:center; padding:40px; color:#999;">暂无政策数据</p>'; 
+                return; 
+            }
+
+            allPolicies = data;
+            filteredPolicies = data; // 初始为全部数据
+            
+            renderDepartments(allPolicies);
+            renderPage(); // 渲染第一页
+        }
+
+        // --- 核心：渲染分页页面 ---
+        function renderPage() {
+            const container = document.getElementById('policy-container');
+            container.innerHTML = '';
+
+            if (filteredPolicies.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#999; padding:20px;">无匹配数据</p>';
+                document.getElementById('pagination-controls').style.display = 'none';
+                return;
+            }
+
+            // 计算分页切片
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = filteredPolicies.slice(start, end);
+
+            pageItems.forEach(item => {
+                const levelHtml = `<div class="policy-level-box">${t(item.level) || '政策'}</div>`;
+
+                container.innerHTML += `
+                    <article class="news-item">
+                        <a href="policy-detail.html?id=${item.id}" class="news-image">
+                            ${levelHtml}
+                        </a>
+                        <div class="news-content">
+                            <h3><a href="policy-detail.html?id=${item.id}">${item.title}</a></h3>
+                            <div class="news-meta">
+                                <span class="tag" style="background:#0f172a; color:white; padding:1px 6px; border-radius:4px; max-width:60%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${t(item.department) || '相关部门'}</span>
+                                <span style="white-space:nowrap; flex-shrink:0;">${item.publish_date}</span>
+                            </div>
+                            <p>${item.summary || ''}</p>
+                        </div>
+                    </article>
+                `;
+            });
+
+            updatePaginationControls();
+        }
+
+        function updatePaginationControls() {
+            const paginationEl = document.getElementById('pagination-controls');
+            const totalPages = Math.ceil(filteredPolicies.length / itemsPerPage);
+
+            if (totalPages <= 1) {
+                paginationEl.style.display = 'none';
+                return;
+            }
+
+            paginationEl.style.display = 'flex';
+            document.getElementById('page-info').innerText = `第 ${currentPage} 页 / 共 ${totalPages} 页`;
+            document.getElementById('prev-page').disabled = (currentPage === 1);
+            document.getElementById('next-page').disabled = (currentPage === totalPages);
+        }
+
+        function changePage(direction) {
+            const totalPages = Math.ceil(filteredPolicies.length / itemsPerPage);
+            const newPage = currentPage + direction;
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                renderPage();
+                const listTop = document.querySelector('.main-layout-grid').offsetTop - 80;
+                window.scrollTo({top: listTop, behavior: 'smooth'});
+            }
+        }
+
+        // 省部级单位归一化映射
+        function normalizeDept(raw) {
+            const dept = (raw || '').trim();
+            // 去掉内设机构后缀，只保留部/委/局/署/院/办/省/市等主体
+            const cleaned = dept
+                .replace(/（.*）|\(.*\)/g, '')
+                .replace(/办公厅|办公室|司局|司|处|中心|小组|委员会秘书处/g, '')
+                .replace(/新闻办公室|研究室|人事司|规划司/g, '')
+                .trim();
+            // 如果处理后太短，返回原值
+            if (cleaned.length < 2) return dept;
+            // 保留到省部级：如 "工业和信息化部"、"广东省"
+            const m = cleaned.match(/^([\u4e00-\u9fff]+?(?:部|委|局|署|院|办|厅|省|市|区|县))/);
+            return m ? m[1] : cleaned;
+        }
+
+        // 拆分联合发文单位
+        function splitDepartments(raw) {
+            if (!raw) return [];
+            return raw.split(/[，,、]\s*/)
+                .map(s => normalizeDept(s))
+                .filter(s => s.length >= 2);
+        }
+
+        // 判断是否为省部级以上发文单位
+        function isProvinceLevel(dept) {
+            // 中央单位：部委局署院办
+            if (/[部委局署院办]$/.test(dept)) return true;
+            // 省级：XX省 / 直辖市
+            if (/^(北京|天津|上海|重庆)市$/.test(dept)) return true;
+            if (/^[\u4e00-\u9fff]{2,4}省$/.test(dept)) return true;
+            // 省级下属厅局
+            if (/^[\u4e00-\u9fff]{2,4}省[\u4e00-\u9fff]+(厅|局|委|办)$/.test(dept)) return true;
+            // 直辖市下属委办局
+            if (/^(北京|天津|上海|重庆)市[\u4e00-\u9fff]+(厅|局|委|办)$/.test(dept)) return true;
+            // 国字号
+            if (dept.startsWith('中国') || dept.startsWith('国家') || dept.startsWith('中央')) return true;
+            // 全国人大、国务院等
+            if (/^(全国|国务院|中共中央)/.test(dept)) return true;
+            return false;
+        }
+
+        // 渲染部门标签
+        function renderDepartments(list) {
+            const container = document.getElementById('dept-container');
+            const deptSet = new Set();
+            list.forEach(item => {
+                const parts = splitDepartments(item.department);
+                parts.forEach(d => {
+                    if (isProvinceLevel(d)) deptSet.add(d);
+                });
+            });
+            const sorted = [...deptSet].sort();
+            if (sorted.length === 0) { container.innerHTML = '<p style="color:#999;">暂无数据</p>'; return; }
+            let html = `<div class="tag-item active" onclick="filterByDept('all', this)">全部</div>`;
+            sorted.forEach(name => { html += `<div class="tag-item" onclick="filterByDept('${name.replace(/'/g, "\\'")}', this)">${name}</div>`; });
+            container.innerHTML = html;
+        }
+
+        function filterByDept(deptName, domEl) {
+            document.querySelectorAll('.tag-item').forEach(el => el.classList.remove('active'));
+            domEl.classList.add('active');
+            if (deptName === 'all') {
+                filteredPolicies = allPolicies;
+            } else {
+                filteredPolicies = allPolicies.filter(item => {
+                    const parts = splitDepartments(item.department);
+                    return parts.includes(deptName);
+                });
+            }
+            currentPage = 1;
+            renderPage();
+        }
+
+        async function checkUserLogin() {
+            const { data: { session } } = await _supabase.auth.getSession();
+            const btn = document.getElementById('auth-btn');
+            if (session) { btn.innerText = session.user.email.split('@')[0]; btn.onclick = () => location.href = '../profile.html'; }
+        }
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        
+        let searchTimeout;
+        async function performGlobalSearch(keyword) {
+            const dropdown = document.getElementById('search-dropdown');
+            if (!keyword || keyword.length < 1) { dropdown.style.display = 'none'; return; }
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(async () => {
+                dropdown.style.display = 'block';
+                const { data } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
+                if (!data || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
+                let html = '';
+                data.forEach(item => {
+                    let link='#';
+                    if(item.type==='policy') link=`policy-detail.html?id=${item.id}`;
+                    else link=`news-detail.html?id=${item.id}`;
+                    html += `<a href="${link}" class="search-result-item">${item.title}</a>`;
+                });
+                dropdown.innerHTML = html;
+            }, 500);
+        }
+        document.addEventListener('click', (e) => { if(!document.querySelector('.search-component').contains(e.target)) document.getElementById('search-dropdown').style.display='none'; });
+    </script>
+<script src="../js/ai-widget.js"></script>
+</body>
+</html>

@@ -117,9 +117,9 @@
             <div class="ai-body" id="ai-messages">
                 <!-- 欢迎语 -->
                 <div class="msg msg-bot">
-                    👋 您好！我是 AeroBot。<br>
-                    我是基于大模型构建的低空经济垂直领域助手。目前我的核心大脑正在进行升级维护，<b>实时问答功能将于近期开放</b>。<br><br>
-                    您可以先浏览“数据库”或“深度报告”板块获取信息。
+                    👋 您好！我是 AeroBot，低空经济领域智能助手。<br><br>
+                    我可以回答关于<b>企业信息、政策法规、技术专利、融资动态、eVTOL产品</b>等问题。<br><br>
+                    试试问我："亿航智能最近有什么融资？""深圳出台了哪些低空政策？"
                 </div>
             </div>
             <div class="ai-footer">
@@ -135,7 +135,7 @@
     wrapper.innerHTML = html;
     document.body.appendChild(wrapper);
 
-    // ================= 交互逻辑 (Mock版) =================
+    // ================= 交互逻辑 =================
     const btn = document.getElementById('ai-widget-btn');
     const win = document.getElementById('ai-widget-window');
     const closeBtn = document.getElementById('ai-close-btn');
@@ -143,37 +143,41 @@
     const sendBtn = document.getElementById('ai-send');
     const msgBox = document.getElementById('ai-messages');
 
-    // 切换窗口
-    btn.onclick = () => {
-        if (win.style.display === 'flex') {
-            win.style.display = 'none';
-        } else {
-            win.style.display = 'flex';
-            // 如果是第一次打开，可以在这里加统计代码
-        }
-    };
+    btn.onclick = () => { win.style.display = win.style.display === 'flex' ? 'none' : 'flex'; };
     closeBtn.onclick = () => win.style.display = 'none';
 
-    // 发送消息 (模拟回复)
     async function sendMessage() {
         const text = input.value.trim();
         if(!text) return;
 
-        // 1. 显示用户消息
         appendMsg(text, 'user');
         input.value = '';
-        
-        // 2. 模拟“对方正在输入...”
         sendBtn.disabled = true;
+        
         const loadingId = appendMsg('<span style="animation:blink 1s infinite">●●●</span>', 'bot');
         
-        // 3. 延迟后回复固定话术
-        setTimeout(() => {
-            document.getElementById(loadingId).remove(); // 移除loading
-            appendMsg('🚧 抱歉，AI 实时对话接口正在进行系统升级，暂无法处理您的提问。<br>如有商务合作需求，请访问“商务合作”页面。', 'bot');
-            sendBtn.disabled = false;
-            input.focus();
-        }, 800); // 0.8秒延迟
+        try {
+            const resp = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text })
+            });
+            const data = await resp.json();
+            document.getElementById(loadingId).remove();
+
+            let replyHtml = data.reply || data.error || '服务异常，请稍后重试。';
+            if (data.sources && data.sources.length > 0) {
+                replyHtml += '<br><br><small style="color:#94a3b8;">📎 来源：';
+                replyHtml += data.sources.map(s => s.title).join('、');
+                replyHtml += '</small>';
+            }
+            appendMsg(replyHtml, 'bot');
+        } catch (e) {
+            document.getElementById(loadingId).remove();
+            appendMsg('网络连接失败，请检查服务器是否启动。', 'bot');
+        }
+        sendBtn.disabled = false;
+        input.focus();
     }
 
     function appendMsg(text, role) {
@@ -182,15 +186,16 @@
         div.id = 'msg-' + Date.now();
         div.innerHTML = text;
         msgBox.appendChild(div);
-        msgBox.scrollTop = msgBox.scrollHeight; // 自动滚动到底部
+        msgBox.scrollTop = msgBox.scrollHeight;
         return div.id;
     }
 
-    // 绑定事件
     sendBtn.onclick = sendMessage;
     input.onkeypress = (e) => { if(e.key === 'Enter') sendMessage(); };
+    input.placeholder = '问我低空经济相关问题...';
+    input.disabled = false;
+    sendBtn.disabled = false;
     
-    // 添加闪烁动画样式
     const animStyle = document.createElement('style');
     animStyle.textContent = `@keyframes blink { 0% {opacity:0.2} 50% {opacity:1} 100% {opacity:0.2} }`;
     document.head.appendChild(animStyle);
