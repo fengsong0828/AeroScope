@@ -318,7 +318,7 @@ if __name__ == "__main__":
 
     print(f"╔══════════════════════════════════════╗")
     print(f"║   AeroScope Server                  ║")
-    print(f"║   http://127.0.0.1:{args.port}          ║")
+    print(f"║   http://0.0.0.0:{args.port}          ║")
     print(f"╚══════════════════════════════════════╝")
     print(f"   API: http://127.0.0.1:{args.port}/api/patents/health")
     print(f"   Admin: http://127.0.0.1:{args.port}/admin/admin.html")
@@ -327,7 +327,7 @@ if __name__ == "__main__":
     if not args.no_browser:
         webbrowser.open(f"http://127.0.0.1:{args.port}/admin/admin.html")
 
-    server = HTTPServer(("127.0.0.1", args.port), AeroServe)
+    server = HTTPServer(("0.0.0.0", args.port), AeroServe)
     try:
         server.serve_forever()
     except KeyboardInterrupt:
