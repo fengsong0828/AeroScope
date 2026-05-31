@@ -87,8 +87,8 @@ def download_and_upload(patent_number, pdf_url, bucket, db, dry_run=False):
         oss_url = bucket.sign_url("GET", oss_path, 86400 * 365)
         print(f"  Uploaded to OSS: {oss_path}")
 
-        # 3. 更新DB（指向 serve.py PDF代理）
-        proxy_url = f"http://127.0.0.1:8765/pdf/{oss_path}"
+        # 3. 更新DB（相对路径，适配任意部署环境）
+        proxy_url = f"/pdf/{oss_path}"
         db.table("patents").update({
             "pdf_url": proxy_url,
             "updated_at": datetime.now(timezone.utc).isoformat()
