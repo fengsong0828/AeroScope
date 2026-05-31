@@ -561,7 +561,7 @@ class PatentAgent(CollectorCore):
                             "Content-Type": "application/pdf",
                             "Content-Disposition": "inline"
                         })
-                        update_data["pdf_url"] = f"http://127.0.0.1:8765/pdf/{oss_path}"
+                        update_data["pdf_url"] = f"/pdf/{oss_path}"
                         pdf_collected += 1
                         need_update = True
                         print(f"    PDF {len(pdf_bytes)/1024:.0f} KB -> OSS")

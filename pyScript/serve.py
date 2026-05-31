@@ -320,8 +320,8 @@ if __name__ == "__main__":
     print(f"║   AeroScope Server                  ║")
     print(f"║   http://0.0.0.0:{args.port}          ║")
     print(f"╚══════════════════════════════════════╝")
-    print(f"   API: http://127.0.0.1:{args.port}/api/patents/health")
-    print(f"   Admin: http://127.0.0.1:{args.port}/admin/admin.html")
+    print(f"   API: http://0.0.0.0:{args.port}/api/patents/health")
+    print(f"   Admin: http://0.0.0.0:{args.port}/admin/admin.html")
     print()
 
     if not args.no_browser:
