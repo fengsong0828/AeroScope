@@ -22,6 +22,9 @@ _archive/
 __pycache__/
 *.pyc
 
+# 临时分析报告（不入库）
+reports/
+
 # 临时文件
 *.tmp
 *.bak
