@@ -181,7 +181,7 @@
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                     AeroScope<span>Insight</span>
                 </a>
-                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <button class="mobile-menu-btn" onclick="toggleMenu()"></button>
                 <nav class="nav-links" id="navMenu" role="navigation">
                     <a href="../index.html">首页</a>
                     <a href="../pages/news.html">资讯快报</a>
@@ -248,7 +248,7 @@
             <div class="cat-dropdown" id="cat-dropdown">
                 <div class="cat-trigger" onclick="toggleCatPanel()">
                     <span class="cat-label"> 技术分类</span>
-                    <span class="clear-btn" onclick="clearCatFilter(event)">✕</span>
+                    <span class="clear-btn" onclick="clearCatFilter(event)"></span>
                     <span class="arrow">▾</span>
                 </div>
                 <div class="cat-panel" id="cat-panel">
@@ -261,11 +261,11 @@
             </select>
 
             <select id="filter-legal-status" class="filter-select" onchange="applyFiltersAndPagination()">
-                <option value="all">⚖️ 法律状态</option>
+                <option value="all">️ 法律状态</option>
             </select>
 
             <select id="filter-year" class="filter-select" onchange="applyFiltersAndPagination()">
-                <option value="all">📅 年份</option>
+                <option value="all"> 年份</option>
             </select>
 
             <input type="text" id="filter-search" class="local-search" placeholder="搜索专利标题、申请人..." onkeyup="debounceSearch()">
@@ -643,7 +643,7 @@
                 <div class="patent-meta-row">
                     ${applicantHtml.replace('<a ', '<a onclick="event.stopPropagation()" ')} 
                     <span class="meta-divider">|</span>
-                    <span>📅 ${p.application_date || '未知日期'}</span>
+                    <span> ${p.application_date || '未知日期'}</span>
                     ${p.citation_count ? `<span class="meta-divider">|</span><span> ${p.citation_count} 引用</span>` : ''}
                     <div class="patent-tags" style="margin-left:10px;">${tagsHtml}</div>
                     <div class="patent-id">${p.patent_number || ''}</div>

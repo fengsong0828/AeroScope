@@ -60,7 +60,7 @@
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                     AeroScope<span>Insight</span>
                 </a>
-                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <button class="mobile-menu-btn" onclick="toggleMenu()"></button>
                 <nav class="nav-links" id="navMenu" role="navigation">
                     <a href="../index.html">首页</a>
                     <a href="news.html">资讯快报</a>
@@ -72,7 +72,7 @@
                 <div class="header-actions">
                     <div class="search-component">
                         <div class="search-box">
-                            <span class="search-icon">🔍</span>
+                            <span class="search-icon"></span>
                             <input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)">
                         </div>
                         <div id="search-dropdown"></div>
@@ -96,14 +96,14 @@
     <div class="filter-bar">
         <div class="standard-container filter-inner">
             <select id="filter-chain" class="filter-select" onchange="applyFilters()">
-                <option value="all">🔗 全产业链</option>
-                <option value="upstream">⚡ 上游 (材料/电池/芯片)</option>
-                <option value="midstream">✈️ 中游 (整机制造)</option>
-                <option value="downstream">🏷️ 下游 (运营/服务)</option>
+                <option value="all"> 全产业链</option>
+                <option value="upstream"> 上游 (材料/电池/芯片)</option>
+                <option value="midstream">️ 中游 (整机制造)</option>
+                <option value="downstream">️ 下游 (运营/服务)</option>
             </select>
 
             <select id="filter-category" class="filter-select" onchange="applyFilters()">
-                <option value="all">📂 所有赛道</option>
+                <option value="all"> 所有赛道</option>
                 <option value="eVTOL">eVTOL (载人)</option>
                 <option value="Drone">无人机 (物流/工业)</option>
                 <option value="FlyingCar">飞行汽车</option>
@@ -113,7 +113,7 @@
             </select>
 
             <select id="filter-listed" class="filter-select" onchange="applyFilters()">
-                <option value="all">💰 资本状态</option>
+                <option value="all"> 资本状态</option>
                 <option value="true">已上市 (Public)</option>
                 <option value="false">未上市 (Private)</option>
             </select>
@@ -275,11 +275,11 @@
                 let chainBadge = '';
                 const badgeStyle = "font-size:0.7rem; padding:2px 6px; border-radius:4px; margin-left:auto; white-space:nowrap; flex-shrink:0;";
                 if (item.industry_chain === 'upstream') {
-                    chainBadge = `<span style="${badgeStyle} color:#059669; background:#ecfdf5;">⛓️ 上游</span>`;
+                    chainBadge = `<span style="${badgeStyle} color:#059669; background:#ecfdf5;">️ 上游</span>`;
                 } else if (item.industry_chain === 'midstream') {
-                    chainBadge = `<span style="${badgeStyle} color:#0284c7; background:#e0f2fe;">✈️ 整机</span>`;
+                    chainBadge = `<span style="${badgeStyle} color:#0284c7; background:#e0f2fe;">️ 整机</span>`;
                 } else if (item.industry_chain === 'downstream') {
-                    chainBadge = `<span style="${badgeStyle} color:#d97706; background:#fffbeb;">🏷️ 运营</span>`;
+                    chainBadge = `<span style="${badgeStyle} color:#d97706; background:#fffbeb;">️ 运营</span>`;
                 }
 
                 const tickerHtml = item.is_listed && item.ticker_symbol 

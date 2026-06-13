@@ -647,15 +647,15 @@
             if (tableName === 'patents') {
                 importBtn = `
                     <!-- Google 按钮 -->
-                    <button class="btn-import" style="background:#8b5cf6; margin-right:10px;" onclick="openGoogleModal()">🌐 专利下载 (谷歌)</button>
+                    <button class="btn-import" style="background:#8b5cf6; margin-right:10px;" onclick="openGoogleModal()"> 专利下载 (谷歌)</button>
                     
                     <!-- 专利之星 -->
                     <input type="file" id="patent-file-upload" accept=".xlsx, .xls, .csv" style="display:none;" onchange="handlePatentImport(this)">
-                    <button class="btn-import" onclick="document.getElementById('patent-file-upload').click()">📂 批量导入 (专利之星)</button>
+                    <button class="btn-import" onclick="document.getElementById('patent-file-upload').click()"> 批量导入 (专利之星)</button>
 
                     <!-- 智慧芽 -->
                     <input type="file" id="patsnap-file-upload" accept=".xlsx, .xls" style="display:none;" onchange="handlePatsnapImport(this)">
-                    <button class="btn-import" style="background:#7c3aed;" onclick="document.getElementById('patsnap-file-upload').click()">📂 智慧芽导入</button>
+                    <button class="btn-import" style="background:#7c3aed;" onclick="document.getElementById('patsnap-file-upload').click()"> 智慧芽导入</button>
                 `;
             }
             if (tableName === 'policies') {
@@ -743,12 +743,12 @@
 
                 // 提示信息
                 let hint = '';
-                if (f.key === 'applicant' && currentTable === 'patents') hint = '<div class="form-hint">✨ 输入公司名，系统会自动关联或创建新公司</div>';
-                if (f.key === 'company_name' && currentTable === 'funding_events') hint = '<div class="form-hint">✨ 输入公司名，系统会自动关联或创建新公司</div>';
+                if (f.key === 'applicant' && currentTable === 'patents') hint = '<div class="form-hint"> 输入公司名，系统会自动关联或创建新公司</div>';
+                if (f.key === 'company_name' && currentTable === 'funding_events') hint = '<div class="form-hint"> 输入公司名，系统会自动关联或创建新公司</div>';
 
                 html += `<div class="form-group"><label class="form-label">${f.label}</label>`;
                 
-                // ★ 新增：图片上传
+                //  新增：图片上传
                 if (f.type === 'image') {
                     const previewStyle = val ? `display:block` : `display:none`;
                     const src = val || ''; 
@@ -762,7 +762,7 @@
                         <div class="form-hint">支持 jpg, png, webp</div>
                     `;
                 }
-                // ★ 新增：文件上传
+                //  新增：文件上传
                 else if (f.type === 'file') {
                     html += `
                         <div style="display:flex; gap:10px; align-items:center;">
@@ -1116,7 +1116,7 @@
         }
 
         // =========================================
-        // ★★★ 核心配置：各表 Schema 定义 (更新版：支持图片/文件) ★★★
+        //  核心配置：各表 Schema 定义 (更新版：支持图片/文件) 
         // =========================================
         function getTableSchema(tableName) {
             const schemas = {
@@ -1259,7 +1259,7 @@
         async function loadCrawlerDash() {
             const container = document.getElementById('main-container');
             container.innerHTML = `
-                <h2 style="margin-bottom:10px;">🕷️ 专利爬虫监控</h2>
+                <h2 style="margin-bottom:10px;">️ 专利爬虫监控</h2>
                 <p style="color:#64748b; margin-bottom:20px;">链式递归爬取低空经济相关专利</p>
 
                 <div class="content-card" style="padding:24px; margin-bottom:16px;">
@@ -1272,7 +1272,7 @@
                             <option value="500">500条</option>
                         </select>
                         <button class="btn btn-primary" onclick="startCrawler()" style="background:#059669; color:white; padding:8px 20px;"> 开始爬取</button>
-                        <button class="btn btn-outline" onclick="stopCrawlerDash()">⏹ 停止监控</button>
+                        <button class="btn btn-outline" onclick="stopCrawlerDash()"> 停止监控</button>
                     </div>
                 </div>
 
@@ -1319,7 +1319,7 @@
                 document.getElementById('cv-backlog').innerText = d.backlog || 0;
                 document.getElementById('cv-stored').innerText = d.saved || 0;
                 if (d.latest && d.latest.length > 0) {
-                    document.getElementById('cv-latest').innerHTML = d.latest.map(p => `🟢 ${p}`).join('<br>');
+                    document.getElementById('cv-latest').innerHTML = d.latest.map(p => ` ${p}`).join('<br>');
                 }
             } catch(e) {}
         }
@@ -1387,7 +1387,7 @@
                             <button class="btn btn-primary" onclick="addPatentUrl()" style="background:#3b82f6; color:white; padding:8px 20px; white-space:nowrap;">+ 添加</button>
                         </div>
                         <div style="margin-top:12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-                            <span style="font-size:0.85rem; color:#64748b;">📂 Excel批量导入：</span>
+                            <span style="font-size:0.85rem; color:#64748b;"> Excel批量导入：</span>
                             <input type="file" id="patsnap-file-upload2" accept=".xlsx,.xls" style="display:none;" onchange="handlePatsnapImport(this)">
                             <button class="btn btn-outline" style="background:#7c3aed; color:white; border-color:#7c3aed;" onclick="document.getElementById('patsnap-file-upload2').click()">智慧芽 Excel</button>
                             <input type="file" id="patent-file-upload2" accept=".xlsx,.xls,.csv" style="display:none;" onchange="handlePatentImport(this)">
@@ -1409,14 +1409,14 @@
                 const isFileProtocol = window.location.protocol === 'file:';
                 if (isFileProtocol) {
                     container.innerHTML = `<div class="content-card" style="padding:40px; text-align:center;">
-                        <h3 style="color:#d97706;">⚠ 请通过服务端打开</h3>
+                        <h3 style="color:#d97706;"> 请通过服务端打开</h3>
                         <p style="color:#64748b; margin:10px 0;">当前通过 file:// 打开，无法使用采集功能。</p>
                         <p style="color:#64748b;">请在终端运行后访问 <b>http://127.0.0.1:8765/admin.html</b></p>
                         <code style="display:block; background:#f1f5f9; padding:12px 20px; border-radius:4px; margin:15px auto; max-width:400px; font-size:1rem;">python serve.py</code>
                     </div>`;
                 } else {
                     container.innerHTML = `<div class="content-card" style="padding:40px; text-align:center;">
-                        <h3 style="color:#d97706;">⚠ 后端服务未响应</h3>
+                        <h3 style="color:#d97706;"> 后端服务未响应</h3>
                         <p style="color:#64748b; margin:10px 0;">请确认 serve.py 正在运行，然后</p>
                         <button class="btn btn-primary" onclick="location.reload()" style="padding:10px 30px; margin-top:10px;"> 重试连接</button>
                     </div>`;
@@ -1462,7 +1462,7 @@
                 patents.forEach(p => {
                     const status = (p.legal_status || 'Unknown');
                     const statusColor = status === '有效' || status === 'Active' ? '#166534' : '#92400e';
-                    const linked = p.related_company_id ? '' : '⚠';
+                    const linked = p.related_company_id ? '' : '';
                     const gpUrl = p.google_url || `https://patents.google.com/patent/${p.patent_number}/zh`;
                     html += `<tr style="border-bottom:1px solid #f1f5f9;">
                         <td style="padding:8px; font-family:monospace; font-size:0.85rem;">${p.patent_number || '--'}</td>
@@ -1574,12 +1574,12 @@
                     const sr = await fetch(`${SCRAPER_API}/api/patents/status?task_id=${fetchTaskId}`);                 const sd = await sr.json();
                     if (sd.status === 'done') {
                         clearInterval(fetchTimer);
-                        bodyDiv.innerHTML += `<p style="color:#10b981;">✓ 添加完成: ${sd.result.status} (${sd.result.patent_id})</p>`;
+                        bodyDiv.innerHTML += `<p style="color:#10b981;"> 添加完成: ${sd.result.status} (${sd.result.patent_id})</p>`;
                         urlEl.value = '';
                         loadCompanyPatents();
                     } else if (sd.status === 'fail') {
                         clearInterval(fetchTimer);
-                        bodyDiv.innerHTML += `<p style="color:#ef4444;">✗ 失败: ${sd.error}</p>`;
+                        bodyDiv.innerHTML += `<p style="color:#ef4444;"> 失败: ${sd.error}</p>`;
                     }
                 }, 2000);
             } catch(e) {
@@ -1655,13 +1655,13 @@
                 });
                 const r = await resp.json();
                 if (r.status === 'ok') {
-                    resultDiv.innerHTML = `<p style="color:#059669;">✓ 入库成功 (${r.action === 'updated' ? '已更新' : '新增'})</p>`;
+                    resultDiv.innerHTML = `<p style="color:#059669;"> 入库成功 (${r.action === 'updated' ? '已更新' : '新增'})</p>`;
                     setTimeout(() => { closeModal(); if(currentTable==='policies') loadTableData('policies'); }, 1000);
                 } else if (r.status === 'duplicate') {
                     const sim = r.similar;
                     resultDiv.innerHTML = `
                         <div style="background:#fef3c7; border:1px solid #f59e0b; border-radius:8px; padding:16px; margin-top:12px;">
-                            <p style="font-weight:600; color:#92400e;">⚠ 发现相似政策</p>
+                            <p style="font-weight:600; color:#92400e;"> 发现相似政策</p>
                             <p style="color:#64748b; font-size:0.85rem;">${r.message}</p>
                             <div style="margin-top:12px; display:flex; gap:8px;">
                                 <button class="btn btn-primary" onclick="savePolicyImportForce('${encodedData}')">仍然入库</button>
@@ -1684,7 +1684,7 @@
                 });
                 const r = await resp.json();
                 if (r.status === 'ok') {
-                    resultDiv.innerHTML = '<p style="color:#059669;">✓ 强制入库成功</p>';
+                    resultDiv.innerHTML = '<p style="color:#059669;"> 强制入库成功</p>';
                     setTimeout(() => { closeModal(); if(currentTable==='policies') loadTableData('policies'); }, 1000);
                 } else {
                     resultDiv.innerHTML = `<p style="color:#ef4444;">入库失败: ${r.error}</p>`;

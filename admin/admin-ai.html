@@ -155,7 +155,7 @@
             <div class="user-area">
                 <span id="admin-info">Checking...</span>
                 <a href="../index.html" class="header-btn btn-ghost">
-                    🏠 返回前台
+                     返回前台
                 </a>
             </div>
         </div>
@@ -173,7 +173,7 @@
             <!-- 批量导入模块 (保留功能) -->
             <div class="form-group" style="background: #fffbeb; padding: 15px; border-radius: 8px; border: 1px solid #fcd34d; display:flex; flex-direction:column; gap:8px;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <label class="form-label" style="color:#b45309; margin:0;">📂 离线数据导入 (JSON)</label>
+                    <label class="form-label" style="color:#b45309; margin:0;"> 离线数据导入 (JSON)</label>
                     <button class="btn-xs" style="background:white; border-color:#d97706; color:#d97706;" onclick="document.getElementById('jsonFile').click()">选择文件</button>
                 </div>
                 <div style="font-size:0.75rem; color:#b45309;">
@@ -184,13 +184,13 @@
             </div>
 
             <div class="form-group">
-                <label class="form-label">📂 采集目标类型 (Target)</label>
+                <label class="form-label"> 采集目标类型 (Target)</label>
                 <select id="targetCategory" class="form-control" onchange="switchCategoryMode()">
-                    <option value="company_profile">🏢 企业工商信息 (Companies)</option>
+                    <option value="company_profile"> 企业工商信息 (Companies)</option>
                     <option value="patent"> 专利技术 (Patent)</option>
-                    <option value="funding">💰 融资事件 (Funding)</option>
-                    <option value="news" selected>📰 行业资讯 (News)</option>
-                    <option value="policy">📜 政策法规 (Policy)</option>
+                    <option value="funding"> 融资事件 (Funding)</option>
+                    <option value="news" selected> 行业资讯 (News)</option>
+                    <option value="policy"> 政策法规 (Policy)</option>
                 </select>
             </div>
 
@@ -225,7 +225,7 @@
             
             <button class="btn-ai" id="generateBtn" onclick="generateNews()">
                 <span class="spinner" id="spinner"></span>
-                <span id="btnText">⚡ 开始智能清洗与提取</span>
+                <span id="btnText"> 开始智能清洗与提取</span>
             </button>
         </div>
 
@@ -263,7 +263,7 @@
             <div class="form-group">
                 <label class="form-label">
                     <span>摘要 (Summary)</span>
-                    <button class="btn-auto" onclick="autoGenSummary()" type="button">⚡ 自动摘要</button>
+                    <button class="btn-auto" onclick="autoGenSummary()" type="button"> 自动摘要</button>
                 </label>
                 <textarea id="outSummary" class="form-control" rows="3"></textarea>
             </div>
@@ -276,16 +276,16 @@
                 <div class="editor-wrapper">
                     <!-- 保留原有工具栏 -->
                     <div class="editor-toolbar">
-                        <button class="tool-btn" onclick="autoFormatPolicy()" title="标准化公文格式">🧹 自动排版</button>
+                        <button class="tool-btn" onclick="autoFormatPolicy()" title="标准化公文格式"> 自动排版</button>
                         <div class="tool-separator"></div>
                         <button class="tool-btn" onclick="modifyIndent(true)" title="段落首行缩进2字符">⇥ 缩进</button>
                         <button class="tool-btn" onclick="modifyIndent(false)" title="取消缩进">⇤ 取消缩进</button>
                         <div class="tool-separator"></div>
                         <button class="tool-btn" onclick="applyAlignment('left')" title="左对齐">⬅</button>
                         <button class="tool-btn" onclick="applyAlignment('center')" title="居中">⬆</button>
-                        <button class="tool-btn" onclick="applyAlignment('right')" title="右对齐">➡</button>
+                        <button class="tool-btn" onclick="applyAlignment('right')" title="右对齐"></button>
                         <div class="tool-separator"></div>
-                        <button class="tool-btn" onclick="openImageModal()" title="插入图片">🖼️ 插入图片</button>
+                        <button class="tool-btn" onclick="openImageModal()" title="插入图片">️ 插入图片</button>
                     </div>
                     <textarea id="outContent" class="form-control" rows="12"></textarea>
                 </div>
@@ -439,7 +439,7 @@
             if (type === 'company_profile') {
                 html = `
                     <div class="field-row">
-                        <div><label class="form-label">🏢 公司全称</label><input type="text" id="d-name" class="form-control" value="${data.name || ''}"></div>
+                        <div><label class="form-label"> 公司全称</label><input type="text" id="d-name" class="form-control" value="${data.name || ''}"></div>
                         <div><label class="form-label">英文名 (EN)</label><input type="text" id="d-name_en" class="form-control" value="${data.name_en || ''}"></div>
                     </div>
                     <div class="field-row">
@@ -450,11 +450,11 @@
                                 <option value="downstream" ${data.industry_chain==='downstream'?'selected':''}>下游 (服务)</option>
                             </select>
                         </div>
-                        <div><label class="form-label">📂 主营赛道</label><input type="text" id="d-cat" class="form-control" value="${data.primary_category || 'eVTOL'}"></div>
+                        <div><label class="form-label"> 主营赛道</label><input type="text" id="d-cat" class="form-control" value="${data.primary_category || 'eVTOL'}"></div>
                     </div>
                     <div class="field-row">
-                        <div><label class="form-label">📍 总部城市</label><input type="text" id="d-loc" class="form-control" value="${data.location || ''}"></div>
-                        <div><label class="form-label">📅 成立年份</label><input type="text" id="d-year" class="form-control" value="${data.founded_year || ''}"></div>
+                        <div><label class="form-label"> 总部城市</label><input type="text" id="d-loc" class="form-control" value="${data.location || ''}"></div>
+                        <div><label class="form-label"> 成立年份</label><input type="text" id="d-year" class="form-control" value="${data.founded_year || ''}"></div>
                     </div>
                     <div class="form-group">
                         <label class="form-label"> 公司简介</label>
@@ -464,33 +464,33 @@
             } else if (type === 'patent') {
                 html = `
                     <div class="field-row">
-                        <div><label class="form-label" style="color:#10b981;">🏢 申请人 (自动关联)</label><input type="text" id="d-applicant" class="form-control" value="${data.applicant || ''}"></div>
-                        <div><label class="form-label">🆔 专利号</label><input type="text" id="d-num" class="form-control" value="${data.patent_number || ''}"></div>
+                        <div><label class="form-label" style="color:#10b981;"> 申请人 (自动关联)</label><input type="text" id="d-applicant" class="form-control" value="${data.applicant || ''}"></div>
+                        <div><label class="form-label"> 专利号</label><input type="text" id="d-num" class="form-control" value="${data.patent_number || ''}"></div>
                     </div>
                     <div class="field-row">
-                        <div><label class="form-label">📄 类型</label><select id="d-type" class="form-control"><option value="发明专利">发明</option><option value="实用新型">实用新型</option><option value="外观设计">外观</option></select></div>
-                        <div><label class="form-label">⚖️ 状态</label><select id="d-status" class="form-control"><option value="有效">有效</option><option value="审中">审中</option><option value="无效">无效</option></select></div>
+                        <div><label class="form-label"> 类型</label><select id="d-type" class="form-control"><option value="发明专利">发明</option><option value="实用新型">实用新型</option><option value="外观设计">外观</option></select></div>
+                        <div><label class="form-label">️ 状态</label><select id="d-status" class="form-control"><option value="有效">有效</option><option value="审中">审中</option><option value="无效">无效</option></select></div>
                     </div>
                 `;
             } else if (type === 'funding') {
                 html = `
                     <div class="form-group">
-                        <label class="form-label" style="color:#d97706;">🏢 获投公司 (自动关联)</label>
+                        <label class="form-label" style="color:#d97706;"> 获投公司 (自动关联)</label>
                         <input type="text" id="d-company" class="form-control" value="${data.company_name || ''}">
                     </div>
                     <div class="field-row">
-                        <div><label class="form-label">💰 金额 (百万)</label><input type="number" id="d-amount" class="form-control" value="${data.funding_amount || ''}"></div>
+                        <div><label class="form-label"> 金额 (百万)</label><input type="number" id="d-amount" class="form-control" value="${data.funding_amount || ''}"></div>
                         <div><label class="form-label">货币</label><select id="d-currency" class="form-control"><option value="CNY">CNY</option><option value="USD">USD</option></select></div>
                     </div>
                     <div class="field-row">
-                        <div><label class="form-label">🔖 轮次</label><input type="text" id="d-round" class="form-control" value="${data.funding_round || ''}"></div>
-                        <div><label class="form-label">🏦 投资方</label><input type="text" id="d-investors" class="form-control" value="${data.investors || ''}"></div>
+                        <div><label class="form-label"> 轮次</label><input type="text" id="d-round" class="form-control" value="${data.funding_round || ''}"></div>
+                        <div><label class="form-label"> 投资方</label><input type="text" id="d-investors" class="form-control" value="${data.investors || ''}"></div>
                     </div>
                 `;
             } else if (type === 'policy') {
                 html = `
                     <div class="field-row">
-                        <div><label class="form-label">🏛️ 部门</label><input type="text" id="d-dept" class="form-control" value="${data.department || ''}"></div>
+                        <div><label class="form-label">️ 部门</label><input type="text" id="d-dept" class="form-control" value="${data.department || ''}"></div>
                         <div><label class="form-label">级别</label><select id="d-level" class="form-control"><option value="国家部委">国家部委</option><option value="地方政府">地方政府</option></select></div>
                     </div>
                 `;

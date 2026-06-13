@@ -186,7 +186,7 @@
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                     AeroScope<span>Insight</span>
                 </a>
-                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <button class="mobile-menu-btn" onclick="toggleMenu()"></button>
                 <nav class="nav-links" id="navMenu" role="navigation">
                     <a href="../index.html">首页</a>
                     <a href="news.html">资讯快报</a>
@@ -198,7 +198,7 @@
                 <div class="header-actions">
                     <div class="search-component">
                         <div class="search-box">
-                            <span class="search-icon">🔍</span>
+                            <span class="search-icon"></span>
                             <input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)">
                         </div>
                         <div id="search-dropdown"></div>
@@ -220,15 +220,15 @@
                     <span class="company-subtitle" id="header-subtitle" style="color:#94a3b8; font-size:1rem; font-weight:400; margin-left:8px;">...</span>
                     
                     <div class="meta-badges">
-                        <div class="meta-badge">📍 <span id="header-loc">--</span></div>
-                        <div class="meta-badge">📅 成立于 <span id="header-year">--</span></div>
-                        <div class="meta-badge">🔗 <a href="#" id="header-web" target="_blank" style="color:inherit; text-decoration:none;">官网</a></div>
+                        <div class="meta-badge"> <span id="header-loc">--</span></div>
+                        <div class="meta-badge"> 成立于 <span id="header-year">--</span></div>
+                        <div class="meta-badge"> <a href="#" id="header-web" target="_blank" style="color:inherit; text-decoration:none;">官网</a></div>
                     </div>
                 </div>
                 
                 <div style="min-width: 60px;">
                     <button class="btn btn-primary" style="width:100%; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); opacity:0.5; cursor:default; font-size:0.85rem; padding:8px 12px; white-space:nowrap;" disabled>+ 关注企业（即将上线）</button>
-                    <button class="btn btn-outline" style="width:100%; margin-top: 8px; border-color:rgba(255,255,255,0.3); color:#cbd5e1; opacity:0.5; cursor:default; font-size:0.85rem; padding:8px 12px; white-space:nowrap;" disabled>📥 下载研报（即将上线）</button>
+                    <button class="btn btn-outline" style="width:100%; margin-top: 8px; border-color:rgba(255,255,255,0.3); color:#cbd5e1; opacity:0.5; cursor:default; font-size:0.85rem; padding:8px 12px; white-space:nowrap;" disabled> 下载研报（即将上线）</button>
                 </div>
             </div>
         </div>
@@ -302,7 +302,7 @@
                 <!-- 底部链接：修改文案和跳转 -->
                 <div style="text-align:center; margin-top:15px; padding-top:10px; border-top:1px dashed #f1f5f9;">
                     <a href="../charts/chart-patents.html" style="font-size:0.9rem; color:#3b82f6; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:5px;">
-                        🔍 进入专利库检索更多
+                         进入专利库检索更多
                     </a>
                 </div>
             </div>
@@ -652,7 +652,7 @@
 
         // 渲染侧边栏
         function renderSidebar(c) {
-            const chainEmojis = { 'upstream': '⛓️ ', 'midstream': '✈️ ', 'downstream': '🏷️ ' };
+            const chainEmojis = { 'upstream': '️ ', 'midstream': '️ ', 'downstream': '️ ' };
             const chainText = t(c.industry_chain);
             document.getElementById('data-chain').innerText = (chainEmojis[c.industry_chain] || '') + chainText || '--';
             

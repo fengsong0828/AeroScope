@@ -204,7 +204,7 @@
             <a href="index.html" class="logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>AeroScope<span>Insight</span></a>
             <div class="header-actions">
                 <a href="index.html" class="btn btn-text">取消</a>
-                <button class="btn btn-secondary" onclick="saveArticle('draft')">💾 暂存草稿</button>
+                <button class="btn btn-secondary" onclick="saveArticle('draft')"> 暂存草稿</button>
                 <button class="btn btn-primary" onclick="saveArticle('published')"> 立即发布</button>
             </div>
         </div>
@@ -233,7 +233,7 @@
                                 <option value="市场研判"> 市场研判</option>
                                 <option value="政策解读"> 政策解读</option>
                                 <option value="投资逻辑"> 投资逻辑</option>
-                                <option value="产业观察">🔭 产业观察</option>
+                                <option value="产业观察"> 产业观察</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -241,7 +241,7 @@
                             <div class="cover-row">
                                 <div class="cover-uploader" onclick="document.getElementById('file-input-cover').click()">
                                     <div class="cover-hint" id="cover-placeholder">
-                                        <div class="cover-icon">📷</div>
+                                        <div class="cover-icon"></div>
                                         点击上传
                                     </div>
                                     <img id="cover-img-preview" class="cover-preview">
@@ -281,7 +281,7 @@
 
                 <button class="tool-btn" onmousedown="customStyle('justifyLeft'); return false;" title="左对齐">⬅</button>
                 <button class="tool-btn" onmousedown="customStyle('justifyCenter'); return false;" title="居中">⬆</button>
-                <button class="tool-btn" onmousedown="customStyle('justifyRight'); return false;" title="右对齐">➡</button>
+                <button class="tool-btn" onmousedown="customStyle('justifyRight'); return false;" title="右对齐"></button>
                 <div class="separator"></div>
 
                 <button class="tool-btn tool-btn-text" onmousedown="customStyle('lineHeight'); return false;" title="增加行间距">↕️ 间距+</button>
@@ -396,7 +396,7 @@
                 const url = await uploadToSupabase(file);
                 updateCoverFromLink(url); // 复用预览逻辑
             } catch (err) { 
-                alert('封面上传失败'); hint.innerHTML = '<div class="cover-icon">📷</div>点击上传'; 
+                alert('封面上传失败'); hint.innerHTML = '<div class="cover-icon"></div>点击上传'; 
             } finally { input.value = ''; }
         }
 
@@ -442,9 +442,9 @@
                 const { error } = await _supabase.from('user_articles').insert(payload);
                 if (error) throw error;
                 if (status === 'published') {
-                    alert('🎉 发布成功！'); location.href = 'index.html'; 
+                    alert(' 发布成功！'); location.href = 'index.html'; 
                 } else {
-                    alert('💾 草稿已保存。');
+                    alert(' 草稿已保存。');
                 }
             } catch (err) { console.error(err); alert('提交失败: ' + err.message); } 
             finally { btn.disabled = false; btn.innerText = originalText; }

@@ -55,7 +55,7 @@
         <div class="standard-container">
             <div class="nav-inner">
                 <a href="../index.html" class="logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>AeroScope<span>Insight</span></a>
-                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <button class="mobile-menu-btn" onclick="toggleMenu()"></button>
                 <nav class="nav-links" id="navMenu" role="navigation">
                     <a href="../index.html">首页</a>
                     <a href="news.html">资讯快报</a>
@@ -66,7 +66,7 @@
                 </nav>
                 <div class="header-actions">
                     <div class="search-component">
-                        <div class="search-box"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)"></div>
+                        <div class="search-box"><span class="search-icon"></span><input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)"></div>
                         <div id="search-dropdown"></div>
                     </div>
                     <button class="btn btn-primary" id="auth-btn" onclick="location.href='../login.html'">登录/注册</button>
@@ -143,7 +143,7 @@
             const formattedContent = marked.parse(rawContent);
             
             const imgHtml = report.image_url ? `<img src="${report.image_url}" class="article-hero-img" alt="${report.title}">` : '';
-            let summaryHtml = report.summary ? `<div class="summary-box">💡 核心摘要：${report.summary}</div>` : '';
+            let summaryHtml = report.summary ? `<div class="summary-box"> 核心摘要：${report.summary}</div>` : '';
 
             let finalBody = '';
             if (isLocked) {
@@ -153,7 +153,7 @@
                         <div class="locked-blur">${teaser}...</div>
                         <div class="locked-overlay">
                             <div class="lock-box">
-                                <div style="font-size:2rem; margin-bottom:10px;">🔒</div>
+                                <div style="font-size:2rem; margin-bottom:10px;"></div>
                                 <h3 style="margin-bottom:10px; color:#1e293b;">Pro 会员专享</h3>
                                 <p style="font-size:0.9rem; color:#64748b; margin-bottom:20px;">此报告包含高价值产业数据与分析。</p>
                                 <a href="../profile.html" class="lock-btn">升级解锁</a>

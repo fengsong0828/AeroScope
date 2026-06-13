@@ -56,7 +56,7 @@
         <div class="standard-container">
             <div class="nav-inner">
                 <a href="../index.html" class="logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>AeroScope<span>Insight</span></a>
-                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <button class="mobile-menu-btn" onclick="toggleMenu()"></button>
                 <nav class="nav-links" id="navMenu" role="navigation">
                     <a href="../index.html">首页</a>
                     <a href="news.html">资讯快报</a>
@@ -67,7 +67,7 @@
                 </nav>
                 <div class="header-actions">
                     <div class="search-component">
-                        <div class="search-box"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)"></div>
+                        <div class="search-box"><span class="search-icon"></span><input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)"></div>
                         <div id="search-dropdown"></div>
                     </div>
                     <button class="btn btn-primary" id="auth-btn" onclick="location.href='../login.html'">登录/注册</button>
@@ -153,7 +153,7 @@
             const imgHtml = article.image_url ? `<img src="${article.image_url}" class="article-hero-img" alt="${article.title}">` : '';
             
             let summaryHtml = '';
-            if (article.summary) summaryHtml = `<div class="summary-box">💡 核心摘要：${article.summary}</div>`;
+            if (article.summary) summaryHtml = `<div class="summary-box"> 核心摘要：${article.summary}</div>`;
             
             let orgHtml = `<span style="font-weight:600; color:#334155;">${t(article.org) || 'AeroScope'}</span>`;
             if (article.source_url && article.source_url.startsWith('http')) {
@@ -215,7 +215,7 @@
                     <a href="${shareUrl}" class="btn-forward-forum">↪️ 转发至论坛</a>
                 </div>
                 <div class="comment-box">
-                    <div class="comment-header"><span>💬</span> <span>快速评论</span></div>
+                    <div class="comment-header"><span></span> <span>快速评论</span></div>
                     <div class="comment-input-wrapper">
                         <textarea id="c-input" class="comment-textarea" placeholder="写下您的看法..."></textarea>
                         <button class="btn-send-comment" onclick="submitComment('${tableName}', '${targetId}')">发送</button>
