@@ -96,12 +96,12 @@
 <body>
 
     <!-- Header (标准一致) -->
-    <header>
+    <header role="banner">
         <div class="standard-container">
             <div class="nav-inner">
                 <a href="../index.html" class="logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>AeroScope<span>Insight</span></a>
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-                <nav class="nav-links" id="navMenu">
+                <nav class="nav-links" id="navMenu" role="navigation">
                     <a href="../index.html">首页</a>
                     <a href="news.html">资讯快报</a>
                     <a href="policies.html">政策法规</a>
@@ -110,7 +110,7 @@
                 </nav>
                 <div class="header-actions">
                     <div class="search-component">
-                        <div class="search-box"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)"></div>
+                        <div class="search-box"><span class="search-icon"></span><input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)"></div>
                         <div id="search-dropdown"></div>
                     </div>
                     <button class="btn btn-primary" id="auth-btn" onclick="location.href='../login.html'">登录</button>
@@ -131,17 +131,17 @@
     <div class="standard-container">
         <div class="value-props">
             <div class="prop-card">
-                <span class="prop-icon">🎯</span>
+                <span class="prop-icon"></span>
                 <div class="prop-h">精准曝光</div>
                 <div class="prop-t">您的产品将直接展示在我们的“技术前沿”与“行业图谱”中，直达目标客户。</div>
             </div>
             <div class="prop-card">
-                <span class="prop-icon">🚀</span>
+                <span class="prop-icon"></span>
                 <div class="prop-h">资本对接</div>
                 <div class="prop-t">优秀的早期项目将被收录进我们的《月度投研报告》，推荐给一线 VC/PE。</div>
             </div>
             <div class="prop-card">
-                <span class="prop-icon">🔗</span>
+                <span class="prop-icon"></span>
                 <div class="prop-h">供应链合作</div>
                 <div class="prop-t">帮助零部件厂商对接 eVTOL 主机厂，或帮助主机厂寻找各地运营场景。</div>
             </div>
@@ -153,7 +153,7 @@
         <div class="form-card">
             
             <!-- 第一部分：产品/技术信息 -->
-            <div class="form-section-title">📦 产品与技术信息</div>
+            <div class="form-section-title"> 产品与技术信息</div>
             
             <div class="form-group">
                 <label class="form-label">核心产品名称 <span>*</span></label>
@@ -164,22 +164,22 @@
                 <div>
                     <label class="form-label">所属赛道</label>
                     <select id="track_select" class="form-select">
-                        <option value="整机制造">✈️ 整机制造 (eVTOL/Drone)</option>
+                        <option value="整机制造"> 整机制造 (eVTOL/Drone)</option>
                         <option value="动力系统">🔋 动力/能源系统</option>
                         <option value="航电飞控">🕹️ 航电与飞控</option>
-                        <option value="材料机身">🧪 复合材料/机身结构</option>
-                        <option value="运营服务">📡 运营/空管服务</option>
-                        <option value="其他">🌐 其他 (Other)</option>
+                        <option value="材料机身"> 复合材料/机身结构</option>
+                        <option value="运营服务"> 运营/空管服务</option>
+                        <option value="其他"> 其他 (Other)</option>
                     </select>
                 </div>
                 <div>
                     <label class="form-label">当前阶段</label>
                     <select id="stage_select" class="form-select">
-                        <option value="研发/原型机">🛠️ 研发/原型机阶段</option>
-                        <option value="适航取证中">📑 适航取证中</option>
+                        <option value="研发/原型机"> 研发/原型机阶段</option>
+                        <option value="适航取证中"> 适航取证中</option>
                         <option value="小批量产">🏭 小批量产</option>
-                        <option value="商业化运营">💰 商业化运营</option>
-                        <option value="其他">🌐 其他 (Other)</option>
+                        <option value="商业化运营"> 商业化运营</option>
+                        <option value="其他"> 其他 (Other)</option>
                     </select>
                 </div>
             </div>
@@ -195,18 +195,18 @@
             <div class="form-group">
                 <label class="form-label">您希望通过 AeroScope 获得什么？</label>
                 <select id="request_type" class="form-select">
-                    <option value="产品收录">📥 仅收录至产品库 (免费)</option>
-                    <option value="媒体报道">📰 深度媒体报道/专访</option>
-                    <option value="融资对接">💰 FA 融资财务顾问服务</option>
-                    <option value="客户对接">🤝 寻找下游采购客户</option>
-                    <option value="其他">🌐 其他 (Other)</option>
+                    <option value="产品收录"> 仅收录至产品库 (免费)</option>
+                    <option value="媒体报道"> 深度媒体报道/专访</option>
+                    <option value="融资对接"> FA 融资财务顾问服务</option>
+                    <option value="客户对接"> 寻找下游采购客户</option>
+                    <option value="其他"> 其他 (Other)</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label class="form-label">产品资料包 / BP 链接 <span>*</span></label>
                 <div class="upload-tip">
-                    🔒 <strong>安全传输通道：</strong> 为保护您的知识产权与商业机密，请将 BP 或产品手册上传至加密网盘（如百度网盘、飞书文档），并在此处填写链接与密码。
+                     <strong>安全传输通道：</strong> 为保护您的知识产权与商业机密，请将 BP 或产品手册上传至加密网盘（如百度网盘、飞书文档），并在此处填写链接与密码。
                 </div>
                 <input type="text" id="material_link" class="form-input" placeholder="链接：https://...  提取码：...">
             </div>
@@ -236,7 +236,7 @@
     </div>
 
     <!-- Footer -->
-    <footer>
+    <footer role="contentinfo">
         <div class="standard-container">
             <div class="footer-grid">
                 <div class="footer-col brand-col">
@@ -335,7 +335,7 @@
                 btn.innerText = '提交审核';
             } else {
                 msg.style.color = '#10b981';
-                msg.innerText = '✅ 提交成功！我们的产品分析师将尽快审核您的资料。';
+                msg.innerText = ' 提交成功！我们的产品分析师将尽快审核您的资料。';
                 btn.innerText = '已提交';
                 // 清空表单
                 document.querySelectorAll('input, textarea').forEach(i => i.value = '');

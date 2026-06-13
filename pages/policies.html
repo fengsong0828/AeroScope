@@ -127,7 +127,7 @@
 <body>
 
     <!-- Header -->
-    <header>
+    <header role="banner">
         <div class="standard-container">
             <div class="nav-inner">
                 <a href="../index.html" class="logo">
@@ -135,7 +135,7 @@
                     AeroScope<span>Insight</span>
                 </a>
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-                <nav class="nav-links" id="navMenu">
+                <nav class="nav-links" id="navMenu" role="navigation">
                     <a href="../index.html">首页</a>
                     <a href="news.html">资讯快报</a>
                     <a href="policies.html" class="active">政策法规</a>
@@ -169,7 +169,7 @@
     <div class="standard-container">
         <div class="main-layout-grid">
             <!-- 左侧：列表 -->
-            <main>
+            <main role="main">
                 <div class="news-feed" id="policy-container">
                     <div style="text-align:center; padding:40px; color:#94a3b8;">加载中...</div>
                 </div>
@@ -183,7 +183,7 @@
             </main>
 
             <!-- 右侧：侧边栏 -->
-            <aside class="sidebar">
+            <aside class="sidebar" role="complementary">
                 <div class="sidebar-widget">
                     <div class="widget-title">按发文单位筛选</div>
                     <!-- 动态部门标签 -->
@@ -202,7 +202,7 @@
     </div>
 
     <!-- Footer -->
-    <footer>
+    <footer role="contentinfo">
         <div class="standard-container">
             <div class="footer-grid">
                 <div class="footer-col brand-col">

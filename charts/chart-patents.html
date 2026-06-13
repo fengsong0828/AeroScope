@@ -174,7 +174,7 @@
 <body>
     
     <!-- Header (复用 Index) -->
-    <header>
+    <header role="banner">
         <div class="standard-container">
             <div class="nav-inner">
                 <a href="../index.html" class="logo">
@@ -182,7 +182,7 @@
                     AeroScope<span>Insight</span>
                 </a>
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-                <nav class="nav-links" id="navMenu">
+                <nav class="nav-links" id="navMenu" role="navigation">
                     <a href="../index.html">首页</a>
                     <a href="../pages/news.html">资讯快报</a>
                     <a href="../pages/policies.html">政策法规</a>
@@ -193,7 +193,7 @@
                 <div class="header-actions">
                     <div class="search-component">
                         <div class="search-box">
-                            <span class="search-icon">🔍</span>
+                            <span class="search-icon"></span>
                             <input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)">
                         </div>
                         <div id="search-dropdown"></div>
@@ -238,16 +238,16 @@
     <div class="filter-bar">
         <div class="standard-container filter-inner">
             <select id="filter-chain" class="filter-select" onchange="applyFiltersAndPagination()">
-                <option value="all">🔗 产业链</option>
+                <option value="all"> 产业链</option>
             </select>
 
             <select id="filter-type" class="filter-select" onchange="applyFiltersAndPagination()">
-                <option value="all">📄 专利类型</option>
+                <option value="all"> 专利类型</option>
             </select>
 
             <div class="cat-dropdown" id="cat-dropdown">
                 <div class="cat-trigger" onclick="toggleCatPanel()">
-                    <span class="cat-label">🏷️ 技术分类</span>
+                    <span class="cat-label"> 技术分类</span>
                     <span class="clear-btn" onclick="clearCatFilter(event)">✕</span>
                     <span class="arrow">▾</span>
                 </div>
@@ -257,7 +257,7 @@
             </div>
 
             <select id="filter-app-field" class="filter-select" onchange="applyFiltersAndPagination()">
-                <option value="all">🎯 应用场景</option>
+                <option value="all"> 应用场景</option>
             </select>
 
             <select id="filter-legal-status" class="filter-select" onchange="applyFiltersAndPagination()">
@@ -290,7 +290,7 @@
     </div>
 
     <!-- Footer (复用 Index) -->
-    <footer>
+    <footer role="contentinfo">
         <div class="standard-container">
             <div class="footer-grid">
                 <div class="footer-col brand-col">
@@ -481,9 +481,9 @@
         const trigger = document.querySelector('.cat-trigger');
         const labelEl = trigger.querySelector('.cat-label');
         if (type === 'cat') {
-            labelEl.textContent = '🏷️ ' + label;
+            labelEl.textContent = ' ' + label;
         } else {
-            labelEl.textContent = '🏷️ ' + (parentCat || '') + ' › ' + label;
+            labelEl.textContent = ' ' + (parentCat || '') + ' › ' + label;
         }
         trigger.classList.add('selected');
         // 面板内高亮
@@ -496,7 +496,7 @@
     function selectCatAll() {
         catSelectedValue = null;
         const trigger = document.querySelector('.cat-trigger');
-        trigger.querySelector('.cat-label').textContent = '🏷️ 技术分类';
+        trigger.querySelector('.cat-label').textContent = ' 技术分类';
         trigger.classList.remove('selected');
         document.querySelectorAll('.cat-main-item.selected, .cat-sub-item.selected').forEach(el => el.classList.remove('selected'));
         closeCatPanel();
@@ -621,8 +621,8 @@
             const statusClass = status === '有效' ? 'status-valid' : (['无效','终止'].includes(status) ? 'status-invalid' : 'status-pending');
             const compInfo = companiesMap.get(p.applicant);
             const applicantHtml = compInfo 
-                ? `<a href="../pages/companies.html" class="applicant-name">🏢 ${p.applicant}</a>` 
-                : `<span class="applicant-name">🏢 ${p.applicant || '未知申请人'}</span>`;
+                ? `<a href="../pages/companies.html" class="applicant-name"> ${p.applicant}</a>` 
+                : `<span class="applicant-name"> ${p.applicant || '未知申请人'}</span>`;
             
             let tagsHtml = '';
             (p.technical_categories || []).slice(0,2).forEach(c => tagsHtml += `<span class="patent-tag category">${t(c) || c}</span>`);
@@ -644,7 +644,7 @@
                     ${applicantHtml.replace('<a ', '<a onclick="event.stopPropagation()" ')} 
                     <span class="meta-divider">|</span>
                     <span>📅 ${p.application_date || '未知日期'}</span>
-                    ${p.citation_count ? `<span class="meta-divider">|</span><span>🔗 ${p.citation_count} 引用</span>` : ''}
+                    ${p.citation_count ? `<span class="meta-divider">|</span><span> ${p.citation_count} 引用</span>` : ''}
                     <div class="patent-tags" style="margin-left:10px;">${tagsHtml}</div>
                     <div class="patent-id">${p.patent_number || ''}</div>
                 </div>

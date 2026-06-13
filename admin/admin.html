@@ -138,7 +138,7 @@
 </head>
 <body>
 
-    <header>
+    <header role="banner">
         <div class="header-inner">
             <div class="header-logo">
                 AeroScope <span style="color:#3b82f6;">Console</span>
@@ -153,7 +153,7 @@
 
     <div class="admin-layout">
         <!-- 左侧菜单 -->
-        <aside class="admin-sidebar" role="navigation" aria-label="管理导航">
+        <aside class="admin-sidebar" role="navigation" aria-label="管理导航" role="complementary">
             <div class="sidebar-group">
                 <div class="group-label">仪表盘</div>
                 <div class="nav-item active" onclick="switchTab('dashboard', this)"><span>概览</span></div>
@@ -199,7 +199,7 @@
         </aside>
 
         <!-- 右侧主区域 -->
-        <main class="admin-main" id="main-container">
+        <main class="admin-main" id="main-container" role="main">
             <div style="text-align:center; padding:50px;">加载中...</div>
         </main>
     </div>

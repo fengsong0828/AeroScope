@@ -179,7 +179,7 @@
 <body>
 
     <!-- 1. Header (严格复用 Index 样式) -->
-    <header>
+    <header role="banner">
         <div class="standard-container">
             <div class="nav-inner">
                 <a href="../index.html" class="logo">
@@ -187,7 +187,7 @@
                     AeroScope<span>Insight</span>
                 </a>
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-                <nav class="nav-links" id="navMenu">
+                <nav class="nav-links" id="navMenu" role="navigation">
                     <a href="../index.html">首页</a>
                     <a href="news.html">资讯快报</a>
                     <a href="policies.html">政策法规</a>
@@ -238,7 +238,7 @@
     <div class="standard-container detail-grid">
         
         <!-- 左侧：主要信息流 -->
-        <main>
+        <main role="main">
             <a href="companies.html" style="display:inline-flex; align-items:center; gap:6px; color:#475569; font-size:0.85rem; font-weight:500; text-decoration:none; background:#f1f5f9; padding:6px 14px; border-radius:6px; margin-bottom:14px; transition:all .2s;"
                onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
@@ -319,7 +319,7 @@
         </main>
 
         <!-- 右侧：数据仪表盘 -->
-        <aside>
+        <aside role="complementary">
             <!-- 核心数据看板 -->
             <div class="info-card" style="background: linear-gradient(to bottom, #ffffff, #f8fafc);">
                 <div class="kv-group">
@@ -360,7 +360,7 @@
     </div>
 
     <!-- 4. Footer (严格复用 Index 样式) -->
-    <footer>
+    <footer role="contentinfo">
         <div class="standard-container">
             <div class="footer-grid">
                 <div class="footer-col brand-col">

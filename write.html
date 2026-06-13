@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -89,7 +89,7 @@
         }
         /* 图标装饰 */
         .page-heading::before {
-            content: '✍️'; 
+            content: ''; 
             font-size: 1.2rem;
         }
 
@@ -199,13 +199,13 @@
 <body>
 
     <!-- 顶部导航 -->
-    <header>
+    <header role="banner">
         <div class="header-inner">
             <a href="index.html" class="logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>AeroScope<span>Insight</span></a>
             <div class="header-actions">
                 <a href="index.html" class="btn btn-text">取消</a>
                 <button class="btn btn-secondary" onclick="saveArticle('draft')">💾 暂存草稿</button>
-                <button class="btn btn-primary" onclick="saveArticle('published')">🚀 立即发布</button>
+                <button class="btn btn-primary" onclick="saveArticle('published')"> 立即发布</button>
             </div>
         </div>
     </header>
@@ -229,10 +229,10 @@
                         <div class="form-group">
                             <label class="form-label">所属领域</label>
                             <select id="art-cat" class="form-select">
-                                <option value="技术分析">⚙️ 技术分析</option>
-                                <option value="市场研判">📊 市场研判</option>
-                                <option value="政策解读">📜 政策解读</option>
-                                <option value="投资逻辑">💰 投资逻辑</option>
+                                <option value="技术分析"> 技术分析</option>
+                                <option value="市场研判"> 市场研判</option>
+                                <option value="政策解读"> 政策解读</option>
+                                <option value="投资逻辑"> 投资逻辑</option>
                                 <option value="产业观察">🔭 产业观察</option>
                             </select>
                         </div>
@@ -266,7 +266,7 @@
 
             <!-- 3. 工具栏 (吸顶) -->
             <div class="toolbar-sticky">
-                <button class="tool-btn" onmousedown="handleUndo(); return false;" title="撤销 (Ctrl+Z)">↩️</button>
+                <button class="tool-btn" onmousedown="handleUndo(); return false;" title="撤销 (Ctrl+Z)"></button>
                 <button class="tool-btn" onmousedown="handleRedo(); return false;" title="重做 (Ctrl+Y)">↪️</button>
                 <div class="separator"></div>
 
@@ -288,7 +288,7 @@
                 
                 <div class="separator"></div>
                 <button class="tool-btn tool-btn-text" onclick="document.getElementById('file-input-editor').click()" title="插入正文图片" style="color:#3b82f6;">
-                    🖼️ 插入图片
+                     插入图片
                 </button>
                 <input type="file" id="file-input-editor" accept="image/*" onchange="insertEditorImage(this)">
             </div>

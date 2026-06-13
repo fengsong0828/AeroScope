@@ -137,7 +137,7 @@
 <body>
 
     <!-- 1. Header -->
-    <header>
+    <header role="banner">
         <div class="standard-container">
             <div class="nav-inner">
                 <a href="../index.html" class="logo">
@@ -145,7 +145,7 @@
                     AeroScope<span>Insight</span>
                 </a>
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-                <nav class="nav-links" id="navMenu">
+                <nav class="nav-links" id="navMenu" role="navigation">
                     <a href="../index.html">首页</a>
                     <a href="news.html">资讯快报</a>
                     <a href="policies.html">政策法规</a>
@@ -155,7 +155,7 @@
                 </nav>
                 <div class="header-actions">
                     <div class="search-component">
-                        <div class="search-box"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)"></div>
+                        <div class="search-box"><span class="search-icon"></span><input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)"></div>
                         <div id="search-dropdown"></div>
                     </div>
                     <button class="btn btn-primary" id="auth-btn" onclick="location.href='../login.html'">登录/注册</button>
@@ -178,7 +178,7 @@
         <div class="main-layout-grid">
             
             <!-- 左侧：内容流 -->
-            <main class="content-left">
+            <main class="content-left" role="main">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                     <div class="forum-tabs" style="margin-bottom: 0;">
                         <div class="forum-tab active" onclick="switchTab('latest', this)">最新话题</div>
@@ -201,7 +201,7 @@
             </main>
 
             <!-- 右侧：侧边栏 -->
-            <aside class="sidebar">
+            <aside class="sidebar" role="complementary">
                 <div class="sidebar-widget">
                     <div class="widget-title">活跃专家榜</div>
                     <div id="expert-rank-list">
@@ -250,7 +250,7 @@
     </div>
 
     <!-- 3. Footer -->
-    <footer>
+    <footer role="contentinfo">
         <div class="standard-container">
             <div class="footer-grid">
                 <div class="footer-col brand-col">
@@ -303,8 +303,8 @@
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
             
-            let icon = '✅';
-            if(type === 'error') icon = '❌';
+            let icon = '';
+            if(type === 'error') icon = '';
             if(type === 'info') icon = 'ℹ️';
 
             toast.className = `toast-message toast-${type}`;
@@ -361,7 +361,7 @@
                 if (topic.source_news_title) {
                     refHtml = `
                         <div class="ref-news-card" onclick="event.preventDefault(); window.open('${topic.source_news_link}', '_blank')">
-                            <span>🔗</span> 引用：${topic.source_news_title}
+                            <span></span> 引用：${topic.source_news_title}
                         </div>
                     `;
                 }
@@ -385,8 +385,8 @@
 
                         <div class="topic-footer">
                             <span><span class="stat-icon">🔥</span> ${topic.heat_score || 0}</span>
-                            <span><span class="stat-icon">💬</span> ${topic.comments_count || 0}</span>
-                            <span><span class="stat-icon">👍</span> ${topic.likes || 0}</span>
+                            <span><span class="stat-icon"></span> ${topic.comments_count || 0}</span>
+                            <span><span class="stat-icon"></span> ${topic.likes || 0}</span>
                             <span style="margin-left:auto; background:#f1f5f9; padding:2px 8px; border-radius:4px;">${topic.category}</span>
                         </div>
                     </a>

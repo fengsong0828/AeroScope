@@ -53,12 +53,12 @@
     </style>
 </head>
 <body>
-    <header>
+    <header role="banner">
         <div class="standard-container">
             <div class="nav-inner">
                 <a href="../index.html" class="logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>AeroScope<span>Insight</span></a>
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-                <nav class="nav-links" id="navMenu">
+                <nav class="nav-links" id="navMenu" role="navigation">
                     <a href="../index.html">首页</a>
                     <a href="news.html" class="active">资讯快报</a>
                     <a href="policies.html">政策法规</a>
@@ -80,12 +80,12 @@
     <div class="detail-container">
         <div class="back-nav"><a href="news.html" class="back-btn">← 返回资讯列表</a></div>
         <div class="layout-grid">
-            <main class="main-card">
+            <main class="main-card" role="main">
                 <div id="article-main">
                     <div style="padding: 60px; text-align: center; color: #94a3b8;">正在加载内容...</div>
                 </div>
             </main>
-            <aside>
+            <aside role="complementary">
                 <div class="sidebar-widget">
                     <div class="widget-title">同来源更多</div>
                     <div id="reco-same-source"><p style="color:#94a3b8; font-size:0.85rem;">加载中...</p></div>
@@ -98,7 +98,7 @@
         </div>
     </div>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="standard-container">
             <div class="footer-grid">
                 <div class="footer-col brand-col">

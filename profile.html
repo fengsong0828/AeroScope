@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -152,12 +152,12 @@
 <body>
 
     <!-- Header -->
-    <header>
+    <header role="banner">
         <div class="standard-container">
             <div class="nav-inner">
                 <a href="index.html" class="logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>AeroScope<span>Insight</span></a>
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-                <nav class="nav-links" id="navMenu">
+                <nav class="nav-links" id="navMenu" role="navigation">
                     <a href="index.html">首页</a>
                     <a href="pages/news.html">资讯快报</a>
                     <a href="pages/policies.html">政策法规</a>
@@ -167,7 +167,7 @@
                 </nav>
                 <div class="header-actions">
                     <div class="search-component">
-                        <div class="search-box"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)"></div>
+                        <div class="search-box"><span class="search-icon"></span><input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)"></div>
                         <div id="search-dropdown"></div>
                     </div>
                     <button class="btn btn-primary" onclick="logout()">退出登录</button>
@@ -179,24 +179,24 @@
     <div class="profile-layout">
         
         <!-- 左侧导航 -->
-        <aside class="profile-sidebar">
+        <aside class="profile-sidebar" role="complementary">
             <div class="user-avatar-lg" id="avatar-text">U</div>
             <div class="user-name-lg" id="display-name">Loading...</div>
             <div id="role-badge-container"></div>
             
             <a href="admin/admin.html" class="admin-banner" id="admin-entry">
-                🛠️ 进入后台管理系统
+                 进入后台管理系统
             </a>
 
             <ul class="side-menu">
                 <li><button class="menu-btn active" onclick="switchSection('info', this)">👤 个人资料</button></li>
-                <li><button class="menu-btn" onclick="switchSection('posts', this)">📝 我的发布</button></li>
+                <li><button class="menu-btn" onclick="switchSection('posts', this)"> 我的发布</button></li>
                 <li><button class="menu-btn logout" onclick="logout()">🛑 退出登录</button></li>
             </ul>
         </aside>
 
         <!-- 右侧内容 -->
-        <main class="profile-content">
+        <main class="profile-content" role="main">
             
             <!-- 1. 个人资料 -->
             <div id="section-info">
@@ -252,7 +252,7 @@
     </div>
 
     <!-- Footer -->
-    <footer>
+    <footer role="contentinfo">
         <div class="standard-container">
             <div class="footer-grid">
                 <div class="footer-col brand-col">
@@ -348,7 +348,7 @@
                 actionBtn.innerText = "+ 发布话题";
                 actionBtn.onclick = () => location.href = 'pages/forum.html'; // 简单的跳转逻辑，或者触发 forum.html#post
             } else {
-                actionBtn.innerText = "✍️ 写文章";
+                actionBtn.innerText = " 写文章";
                 actionBtn.onclick = () => location.href = 'write.html';
             }
 
@@ -403,7 +403,7 @@
 
                 if (type === 'topic') {
                     // 话题：显示热度与评论
-                    metaHtml = `🔥 ${item.heat_score || 0} · 💬 ${item.comments_count || 0}`;
+                    metaHtml = `🔥 ${item.heat_score || 0} ·  ${item.comments_count || 0}`;
                     link = `pages/forum-topic.html?id=${item.id}`;
                 } else {
                     // 文章：显示状态、阅读、点赞
@@ -411,7 +411,7 @@
                     const statusColor = item.status === 'published' ? '#10b981' : '#f59e0b';
                     statusBadge = `<span style="font-size:0.75rem; color:${statusColor}; border:1px solid ${statusColor}; padding:1px 5px; border-radius:4px; margin-right:8px;">${statusText}</span>`;
                     
-                    metaHtml = `👁️ ${item.views || 0} · 👍 ${item.likes || 0}`;
+                    metaHtml = ` ${item.views || 0} ·  ${item.likes || 0}`;
                     link = `pages/article-detail.html?id=${item.id}`;
                 }
 
