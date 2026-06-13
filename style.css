@@ -628,3 +628,101 @@ footer {
     .dashboard-grid { grid-template-columns: 1fr; }
     .company-grid { grid-template-columns: 1fr; }
 }
+
+/* =========================================
+   排版修复 (Typography)
+   ========================================= */
+h1, h2, h3 { text-wrap: balance; }
+
+/* 内容区域最大行长限制 */
+.content-left p, .modal-content p, .article-desc,
+.comment-content, .expert-quote, .company-desc {
+    max-width: 70ch;
+}
+
+/* 表单样式 (Form) */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="number"],
+input[type="search"],
+textarea,
+select {
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-body);
+    transition: border var(--transition-fast), box-shadow var(--transition-fast);
+}
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: var(--focus-ring);
+}
+input::placeholder, textarea::placeholder {
+    color: var(--text-placeholder);
+}
+input:disabled, textarea:disabled, select:disabled {
+    background: var(--bg-subtle);
+    color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+/* 表单错误状态 */
+input.input-error, textarea.input-error, select.input-error {
+    border-color: var(--color-error);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+.input-error-message {
+    color: var(--color-error);
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
+/* 提取常用内联模式为工具类 */
+.d-flex { display: flex; }
+.d-flex-center { display: flex; align-items: center; }
+.d-flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-8 { gap: var(--space-8); }
+.gap-12 { gap: var(--space-12); }
+.gap-16 { gap: var(--space-16); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-sm { font-size: 0.85rem; }
+.text-xs { font-size: 0.75rem; }
+.mt-8 { margin-top: var(--space-8); }
+.mt-16 { margin-top: var(--space-16); }
+.mb-16 { margin-bottom: var(--space-16); }
+.p-16 { padding: var(--space-16); }
+.rounded { border-radius: var(--radius-sm); }
+.w-full { width: 100%; }
+
+/* 文章页脚统计图标 */
+.article-footer-icon {
+    display: inline-flex; align-items: center; gap: 3px;
+    color: var(--text-muted); font-size: 0.8rem;
+}
+
+/* 移动端导航安全区域 */
+@media (max-width: 768px) {
+    .nav-links a {
+        min-height: 44px;
+        display: flex; align-items: center;
+    }
+    .hero { padding: 48px 0 80px; }
+    .hero h1 { font-size: 1.75rem; }
+    .dashboard-grid { gap: var(--space-12); }
+    .data-card { padding: 20px var(--space-16); }
+    .data-value { font-size: 1.6rem; }
+    .page-hero { padding: 36px 0; }
+    .page-hero h1 { font-size: 1.5rem; }
+}
+
+/* 大屏优化 */
+@media (min-width: 1400px) {
+    .standard-container { max-width: 1320px; }
+    .company-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+}
+
+/* 暗色模式基础 (后续可扩展) */
+/* @media (prefers-color-scheme: dark) { ... } */
