@@ -98,6 +98,14 @@ a { text-decoration: none; color: inherit; transition: var(--transition-base); }
 ul { list-style: none; }
 button { font-family: inherit; outline: none; }
 
+/* --- 跳过导航链接 --- */
+.skip-link:focus {
+    position: static; width: auto; height: auto; padding: 8px 16px;
+    margin: 0; clip: auto; white-space: nowrap;
+    color: white; background: var(--primary-blue); font-weight: 600;
+    border-radius: 0 0 var(--radius-sm) 0;
+}
+
 /* --- 全局可访问性 --- */
 :focus-visible {
     outline: none;

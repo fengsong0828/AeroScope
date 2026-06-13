@@ -188,17 +188,18 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="sr-only" style="position:absolute;top:0;left:0;z-index:9999;padding:8px 16px;background:var(--primary-blue);color:white;font-weight:600;border-radius:0 0 6px 0;">跳到主内容</a>
 
     <!-- Header -->
-    <header>
+    <header role="banner">
         <div class="standard-container">
             <div class="nav-inner">
-                <a href="index.html" class="logo">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                <a href="index.html" class="logo" aria-label="AeroScope Insight 首页">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                     AeroScope<span>Insight</span>
                 </a>
-                <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="菜单" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
-                <nav class="nav-links" id="navMenu">
+                <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="菜单" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+                <nav class="nav-links" id="navMenu" role="navigation" aria-label="主导航">
                     <a href="index.html" class="active">首页</a>
                     <a href="pages/news.html">资讯快报</a>
                     <a href="pages/policies.html">政策法规</a>
@@ -207,10 +208,10 @@
                     <a href="pages/forum.html">论坛交流</a>
                 </nav>
                 <div class="header-actions">
-                    <div class="search-component">
+                    <div class="search-component" role="search">
                         <div class="search-box">
-                            <span class="search-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
-                            <input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)">
+                            <span class="search-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+                            <input type="text" class="search-input" placeholder="搜公司、政策..." id="global-search" onkeyup="performGlobalSearch(this.value)" aria-label="全站搜索" autocomplete="off">
                         </div>
                         <div id="search-dropdown"></div>
                     </div>
@@ -264,7 +265,7 @@
         <div class="main-layout-grid">
             
             <!-- 左侧：动态内容流 -->
-            <main class="content-left">
+            <main class="content-left" id="main-content">
                 
                 <!-- 新增：Tab 切换栏 -->
                 <div class="feed-tabs-container">
@@ -300,7 +301,7 @@
             </main>
 
             <!-- 右侧：侧边栏 -->
-            <aside class="sidebar">
+            <aside class="sidebar" role="complementary" aria-label="侧边栏">
                 <div class="sidebar-widget newsletter-box">
                     <div style="font-weight:700; color:#3b82f6; text-align:center;">订阅行业日报</div>
                     <p style="font-size:0.85rem; color:#64748b; margin-bottom:10px; text-align:center;">每早8点，获取核心情报。</p>
@@ -336,7 +337,7 @@
     </div>
 
     <!-- Footer -->
-    <footer>
+    <footer role="contentinfo">
         <div class="standard-container">
             <div class="footer-grid">
                 <div class="footer-col brand-col">
@@ -679,7 +680,7 @@
         }
         document.addEventListener('click', (e) => { if(!document.querySelector('.search-component').contains(e.target)) document.getElementById('search-dropdown').style.display='none'; });
         async function checkUserLogin() { const {data:{session}} = await _supabase.auth.getSession(); const btn=document.getElementById('auth-btn'); if(session){btn.innerText=session.user.email.split('@')[0]; btn.onclick=()=>location.href='profile.html';}}
-        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        function toggleMenu() { const nav=document.getElementById('navMenu'); const btn=document.querySelector('.mobile-menu-btn'); nav.classList.toggle('active'); btn.setAttribute('aria-expanded', nav.classList.contains('active')); }
     </script>
     <script src="js/ai-widget.js"></script>
 </body>
