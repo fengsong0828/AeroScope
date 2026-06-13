@@ -44,7 +44,7 @@
         .group-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 10px; padding-left: 10px; font-weight: 700; }
         .nav-item { display: flex; align-items: center; gap: 10px; padding: 12px 15px; cursor: pointer; border-radius: 8px; transition: 0.2s; color: #94a3b8; font-weight: 500; }
         .nav-item:hover, .nav-item.active { background: #1e293b; color: white; }
-        .nav-item.active { border-left: 3px solid #3b82f6; }
+        .nav-item.active { box-shadow: inset 3px 0 0 var(--primary-blue); }
         .admin-main { padding: 30px; overflow-y: auto; }
         
         /* 仪表盘统计卡片 */
@@ -144,52 +144,52 @@
                 AeroScope <span style="color:#3b82f6;">Console</span>
             </div>
             <div class="header-user-area">
-                <span id="admin-email" style="color:#64748b; font-weight:500;">Checking...</span>
-                <a href="../index.html" class="header-btn btn-ghost">🏠 返回前台</a>
-                <button onclick="logout()" class="header-btn btn-danger-light">🚪 退出</button>
+                <span id="admin-email" style="color:var(--text-muted); font-weight:500;">Checking...</span>
+                <a href="../index.html" class="header-btn btn-ghost">返回前台</a>
+                <button onclick="logout()" class="header-btn btn-danger-light">退出</button>
             </div>
         </div>
     </header>
 
     <div class="admin-layout">
         <!-- 左侧菜单 -->
-        <aside class="admin-sidebar">
+        <aside class="admin-sidebar" role="navigation" aria-label="管理导航">
             <div class="sidebar-group">
                 <div class="group-label">仪表盘</div>
-                <div class="nav-item active" onclick="switchTab('dashboard', this)"><span>📊 概览</span></div>
-                <div class="nav-item" onclick="switchTab('raw_db_viewer', this)"><span>🗄️ 全库透视</span></div>
-                <a href="admin-ai.html" class="nav-item" style="text-decoration:none;"><span>🤖 AI 采编助手</span></a>
+                <div class="nav-item active" onclick="switchTab('dashboard', this)"><span>概览</span></div>
+                <div class="nav-item" onclick="switchTab('raw_db_viewer', this)"><span>全库透视</span></div>
+                <a href="admin-ai.html" class="nav-item" style="text-decoration:none;"><span>AI 采编助手</span></a>
             </div>
             
             <div class="sidebar-group">
                 <div class="group-label">内容管理</div>
-                <div class="nav-item" onclick="switchTab('news', this)"><span>📰 资讯</span></div>
-                <div class="nav-item" onclick="switchTab('policies', this)"><span>📜 政策</span></div>
-                <div class="nav-item" onclick="switchTab('tech_trends', this)"><span>🚀 技术</span></div>
-                <div class="nav-item" onclick="switchTab('deep_reports', this)"><span>📑 研报</span></div>
+                <div class="nav-item" onclick="switchTab('news', this)"><span>资讯</span></div>
+                <div class="nav-item" onclick="switchTab('policies', this)"><span>政策</span></div>
+                <div class="nav-item" onclick="switchTab('tech_trends', this)"><span>技术</span></div>
+                <div class="nav-item" onclick="switchTab('deep_reports', this)"><span>研报</span></div>
             </div>
 
             <div class="sidebar-group">
                 <div class="group-label">核心数据库</div>
-                <div class="nav-item" onclick="switchTab('companies', this)"><span>🏢 公司</span></div>
-                <div class="nav-item" onclick="switchTab('products', this)"><span>✈️ 产品</span></div>
-                <div class="nav-item" onclick="switchTab('investors', this)"><span>🏦 投资方</span></div>
-                <div class="nav-item" onclick="switchTab('funding_events', this)"><span>💰 融资事件</span></div>
-                <div class="nav-item" onclick="switchTab('patents', this)"><span>💡 专利库</span></div>
-                <div class="nav-item" onclick="switchTab('patent_fetch', this)"><span>🔍 企业专利一键获取</span></div>
-                <div class="nav-item" onclick="switchTab('crawler_dash', this)"><span>🕷️ 爬虫监控</span></div>
+                <div class="nav-item" onclick="switchTab('companies', this)"><span>公司</span></div>
+                <div class="nav-item" onclick="switchTab('products', this)"><span>产品</span></div>
+                <div class="nav-item" onclick="switchTab('investors', this)"><span>投资方</span></div>
+                <div class="nav-item" onclick="switchTab('funding_events', this)"><span>融资事件</span></div>
+                <div class="nav-item" onclick="switchTab('patents', this)"><span>专利库</span></div>
+                <div class="nav-item" onclick="switchTab('patent_fetch', this)"><span>企业专利一键获取</span></div>
+                <div class="nav-item" onclick="switchTab('crawler_dash', this)"><span>爬虫监控</span></div>
             </div>
 
             <div class="sidebar-group">
                 <div class="group-label">商业化</div>
-                <div class="nav-item" onclick="switchTab('cooperation_leads', this)"><span>🤝 商务线索</span></div>
-                <div class="nav-item" onclick="switchTab('media_requests', this)"><span>🎤 媒体申请</span></div>
-                <div class="nav-item" onclick="switchTab('profiles', this)"><span>👥 用户管理</span></div>
+                <div class="nav-item" onclick="switchTab('cooperation_leads', this)"><span>商务线索</span></div>
+                <div class="nav-item" onclick="switchTab('media_requests', this)"><span>媒体申请</span></div>
+                <div class="nav-item" onclick="switchTab('profiles', this)"><span>用户管理</span></div>
             </div>
             <div class="sidebar-group">
                 <div class="group-label">系统设置</div>
                 <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 15px; color:#94a3b8;">
-                    <span style="font-size:0.85rem; color:#94a3b8;">🔒 PDF下载保护</span>
+                    <span style="font-size:0.85rem; color:var(--text-muted);">PDF下载保护</span>
                     <label class="toggle-switch">
                         <input type="checkbox" id="pdf-lock-toggle" onchange="togglePdfLock()">
                         <span class="slider"></span>
@@ -225,7 +225,7 @@
     <div class="modal-overlay" id="google-modal">
         <div class="modal-box">
             <div class="modal-header">
-                <div class="card-title">🌐 谷歌专利下载器</div>
+                <div class="card-title">谷歌专利下载器</div>
                 <button onclick="closeGoogleModal()" style="border:none; background:none; font-size:1.5rem; cursor:pointer;">×</button>
             </div>
             <div class="modal-body" style="padding:0; display:flex; flex-direction:column; height:100%;">
@@ -233,9 +233,9 @@
                     <div class="scraper-controls">
                         <input type="text" id="g-url" class="form-control" placeholder="输入专利 URL (如 https://patents.google.com/patent/CN123456A/zh)" style="flex:1;">
                         <button class="btn-primary-sm" onclick="addGoogleTask()">+ 添加任务</button>
-                        <button class="btn-import" onclick="refreshGoogleList()">🔄 刷新列表</button>
-                        <button class="btn-primary-sm" style="background:#10b981;" onclick="controlTask('start')">▶ 开始下载</button>
-                        <button class="btn-xs" onclick="controlTask('pause')">⏯ 暂停/继续</button>
+                        <button class="btn-import" onclick="refreshGoogleList()">刷新列表</button>
+                        <button class="btn-primary-sm" style="background:#10b981;" onclick="controlTask('start')">开始下载</button>
+                        <button class="btn-xs" onclick="controlTask('pause')">暂停/继续</button>
                     </div>
                     
                     <div class="scraper-list">
@@ -489,7 +489,7 @@
                 <div class="content-card" style="padding:40px; text-align:center; color:#64748b;">
                     <h3>欢迎使用 AeroScope 中央控制台</h3>
                     <p>请从左侧菜单选择对应的数据表进行管理。</p>
-                    <p style="font-size:0.85rem; margin-top:10px;">💡 提示：在添加专利或融资信息时，系统会自动关联已存在的公司，或自动创建新公司。</p>
+                    <p style="font-size:0.85rem; margin-top:10px;"> 提示：在添加专利或融资信息时，系统会自动关联已存在的公司，或自动创建新公司。</p>
                 </div>`;
         }
 
@@ -501,9 +501,9 @@
                 <div class="content-card">
                     <div class="card-header" style="background:#f8fafc;">
                         <div style="display:flex; align-items:center; gap:15px;">
-                            <div class="card-title">🗄️ 数据库原始记录透视</div>
+                            <div class="card-title">数据库原始记录透视</div>
                             <select id="raw-db-selector" class="form-control" style="width:200px;" onchange="fetchAndRenderRawTable(this.value)"><option value="" disabled selected>选择数据库表...</option>${options}</select>
-                            <input type="text" id="raw-db-search" class="form-control" style="width:200px;" placeholder="🔍 搜索当前表内容..." onkeyup="filterRawTable()">
+                            <input type="text" id="raw-db-search" class="form-control" style="width:200px;" placeholder=" 搜索当前表内容..." onkeyup="filterRawTable()">
                         </div>
                         <div style="font-size:0.85rem; color:#64748b;">显示所有字段及类型 (审计模式)</div>
                     </div>
@@ -628,10 +628,10 @@
                 let statusBtn = '';
                 if (item.draft === true) {
                     // 当前是草稿 -> 显示“发布”
-                    statusBtn = `<button class="btn-xs btn-pub" onclick="togglePublish('${tableName}', '${item.id}', true)">🚀 发布</button>`;
+                    statusBtn = `<button class="btn-xs btn-pub" onclick="togglePublish('${tableName}', '${item.id}', true)"> 发布</button>`;
                 } else if (item.draft === false) {
                     // 当前已发布 -> 显示“撤销”
-                    statusBtn = `<button class="btn-xs btn-revoke" onclick="togglePublish('${tableName}', '${item.id}', false)">↩️ 撤销</button>`;
+                    statusBtn = `<button class="btn-xs btn-revoke" onclick="togglePublish('${tableName}', '${item.id}', false)"> 撤销</button>`;
                 }
 
                 const btns = `
@@ -660,7 +660,7 @@
             }
             if (tableName === 'policies') {
                 importBtn = `
-                    <button class="btn-import" style="background:#059669;" onclick="openPolicyImport()">📥 导入政策</button>
+                    <button class="btn-import" style="background:#059669;" onclick="openPolicyImport()"> 导入政策</button>
                 `;
             }
             
@@ -769,7 +769,7 @@
                             <input type="file" id="file-${f.key}" class="form-control" style="width:70%;">
                             <input type="hidden" id="f-${f.key}" value="${val}">
                         </div>
-                        ${val ? `<div style="margin-top:5px; font-size:0.85rem;"><a href="${val}" target="_blank" style="color:#3b82f6;">🔗 当前文件</a></div>` : ''}
+                        ${val ? `<div style="margin-top:5px; font-size:0.85rem;"><a href="${val}" target="_blank" style="color:#3b82f6;"> 当前文件</a></div>` : ''}
                         <div class="form-hint">支持 pdf, doc, xls 等</div>
                     `;
                 }
@@ -890,11 +890,11 @@
 
         // 8. 删除数据
         async function deleteItem(table, id) {
-            if(!confirm('⚠️ 确定要彻底删除这条记录吗？此操作不可恢复。')) return;
+            if(!confirm(' 确定要彻底删除这条记录吗？此操作不可恢复。')) return;
 
             const { error } = await _supabase.from(table).delete().eq('id', id);
             if (error) {
-                if (error.code === '23503') alert('❌ 删除失败：该记录被其他数据引用。');
+                if (error.code === '23503') alert('删除失败：该记录被其他数据引用。');
                 else alert('删除失败: ' + error.message);
             } else {
                 loadTableData(table);
@@ -996,7 +996,7 @@
                     const { error } = await _supabase.from('patents').upsert(validRecords, { onConflict: 'patent_number', ignoreDuplicates: false });
 
                      if (error) throw error;
-                    alert(`✅ 成功处理 ${validRecords.length} 条数据！`);
+                    alert(` 成功处理 ${validRecords.length} 条数据！`);
                     if (currentTable === 'patent_fetch') loadCompanyPatents(); else loadTableData('patents');
 
                 } catch (err) { alert('导入失败: ' + err.message); } finally { input.value = ''; }
@@ -1271,7 +1271,7 @@
                             <option value="200" selected>200条</option>
                             <option value="500">500条</option>
                         </select>
-                        <button class="btn btn-primary" onclick="startCrawler()" style="background:#059669; color:white; padding:8px 20px;">🚀 开始爬取</button>
+                        <button class="btn btn-primary" onclick="startCrawler()" style="background:#059669; color:white; padding:8px 20px;"> 开始爬取</button>
                         <button class="btn btn-outline" onclick="stopCrawlerDash()">⏹ 停止监控</button>
                     </div>
                 </div>
@@ -1333,7 +1333,7 @@
                 const r = await fetch(`/api/patents/crawler_start?seed=${encodeURIComponent(seed)}&max=${maxv}`);
                 const d = await r.json();
                 if (d.task_id) {
-                    document.getElementById('cv-latest').innerHTML = '🔄 爬虫启动中...';
+                    document.getElementById('cv-latest').innerHTML = ' 爬虫启动中...';
                     crawlerDashTimer = setInterval(refreshCrawlerStatus, 3000);
                 }
             } catch(e) {
@@ -1360,7 +1360,7 @@
                 ).join('');
 
                 container.innerHTML = `
-                    <h2 style="margin-bottom:10px;">🔍 企业专利管理</h2>
+                    <h2 style="margin-bottom:10px;"> 企业专利管理</h2>
                     <p style="color:#64748b; margin-bottom:20px;">查看已有专利 + 在线搜索发现新专利</p>
 
                     <div class="content-card" style="padding:24px; margin-bottom:16px;">
@@ -1371,7 +1371,7 @@
                                 ${options}
                             </select>
                             <input type="text" id="fetch-company-name" placeholder="或输入企业名" oninput="debounceLoadPatents()" style="flex:1; min-width:180px; padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px;">
-                            <button class="btn btn-primary" onclick="searchNewPatents()" style="background:#059669; color:white; padding:8px 20px; white-space:nowrap;">🔍 搜索新专利</button>
+                            <button class="btn btn-primary" onclick="searchNewPatents()" style="background:#059669; color:white; padding:8px 20px; white-space:nowrap;">搜索新专利</button>
                         </div>
                         <div style="margin-top:8px; display:flex; gap:10px;">
                             <input type="text" id="seed-url" placeholder="种子URL（留空则只查看已有专利）" style="flex:1; padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:0.85rem;">
@@ -1380,7 +1380,7 @@
                                 <option value="30" selected>30条</option>
                                 <option value="50">50条</option>
                             </select>
-                            <button class="btn btn-primary" onclick="searchNewPatents()" style="background:#059669; color:white; padding:8px 20px; white-space:nowrap;">🔍 搜索新专利</button>
+                            <button class="btn btn-primary" onclick="searchNewPatents()" style="background:#059669; color:white; padding:8px 20px; white-space:nowrap;">搜索新专利</button>
                         </div>
                         <div style="margin-top:12px; display:flex; gap:10px;">
                             <input type="text" id="patent-url" placeholder="或直接粘贴 Google Patents URL" style="flex:1; padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px;">
@@ -1418,7 +1418,7 @@
                     container.innerHTML = `<div class="content-card" style="padding:40px; text-align:center;">
                         <h3 style="color:#d97706;">⚠ 后端服务未响应</h3>
                         <p style="color:#64748b; margin:10px 0;">请确认 serve.py 正在运行，然后</p>
-                        <button class="btn btn-primary" onclick="location.reload()" style="padding:10px 30px; margin-top:10px;">🔄 重试连接</button>
+                        <button class="btn btn-primary" onclick="location.reload()" style="padding:10px 30px; margin-top:10px;"> 重试连接</button>
                     </div>`;
                 }
             }
@@ -1462,7 +1462,7 @@
                 patents.forEach(p => {
                     const status = (p.legal_status || 'Unknown');
                     const statusColor = status === '有效' || status === 'Active' ? '#166534' : '#92400e';
-                    const linked = p.related_company_id ? '✅' : '⚠';
+                    const linked = p.related_company_id ? '' : '⚠';
                     const gpUrl = p.google_url || `https://patents.google.com/patent/${p.patent_number}/zh`;
                     html += `<tr style="border-bottom:1px solid #f1f5f9;">
                         <td style="padding:8px; font-family:monospace; font-size:0.85rem;">${p.patent_number || '--'}</td>
@@ -1470,7 +1470,7 @@
                         <td style="padding:8px; color:${statusColor}; font-size:0.85rem;">${status}</td>
                         <td style="padding:8px; font-size:0.85rem;">${p.application_date || '--'}</td>
                         <td style="padding:8px;">${linked}</td>
-                        <td style="padding:8px;"><a href="${gpUrl}" target="_blank" style="color:#059669; font-size:0.8rem;">🔗 GP</a></td>
+                        <td style="padding:8px;"><a href="${gpUrl}" target="_blank" style="color:#059669; font-size:0.8rem;">GP</a></td>
                         <td style="padding:8px;"><button onclick="addRelatedFromPatent('${p.patent_number}', '${gpUrl}')" style="padding:2px 8px; font-size:0.8rem; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:4px; cursor:pointer;">+关联</button></td>
                     </tr>`;
                 });
@@ -1497,7 +1497,7 @@
             const statusEl = document.getElementById('fetch-status');
             resultDiv.style.display = 'block';
             statusEl.innerText = '发现引擎运行中...';
-            bodyDiv.innerHTML = '<p style="text-align:center; padding:20px; color:#059669;">🔄 正在递归发现专利（可能需要1-2分钟）...</p>';
+            bodyDiv.innerHTML = '<p style="text-align:center; padding:20px; color:#059669;"> 正在递归发现专利（可能需要1-2分钟）...</p>';
 
             try {
                 const resp = await fetch('/api/patents/discover', {
@@ -1519,7 +1519,7 @@
                         const r = sd.result;
                         bodyDiv.innerHTML = `
                             <div style="padding:16px; background:#f0fdf4; border-radius:8px;">
-                                <p style="color:#166534; font-weight:600;">✅ 发现完成！</p>
+                                <p style="color:#166534; font-weight:600;"> 发现完成！</p>
                                 <p>发现关联专利: <b>${r.found}</b> 条</p>
                                 <p>已抓取验证: <b>${r.scraped}</b> 条</p>
                                 <p style="color:#059669;">新增入库: <b>${r.new}</b> 条</p>
@@ -1590,7 +1590,7 @@
         // ─── 政策导入 ───
         function openPolicyImport() {
             const modal = document.getElementById('universal-modal');
-            document.getElementById('modal-title').innerText = '📥 导入政策';
+            document.getElementById('modal-title').innerText = ' 导入政策';
             document.getElementById('modal-body').innerHTML = `
                 <div style="margin-bottom:15px;">
                     <label style="font-weight:600; display:block; margin-bottom:6px;">网页链接</label>
