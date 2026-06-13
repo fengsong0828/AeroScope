@@ -4,7 +4,8 @@ AeroScope Unified Server
 - 自动打开浏览器
 Usage: python serve.py [--port 8765]
 """
-import os, sys, json, threading, uuid, webbrowser
+import os, sys, json, threading, uuid, webbrowser, ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import parse_qs, urlparse
 
@@ -73,7 +74,30 @@ class AeroServe(BaseHTTPRequestHandler):
             self._handle_chat(body)
             return
 
+        if path == "/api/patents/import":
+            self._handle_patent_import(body)
+            return
+
         self._json(self._handle_api_post(path, body))
+
+    def _handle_patent_import(self, body):
+        """接收一条专利 JSON，upsert 到 Supabase"""
+        if not body or not body.get("patent_number"):
+            self._json({"error": "patent_number required"}, 400)
+            return
+        try:
+            from collector_core import CollectorCore
+            core = CollectorCore()
+            # 清理非法字段
+            for bad in ['_html','created_at','country_code']:
+                body.pop(bad, None)
+            body.setdefault('draft', False)
+            ok = core.upsert('patents', body, 'patent_number')
+            print(f"[IMPORT] {'OK' if ok else 'FAIL'}: {body.get('patent_number')} — {body.get('title','')[:40]}")
+            self._json({"status": "ok" if ok else "fail", "patent_number": body["patent_number"]})
+        except Exception as e:
+            print(f"[IMPORT ERROR] {e}")
+            self._json({"error": str(e)[:200]}, 500)
 
     def _serve_pdf(self, path):
         """代理OSS PDF，强制返回 Content-Disposition: inline"""

@@ -310,7 +310,9 @@
                         <a href="pages/reports.html" style="font-size:0.85rem; color:#3b82f6; font-weight:600;">查看更多 &gt;</a>
                     </div>
                     <div id="home-report-list">
-                        <p style="color:#999; font-size:0.85rem; text-align:center;">加载中...</p>
+                        <div class="skeleton-card skeleton-bg" style="height:20px; margin-bottom:14px; border-radius:4px;"></div>
+                        <div class="skeleton-card skeleton-bg" style="height:20px; margin-bottom:14px; border-radius:4px;"></div>
+                        <div class="skeleton-card skeleton-bg" style="height:20px; border-radius:4px;"></div>
                     </div>
                 </div>
 
@@ -322,10 +324,8 @@
                     </div>
                     
                     <div id="home-expert-list" class="expert-list-container">
-                        <div style="text-align:center; padding:20px; color:#94a3b8; font-size:0.85rem;">
-                            <span style="display:inline-block; width:12px; height:12px; border:2px solid #cbd5e1; border-top-color:#3b82f6; border-radius:50%; animation:spin 1s linear infinite; margin-right:5px; vertical-align:middle;"></span>
-                            加载权威观点...
-                        </div>
+                        <div class="skeleton-card skeleton-bg" style="height:56px; margin-bottom:12px; border-radius:8px;"></div>
+                        <div class="skeleton-card skeleton-bg" style="height:56px; border-radius:8px;"></div>
                     </div>
                 </div>
             </aside>
@@ -423,7 +423,10 @@
         // 2. 加载统一信息流 (News Tab) — 使用数据库视图 + 服务端分页
         async function loadUnifiedFeed() {
             const container = document.getElementById('main-list-container');
-            container.innerHTML = '<div style="text-align:center; padding:40px; color:#94a3b8;">正在聚合多源数据...</div>';
+            container.innerHTML = `
+                <div class="skeleton-card skeleton-bg"></div>
+                <div class="skeleton-card skeleton-bg" style="height:88px;"></div>
+                <div class="skeleton-card skeleton-bg" style="height:88px;"></div>`;
 
             const from = (currentPage - 1) * itemsPerPage;
             const to = from + itemsPerPage - 1;
@@ -435,7 +438,12 @@
                 .range(from, to);
 
             if (error || !data || data.length === 0) {
-                container.innerHTML = '<p style="text-align:center; color:#999; padding:30px;">暂无数据</p>';
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <p>暂无数据</p>
+                        <p style="font-size:0.85rem; margin-top:6px;">新内容正在采编中，请稍后再来</p>
+                    </div>`;
                 updatePaginationUI(0);
                 return;
             }
@@ -489,12 +497,11 @@
         // 3. 加载用户专栏 (Columns Tab)
         async function loadUserColumns() {
             const container = document.getElementById('main-list-container');
-            container.innerHTML = '<div style="text-align:center; padding:40px; color:#94a3b8;">加载专栏文章...</div>';
-            
+            container.innerHTML = `<div class="skeleton-card skeleton-bg"></div><div class="skeleton-card skeleton-bg" style="height:88px;"></div><div class="skeleton-card skeleton-bg" style="height:88px;"></div>`;
+
             const from = (currentPage - 1) * itemsPerPage;
             const to = from + itemsPerPage - 1;
 
-            // 假设存在 user_articles 表，并关联 profiles
             try {
                 const { data, error, count } = await _supabase
                     .from('user_articles')
@@ -510,9 +517,10 @@
 
                 if (!data || data.length === 0) {
                     container.innerHTML = `
-                        <div style="text-align:center; padding:50px; color:#94a3b8;">
-                            <div style="font-size:2rem; margin-bottom:10px;">📝</div>
-                            暂无专栏文章，<a href="write.html" style="color:#3b82f6;">快来发布第一篇</a>
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📝</div>
+                            <p>暂无专栏文章</p>
+                            <a href="write.html" class="empty-state-cta">✍️ 快来发布第一篇 →</a>
                         </div>`;
                     updatePaginationUI(0);
                     return;
@@ -557,8 +565,8 @@
                 updatePaginationUI(totalCount);
 
             } catch (err) {
-                console.warn("User Articles load failed (table might not exist):", err);
-                container.innerHTML = '<div style="text-align:center; padding:40px; color:#94a3b8;">暂无专栏内容</div>';
+                console.warn("User Articles load failed:", err);
+                container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🛰️</div><p>专栏内容加载中</p><p style="font-size:0.8rem; margin-top:4px;">请稍后刷新重试</p></div>';
                 updatePaginationUI(0);
             }
         }
@@ -594,51 +602,48 @@
 
         // 5. 其他加载逻辑 (Dashboard, Experts, etc.)
         async function loadDashboardStats() {
+            try { const { count: companyCount } = await _supabase.from('companies').select('*', { count: 'exact', head: true }).eq('draft', false); document.getElementById('val-companies').innerText = (companyCount || 0) + '+'; } catch(e) { document.getElementById('val-companies').innerText = '--'; }
+            try { const { count: patentCount } = await _supabase.from('patents').select('*', { count: 'exact', head: true }); document.getElementById('val-patents').innerText = patentCount || 0; } catch(e) { document.getElementById('val-patents').innerText = '--'; }
             try {
-                const { count: companyCount } = await _supabase.from('companies').select('*', { count: 'exact', head: true }).eq('draft', false);
-                const { count: patentCount } = await _supabase.from('patents').select('*', { count: 'exact', head: true });
                 const { data: cityData } = await _supabase.from('policies').select('related_city').eq('draft', false).not('related_city', 'is', null);
                 const uniqueCities = new Set(cityData?.map(i => i.related_city).filter(c => c));
-                const { data: events } = await _supabase.from('funding_events').select('funding_amount, funding_currency').eq('draft', false);
-                
-                let totalFundingUSD = 0;
-                if(events) events.forEach(e => {
-                    let v = Number(e.funding_amount||0);
-                    if(e.funding_currency==='CNY') v/=7.2;
-                    totalFundingUSD += v;
-                });
-
-                let fText = totalFundingUSD > 1000000000 ? `$${(totalFundingUSD/1000000000).toFixed(1)}B` : `$${(totalFundingUSD/1000000).toFixed(0)}M`;
-                
-                document.getElementById('val-funding').innerText = fText;
                 document.getElementById('val-cities').innerText = uniqueCities.size || 26;
-                document.getElementById('val-patents').innerText = patentCount || 0;
-                document.getElementById('val-companies').innerText = (companyCount || 0) + '+';
-            } catch(e) { console.error(e); }
+            } catch(e) { document.getElementById('val-cities').innerText = '--'; }
+            try {
+                const { data: events } = await _supabase.from('funding_events').select('funding_amount, funding_currency').eq('draft', false);
+                let totalFundingUSD = 0;
+                if(events) events.forEach(e => { let v = Number(e.funding_amount||0); if(e.funding_currency==='CNY') v/=7.2; totalFundingUSD += v; });
+                let fText = totalFundingUSD > 1000000000 ? `$${(totalFundingUSD/1000000000).toFixed(1)}B` : `$${(totalFundingUSD/1000000).toFixed(0)}M`;
+                document.getElementById('val-funding').innerText = fText;
+            } catch(e) { document.getElementById('val-funding').innerText = '--'; }
         }
 
         async function loadHomeReports() {
             const container = document.getElementById('home-report-list');
-            const { data } = await _supabase.from('deep_reports').select('id, title, publish_date').eq('draft', false).order('publish_date', {ascending:false}).limit(3);
-            if(data && data.length){
-                container.innerHTML = '';
-                data.forEach(i => {
-                    container.innerHTML += `<div style="margin-bottom:10px; border-bottom:1px dashed #eee; padding-bottom:8px;"><a href="pages/report-detail.html?id=${i.id}" style="color:#333; font-size:0.9rem; font-weight:500; text-decoration:none;">${i.title}</a><div style="font-size:0.75rem; color:#999; margin-top:4px;">${i.publish_date}</div></div>`;
-                });
-            } else { container.innerHTML = '<p style="color:#ccc; text-align:center;">暂无报告</p>'; }
+            try {
+                const { data } = await _supabase.from('deep_reports').select('id, title, publish_date').eq('draft', false).order('publish_date', {ascending:false}).limit(3);
+                if(data && data.length){
+                    container.innerHTML = '';
+                    data.forEach(i => {
+                        container.innerHTML += `<div style="margin-bottom:10px; border-bottom:1px dashed #e2e8f0; padding-bottom:8px;"><a href="pages/report-detail.html?id=${i.id}" style="color:#1e293b; font-size:0.9rem; font-weight:500; transition:0.2s;">${i.title}</a><div style="font-size:0.75rem; color:#94a3b8; margin-top:4px;">${i.publish_date}</div></div>`;
+                    });
+                } else { container.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem; text-align:center; padding:10px;">暂无报告，敬请期待</p>'; }
+            } catch(e) { container.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem; text-align:center;">加载中...</p>'; }
         }
 
         async function loadHomeExperts() {
             const container = document.getElementById('home-expert-list');
-            const { data } = await _supabase.from('forum_topics').select('id, title, content, author_role, author_avatar_text, user_email').eq('is_expert', true).limit(2);
-            if(data && data.length){
-                container.innerHTML = '';
-                data.forEach(i => {
-                    let name = i.user_email ? i.user_email.split('@')[0] : '专家';
-                    let av = i.author_avatar_text || name[0];
-                    container.innerHTML += `<a href="pages/forum-topic.html?id=${i.id}" class="home-expert-card"><div class="expert-header"><div class="expert-av">${av}</div><div class="expert-name">${name}</div></div><div class="expert-title">${i.title}</div></a>`;
-                });
-            } else { container.innerHTML = '<p style="color:#ccc; text-align:center;">暂无观点</p>'; }
+            try {
+                const { data } = await _supabase.from('forum_topics').select('id, title, content, author_role, author_avatar_text, user_email').eq('is_expert', true).limit(2);
+                if(data && data.length){
+                    container.innerHTML = '';
+                    data.forEach(i => {
+                        let name = i.user_email ? i.user_email.split('@')[0] : '专家';
+                        let av = i.author_avatar_text || name[0];
+                        container.innerHTML += `<a href="pages/forum-topic.html?id=${i.id}" class="home-expert-card"><div class="expert-header"><div class="expert-av">${av}</div><div class="expert-name">${name}</div></div><div class="expert-title">${i.title}</div></a>`;
+                    });
+                } else { container.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem; text-align:center; padding:10px;">暂无专家观点</p>'; }
+            } catch(e) { container.innerHTML = '<p style="color:#94a3b8; font-size:0.85rem; text-align:center;">加载中...</p>'; }
         }
 
         // Search & Menu
@@ -649,18 +654,25 @@
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(async () => {
                 dropdown.style.display = 'block';
+                dropdown.innerHTML = '<div class="search-no-result">🔍 搜索中...</div>';
                 const { data } = await _supabase.from('global_search_view').select('*').ilike('title', `%${keyword}%`).limit(5);
-                if (!data || !data.length) { dropdown.innerHTML = '<div style="padding:12px; text-align:center;">无结果</div>'; return; }
+                if (!data || !data.length) {
+                    dropdown.innerHTML = '<div class="search-no-result">无匹配结果，试试其他关键词</div>';
+                    return;
+                }
+                const esc = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp(`(${esc})`, 'gi');
                 let html = '';
                 data.forEach(item => {
                     let link=`pages/news-detail.html?id=${item.id}`;
                     if(item.type==='company') link='pages/companies.html';
                     else if(item.type==='policy') link=`pages/policy-detail.html?id=${item.id}`;
                     else if(item.type==='tech') link=`pages/tech-detail.html?id=${item.id}`;
-                    html += `<a href="${link}" class="search-result-item">${item.title}</a>`;
+                    const title = (item.title || '').replace(regex, '<span class="highlight">$1</span>');
+                    html += `<a href="${link}" class="search-result-item">${title}</a>`;
                 });
                 dropdown.innerHTML = html;
-            }, 500);
+            }, 400);
         }
         document.addEventListener('click', (e) => { if(!document.querySelector('.search-component').contains(e.target)) document.getElementById('search-dropdown').style.display='none'; });
         async function checkUserLogin() { const {data:{session}} = await _supabase.auth.getSession(); const btn=document.getElementById('auth-btn'); if(session){btn.innerText=session.user.email.split('@')[0]; btn.onclick=()=>location.href='profile.html';}}

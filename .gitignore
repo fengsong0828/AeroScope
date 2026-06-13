@@ -25,6 +25,9 @@ __pycache__/
 # 临时分析报告（不入库）
 reports/
 
+# Agent工作区（数据源不入库）
+agent-workspace/
+
 # 临时文件
 *.tmp
 *.bak

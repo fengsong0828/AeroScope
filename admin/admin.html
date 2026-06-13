@@ -962,10 +962,10 @@
                         applicant = applicant.replace(/;|；|\||\|\||\|\|\|/g, '; '); 
 
                         const typeRaw = getValueFuzzy(row, ['专利类型', 'PatentType']);
-                        let patentType = 'Invention';
+                        let patentType = '发明专利';
                         if (typeRaw) {
-                            if (typeRaw.includes('实用')) patentType = 'Utility Model';
-                            else if (typeRaw.includes('外观')) patentType = 'Design';
+                            if (typeRaw.includes('实用')) patentType = '实用新型';
+                            else if (typeRaw.includes('外观')) patentType = '外观设计';
                         }
 
                         const statusRaw = getValueFuzzy(row, ['法律状态/事件', '法律状态', 'LegalStatus']);
@@ -1036,10 +1036,10 @@
                         let applicant = row['申请人'] || row['Applicant'] || '未知';
                         applicant = applicant.replace(/\s+/g, ' ').trim();
                         
-                        let pType = 'Invention';
+                        let pType = '发明专利';
                         const tRaw = row['专利类型'] || row['Patent Type'];
-                        if(tRaw && tRaw.includes('实用')) pType = 'Utility Model';
-                        else if(tRaw && tRaw.includes('外观')) pType = 'Design';
+                        if(tRaw && tRaw.includes('实用')) pType = '实用新型';
+                        else if(tRaw && tRaw.includes('外观')) pType = '外观设计';
 
                         return {
                             title: title,

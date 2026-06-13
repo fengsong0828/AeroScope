@@ -155,6 +155,7 @@ class AuditorBase:
             return issues
 
         # Phase 2: Auto-fix
+        fixed = {}
         if auto_fix:
             print("\n[Phase 2] 自动修复...")
             fixed = self.auto_fix(issues)
@@ -165,7 +166,7 @@ class AuditorBase:
 
         # Phase 3: Flag
         print("\n[Phase 3] 标记待审核...")
-        flagged = self.flag(issues)
+        flagged = self.flag(issues, fixed)
         self._report(f"\n## 标记待审核\n")
         for check_item, count in flagged.items():
             self._report(f"- {check_item}: {count} 条")

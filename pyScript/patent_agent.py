@@ -583,6 +583,13 @@ class PatentAgent(CollectorCore):
 
         print(f"\n  PDFs: {pdf_collected} | BG: {bg_updated} | Meta: {meta_updated}")
 
+    def reclassify_batch(self, max_count=0):
+        """委托 PatentReclassify 对存量专利回填分类信息"""
+        print("\n=== Phase 3: Reclassify existing patents ===")
+        from patent_reclassify import PatentReclassify
+        reclass = PatentReclassify(dry_run=self.dry_run, delay=1.0)
+        reclass.run(max_count=max_count, only_unclassified=False, force=False, resume=True)
+
     def run_all(self, max_count=0, phases=None):
         if phases is None:
             phases = ["details", "lowalt", "reclassify"]

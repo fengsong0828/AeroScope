@@ -150,8 +150,29 @@ class PatentAuditor(AuditorBase):
         missing_tc = issues.get('missing_tech_category', [])
         if missing_tc:
             count = self._auto_classify(missing_tc, ['technical_categories', 'technical_subcategory',
-                                                      'industry_chain_position', 'application_fields'])
+                                                       'industry_chain_position', 'application_fields'])
             fixed['missing_tech_category'] = count
+            self.stats['auto_fixed'] += count
+
+        # 缺技术子分类 → LLM补充
+        missing_sub = issues.get('missing_subcategory', [])
+        if missing_sub:
+            count = self._auto_classify(missing_sub, ['technical_subcategory'])
+            fixed['missing_subcategory'] = count
+            self.stats['auto_fixed'] += count
+
+        # 缺产业链位置 → LLM补充
+        missing_chain = issues.get('missing_industry_chain', [])
+        if missing_chain:
+            count = self._auto_classify(missing_chain, ['industry_chain_position'])
+            fixed['missing_industry_chain'] = count
+            self.stats['auto_fixed'] += count
+
+        # 缺应用领域 → LLM补充
+        missing_app = issues.get('missing_application_fields', [])
+        if missing_app:
+            count = self._auto_classify(missing_app, ['application_fields'])
+            fixed['missing_application_fields'] = count
             self.stats['auto_fixed'] += count
 
         # 日期异常 → 标记
@@ -170,12 +191,20 @@ class PatentAuditor(AuditorBase):
         """LLM 根据 abstract 批量补充分类信息"""
         if not items:
             return 0
+        from patent_classification_rules import (
+            get_all_tech_categories, get_all_tech_subcategories,
+            get_all_chain_positions, get_all_app_fields
+        )
+        VALID_CATS = set(get_all_tech_categories())
+        VALID_SUBS = set(get_all_tech_subcategories())
+        VALID_CHAIN = set(get_all_chain_positions())
+        VALID_APPS = set(get_all_app_fields())
+
         BATCH = 5
         done = 0
         for i in range(0, len(items), BATCH):
             batch = items[i:i + BATCH]
             batch_ids = [p[0] for p in batch]
-            # 读取各记录详情
             r = self.core.db.table('patents').select('id,title,abstract').in_('id', batch_ids).execute()
             if not r.data:
                 continue
@@ -203,11 +232,24 @@ class PatentAuditor(AuditorBase):
 
                 updates = {}
                 for field in fields:
-                    if result.get(field):
-                        val = result[field]
-                        if isinstance(val, list):
-                            val = json.dumps(val, ensure_ascii=False)
-                        updates[field] = val
+                    if not result.get(field):
+                        continue
+                    val = result[field]
+                    if field == 'technical_categories' and isinstance(val, list):
+                        valid_vals = [v for v in val if v in VALID_CATS]
+                        if valid_vals:
+                            updates[field] = json.dumps(valid_vals, ensure_ascii=False)
+                    elif field == 'technical_subcategory' and isinstance(val, str):
+                        if val in VALID_SUBS:
+                            updates[field] = val
+                    elif field == 'industry_chain_position' and isinstance(val, str):
+                        if val in VALID_CHAIN:
+                            updates[field] = val
+                    elif field == 'application_fields':
+                        vals = val if isinstance(val, list) else [val]
+                        valid_vals = [v for v in vals if v in VALID_APPS]
+                        if valid_vals:
+                            updates[field] = json.dumps(valid_vals, ensure_ascii=False)
                 if updates:
                     self._log('auto-fix', 'patents', d['id'], str(list(updates.keys())),
                               '', str(updates), 'LLM自动分类', 'missing_tech_category')
@@ -215,22 +257,25 @@ class PatentAuditor(AuditorBase):
                         try:
                             self.core.db_write.table('patents').update(updates).eq('id', d['id']).execute()
                             done += 1
-                        except:
+                        except Exception:
                             pass
                 time.sleep(0.3)
         return done
 
     # ── 标记 ────────────────────────────────────────────────
 
-    def flag(self, issues: dict) -> dict:
+    def flag(self, issues: dict, fixed: dict = None) -> dict:
         flagged = {}
         for check in ['missing_subcategory', 'missing_industry_chain', 'low_confidence',
                        'missing_applicant', 'duplicate_patent_number',
                        'missing_application_fields', 'empty_abstract']:
             items = issues.get(check, [])
             if items:
-                flagged[check] = f"{len(items)} items (report only)"
-                self.stats['flagged'] += len(items)
+                auto_fixed_count = fixed.get(check, 0) if fixed else 0
+                remaining = len(items) - auto_fixed_count
+                if remaining > 0:
+                    flagged[check] = f"{remaining}/{len(items)} items (report only)"
+                    self.stats['flagged'] += remaining
         return flagged
 
 
