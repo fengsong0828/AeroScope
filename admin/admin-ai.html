@@ -166,14 +166,14 @@
         <!-- 左侧：配置面板 -->
         <div class="panel-card">
             <div class="panel-title">
-                <span> 采编配置 (Input)</span>
+                <span>采编配置 (Input)</span>
                 <span style="font-size:0.8rem; color:#3b82f6; background:#eff6ff; padding:4px 8px; border-radius:4px;">Multi-Source</span>
             </div>
 
             <!-- 批量导入模块 (保留功能) -->
             <div class="form-group" style="background: #fffbeb; padding: 15px; border-radius: 8px; border: 1px solid #fcd34d; display:flex; flex-direction:column; gap:8px;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <label class="form-label" style="color:#b45309; margin:0;"> 离线数据导入 (JSON)</label>
+                    <label class="form-label" style="color:#b45309; margin:0;">离线数据导入 (JSON)</label>
                     <button class="btn-xs" style="background:white; border-color:#d97706; color:#d97706;" onclick="document.getElementById('jsonFile').click()">选择文件</button>
                 </div>
                 <div style="font-size:0.75rem; color:#b45309;">
@@ -184,10 +184,10 @@
             </div>
 
             <div class="form-group">
-                <label class="form-label"> 采集目标类型 (Target)</label>
+                <label class="form-label">采集目标类型 (Target)</label>
                 <select id="targetCategory" class="form-control" onchange="switchCategoryMode()">
-                    <option value="company_profile"> 企业工商信息 (Companies)</option>
-                    <option value="patent"> 专利技术 (Patent)</option>
+                    <option value="company_profile">企业工商信息 (Companies)</option>
+                    <option value="patent">专利技术 (Patent)</option>
                     <option value="funding"> 融资事件 (Funding)</option>
                     <option value="news" selected> 行业资讯 (News)</option>
                     <option value="policy"> 政策法规 (Policy)</option>
@@ -195,7 +195,7 @@
             </div>
 
             <div class="form-group">
-                <label class="form-label"> AI 模型</label>
+                <label class="form-label">AI 模型</label>
                 <select id="ai-model" class="form-control">
                     <option value="deepseek-chat">DeepSeek V3 (推荐)</option>
                     <option value="qwen-max">通义千问 Max</option>
@@ -206,7 +206,7 @@
             <div class="form-group">
                 <label class="form-label">素材来源 (Source)</label>
                 <select id="inputType" class="form-control" onchange="toggleInput()">
-                    <option value="text"> 粘贴纯文本 / 网页内容</option>
+                    <option value="text">粘贴纯文本 / 网页内容</option>
                     <option value="url"> 网页链接 (URL)</option>
                 </select>
             </div>
@@ -225,14 +225,14 @@
             
             <button class="btn-ai" id="generateBtn" onclick="generateNews()">
                 <span class="spinner" id="spinner"></span>
-                <span id="btnText"> 开始智能清洗与提取</span>
+                <span id="btnText"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M12 5V3"/><path d="M9 3h6"/></svg> 开始智能清洗与提取</span>
             </button>
         </div>
 
         <!-- 右侧：结构化数据预览 -->
         <div class="panel-card">
             <div class="panel-title">
-                <span> 结构化数据预览 (Structured Data)</span>
+                <span>结构化数据预览 (Structured Data)</span>
                 <span id="target-table-badge" style="font-size:0.75rem; color:#64748b; font-weight:normal;">Target: news</span>
             </div>
             
@@ -263,7 +263,7 @@
             <div class="form-group">
                 <label class="form-label">
                     <span>摘要 (Summary)</span>
-                    <button class="btn-auto" onclick="autoGenSummary()" type="button"> 自动摘要</button>
+                    <button class="btn-auto" onclick="autoGenSummary()" type="button">自动摘要</button>
                 </label>
                 <textarea id="outSummary" class="form-control" rows="3"></textarea>
             </div>
@@ -276,16 +276,16 @@
                 <div class="editor-wrapper">
                     <!-- 保留原有工具栏 -->
                     <div class="editor-toolbar">
-                        <button class="tool-btn" onclick="autoFormatPolicy()" title="标准化公文格式"> 自动排版</button>
+                        <button class="tool-btn" onclick="autoFormatPolicy()" title="标准化公文格式">自动排版</button>
                         <div class="tool-separator"></div>
                         <button class="tool-btn" onclick="modifyIndent(true)" title="段落首行缩进2字符">⇥ 缩进</button>
                         <button class="tool-btn" onclick="modifyIndent(false)" title="取消缩进">⇤ 取消缩进</button>
                         <div class="tool-separator"></div>
                         <button class="tool-btn" onclick="applyAlignment('left')" title="左对齐">⬅</button>
                         <button class="tool-btn" onclick="applyAlignment('center')" title="居中">⬆</button>
-                        <button class="tool-btn" onclick="applyAlignment('right')" title="右对齐"></button>
+                        <button class="tool-btn" onclick="applyAlignment('right')" title="右对齐"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="21" y1="10" x2="7" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="7" y2="14"/><line x1="21" y1="18" x2="3" y2="18"/></svg></button>
                         <div class="tool-separator"></div>
-                        <button class="tool-btn" onclick="openImageModal()" title="插入图片">️ 插入图片</button>
+                        <button class="tool-btn" onclick="openImageModal()" title="插入图片">️<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" ><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> 插入图片</button>
                     </div>
                     <textarea id="outContent" class="form-control" rows="12"></textarea>
                 </div>
@@ -296,7 +296,7 @@
                 <div>
                     <label class="form-label">
                         <span>标签 (Tags) - Max 3</span>
-                        <button class="btn-auto" onclick="autoGenTags()" type="button"> 智能匹配</button>
+                        <button class="btn-auto" onclick="autoGenTags()" type="button">智能匹配</button>
                     </label>
                     <input type="text" id="outTags" class="form-control" placeholder="eVTOL, 融资" oninput="updateTagPreview()">
                     <div id="tagPreviewContainer"></div>
@@ -311,7 +311,7 @@
             <div style="display:none;" id="ai-json-data"></div>
 
             <button class="btn-ai btn-save" onclick="saveToDatabase()">
-                 确认数据并入库
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> 确认数据并入库
             </button>
         </div>
     </div>
