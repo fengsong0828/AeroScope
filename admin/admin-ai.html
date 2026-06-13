@@ -144,9 +144,9 @@
         @media (max-width: 1024px) { .ai-layout { grid-template-columns: 1fr; } }
     </style>
 </head>
-<body>
+<body><a href="#main-content-ai" class="sr-only" style="position:absolute;top:0;left:0;z-index:9999;padding:8px 16px;background:var(--primary-blue);color:white;font-weight:600;border-radius:0 0 6px 0;">跳到主内容</a>
 
-    <header class="console-header">
+    <header class="console-header" role="banner">
         <div class="header-inner">
             <div class="logo-area">
                 <a href="admin.html" class="back-btn">← 返回控制台</a>
@@ -166,7 +166,7 @@
         <!-- 左侧：配置面板 -->
         <div class="panel-card">
             <div class="panel-title">
-                <span>🛠️ 采编配置 (Input)</span>
+                <span> 采编配置 (Input)</span>
                 <span style="font-size:0.8rem; color:#3b82f6; background:#eff6ff; padding:4px 8px; border-radius:4px;">Multi-Source</span>
             </div>
 
@@ -187,7 +187,7 @@
                 <label class="form-label">📂 采集目标类型 (Target)</label>
                 <select id="targetCategory" class="form-control" onchange="switchCategoryMode()">
                     <option value="company_profile">🏢 企业工商信息 (Companies)</option>
-                    <option value="patent">💡 专利技术 (Patent)</option>
+                    <option value="patent"> 专利技术 (Patent)</option>
                     <option value="funding">💰 融资事件 (Funding)</option>
                     <option value="news" selected>📰 行业资讯 (News)</option>
                     <option value="policy">📜 政策法规 (Policy)</option>
@@ -195,7 +195,7 @@
             </div>
 
             <div class="form-group">
-                <label class="form-label">🧠 AI 模型</label>
+                <label class="form-label"> AI 模型</label>
                 <select id="ai-model" class="form-control">
                     <option value="deepseek-chat">DeepSeek V3 (推荐)</option>
                     <option value="qwen-max">通义千问 Max</option>
@@ -206,8 +206,8 @@
             <div class="form-group">
                 <label class="form-label">素材来源 (Source)</label>
                 <select id="inputType" class="form-control" onchange="toggleInput()">
-                    <option value="text">📝 粘贴纯文本 / 网页内容</option>
-                    <option value="url">🔗 网页链接 (URL)</option>
+                    <option value="text"> 粘贴纯文本 / 网页内容</option>
+                    <option value="url"> 网页链接 (URL)</option>
                 </select>
             </div>
 
@@ -232,7 +232,7 @@
         <!-- 右侧：结构化数据预览 -->
         <div class="panel-card">
             <div class="panel-title">
-                <span>📝 结构化数据预览 (Structured Data)</span>
+                <span> 结构化数据预览 (Structured Data)</span>
                 <span id="target-table-badge" style="font-size:0.75rem; color:#64748b; font-weight:normal;">Target: news</span>
             </div>
             
@@ -296,7 +296,7 @@
                 <div>
                     <label class="form-label">
                         <span>标签 (Tags) - Max 3</span>
-                        <button class="btn-auto" onclick="autoGenTags()" type="button">🏷️ 智能匹配</button>
+                        <button class="btn-auto" onclick="autoGenTags()" type="button"> 智能匹配</button>
                     </label>
                     <input type="text" id="outTags" class="form-control" placeholder="eVTOL, 融资" oninput="updateTagPreview()">
                     <div id="tagPreviewContainer"></div>
@@ -311,7 +311,7 @@
             <div style="display:none;" id="ai-json-data"></div>
 
             <button class="btn-ai btn-save" onclick="saveToDatabase()">
-                📥 确认数据并入库
+                 确认数据并入库
             </button>
         </div>
     </div>
@@ -443,7 +443,7 @@
                         <div><label class="form-label">英文名 (EN)</label><input type="text" id="d-name_en" class="form-control" value="${data.name_en || ''}"></div>
                     </div>
                     <div class="field-row">
-                        <div><label class="form-label">🔗 产业链位置</label>
+                        <div><label class="form-label"> 产业链位置</label>
                             <select id="d-chain" class="form-control">
                                 <option value="midstream" ${data.industry_chain==='midstream'?'selected':''}>中游 (整机)</option>
                                 <option value="upstream" ${data.industry_chain==='upstream'?'selected':''}>上游 (零部件)</option>
@@ -457,7 +457,7 @@
                         <div><label class="form-label">📅 成立年份</label><input type="text" id="d-year" class="form-control" value="${data.founded_year || ''}"></div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">📝 公司简介</label>
+                        <label class="form-label"> 公司简介</label>
                         <textarea id="d-desc" class="form-control" rows="5">${data.description || ''}</textarea>
                     </div>
                 `;
@@ -612,7 +612,7 @@
                 const { error } = await _supabase.from(table).insert(payload);
                 if (error) throw error;
 
-                if(confirm('✅ 入库成功！\n是否继续采集？')) {
+                if(confirm(' 入库成功！\n是否继续采集？')) {
                     document.getElementById('rawContent').value = '';
                     document.getElementById('outTitle').value = '';
                     document.getElementById('outContent').value = '';
